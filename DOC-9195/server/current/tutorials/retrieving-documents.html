@@ -4375,7 +4375,7 @@ In this section, you&#8217;re going to look at two methods of retrieving documen
 </div>
 </div>
 <div class="sect1">
-<h2 id="using-the-query-editor"><a class="anchor" href="#using-the-query-editor"></a>Using the Query editor</h2>
+<h2 id="using-the-query-editor"><a class="anchor" href="#using-the-query-editor"></a>Using the Query Editor</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Return to the admin console, and click on the <span class="menuseq"><b class="menu">Document</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Query</b></span> item on the left-hand menu.</p>
@@ -4546,9 +4546,8 @@ Pay attention to how the collection names are surrounded in backticks (`) charac
 ]</code></pre>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="but-what-about-the-primary-id-field"><a class="anchor" href="#but-what-about-the-primary-id-field"></a>But what about the primary id field?</h3>
+<div class="sect3">
+<h4 id="but-what-about-the-primary-id-field"><a class="anchor" href="#but-what-about-the-primary-id-field"></a>But what about the primary id field?</h4>
 <div class="paragraph">
 <p>Good question. You may want to get hold of <code>id</code> field, which as you can see, isn&#8217;t returned with the document, even if we&#8217;re asking for all the fields in the call. The primary key exists as part of the document&#8217;s "meta" structure, which can be interrogated along with the rest of the document. Make the following small adjustment to the <code>N1QL</code> statement and run the query again:</p>
 </div>
@@ -4591,6 +4590,61 @@ Pay attention to how the collection names are surrounded in backticks (`) charac
 <div class="paragraph">
 <p>You can find a full rundown of the <code>N1QL</code> language here: <a href="../n1ql/n1ql-language-reference/index.html" class="page">N1QL Language Reference</a></p>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="using-the-sdk"><a class="anchor" href="#using-the-sdk"></a>Using the SDK</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Of course, you can also retrieve documents using the JDK. In this section, you&#8217;re going to use the same <code>N1QL</code> queries as part of a small Java application. Let&#8217;s start with a basic record retrieval:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import com.couchbase.client.core.error.CouchbaseException;
+import com.couchbase.client.java.Cluster;
+import com.couchbase.client.java.json.JsonObject;
+import com.couchbase.client.java.query.QueryResult;
+
+public class ArtSchoolRetriever {
+
+    public static void main(String[] args) {
+        Cluster cluster = Cluster.connect("localhost",
+                "Administrator", "password");
+
+
+        retrieveCourses(cluster);
+
+        cluster.disconnect();
+    }
+
+    private static void retrieveCourses(Cluster cluster) {
+
+        try {
+            final QueryResult result = cluster.query("select crc.* from `student-bucket`.`art-school-scope`.`course-record-collection` crc");
+
+            for (JsonObject row : result.rowsAsObject()) {
+                System.out.println("Found row: " + row);
+            }
+
+        } catch (CouchbaseException ex) {
+            ex.printStackTrace();
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you build and run this program:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn install &amp;&amp; mvn exec:java -Dexec.mainClass="ArtSchoolRetriever" -Dexec.cleanupDaemonThreads=false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then you&#8217;ll get a list of the classes in the output.</p>
 </div>
 </div>
 </div>
