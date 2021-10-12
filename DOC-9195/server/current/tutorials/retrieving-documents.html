@@ -4640,11 +4640,90 @@ public class ArtSchoolRetriever {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn install &amp;&amp; mvn exec:java -Dexec.mainClass="ArtSchoolRetriever" -Dexec.cleanupDaemonThreads=false</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn exec:java -Dexec.mainClass="ArtSchoolRetriever" -Dexec.cleanupDaemonThreads=false</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Then you&#8217;ll get a list of the classes in the output.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/retrieve-courses-cli.png" alt="retrieve courses cli">
+</div>
+</div>
+<div class="paragraph">
+<p>You may have noticed a difference between the SQL statement we useed in the web console, and the statement used as part of the application:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-couchbasequery hljs" data-lang="couchbasequery">select crc.* from `student-bucket`.`art-school-scope`.`course-record-collection` crc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The name of the collection in the <code>N1QL</code> statement has to be fully qualified, including the name of the bucket as well as the containing scope.</p>
+</div>
+<div class="paragraph">
+<p>You can, of course, set parameters as part of your query, as shown in the next example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import com.couchbase.client.core.error.CouchbaseException;
+import com.couchbase.client.java.Cluster;
+import com.couchbase.client.java.json.JsonObject;
+import com.couchbase.client.java.query.QueryOptions;
+import com.couchbase.client.java.query.QueryResult;
+
+public class ArtSchoolRetrieverParameters {
+
+    public static void main(String[] args) {
+        Cluster cluster = Cluster.connect("localhost",
+                "Administrator", "password");
+
+
+        retrieveCourses(cluster);
+
+        cluster.disconnect();
+    }
+
+    private static void retrieveCourses(Cluster cluster) {
+
+        try {
+            final QueryResult result = cluster.query("select crc.* " +
+                    "from `student-bucket`.`art-school-scope`.`course-record-collection` crc " +
+                    "where crc.`credit-points` &lt; $creditPoints",    <i class="conum" data-value="1"></i><b>(1)</b>
+                    QueryOptions.queryOptions()
+                             .parameters(JsonObject.create().put("creditPoints", 200)));    <i class="conum" data-value="2"></i><b>(2)</b>
+
+            for (JsonObject row : result.rowsAsObject()) {
+                System.out.println("Found row: " + row);
+            }
+
+        } catch (CouchbaseException ex) {
+            ex.printStackTrace();
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>N1QL</code> statement takes a parameters <code>$creditPoints</code> which will be substituted with a correctly typed value when the statement is called.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The value to substitute is provided in the <code>QueryOptions</code> given as the second parameter in the call. The value of the map entry is the actual parameter value (in this case, 200 which we&#8217;re using to test the <code>credit-points</code>).</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can use <code>maven</code> to run the program:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn exec:java -Dexec.mainClass="ArtSchoolRetrieverParameters" -Dexec.cleanupDaemonThreads=false</code></pre>
+</div>
 </div>
 </div>
 </div>
