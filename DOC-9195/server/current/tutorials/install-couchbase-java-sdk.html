@@ -138,47 +138,6 @@
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
     <span class="in-toggle"></span>
-    <span class="menu_title menu_text">Tutorials</span>
-  </span>
-<ul class="menu_row">
-<li class="menu_list is-parent closed" data-depth="1">
-  <span class="menu_line">
-    <span class="in-toggle"></span>
-    <a class="menu_title menu_link" href="getting-started.html">Couchbase: Getting started</a>
-  </span>
-<ul class="menu_row">
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="installing-couchbase-community-edition.html">Installing Couchbase: Community Edition</a>
-  </span>
-</li>
-<li class="menu_list is-current-page" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link is-current-page" href="install-couchbase-java-sdk.html">Installing the Couchbase SDK</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="first-couchbase-application.html">Writing your first Couchbase application</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="second-couchbase-application.html">Your second Couchbase application: populating the course details</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="retrieving-documents.html">Retrieving documents</a>
-  </span>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="menu_list is-parent closed" data-depth="0">
-  <span class="menu_line">
-    <span class="in-toggle"></span>
     <span class="menu_title menu_text">Get Started</span>
   </span>
 <ul class="menu_row">
@@ -1005,6 +964,39 @@
     <span class="menu_title menu_text">Develop</span>
   </span>
 <ul class="menu_row">
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <a class="menu_title menu_link" href="getting-started.html">Couchbase: Getting started</a>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="installing-couchbase-community-edition.html">Installing Couchbase: Community Edition</a>
+  </span>
+</li>
+<li class="menu_list is-current-page" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link is-current-page" href="install-couchbase-java-sdk.html">Installing the Couchbase SDK</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="first-couchbase-application.html">Writing your first Couchbase application</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="second-couchbase-application.html">Your second Couchbase application: populating the course details</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="retrieving-documents.html">Retrieving documents</a>
+  </span>
+</li>
+</ul>
+</li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../sdk/development-intro.html">Developer&#8217;s Intro</a>
@@ -4351,7 +4343,7 @@
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../introduction/intro.html">Couchbase Server</a></li>
-<li class="crumb">Tutorials</li>
+<li class="crumb">Develop</li>
 <li class="crumb"><a href="getting-started.html">Couchbase: Getting started</a></li>
 <li class="crumb"><a href="install-couchbase-java-sdk.html">Installing the Couchbase SDK</a></li>
 </ul>
@@ -4400,7 +4392,7 @@ In this tutorial, you&#8217;re going to create a skeleton application for intera
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-<a href="https://sdkman.io/">SDKMan</a> is the easiest way to install and manage JDKs and Maven on your host machine.
+<a href="https://sdkman.io/" target="_blank" rel="noopener">SDKMan</a> is the easiest way to install and manage JDKs and Maven on your host machine.
 </td>
 </tr>
 </table>
@@ -4423,7 +4415,7 @@ In this tutorial, you&#8217;re going to create a skeleton application for intera
 </div>
 </div>
 <div class="paragraph">
-<p>Create a new file in the directory called <code>pom.xml</code> in the <code>student</code> directory. The pom file should be populated with the following content.</p>
+<p>Create a new file in the directory called <code>pom.xml</code> in the <code>student</code> directory. The pom file should be populated as follows:</p>
 </div>
 <div class="listingblock">
 <div class="title">pom.xml</div>
@@ -4471,7 +4463,7 @@ In this tutorial, you&#8217;re going to create a skeleton application for intera
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">📂 ~ (your home directory)
   📂 student
-    📃 pom.xml
+    📃 pom.xml ⬅ here!
   📂 src
     📂 main
       📂 java</code></pre>
@@ -4484,10 +4476,6 @@ In this tutorial, you&#8217;re going to create a skeleton application for intera
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn install</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Even without any of your own source code, <code>maven</code> will still build a jar file in a freshly-created <code>target</code> folder.
-You can use the</p>
 </div>
 </div>
 </div>

@@ -138,47 +138,6 @@
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
     <span class="in-toggle"></span>
-    <span class="menu_title menu_text">Tutorials</span>
-  </span>
-<ul class="menu_row">
-<li class="menu_list is-parent closed" data-depth="1">
-  <span class="menu_line">
-    <span class="in-toggle"></span>
-    <a class="menu_title menu_link" href="getting-started.html">Couchbase: Getting started</a>
-  </span>
-<ul class="menu_row">
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="installing-couchbase-community-edition.html">Installing Couchbase: Community Edition</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="install-couchbase-java-sdk.html">Installing the Couchbase SDK</a>
-  </span>
-</li>
-<li class="menu_list is-current-page" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link is-current-page" href="first-couchbase-application.html">Writing your first Couchbase application</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="second-couchbase-application.html">Your second Couchbase application: populating the course details</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="retrieving-documents.html">Retrieving documents</a>
-  </span>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="menu_list is-parent closed" data-depth="0">
-  <span class="menu_line">
-    <span class="in-toggle"></span>
     <span class="menu_title menu_text">Get Started</span>
   </span>
 <ul class="menu_row">
@@ -1005,6 +964,39 @@
     <span class="menu_title menu_text">Develop</span>
   </span>
 <ul class="menu_row">
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <a class="menu_title menu_link" href="getting-started.html">Couchbase: Getting started</a>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="installing-couchbase-community-edition.html">Installing Couchbase: Community Edition</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="install-couchbase-java-sdk.html">Installing the Couchbase SDK</a>
+  </span>
+</li>
+<li class="menu_list is-current-page" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link is-current-page" href="first-couchbase-application.html">Writing your first Couchbase application</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="second-couchbase-application.html">Your second Couchbase application: populating the course details</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="retrieving-documents.html">Retrieving documents</a>
+  </span>
+</li>
+</ul>
+</li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../sdk/development-intro.html">Developer&#8217;s Intro</a>
@@ -4351,7 +4343,7 @@
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../introduction/intro.html">Couchbase Server</a></li>
-<li class="crumb">Tutorials</li>
+<li class="crumb">Develop</li>
 <li class="crumb"><a href="getting-started.html">Couchbase: Getting started</a></li>
 <li class="crumb"><a href="first-couchbase-application.html">Writing your first Couchbase application</a></li>
 </ul>
@@ -4452,7 +4444,7 @@ public class ConnectStudent {
 </div>
 </div>
 <div class="paragraph">
-<p>If you&#8217;re familiar with the JDBC API that connecting to a Couchbase server is not that different:</p>
+<p>If you&#8217;re familiar with the JDBC API then connecting to a Couchbase server is not that different:</p>
 </div>
 <div class="colist arabic">
 <table>
@@ -4463,9 +4455,7 @@ this case), supplying your username and password to authenticate the connection.
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The retrieved <code>cluster</code> is used to retrieve the bucket set up in <a href="#installing-couchbase-community-edition
-.adoc" class="page unresolved">installing-couchbase-community-edition
-.adoc</a>.</td>
+<td>The retrieved <code>cluster</code> is used to retrieve the bucket set up in <a href="installing-couchbase-community-edition.html" class="page">Installing Couchbase: Community Edition</a>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -4473,16 +4463,12 @@ this case), supplying your username and password to authenticate the connection.
 up to be scalable and performant, and an important part of this design is the architecture behind the APIs. Most of
 the APIs are non-blocking, which means that once you call them, your program is free to carry on and do other things
 while the called function executes. Once the function has finished, it sends a notification to its caller, which
-will then process the output of the call.
-<div class="paragraph">
-<p>Now this usually works very well in practice, but in our simple example there is a problem: after we make the call
+will then process the output of the call.<br>
+Now this usually works very well in practice, but in our simple example there is a problem: after we make the call
 to <code>cluster.bucket</code>, the program will carry on without waiting for the bucket retrieval to be complete. This means
-we&#8217;re now trying to retrieve the scope from a bucket object that hasn&#8217;t been fully initialised.</p>
-</div>
-<div class="paragraph">
-<p>This is where the <code>waitUntilReady</code> call comes in. This will force the program to wait until the bucket object is
-fully prepared.</p>
-</div></td>
+we&#8217;re now trying to retrieve the scope from a bucket object that hasn&#8217;t been fully initialised.<br>
+This is where the <code>waitUntilReady</code> call comes in. This will force the program to wait until the bucket object is
+fully prepared.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
@@ -4499,8 +4485,8 @@ You can see the output by running it through maven:</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>And as will all database systems, it&#8217;s good practice to disconnect from the Couchbase cluster once you&#8217;ve
-finished workting with it.</td>
+<td>And as with all database systems, it&#8217;s good practise to disconnect from the Couchbase cluster once you&#8217;ve
+finished working with it.</td>
 </tr>
 </table>
 </div>
@@ -4613,7 +4599,7 @@ for creating and manipulating data in the JSON format. In this case, use the <co
 </td>
 <td class="content">
 <div class="paragraph">
-<p>JSON doesn&#8217;t have its own date type, and so Couchbase doesn&#8217;t have a native data type either. The recommended way of dealing with dates is to store them as <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a>-formatted strings.</p>
+<p>JSON doesn&#8217;t have its own <code>date</code> type, and so Couchbase doesn&#8217;t have a native data type either. The recommended way of dealing with dates is to store them as <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a>-formatted strings.</p>
 </div>
 </td>
 </tr>
@@ -4625,7 +4611,7 @@ for creating and manipulating data in the JSON format. In this case, use the <co
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Couchbase is completely freeform in that it will allow you to store different document types in the same collection. You can, for example, store the student records in the same collection as the course records, if you wanted to. That&#8217;s why it&#8217;s a good idea to include a <code>type</code> field in your document; it&#8217;ll make it easier to filter them later on.</td>
+<td>Couchbase is completely freeform in that it will allow you to store different document types in the same collection. You can, for example, store the student records in the same collection as the course records. This is why it&#8217;s a good idea to include a <code>type</code> field in your document; it&#8217;ll make it easier to filter them later on.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
