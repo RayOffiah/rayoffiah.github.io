@@ -174,7 +174,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="install-couchbase-server.html">Install the Couchbase server</a>
+    <a class="menu_title menu_link" href="install-couchbase-server.html">Install or provision the Couchbase server</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -199,7 +199,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="java-tutorial/adding-enrolments.html">Adding course enrolments</a>
+    <a class="menu_title menu_link" href="java-tutorial/adding-enrollments.html">Adding course enrollments</a>
   </span>
 </li>
 </ul>
@@ -4374,61 +4374,150 @@ A short tutorial that will guide the developer in downloading and installing Cou
 </div>
 </div>
 <div class="sect1">
-<h2 id="database-design"><a class="anchor" href="#database-design"></a>A typical relational database design</h2>
+<h2 id="database-design"><a class="anchor" href="#database-design"></a>The data model</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>So, what would our database schema look like as a relational database model?</p>
+<p>The model will consist of three record types:</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>student</strong></dt>
+<dd>
+<p>holds the information about individual students such as name and date of birth.</p>
+</dd>
+<dt class="hdlist1"><strong>course</strong></dt>
+<dd>
+<p>the courses that the student can take. You will need to store the course name, faculty and the number of credit points associated with the course. Against each student you will somehow need to record which of the course they are taking.</p>
+<div class="admonitionblock note">
+<table>
 <tr>
-<th class="tableblock halign-center valign-top">Relational model</th>
-<th class="tableblock halign-center valign-top">Document model</th>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Bear in mind that a student can take more than one course at a time.
+</td>
 </tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock kroki">
-<div class="content">
-<img src="https://kroki.io/plantuml/svg/eNpdj9EOwyAIRd_9Cp6b8FGu0oxMxSg-NM3-fVrtmu0NLtzLobw4JpttAM-RdE8EkvUphqKy7lC0ulbCYQCWq0N2BrEpANEGOgtnlVA2fHCzm7cxV8IqNReaAaPp_u6Z3Tdjs2v1uo9ZJseKSThq6XkzjmIWHwbSufhDNYT7yqRcBt7p9TTWJvIqIXnSJnbm611EOe5TZv7wp34Af6pkMQ==" alt="Diagram">
+</table>
 </div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+</dd>
+<dt class="hdlist1"><strong>enrollment</strong></dt>
+<dd>
+<p>holds the information related to the course that the student is taking. In relational database, this is usually a link record that provides a relationship between the student and the course.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>So what would this database look like under a relational compared to a document model?</p>
+</div>
+<div class="sect2">
+<h3 id="relational-model"><a class="anchor" href="#relational-model"></a>Relational model</h3>
+<div class="imageblock kroki">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/tutorials/partials/hilary-smith.json">{
+<img src="https://kroki.io/plantuml/svg/eNpdj00OxCAIhfeegnUTDuVUmiGjYpQummbuPlp1_nbw4D0-yoNjstkG8BxJj0QgWe9iKCrrAUV3V0s4DcAyO2RnEKsCEG2gq3BWCWXDG1e7eRozE1bZc6ER0Jvmb57RvTM2u-5ejz7L5FgxCUctLW_EUczifehM1-YPVhc-Zwbm0vm6mfraYF4lJE9axQY9_0WU8-uWGV_8yy_ANWV1" alt="Diagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Nothing too dramatic: the database contains a list of students and a list of courses. Each student can enrol on any number of courses, and the record of each of the student&#8217;s enrollments is stored in a separate table called <code>enrollment</code> which links to the student&#8217;s record and the courses he/she is enrolling on.</p>
+</div>
+<div class="paragraph">
+<p>The <code>enrollment</code> table highlights one of the problems with the relational database model: each table is based on a fixed schema that can only support a single data object type. You cannot store, for example, the enrollment records in the same table as the student, even though it may more natural to do so; after all, an <code>enrollment</code> cannot exist without a <code>student</code>, so why not store them together?</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="document-model"><a class="anchor" href="#document-model"></a>Document model</h3>
+<div class="paragraph">
+<p>The document model gives you the same decomposition advantages as the relational model, but additionally, it also supports complex types which allows for a much more flexible design.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s how the student record system might look as a document database.</p>
+</div>
+<div class="listingblock">
+<div class="title">student record</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "student-id": "000001",
   "name": "Hilary Smith",
   "date-of-birth": "21-12-1980",
-  "enrolments": [
+  "enrollments": [   <i class="conum" data-value="1"></i><b>(1)</b>
     {
-      "course-id": "ART-HISTORY-00003",
+      "course-id": "ART-HISTORY-00003",    <i class="conum" data-value="2"></i><b>(2)</b>
       "date-enrolled": "07-9-2021"
     },
     {
-      "course-id": "GRAPHIC-DESIGN-00001",
+      "course-id": "GRAPHIC-DESIGN-00001",    <i class="conum" data-value="2"></i><b>(2)</b>
       "date-enrolled": "15-9-2021"
     }
   ]
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Nothing too dramatic: the database contains a list of students and a list of courses. Each student can enrol on any number of courses, and the record of each of the student&#8217;s enrolments is stored in a separate table called <code>enrolment</code> which links to the student&#8217;s record and the courses he/she is enrolling on.</p>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The document is stored in JSON format, which allows for the storage of complex types such as arrays without decomposing them to a second table. In this case, the list of <code>enrollment</code> records is stored with the student record.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Each <code>enrollment</code> record holds a reference to the course it relates to.
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>The <code>enrolment</code> table highlights one of the problems with the relational database model: each table is based on a fixed schema that can only support a single data object type. You cannot store, for example, the enrolment records in the same table as the student, even though it may more natural to do so; after all, an <code>enrolment</code> cannot exist without a <code>student</code>, so why not store them together?</p>
+<p>It would be a very bad idea to store the course record with each student:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>It would lead to massive data duplication</p>
+</li>
+<li>
+<p>It would make it very difficult to maintain the data. If the <code>credit-points</code> for a course needed to be changed, then you would need to access every student record to make the change.</p>
+</li>
+</ol>
+</div>
+</td>
+</tr>
+</table>
+</div></td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">art history course record</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "course-id": "ART-HISTORY-00003",
+  "course-name": "art history",
+  "faculty": "fine art",
+  "credit-points" : 100,
+  "type": "course"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">graphic design course record</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "course-id": "GRAPHIC-DESIGN-00001",
+  "course-name": "graphic design",
+  "faculty": "media and communication",
+  "credit-points" : 200,
+  "type": "course"
+}</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Couchbase uses a document model which stores each database record as a <code>json</code> document. The document can can contain both simple scalar types, and complex types such as nested records and arrays.</p>
 </div>
 <div class="paragraph">
-<p>Hilary&#8217;s enrolments are stored in the same document as her student details. As well as being a more natural way to store child information with its parent, this structure allows for all of Hilary&#8217;s details (enrolments included) in one search, without the need for complex table joins to retrieve the enrolment information.</p>
+<p>Hilary&#8217;s enrollments are stored in the same document as her student details. As well as being a more natural way to store child information with its parent, this structure allows for all of Hilary&#8217;s details (enrollments included) in one search, without the need for complex table joins to retrieve the enrollment information.</p>
+</div>
 </div>
 </div>
 </div>
@@ -4452,7 +4541,7 @@ A short tutorial that will guide the developer in downloading and installing Cou
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Step 1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="install-couchbase-server.html" class="page">Install the Couchbase server</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="install-couchbase-server.html" class="page">Install or provision the Couchbase server</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Step 2</p></td>
@@ -4476,7 +4565,7 @@ A short tutorial that will guide the developer in downloading and installing Cou
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Step 7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="java-tutorial/adding-enrolments.html" class="page">Adding course enrolments</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="java-tutorial/adding-enrollments.html" class="page">Adding course enrollments</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -4495,6 +4584,23 @@ It is <strong>strongly</strong> recommended that you follow the sections in orde
 <div class="paragraph">
 <p>In the next part of the tutorial, you&#8217;re going to begin your exploration of Couchbase by <a href="install-couchbase-server.html" class="page">installing the Couchbase Server: Community edition</a>.</p>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top" colspan="2"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><a href="install-couchbase-server.html" class="page">Install or provision the Couchbase server</a></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </article>
