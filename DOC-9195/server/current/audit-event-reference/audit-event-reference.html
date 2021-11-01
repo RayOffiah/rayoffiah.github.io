@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
@@ -275,6 +276,11 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../learn/data/expiration.html">Expiration</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../learn/data/transactions.html">Transactions</a>
   </span>
 </li>
@@ -300,11 +306,6 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../learn/buckets-memory-and-storage/compression.html">Compression</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="3">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../learn/buckets-memory-and-storage/expiration.html">Expiration</a>
   </span>
 </li>
 </ul>
@@ -3151,6 +3152,11 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../cli/cbsummary.html">cbsummary</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="#cli:cbtools/cbtransfer.adoc">cbtransfer</a>
   </span>
 </li>
@@ -3264,7 +3270,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../rest-api/rest-get-internal-setting.html">Viewing Internal Settings</a>
+    <a class="menu_title menu_link" href="../rest-api/rest-get-internal-setting.html">Managing Internal Settings</a>
   </span>
 </li>
 <li class="menu_list" data-depth="4">
@@ -3957,11 +3963,6 @@
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../rest-api/rest-setting-security.html">Configure On-the-Wire Security</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="4">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../rest-api/rest-setting-security.html">Manage Encryption Settings</a>
   </span>
 </li>
 <li class="menu_list" data-depth="4">
@@ -5009,6 +5010,30 @@ The fourth column provides a description of the event; the fifth describes wheth
 <td class="tableblock halign-left valign-top"><p class="tableblock">N</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Data</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REST API</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">authentication failure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8264</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REST operation failed due to authentication failure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REST API</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RBAC information retrieved</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8265</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RBAC information was retrieved</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REST API</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin password reset</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8266</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin password was reset</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -5480,8 +5505,152 @@ The fourth column provides a description of the event; the fifth describes wheth
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">/admin/indexes/tasks API request</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">287010</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28710</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">An HTTP request was made to the API at /admin/indexes/tasks.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/admin/dictionary_cache API request</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28711</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An HTTP request was made to the API at /admin/dictionary_cache</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/admin/indexes/dictionary_cache API request</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28712</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An HTTP request was made to the API at /admin/indexes/dictionary_cache</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE SCOPE statement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28713</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A N1QL CREATE SCOPE statement was executed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DROP SCOPE statement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28714</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A N1QL DROP SCOPE statement was executed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE COLLECTION statement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28715</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A N1QL CREATE COLLECTION statement was executed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DROP COLLECTION statement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28716</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A N1QL DROP COLLECTION statement was executed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FLUSH COLLECTION statement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28717</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A N1QL FLUSH COLLECTION statement was executed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UPDATE STATISTICS statement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28718</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A N1QL UPDATE STATISTICS statement was executed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ADVISE statement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28719</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A N1QL ADVISE statement was executed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">START TRANSACTION statement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28720</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A N1QL START TRANSACTION statement was executed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">COMMIT TRANSACTION statement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28721</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A N1QL COMMIT TRANSACTION statement was executed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ROLLBACK TRANSACTION statement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28722</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A N1QL ROLLBACK TRANSACTION statement was executed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ROLLBACK TRANSACTION TO SAVEPOINT statement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28723</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A N1QL ROLLBACK TRANSACTION TO SAVEPOINT statement was executed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SET TRANSACTION ISOLATION statement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28724</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A N1QL SET TRANSACTION ISOLATION statement was executed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SAVEPOINT statement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28725</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A N1QL SAVEPOINT statement was executed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/admin/transactions API request</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28726</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An HTTP request was made to the API at /admin/transactions.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/admin/indexes/transactions API request</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28727</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An HTTP request was made to the API at /admin/indexes/transactions.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and Index Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N1QL backup / restore API request</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28728</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An HTTP request was made to archive or restore N1QL metadata</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
 </tr>
@@ -5576,6 +5745,14 @@ The fourth column provides a description of the event; the fifth describes wheth
 <td class="tableblock halign-left valign-top"><p class="tableblock">Memory profile</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">24584</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Memory profiling was started</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Search Service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Access denied</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">24585</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User has been denied access due to invalid permissions/credentials</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">N</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
 </tr>
@@ -5758,6 +5935,22 @@ The fourth column provides a description of the event; the fifth describes wheth
 <td class="tableblock halign-left valign-top"><p class="tableblock">List Running</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">32786</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Eventing running function list was read</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Eventing Service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Authentication Failure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">32787</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Authentication failed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Eventing Service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Authorization Failure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">32788</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Authorization failed</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
 </tr>
@@ -6066,6 +6259,14 @@ The fourth column provides a description of the event; the fifth describes wheth
 <td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backup Service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Access denied</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">45074</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A user has been denied access to the REST API due to invalid permissions or credentials</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admin</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -6281,8 +6482,8 @@ The fourth column provides a description of the event; the fifth describes wheth
 </div>
 </template>
 <script id="site-script" src="../../../_/js/site.js"></script>
-<script async src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
-<script async src="../../../_/js/vendor/fontawesome.js"></script>
+<script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../../_/js/vendor/fontawesome.js"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
 </body>
 </html>

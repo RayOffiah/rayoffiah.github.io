@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
@@ -274,6 +275,11 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../learn/data/expiration.html">Expiration</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../learn/data/transactions.html">Transactions</a>
   </span>
 </li>
@@ -299,11 +305,6 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../learn/buckets-memory-and-storage/compression.html">Compression</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="3">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../learn/buckets-memory-and-storage/expiration.html">Expiration</a>
   </span>
 </li>
 </ul>
@@ -3150,6 +3151,11 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../cli/cbsummary.html">cbsummary</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="#cli:cbtools/cbtransfer.adoc">cbtransfer</a>
   </span>
 </li>
@@ -3263,7 +3269,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../rest-api/rest-get-internal-setting.html">Viewing Internal Settings</a>
+    <a class="menu_title menu_link" href="../rest-api/rest-get-internal-setting.html">Managing Internal Settings</a>
   </span>
 </li>
 <li class="menu_list" data-depth="4">
@@ -3960,11 +3966,6 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../rest-api/rest-setting-security.html">Manage Encryption Settings</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="4">
-  <span class="menu_line">
     <a class="menu_title menu_link" href="../rest-api/rest-secret-mgmt.html">Secret Management API</a>
   </span>
 </li>
@@ -4428,7 +4429,7 @@ If you wish to support a high number of curl() calls to slow REST endpoints (&gt
 </div>
 <div class="paragraph">
 <p>Before deployment, Couchbase Server verifies the Function handler code.
-Only valid Functions get deployed. Using the <em>log()</em> option within a <em>try-catch block(s)</em>, you can record errors. These error logs get stored in the Eventing function&#8217;s application log file. Note the venting function&#8217;s application log file on disk is specific to the node that processed the mutation and is not global across the cluster. By default, JavaScript runtime errors get stored in the system logs. Unlike system logs, troubleshooting and debugging operations are easy when you use the <em>try-catch</em> block and application <em>log()</em> options.</p>
+Only valid Functions get deployed. Using the <em>log()</em> option within a <em>try-catch block(s)</em>, you can record errors. These error logs get stored in the Eventing function&#8217;s application log file. Note the Eventing function&#8217;s application log file on disk is specific to the node that processed the mutation and is not global across the cluster. By default, JavaScript runtime errors get stored in the system logs. Unlike system logs, troubleshooting and debugging operations are easy when you use the <em>try-catch</em> block and application <em>log()</em> options.</p>
 </div>
 <div class="paragraph">
 <p>During runtime, Application logs, by default, do not capture any handler code exceptions. To log exceptions, it is recommended to encapsulate your code in a <em>try-catch</em> block.</p>
@@ -4611,7 +4612,21 @@ This way you can monitor, debug and troubleshoot errors during the Function exec
 <p>If the collection you chose to hold your meta data spills over to disk access is not 100% resident, your Eventing system can essentially stall and/or slow down by orders of magnitude and you can also experience failures and/or missed mutations.</p>
 </div>
 <div class="paragraph">
-<p>Always make sure that the memory quota on your metadata Eventing Storage keyspace (metadata collection) is sufficiently large to ensure a residency ratio of 100%.</p>
+<p>Always make sure that the memory quota on your metadata Eventing Storage keyspace (metadata collection) is sufficiently large to ensure a residency ratio of 100%. Additionally avoid using an Ephemeral bucket for your Eventing Storage keyspace (refer to next question for details).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="can-i-use-ephemeral-buckets-with-eventing"><a class="anchor" href="#can-i-use-ephemeral-buckets-with-eventing"></a>Can I use Ephemeral Buckets with Eventing?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Yes, but not for the Eventing Storage keyspace.</p>
+</div>
+<div class="paragraph">
+<p>The source bucket and any bucket (or keyspace) bindings of your Eventing Function can be Ephemeral.</p>
+</div>
+<div class="paragraph">
+<p>However, the Eventing Storage keyspace (metadata collection) should always be persistent. If the Eventing Storage keyspace is not persistent, the Data Service, or KV, will evict timer and checkpoint documents on hitting quota and Eventing can lose track of both timers and mutations processed.</p>
 </div>
 </div>
 </div>
@@ -4769,8 +4784,8 @@ Watch the number of documents in your collections (source, Eventing Storage, and
 </div>
 </template>
 <script id="site-script" src="../../../_/js/site.js"></script>
-<script async src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
-<script async src="../../../_/js/vendor/fontawesome.js"></script>
+<script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../../_/js/vendor/fontawesome.js"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
 </body>
 </html>

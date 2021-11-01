@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
@@ -275,6 +276,11 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../data/expiration.html">Expiration</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../data/transactions.html">Transactions</a>
   </span>
 </li>
@@ -300,11 +306,6 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../buckets-memory-and-storage/compression.html">Compression</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="3">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../buckets-memory-and-storage/expiration.html">Expiration</a>
   </span>
 </li>
 </ul>
@@ -3151,6 +3152,11 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../cli/cbsummary.html">cbsummary</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="#cli:cbtools/cbtransfer.adoc">cbtransfer</a>
   </span>
 </li>
@@ -3264,7 +3270,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../rest-api/rest-get-internal-setting.html">Viewing Internal Settings</a>
+    <a class="menu_title menu_link" href="../../rest-api/rest-get-internal-setting.html">Managing Internal Settings</a>
   </span>
 </li>
 <li class="menu_list" data-depth="4">
@@ -3961,11 +3967,6 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../rest-api/rest-setting-security.html">Manage Encryption Settings</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="4">
-  <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-secret-mgmt.html">Secret Management API</a>
   </span>
 </li>
@@ -4454,8 +4455,15 @@ If a new path is required for a node that has already been provisioned, the node
 <div class="sectionbody">
 <div class="paragraph">
 <p>A Couchbase <em>cluster</em> consists of one or more systems, each running Couchbase Server.
-An existing cluster can be incremented with additional nodes.
-This can be accomplished in either of the following ways:</p>
+An existing cluster can be incremented with additional nodes.</p>
+</div>
+<div class="paragraph">
+<p>Note that Couchbase has modified the license restrictions to its Community Edition package for Couchbase Server Version 7.0 and higher.
+In consequence, the size of an individual cluster running Community Edition is restricted to <em>five</em> nodes.
+See <a href="https://blog.couchbase.com/couchbase-modifies-license-free-community-edition-package/" target="_blank" rel="noopener">Couchbase Modifies License of Free Community Edition Package</a>, for further information on the new restrictions; and see <a href="../../manage/manage-nodes/node-management-overview.html#node-management-and-community-edition" class="page">Node Management and Community Edition</a>, for information on how this affects the experience of Community-Edition administrators.</p>
+</div>
+<div class="paragraph">
+<p>Incrementing a cluster with additional nodes can be accomplished in either of the following ways:</p>
 </div>
 <div id="node-addition" class="ulist">
 <ul>
@@ -4523,7 +4531,7 @@ Therefore, provided that one node in the cluster is running the Data Service, th
 <h2 id="rebalance-and-fail-over"><a class="anchor" href="#rebalance-and-fail-over"></a>Rebalance, Removal, Failover, and Recovery</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><em>Rebalance</em> is a process of re-distributing data and indexes among available nodes.
+<p><em>Rebalance</em> is a process of re-distributing data, indexes, event processing, and query processing among available nodes.
 This process should be run whenever a node is added to or removed from an existing cluster as part of a scheduled or pre-planned maintenance activity.
 It can also be run after a node has been taken out of the cluster by means of <em>failover</em>, described below.
 Rebalance takes place while the cluster is running and servicing requests: clients continue to read and write to existing structures, while the data is being moved between Data Service nodes.
@@ -4531,7 +4539,7 @@ Once data-movement has completed, the updated distribution is communicated to al
 See <a href="rebalance.html" class="page">Rebalance</a>, for more information.</p>
 </div>
 <div class="paragraph">
-<p>Node <em>removal</em> allows a node to be taken out of a cluster in a highly controlled fashion, using <em>rebalance</em> to redistribute data and indexes among remaining nodes.
+<p>Node <em>removal</em> allows a node to be taken out of a cluster in a highly controlled fashion, using <em>rebalance</em> to redistribute data, indexes, event processing, and query processing among remaining nodes.
 It is to be used only when are nodes in the cluster are responsive.
 It can be used on any node.
 See <a href="removal.html" class="page">Removal</a>, for more information.</p>
@@ -4818,8 +4826,8 @@ For practical steps towards set-up, see <a href="../../manage/manage-nodes/apply
 </div>
 </template>
 <script id="site-script" src="../../../../_/js/site.js"></script>
-<script async src="../../../../_/js/vendor/fontawesome-icon-defs.js"></script>
-<script async src="../../../../_/js/vendor/fontawesome.js"></script>
+<script defer src="../../../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../../../_/js/vendor/fontawesome.js"></script>
 <script async src="../../../../_/js/vendor/highlight.js"></script>
 </body>
 </html>

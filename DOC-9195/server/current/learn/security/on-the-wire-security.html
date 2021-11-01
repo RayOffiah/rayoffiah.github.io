@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
@@ -275,6 +276,11 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../data/expiration.html">Expiration</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../data/transactions.html">Transactions</a>
   </span>
 </li>
@@ -300,11 +306,6 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../buckets-memory-and-storage/compression.html">Compression</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="3">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../buckets-memory-and-storage/expiration.html">Expiration</a>
   </span>
 </li>
 </ul>
@@ -3151,6 +3152,11 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../cli/cbsummary.html">cbsummary</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="#cli:cbtools/cbtransfer.adoc">cbtransfer</a>
   </span>
 </li>
@@ -3264,7 +3270,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../rest-api/rest-get-internal-setting.html">Viewing Internal Settings</a>
+    <a class="menu_title menu_link" href="../../rest-api/rest-get-internal-setting.html">Managing Internal Settings</a>
   </span>
 </li>
 <li class="menu_list" data-depth="4">
@@ -3961,11 +3967,6 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../rest-api/rest-setting-security.html">Manage Encryption Settings</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="4">
-  <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-secret-mgmt.html">Secret Management API</a>
   </span>
 </li>
@@ -4389,9 +4390,27 @@ This can be disabled, for the whole cluster; over either HTTP or HTTPS, or over 
 </li>
 <li>
 <p><em>Establishing the Cluster Encryption-Level</em>.
-The level of encryption imposed on inter-node communications within the cluster can be configured: either as <em>control</em> (meaning that only server-management information is passed in encrypted form) or <em>all</em> (meaning that all information, including data handled by services, is passed in encrypted form).</p>
+The level of encryption imposed on inter-node communications within the cluster can be configured.
+This can be:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>control</code>, meaning that server-management information passed between nodes is passed in encrypted form.</p>
+</li>
+<li>
+<p><code>all</code>, meaning that all information passed between nodes, including data handled by services, is passed in encrypted form.</p>
+</li>
+<li>
+<p><code>strict</code>, meaning <code>all</code> with only encrypted communication permitted between nodes and between the cluster and external clients.
+Note, however, that after <code>strict</code> has been specified, communication that occurs entirely on a single node using the <em>loopback</em> interface (whereby the machine is identified as either <code>localhost</code> or <code>127.0.0.1</code>) is still permitted in non-encrypted form.</p>
 <div class="paragraph">
-<p>This can only be configured after cluster encryption itself has been <em>enabled</em>: see <a href="../clusters-and-availability/node-to-node-encryption.html" class="page">Node-to-Node Encryption</a>.</p>
+<p>The cluster encryption-level can only be configured after cluster encryption itself has been <em>enabled</em>: see <a href="../clusters-and-availability/node-to-node-encryption.html" class="page">Node-to-Node Encryption</a>.</p>
+</div>
+<div class="paragraph">
+<p>Before establishing the encryption-level as <code>strict</code>, see the information provided in <a href="../../rest-api/rest-setting-security.html#enforcing-tls" class="page">Enforcing TLS</a>.</p>
+</div>
+</li>
+</ul>
 </div>
 </li>
 <li>
@@ -4648,8 +4667,8 @@ See <a href="../../manage/manage-security/manage-tls.html" class="page">Manage O
 </div>
 </template>
 <script id="site-script" src="../../../../_/js/site.js"></script>
-<script async src="../../../../_/js/vendor/fontawesome-icon-defs.js"></script>
-<script async src="../../../../_/js/vendor/fontawesome.js"></script>
+<script defer src="../../../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../../../_/js/vendor/fontawesome.js"></script>
 <script async src="../../../../_/js/vendor/highlight.js"></script>
 </body>
 </html>
