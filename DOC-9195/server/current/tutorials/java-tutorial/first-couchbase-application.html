@@ -13,6 +13,15 @@
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
         <link rel="prev" href="install-couchbase-java-sdk.html">
         <link rel="next" href="second-couchbase-application.html">
+
+
+
+                    <link rel="prev" href="install-couchbase-java-sdk.html">
+
+
+                    <link rel="next" href="second-couchbase-application.html">
+
+
 <meta name="dcterms.subject" content="server">
 <meta name="dcterms.identifier" content="7.1">
 <meta name="page-url" content="/server/current/tutorials/java-tutorial/first-couchbase-application.html">
@@ -183,7 +192,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../buckets-scopes-and-collections.html">Buckets, Scopes and Collections</a>
+    <a class="menu_title menu_link" href="../buckets-scopes-and-collections.html">Buckets,Scopes and Collections</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -4372,7 +4381,7 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-Following on from <a href="#install-couchbase-java-sdk.adoc" class="page unresolved">install-couchbase-java-sdk.adoc</a>, this tutorial will show you how to connect to Couchbase and add records to the database using the SDK.
+Following on from <a href="install-couchbase-java-sdk.html" class="page">Installing the Couchbase Java SDK</a>, this tutorial will show you how to connect to Couchbase and add records to the database using the SDK.
 </blockquote>
 </div>
 </div>
@@ -4397,8 +4406,7 @@ Following on from <a href="#install-couchbase-java-sdk.adoc" class="page unresol
 </ol>
 </div>
 <div class="paragraph">
-<p>Fortunately, the Couchbase SDK follows the same pattern, so the first thing you&#8217;re going to do is write the code to
-connect to your document store.</p>
+<p>Fortunately, the Couchbase SDK follows the same pattern, so the first thing you&#8217;re going to do is write the code to connect to your document store.</p>
 </div>
 </div>
 </div>
@@ -4461,8 +4469,7 @@ public class ConnectStudent {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>A call to <code>Cluster.connect</code> creates a channel to the named server (<code>localhost</code> running on your local machine in
-this case), supplying your username and password to authenticate the connection.</td>
+<td>A call to <code>Cluster.connect</code> creates a channel to the named server (<code>localhost</code> running on your local machine in this case), supplying your username and password to authenticate the connection.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -4473,8 +4480,8 @@ this case), supplying your username and password to authenticate the connection.
 <td>As discussed earlier in <a href="../getting-started.html" class="page">Couchbase: Getting started</a>, Couchbase has been designed from the ground up to be scalable and performant, and an important part of this design is the architecture behind the APIs. Most of the APIs are non-blocking, which means that once you call them, your program is free to carry on and do other things while the called function executes. Once the function has finished, it sends a notification to its caller, which
 will then process the output of the call.<br>
 Now this usually works very well in practice, but in our simple example there is a problem: after we make the call
-to <code>cluster.bucket</code>, the program will carry on without waiting for the bucket retrieval to be complete. This means
-we&#8217;re now trying to retrieve the scope from a bucket object that hasn&#8217;t been fully initialised.<br>
+to <code>cluster.bucket</code>, the program will carry on without waiting for the bucket retrieval to be complete.
+This means we&#8217;re now trying to retrieve the scope from a bucket object that hasn&#8217;t been fully initialised.<br>
 This is where the <code>waitUntilReady</code> call comes in. This will force the program to wait until the bucket object is
 fully prepared.</td>
 </tr>
@@ -4500,7 +4507,7 @@ finished working with it.</td>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn exec:java -Dexec.mainClass="ConnectStudent" -Dexec.cleanupDaemonThreads=false</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">mvn exec:java -Dexec.mainClass="ConnectStudent" -Dexec.cleanupDaemonThreads=false</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4524,8 +4531,8 @@ As an experiment, try commenting out the <code>bucket.waitUntilReady</code> call
 </table>
 </div>
 <div class="paragraph">
-<p>Okay, so you&#8217;ve connected to the cluster and retrieved your collection. Unfortunately, there&#8217;s nothing in there to
-see at the moment, so the next thing to do is create a few records.</p>
+<p>Okay, so you&#8217;ve connected to the cluster and retrieved your collection.
+Unfortunately, there&#8217;s nothing in there to see at the moment, so the next thing to do is create a few records.</p>
 </div>
 </div>
 </div>
@@ -4534,9 +4541,9 @@ see at the moment, so the next thing to do is create a few records.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Remember that Couchbase is a <a href="../getting-started.html#database-design" class="page">document store</a>, not a
-relational database in the traditional sense. Rather than storing data in tables, you&#8217;re going to create a document
-in JSON and insert it into the <code>student-record-collection</code>. Here&#8217;s Hilary Smith&#8217;s student record (minus the enrollment
- details – we&#8217;ll come to that later):</p>
+relational database in the traditional sense.
+Rather than storing data in tables, you&#8217;re going to create a document in JSON and insert it into the <code>student-record-collection</code>.
+Here&#8217;s Hilary Smith&#8217;s student record (minus the enrollment details – we&#8217;ll come to that later):</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4592,13 +4599,12 @@ public class InsertStudent {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Up to this point, it&#8217;s pretty much the same as the <code>ConnectStudent</code> class: mainly the boilerplate code to connect
-to the cluster and access the collection.</td>
+<td>Up to this point, it&#8217;s pretty much the same as the <code>ConnectStudent</code> class: mainly the boilerplate code to connect to the cluster and access the collection.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Since Couchbase is primarily a store for JSON documents, it makes sense to include a whole class of functionality
-for creating and manipulating data in the JSON format. In this case, use the <code>JsonObject</code> class to create and populate Hilary&#8217;s student record.
+<td>Since Couchbase is primarily a store for JSON documents, it makes sense to include a whole class of functionality for creating and manipulating data in the JSON format.
+In this case, use the <code>JsonObject</code> class to create and populate Hilary&#8217;s student record.
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -4607,7 +4613,8 @@ for creating and manipulating data in the JSON format. In this case, use the <co
 </td>
 <td class="content">
 <div class="paragraph">
-<p>JSON doesn&#8217;t have its own <code>date</code> type, and so Couchbase doesn&#8217;t have a native data type either. The recommended way of dealing with dates is to store them as <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a>-formatted strings.</p>
+<p>JSON doesn&#8217;t have its own <code>date</code> type, and so Couchbase doesn&#8217;t have a native data type either.
+The recommended way of dealing with dates is to store them as <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a>-formatted strings.</p>
 </div>
 </td>
 </tr>
@@ -4619,11 +4626,16 @@ for creating and manipulating data in the JSON format. In this case, use the <co
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Couchbase is completely freeform in that it will allow you to store different document types in the same collection. You can, for example, store the student records in the same collection as the course records. This is why it&#8217;s a good idea to include a <code>type</code> field in your document; it&#8217;ll make it easier to filter them later on.</td>
+<td>Couchbase is completely freeform in that it will allow you to store different document types in the same collection.
+You can, for example, store the student records in the same collection as the course records.
+This is why it&#8217;s a good idea to include a <code>type</code> field in your document; it&#8217;ll make it easier to filter them later on.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>The oddly-named <code>upsert</code> function is used to insert or update documents in a collection. The first parameter is a unique identifier for the document (much like the primary key used in relational database systems). If <code>upsert</code> call finds a document with a matching identifier in the collection, then the document is updated. If there is no existing identifer, then a new record is created.</td>
+<td>The oddly-named <code>upsert</code> function is used to insert or update documents in a collection.
+The first parameter is a unique identifier for the document (much like the primary key used in relational database systems).
+If <code>upsert</code> call finds a document with a matching identifier in the collection, then the document is updated.
+If there is no existing identifer, then a new record is created.</td>
 </tr>
 </table>
 </div>
@@ -4632,7 +4644,7 @@ for creating and manipulating data in the JSON format. In this case, use the <co
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn exec:java -Dexec.mainClass="InsertStudent" -Dexec.cleanupDaemonThreads=false</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">mvn exec:java -Dexec.mainClass="InsertStudent" -Dexec.cleanupDaemonThreads=false</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4669,10 +4681,14 @@ for creating and manipulating data in the JSON format. In this case, use the <co
 <a href="#_footnoteref_1">1</a>. Create Read Update Delete
 </div>
 </div>
-<nav class="pagination">
-  <span class="prev"><a href="install-couchbase-java-sdk.html">Installing the Couchbase Java SDK</a></span>
-  <span class="next"><a href="second-couchbase-application.html">Your second Couchbase application: populating the course details</a></span>
-</nav>
+
+        <nav class="pagination">
+
+                    <span class="prev"><a href="install-couchbase-java-sdk.html">Installing the Couchbase Java SDK</a></span>
+
+
+                    <span class="next"><a href="second-couchbase-application.html">Your second Couchbase application: populating the course details</a></span>
+
 </article>
 </main>
 </div>

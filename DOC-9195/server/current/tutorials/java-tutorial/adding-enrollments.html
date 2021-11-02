@@ -13,6 +13,13 @@
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
         <link rel="prev" href="retrieving-documents.html">
         <link rel="next" href="../../learn/architecture-overview.html">
+
+
+
+                    <link rel="prev" href="retrieving-documents.html">
+
+        
+
 <meta name="dcterms.subject" content="server">
 <meta name="dcterms.identifier" content="7.1">
 <meta name="page-url" content="/server/current/tutorials/java-tutorial/adding-enrollments.html">
@@ -183,7 +190,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../buckets-scopes-and-collections.html">Buckets, Scopes and Collections</a>
+    <a class="menu_title menu_link" href="../buckets-scopes-and-collections.html">Buckets,Scopes and Collections</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -4370,6 +4377,9 @@
 <span  id="otherContributor"> + </span>
 </div><div id="preamble">
 <div class="sectionbody">
+<div class="paragraph">
+<p>ƒ</p>
+</div>
 <div class="quoteblock abstract">
 <blockquote>
 In this section, you&#8217;re going to add enrollment details to the student records using the Couchbase SDK
@@ -4389,7 +4399,8 @@ In this section, you&#8217;re going to add enrollment details to the student rec
 </div>
 </div>
 <div class="paragraph">
-<p>At this point, you should have a student records for Hilary Smith and Ashley Jones, along with records for three courses. You&#8217;re now going to write a short program that will add enrollment details to the student records.</p>
+<p>At this point, you should have a student records for Hilary Smith and Ashley Jones, along with records for three courses.
+You&#8217;re now going to write a short program that will add enrollment details to the student records.</p>
 </div>
 <div class="paragraph">
 <p>You&#8217;re going to create another program in the same working directory that will bring together all the concepts you&#8217;ve learned so far.</p>
@@ -4554,7 +4565,7 @@ public class AddEnrollments {
 </div>
 </div>
 <div class="paragraph">
-<p>Each method uses a <code>N1QL</code> call to retrieve a single record from its respective collection.</p>
+<p>Each method uses a N1QL call to retrieve a single record from its respective collection.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -4563,7 +4574,8 @@ public class AddEnrollments {
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-This is just a demonstration, so there is no error checking to ensure that an item from the collection has been returned. In a live system, checks would have to be made to prevent possible errors while the program is running.
+This is just a demonstration, so there is no error checking to ensure that an item from the collection has been returned.
+In a live system, checks would have to be made to prevent possible errors while the program is running.
 </td>
 </tr>
 </table>
@@ -4578,11 +4590,13 @@ This is just a demonstration, so there is no error checking to ensure that an it
 </tr>
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>The <code>enrollments</code> inside the student record are stored as an array; since <code>Json</code> is the native data format for Couchbase, it&#8217;s not surprising that each SDK has a host of functions for processing data in Json. In this case, the call <code>JsonArray.create()</code> will create an empty list structure.</td>
+<td>The <code>enrollments</code> inside the student record are stored as an array; since JSON is the native data format for Couchbase, it&#8217;s not surprising that each SDK has a host of functions for processing data in JSON.
+In this case, the call <code>JsonArray.create()</code> will create an empty list structure.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="8"></i><b>8</b></td>
-<td>Now <code>Json</code> elements are added to the <code>enrollments</code> array. Looking back at the <a href="#enrollments-structure">data structure</a> for enrollments, we need store just two items: the course that the enrollment relates to, and the date the student enrolled.
+<td>Now JSON elements are added to the <code>enrollments</code> array.
+Looking back at the <a href="#enrollments-structure">data structure</a> for enrollments, we need store just two items: the course that the enrollment relates to, and the date the student enrolled.
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">enrollments.add(JsonObject.create().put("course-id", graphic_design.getString("id"))
@@ -4590,7 +4604,9 @@ This is just a demonstration, so there is no error checking to ensure that an it
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>course-id</code> uses the <code>id</code> of the course record retrieved from the database. We could, or course, store the whole record in this field. Why <strong><em>wouldn&#8217;t</em></strong> we want to do that?</p>
+<p>The <code>course-id</code> uses the <code>id</code> of the course record retrieved from the database.
+We could, or course, store the whole record in this field.
+Why <em>wouldn&#8217;t</em> we want to do that?</p>
 </div>
 <div class="paragraph">
 <p></p>
@@ -4599,7 +4615,9 @@ This is just a demonstration, so there is no error checking to ensure that an it
 <summary class="title">Answer</summary>
 <div class="content">
 <div class="paragraph">
-<p>This goes back to our relational model, and the idea of normalising the data model so that we don&#8217;t have repeating data items all over the place. Here, you&#8217;re just storing a reference to the course, not the course record itself. So if the course details change (such as the number of credit points assigned to it), then you don&#8217;t have to search through every single record that includes its own version.</p>
+<p>This goes back to our relational model, and the idea of normalising the data model so that we don&#8217;t have repeating data items all over the place.
+Here, you&#8217;re just storing a reference to the course, not the course record itself.
+So if the course details change (such as the number of credit points assigned to it), then you don&#8217;t have to search through every single record that includes its own version.</p>
 </div>
 </div>
 </details>
@@ -4613,7 +4631,8 @@ This is just a demonstration, so there is no error checking to ensure that an it
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p>This is where the document database model shines; there is no need to change a database schema and rebuild the database. Just add the data and you&#8217;re done.</p>
+<p>This is where the document database model shines; there is no need to change a database schema and rebuild the database.
+Just add the data and you&#8217;re done.</p>
 </div>
 </div>
 </div>
@@ -4623,7 +4642,10 @@ This is just a demonstration, so there is no error checking to ensure that an it
 </tr>
 <tr>
 <td><i class="conum" data-value="10"></i><b>10</b></td>
-<td>Finally, the changes need to be committed to the collection. For this, use the <code>upsert</code> function, which takes the key of the record you wish to insert or update and the record itself as parameters. If they key exists in the collection then the record is updated. If the key does not exist then it&#8217;s a fresh document, so the item is inserted.</td>
+<td>Finally, the changes need to be committed to the collection.
+For this, use the <code>upsert</code> function, which takes the key of the record you wish to insert or update and the record itself as parameters.
+If they key exists in the collection then the record is updated.
+If the key does not exist then it&#8217;s a fresh document, so the item is inserted.</td>
 </tr>
 </table>
 </div>
@@ -4632,7 +4654,7 @@ This is just a demonstration, so there is no error checking to ensure that an it
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn exec:java -Dexec.mainClass="AddEnrollments" -Dexec.cleanupDaemonThreads=false</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">mvn exec:java -Dexec.mainClass="AddEnrollments" -Dexec.cleanupDaemonThreads=false</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4644,15 +4666,20 @@ This is just a demonstration, so there is no error checking to ensure that an it
 <h2 id="great-job"><a class="anchor" href="#great-job"></a>Great Job!</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve reached the end of the beginners' tutorial. You can explore the documentation site to learn more about Couchbase.</p>
+<p>You&#8217;ve reached the end of the beginners' tutorial.
+You can explore the documentation site to learn more about Couchbase.</p>
 </div>
 </div>
 </div>
-<nav class="pagination">
-  <span class="prev"><a href="retrieving-documents.html">Retrieving documents</a></span>
-  <span class="next"><a href="../../learn/architecture-overview.html">Overview</a></span>
-</nav>
-</article>
+
+        <nav class="pagination">
+
+                    <span class="prev"><a href="retrieving-documents.html">Retrieving documents</a></span>
+
+
+                <span>&nbsp;</span>
+            </nav>
+        </article>
 </main>
 </div>
 <footer class="footer">

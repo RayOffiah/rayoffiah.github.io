@@ -13,6 +13,15 @@
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
         <link rel="prev" href="second-couchbase-application.html">
         <link rel="next" href="adding-enrollments.html">
+
+
+
+                    <link rel="prev" href="second-couchbase-application.html">
+
+
+                    <link rel="next" href="adding-enrollments.html">
+
+
 <meta name="dcterms.subject" content="server">
 <meta name="dcterms.identifier" content="7.1">
 <meta name="page-url" content="/server/current/tutorials/java-tutorial/retrieving-documents.html">
@@ -183,7 +192,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../buckets-scopes-and-collections.html">Buckets, Scopes and Collections</a>
+    <a class="menu_title menu_link" href="../buckets-scopes-and-collections.html">Buckets,Scopes and Collections</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -4372,7 +4381,7 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-In this section, you&#8217;re going to look at two methods of retrieving documents from a collection: you will use the administration console to build simple queries, and also write a short program to retrieve documents matching certain criteria. Both of the methods will introduce <code>N1QL</code> (pronounced <em>nickel</em>), Couchbase&#8217;s SQL-based query language.
+In this section, you&#8217;re going to look at two methods of retrieving documents from a collection: you will use the administration console to build simple queries, and also write a short program to retrieve documents matching certain criteria. Both of the methods will introduce N1QL (pronounced 'nickel'), Couchbase&#8217;s SQL-based query language
 </blockquote>
 </div>
 </div>
@@ -4402,7 +4411,7 @@ In this section, you&#8217;re going to look at two methods of retrieving documen
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-couchbasequery hljs" data-lang="couchbasequery">select crc.* from `course-record-collection` crc</code></pre>
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">select crc.* from `course-record-collection` crc</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -4412,7 +4421,7 @@ In this section, you&#8217;re going to look at two methods of retrieving documen
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>N1QL</code> is very similar to standard <code>SQL</code>. Once you have mastered the document database model, you&#8217;ll find it very easy to adapt.
+N1QL is very similar to standard SQL. Once you have mastered the document database model, you&#8217;ll find it very easy to adapt.
 </td>
 </tr>
 </table>
@@ -4462,7 +4471,7 @@ In this section, you&#8217;re going to look at two methods of retrieving documen
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-couchbasequery hljs" data-lang="couchbasequery">create primary index course_idx on `course-record-collection`</code></pre>
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">create primary index course_idx on `course-record-collection`</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4485,7 +4494,7 @@ Pay attention to how the collection names are surrounded in backticks (`) charac
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-couchbasequery hljs" data-lang="couchbasequery">select crc.* from `course-record-collection` crc</code></pre>
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">select crc.* from `course-record-collection` crc</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4516,11 +4525,11 @@ Pay attention to how the collection names are surrounded in backticks (`) charac
 </div>
 </div>
 <div class="paragraph">
-<p>Okay, now try something else: returning the courses with <code>credit-points</code> &lt; 200:</p>
+<p>Okay, now try something else: returning the courses with <code>credit-points</code> of less than 200:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-couchbasequery hljs" data-lang="couchbasequery">select crc.* from `course-record-collection` crc where crc.`credit-points` &lt; 200</code></pre>
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">select crc.* from `course-record-collection` crc where crc.`credit-points` &lt; 200</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4551,7 +4560,7 @@ Pay attention to how the collection names are surrounded in backticks (`) charac
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-couchbasequery hljs" data-lang="couchbasequery">select META().id, crc.* from `course-record-collection` crc where crc.`credit-points` &lt; 200</code></pre>
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">select META().id, crc.* from `course-record-collection` crc where crc.`credit-points` &lt; 200</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4586,7 +4595,7 @@ Pay attention to how the collection names are surrounded in backticks (`) charac
 </table>
 </div>
 <div class="paragraph">
-<p>You can find a full rundown of the <code>N1QL</code> language here: <a href="../../n1ql/n1ql-language-reference/index.html" class="page">N1QL Language Reference</a></p>
+<p>You can find a full rundown of the N1QL language here: <a href="../../n1ql/n1ql-language-reference/index.html" class="page">N1QL Language Reference</a></p>
 </div>
 </div>
 </div>
@@ -4596,7 +4605,8 @@ Pay attention to how the collection names are surrounded in backticks (`) charac
 <h2 id="using-the-sdk"><a class="anchor" href="#using-the-sdk"></a>Using the SDK</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Of course, you can also retrieve documents using the JDK. In this section, you&#8217;re going to use the same <code>N1QL</code> queries as part of a small Java application. Let&#8217;s start with a basic record retrieval:</p>
+<p>Of course, you can also retrieve documents using the JDK. In this section, you&#8217;re going to use the same N1QL queries as part of a small Java application.
+Let&#8217;s start with a basic record retrieval:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4610,7 +4620,6 @@ public class ArtSchoolRetriever {
     public static void main(String[] args) {
         Cluster cluster = Cluster.connect("localhost",
                 "Administrator", "password");
-
 
         retrieveCourses(cluster);
 
@@ -4638,7 +4647,7 @@ public class ArtSchoolRetriever {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn exec:java -Dexec.mainClass="ArtSchoolRetriever" -Dexec.cleanupDaemonThreads=false</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">mvn exec:java -Dexec.mainClass="ArtSchoolRetriever" -Dexec.cleanupDaemonThreads=false</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4650,15 +4659,15 @@ public class ArtSchoolRetriever {
 </div>
 </div>
 <div class="paragraph">
-<p>You may have noticed a difference between the SQL statement we useed in the web console, and the statement used as part of the application:</p>
+<p>You may have noticed a difference between the SQL statement we used in the web console, and the statement used as part of the application:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-couchbasequery hljs" data-lang="couchbasequery">select crc.* from `student-bucket`.`art-school-scope`.`course-record-collection` crc</code></pre>
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">select crc.* from `student-bucket`.`art-school-scope`.`course-record-collection` crc</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The name of the collection in the <code>N1QL</code> statement has to be fully qualified, including the name of the bucket as well as the containing scope.</p>
+<p>The name of the collection in the N1QL statement has to be fully qualified, including the name of the bucket as well as the containing scope.</p>
 </div>
 <div class="paragraph">
 <p>You can, of course, set parameters as part of your query, as shown in the next example:</p>
@@ -4676,7 +4685,6 @@ public class ArtSchoolRetrieverParameters {
     public static void main(String[] args) {
         Cluster cluster = Cluster.connect("localhost",
                 "Administrator", "password");
-
 
         retrieveCourses(cluster);
 
@@ -4707,11 +4715,12 @@ public class ArtSchoolRetrieverParameters {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The <code>N1QL</code> statement takes a parameters <code>$creditPoints</code> which will be substituted with a correctly typed value when the statement is called.</td>
+<td>The N1QL statement takes a parameters <code>$creditPoints</code> which will be substituted with a correctly typed value when the statement is called.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The value to substitute is provided in the <code>QueryOptions</code> given as the second parameter in the call. The value of the map entry is the actual parameter value (in this case, 200 which we&#8217;re using to test the <code>credit-points</code>).</td>
+<td>The value to substitute is provided in the <code>QueryOptions</code> given as the second parameter in the call.
+The value of the map entry is the actual parameter value (in this case, 200 which we&#8217;re using to test the <code>credit-points</code>).</td>
 </tr>
 </table>
 </div>
@@ -4720,7 +4729,7 @@ public class ArtSchoolRetrieverParameters {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn exec:java -Dexec.mainClass="ArtSchoolRetrieverParameters" -Dexec.cleanupDaemonThreads=false</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">mvn exec:java -Dexec.mainClass="ArtSchoolRetrieverParameters" -Dexec.cleanupDaemonThreads=false</code></pre>
 </div>
 </div>
 </div>
@@ -4729,14 +4738,19 @@ public class ArtSchoolRetrieverParameters {
 <h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Now you can add and search for records, the next section will consolidate what you&#8217;ve learned so far by demonstrating how to amend existing records by adding enrollment details. So when you&#8217;re ready carry on to <a href="adding-enrollments.html" class="page">Adding course enrollments</a></p>
+<p>Now you can add and search for records, the next section will consolidate what you&#8217;ve learned so far by demonstrating how to amend existing records by adding enrollment details.
+So when you&#8217;re ready carry on to <a href="adding-enrollments.html" class="page">Adding course enrollments</a></p>
 </div>
 </div>
 </div>
-<nav class="pagination">
-  <span class="prev"><a href="second-couchbase-application.html">Your second Couchbase application: populating the course details</a></span>
-  <span class="next"><a href="adding-enrollments.html">Adding course enrollments</a></span>
-</nav>
+
+        <nav class="pagination">
+
+                    <span class="prev"><a href="second-couchbase-application.html">Your second Couchbase application: populating the course details</a></span>
+
+
+                    <span class="next"><a href="adding-enrollments.html">Adding course enrollments</a></span>
+
 </article>
 </main>
 </div>

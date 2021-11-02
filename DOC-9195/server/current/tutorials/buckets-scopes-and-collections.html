@@ -6,13 +6,22 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
-<title>Buckets, Scopes and Collections | Couchbase Docs</title>
+<title>Buckets,Scopes and Collections | Couchbase Docs</title>
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/server/current/tutorials/buckets-scopes-and-collections.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
         <link rel="prev" href="install-couchbase-server.html">
         <link rel="next" href="java-tutorial/install-couchbase-java-sdk.html">
+
+
+
+                    <link rel="prev" href="install-couchbase-server.html">
+
+
+                    <link rel="next" href="java-tutorial/install-couchbase-java-sdk.html">
+
+
 <meta name="dcterms.subject" content="server">
 <meta name="dcterms.identifier" content="7.1">
 <meta name="page-url" content="/server/current/tutorials/buckets-scopes-and-collections.html">
@@ -183,7 +192,7 @@
 </li>
 <li class="menu_list is-current-page" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link is-current-page" href="buckets-scopes-and-collections.html">Buckets, Scopes and Collections</a>
+    <a class="menu_title menu_link is-current-page" href="buckets-scopes-and-collections.html">Buckets,Scopes and Collections</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -4356,13 +4365,13 @@
 <li class="crumb"><a href="../introduction/intro.html">Couchbase Server</a></li>
 <li class="crumb">Tutorial</li>
 <li class="crumb"><a href="getting-started.html">Couchbase: Getting started</a></li>
-<li class="crumb"><a href="buckets-scopes-and-collections.html">Buckets, Scopes and Collections</a></li>
+<li class="crumb"><a href="buckets-scopes-and-collections.html">Buckets,Scopes and Collections</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Buckets, Scopes and Collections</h1>
+<h1 class="page">Buckets,Scopes and Collections</h1>
 </div>
 <div class="contributor-list-box">
 <span class="last-commit-date" id="commitdate">    </span>
@@ -4378,10 +4387,13 @@ In this section, you&#8217;ll learn how to logically partition your data in Couc
 </div>
 </div>
 <div class="sect1">
-<h2 id="so-what-is-a-bucket-exactly"><a class="anchor" href="#so-what-is-a-bucket-exactly"></a>So what is a Bucket exactly?</h2>
+<h2 id="so-what-is-a-bucket-exactly"><a class="anchor" href="#so-what-is-a-bucket-exactly"></a>So What is a Bucket Exactly?</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>If you think in database terms, a Couchbase Bucket is analogous to a database: it&#8217;s the data store where you&#8217;re going to store and retrieve related information about the students.</p>
+</div>
+<div class="paragraph">
+<p>When you install Couchbase, you&#8217;ll be provided with a <code>default</code> bucket, but you are free to add your own.</p>
 </div>
 <div class="paragraph">
 <p>You can click on the <span class="menuseq"><b class="menu">Dashboard</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Buckets</b></span> link to access the Buckets page, then click on <b class="button">Add Bucket</b></p>
@@ -4403,7 +4415,8 @@ In this section, you&#8217;ll learn how to logically partition your data in Couc
 <h2 id="scopes-and-collections"><a class="anchor" href="#scopes-and-collections"></a>Scopes and Collections</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>There&#8217;s nothing stopping you from dumping every document into the bucket. But in all but the simplest cases, it&#8217;s better to provide some kind of separation. between documents of different types. Couchbase has a simple hierarchy model which allows for such separation:</p>
+<p>There&#8217;s nothing stopping you from dumping every document into the default bucket, but in all but the simplest cases, it&#8217;s better to provide some kind of separation between documents of different types.
+Couchbase has a simple hierarchy model which allows for such separation:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -4411,21 +4424,24 @@ In this section, you&#8217;ll learn how to logically partition your data in Couc
 </div>
 </div>
 <div class="paragraph">
-<p>You&#8217;re already familiar with <code>clusters</code>, <code>nodes</code> and <code>buckets</code>. Inside a bucket you can also have any number of <code>scopes</code>, and inside a <code>scope</code> you can have any number of <code>collections</code>. Scopes and collections appear to do the same thing, so we&#8217;ll look at the key differences below:</p>
+<p>You&#8217;re already familiar with <code>clusters</code>, <code>nodes</code> and <code>buckets</code>.
+Inside a bucket you can also have any number of <code>scopes</code>, and inside a <code>scope</code> you can have any number of <code>collections</code>.
+Scopes and collections appear to do the same thing, so we&#8217;ll look at the key differences below:</p>
 </div>
 <div class="hdlist">
 <table>
 <tr>
 <td class="hdlist1">
-<strong>scopes</strong>
+scopes
 </td>
 <td class="hdlist2">
-<p>acts as a parent to a <code>collection</code>. You can apply permissions at the scope level, which will restrict access to the collections inside it.</p>
+<p>acts as a parent to a collection.
+You can apply permissions at the scope level, which will restrict access to the collections inside it.</p>
 </td>
 </tr>
 <tr>
 <td class="hdlist1">
-<strong>collections</strong>
+collections
 </td>
 <td class="hdlist2">
 <p>a collection can contain a set of related documents.</p>
@@ -4457,7 +4473,7 @@ Remember <code>scopes</code> and <code>collections</code> are optional: you can 
 </div>
 </div>
 <div class="paragraph">
-<p>we can see that our equivalent document-based system could do with a little decomposition:</p>
+<p>We can see that our equivalent document-based system could do with a little decomposition:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -4465,7 +4481,8 @@ Remember <code>scopes</code> and <code>collections</code> are optional: you can 
 </div>
 </div>
 <div class="paragraph">
-<p>So, inside our <code>student-bucket</code> we&#8217;ve set up a scope called <code>art-school-scope</code>. Perhaps we have a number of schools and we want to restrict access to the school based on the role of the user; using scopes is the ideal way to do it.</p>
+<p>So, inside our <code>student-bucket</code> we&#8217;ve set up a scope called <code>art-school-scope</code>.
+Perhaps we have a number of schools and we want to restrict access to the school based on the role of the user; using scopes is the ideal way to do it.</p>
 </div>
 <div class="paragraph">
 <p>Within the <code>scope</code> we set up two collections:</p>
@@ -4478,9 +4495,9 @@ Remember <code>scopes</code> and <code>collections</code> are optional: you can 
 </td>
 <td class="hdlist2">
 <p>contains the student records, and within each student record we carry a list of all
-their enrollments. Again, this moves away from the standard relational decomposition since we&#8217;re actually storing the
-enrollments as part of the student&#8217;s record, instead of implementing it as a link table between the students and the
-courses.</p>
+their enrollments.
+Again, this moves away from the standard relational decomposition since we&#8217;re actually storing the
+enrollments as part of the student&#8217;s record, instead of implementing it as a link table between the students and the courses.</p>
 </td>
 </tr>
 <tr>
@@ -4503,9 +4520,10 @@ completing it.</p>
 </td>
 <td class="content">
 Of course, it&#8217;s possible to just add the details of the course to the student&#8217;s enrollment records, but this
-would be very bad design. Changing the credit points on the course, for example, would involve running through every
-student&#8217;s enrollments and changing the credit details on each one. This is why the document model and relational model
-are used in conjunction to get the best combination of robust design and performance.
+would be very bad design.
+Changing the credit points on the course, for example, would involve running through every
+student&#8217;s enrollments and changing the credit details on each one.
+This is why the document model and relational model are used in conjunction to get the best combination of robust design and performance.
 </td>
 </tr>
 </table>
@@ -4525,8 +4543,8 @@ them to your bucket.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The first thing you may notice is that your bucket is created with a pre-existing scope called <code>_default</code>. You&#8217;re
-going to ignore this and create your own scope with a more meaningful name. Click on the <b class="button">Add Scope</b> link.</p>
+<p>The first thing you may notice is that your bucket is created with a pre-existing scope called <code>_default</code>.
+You&#8217;re going to ignore this and create your own scope with a more meaningful name. Click on the <b class="button">Add Scope</b> link.</p>
 </div>
 <div class="paragraph">
 <p>On the next dialog, create your <code>art-school-scope</code>.</p>
@@ -4537,7 +4555,8 @@ going to ignore this and create your own scope with a more meaningful name. Clic
 </div>
 </div>
 <div class="paragraph">
-<p>Press <b class="button">Save</b> to save the new scope and return to the bucket screen. The new scope should be showing in the list.</p>
+<p>Press <b class="button">Save</b> to save the new scope and return to the bucket screen.
+The new scope should be showing in the list.</p>
 </div>
 </div>
 </div>
@@ -4575,14 +4594,19 @@ press  <b class="button">save</b></p>
 <h2 id="select-your-language"><a class="anchor" href="#select-your-language"></a>Next steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>So you have your cluster, bucket, scope and collections set up and ready to be populated. In the next section, you&#8217;ll set up your system to write your first Couchbase application.</p>
+<p>So you have your cluster, bucket, scope and collections set up and ready to be populated.
+In the next section, you&#8217;ll set up your system to write your first Couchbase application.</p>
 </div>
 </div>
 </div>
-<nav class="pagination">
-  <span class="prev"><a href="install-couchbase-server.html">Install or provision the Couchbase server</a></span>
-  <span class="next"><a href="java-tutorial/install-couchbase-java-sdk.html">Installing the Couchbase Java SDK</a></span>
-</nav>
+
+        <nav class="pagination">
+
+                    <span class="prev"><a href="install-couchbase-server.html">Install or provision the Couchbase server</a></span>
+
+
+                    <span class="next"><a href="java-tutorial/install-couchbase-java-sdk.html">Installing the Couchbase Java SDK</a></span>
+
 </article>
 </main>
 </div>

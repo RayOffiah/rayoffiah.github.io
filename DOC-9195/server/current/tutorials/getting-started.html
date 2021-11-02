@@ -13,6 +13,13 @@
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
         <link rel="prev" href="../getting-started/choose-your-next-steps.html">
         <link rel="next" href="install-couchbase-server.html">
+
+
+
+
+                    <link rel="next" href="install-couchbase-server.html">
+
+        
 <meta name="dcterms.subject" content="server">
 <meta name="dcterms.identifier" content="7.1">
 <meta name="page-url" content="/server/current/tutorials/getting-started.html">
@@ -183,7 +190,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="buckets-scopes-and-collections.html">Buckets, Scopes and Collections</a>
+    <a class="menu_title menu_link" href="buckets-scopes-and-collections.html">Buckets,Scopes and Collections</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -4380,7 +4387,9 @@ A short tutorial that will guide the developer in downloading and installing Cou
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase is a schema-less document database engine designed for high performance, scalability, and rapid development. During this tutorial, we&#8217;ll introduce you to some key concepts behind Couchbase and how they differ from traditional SQL database systems such as MySQL and Oracle. We&#8217;re going to examine the advantages of a schema-less engine by building a document database for storing student records.</p>
+<p>Couchbase is a schema-less document database engine designed for high performance, scalability, and rapid development.
+During this tutorial, we&#8217;ll introduce you to some key concepts behind Couchbase and how they differ from traditional SQL database systems such as MySQL and Oracle.
+We&#8217;re going to examine the advantages of a schema-less engine by building a document database for storing student records.</p>
 </div>
 </div>
 </div>
@@ -4390,33 +4399,36 @@ A short tutorial that will guide the developer in downloading and installing Cou
 <div class="paragraph">
 <p>The model will consist of three record types:</p>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><strong>student</strong></dt>
-<dd>
-<p>holds the information about individual students such as name and date of birth.</p>
-</dd>
-<dt class="hdlist1"><strong>course</strong></dt>
-<dd>
-<p>the courses that the student can take. You will need to store the course name, faculty and the number of credit points associated with the course. Against each student you will somehow need to record which of the course they are taking.</p>
-<div class="admonitionblock note">
+<div class="hdlist">
 <table>
 <tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<td class="hdlist1">
+student
 </td>
-<td class="content">
-Bear in mind that a student can take more than one course at a time.
+<td class="hdlist2">
+<p>holds the information about individual students such as name and date of birth.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+course
+</td>
+<td class="hdlist2">
+<p>the courses that the student can take. You will need to store the course name, faculty and the number of credit points associated with the course.
+Against each student you will somehow need to record which of the course they are taking.
+Bear in mind that a student can take more than one course at a time.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+enrollment
+</td>
+<td class="hdlist2">
+<p>holds the information related to the course that the student is taking.
+In relational database, this is usually a link record that provides a relationship between the student and the course.</p>
 </td>
 </tr>
 </table>
-</div>
-</dd>
-<dt class="hdlist1"><strong>enrollment</strong></dt>
-<dd>
-<p>holds the information related to the course that the student is taking. In relational database, this is usually a link record that provides a relationship between the student and the course.</p>
-</dd>
-</dl>
 </div>
 <div class="paragraph">
 <p>So what would this database look like under a relational compared to a document model?</p>
@@ -4432,7 +4444,8 @@ Bear in mind that a student can take more than one course at a time.
 <p>Nothing too dramatic: the database contains a list of students and a list of courses. Each student can enrol on any number of courses, and the record of each of the student&#8217;s enrollments is stored in a separate table called <code>enrollment</code> which links to the student&#8217;s record and the courses he/she is enrolling on.</p>
 </div>
 <div class="paragraph">
-<p>The <code>enrollment</code> table highlights one of the problems with the relational database model: each table is based on a fixed schema that can only support a single data object type. You cannot store, for example, the enrollment records in the same table as the student, even though it may more natural to do so; after all, an <code>enrollment</code> cannot exist without a <code>student</code>, so why not store them together?</p>
+<p>The <code>enrollment</code> table highlights one of the problems with the relational database model: each table is based on a fixed schema that can only support a single data object type.
+You cannot store, for example, the enrollment records in the same table as the student, even though it may more natural to do so; after all, an <code>enrollment</code> cannot exist without a <code>student</code>, so why not store them together?</p>
 </div>
 </div>
 <div class="sect2">
@@ -4455,28 +4468,23 @@ Bear in mind that a student can take more than one course at a time.
   "student-id": "000001",
   "name": "Hilary Smith",
   "date-of-birth": "21-12-1980",
-  "enrollments": [   <i class="conum" data-value="1"></i><b>(1)</b>
+  "enrollments": [
     {
-      "course-id": "ART-HISTORY-00003",    <i class="conum" data-value="2"></i><b>(2)</b>
+      "course-id": "ART-HISTORY-00003",
       "date-enrolled": "07-9-2021"
     },
     {
-      "course-id": "GRAPHIC-DESIGN-00001",    <i class="conum" data-value="2"></i><b>(2)</b>
+      "course-id": "GRAPHIC-DESIGN-00001",
       "date-enrolled": "15-9-2021"
     }
   ]
 }</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The document is stored in JSON format, which allows for the storage of complex types such as arrays without decomposing them to a second table. In this case, the list of <code>enrollment</code> records is stored with the student record.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Each <code>enrollment</code> record holds a reference to the course it relates to.
+<div class="paragraph">
+<p>The document is stored in JSON format, which allows for the storage of complex types such as arrays without decomposing them to a second table. In this case, the list of <code>enrollment</code> records is stored with the student record.
+Each <code>enrollment</code> record holds a reference to the course it relates to.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -4493,14 +4501,12 @@ Bear in mind that a student can take more than one course at a time.
 <p>It would lead to massive data duplication</p>
 </li>
 <li>
-<p>It would make it very difficult to maintain the data. If the <code>credit-points</code> for a course needed to be changed, then you would need to access every student record to make the change.</p>
+<p>It would make it very difficult to maintain the data.
+If the <code>credit-points</code> for a course needed to be changed, then you would need to access every student record to make the change.</p>
 </li>
 </ol>
 </div>
 </td>
-</tr>
-</table>
-</div></td>
 </tr>
 </table>
 </div>
@@ -4529,7 +4535,7 @@ Bear in mind that a student can take more than one course at a time.
 </div>
 </div>
 <div class="paragraph">
-<p>Couchbase uses a document model which stores each database record as a <code>json</code> document. The document can can contain both simple scalar types, and complex types such as nested records and arrays.</p>
+<p>Couchbase uses a document model which stores each database record as a JSON document. The document can contain both simple scalar types, and complex types such as nested records and arrays.</p>
 </div>
 <div class="paragraph">
 <p>Hilary&#8217;s enrollments are stored in the same document as her student details. As well as being a more natural way to store child information with its parent, this structure allows for all of Hilary&#8217;s details (enrollments included) in one search, without the need for complex table joins to retrieve the enrollment information.</p>
@@ -4561,7 +4567,7 @@ Bear in mind that a student can take more than one course at a time.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Step 2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="buckets-scopes-and-collections.html" class="page">Buckets, Scopes and Collections</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="buckets-scopes-and-collections.html" class="page">Buckets,Scopes and Collections</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Step 3</p></td>
@@ -4602,10 +4608,13 @@ It is <strong>strongly</strong> recommended that you follow the sections in orde
 </div>
 </div>
 </div>
-<nav class="pagination">
-  <span class="prev"><a href="../getting-started/choose-your-next-steps.html">Choose Your Next Steps</a></span>
-  <span class="next"><a href="install-couchbase-server.html">Install or provision the Couchbase server</a></span>
-</nav>
+
+        <nav class="pagination">
+
+                <span>&nbsp;</span>
+        
+                    <span class="next"><a href="install-couchbase-server.html">Install or provision the Couchbase server</a></span>
+
 </article>
 </main>
 </div>
