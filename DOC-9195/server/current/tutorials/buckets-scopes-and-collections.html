@@ -10,6 +10,7 @@
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/server/current/tutorials/buckets-scopes-and-collections.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="In this section, you&#x27;ll learn how to logically partition your data in Couchbase using buckets, scopes and collections.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
         <link rel="prev" href="install-couchbase-server.html">
         <link rel="next" href="java-tutorial/install-couchbase-java-sdk.html">
@@ -4393,9 +4394,6 @@ In this section, you&#8217;ll learn how to logically partition your data in Couc
 <p>If you think in database terms, a Couchbase Bucket is analogous to a database: it&#8217;s the data store where you&#8217;re going to store and retrieve related information about the students.</p>
 </div>
 <div class="paragraph">
-<p>When you install Couchbase, you&#8217;ll be provided with a <code>default</code> bucket, but you are free to add your own.</p>
-</div>
-<div class="paragraph">
 <p>You can click on the <span class="menuseq"><b class="menu">Dashboard</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Buckets</b></span> link to access the Buckets page, then click on <b class="button">Add Bucket</b></p>
 </div>
 <div class="paragraph">
@@ -4415,7 +4413,7 @@ In this section, you&#8217;ll learn how to logically partition your data in Couc
 <h2 id="scopes-and-collections"><a class="anchor" href="#scopes-and-collections"></a>Scopes and Collections</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>There&#8217;s nothing stopping you from dumping every document into the default bucket, but in all but the simplest cases, it&#8217;s better to provide some kind of separation between documents of different types.
+<p>There&#8217;s nothing stopping you from dumping every document into the same bucket, but in all but the simplest cases, it&#8217;s better to provide some kind of separation between documents of different types.
 Couchbase has a simple hierarchy model which allows for such separation:</p>
 </div>
 <div class="imageblock">
@@ -4436,7 +4434,8 @@ scopes
 </td>
 <td class="hdlist2">
 <p>acts as a parent to a collection.
-You can apply permissions at the scope level, which will restrict access to the collections inside it.</p>
+You can apply permissions at the scope level, which will restrict access to the collections inside it.
+When you create a new bucket, Couchbase will provide you with a default scope called <code>_default</code>.</p>
 </td>
 </tr>
 <tr>

@@ -4150,7 +4150,7 @@
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-java/edit/release/3.2/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc" title="Edit Page" target="_blank" rel="noopener">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc" title="Edit Page" target="_blank" rel="noopener">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -4284,7 +4284,7 @@ This setting can be changed via <a href="#7.0@server:manage:manage-buckets/creat
 <div class="paragraph">
 <p>Couchbase transactions require no additional components or services to be configured.
 Simply add the transactions library into your project.
-The latest version, as of July 2021, is 1.2.1.</p>
+The latest version, as of November 2021, is 1.2.2.</p>
 </div>
 <div class="paragraph">
 <p>With Gradle this can be accomplished by modifying these sections of your build.gradle file like so:</p>
@@ -4292,7 +4292,7 @@ The latest version, as of July 2021, is 1.2.1.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">dependencies {
-    compile group: 'com.couchbase.client', name: 'couchbase-transactions', version: '1.2.1'
+    compile group: 'com.couchbase.client', name: 'couchbase-transactions', version: '1.2.2'
 }</code></pre>
 </div>
 </div>
@@ -4304,7 +4304,7 @@ The latest version, as of July 2021, is 1.2.1.</p>
 <pre class="highlightjs highlight"><code class="language-maven hljs" data-lang="maven">&lt;dependency&gt;
     &lt;groupId&gt;com.couchbase.client&lt;/groupId&gt;
     &lt;artifactId&gt;couchbase-transactions&lt;/artifactId&gt;
-    &lt;version&gt;1.2.1&lt;/version&gt;
+    &lt;version&gt;1.2.2&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -4324,7 +4324,7 @@ The latest version, as of July 2021, is 1.2.1.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L18-L62">import java.time.Duration;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L18-L62">import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -4376,7 +4376,7 @@ It is very important that the application ensures that only one of these is crea
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L72-L79">// Initialize the Couchbase cluster
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L72-L79">// Initialize the Couchbase cluster
 Cluster cluster = Cluster.connect("localhost", "username", "password");
 Bucket bucket = cluster.bucket("travel-sample");
 Scope scope = bucket.scope("inventory");
@@ -4384,6 +4384,16 @@ Collection collection = scope.collection("airport");
 
 // Create the single Transactions object
 Transactions transactions = Transactions.create(cluster);</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="multiple-transactions-objects"><a class="anchor" href="#multiple-transactions-objects"></a>Multiple Transactions Objects</h3>
+<div class="paragraph">
+<p>Generally an application will need just one <code>Transactions</code> object, and in fact the library will usually warn if more are created.
+Each <code>Transactions</code> object uses some resources, including a thread-pool.</p>
+</div>
+<div class="paragraph">
+<p>There is one rare exception where an application may need to create multiple <code>Transactions</code> objects, which is covered in <a href="#custom-metadata-collections">Custom Metadata Collections</a>.</p>
 </div>
 </div>
 </div>
@@ -4396,7 +4406,7 @@ Transactions transactions = Transactions.create(cluster);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L91-L96">Transactions transactions = Transactions.create(cluster,
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L91-L96">Transactions transactions = Transactions.create(cluster,
         TransactionConfigBuilder.create().durabilityLevel(TransactionDurabilityLevel.PERSIST_TO_MAJORITY)
                 .logOnFailure(true, Event.Severity.WARN)
                 .build());</code></pre>
@@ -4428,7 +4438,7 @@ The application does have to do these retries and error handling itself.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L102-L130">try {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L102-L130">try {
     transactions.run((ctx) -&gt; {
         // 'ctx' is an AttemptContext, which permits getting, inserting,
         // removing and replacing documents, performing N1QL queries, and committing or
@@ -4462,7 +4472,7 @@ The application does have to do these retries and error handling itself.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L136-L165">Mono&lt;TransactionResult&gt; result = transactions.reactive().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L136-L165">Mono&lt;TransactionResult&gt; result = transactions.reactive().run((ctx) -&gt; {
     // 'ctx' is an AttemptContextReactive, providing asynchronous versions of the
     // AttemptContext methods
 
@@ -4527,7 +4537,7 @@ They are described in more detail below.</p>
 <div class="listingblock">
 <div class="title">With the synchronous API</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L171-L222">Scope inventory = cluster.bucket("travel-sample").scope("inventory");
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L171-L222">Scope inventory = cluster.bucket("travel-sample").scope("inventory");
 
 try {
     TransactionResult result = transactions.run((ctx) -&gt; {
@@ -4584,7 +4594,7 @@ try {
 <div class="listingblock">
 <div class="title">With the asynchronous API</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L228-L278">ReactiveScope inventory = cluster.bucket("travel-sample").scope("inventory").reactive();
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L228-L278">ReactiveScope inventory = cluster.bucket("travel-sample").scope("inventory").reactive();
 
 Mono&lt;TransactionResult&gt; result = transactions.reactive().run((ctx) -&gt; {
     return
@@ -4732,7 +4742,7 @@ Generally, this involves rolling back what has been done so far, and retrying th
 <div class="listingblock">
 <div class="title">With the synchronous API:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L329-L334">transactions.run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L329-L334">transactions.run((ctx) -&gt; {
     TransactionGetResult doc = ctx.get(collection, "doc-id");
     JsonObject content = doc.contentAs(JsonObject.class);
     content.put("transactions", "are awesome");
@@ -4743,7 +4753,7 @@ Generally, this involves rolling back what has been done so far, and retrying th
 <div class="listingblock">
 <div class="title">Asynchronous API:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L340-L346">transactions.reactive().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L340-L346">transactions.reactive().run((ctx) -&gt; {
     return ctx.get(collection.reactive(), "doc-id").flatMap(doc -&gt; {
         JsonObject content = doc.contentAs(JsonObject.class);
         content.put("transactions", "are awesome");
@@ -4761,7 +4771,7 @@ Generally, this involves rolling back what has been done so far, and retrying th
 <div class="listingblock">
 <div class="title">Synchronous API:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L352-L355">transactions.run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L352-L355">transactions.run((ctx) -&gt; {
     TransactionGetResult doc = ctx.get(collection, "doc-id");
     ctx.remove(doc);
 });</code></pre>
@@ -4770,7 +4780,7 @@ Generally, this involves rolling back what has been done so far, and retrying th
 <div class="listingblock">
 <div class="title">With the asynchronous API:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L361-L363">transactions.reactive().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L361-L363">transactions.reactive().run((ctx) -&gt; {
     return ctx.get(collection.reactive(), "anotherDoc").flatMap(doc -&gt; ctx.remove(doc));
 });</code></pre>
 </div>
@@ -4796,7 +4806,7 @@ Generally, you will to do <code>ctx.remove(&#8230;&#8203;).then(&#8230;&#8203;)<
 <div class="listingblock">
 <div class="title">With the asynchronous API:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L285-L287">transactions.reactive().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L285-L287">transactions.reactive().run((ctx) -&gt; {
     return ctx.insert(collection.reactive(), "docId", JsonObject.create()).then();
 }).block();</code></pre>
 </div>
@@ -4804,7 +4814,7 @@ Generally, you will to do <code>ctx.remove(&#8230;&#8203;).then(&#8230;&#8203;)<
 <div class="listingblock">
 <div class="title">With the synchronous API:</div>
 <div class="content">
-<pre data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L293-L298">transactions.run((ctx) -&gt; {
+<pre data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L293-L298">transactions.run((ctx) -&gt; {
     String docId = "docId";
 
     ctx.insert(collection, docId, JsonObject.create());
@@ -4823,7 +4833,7 @@ Generally, you will to do <code>ctx.remove(&#8230;&#8203;).then(&#8230;&#8203;)<
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L304-L309">transactions.run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L304-L309">transactions.run((ctx) -&gt; {
     String docId = "a-doc";
 
     Optional&lt;TransactionGetResult&gt; docOpt = ctx.getOptional(collection, docId);
@@ -4840,7 +4850,7 @@ It is provided as a convenience method so the developer does not have to check t
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L315-L323">transactions.run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L315-L323">transactions.run((ctx) -&gt; {
     String docId = "docId";
 
     ctx.insert(collection, docId, JsonObject.create());
@@ -4903,7 +4913,7 @@ it returns the same <code>QueryResult</code> you are used to, and takes most of 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L697-L702">transactions.run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L697-L702">transactions.run((ctx) -&gt; {
     String st = "SELECT * FROM `travel-sample`.inventory.hotel WHERE country = $1";
     QueryResult qr = ctx.query(st, TransactionQueryOptions.queryOptions()
             .parameters(JsonArray.from("United Kingdom")));
@@ -4916,7 +4926,7 @@ it returns the same <code>QueryResult</code> you are used to, and takes most of 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L706-L714">Bucket travelSample = cluster.bucket("travel-sample");
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L706-L714">Bucket travelSample = cluster.bucket("travel-sample");
 Scope inventory = travelSample.scope("inventory");
 
 transactions.run((ctx) -&gt; {
@@ -4932,7 +4942,7 @@ transactions.run((ctx) -&gt; {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L718-L726">String hotelChain = "http://marriot%";
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L718-L726">String hotelChain = "http://marriot%";
 String country = "United States";
 
 transactions.run((ctx) -&gt; {
@@ -4950,7 +4960,7 @@ Just remember that since the lambda may be called multiple times, so may the met
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L730-L744">transactions.run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L730-L744">transactions.run((ctx) -&gt; {
     // Find all hotels of the chain
     QueryResult qr = ctx.query(inventory, "SELECT reviews FROM hotel WHERE url LIKE $1 AND country = $2",
             TransactionQueryOptions.queryOptions()
@@ -4978,7 +4988,7 @@ Just remember that since the lambda may be called multiple times, so may the met
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L754-L761">transactions.run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L754-L761">transactions.run((ctx) -&gt; {
     ctx.query("INSERT INTO `default` VALUES ('doc', {'hello':'world'})");  <i class="conum" data-value="1"></i><b>(1)</b>
 
     // Performing a 'Read Your Own Write'
@@ -5012,7 +5022,7 @@ Other transactions, and other non-transactional actors, will not be able to see 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L811-L818">transactions.run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L811-L818">transactions.run((ctx) -&gt; {
     ctx.insert(collection, "doc", JsonObject.create().put("hello", "world")); <i class="conum" data-value="1"></i><b>(1)</b>
 
     // Performing a 'Read Your Own Write'
@@ -5042,7 +5052,7 @@ Other transactions, and other non-transactional actors, will not be able to see 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L824-L827">transactions.run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L824-L827">transactions.run((ctx) -&gt; {
     ctx.query("INSERT INTO `default` VALUES ('doc', {'hello':'world'})",
             TransactionQueryOptions.queryOptions().profile(QueryProfile.TIMINGS));
 });</code></pre>
@@ -5157,7 +5167,7 @@ In addition, they provide automatic error and retry handling.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L767-L783">String bulkLoadStatement = null; // a bulk-loading N1QL statement
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L767-L783">String bulkLoadStatement = null; // a bulk-loading N1QL statement
 
 try {
     SingleQueryTransactionResult result = transactions.query(bulkLoadStatement);
@@ -5181,7 +5191,7 @@ try {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L791-L794">Bucket travelSample = cluster.bucket("travel-sample");
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L791-L794">Bucket travelSample = cluster.bucket("travel-sample");
 Scope inventory = travelSample.scope("inventory");
 
 transactions.query(inventory, bulkLoadStatement);</code></pre>
@@ -5192,7 +5202,7 @@ transactions.query(inventory, bulkLoadStatement);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L802-L805">transactions.query(bulkLoadStatement, SingleQueryTransactionConfigBuilder.create()
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L802-L805">transactions.query(bulkLoadStatement, SingleQueryTransactionConfigBuilder.create()
     // Single query transactions will often want to increase the default timeout
     .expirationTime(Duration.ofSeconds(360))
     .build());</code></pre>
@@ -5213,7 +5223,7 @@ transactions.query(inventory, bulkLoadStatement);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L369-L375">Mono&lt;TransactionResult&gt; result = transactions.reactive().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L369-L375">Mono&lt;TransactionResult&gt; result = transactions.reactive().run((ctx) -&gt; {
     return ctx.get(collection.reactive(), "anotherDoc").flatMap(doc -&gt; {
         JsonObject content = doc.contentAs(JsonObject.class);
         content.put("transactions", "are awesome");
@@ -5266,7 +5276,7 @@ We’re going to do this in a transaction, as we don’t want a situation where 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L388-L434">public void playerHitsMonster(int damage, String playerId, String monsterId) {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L388-L434">public void playerHitsMonster(int damage, String playerId, String monsterId) {
     Transactions transactions = getTransactions();
 
     try {
@@ -5340,7 +5350,7 @@ Any non-transactional <em>reads</em> concurrent with transactions are fine, and 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L439-L443">cluster.environment().eventBus().subscribe(event -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L439-L443">cluster.environment().eventBus().subscribe(event -&gt; {
     if (event instanceof IllegalDocumentState) {
         // log this event for review
     }
@@ -5368,7 +5378,7 @@ The transaction logic may or may not be retried, depending on the exception.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L476-L507">class BalanceInsufficient extends RuntimeException {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L476-L507">class BalanceInsufficient extends RuntimeException {
 }
 
 try {
@@ -5407,7 +5417,7 @@ try {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L461-L468">transactions.run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L461-L468">transactions.run((ctx) -&gt; {
     TransactionGetResult customer = ctx.get(collection, "customer-name");
 
     if (customer.contentAsObject().getInt("balance") &lt; costOfItem) {
@@ -5493,7 +5503,7 @@ Alternatively, if transaction completion time is not a priority, then transactio
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L581-L582">Transactions transactions = Transactions.create(cluster,
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L581-L582">Transactions transactions = Transactions.create(cluster,
         TransactionConfigBuilder.create().expirationTime(Duration.ofSeconds(120)).build());</code></pre>
 </div>
 </div>
@@ -5563,7 +5573,7 @@ In this situation the application can raise an error here, or poll all documents
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L646-L671">try {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L646-L671">try {
     TransactionResult result = transactions.run((ctx) -&gt; {
         // ... transactional code here ...
     });
@@ -5675,7 +5685,7 @@ All ATRs on a bucket will be distributed between all cleanup clients, so increas
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L449-L453">cluster.environment().eventBus().subscribe(event -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L449-L453">cluster.environment().eventBus().subscribe(event -&gt; {
     if (event instanceof TransactionCleanupAttempt || event instanceof TransactionCleanupEndRunEvent) {
         // log this event
     }
@@ -5706,7 +5716,7 @@ If there is not a good reason for the cleanup to be failed (such as a downed nod
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L115-L129">} catch (TransactionCommitAmbiguous e) {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L115-L129">} catch (TransactionCommitAmbiguous e) {
     // The application will of course want to use its own logging rather
     // than System.err
     System.err.println("Transaction possibly committed");
@@ -5728,7 +5738,7 @@ If there is not a good reason for the cleanup to be failed (such as a downed nod
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L149-L160">}).doOnError(err -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L149-L160">}).doOnError(err -&gt; {
     if (err instanceof TransactionCommitAmbiguous) {
         System.err.println("Transaction possibly committed: ");
     } else {
@@ -5751,7 +5761,7 @@ This will log all lines of any failed transactions, to <code>WARN</code> level:<
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L94">.logOnFailure(true, Event.Severity.WARN)</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L94">.logOnFailure(true, Event.Severity.WARN)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5766,7 +5776,7 @@ For those starting from scratch here is a complete example using the basic <code
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L677-L691">final Logger LOGGER = Logger.getLogger("transactions");
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L677-L691">final Logger LOGGER = Logger.getLogger("transactions");
 
 try {
     TransactionResult result = transactions.run((ctx) -&gt; {
@@ -5789,14 +5799,7 @@ try {
 <h2 id="tracing"><a class="anchor" href="#tracing"></a>Tracing</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="status">Developer Preview</span></p>
-</div>
-<div class="paragraph">
-<p>The 1.1.6 release introduces support, at a Developer Preview level, for detailed tracing.
-This telemetry is particularly useful for monitoring performance.</p>
-</div>
-<div class="paragraph">
-<p>Note: Developer Preview here means the feature works and is safe to use, but the naming of spans and attributes, and which spans are created, may change before this feature is generally available.</p>
+<p>This telemetry is particularly useful for monitoring performance.</p>
 </div>
 <div class="paragraph">
 <p>If the underlying Couchbase Java SDK is configured for tracing, then no further work is required: transaction spans will be output automatically.
@@ -5813,7 +5816,7 @@ It can do this by passing that as a parent span.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L851-L856">Span span = Span.current(); // this is a span created by your code earlier
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L851-L856">Span span = Span.current(); // this is a span created by your code earlier
 RequestSpan wrapped = OpenTelemetryRequestSpan.wrap(span);
 
 transactions.run((ctx) -&gt; {
@@ -5848,7 +5851,7 @@ This means the application must 'swallow' the error, but record that an error oc
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L596-L640">List&lt;String&gt; docIds = Arrays.asList("doc1", "doc2", "doc3", "doc4", "doc5");
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L596-L640">List&lt;String&gt; docIds = Arrays.asList("doc1", "doc2", "doc3", "doc4", "doc5");
 
 ReactiveCollection coll = collection.reactive();
 
@@ -5926,7 +5929,7 @@ Before doing this, you should ensure that all existing transactions using metada
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L833-L835">Collection metadataCollection = null; // this is a Collection opened by your code earlier
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L833-L835">Collection metadataCollection = null; // this is a Collection opened by your code earlier
 Transactions transactions = Transactions.create(cluster,
         TransactionConfigBuilder.create().metadataCollection(metadataCollection));</code></pre>
 </div>
@@ -5947,6 +5950,16 @@ Transactions transactions = Transactions.create(cluster,
 <div class="paragraph">
 <p>You need to ensure that this application has RBAC data read and write privileges to it, and should not delete the collection subsequently as it can interfere with existing transactions.
 You can use an existing collection or create a new one.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="multiple-transactions-objects-2"><a class="anchor" href="#multiple-transactions-objects-2"></a>Multiple Transactions Objects</h3>
+<div class="paragraph">
+<p>Generally, an application requires only one <code>Transactions</code> object.
+But in some deployments, an application may need to access multiple custom metadata collections, and it is reasonable to create multiple <code>Transactions</code> objects as this is the only way to enable this.</p>
+</div>
+<div class="paragraph">
+<p>The library will not warn about multiple <code>Transactions</code> objects being created in this scenario.</p>
 </div>
 </div>
 </div>
@@ -5979,7 +5992,7 @@ The transaction can then be committed, or rolled back.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L514-L539">try {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L514-L539">try {
     TransactionResult result = transactions.run((ctx) -&gt; {
         JsonObject initial = JsonObject.create().put("val", 1);
         ctx.insert(collection, "a-doc-id", initial);
@@ -6012,7 +6025,7 @@ The transaction can then be committed, or rolled back.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L545-L557">TransactionSerializedContext serialized = TransactionSerializedContext.createFrom(encoded);
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L545-L557">TransactionSerializedContext serialized = TransactionSerializedContext.createFrom(encoded);
 
 try {
     TransactionResult result = transactions.commit(serialized);
@@ -6032,7 +6045,7 @@ try {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/TransactionsExample.java#L563-L575">TransactionSerializedContext serialized = TransactionSerializedContext.createFrom(encoded);
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L563-L575">TransactionSerializedContext serialized = TransactionSerializedContext.createFrom(encoded);
 
 try {
     TransactionResult result = transactions.rollback(serialized);

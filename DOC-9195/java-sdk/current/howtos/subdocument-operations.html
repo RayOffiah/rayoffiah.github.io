@@ -4150,7 +4150,7 @@
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-java/edit/release/3.2/modules/howtos/pages/subdocument-operations.adoc" title="Edit Page" target="_blank" rel="noopener">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/pages/subdocument-operations.adoc" title="Edit Page" target="_blank" rel="noopener">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -4321,7 +4321,7 @@ The latter saves even more bandwidth by not retrieving the contents of the path 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L18-L56">import static com.couchbase.client.java.kv.LookupInSpec.exists;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L18-L56">import static com.couchbase.client.java.kv.LookupInSpec.exists;
 import static com.couchbase.client.java.kv.LookupInSpec.get;
 import static com.couchbase.client.java.kv.MutateInOptions.mutateInOptions;
 import static com.couchbase.client.java.kv.MutateInSpec.arrayAddUnique;
@@ -4365,7 +4365,7 @@ import reactor.core.publisher.Mono;</code></pre>
 <div class="listingblock">
 <div class="title">Retrieve Sub-Document value</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L99-L102">LookupInResult result = collection.lookupIn("hotel_1368", Collections.singletonList(get("geo.lat")));
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L99-L102">LookupInResult result = collection.lookupIn("hotel_1368", Collections.singletonList(get("geo.lat")));
 
 String str = result.contentAs(0, String.class);
 System.out.println("getFunc: Latitude = " + str);</code></pre>
@@ -4386,7 +4386,7 @@ The operation used here is <code>LookupInSpec.get</code>, but we import this sta
 <div class="listingblock">
 <div class="title">Check existence of Sub-Document path</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L109-L114">try {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L109-L114">try {
   LookupInResult result = collection.lookupIn("hotel_1368",
       Collections.singletonList(exists("address.does_not_exist")));
 } catch (PathNotFoundException e) {
@@ -4414,7 +4414,7 @@ be checked with <code>contentAs(X, Boolean.class)</code>, as in the example.
 <div class="listingblock">
 <div class="title">Combine multiple lookup operations</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L120-L125">try {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L120-L125">try {
   LookupInResult result = collection.lookupIn("hotel_1368",
       Arrays.asList(get("geo.lat"), exists("address.does_not_exist")));
 } catch (PathNotFoundException e) {
@@ -4433,7 +4433,7 @@ asynchronous variant that returns Java <code>CompletableFuture</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L131-L140">CompletableFuture&lt;LookupInResult&gt; future = collection.async().lookupIn("hotel_1368",
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L131-L140">CompletableFuture&lt;LookupInResult&gt; future = collection.async().lookupIn("hotel_1368",
     Collections.singletonList(get("geo.lat")));
 
 try {
@@ -4449,7 +4449,7 @@ try {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L146-L150">Mono&lt;LookupInResult&gt; mono = collection.reactive().lookupIn("hotel_1368",
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L146-L150">Mono&lt;LookupInResult&gt; mono = collection.reactive().lookupIn("hotel_1368",
     Collections.singletonList(get("geo.lat")));
 
 // Just for example, block on the result - this is not best practice
@@ -4468,7 +4468,7 @@ The simplest of these operations is <em>upsert</em>, which, similar to the fulld
 <div class="listingblock">
 <div class="title">Upserting a new Sub-Document value</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L157">collection.mutateIn("hotel_1368", Arrays.asList(upsert("email", "hotel96@hotmail.com")));</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L157">collection.mutateIn("hotel_1368", Arrays.asList(upsert("email", "hotel96@hotmail.com")));</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4477,7 +4477,7 @@ The simplest of these operations is <em>upsert</em>, which, similar to the fulld
 <div class="listingblock">
 <div class="title">Inserting a Sub-Document value</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L164-L168">try {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L164-L168">try {
   collection.mutateIn("hotel_1368", Collections.singletonList(insert("alt_email", "alt_hotel96@hotmail.com")));
 } catch (PathExistsException err) {
   System.out.println("insertFunc: exception caught, path already exists");
@@ -4490,7 +4490,7 @@ Here&#8217;s an example of one which replaces one path and removes another.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L182">collection.mutateIn("hotel_1368", Arrays.asList(remove("tz"), insert("alt_email", "hotel84@hotmail.com")));</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L182">collection.mutateIn("hotel_1368", Arrays.asList(remove("tz"), insert("alt_email", "hotel84@hotmail.com")));</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -4516,7 +4516,7 @@ Unlike fulldoc <em>append</em>/<em>prepend</em> operations (which simply concate
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L203-L209">MutationResult result = collection.mutateIn("hotel_1368",
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L203-L209">MutationResult result = collection.mutateIn("hotel_1368",
     Collections.singletonList(arrayAppend("public_likes", Collections.singletonList("Mike Rutherford"))));
 /*
   public_likes is now:
@@ -4527,7 +4527,7 @@ Unlike fulldoc <em>append</em>/<em>prepend</em> operations (which simply concate
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L228-L235">MutationResult result = collection.mutateIn("hotel_1368",
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L228-L235">MutationResult result = collection.mutateIn("hotel_1368",
     Collections.singletonList(arrayPrepend("public_likes", Collections.singletonList("John Smith"))));
 
 /*
@@ -4544,7 +4544,7 @@ Simply initialize the document with an empty array and then use the empty path f
 <div class="listingblock">
 <div class="title">Creating and populating an array document</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L251-L255">collection.upsert("my_array", JsonArray.create());
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L251-L255">collection.upsert("my_array", JsonArray.create());
 
 collection.mutateIn("my_array",
     Collections.singletonList(arrayAppend("", Collections.singletonList("some element"))));
@@ -4556,7 +4556,7 @@ collection.mutateIn("my_array",
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L263-L264">MutateInResult result = collection.mutateIn("hotel_14225",
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L263-L264">MutateInResult result = collection.mutateIn("hotel_14225",
     Collections.singletonList(arrayAppend("some.array", Collections.singletonList("hello world")).createPath()));</code></pre>
 </div>
 </div>
@@ -4571,7 +4571,7 @@ This will do a check to determine if the given value exists or not before actual
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L273-L280">collection.mutateIn("hotel_14226", Collections.singletonList(arrayAddUnique("unique", 95)));
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L273-L280">collection.mutateIn("hotel_14226", Collections.singletonList(arrayAddUnique("unique", 95)));
 
 try {
   collection.mutateIn("hotel_14226", Collections.singletonList(arrayAddUnique("unique", 95)));
@@ -4601,7 +4601,7 @@ For example, to insert <code>"cruel"</code> as the second element in the array <
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L287-L288">MutateInResult result = collection.mutateIn("hotel_1501",
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L287-L288">MutateInResult result = collection.mutateIn("hotel_1501",
     Collections.singletonList(arrayInsert("foo[1]", Collections.singletonList("cruel"))));</code></pre>
 </div>
 </div>
@@ -4620,7 +4620,7 @@ These operations are logically similar to the <em>increment</em> and <em>decreme
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L297-L300">MutateInResult result = collection.mutateIn("hotel_1368", Collections.singletonList(increment("logins", 1)));
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L297-L300">MutateInResult result = collection.mutateIn("hotel_1368", Collections.singletonList(increment("logins", 1)));
 
 // Counter operations return the updated count
 Long count = result.contentAs(0, Long.class);</code></pre>
@@ -4632,7 +4632,7 @@ The updated value is returned.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L309-L312">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L309-L312">
 MutateInResult result = collection.mutateIn("hotel_1368", Collections.singletonList(decrement("logouts", 150)));
 // Counter operations return the updated count
 Long count = result.contentAs(0, Long.class);</code></pre>
@@ -4726,7 +4726,7 @@ In this case, the <em>createPath</em> option may be used.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L320-L323">MutateInResult result = collection.mutateIn("hotel_1368",
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L320-L323">MutateInResult result = collection.mutateIn("hotel_1368",
     Collections.singletonList(
         upsert("level_0.level_1.foo.bar.phone", JsonObject.create().put("num", "311-555-0101").put("ext", 16))
             .createPath()));</code></pre>
@@ -4743,7 +4743,7 @@ For example the following two blocks can execute concurrently without any risk o
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L330-L344">Thread thread1 = new Thread() {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L330-L344">Thread thread1 = new Thread() {
   public void run() {
     collection.mutateIn("hotel_1501",
         Collections.singletonList(arrayAppend("foo", Collections.singletonList(99))));
@@ -4773,7 +4773,7 @@ against concurrent modifications.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L363-L365">GetResult doc = collection.get("hotel_1368");
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L363-L365">GetResult doc = collection.get("hotel_1368");
 MutationResult result = collection.mutateIn("hotel_1368", Collections.singletonList(decrement("logouts", 150)),
     mutateInOptions().cas(doc.cas()));</code></pre>
 </div>
@@ -4788,7 +4788,7 @@ MutationResult result = collection.mutateIn("hotel_1368", Collections.singletonL
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L385-L387">MutationResult result = collection.mutateIn("hotel_1368",
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L385-L387">MutationResult result = collection.mutateIn("hotel_1368",
     Collections.singletonList(MutateInSpec.upsert("foo", "bar")),
     mutateInOptions().durability(PersistTo.ACTIVE, ReplicateTo.ONE));</code></pre>
 </div>
@@ -4798,7 +4798,7 @@ MutationResult result = collection.mutateIn("hotel_1368", Collections.singletonL
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L398-L400">MutationResult result = collection.mutateIn("hotel_1368",
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L398-L400">MutationResult result = collection.mutateIn("hotel_1368",
     Collections.singletonList(MutateInSpec.upsert("foo", "bar")),
     mutateInOptions().durability(DurabilityLevel.MAJORITY));</code></pre>
 </div>
@@ -4927,7 +4927,7 @@ They are not intended for use in general applications, and data stored there can
 <div class="listingblock">
 <div class="title">Full Document Example</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/462da72b783aafa4ebfe53ff5e04052f080f91b9/modules/howtos/examples/SubDocument.java#L241-L243">JsonObject docContent = JsonObject.create().put("body", "value");
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/SubDocument.java#L241-L243">JsonObject docContent = JsonObject.create().put("body", "value");
 collection.mutateIn("hotel_14006",
     Arrays.asList(MutateInSpec.upsert("foo", "bar").xattr().createPath(), MutateInSpec.replace("", docContent)));</code></pre>
 </div>
