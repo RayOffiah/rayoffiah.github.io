@@ -191,7 +191,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../buckets-scopes-and-collections.html">Buckets,Scopes and Collections</a>
+    <a class="menu_title menu_link" href="../buckets-scopes-and-collections.html">Buckets, Scopes and Collections</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -4378,9 +4378,6 @@
 <span  id="otherContributor"> + </span>
 </div><div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>ƒ</p>
-</div>
 <div class="quoteblock abstract">
 <blockquote>
 In this section, you&#8217;re going to add enrollment details to the student records using the Couchbase SDK
@@ -4396,7 +4393,7 @@ In this section, you&#8217;re going to add enrollment details to the student rec
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../_images/student-collections.svg" alt="student collections">
+<img src="../_images/student-collections.svg" alt="Bucket, scope and collections diagram for the studen record system">
 </div>
 </div>
 <div class="paragraph">
@@ -4434,7 +4431,7 @@ You&#8217;re now going to write a short program that will add enrollment details
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import com.couchbase.client.core.error.CouchbaseException;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/student/examples/AddEnrollments.java">import com.couchbase.client.core.error.CouchbaseException;
 import com.couchbase.client.java.Bucket;
 import com.couchbase.client.java.Cluster;
 import com.couchbase.client.java.Collection;
@@ -4501,8 +4498,8 @@ public class AddEnrollments {
     private static JsonObject retrieveCourse(Cluster cluster, String course) throws CouchbaseException {
 
         final QueryResult result = cluster.query("select META().id, crc.* " +
-                "from `student-bucket`.`art-school-scope`.`course-record-collection` crc " +
-                "where crc.`course-name` = $courseName",
+                        "from `student-bucket`.`art-school-scope`.`course-record-collection` crc " +
+                        "where crc.`course-name` = $courseName",
                 QueryOptions.queryOptions()
                         .parameters(JsonObject.create().put("courseName", course)));
 

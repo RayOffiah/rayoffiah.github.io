@@ -193,7 +193,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../buckets-scopes-and-collections.html">Buckets,Scopes and Collections</a>
+    <a class="menu_title menu_link" href="../buckets-scopes-and-collections.html">Buckets, Scopes and Collections</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -4398,7 +4398,7 @@ In this section, you&#8217;re going to look at two methods of retrieving documen
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../_images/set-query-filters.png" alt="set query filters">
+<img src="../_images/set-query-filters.png" alt="The console query editor">
 </div>
 </div>
 <div class="paragraph">
@@ -4429,7 +4429,7 @@ N1QL is very similar to standard SQL. Once you have mastered the document databa
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../_images/attempt-first-query.png" alt="attempt first query">
+<img src="../_images/attempt-first-query.png" alt="Query to retrieve the course collection">
 </div>
 </div>
 <div class="paragraph">
@@ -4611,7 +4611,7 @@ Let&#8217;s start with a basic record retrieval:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import com.couchbase.client.core.error.CouchbaseException;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/student/examples/ArtSchoolRetriever.java">import com.couchbase.client.core.error.CouchbaseException;
 import com.couchbase.client.java.Cluster;
 import com.couchbase.client.java.json.JsonObject;
 import com.couchbase.client.java.query.QueryResult;
@@ -4656,7 +4656,7 @@ public class ArtSchoolRetriever {
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../_images/retrieve-courses-cli.png" alt="retrieve courses cli">
+<img src="../_images/retrieve-courses-cli.png" alt="Terminal window showing course records retrieved with the Java SDK">
 </div>
 </div>
 <div class="paragraph">
@@ -4675,7 +4675,7 @@ public class ArtSchoolRetriever {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import com.couchbase.client.core.error.CouchbaseException;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/student/examples/ArtSchoolRetrieverParameters.java">import com.couchbase.client.core.error.CouchbaseException;
 import com.couchbase.client.java.Cluster;
 import com.couchbase.client.java.json.JsonObject;
 import com.couchbase.client.java.query.QueryOptions;
@@ -4696,10 +4696,10 @@ public class ArtSchoolRetrieverParameters {
 
         try {
             final QueryResult result = cluster.query("select crc.* " +
-                    "from `student-bucket`.`art-school-scope`.`course-record-collection` crc " +
-                    "where crc.`credit-points` &lt; $creditPoints",    <i class="conum" data-value="1"></i><b>(1)</b>
+                            "from `student-bucket`.`art-school-scope`.`course-record-collection` crc " +
+                            "where crc.`credit-points` &lt; $creditPoints",    <i class="conum" data-value="1"></i><b>(1)</b>
                     QueryOptions.queryOptions()
-                             .parameters(JsonObject.create().put("creditPoints", 200)));    <i class="conum" data-value="2"></i><b>(2)</b>
+                            .parameters(JsonObject.create().put("creditPoints", 200)));    <i class="conum" data-value="2"></i><b>(2)</b>
 
             for (JsonObject row : result.rowsAsObject()) {
                 System.out.println("Found row: " + row);
