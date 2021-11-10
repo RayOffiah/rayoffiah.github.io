@@ -10,7 +10,7 @@
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/java-sdk/current/ref/client-settings.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="The &lt;code&gt;ClusterEnvironment&lt;/code&gt; class enables you to configure Java SDK options for bootstrapping, timeouts, reliability, and performance.">
+<meta name="description" content="The &lt;code&gt;ClusterEnvironment&lt;/code&gt; class enables you to configure Java SDK options for security, timeouts, reliability, and performance.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -4226,7 +4226,7 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-The <code>ClusterEnvironment</code> class enables you to configure Java SDK options for bootstrapping, timeouts, reliability, and performance.
+The <code>ClusterEnvironment</code> class enables you to configure Java SDK options for security, timeouts, reliability, and performance.
 </blockquote>
 </div>
 </div>
@@ -4355,14 +4355,17 @@ Setting the property <code>com.couchbase.env.timeout.kvTimeout</code> tells the 
 <h2 id="configuration-options"><a class="anchor" href="#configuration-options"></a>Configuration Options</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following tables cover all possible configuration options and explain their usage and default values.
-The tables categorize the options into groups for bootstrapping, timeout, reliability, performance, and advanced options.</p>
+<p>The following sections cover all possible configuration options and explain their usage and default values.
+They are categorized into groups for
+<a href="#security-options">security</a>,
+<a href="#io-options">I/O</a>,
+<a href="#circuit-breaker-options">circuit breakers</a>,
+<a href="#timeout-options">timeout</a>,
+<a href="#compression-options">compression</a>, and
+<a href="#general-options">general</a> options.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="security-options"><a class="anchor" href="#security-options"></a>Security Options</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="security-options"><a class="anchor" href="#security-options"></a>Security Options</h3>
 <div class="paragraph">
 <p>By default the client will connect to Couchbase Server using an unencrypted connection.
 If you are using the Enterprise Edition, it&#8217;s possible to secure the connection using TLS.</p>
@@ -4467,10 +4470,8 @@ See the <a href="../howtos/managing-connections.html#ssl" class="page">Connectio
 </dl>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="io-options"><a class="anchor" href="#io-options"></a>I/O Options</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="io-options"><a class="anchor" href="#io-options"></a>I/O Options</h3>
 <div class="paragraph">
 <p>I/O settings are represented by the Java class <code>IoConfig</code>.
 The associated <code>ClusterEnvironement.Builder</code> method is called <code>ioConfig</code>.</p>
@@ -4687,6 +4688,7 @@ Durations longer than 50 seconds are not recommended, since some services have a
 </dd>
 </dl>
 </div>
+</div>
 <div class="sect2">
 <h3 id="circuit-breaker-options"><a class="anchor" href="#circuit-breaker-options"></a>Circuit Breaker Options</h3>
 <div class="paragraph">
@@ -4781,11 +4783,8 @@ The value is an integer in the range [0,100].</p>
 </dl>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="timeout-options"><a class="anchor" href="#timeout-options"></a>Timeout Options</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="timeout-options"><a class="anchor" href="#timeout-options"></a>Timeout Options</h3>
 <div class="paragraph">
 <p>The default timeout values are suitable for most environments, and should be adjusted only after profiling the expected latencies in your deployment environment.
 If you get a timeout exception, it may be a symptom of another issue; increasing the timeout duration is sometimes not the best long-term solution.</p>
@@ -4809,8 +4808,6 @@ The associated <code>ClusterEnvironement.Builder</code> method is called <code>t
     .build();</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="timeout-options-reference"><a class="anchor" href="#timeout-options-reference"></a>Timeout Options Reference</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Name: <strong>Key-Value Timeout</strong></dt>
@@ -4972,11 +4969,8 @@ The default is quite high because some operations (such as flushing a bucket, fo
 </dl>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="compression-options"><a class="anchor" href="#compression-options"></a>Compression Options</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="compression-options"><a class="anchor" href="#compression-options"></a>Compression Options</h3>
 <div class="paragraph">
 <p>The client can optionally compress documents before sending them to Couchbase Server.</p>
 </div>
@@ -5057,10 +5051,8 @@ Increasing the value allows CompressionExample to be used with less-compressible
 </dl>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="general-options"><a class="anchor" href="#general-options"></a>General Options</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="general-options"><a class="anchor" href="#general-options"></a>General Options</h3>
 <div class="paragraph">
 <p>The settings in this category apply to the client in general.
 They are configured directly on the <code>ClusterEnvironment.Builder</code>.</p>
@@ -5278,6 +5270,7 @@ You are responsible for stopping it after it is no longer needed.
 </div>
 </dd>
 </dl>
+</div>
 </div>
 </div>
 </div>
