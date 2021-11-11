@@ -4547,8 +4547,7 @@ Here&#8217;s Hilary Smith&#8217;s student record (minus the enrollment details â
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/tutorials/partials/hilary-smith-basic.json">{
   "name": "Hilary Smith",
-  "date-of-birth": "21-12-1980",
-  "type": "student"
+  "date-of-birth": "21-12-1980"
 }</code></pre>
 </div>
 </div>
@@ -4583,10 +4582,10 @@ public class InsertStudent {
                 .put("name", "Hilary Smith")
                 .put("date-of-birth",
                         LocalDate.of(1980, 12, 21)
-                                .format(DateTimeFormatter.ISO_DATE))    <i class="conum" data-value="2"></i><b>(2)</b>
-                .put("type", "student");    <i class="conum" data-value="3"></i><b>(3)</b>
+                                .format(DateTimeFormatter.ISO_DATE));   <i class="conum" data-value="2"></i><b>(2)</b>
 
-        student_records.upsert("000001", hilary);    <i class="conum" data-value="4"></i><b>(4)</b>
+
+        student_records.upsert("000001", hilary);    <i class="conum" data-value="3"></i><b>(3)</b>
 
         cluster.disconnect();
     }
@@ -4624,12 +4623,6 @@ The recommended way of dealing with dates is to store them as <a href="https://e
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Couchbase is completely freeform in that it will allow you to store different document types in the same collection.
-You can, for example, store the student records in the same collection as the course records.
-This is why it&#8217;s a good idea to include a <code>type</code> field in your document; it&#8217;ll make it easier to filter them later on.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
 <td>The oddly-named <code>upsert</code> function is used to insert or update documents in a collection.
 The first parameter is a unique identifier for the document (much like the primary key used in relational database systems).
 If <code>upsert</code> call finds a document with a matching identifier in the collection, then the document is updated.

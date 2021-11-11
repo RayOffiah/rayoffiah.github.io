@@ -202,12 +202,12 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="java-tutorial/first-couchbase-application.html">Writing your first Couchbase application</a>
+    <a class="menu_title menu_link" href="java-tutorial/creating-the-students-collection.html">Creating the Students Collection</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="java-tutorial/second-couchbase-application.html">Your second Couchbase application</a>
+    <a class="menu_title menu_link" href="java-tutorial/creating-the-courses-collection.html">Creating the Courses Collection</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -217,7 +217,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="java-tutorial/adding-enrollments.html">Adding course enrollments</a>
+    <a class="menu_title menu_link" href="java-tutorial/adding-course-enrollments.html">Adding Course Enrollments</a>
   </span>
 </li>
 </ul>
@@ -2873,11 +2873,6 @@
     <a class="menu_title menu_link" href="../cli/cbcollect-info-tool.html">cbcollect_info</a>
   </span>
 </li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../cli/cbdocloader-tool.html">cbdocloader</a>
-  </span>
-</li>
 <li class="menu_list is-parent closed" data-depth="2">
   <span class="menu_line">
     <span class="in-toggle"></span>
@@ -4410,18 +4405,17 @@ In this section, you&#8217;ll learn how to logically partition your data in Couc
 <h2 id="scopes-and-collections"><a class="anchor" href="#scopes-and-collections"></a>Scopes and Collections</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>There&#8217;s nothing stopping you from dumping every document into the same bucket, but in all but the simplest cases, it&#8217;s better to provide some kind of separation between documents of different types.
+<p>In all but the simplest cases, it&#8217;s better to provide some kind of separation between documents of different types.
 Couchbase has a simple hierarchy model which allows for such separation:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/collection-hierarchy.svg" alt="Couchbase Bucket-Scope-Collection-Document hierarchy">
+<img src="_images/multi-level-data-containment.png" alt="Couchbase data hierarchy">
 </div>
 </div>
 <div class="paragraph">
 <p>You&#8217;re already familiar with <code>clusters</code>, <code>nodes</code> and <code>buckets</code>.
-Inside a bucket you can also have any number of <code>scopes</code>, and inside a <code>scope</code> you can have any number of <code>collections</code>.
-Scopes and collections appear to do the same thing, so we&#8217;ll look at the key differences below:</p>
+Inside a bucket you can also have any number of <code>scopes</code>, and inside a <code>scope</code> you can have any number of <code>collections</code>.</p>
 </div>
 <div class="hdlist">
 <table>
@@ -4431,8 +4425,8 @@ scopes
 </td>
 <td class="hdlist2">
 <p>acts as a parent to a collection.
-You can apply permissions at the scope level, which will restrict access to the collections inside it.
-When you create a new bucket, Couchbase will provide you with a default scope called <code>_default</code>.</p>
+When you create a new bucket, Couchbase will provide you with a default scope called <code>_default</code>.
+You can use the default scope to store</p>
 </td>
 </tr>
 <tr>
@@ -4440,25 +4434,13 @@ When you create a new bucket, Couchbase will provide you with a default scope ca
 collections
 </td>
 <td class="hdlist2">
-<p>a collection can contain a set of related documents.</p>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Remember <code>scopes</code> and <code>collections</code> are optional: you can insert documents direcly into a <code>bucket</code> if you wish.
+<p>a collection can contain a set of  documents. A default collection (<code>_default</code>) is provided, but it is recommended that you create your own collection named to reflect the documents store inside it.</p>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Rather than have our student records stored in an anonymous bucket, we&#8217;re going to add two collections: one will be used to store the student records, the other will be used to store the course details.</p>
+<p>Rather than have our student records stored in the default collection, we&#8217;re going to add two collections: one will be used to store the student records, the other will be used to store the course details.</p>
 </div>
 <div class="paragraph">
 <p>Now looking again at the relational design of our student database:</p>
@@ -4515,8 +4497,7 @@ completing it.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Of course, it&#8217;s possible to just add the details of the course to the student&#8217;s enrollment records, but this
-would be very bad design.
+Of course, it&#8217;s possible to just add the details of the course to the student&#8217;s enrollment records, but this may have downsides.
 Changing the credit points on the course, for example, would involve running through every
 student&#8217;s enrollments and changing the credit details on each one.
 This is why the document model and relational model are used in conjunction to get the best combination of robust design and performance.
@@ -4539,8 +4520,7 @@ them to your bucket.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The first thing you may notice is that your bucket is created with a pre-existing scope called <code>_default</code>.
-You&#8217;re going to ignore this and create your own scope with a more meaningful name. Click on the <b class="button">Add Scope</b> link.</p>
+<p>Although the bucket is created with a default scope, for this example, you&#8217;re going to create your own. Click on the <b class="button">Add Scope</b> link.</p>
 </div>
 <div class="paragraph">
 <p>On the next dialog, create your <code>art-school-scope</code>.</p>

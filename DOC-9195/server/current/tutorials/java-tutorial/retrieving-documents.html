@@ -12,15 +12,15 @@
 <script src="../../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="In this section, you&#x27;re going to look at two methods of retrieving documents from a collection: you will use the administration console to build simple queries, and also write a short program to retrieve documents matching certain criteria. Both of the methods will introduce N1QL (pronounced &#x27;nickel&#x27;), Couchbase&#x27;s SQL-based query language">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
-        <link rel="prev" href="second-couchbase-application.html">
-        <link rel="next" href="adding-enrollments.html">
+        <link rel="prev" href="creating-the-courses-collection.html">
+        <link rel="next" href="adding-course-enrollments.html">
 
 
 
-                    <link rel="prev" href="second-couchbase-application.html">
+                    <link rel="prev" href="creating-the-courses-collection.html">
 
 
-                    <link rel="next" href="adding-enrollments.html">
+                    <link rel="next" href="adding-course-enrollments.html">
 
 
 <meta name="dcterms.subject" content="server">
@@ -202,12 +202,12 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="first-couchbase-application.html">Writing your first Couchbase application</a>
+    <a class="menu_title menu_link" href="creating-the-students-collection.html">Creating the Students Collection</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="second-couchbase-application.html">Your second Couchbase application</a>
+    <a class="menu_title menu_link" href="creating-the-courses-collection.html">Creating the Courses Collection</a>
   </span>
 </li>
 <li class="menu_list is-current-page" data-depth="2">
@@ -217,7 +217,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="adding-enrollments.html">Adding course enrollments</a>
+    <a class="menu_title menu_link" href="adding-course-enrollments.html">Adding Course Enrollments</a>
   </span>
 </li>
 </ul>
@@ -2873,11 +2873,6 @@
     <a class="menu_title menu_link" href="../../cli/cbcollect-info-tool.html">cbcollect_info</a>
   </span>
 </li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../../cli/cbdocloader-tool.html">cbdocloader</a>
-  </span>
-</li>
 <li class="menu_list is-parent closed" data-depth="2">
   <span class="menu_line">
     <span class="in-toggle"></span>
@@ -4475,14 +4470,14 @@ N1QL is very similar to standard SQL. Once you have mastered the document databa
 <div class="paragraph">
 <p>This will create a single index (<code>course_idx</code>) on your <code>course-record-collection</code>.</p>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Pay attention to how the collection names are surrounded in backticks (`) characters to escape non-alphanumeric characters.
+The error message returned from the search statement provides an example command for creating the primary index. You can copy the example command and run it in the query editor to create yoour primary index.
 </td>
 </tr>
 </table>
@@ -4504,20 +4499,17 @@ Pay attention to how the collection names are surrounded in backticks (`) charac
   {
     "course-name": "art history",
     "credit-points": 100,
-    "faculty": "fine art",
-    "type": "course"
+    "faculty": "fine art"
   },
   {
     "course-name": "fine art",
     "credit-points": 50,
-    "faculty": "fine art",
-    "type": "course"
+    "faculty": "fine art"
   },
   {
     "course-name": "graphic design",
     "credit-points": 200,
-    "faculty": "media and communication",
-    "type": "course"
+    "faculty": "media and communication"
   }
 ]</code></pre>
 </div>
@@ -4539,14 +4531,12 @@ Pay attention to how the collection names are surrounded in backticks (`) charac
   {
     "course-name": "art history",
     "credit-points": 100,
-    "faculty": "fine art",
-    "type": "course"
+    "faculty": "fine art"
   },
   {
     "course-name": "fine art",
     "credit-points": 50,
-    "faculty": "fine art",
-    "type": "course"
+    "faculty": "fine art"
   }
 ]</code></pre>
 </div>
@@ -4571,15 +4561,13 @@ Pay attention to how the collection names are surrounded in backticks (`) charac
     "course-name": "art history",
     "credit-points": 100,
     "faculty": "fine art",
-    "id": "ART-HISTORY-000001",    <i class="conum" data-value="1"></i><b>(1)</b>
-    "type": "course"
+    "id": "ART-HISTORY-000001"    <i class="conum" data-value="1"></i><b>(1)</b>
   },
   {
     "course-name": "fine art",
     "credit-points": 50,
     "faculty": "fine art",
-    "id": "FINE-ART-000002",    <i class="conum" data-value="1"></i><b>(1)</b>
-    "type": "course"
+    "id": "FINE-ART-000002"    <i class="conum" data-value="1"></i><b>(1)</b>
   }
 ]</code></pre>
 </div>
@@ -4737,17 +4725,17 @@ The value of the map entry is the actual parameter value (in this case, 200 whic
 <div class="sectionbody">
 <div class="paragraph">
 <p>Now you can add and search for records, the next section will consolidate what you&#8217;ve learned so far by demonstrating how to amend existing records by adding enrollment details.
-So when you&#8217;re ready carry on to <a href="adding-enrollments.html" class="page">Adding course enrollments</a></p>
+So when you&#8217;re ready carry on to <a href="adding-course-enrollments.html" class="page">Adding Course Enrollments</a></p>
 </div>
 </div>
 </div>
 
         <nav class="pagination">
 
-                    <span class="prev"><a href="second-couchbase-application.html">Your second Couchbase application</a></span>
+                    <span class="prev"><a href="creating-the-courses-collection.html">Creating the Courses Collection</a></span>
 
 
-                    <span class="next"><a href="adding-enrollments.html">Adding course enrollments</a></span>
+                    <span class="next"><a href="adding-course-enrollments.html">Adding Course Enrollments</a></span>
 
 </article>
 </main>

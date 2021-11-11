@@ -4412,8 +4412,7 @@ Here&#8217;s a quick reminder of the course document structure:</p>
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/tutorials/partials/art-history-course.json">{
   "course-name": "art history",
   "faculty": "fine art",
-  "credit-points" : 100,
-  "type": "course"
+  "credit-points" : 100
 }</code></pre>
 </div>
 </div>
@@ -4424,8 +4423,7 @@ Here&#8217;s a quick reminder of the course document structure:</p>
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/tutorials/partials/graphic-design-course.json">{
   "course-name": "graphic design",
   "faculty": "media and communication",
-  "credit-points" : 200,
-  "type": "course"
+  "credit-points" : 200
 }</code></pre>
 </div>
 </div>
@@ -4436,36 +4434,12 @@ Here&#8217;s a quick reminder of the course document structure:</p>
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/tutorials/partials/fine-art-course.json">{
   "course-name": "fine art",
   "faculty": "fine art",
-  "credit-points" : 50,
-  "type": "course"
+  "credit-points" : 50
 }</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The documents include an additional <code>type</code> field.
-Do you remember why we include a <code>type</code> for all our documents?</p>
-</div>
-<details>
-<summary class="title">Answer</summary>
-<div class="content">
-<div class="paragraph">
-<p>Documents of different types can reside in the same bucket/collection, so it&#8217;s useful to include a field which can be used to filter documents by type.</p>
-</div>
-</div>
-</details>
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>The code should be familiar to you; there&#8217;s not much difference between writing to the course collection and writing to the student collection; you just have more records to deal with:</p>
@@ -4504,8 +4478,7 @@ public class InsertCourses {
         JsonObject course = JsonObject.create()
                 .put("course-name", name)
                 .put("faculty", faculty)
-                .put("credit-points", creditPoints)
-                .put("type", "course");
+                .put("credit-points", creditPoints);
 
         collection.upsert(id, course);
 
