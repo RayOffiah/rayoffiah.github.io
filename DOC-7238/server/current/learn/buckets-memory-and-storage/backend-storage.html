@@ -12,7 +12,14 @@
 <script src="../../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="Couchbase supports two different backend storage mechanisms: &lt;code&gt;CouchStore&lt;/code&gt; and &lt;code&gt;Magma&lt;/code&gt;. It is important to understand which backend storage is best suited to your requirements.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+        <link rel="prev" href="storage.html">
+        <link rel="next" href="../services-and-indexes/services/services.html">
 
+
+
+                    <link rel="prev" href="storage.html">
+
+        
 
 <meta name="dcterms.subject" content="server">
 <meta name="dcterms.identifier" content="7.0">
@@ -4393,6 +4400,11 @@ Currently, Magma does not support Full Text Searching, Eventing or Analytics.
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minimum bucket size</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100 MB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">256 MB</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Maximum storage per node</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3 TB</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5 TB</p></td>
@@ -4421,7 +4433,57 @@ Currently, Magma does not support Full Text Searching, Eventing or Analytics.
 </table>
 </div>
 </div>
-</article>
+<div class="sect1">
+<h2 id="when-should-you-use-couchstore"><a class="anchor" href="#when-should-you-use-couchstore"></a>When should you use CouchStore?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You should use the CouchStore backend if:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>you have a dataset that will fit in available memory.</p>
+</li>
+<li>
+<p>you&#8217;re running the Couchbase server on low-end hardware.</p>
+</li>
+<li>
+<p>your Couchbase server needs to support full text searching, eventing, or analytics.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="when-should-you-use-magma"><a class="anchor" href="#when-should-you-use-magma"></a>When should you use Magma?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You should use the Magma backend if:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>your data set won&#8217;t fit in available memory.</p>
+</li>
+<li>
+<p>you need to store large amounts of data in a single node (&gt; 5 TB)</p>
+</li>
+<li>
+<p>your application(s) makes heavy use of transactions.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+        <nav class="pagination">
+
+                    <span class="prev"><a href="storage.html">Storage</a></span>
+
+
+                <span>&nbsp;</span>
+            </nav>
+        </article>
 </main>
 </div>
 <footer class="footer">
