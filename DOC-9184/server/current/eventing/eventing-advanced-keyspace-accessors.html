@@ -152,10 +152,53 @@
     <a class="menu_title menu_link" href="../getting-started/look-at-the-results.html">Explore the Server Configuration</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../getting-started/try-a-query.html">Run Your First N1QL Query</a>
+    <span class="in-toggle"></span>
+    <a class="menu_title menu_link" href="../tutorials/couchbase-tutorial-student-records.html">Couchbase Tutorial: A Student Record System</a>
   </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tutorials/install-couchbase-server.html">Install or provision the Couchbase server</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tutorials/buckets-scopes-and-collections.html">Buckets, Scopes and Collections</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tutorials/java-tutorial/install-couchbase-java-sdk.html">Installing the Couchbase Java SDK</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tutorials/java-tutorial/creating-the-students-collection.html">Creating the Students Collection</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tutorials/java-tutorial/creating-the-courses-collection.html">Creating the Courses Collection</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tutorials/java-tutorial/retrieving-documents.html">Retrieving documents</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tutorials/java-tutorial/adding-course-enrollments.html">Adding Course Enrollments</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tutorials/java-tutorial/using-transactions.html">Using Transactions</a>
+  </span>
+</li>
+</ul>
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
@@ -960,11 +1003,6 @@
     <span class="menu_title menu_text">Develop</span>
   </span>
 <ul class="menu_row">
-<li class="menu_list" data-depth="1">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../sdk/development-intro.html">Developer&#8217;s Intro</a>
-  </span>
-</li>
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
     <span class="in-toggle"></span>
@@ -1679,16 +1717,6 @@
 </li>
 </ul>
 </li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../fts/fts-monitor.html">FTS Monitor</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../fts/fts-rebalance-failover.html">FTS Rebalance-Failover</a>
-  </span>
-</li>
 <li class="menu_list is-parent closed" data-depth="2">
   <span class="menu_line">
     <span class="in-toggle"></span>
@@ -2105,9 +2133,9 @@
     <a class="menu_title menu_link" href="eventing-language-constructs.html">Language Constructs</a>
   </span>
 <ul class="menu_row">
-<li class="menu_list is-current-page" data-depth="3">
+<li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link is-current-page" href="eventing-advanced-keyspace-accessors.html">Advanced Keyspace Accessors</a>
+    <a class="menu_title menu_link" href="eventing-advanced-bucket-accessors.html">Advanced Bucket Accessors</a>
   </span>
 </li>
 <li class="menu_list" data-depth="3">
@@ -2334,11 +2362,6 @@
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
     <a class="menu_title menu_link" href="eventing-handler-advancedGetOp.html">advancedGetOp</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="4">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="eventing-handler-advancedGetOpWithCache.html">advancedGetOpWithCache</a>
   </span>
 </li>
 <li class="menu_list" data-depth="4">
@@ -4318,9 +4341,6 @@
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../introduction/intro.html">Couchbase Server</a></li>
-<li class="crumb">Develop</li>
-<li class="crumb"><a href="eventing-overview.html">Eventing</a></li>
-<li class="crumb"><a href="eventing-language-constructs.html">Language Constructs</a></li>
 <li class="crumb"><a href="eventing-advanced-keyspace-accessors.html">Advanced Keyspace Accessors</a></li>
 </ul>
 </nav>
@@ -4422,35 +4442,6 @@ The <a href="eventing-language-constructs.html#bucket_accessors" class="page">Ba
     // could be the same or different
     var new_meta = {"id":"test_adv_get::1"};
     var result = couchbase.get(src_col,new_meta);
-    if (result.success) {
-        log('success adv. get: result',result);
-    } else {
-        log('failure adv. get: id',new_meta.id,'result',result);
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><span class="status">Couchbase Server 7.0.2</span>
-In version 7.0.2 an optional third parameter <strong>{"cache": true}</strong> enables a bucket backed cache to hold the document for at most 1 second.
-This cache exists on each eventing node and is shared across all Eventing Functions (or threads) on the same node.</p>
-</div>
-<div class="paragraph">
-<p>The performance is typically 18X-25X faster than reading data directly from the Data Service (or KV).
-A common use case is to load near static data such as a lookup table from the Data Service where the external data is needed on every on every document mutation to drive the the Eventing Function&#8217;s business logic.</p>
-</div>
-<div class="paragraph">
-<p>This cache has RYOW (read your own write) semantics.
-This implies that a thread of execution writing and then subsquently reading the same document with <strong>{"cache": true}</strong> will always retreive the value just written.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function OnUpdate(doc, meta) {
-    log('input doc ', doc);
-    log('input meta', meta);
-    // could be the same or different
-    var new_meta = {"id":"test_adv_get::1"};
-    var result = couchbase.get(src_col,new_meta,{"cache": true});
     if (result.success) {
         log('success adv. get: result',result);
     } else {

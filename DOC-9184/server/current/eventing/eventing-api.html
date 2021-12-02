@@ -152,10 +152,53 @@
     <a class="menu_title menu_link" href="../getting-started/look-at-the-results.html">Explore the Server Configuration</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../getting-started/try-a-query.html">Run Your First N1QL Query</a>
+    <span class="in-toggle"></span>
+    <a class="menu_title menu_link" href="../tutorials/couchbase-tutorial-student-records.html">Couchbase Tutorial: A Student Record System</a>
   </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tutorials/install-couchbase-server.html">Install or provision the Couchbase server</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tutorials/buckets-scopes-and-collections.html">Buckets, Scopes and Collections</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tutorials/java-tutorial/install-couchbase-java-sdk.html">Installing the Couchbase Java SDK</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tutorials/java-tutorial/creating-the-students-collection.html">Creating the Students Collection</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tutorials/java-tutorial/creating-the-courses-collection.html">Creating the Courses Collection</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tutorials/java-tutorial/retrieving-documents.html">Retrieving documents</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tutorials/java-tutorial/adding-course-enrollments.html">Adding Course Enrollments</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tutorials/java-tutorial/using-transactions.html">Using Transactions</a>
+  </span>
+</li>
+</ul>
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
@@ -960,11 +1003,6 @@
     <span class="menu_title menu_text">Develop</span>
   </span>
 <ul class="menu_row">
-<li class="menu_list" data-depth="1">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../sdk/development-intro.html">Developer&#8217;s Intro</a>
-  </span>
-</li>
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
     <span class="in-toggle"></span>
@@ -1679,16 +1717,6 @@
 </li>
 </ul>
 </li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../fts/fts-monitor.html">FTS Monitor</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../fts/fts-rebalance-failover.html">FTS Rebalance-Failover</a>
-  </span>
-</li>
 <li class="menu_list is-parent closed" data-depth="2">
   <span class="menu_line">
     <span class="in-toggle"></span>
@@ -2107,7 +2135,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="eventing-advanced-keyspace-accessors.html">Advanced Keyspace Accessors</a>
+    <a class="menu_title menu_link" href="eventing-advanced-bucket-accessors.html">Advanced Bucket Accessors</a>
   </span>
 </li>
 <li class="menu_list" data-depth="3">
@@ -2334,11 +2362,6 @@
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
     <a class="menu_title menu_link" href="eventing-handler-advancedGetOp.html">advancedGetOp</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="4">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="eventing-handler-advancedGetOpWithCache.html">advancedGetOpWithCache</a>
   </span>
 </li>
 <li class="menu_list" data-depth="4">
@@ -4945,70 +4968,7 @@ Note, there is no value of <em>resuming</em> when resuming a paused Eventing Fun
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. Eventing Log API (advanced)</caption>
-<colgroup>
-<col style="width: 6.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 60.0001%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">HTTP Method</th>
-<th class="tableblock halign-left valign-top"><strong>URI Path</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">GET</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em class="path">/getAppLog?name=[sample_name]</em></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Returns the most recent application log messages for a specific Eventing Function.</p>
-</div>
-<div class="paragraph">
-<p>This API by default accesses a single Eventing node but can access all Eventing nodes by setting the optional parameter <strong>aggregate=true</strong>.</p>
-</div>
-<div class="paragraph">
-<p>By default the amount of logging information returned is approximately 40960 bytes unless you specify the optional size parameter <strong>size=#</strong> where # is in bytes.  Note when specifying the <strong>size</strong> parameter and fetching from more than one Eventing node only <strong>size/#nodes</strong> bytes are returned from each node.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Sample API (fetch recent Application log info from one Eventing node):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">curl -XGET http://Administrator:password@192.168.1.5:8096/getAppLog?name=[sample_name]</code></pre>
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Sample API (fetch recent Application log info from all Eventing nodes):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">curl -XGET http://Administrator:password@192.168.1.5:8096/getAppLog?name=[sample_name]&amp;aggregate=true</code></pre>
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Sample API (fetch recent Application log info from all Eventing nodes but limited to 2048 bytes):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">curl -XGET http://Administrator:password@192.168.1.5:8096/getAppLog?name=[sample_name]&amp;aggregate=true&amp;size=2048</code></pre>
-</div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 5. Eventing List API (advanced)</caption>
+<caption class="title">Table 4. Eventing List API (advanced)</caption>
 <colgroup>
 <col style="width: 6.6666%;">
 <col style="width: 33.3333%;">
@@ -5100,7 +5060,7 @@ Note, if we had specified <em>deployed=false</em> we would get all undeployed fu
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 6. Eventing Global Config API (advanced)</caption>
+<caption class="title">Table 5. Eventing Global Config API (advanced)</caption>
 <colgroup>
 <col style="width: 6.6666%;">
 <col style="width: 33.3333%;">
@@ -5169,7 +5129,7 @@ The response indicates whether the Eventing service must be restarted for the ne
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 7. Eventing Statistics API</caption>
+<caption class="title">Table 6. Eventing Statistics API</caption>
 <colgroup>
 <col style="width: 6.6666%;">
 <col style="width: 33.3333%;">
@@ -5288,7 +5248,7 @@ This will return the subset of statistics for the node.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 8. Eventing Functions API (<strong>deprecated activation/deactivation</strong>)</caption>
+<caption class="title">Table 7. Eventing Functions API (<strong>deprecated activation/deactivation</strong>)</caption>
 <colgroup>
 <col style="width: 6.6666%;">
 <col style="width: 33.3333%;">

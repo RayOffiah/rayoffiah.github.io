@@ -152,10 +152,53 @@
     <a class="menu_title menu_link" href="../../getting-started/look-at-the-results.html">Explore the Server Configuration</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../getting-started/try-a-query.html">Run Your First N1QL Query</a>
+    <span class="in-toggle"></span>
+    <a class="menu_title menu_link" href="../../tutorials/couchbase-tutorial-student-records.html">Couchbase Tutorial: A Student Record System</a>
   </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../tutorials/install-couchbase-server.html">Install or provision the Couchbase server</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../tutorials/buckets-scopes-and-collections.html">Buckets, Scopes and Collections</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../tutorials/java-tutorial/install-couchbase-java-sdk.html">Installing the Couchbase Java SDK</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../tutorials/java-tutorial/creating-the-students-collection.html">Creating the Students Collection</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../tutorials/java-tutorial/creating-the-courses-collection.html">Creating the Courses Collection</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../tutorials/java-tutorial/retrieving-documents.html">Retrieving documents</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../tutorials/java-tutorial/adding-course-enrollments.html">Adding Course Enrollments</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../tutorials/java-tutorial/using-transactions.html">Using Transactions</a>
+  </span>
+</li>
+</ul>
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
@@ -960,11 +1003,6 @@
     <span class="menu_title menu_text">Develop</span>
   </span>
 <ul class="menu_row">
-<li class="menu_list" data-depth="1">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../../sdk/development-intro.html">Developer&#8217;s Intro</a>
-  </span>
-</li>
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
     <span class="in-toggle"></span>
@@ -1679,16 +1717,6 @@
 </li>
 </ul>
 </li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../../fts/fts-monitor.html">FTS Monitor</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../../fts/fts-rebalance-failover.html">FTS Rebalance-Failover</a>
-  </span>
-</li>
 <li class="menu_list is-parent closed" data-depth="2">
   <span class="menu_line">
     <span class="in-toggle"></span>
@@ -2107,7 +2135,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../eventing/eventing-advanced-keyspace-accessors.html">Advanced Keyspace Accessors</a>
+    <a class="menu_title menu_link" href="../../eventing/eventing-advanced-bucket-accessors.html">Advanced Bucket Accessors</a>
   </span>
 </li>
 <li class="menu_list" data-depth="3">
@@ -2334,11 +2362,6 @@
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../eventing/eventing-handler-advancedGetOp.html">advancedGetOp</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="4">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../../eventing/eventing-handler-advancedGetOpWithCache.html">advancedGetOpWithCache</a>
   </span>
 </li>
 <li class="menu_list" data-depth="4">
@@ -4417,57 +4440,20 @@ In each illustration, all servers are assumed to be running the Data Service.</p
 <div class="sect2">
 <h3 id="vbucket-distribution-across-unequal-groups"><a class="anchor" href="#vbucket-distribution-across-unequal-groups"></a>Unequal Groups</h3>
 <div class="paragraph">
-<p>A number of constraints come into play when allocating active and replica vbuckets across server groups:</p>
-</div>
-<div class="hdlist">
-<table>
-<tr>
-<td class="hdlist1">
-<strong>active balance</strong>
-</td>
-<td class="hdlist2">
-<p>there should be approximately<sup class="footnote" id="_footnote_approximate-vbuckets">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> the same number of active vbuckets on each node in the cluster.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-<strong>replica balance</strong>
-</td>
-<td class="hdlist2">
-<p>there should be approximately<sup class="footnoteref">[<a class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> the same number of replica vbuckets on each node in the cluster.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-<strong>rack-zone</strong>
-</td>
-<td class="hdlist2">
-<p>all replicas of a given vbucket must reside in separate server groups.</p>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Not all the constraints can be satisifed the buckets are allocated across an unequal group.
-In this scenario, the <code>active balance</code> and <code>rack-zone</code> constraints will take priority:
-when the vbucket map is generated, the aim is to ensure that there are the same number of active vbuckets on each cluster and that replicas of a given vbucket must reside in separate groups.</p>
-</div>
-<div class="paragraph">
 <p>The following illustration shows how vBuckets are distributed across two groups: Group 1 contains four nodes, while Group 2 contains five.</p>
 </div>
 <div id="groups_two_unequal" class="imageblock text-left">
 <div class="content">
-<img src="../_images/clusters-and-availability/groups-two-unequal-rack-zone-constraint.png" alt="groups two unequal rack zone constraint" width="720">
+<img src="../_images/clusters-and-availability/groups-two-unequal.png" alt="groups two unequal" width="720">
 </div>
 </div>
 <div class="paragraph">
-<p>Group 1 contains all the replica vBuckets that correspond to active vBuckets in Group 2.</p>
+<p>Group 1 contains all the replica vBuckets that correspond to active vBuckets on Group 2.
+However, since the groups contain unequal number of nodes, Group 2 not only contains all the replica vBuckets that correspond to active vBuckets on Group 1, but also contains all the replica vBuckets for its own additional node, Server 9 — the replicas for Server 9 being distributed across the other Group 2 nodes; which are Servers 5, 6, 7, and 8.
+Server 9 contains its own active vBuckets, plus replica vBuckets for Group 1.</p>
 </div>
 <div class="paragraph">
-<p>Group 2 contains all the replica vBuckets that correspond to active vBuckets in Group 1.</p>
-</div>
-<div class="paragraph">
-<p>However, in order to ensure that replicas of a VBucket must reside in a separate group, then we may have a situation where there are vBuckets from Server 9 are replicated to Group 1, but there are no additional vBuckets in Group 1 to provide balance in Group 2.</p>
+<p>This means that if Group 2 were to go offline, <em>Group Failover</em> would not preserve the replica vBuckets for Server 9, since these only existed on Group 2 itself.</p>
 </div>
 </div>
 <div class="sect2">
@@ -4650,12 +4636,6 @@ Consequently, both the index replicas of one index would be assigned to the same
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div id="footnotes">
-<hr>
-<div class="footnote" id="_footnotedef_1">
-<a href="#_footnoteref_1">1</a>. Note that by "approximately the same" we mean the number should vary by 5 vbuckets or less
 </div>
 </div>
 </article>
