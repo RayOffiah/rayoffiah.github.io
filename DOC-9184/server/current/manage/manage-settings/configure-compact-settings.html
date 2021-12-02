@@ -152,53 +152,10 @@
     <a class="menu_title menu_link" href="../../getting-started/look-at-the-results.html">Explore the Server Configuration</a>
   </span>
 </li>
-<li class="menu_list is-parent closed" data-depth="1">
+<li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <span class="in-toggle"></span>
-    <a class="menu_title menu_link" href="../../tutorials/couchbase-tutorial-student-records.html">Couchbase Tutorial: A Student Record System</a>
+    <a class="menu_title menu_link" href="../../getting-started/try-a-query.html">Run Your First N1QL Query</a>
   </span>
-<ul class="menu_row">
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../../tutorials/install-couchbase-server.html">Install or provision the Couchbase server</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../../tutorials/buckets-scopes-and-collections.html">Buckets, Scopes and Collections</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../../tutorials/java-tutorial/install-couchbase-java-sdk.html">Installing the Couchbase Java SDK</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../../tutorials/java-tutorial/creating-the-students-collection.html">Creating the Students Collection</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../../tutorials/java-tutorial/creating-the-courses-collection.html">Creating the Courses Collection</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../../tutorials/java-tutorial/retrieving-documents.html">Retrieving documents</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../../tutorials/java-tutorial/adding-course-enrollments.html">Adding Course Enrollments</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../../tutorials/java-tutorial/using-transactions.html">Using Transactions</a>
-  </span>
-</li>
-</ul>
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
@@ -1003,6 +960,11 @@
     <span class="menu_title menu_text">Develop</span>
   </span>
 <ul class="menu_row">
+<li class="menu_list" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../sdk/development-intro.html">Developer&#8217;s Intro</a>
+  </span>
+</li>
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
     <span class="in-toggle"></span>
@@ -1717,6 +1679,16 @@
 </li>
 </ul>
 </li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../fts/fts-monitor.html">FTS Monitor</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../fts/fts-rebalance-failover.html">FTS Rebalance-Failover</a>
+  </span>
+</li>
 <li class="menu_list is-parent closed" data-depth="2">
   <span class="menu_line">
     <span class="in-toggle"></span>
@@ -2135,7 +2107,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../eventing/eventing-advanced-bucket-accessors.html">Advanced Bucket Accessors</a>
+    <a class="menu_title menu_link" href="../../eventing/eventing-advanced-keyspace-accessors.html">Advanced Keyspace Accessors</a>
   </span>
 </li>
 <li class="menu_list" data-depth="3">
@@ -2362,6 +2334,11 @@
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../eventing/eventing-handler-advancedGetOp.html">advancedGetOp</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="4">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../eventing/eventing-handler-advancedGetOpWithCache.html">advancedGetOpWithCache</a>
   </span>
 </li>
 <li class="menu_list" data-depth="4">
@@ -4623,10 +4600,26 @@ The specified number of days will elapse before tombstones for expired or delete
 The default value is three days.
 The permitted range of values is <code>0.04</code> to <code>60</code> (where <code>0.04</code> equals one hour, and <code>1</code> equals one day.</p>
 </div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Note that if you set this value too low, you may see inconsistent results in Views queries, such as deleted items appearing in a result set.
-You may also see inconsistent items across clusters, if XDCR has been set up between the clusters.
-If you set this value too high, it delays Couchbase Server from reclaiming disk space.</p>
+<p>If you set this value too low, you may see inconsistent results in Views queries, such as deleted items appearing in a result set.
+You may also see inconsistent items across clusters, if XDCR has been set up between the clusters.</p>
+</div>
+<div class="paragraph">
+<p>If the metadata purge interval is set too low, it can also cause severe issues with transactions, especially for ephemeral buckets.</p>
+</div>
+<div class="paragraph">
+<p>If you set this value too high, it delays Couchbase Server from reclaiming disk space.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The <strong>Metadata Purge Interval</strong> panel on this screen establishes a default purge interval for <em>Couchbase buckets only</em>.
