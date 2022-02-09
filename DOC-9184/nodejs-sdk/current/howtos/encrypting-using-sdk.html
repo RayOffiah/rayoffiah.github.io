@@ -70,6 +70,11 @@
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Cloud
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link" href="../../../home/sdk.html">
                       SDKs
                     </a>
@@ -4378,39 +4383,39 @@ At this point we also create <code>CryptoManager</code> and register our encrypt
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/fle.js#L94-L126">  // CryptoSchema is used to register which fields to apply the encryption to.
-  const schema = mgr.newCryptoSchema({
-    fields: {
-      password: {
-        encryptionKey: 'one',
-      },
-      addresses: {
-        fields: {
-          houseName: {
-            encryptionKey: 'one',
-          },
-          street: {
-            fields: {
-              secondLine: {
-                encryptionKey: 'two',
-              },
-            },
-          },
-          attributes: {
-            fields: {
-              action: {
-                encryptionKey: 'two',
-              },
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/fle.js#L94-L126">// CryptoSchema is used to register which fields to apply the encryption to.
+const schema = mgr.newCryptoSchema({
+  fields: {
+    password: {
+      encryptionKey: 'one',
+    },
+    addresses: {
+      fields: {
+        houseName: {
+          encryptionKey: 'one',
+        },
+        street: {
+          fields: {
+            secondLine: {
+              encryptionKey: 'two',
             },
           },
         },
-        encryptionKey: 'two',
+        attributes: {
+          fields: {
+            action: {
+              encryptionKey: 'two',
+            },
+          },
+        },
       },
-      phone: {
-        encryptionKey: '',
-      },
+      encryptionKey: 'two',
     },
-  })</code></pre>
+    phone: {
+      encryptionKey: '',
+    },
+  },
+})</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4448,9 +4453,9 @@ At this point we also create <code>CryptoManager</code> and register our encrypt
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/fle.js#L157-L159">  const result = await collection.get('p1')
-  const resData = result.content
-  console.log(JSON.stringify(resData, null, '  '))</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/fle.js#L157-L159">const result = await collection.get('p1')
+const resData = result.content
+console.log(JSON.stringify(resData, null, '  '))</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4484,8 +4489,8 @@ At this point we also create <code>CryptoManager</code> and register our encrypt
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/fle.js#L164-L165">  const decryptedDoc = schema.decrypt(encryptedDoc)
-  console.log(JSON.stringify(decryptedDoc, null, '  '))</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/fle.js#L164-L165">const decryptedDoc = schema.decrypt(encryptedDoc)
+console.log(JSON.stringify(decryptedDoc, null, '  '))</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4553,9 +4558,9 @@ In SDK 3, the default prefix is <code>encrypted$</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/fle.js#L11-L13">  const mgr = new crypto.DefaultCryptoManager({
-    encryptedFieldPrefix: '__crypt_',
-  })</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/fle.js#L11-L13">const mgr = new crypto.DefaultCryptoManager({
+  encryptedFieldPrefix: '__crypt_',
+})</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4660,7 +4665,7 @@ To enable decrypting fields written by SDK 2, register the legacy decrypters wit
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2021 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2022 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

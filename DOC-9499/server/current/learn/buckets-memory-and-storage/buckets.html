@@ -278,12 +278,7 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="storage-settings.html">Storage Settings</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="3">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="storage-engines.html">Storage Engines</a>
+    <a class="menu_title menu_link" href="storage.html">Storage</a>
   </span>
 </li>
 </ul>
@@ -940,6 +935,11 @@
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../manage/monitor/xdcr-monitor-timestamp-conflict-resolution.html">Monitor Clock Drift</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../manage/monitor/set-up-prometheus-for-monitoring.html">Set up Prometheus for Monitoring</a>
   </span>
 </li>
 </ul>
@@ -1722,7 +1722,7 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../fts/fts-architecture-rest-gRPC.html">Search Service Metrics (REST, gRPC)</a>
+    <a class="menu_title menu_link" href="#fts:fts-architecture-rest-gRPC.adoc">Search Service Metrics (REST, gRPC)</a>
   </span>
 </li>
 <li class="menu_list" data-depth="3">
@@ -1745,7 +1745,7 @@
 <li class="menu_list is-parent closed" data-depth="2">
   <span class="menu_line">
     <span class="in-toggle"></span>
-    <a class="menu_title menu_link" href="../../fts/fts.html">Full Text Indexes</a>
+    <a class="menu_title menu_link" href="#fts:fts.adoc">Full Text Indexes</a>
   </span>
 <ul class="menu_row">
 <li class="menu_list" data-depth="3">
@@ -1977,7 +1977,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../fts/fts-search-facets.html">Search Facets</a>
+    <a class="menu_title menu_link" href="#fts:fts-search-facets.adoc">Search Facets</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -1988,7 +1988,7 @@
 <li class="menu_list is-parent closed" data-depth="2">
   <span class="menu_line">
     <span class="in-toggle"></span>
-    <a class="menu_title menu_link" href="../../fts/fts-searching-from-UI.html">Searching from UI</a>
+    <a class="menu_title menu_link" href="#fts:fts-searching-from-UI.adoc">Searching from UI</a>
   </span>
 <ul class="menu_row">
 <li class="menu_list" data-depth="3">
@@ -2069,7 +2069,7 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../fts/fts-search-response-array-positions.html">Array Positions</a>
+    <a class="menu_title menu_link" href="#fts:fts-search-response-array-positions.adoc">Array Positions</a>
   </span>
 </li>
 <li class="menu_list" data-depth="3">
@@ -2084,7 +2084,7 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../fts/fts-search-response-index-partition.html">Index Partitions</a>
+    <a class="menu_title menu_link" href="#fts:fts-search-response-index-partition.adoc">Index Partitions</a>
   </span>
 </li>
 <li class="menu_list" data-depth="3">
@@ -2732,7 +2732,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../../../operator/current/overview.html">Deploy with Autonomous Operator</a>
+    <a class="menu_title menu_link" href="#operator:ROOT:overview.adoc">Deploy with Autonomous Operator</a>
   </span>
 </li>
 </ul>
@@ -4477,7 +4477,7 @@ For an Ephemeral bucket, this means that data, which is resident in memory (but,
 Therefore, if removed data is subsequently needed, it cannot be re-acquired from Couchbase Server.</p>
 <div class="paragraph">
 <p>For an Ephemeral bucket, ejection removes all of an item&#8217;s data: however, a <em>tombstone</em> (a record of the ejected item, which includes keys and metadata) is retained until the next scheduled purge of metadata for the current node.
-See <a href="storage-settings.html" class="page">Storage Settings</a> for more information.</p>
+See <a href="storage.html" class="page">Storage</a> for more information.</p>
 </div>
 </li>
 </ul>
@@ -4713,50 +4713,7 @@ See
 </div>
 <div class="paragraph">
 <p>Legacy buckets, defined on releases of Couchbase Server prior to 5.0, may continue to be accessible without password-specification.
-However, you are strongly recommended ensuring that all buckets are fully protected by RBAC, especially for production purposes.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="bucket-storage"><a class="anchor" href="#bucket-storage"></a>Bucket Storage</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Couchbase supports two different backends for the underlying storage of bucket data:</p>
-</div>
-<div class="hdlist">
-<table>
-<tr>
-<td class="hdlist1">
-<strong>Couchstore</strong>
-</td>
-<td class="hdlist2">
-<p>the traditional storage engine better suited to lower volumes of data.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-<strong>Magma</strong>
-</td>
-<td class="hdlist2">
-<p>the latest high performance storage engine for much higher data volumes.</p>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>See <a href="storage-engines.html" class="page">Storage Engines</a> for more information.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The bucket storage mechanism only applies to Couchbase buckets, not Ephemeral buckets.
-</td>
-</tr>
-</table>
+However, you are strongly recommended to ensure that all buckets are fully protected by RBAC, especially for production purposes.</p>
 </div>
 </div>
 </div>

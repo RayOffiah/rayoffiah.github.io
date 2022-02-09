@@ -82,13 +82,15 @@
                 </ul>
               </div>
               <div class="primary-action">
-                <a href="https://cloud.couchbase.com/sign-up" class="free-trial-link" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
-                  <i class="fas fa-cloud"></i>
-                  Free Trial
-                </a>
-                <a class="btn btn-primary try-btn"  onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
                   Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
                 </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+
               </div>
 
         </nav>
@@ -4185,7 +4187,7 @@
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-nodejs/edit/release/3.2/modules/howtos/pages/full-text-searching-with-sdk.adoc" title="Edit Page" target="_blank" rel="noopener">Edit on GitHub</a></li>
+<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-nodejs/edit/release/3.2/modules/howtos/pages/full-text-searching-with-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -4286,7 +4288,7 @@ You can use the Full Text Search service (FTS) to create queryable full-text ind
 </div>
 <div class="paragraph">
 <div class="title">Match</div>
-<p>Using the <code>travel-sample</code> <a href="../../../server/current/manage/manage-settings/install-sample-buckets.html" class="page">Sample Bucket</a>, we define an FTS SearchQuery using the <code>match()</code> method to search for the specified term: <code>"five-star"</code>.</p>
+<p>Using the <code>travel-sample</code> <a href="#7.0@server:manage:manage-settings/install-sample-buckets.adoc" class="page unresolved">Sample Bucket</a>, we define an FTS SearchQuery using the <code>match()</code> method to search for the specified term: <code>"five-star"</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4425,19 +4427,19 @@ You can use the Full Text Search service (FTS) to create queryable full-text ind
 <div class="listingblock">
 <div class="title">Iterating over Hits</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/search-conjuncts-disjuncts.js#L53-L58">  result.rows.forEach((hit, index) =&gt; {
-    const docId = hit.id
-    const score = hit.score
-    const resultNum = index + 1
-    console.log(`Result #${resultNum} ID: ${docId} Score: ${score}`)
-  })</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/search-conjuncts-disjuncts.js#L53-L58">result.rows.forEach((hit, index) =&gt; {
+  const docId = hit.id
+  const score = hit.score
+  const resultNum = index + 1
+  console.log(`Result #${resultNum} ID: ${docId} Score: ${score}`)
+})</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Facets</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/search-conjuncts-disjuncts.js#L62-L63">  var facets = result.meta.facets
-  console.log('Descriptions facet:', facets.Descriptions)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/search-conjuncts-disjuncts.js#L62-L63">var facets = result.meta.facets
+console.log('Descriptions facet:', facets.Descriptions)</code></pre>
 </div>
 </div>
 </div>
@@ -4457,11 +4459,11 @@ updated indexes:</p>
 <div class="listingblock">
 <div class="title">Scan consistency example:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/search.js#L88-L92">    result = await cluster.searchQuery(
-      'index-hotel-description',
-      couchbase.SearchQuery.match('swanky'),
-      { consistency: couchbase.SearchScanConsistency.RequestPlus }
-    )</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/search.js#L88-L92">result = await cluster.searchQuery(
+  'index-hotel-description',
+  couchbase.SearchQuery.match('swanky'),
+  { consistency: couchbase.SearchScanConsistency.RequestPlus }
+)</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -4551,7 +4553,7 @@ updated indexes:</p>
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2021 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2022 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

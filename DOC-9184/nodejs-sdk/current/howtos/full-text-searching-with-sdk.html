@@ -70,6 +70,11 @@
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Cloud
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link" href="../../../home/sdk.html">
                       SDKs
                     </a>
@@ -4281,7 +4286,7 @@ You can use the Full Text Search service (FTS) to create queryable full-text ind
 </div>
 <div class="paragraph">
 <div class="title">Match</div>
-<p>Using the <code>travel-sample</code> <a href="../../../server/current/manage/manage-settings/install-sample-buckets.html" class="page">Sample Bucket</a>, we define an FTS SearchQuery using the <code>match()</code> method to search for the specified term: <code>"five-star"</code>.</p>
+<p>Using the <code>travel-sample</code> <a href="#7.0@server:manage:manage-settings/install-sample-buckets.adoc" class="page unresolved">Sample Bucket</a>, we define an FTS SearchQuery using the <code>match()</code> method to search for the specified term: <code>"five-star"</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4420,19 +4425,19 @@ You can use the Full Text Search service (FTS) to create queryable full-text ind
 <div class="listingblock">
 <div class="title">Iterating over Hits</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/search-conjuncts-disjuncts.js#L53-L58">  result.rows.forEach((hit, index) =&gt; {
-    const docId = hit.id
-    const score = hit.score
-    const resultNum = index + 1
-    console.log(`Result #${resultNum} ID: ${docId} Score: ${score}`)
-  })</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/search-conjuncts-disjuncts.js#L53-L58">result.rows.forEach((hit, index) =&gt; {
+  const docId = hit.id
+  const score = hit.score
+  const resultNum = index + 1
+  console.log(`Result #${resultNum} ID: ${docId} Score: ${score}`)
+})</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Facets</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/search-conjuncts-disjuncts.js#L62-L63">  var facets = result.meta.facets
-  console.log('Descriptions facet:', facets.Descriptions)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/search-conjuncts-disjuncts.js#L62-L63">var facets = result.meta.facets
+console.log('Descriptions facet:', facets.Descriptions)</code></pre>
 </div>
 </div>
 </div>
@@ -4452,11 +4457,11 @@ updated indexes:</p>
 <div class="listingblock">
 <div class="title">Scan consistency example:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/search.js#L88-L92">    result = await cluster.searchQuery(
-      'index-hotel-description',
-      couchbase.SearchQuery.match('swanky'),
-      { consistency: couchbase.SearchScanConsistency.RequestPlus }
-    )</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/search.js#L88-L92">result = await cluster.searchQuery(
+  'index-hotel-description',
+  couchbase.SearchQuery.match('swanky'),
+  { consistency: couchbase.SearchScanConsistency.RequestPlus }
+)</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -4546,7 +4551,7 @@ updated indexes:</p>
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2021 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2022 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

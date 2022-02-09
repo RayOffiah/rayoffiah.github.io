@@ -70,6 +70,11 @@
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a class="nav-link" href="../../../../cloud/index.html">
+                      Cloud
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link" href="../../../../home/sdk.html">
                       SDKs
                     </a>
@@ -4423,6 +4428,14 @@ In each illustration, all servers are assumed to be running the Data Service.</p
 <table>
 <tr>
 <td class="hdlist1">
+<strong>rack-zone</strong>
+</td>
+<td class="hdlist2">
+<p>all replicas of a given vbucket must reside in separate server groups.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
 <strong>active balance</strong>
 </td>
 <td class="hdlist2">
@@ -4437,18 +4450,10 @@ In each illustration, all servers are assumed to be running the Data Service.</p
 <p>there should be approximately<sup class="footnoteref">[<a class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> the same number of replica vbuckets on each node in the cluster.</p>
 </td>
 </tr>
-<tr>
-<td class="hdlist1">
-<strong>rack-zone</strong>
-</td>
-<td class="hdlist2">
-<p>all replicas of a given vbucket must reside in separate server groups.</p>
-</td>
-</tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Not all the constraints can be satisifed the buckets are allocated across an unequal group.
+<p>Not all the constraints can be satisfied when the buckets are allocated across  uneven group.
 In this scenario, the <code>active balance</code> and <code>rack-zone</code> constraints will take priority:
 when the vbucket map is generated, the aim is to ensure that there are the same number of active vbuckets on each cluster and that replicas of a given vbucket must reside in separate groups.</p>
 </div>
@@ -4468,6 +4473,22 @@ when the vbucket map is generated, the aim is to ensure that there are the same 
 </div>
 <div class="paragraph">
 <p>However, in order to ensure that replicas of a VBucket must reside in a separate group, then we may have a situation where there are vBuckets from Server 9 are replicated to Group 1, but there are no additional vBuckets in Group 1 to provide balance in Group 2.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Since smaller server groups will carry more replicas on each node, their performance may not be the same as the nodes in the bigger server groups.
+For best performance, try to maintain equality of server groups.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For more information on optimizing your cluster configuration, consult the <a href="../../install/sizing-general.html" class="page">Sizing Guidelines</a>.</p>
 </div>
 </div>
 <div class="sect2">

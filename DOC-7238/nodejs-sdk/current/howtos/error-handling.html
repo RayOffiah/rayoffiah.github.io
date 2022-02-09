@@ -82,13 +82,15 @@
                 </ul>
               </div>
               <div class="primary-action">
-                <a href="https://cloud.couchbase.com/sign-up" class="free-trial-link" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
-                  <i class="fas fa-cloud"></i>
-                  Free Trial
-                </a>
-                <a class="btn btn-primary try-btn"  onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
                   Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
                 </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+
               </div>
 
         </nav>
@@ -4185,7 +4187,7 @@
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-nodejs/edit/release/3.2/modules/howtos/pages/error-handling.adoc" title="Edit Page" target="_blank" rel="noopener">Edit on GitHub</a></li>
+<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-nodejs/edit/release/3.2/modules/howtos/pages/error-handling.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -4279,11 +4281,11 @@ Depending on the type of the exception you catch, there are a number of properti
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/devguide/examples/nodejs/error-handling.js#L18-L22">  try {
-    var result = await collection.get(docKey);
-  } catch (e) {
-    // we can handle any exceptions thrown here.
-  }</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/devguide/examples/nodejs/error-handling.js#L18-L22">try {
+  var result = await collection.get(docKey);
+} catch (e) {
+  // we can handle any exceptions thrown here.
+}</code></pre>
 </div>
 </div>
 </div>
@@ -4300,13 +4302,13 @@ Here we will cover some of the most common errors.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/devguide/examples/nodejs/error-handling.js#L26-L32">  try {
-    var result = await collection.get("key-which-does-not-exist");
-  } catch (e) {
-    if (e instanceof couchbase.DocumentNotFoundError) {
-      // we can decide what to do for a missing document here.
-    }
-  }</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/devguide/examples/nodejs/error-handling.js#L26-L32">try {
+  var result = await collection.get("key-which-does-not-exist");
+} catch (e) {
+  if (e instanceof couchbase.DocumentNotFoundError) {
+    // we can decide what to do for a missing document here.
+  }
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4314,13 +4316,13 @@ Here we will cover some of the most common errors.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/devguide/examples/nodejs/error-handling.js#L36-L42">  try {
-    var result = await collection.insert("key-which-exists", "hello");
-  } catch (e) {
-    if (e instanceof couchbase.DocumentExistsError) {
-      // we can decide what to do for a missing document here.
-    }
-  }</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/devguide/examples/nodejs/error-handling.js#L36-L42">try {
+  var result = await collection.insert("key-which-exists", "hello");
+} catch (e) {
+  if (e instanceof couchbase.DocumentExistsError) {
+    // we can decide what to do for a missing document here.
+  }
+}</code></pre>
 </div>
 </div>
 <div class="sect2">
@@ -4536,7 +4538,7 @@ We offer <a href="collecting-information-and-logging.html" class="page">recommen
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2021 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2022 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

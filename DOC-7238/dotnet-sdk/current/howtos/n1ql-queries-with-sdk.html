@@ -82,13 +82,15 @@
                 </ul>
               </div>
               <div class="primary-action">
-                <a href="https://cloud.couchbase.com/sign-up" class="free-trial-link" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
-                  <i class="fas fa-cloud"></i>
-                  Free Trial
-                </a>
-                <a class="btn btn-primary try-btn"  onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
                   Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
                 </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+
               </div>
 
         </nav>
@@ -4185,7 +4187,7 @@
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.2/modules/howtos/pages/n1ql-queries-with-sdk.adoc" title="Edit Page" target="_blank" rel="noopener">Edit on GitHub</a></li>
+<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.2/modules/howtos/pages/n1ql-queries-with-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -4268,12 +4270,12 @@ Querying can solve typical programming tasks such as finding a user profile by e
 <div class="paragraph">
 <p>Our query service uses N1QL, which will be fairly familiar to anyone who&#8217;s used any dialect of SQL.
 <a href="#additional-resources">Further resources</a> for learning about N1QL are listed at the bottom of the page.
-Before you get started you may wish to checkout the <a href="../../../server/current/n1ql/n1ql-language-reference/index.html" class="page">N1QL intro page</a>, or just dive in with a query against <a href="../../../server/current/manage/manage-settings/install-sample-buckets.html" class="page">our travel sample data set</a>.
+Before you get started you may wish to checkout the <a href="#server:n1ql:n1ql-language-reference/index.adoc" class="page unresolved">N1QL intro page</a>, or just dive in with a query against <a href="#server:manage:manage-settings/install-sample-buckets.adoc" class="page unresolved">our travel sample data set</a>.
 In this case, the one thing that you need to know is that in order to make a Bucket queryable, it must have at least one index defined.
 You can define a <em>primary</em> index on a bucket. When executing queries, if a suitable index is not found, the primary index will ensure that the query will be executed anyway (the primary index should not be used in production to prevent scanning of the whole bucket).</p>
 </div>
 <div class="paragraph">
-<p>To execute N1QL, you can use <a href="../../../server/current/tools/query-workbench.html" class="page">Query Workbench</a> (or you can use the <a href="../../../server/current/tools/cbq-shell.html" class="page">cbq command line tool</a>).
+<p>To execute N1QL, you can use <a href="#server:tools:query-workbench.adoc" class="page unresolved">Query Workbench</a> (or you can use the <a href="#server:tools:cbq-shell.adoc" class="page unresolved">cbq command line tool</a>).
 Open it, and enter the following:</p>
 </div>
 <div class="listingblock">
@@ -4310,19 +4312,19 @@ A named or positional parameter can be used in the WHERE, LIMIT or OFFSET clause
 <div class="listingblock">
 <div class="title">Positional parameter example:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/293d68eea4ac8ea7b80a059a8a92ad182c83f98d/modules/howtos/examples/n1ql-queries-sdk/n1ql-queries-sdk/Program.cs#L219-L222">            var result = await cluster.QueryAsync&lt;dynamic&gt;(
-                "SELECT t.* FROM `travel-sample` t WHERE t.type=$1",
-                options =&gt; options.Parameter("landmark")
-            );</code></pre>
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/293d68eea4ac8ea7b80a059a8a92ad182c83f98d/modules/howtos/examples/n1ql-queries-sdk/n1ql-queries-sdk/Program.cs#L219-L222">var result = await cluster.QueryAsync&lt;dynamic&gt;(
+    "SELECT t.* FROM `travel-sample` t WHERE t.type=$1",
+    options =&gt; options.Parameter("landmark")
+);</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Named parameter example:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/293d68eea4ac8ea7b80a059a8a92ad182c83f98d/modules/howtos/examples/n1ql-queries-sdk/n1ql-queries-sdk/Program.cs#L192-L195">            var result = await cluster.QueryAsync&lt;dynamic&gt;(
-                "SELECT t.* FROM `travel-sample` t WHERE t.type=$type",
-                options =&gt; options.Parameter("type", "landmark")
-            );</code></pre>
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/293d68eea4ac8ea7b80a059a8a92ad182c83f98d/modules/howtos/examples/n1ql-queries-sdk/n1ql-queries-sdk/Program.cs#L192-L195">var result = await cluster.QueryAsync&lt;dynamic&gt;(
+    "SELECT t.* FROM `travel-sample` t WHERE t.type=$type",
+    options =&gt; options.Parameter("type", "landmark")
+);</code></pre>
 </div>
 </div>
 </div>
@@ -4335,10 +4337,10 @@ A named or positional parameter can be used in the WHERE, LIMIT or OFFSET clause
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/293d68eea4ac8ea7b80a059a8a92ad182c83f98d/modules/howtos/examples/n1ql-queries-sdk/n1ql-queries-sdk/Program.cs#L192-L195">            var result = await cluster.QueryAsync&lt;dynamic&gt;(
-                "SELECT t.* FROM `travel-sample` t WHERE t.type=$type",
-                options =&gt; options.Parameter("type", "landmark")
-            );</code></pre>
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/293d68eea4ac8ea7b80a059a8a92ad182c83f98d/modules/howtos/examples/n1ql-queries-sdk/n1ql-queries-sdk/Program.cs#L192-L195">var result = await cluster.QueryAsync&lt;dynamic&gt;(
+    "SELECT t.* FROM `travel-sample` t WHERE t.type=$type",
+    options =&gt; options.Parameter("type", "landmark")
+);</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -4548,11 +4550,11 @@ A named or positional parameter can be used in the WHERE, LIMIT or OFFSET clause
 <div class="listingblock">
 <div class="title">ScanConsistency (NotBounded)</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/293d68eea4ac8ea7b80a059a8a92ad182c83f98d/modules/howtos/examples/n1ql-queries-sdk/n1ql-queries-sdk/Program.cs#L166-L170">            var result = await cluster.QueryAsync&lt;dynamic&gt;(
-                "SELECT t.* FROM `travel-sample` t WHERE t.type=$1",
-                options =&gt; options.Parameter("user")
-                    .ScanConsistency(QueryScanConsistency.NotBounded)
-            );</code></pre>
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/293d68eea4ac8ea7b80a059a8a92ad182c83f98d/modules/howtos/examples/n1ql-queries-sdk/n1ql-queries-sdk/Program.cs#L166-L170">var result = await cluster.QueryAsync&lt;dynamic&gt;(
+    "SELECT t.* FROM `travel-sample` t WHERE t.type=$1",
+    options =&gt; options.Parameter("user")
+        .ScanConsistency(QueryScanConsistency.NotBounded)
+);</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -4566,11 +4568,11 @@ Select this when consistency is always more important than performance.</p>
 <div class="listingblock">
 <div class="title">ScanConsistency (RequestPlus)</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/293d68eea4ac8ea7b80a059a8a92ad182c83f98d/modules/howtos/examples/n1ql-queries-sdk/n1ql-queries-sdk/Program.cs#L137-L141">            var result = await cluster.QueryAsync&lt;dynamic&gt;(
-                "SELECT t.* FROM `travel-sample` t WHERE t.type=$1",
-                options =&gt; options.Parameter("user")
-                    .ScanConsistency(QueryScanConsistency.RequestPlus)
-            );</code></pre>
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/293d68eea4ac8ea7b80a059a8a92ad182c83f98d/modules/howtos/examples/n1ql-queries-sdk/n1ql-queries-sdk/Program.cs#L137-L141">var result = await cluster.QueryAsync&lt;dynamic&gt;(
+    "SELECT t.* FROM `travel-sample` t WHERE t.type=$1",
+    options =&gt; options.Parameter("user")
+        .ScanConsistency(QueryScanConsistency.RequestPlus)
+);</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -4605,8 +4607,8 @@ Select this when consistency is always more important than performance.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/293d68eea4ac8ea7b80a059a8a92ad182c83f98d/modules/howtos/examples/n1ql-queries-sdk/n1ql-queries-sdk/Program.cs#L51-L52">            var result = await cluster.QueryAsync&lt;dynamic&gt;("SELECT 1=1", 
-                options =&gt; options.ClientContextId($"azure-resource-group-1-{Guid.NewGuid()}"));</code></pre>
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/293d68eea4ac8ea7b80a059a8a92ad182c83f98d/modules/howtos/examples/n1ql-queries-sdk/n1ql-queries-sdk/Program.cs#L51-L52">var result = await cluster.QueryAsync&lt;dynamic&gt;("SELECT 1=1", 
+    options =&gt; options.ClientContextId($"azure-resource-group-1-{Guid.NewGuid()}"));</code></pre>
 </div>
 </div>
 </div>
@@ -4617,8 +4619,8 @@ Select this when consistency is always more important than performance.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/293d68eea4ac8ea7b80a059a8a92ad182c83f98d/modules/howtos/examples/n1ql-queries-sdk/n1ql-queries-sdk/Program.cs#L43-L44">            var result = await cluster.QueryAsync&lt;dynamic&gt;("SELECT 1=1", 
-                options =&gt; options.ReadOnly(true));</code></pre>
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/293d68eea4ac8ea7b80a059a8a92ad182c83f98d/modules/howtos/examples/n1ql-queries-sdk/n1ql-queries-sdk/Program.cs#L43-L44">var result = await cluster.QueryAsync&lt;dynamic&gt;("SELECT 1=1", 
+    options =&gt; options.ReadOnly(true));</code></pre>
 </div>
 </div>
 </div>
@@ -4648,7 +4650,7 @@ Select this when consistency is always more important than performance.</p>
 <h2 id="querying-at-scope-level"><a class="anchor" href="#querying-at-scope-level"></a>Querying at Scope Level</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>From version 3.0.5 of the .NET SDK, it is possible to query off the <a href="../../../server/current/learn/data/scopes-and-collections.html" class="page"><code>Scope</code> level</a> <em>with the Couchbase Server release 7.0</em>,
+<p>From version 3.0.5 of the .NET SDK, it is possible to query off the <a href="#7.0@server:learn:data/scopes-and-collections.adoc" class="page unresolved"><code>Scope</code> level</a> <em>with the Couchbase Server release 7.0</em>,
 using the <code>QueryOptions() {QueryContext = "namespace:bucket:scope:collection"}</code> method.</p>
 </div>
 <div class="paragraph">
@@ -4695,13 +4697,13 @@ Be sure to check that <a href="../concept-docs/data-services.html" class="page">
 <p>For a deeper dive into N1QL from the SDK, refer to our <a href="../concept-docs/n1ql-query.html" class="page">N1QL SDK concept doc</a>.</p>
 </li>
 <li>
-<p>The <a href="../../../server/current/n1ql/n1ql-language-reference/index.html" class="page">Server doc N1QL intro</a> introduces a complete guide to the N1QL language, including all of the latest additions.</p>
+<p>The <a href="#7.0@server:n1ql:n1ql-language-reference/index.adoc" class="page unresolved">Server doc N1QL intro</a> introduces a complete guide to the N1QL language, including all of the latest additions.</p>
 </li>
 <li>
 <p>The <a href="http://query.pub.couchbase.com/tutorial/#1">N1QL interactive tutorial</a> is a good introduction to the basics of N1QL use.</p>
 </li>
 <li>
-<p>For scaling up queries, be sure to <a href="../../../server/current/learn/services-and-indexes/indexes/index-replication.html" class="page">read up on Indexes</a>.</p>
+<p>For scaling up queries, be sure to <a href="#7.0@server:learn:services-and-indexes/indexes/index-replication.adoc" class="page unresolved">read up on Indexes</a>.</p>
 </li>
 <li>
 <p>N1QL is for operational queries; for analytical workloads, read more on <a href="../concept-docs/data-services.html#long-running-queries-big-data" class="page">when to choose Analytics</a>, our implementation of SQL++ available in the Enterprise Edition.</p>
@@ -4769,7 +4771,7 @@ Be sure to check that <a href="../concept-docs/data-services.html" class="page">
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2021 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2022 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

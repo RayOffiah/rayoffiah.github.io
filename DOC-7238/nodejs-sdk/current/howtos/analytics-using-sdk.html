@@ -82,13 +82,15 @@
                 </ul>
               </div>
               <div class="primary-action">
-                <a href="https://cloud.couchbase.com/sign-up" class="free-trial-link" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
-                  <i class="fas fa-cloud"></i>
-                  Free Trial
-                </a>
-                <a class="btn btn-primary try-btn"  onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
                   Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
                 </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+
               </div>
 
         </nav>
@@ -4185,7 +4187,7 @@
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-nodejs/edit/release/3.2/modules/howtos/pages/analytics-using-sdk.adoc" title="Edit Page" target="_blank" rel="noopener">Edit on GitHub</a></li>
+<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-nodejs/edit/release/3.2/modules/howtos/pages/analytics-using-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -4287,10 +4289,10 @@ Intentionally, the API for analytics is very similar to that of the query servic
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L23-L26">  var result = await cluster.analyticsQuery('SELECT "hello" AS greeting')
-  result.rows.forEach((row) =&gt; {
-    console.log(row)
-  })</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L23-L26">var result = await cluster.analyticsQuery('SELECT "hello" AS greeting')
+result.rows.forEach((row) =&gt; {
+  console.log(row)
+})</code></pre>
 </div>
 </div>
 </div>
@@ -4304,9 +4306,9 @@ Here is one example of each:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L38-L40">  var result = await cluster.analyticsQuery(
-    'SELECT airportname, country FROM airports WHERE country="France" LIMIT 3'
-  )</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L38-L40">var result = await cluster.analyticsQuery(
+  'SELECT airportname, country FROM airports WHERE country="France" LIMIT 3'
+)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4314,10 +4316,10 @@ Here is one example of each:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L45-L48">  var result = await cluster.analyticsQuery(
-    'SELECT airportname, country FROM airports WHERE country = ? LIMIT 3',
-    { parameters: ['France'] }
-  )</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L45-L48">var result = await cluster.analyticsQuery(
+  'SELECT airportname, country FROM airports WHERE country = ? LIMIT 3',
+  { parameters: ['France'] }
+)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4325,10 +4327,10 @@ Here is one example of each:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L53-L56">  var result = await cluster.analyticsQuery(
-    'SELECT airportname, country FROM airports WHERE country = $country LIMIT 3',
-    { parameters: { country: 'France' } }
-  )</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L53-L56">var result = await cluster.analyticsQuery(
+  'SELECT airportname, country FROM airports WHERE country = $country LIMIT 3',
+  { parameters: { country: 'France' } }
+)</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -4376,13 +4378,13 @@ The <code>priority</code> option, defaults to <code>false</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L61-L67">  var result = await cluster.analyticsQuery(
-    'SELECT airportname, country FROM airports WHERE country="France" LIMIT 3',
-    {
-      priority: true,
-      timeout: 100, // seconds
-    }
-  )</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L61-L67">var result = await cluster.analyticsQuery(
+  'SELECT airportname, country FROM airports WHERE country="France" LIMIT 3',
+  {
+    priority: true,
+    timeout: 100, // seconds
+  }
+)</code></pre>
 </div>
 </div>
 </div>
@@ -4524,7 +4526,7 @@ CREATE DATASET `travel-sample`.inventory.airport ON `travel-sample`.inventory.ai
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2021 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2022 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

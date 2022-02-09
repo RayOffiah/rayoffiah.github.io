@@ -278,12 +278,7 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../learn/buckets-memory-and-storage/storage-settings.html">Storage Settings</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="3">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../learn/buckets-memory-and-storage/storage-engines.html">Storage Engines</a>
+    <a class="menu_title menu_link" href="../learn/buckets-memory-and-storage/storage.html">Storage</a>
   </span>
 </li>
 </ul>
@@ -940,6 +935,11 @@
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../manage/monitor/xdcr-monitor-timestamp-conflict-resolution.html">Monitor Clock Drift</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../manage/monitor/set-up-prometheus-for-monitoring.html">Set up Prometheus for Monitoring</a>
   </span>
 </li>
 </ul>
@@ -1722,7 +1722,7 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../fts/fts-architecture-rest-gRPC.html">Search Service Metrics (REST, gRPC)</a>
+    <a class="menu_title menu_link" href="#fts:fts-architecture-rest-gRPC.adoc">Search Service Metrics (REST, gRPC)</a>
   </span>
 </li>
 <li class="menu_list" data-depth="3">
@@ -1745,7 +1745,7 @@
 <li class="menu_list is-parent closed" data-depth="2">
   <span class="menu_line">
     <span class="in-toggle"></span>
-    <a class="menu_title menu_link" href="../fts/fts.html">Full Text Indexes</a>
+    <a class="menu_title menu_link" href="#fts:fts.adoc">Full Text Indexes</a>
   </span>
 <ul class="menu_row">
 <li class="menu_list" data-depth="3">
@@ -1977,7 +1977,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../fts/fts-search-facets.html">Search Facets</a>
+    <a class="menu_title menu_link" href="#fts:fts-search-facets.adoc">Search Facets</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -1988,7 +1988,7 @@
 <li class="menu_list is-parent closed" data-depth="2">
   <span class="menu_line">
     <span class="in-toggle"></span>
-    <a class="menu_title menu_link" href="../fts/fts-searching-from-UI.html">Searching from UI</a>
+    <a class="menu_title menu_link" href="#fts:fts-searching-from-UI.adoc">Searching from UI</a>
   </span>
 <ul class="menu_row">
 <li class="menu_list" data-depth="3">
@@ -2069,7 +2069,7 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../fts/fts-search-response-array-positions.html">Array Positions</a>
+    <a class="menu_title menu_link" href="#fts:fts-search-response-array-positions.adoc">Array Positions</a>
   </span>
 </li>
 <li class="menu_list" data-depth="3">
@@ -2084,7 +2084,7 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../fts/fts-search-response-index-partition.html">Index Partitions</a>
+    <a class="menu_title menu_link" href="#fts:fts-search-response-index-partition.adoc">Index Partitions</a>
   </span>
 </li>
 <li class="menu_list" data-depth="3">
@@ -2732,7 +2732,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../../operator/current/overview.html">Deploy with Autonomous Operator</a>
+    <a class="menu_title menu_link" href="#operator:ROOT:overview.adoc">Deploy with Autonomous Operator</a>
   </span>
 </li>
 </ul>
@@ -4510,8 +4510,69 @@ Note that upgrade between non-adjacent version-numbers is frequently <em>not</em
 <h2 id="upgrade-community-enterprise"><a class="anchor" href="#upgrade-community-enterprise"></a>Upgrade from Community Edition to Enterprise</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To upgrade a cluster running Community Edition to a cluster running Enterprise Edition, the version-number of the Enterprise Edition must be identical to that of the Community Edition.
-Therefore, if the target version-number of the Enterprise Edition is higher, the cluster should first be upgraded to the Enterprise version-number that is identical to the Community Edition version-number, then upgraded to the higher Enterprise Edition version-number, according to the paths described above, in <a href="#supported-upgrade-paths">Supported Upgrade Paths</a>.</p>
+<p>If you&#8217;re currently operating a Couchbase Server cluster on Community Edition, you can upgrade it to Enterprise Edition by way of a <a href="upgrade-procedure-selection.html#online-upgrade" class="page">rolling online upgrade</a>.
+This involves switching out the Community Edition nodes with fresh, net-new Enterprise Edition nodes.
+Both 'swap rebalance' and 'remove and reblance' methods are supported.
+(Delta Recovery is not supported since the new nodes must be fresh Enterprise Edition installations without any pre-existing Community Edition data remaining on them.)</p>
+</div>
+<div class="paragraph">
+<p>The Enterprise Edition nodes must be running the same version number of Couchbase Server as the Community Edition nodes that they are replacing, otherwise the upgrade may fail.
+This means you can&#8217;t upgrade to a newer version of Couchbase Server while also upgrading to Enterprise Edition during the same rolling upgrade.</p>
+</div>
+<div class="paragraph">
+<p>If you want to upgrade from an older version of <em>Community Edition</em> to a newer version of <em>Enterprise Edition</em>, you need to perform two separate upgrade procedures:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Upgrade the entire cluster to Enterprise Edition via a rolling online upgrade</p>
+</li>
+<li>
+<p>Upgrade to the desired version number of Couchbase Server using any supported type of upgrade</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For example, if you wanted to upgrade from Couchbase Server 6.6 Community Edition to Couchbase Server 7.0 Enterprise Edition, the process would look like the following:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/upgrade-ce-to-ee-for-7.png" alt="upgrade ce to ee for 7">
+</div>
+<div class="title">Figure 1. Example Upgrade Path from Community to Enterprise</div>
+</div>
+<div class="ulist">
+<div class="title">Additional Notes about Upgrading from Community to Enterprise</div>
+<ul>
+<li>
+<p>Couchbase Server clusters must be run either entirely on Enterprise Edition nodes, or entirely on Community Edition nodes.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Once you&#8217;ve upgraded one node to Enterprise Edition, you must upgrade all the other nodes before the cluster is considered as being in a steady, supportable state.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If a rolling online upgrade to Enterprise Edition isn&#8217;t possible in your environment, contact Couchbase for assistance.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Remember that Enterprise Edition is not free to run in production.
+If you&#8217;re interested in upgrading to Couchbase Server Enterprise Edition, check out the <a href="https://www.couchbase.com/products/editions" target="_blank" rel="noopener">editions page</a>.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>See <a href="upgrade-procedure-selection.html" class="page">Upgrade Procedure-Selection</a>, for a list of procedures that can be used when upgrading from Community Edition to Enterprise.
