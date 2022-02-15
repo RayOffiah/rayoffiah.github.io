@@ -12,14 +12,14 @@
 <meta name="description" content="Using the Couchbase Query Workbench to create a user-defined function written in Javascript">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
         <link rel="prev" href="introduction.html">
-        <link rel="next" href="../../../../home/sdk.html">
+        <link rel="next" href="calling-a-javascript-udf.html">
 
 
 
                 <link rel="prev" href="introduction.html">
 
 
-                <link rel="next" href="../../../../home/sdk.html">
+                <link rel="next" href="calling-a-javascript-udf.html">
 
 
 <meta name="dcterms.subject" content="server">
@@ -386,6 +386,11 @@
 <li class="menu_list is-current-page" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link is-current-page" href="creating-a-javascript-udf.html">Creating a Javascript UDF</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="calling-a-javascript-udf.html">Calling a Javascript UDF</a>
   </span>
 </li>
 </ul>
@@ -4730,10 +4735,7 @@ Using the Couchbase Query Workbench to create a user-defined function written in
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Following on from the <a href="introduction.html" class="page">introduction</a>, you&#8217;re going to create a basic Javascript UDF.</p>
-</div>
-<div class="paragraph">
-<p>During the exercises, we&#8217;re going to introduce a number of new concepts:</p>
+<p>We&#8217;re going to introduce a number of new concepts in this example:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -4748,11 +4750,65 @@ Using the Couchbase Query Workbench to create a user-defined function written in
 </div>
 </div>
 <div class="sect1">
-<h2 id="before-you-begin"><a class="anchor" href="#before-you-begin"></a>Before you begin</h2>
+<h2 id="creating-a-javascript-library"><a class="anchor" href="#creating-a-javascript-library"></a>Creating a Javascript Library</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The examples use the Query Workbench to create the functions.
-Make sure that you have opened up the Query Workbench as described in the <a href="introduction.html#introduction-getting-started" class="page">getting started</a> section.</p>
+<p>First, you need to create a library to store your Javascript functions.</p>
+</div>
+<div class="paragraph">
+<p>Select <b class="button">Query</b> to access the Query Workbench, then select <b class="button">UDF</b> Query Workbench menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/javascript-udfs/navigate-to-udf-query.png" alt="route to the user-defined functions screen">
+</div>
+</div>
+<div class="paragraph">
+<p>You are now in the User-Defined Functions screen.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/javascript-udfs/udf-library-screen.png" alt="user-defined functions library screen">
+</div>
+</div>
+<div class="paragraph">
+<p>To create a new function library, click on <b class="button">&#43; add function library</b> in the <code>Javascript Function Libraries</code> table.</p>
+</div>
+<div class="paragraph">
+<p>The <code>add library</code> screens is displayed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/javascript-udfs/add-library-screen.png" alt="add screen" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>You have to give the library a name before you can save it; in this example, we&#8217;ve simply called it <code>my-library</code>.</p>
+</div>
+<div class="paragraph">
+<p>New libraries give you a simple example function to start with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/* a UDF library contains one or more javascript functions */
+function add(a,b) {
+  return(a+b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is a standard Javascript function that adds its two parameters and returns the results.</p>
+</div>
+<div class="paragraph">
+<p>Now, save the library by pressing the <b class="button">Save</b> button.</p>
+</div>
+<div class="paragraph">
+<p>Your library is created and will show up on the `Javascript Function Libraries`list.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/javascript-udfs/my-library-list.png" alt="my library list">
+</div>
 </div>
 </div>
 </div>
@@ -4762,7 +4818,7 @@ Make sure that you have opened up the Query Workbench as described in the <a hre
                     <span class="prev"><a href="introduction.html">User-defined Functions in Javascript</a></span>
 
 
-                    <span class="next"><a href="../../../../home/sdk.html">SDKs</a></span>
+                    <span class="next"><a href="calling-a-javascript-udf.html">Calling a Javascript UDF</a></span>
 
 </article>
 </main>

@@ -379,6 +379,11 @@
     <a class="menu_title menu_link" href="../guides/javascript-udfs/creating-a-javascript-udf.html">Creating a Javascript UDF</a>
   </span>
 </li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../guides/javascript-udfs/calling-a-javascript-udf.html">Calling a Javascript UDF</a>
+  </span>
+</li>
 </ul>
 </li>
 </ul>
@@ -4883,130 +4888,6 @@ Instance count is configured in UI.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">JVM running the Analytics NC and CC</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Analytics</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>/opt/couchbase/lib/cbas/runtime/bin</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cbas</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Go-wrapper that communicates with <code>ns_server</code> and manages the lifecycle of the Analytics Driver</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Analytics</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>/opt/couchbase/bin/</em></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="windows"><a class="anchor" href="#windows"></a>Windows</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following table lists the Couchbase processes that run on the Windows platforms.</p>
-</div>
-<table id="table-processes-windows" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. Couchbase Processes on Linux</caption>
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 16.6666%;">
-<col style="width: 33.3335%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Process</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Service</th>
-<th class="tableblock halign-left valign-top">Path</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cbft.exe</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Couchbase Full-Text Search (FTS) service</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Search</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>C:\Program Files\Couchbase\Server\bin</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cbq-engine.exe</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Couchbase Query service</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Query</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>C:\Program Files\Couchbase\Server\bin</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>goport.exe</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Process that acts as a bridge between <code>ns_server</code> (Erlang) and the other server components (<code>cbq- engine.exe</code>, <code>cbft.exe</code>, etc.)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Query</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>C:\Program Files\Couchbase\Server\bin</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gosecrets.exe</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Service that is used to encrypt the cluster configuration stored on disk</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Core</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>C:\Program Files\Couchbase\Server\bin</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>goxdcr.exe</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cross Data Center Replication (XDCR) - replicates data from one cluster to another</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Core</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>C:\Program Files\Couchbase\Server\bin</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>indexer.exe</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Index service</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Index</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>C:\Program Files\Couchbase\Server\bin</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>memcached.exe</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Data service responsible for storing user data</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Core</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>C:\Program Files\Couchbase\Server\bin</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>godu.exe</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Utility in Go to get disk usage stats</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Core</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>C:\Program Files\Couchbase\Server\bin\priv</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>projector.exe</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Extracts secondary key from documents</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Core</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>C:\Program Files\Couchbase\Server\bin</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>saslauthd-port.exe</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Erlang port process (wrapper) used to talk to the <code>saslauthd</code> daemon for authentication purposes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Core</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>C:\Program Files\Couchbase\Server\bin</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>inet_gethost.exe</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Built-in Erlang port process that is used to perform name service lookup</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Core</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>C:\Program Files\Couchbase\Server\erts-x.x.x.x\bin</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cbcollect_info.exe</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Utility used to collect Couchbase server logs (will be seen only during log collection)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Core</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>C:\Program Files\Couchbase\Server\bin</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>eventing-producer.exe</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Eventing supervisor service (one instance per node)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Eventing</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>C:\Program Files\Couchbase\Server\bin</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>eventing-consumer.exe</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Eventing worker (multiple instances per node).
-Instance count is configured in UI.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Eventing</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>C:\Program Files\Couchbase\Server\bin</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>java.exe</code> (Analytics Driver)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">JVM running the Analytics NC and CC</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Analytics</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>C:\Program Files\Couchbase\Server\bin</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cbas</code></p></td>

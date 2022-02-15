@@ -386,6 +386,11 @@
     <a class="menu_title menu_link" href="javascript-udfs/creating-a-javascript-udf.html">Creating a Javascript UDF</a>
   </span>
 </li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="javascript-udfs/calling-a-javascript-udf.html">Calling a Javascript UDF</a>
+  </span>
+</li>
 </ul>
 </li>
 </ul>
@@ -4820,14 +4825,14 @@ For each index, a N1QL statement is provided: you can copy and run this index st
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/n1ql/examples/utility/advise-indexes.n1ql">ADVISE SELECT airportname FROM `travel-sample`.inventory.airport
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/utility/advise-indexes.n1ql">ADVISE SELECT airportname FROM `travel-sample`.inventory.airport
 WHERE geo.alt NOT BETWEEN 0 AND 100;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Result</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/n1ql/examples/utility/advise-indexes.jsonc">[
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/utility/advise-indexes.jsonc">[
   {
     "#operator": "Advise",
     "advice": {
@@ -4879,14 +4884,14 @@ For each index, a N1QL statement is provided: you can copy and run this index st
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/n1ql/examples/functions/advisor-single.n1ql">SELECT ADVISOR("SELECT * FROM `travel-sample`.inventory.landmark
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/functions/advisor-single.n1ql">SELECT ADVISOR("SELECT * FROM `travel-sample`.inventory.landmark
 WHERE activity = 'eat' AND city = 'Paris'") AS Single;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Result</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/n1ql/examples/functions/advisor-single.jsonc">[
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/functions/advisor-single.jsonc">[
   {
     "Single": {
       "current_used_indexes": [
@@ -4952,13 +4957,13 @@ You can query the <a href="../manage/monitor/monitoring-n1ql-query.html#sys-comp
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/n1ql/examples/functions/advisor-recent.n1ql">SELECT ADVISOR((SELECT RAW statement FROM system:completed_requests)) AS Recent;</code></pre>
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/functions/advisor-recent.n1ql">SELECT ADVISOR((SELECT RAW statement FROM system:completed_requests)) AS Recent;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Result</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/n1ql/examples/functions/advisor-recent.jsonc">[
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/functions/advisor-recent.jsonc">[
   {
     "Recent": {
       "current_used_indexes": [
@@ -5075,13 +5080,13 @@ All queries taking longer than 0 seconds will be collected.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/n1ql/examples/functions/advisor-start.n1ql">SELECT ADVISOR({"action": "start", "response": "0s", "duration": "1h"}) AS Collect;</code></pre>
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/functions/advisor-start.n1ql">SELECT ADVISOR({"action": "start", "response": "0s", "duration": "1h"}) AS Collect;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Result</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/n1ql/examples/functions/advisor-start.jsonc">[
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/functions/advisor-start.jsonc">[
   {
     "Collect": {
       "session": "0cd09ae4-a083-4a7e-86cd-85e42c140d60"
@@ -5096,14 +5101,14 @@ All queries taking longer than 0 seconds will be collected.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/n1ql/examples/functions/advisor-stop.n1ql">SELECT ADVISOR({"action": "stop", "session": "0cd09ae4-a083-4a7e-86cd-85e42c140d60"})
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/functions/advisor-stop.n1ql">SELECT ADVISOR({"action": "stop", "session": "0cd09ae4-a083-4a7e-86cd-85e42c140d60"})
 AS Stop;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Result</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/n1ql/examples/functions/advisor-stop.jsonc">[
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/functions/advisor-stop.jsonc">[
   {
     "Stop": []
   }
@@ -5116,14 +5121,14 @@ AS Stop;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/n1ql/examples/functions/advisor-get.n1ql">SELECT ADVISOR({"action": "get", "session": "0cd09ae4-a083-4a7e-86cd-85e42c140d60"})
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/functions/advisor-get.n1ql">SELECT ADVISOR({"action": "get", "session": "0cd09ae4-a083-4a7e-86cd-85e42c140d60"})
 AS Get;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Result</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/n1ql/examples/functions/advisor-get.jsonc">[
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/functions/advisor-get.jsonc">[
   {
     "Get": [
       [
