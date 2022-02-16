@@ -4736,12 +4736,48 @@ Calling a JavaScript UDF in an SQL++ statement.
 <div class="sectionbody">
 <div class="paragraph">
 <p>A Javascript function cannot be called directly in an SQL++ statement.
-It has to be exposed to Couchbase by calling it through an SQL++ function..</p>
+It has to be exposed to Couchbase by calling it through a proxy function..</p>
 </div>
 <div class="imageblock kroki">
 <div class="content">
 <img src="../_images/diag-8efe1a16076181d419e49edc2f7c15a57faaf191.svg" alt="Diagram">
 </div>
+</div>
+<div class="paragraph">
+<p>This section will demonstrate how to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create the extension function for calling our Javascript routine.</p>
+</li>
+<li>
+<p>Create an SQL++ statement to call the Javascript routine.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="add-the-sql-caller-function"><a class="anchor" href="#add-the-sql-caller-function"></a>Add the SQL++ Caller Function</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The easiest way to add the SQL++ caller function is through the Query Workbench.</p>
+</div>
+<div class="paragraph">
+<p>Access the <code>User-Defined Functions</code> screen from the Administrator&#8217;s console. (There is a description of how to do this is in the <a href="creating-a-javascript-udf.html#introduction-create-javascript-library" class="page">Introduction</a>).</p>
+</div>
+<div class="paragraph">
+<p>Click on the <b class="button">&#43; add function</b> link.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/javascript-udfs/my-library-list.png" alt="my library list">
+</div>
+</div>
+<div class="paragraph">
+<p>You will be shown a dialog which you will use to enter details of the calling function.
+In the background, The dialog will use the gathered information to generate an SQL++ <a href="../../n1ql/n1ql-language-reference/createfunction.html" class="page"><code>CREATE FUNCTION</code></a> call to generate the function.</p>
 </div>
 </div>
 </div>
