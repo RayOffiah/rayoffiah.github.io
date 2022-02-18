@@ -11,16 +11,14 @@
 <script src="../../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="Moving data between Javascript UDFs and SQL++.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
-        <link rel="prev" href="calling-javascript-udf.html">
+        <link rel="prev" href="calling-sqlpp-from-javascript.html">
         <link rel="next" href="../../../../home/sdk.html">
 
 
 
-                <link rel="prev" href="calling-javascript-udf.html">
+                    <link rel="prev" href="calling-sqlpp-from-javascript.html">
 
-
-                <link rel="next" href="../../../../home/sdk.html">
-
+        
 
 <meta name="dcterms.subject" content="server">
 <meta name="dcterms.identifier" content="7.1">
@@ -391,6 +389,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="calling-javascript-udf.html">Calling a Javascript UDF</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="calling-sqlpp-from-javascript.html">Calling SQL++ from Javascript</a>
   </span>
 </li>
 <li class="menu_list is-current-page" data-depth="3">
@@ -4743,17 +4746,48 @@ Moving data between Javascript UDFs and SQL++.
 <p>Javascript is procedural object-based language, and SQL++ is declarative in nature.
 Moreover, Couchbase naturally works with <a href="https://www.w3schools.com/whatis/whatis_json.asp">json</a> in its data handling, so the data returned from SQL++ statements are json objects.</p>
 </div>
+<div class="paragraph">
+<p>If we look back at the <code>add</code> function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/add.js">/* a UDF library contains one or more javascript functions */
+function add(a,b) {
+    return(a+b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When it&#8217;s called as part of a SQL++ statement:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/add-statement.n1ql">SELECT MyAdd(2,2)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It returns its result packaged as a <code>json</code> object instead of a Javascript number:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/add-response.json5">[
+  {
+    "$1": 4
+  }
+]</code></pre>
+</div>
+</div>
 </div>
 </div>
 
         <nav class="pagination">
 
-                    <span class="prev"><a href="calling-javascript-udf.html">Calling a Javascript UDF</a></span>
+                    <span class="prev"><a href="calling-sqlpp-from-javascript.html">Calling SQL++ from Javascript</a></span>
 
 
-                    <span class="next"><a href="../../../../home/sdk.html">SDKs</a></span>
-
-</article>
+                <span>&nbsp;</span>
+            </nav>
+        </article>
 </main>
 </div>
 <footer class="footer">
