@@ -4417,12 +4417,12 @@ This will contain all our example code going forward.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/hello-world/examples/start-using-ottoman.js#L10-L15">var connection = await ottoman.connect({
-  connectionString: 'couchbase://localhost',
-  bucketName: 'travel-sample',
-  username: 'Administrator',
-  password: 'password',
-})</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/hello-world/examples/start-using-ottoman.js#L10-L15">  var connection = await ottoman.connect({
+    connectionString: 'couchbase://localhost',
+    bucketName: 'travel-sample',
+    username: 'Administrator',
+    password: 'password',
+  })</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4430,9 +4430,9 @@ This will contain all our example code going forward.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/hello-world/examples/start-using-ottoman.js#L19-L21">connection = await ottoman.connect(
-  'couchbase://localhost/travel-sample@Administrator:password'
-)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/hello-world/examples/start-using-ottoman.js#L19-L21">  connection = await ottoman.connect(
+    'couchbase://localhost/travel-sample@Administrator:password'
+  )</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4470,14 +4470,14 @@ An instance of a model is called a <em>Document</em>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/hello-world/examples/start-using-ottoman.js#L25-L32">const airlineSchema = new Schema({
-  type: String,
-  id: Number,
-  name: String,
-  callsign: String,
-  iata: String,
-  icao: String,
-})</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/hello-world/examples/start-using-ottoman.js#L25-L32">  const airlineSchema = new Schema({
+    type: String,
+    id: Number,
+    name: String,
+    callsign: String,
+    iata: String,
+    icao: String,
+  })</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4485,9 +4485,9 @@ An instance of a model is called a <em>Document</em>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/hello-world/examples/start-using-ottoman.js#L36-L38">const Airline = connection.model('airline', airlineSchema, {
-  scopeName: 'inventory',
-})</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/hello-world/examples/start-using-ottoman.js#L36-L38">  const Airline = connection.model('airline', airlineSchema, {
+    scopeName: 'inventory',
+  })</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4501,7 +4501,7 @@ This will ensure that the relevant scopes, collections, and indexes have been cr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/hello-world/examples/start-using-ottoman.js">await connection.start()</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/hello-world/examples/start-using-ottoman.js">  await connection.start()</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4528,14 +4528,14 @@ This will ensure that the relevant scopes, collections, and indexes have been cr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/hello-world/examples/start-using-ottoman.js#L61-L68">await Airline.create({
-  type: 'airline',
-  id: 8092,
-  callsign: 'CBS2',
-  name: 'Couchbase Airways 2',
-  icao: 'CBICAO2',
-  iata: 'CBIATA2',
-})</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/hello-world/examples/start-using-ottoman.js#L61-L68">  await Airline.create({
+    type: 'airline',
+    id: 8092,
+    callsign: 'CBS2',
+    name: 'Couchbase Airways 2',
+    icao: 'CBICAO2',
+    iata: 'CBIATA2',
+  })</code></pre>
 </div>
 </div>
 </div>
@@ -4551,11 +4551,11 @@ For this example, let&#8217;s retrieve one of the airline documents we saved pre
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/hello-world/examples/start-using-ottoman.js">const result = await Airline.find(
-  { callsign: 'CBS' },
-  { consistency: SearchConsistency.LOCAL }
-)
-console.log('Query Result: ', result.rows)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/hello-world/examples/start-using-ottoman.js">  const result = await Airline.find(
+    { callsign: 'CBS' },
+    { consistency: SearchConsistency.LOCAL }
+  )
+  console.log('Query Result: ', result.rows)</code></pre>
 </div>
 </div>
 <div class="paragraph">

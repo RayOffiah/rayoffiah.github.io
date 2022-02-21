@@ -4347,10 +4347,10 @@ The latter saves even more bandwidth by not retrieving the contents of the path 
 <div class="listingblock">
 <div class="title">Retrieve sub-document value</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L35-L38">var result = await collection.lookupIn('customer123', [
-  couchbase.LookupInSpec.get('addresses.delivery.country'),
-])
-var country = result.content[0].value //'United Kingdom'</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L35-L38">  var result = await collection.lookupIn('customer123', [
+    couchbase.LookupInSpec.get('addresses.delivery.country'),
+  ])
+  var country = result.content[0].value //'United Kingdom'</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -4391,9 +4391,9 @@ The simplest of these operations is <em>subdoc-upsert</em>, which, similar to th
 <div class="listingblock">
 <div class="title">Upserting a new sub-document</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L64-L66">await collection.mutateIn('customer123', [
-  couchbase.MutateInSpec.upsert('fax', '311-555-0151'),
-])</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L64-L66">  await collection.mutateIn('customer123', [
+    couchbase.MutateInSpec.upsert('fax', '311-555-0151'),
+  ])</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4426,10 +4426,10 @@ Here&#8217;s an example of one which replaces one path and removes another.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L91-L94">await collection.mutateIn('customer123', [
-  couchbase.MutateInSpec.remove('addresses.billing'),
-  couchbase.MutateInSpec.replace('email', 'dougr96@hotmail.com'),
-])</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L91-L94">  await collection.mutateIn('customer123', [
+    couchbase.MutateInSpec.remove('addresses.billing'),
+    couchbase.MutateInSpec.replace('email', 'dougr96@hotmail.com'),
+  ])</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -4519,11 +4519,11 @@ Be sure to know the difference between passing a collection of multiple elements
 <div class="listingblock">
 <div class="title">Adding multiple elements to array (slow)</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L147-L151">await collection.mutateIn('my_array', [
-  couchbase.MutateInSpec.arrayAppend('', 'elem1'),
-  couchbase.MutateInSpec.arrayAppend('', 'elem2'),
-  couchbase.MutateInSpec.arrayAppend('', 'elem3'),
-])</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L147-L151">  await collection.mutateIn('my_array', [
+    couchbase.MutateInSpec.arrayAppend('', 'elem1'),
+    couchbase.MutateInSpec.arrayAppend('', 'elem2'),
+    couchbase.MutateInSpec.arrayAppend('', 'elem3'),
+  ])</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4531,11 +4531,11 @@ Be sure to know the difference between passing a collection of multiple elements
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L156-L160">await collection.mutateIn('customer123', [
-  couchbase.MutateInSpec.arrayAppend('some.path', 'Hello World', {
-    createPath: true,
-  }),
-])</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L156-L160">  await collection.mutateIn('customer123', [
+    couchbase.MutateInSpec.arrayAppend('some.path', 'Hello World', {
+      createPath: true,
+    }),
+  ])</code></pre>
 </div>
 </div>
 </div>
@@ -4588,9 +4588,9 @@ For example, to insert <code>'cruel'</code> as the second element in the array <
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L186-L188">await collection.mutateIn('customer123', [
-  couchbase.MutateInSpec.arrayInsert('tags[0]', 'cruel'),
-])</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L186-L188">  await collection.mutateIn('customer123', [
+    couchbase.MutateInSpec.arrayInsert('tags[0]', 'cruel'),
+  ])</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4719,18 +4719,18 @@ In this case, the <em>create-path</em> option may be used.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L214-L225">await collection.mutateIn('customer123', [
-  couchbase.MutateInSpec.upsert(
-    'level_0.level_1.foo.bar.phone',
-    {
-      num: '311-555-0101',
-      ext: 16,
-    },
-    {
-      createPath: true,
-    }
-  ),
-])</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L214-L225">  await collection.mutateIn('customer123', [
+    couchbase.MutateInSpec.upsert(
+      'level_0.level_1.foo.bar.phone',
+      {
+        num: '311-555-0101',
+        ext: 16,
+      },
+      {
+        createPath: true,
+      }
+    ),
+  ])</code></pre>
 </div>
 </div>
 </div>
@@ -4745,20 +4745,20 @@ For example the following two blocks can execute concurrently without any risk o
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L231-L235">await collection.mutateIn('customer123', [
-  couchbase.MutateInSpec.arrayAppend('purchases.complete', {
-    some_id: SOME_ID,
-  }),
-])</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L231-L235">  await collection.mutateIn('customer123', [
+    couchbase.MutateInSpec.arrayAppend('purchases.complete', {
+      some_id: SOME_ID,
+    }),
+  ])</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L241-L245">await collection.mutateIn('customer123', [
-  couchbase.MutateInSpec.arrayAppend('purchases.abandoned', {
-    some_other_id: SOME_OTHER_ID,
-  }),
-])</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L241-L245">  await collection.mutateIn('customer123', [
+    couchbase.MutateInSpec.arrayAppend('purchases.abandoned', {
+      some_other_id: SOME_OTHER_ID,
+    }),
+  ])</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4771,13 +4771,13 @@ Sometimes it&#8217;s important to ensure the entire document didn&#8217;t change
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L252-L258">await collection.mutateIn(
-  'customer123',
-  [couchbase.MutateInSpec.insert('addresses.delivery.line1', '17 Olcott St')],
-  {
-    cas: SOME_CAS,
-  }
-)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/subdoc.js#L252-L258">  await collection.mutateIn(
+    'customer123',
+    [couchbase.MutateInSpec.insert('addresses.delivery.line1', '17 Olcott St')],
+    {
+      cas: SOME_CAS,
+    }
+  )</code></pre>
 </div>
 </div>
 </div>

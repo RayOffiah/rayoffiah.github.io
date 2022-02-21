@@ -4759,9 +4759,9 @@ against concurrent modifications.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/db10c1fe090cfc7abd8118eeb6a845d3e84cc145/modules/howtos/examples/subdocument_ops.py#L278-L280">collection.mutate_in(
-    "customer123", [SD.array_append("purchases.complete", 999)],
-    MutateInOptions(cas=1234))</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/db10c1fe090cfc7abd8118eeb6a845d3e84cc145/modules/howtos/examples/subdocument_ops.py#L278-L280">    collection.mutate_in(
+        "customer123", [SD.array_append("purchases.complete", 999)],
+        MutateInOptions(cas=1234))</code></pre>
 </div>
 </div>
 </div>
@@ -4775,11 +4775,11 @@ Refer to the <a href="https://docs.couchbase.com/sdk-api/couchbase-python-client
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/db10c1fe090cfc7abd8118eeb6a845d3e84cc145/modules/howtos/examples/subdocument_ops.py#L289-L293">collection.mutate_in(
-    "key", [SD.insert("username", "dreynholm")],
-    MutateInOptions(durability=ClientDurability(
-                    ReplicateTo.ONE,
-                    PersistTo.ONE)))</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/db10c1fe090cfc7abd8118eeb6a845d3e84cc145/modules/howtos/examples/subdocument_ops.py#L289-L293">    collection.mutate_in(
+        "key", [SD.insert("username", "dreynholm")],
+        MutateInOptions(durability=ClientDurability(
+                        ReplicateTo.ONE,
+                        PersistTo.ONE)))</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4788,10 +4788,10 @@ which uses the concept of <a href="#7.0@server:learn:data/durability.adoc#majori
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/db10c1fe090cfc7abd8118eeb6a845d3e84cc145/modules/howtos/examples/subdocument_ops.py#L301-L304">collection.mutate_in(
-    "customer123", [SD.insert("username", "dreynholm")],
-    MutateInOptions(durability=ServerDurability(
-                    Durability.MAJORITY)))</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/db10c1fe090cfc7abd8118eeb6a845d3e84cc145/modules/howtos/examples/subdocument_ops.py#L301-L304">    collection.mutate_in(
+        "customer123", [SD.insert("username", "dreynholm")],
+        MutateInOptions(durability=ServerDurability(
+                        Durability.MAJORITY)))</code></pre>
 </div>
 </div>
 </div>

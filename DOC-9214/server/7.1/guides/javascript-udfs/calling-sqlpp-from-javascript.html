@@ -4726,7 +4726,7 @@
 </div>
 <div class="quoteblock abstract">
 <blockquote>
-Executing SQL++ from Javascript user-defined functions.
+Executing N1QL statements from Javascript user-defined functions.
 </blockquote>
 </div>
 </div>
@@ -4735,23 +4735,105 @@ Executing SQL++ from Javascript user-defined functions.
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As well as being able to call Javascript functions from SQL++, you can also call SQL++ statements from inside your Javascript functions.</p>
+<p>As well as being able to call Javascript functions from N1QL, you can also call N1QL statements from inside your Javascript functions.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="calling-an-sql-statement-inline"><a class="anchor" href="#calling-an-sql-statement-inline"></a>Calling an SQL++ statement inline</h2>
+<h2 id="calling-statements-inline"><a class="anchor" href="#calling-statements-inline"></a>Calling SQL++ statements inline</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can embed an SQL++ statement directly in your Javascript code:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/add-airline.js.txt">function addAirline() {
-    var r = insert into airport values({"id": 1200, "type": "airline", "name": "Couch Air", "ca1": "Q5", "icao": "MLA", "callsign": "COUCH-AIR", "country": "United States"});
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/add-airline-inline-call.js">function addAirline() {
+    var q = insert into airport values({"id": 1200, "type": "airline", "name": "Couch Air", "ca1": "Q5", "icao": "MLA", "callsign": "COUCH-AIR", "country": "United States"});
 }</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="executing-sql-statements-with-using-the-n1ql-call"><a class="anchor" href="#executing-sql-statements-with-using-the-n1ql-call"></a>Executing SQL++ statements with using the N1QL() call</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In addition to the inline call, you can also execute an SQL++ statement by calling it from the <code>N1QL(…)</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/add-airline-n1sql-call.js">function addAirline() {
+    var q = N1QL("insert into airport values({\"id\": 1200, \"type\": \"airline\", \"name\": \"Couch Air\", \"ca1\": \"Q5\", \"icao\": \"MLA\", \"callsign\": \"COUCH-AIR\", \"country\": \"United States\"})")
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Behind the scenes, the inline call method will generate the equivalent <code>N1QL</code> call, so whichever you choose to use will come down to personal preference.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="returning-values-from-sql-statements"><a class="anchor" href="#returning-values-from-sql-statements"></a>Returning values from SQL++ statements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As shown in the <a href="#calling-statements-inline">examples above</a>, embedded SQL++ statements  return values which can be used later on in your code.</p>
+</div>
+<div class="paragraph">
+<p>The values returned from the statement calls are Javascript <a href="https://www.w3schools.com/js/js_object_iterables.asp" target="_blank" rel="noopener">iterators</a>: lists of values or documents returned from the database. In the next example, we&#8217;re going to retrieve a list of the hotels stored in the <code>travel-sample</code> database:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/select-hotels.js">function selectHotels() {
+    
+    var q = SELECT * FROM `travel-sample`.`inventory`.`hotel` LIMIT 1;    <i class="conum" data-value="1"></i><b>(1)</b>
+    var res = [];
+
+    for (const doc of q) {   <i class="conum" data-value="2"></i><b>(2)</b>
+        
+        res.push(doc);      <i class="conum" data-value="3"></i><b>(3)</b>
+        
+    }
+    
+    return res;    <i class="conum" data-value="4"></i><b>(4)</b>
+    
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The inline SQL++ statement returns an iterator containing the items retrieved by the query.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Using the standard Javascript iterator pattern to loop through the items returned in <code>q</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Add the iterator&#8217;s current document to the result array <code>res</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Once alll the items have been retrieved, return the the result array.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="further-reading"><a class="anchor" href="#further-reading"></a>Further Reading</h2>
+<div class="sectionbody">
+
 </div>
 </div>
 </article>

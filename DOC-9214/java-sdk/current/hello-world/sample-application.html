@@ -4514,14 +4514,14 @@ public class TenantUser {
 <link rel="stylesheet" href="https://couchbase-docs.s3.amazonaws.com/assets/swagger-ui-3.7/swagger-ui.css">
 <script src="https://couchbase-docs.s3.amazonaws.com/assets/swagger-ui-3.7/swagger-ui-bundle.js"></script>
 <script src="https://couchbase-docs.s3.amazonaws.com/assets/swagger-ui-3.7/swagger-ui-standalone-preset.js"></script>
-<script id="swagger-ui-script" data-url="https://raw.githubusercontent.com/couchbaselabs/try-cb-java/HEAD/swagger.json">
-;(function (config) {
+<script>
+;(function () {
   var initialHash = window.location.hash
   var jumpToAnchorOnLoad = function () {
     if (this.querySelector('.swagger-ui .swagger-ui')) {
       var targetHash, targetId
       if (initialHash.charAt(1) === '/') {
-        targetId = 'operations' + (initialHash.lastIndexOf('/') === 1 ? '-tag' : '') + initialHash.slice(1).replace(/[/]/g, '-')
+        targetId = 'operations' + (initialHash.lastIndexOf('/') === 1 ? '-tag' : '') + initialHash.slice(1).replace(/\//g, '-')
       } else {
         targetHash = initialHash
       }
@@ -4549,7 +4549,7 @@ public class TenantUser {
     }
   }.bind(document.getElementById('swagger-ui'))
   SwaggerUIBundle({
-    url: config.url,
+    url: 'https://raw.githubusercontent.com/couchbaselabs/try-cb-java/HEAD/swagger.json',
     dom_id: '#swagger-ui',
     deepLinking: true,
     presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
@@ -4563,7 +4563,7 @@ public class TenantUser {
     if (initialHash.charAt(1) !== '/') window.location.hash = ''
     jumpToAnchorOnLoad()
   }
-})(document.getElementById('swagger-ui-script').dataset)
+})()
 </script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
 <script defer src="../../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>

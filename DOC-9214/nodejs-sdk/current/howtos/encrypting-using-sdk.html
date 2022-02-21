@@ -4385,39 +4385,39 @@ At this point we also create <code>CryptoManager</code> and register our encrypt
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/fle.js#L94-L126">// CryptoSchema is used to register which fields to apply the encryption to.
-const schema = mgr.newCryptoSchema({
-  fields: {
-    password: {
-      encryptionKey: 'one',
-    },
-    addresses: {
-      fields: {
-        houseName: {
-          encryptionKey: 'one',
-        },
-        street: {
-          fields: {
-            secondLine: {
-              encryptionKey: 'two',
-            },
-          },
-        },
-        attributes: {
-          fields: {
-            action: {
-              encryptionKey: 'two',
-            },
-          },
-        },
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/fle.js#L94-L126">  // CryptoSchema is used to register which fields to apply the encryption to.
+  const schema = mgr.newCryptoSchema({
+    fields: {
+      password: {
+        encryptionKey: 'one',
       },
-      encryptionKey: 'two',
+      addresses: {
+        fields: {
+          houseName: {
+            encryptionKey: 'one',
+          },
+          street: {
+            fields: {
+              secondLine: {
+                encryptionKey: 'two',
+              },
+            },
+          },
+          attributes: {
+            fields: {
+              action: {
+                encryptionKey: 'two',
+              },
+            },
+          },
+        },
+        encryptionKey: 'two',
+      },
+      phone: {
+        encryptionKey: '',
+      },
     },
-    phone: {
-      encryptionKey: '',
-    },
-  },
-})</code></pre>
+  })</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4455,9 +4455,9 @@ const schema = mgr.newCryptoSchema({
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/fle.js#L157-L159">const result = await collection.get('p1')
-const resData = result.content
-console.log(JSON.stringify(resData, null, '  '))</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/fle.js#L157-L159">  const result = await collection.get('p1')
+  const resData = result.content
+  console.log(JSON.stringify(resData, null, '  '))</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4491,8 +4491,8 @@ console.log(JSON.stringify(resData, null, '  '))</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/fle.js#L164-L165">const decryptedDoc = schema.decrypt(encryptedDoc)
-console.log(JSON.stringify(decryptedDoc, null, '  '))</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/fle.js#L164-L165">  const decryptedDoc = schema.decrypt(encryptedDoc)
+  console.log(JSON.stringify(decryptedDoc, null, '  '))</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4560,9 +4560,9 @@ In SDK 3, the default prefix is <code>encrypted$</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/fle.js#L11-L13">const mgr = new crypto.DefaultCryptoManager({
-  encryptedFieldPrefix: '__crypt_',
-})</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/fle.js#L11-L13">  const mgr = new crypto.DefaultCryptoManager({
+    encryptedFieldPrefix: '__crypt_',
+  })</code></pre>
 </div>
 </div>
 <div class="paragraph">
