@@ -9,7 +9,17 @@
 <title>Calling SQL++ from Javascript | Couchbase Docs</title>
 <link rel="stylesheet" href="../../../../_/css/site.css">
 <script src="../../../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="Executing N1QL statements from Javascript user-defined functions.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+        <link rel="prev" href="calling-javascript-udf.html">
+        <link rel="next" href="data-handling-javascript-udf.html">
+
+
+
+                <link rel="prev" href="calling-javascript-udf.html">
+
+
+                <link rel="next" href="data-handling-javascript-udf.html">
 
 
 <meta name="dcterms.subject" content="server">
@@ -4638,7 +4648,7 @@
 </aside>
 <aside class="toc sidebar"
       data-title="Contents"
-      data-levels="1">
+      data-levels="2">
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
@@ -4714,6 +4724,11 @@
 <article class="doc">
 <div class="page-heading-title">
 <h1 class="page">Calling SQL++ from Javascript</h1>
+<div class="labels">
+<ul>
+<li class="edition"><a href="https://www.couchbase.com/products/editions">Enterprise Edition</a></li>
+</ul>
+</div>
 </div>
 <div class="contributor-list-box">
 <span class="last-commit-date" id="commitdate">    </span>
@@ -4721,9 +4736,6 @@
 <span  id="otherContributor"> + </span>
 </div><div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p><span class="edition"><a href="https://www.couchbase.com/products/editions">ENTERPRISE EDITION</a></span></p>
-</div>
 <div class="quoteblock abstract">
 <blockquote>
 Executing N1QL statements from Javascript user-defined functions.
@@ -4755,7 +4767,7 @@ Executing N1QL statements from Javascript user-defined functions.
 </div>
 </div>
 <div class="sect1">
-<h2 id="executing-sql-statements-with-using-the-n1ql-call"><a class="anchor" href="#executing-sql-statements-with-using-the-n1ql-call"></a>Executing SQL++ statements with using the N1QL() call</h2>
+<h2 id="executing-sql-statements-using-the-n1ql-call"><a class="anchor" href="#executing-sql-statements-using-the-n1ql-call"></a>Executing SQL++ statements  using the N1QL() call</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In addition to the inline call, you can also execute an SQL++ statement by calling it from the <code>N1QL(…)</code> function.</p>
@@ -4788,7 +4800,8 @@ Behind the scenes, the inline call method will generate the equivalent <code>N1Q
 <p>As shown in the <a href="#calling-statements-inline">examples above</a>, embedded SQL++ statements  return values which can be used later on in your code.</p>
 </div>
 <div class="paragraph">
-<p>The values returned from the statement calls are Javascript <a href="https://www.w3schools.com/js/js_object_iterables.asp" target="_blank" rel="noopener">iterators</a>: lists of values or documents returned from the database. In the next example, we&#8217;re going to retrieve a list of the hotels stored in the <code>travel-sample</code> database:</p>
+<p>The values returned from the statement calls are Javascript <a href="https://www.w3schools.com/js/js_object_iterables.asp" target="_blank" rel="noopener">iterators</a>: lists of values or documents returned from the database.
+In the next example, we&#8217;re going to retrieve a list of the hotels stored in the <code>travel-sample</code> database:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4820,11 +4833,113 @@ Behind the scenes, the inline call method will generate the equivalent <code>N1Q
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Add the iterator&#8217;s current document to the result array <code>res</code>.</td>
+<td>Add the current document from the iterator to the result array <code>res</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Once alll the items have been retrieved, return the the result array.</td>
+<td>Once all the items have been retrieved, return the result array.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If an inline statement/N1QL call does not return a value, then the associated SQL++ statement is executed as part of a synchronous operation. i.e. the runtime will wait until the statement completes before moving on to the next line of Javascript.</p>
+</div>
+<div class="paragraph">
+<p>If the inline statement/N1QL call returns a value then it is executed <em>asynchronously</em>: execution continues before the iterator is returned.
+Each document is fetched from the bucket as it requested by the iterator.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="../_images/diag-ac93545e449d8055c4e91a3638a955dfbab87618.svg" alt="Diagram">
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="passing-parameters-to-sql-statements"><a class="anchor" href="#passing-parameters-to-sql-statements"></a>Passing Parameters to SQL++ statements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can pass parameters from your Javascript to your SQL++ statements.
+Parameters can either be <code>positional</code> or <code>named</code>.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Positional</dt>
+<dd>
+<p>The parameters are applied to the statement in the order they appear in the list.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/add-airline-positional-pararamers.js">function addAirlineWithPositionalParameters(name, callsign, country) {
+    var q = N1QL("insert into `travel-sample`.`inventory`.`airport` values(\"1600\", {\"id\": $1, \"type\": $2, \"name\": $3, \"ca1\": $4, \"icao\": $5, \"callsign\": $6, \"country\": $7})", [1600, "airline", name, "Q5", "MLA", callsign, country])
+}</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Named</dt>
+<dd>
+<p>The parameters are given a mnemonic name attached to the value, so they can be included directly in the SQL++ statement.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/add-airline-named-parameters.js">function addAirlineWithNamedParameters(name, callsign, country) {
+    var q = insert into `travel-sample`.`inventory`.`airport` values("1700", {"id": 1700, "type": "airline", "name": $name, "ca1": "Q5", "icao": "MLA", "callsign": $callsign, "country": $country});
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that the names of the parameters passed into the Javascript function are used in the SQL++ statement without any need to assign the parameters in a separate step.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>N1QL calls support both <code>named</code> and <code>positional</code> parameters.
+Inline calls only support <code>named</code> parameters.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Call</th>
+<th class="tableblock halign-center valign-top">Named Parameters</th>
+<th class="tableblock halign-center valign-top">Positional Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">N1QL calls</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">✔️</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">✔</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Inline Calls</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">✔️</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">❌</p></td>
+</tr>
+</tbody>
+</table>
+</td>
 </tr>
 </table>
 </div>
@@ -4836,6 +4951,14 @@ Behind the scenes, the inline call method will generate the equivalent <code>N1Q
 
 </div>
 </div>
+
+        <nav class="pagination">
+
+                    <span class="prev"><a href="calling-javascript-udf.html">Calling a Javascript UDF</a></span>
+
+
+                    <span class="next"><a href="data-handling-javascript-udf.html">Data handling in Javascript UDFs</a></span>
+
 </article>
 </main>
 </div>
