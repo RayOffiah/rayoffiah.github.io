@@ -4289,10 +4289,10 @@ Intentionally, the API for analytics is very similar to that of the query servic
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L23-L26">  var result = await cluster.analyticsQuery('SELECT "hello" AS greeting')
-  result.rows.forEach((row) =&gt; {
-    console.log(row)
-  })</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L23-L26">var result = await cluster.analyticsQuery('SELECT "hello" AS greeting')
+result.rows.forEach((row) =&gt; {
+  console.log(row)
+})</code></pre>
 </div>
 </div>
 </div>
@@ -4306,9 +4306,9 @@ Here is one example of each:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L38-L40">  var result = await cluster.analyticsQuery(
-    'SELECT airportname, country FROM airports WHERE country="France" LIMIT 3'
-  )</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L38-L40">var result = await cluster.analyticsQuery(
+  'SELECT airportname, country FROM airports WHERE country="France" LIMIT 3'
+)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4316,10 +4316,10 @@ Here is one example of each:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L45-L48">  var result = await cluster.analyticsQuery(
-    'SELECT airportname, country FROM airports WHERE country = ? LIMIT 3',
-    { parameters: ['France'] }
-  )</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L45-L48">var result = await cluster.analyticsQuery(
+  'SELECT airportname, country FROM airports WHERE country = ? LIMIT 3',
+  { parameters: ['France'] }
+)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4327,10 +4327,10 @@ Here is one example of each:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L53-L56">  var result = await cluster.analyticsQuery(
-    'SELECT airportname, country FROM airports WHERE country = $country LIMIT 3',
-    { parameters: { country: 'France' } }
-  )</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L53-L56">var result = await cluster.analyticsQuery(
+  'SELECT airportname, country FROM airports WHERE country = $country LIMIT 3',
+  { parameters: { country: 'France' } }
+)</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -4378,13 +4378,13 @@ The <code>priority</code> option, defaults to <code>false</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L61-L67">  var result = await cluster.analyticsQuery(
-    'SELECT airportname, country FROM airports WHERE country="France" LIMIT 3',
-    {
-      priority: true,
-      timeout: 100, // seconds
-    }
-  )</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/5222dd801dcb76afb7f142bf954079c5792853f1/modules/howtos/examples/analytics.js#L61-L67">var result = await cluster.analyticsQuery(
+  'SELECT airportname, country FROM airports WHERE country="France" LIMIT 3',
+  {
+    priority: true,
+    timeout: 100, // seconds
+  }
+)</code></pre>
 </div>
 </div>
 </div>
