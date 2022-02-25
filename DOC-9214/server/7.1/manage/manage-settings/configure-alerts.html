@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
-<title>Email Alerts | Couchbase Docs</title>
+<title>Alerts | Couchbase Docs</title>
 <link rel="stylesheet" href="../../../../_/css/site.css">
 <script src="../../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="Email alerts can be dispatched automatically.">
@@ -1448,7 +1448,7 @@
 <li class="menu_list is-parent closed" data-depth="2">
   <span class="menu_line">
     <span class="in-toggle"></span>
-    <a class="menu_title menu_link" href="../../fts/fts-cluster-operations.html">Cluster Configurations</a>
+    <a class="menu_title menu_link" href="#fts:fts-cluster-operations.adoc">Cluster Level Options</a>
   </span>
 <ul class="menu_row">
 <li class="menu_list" data-depth="3">
@@ -2376,7 +2376,7 @@
 </li>
 <li class="menu_list is-current-page" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link is-current-page" href="configure-alerts.html">Email Alerts</a>
+    <a class="menu_title menu_link is-current-page" href="configure-alerts.html">Alerts</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -4613,13 +4613,13 @@
 <li class="crumb"><a href="../../introduction/intro.html">server</a></li>
 <li class="crumb">Manage</li>
 <li class="crumb"><a href="manage-settings.html">Manage Settings</a></li>
-<li class="crumb"><a href="configure-alerts.html">Email Alerts</a></li>
+<li class="crumb"><a href="configure-alerts.html">Alerts</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Email Alerts</h1>
+<h1 class="page">Alerts</h1>
 </div>
 <div class="contributor-list-box">
 <span class="last-commit-date" id="commitdate">    </span>
@@ -4635,10 +4635,10 @@ Email alerts can be dispatched automatically.
 </div>
 </div>
 <div class="sect1">
-<h2 id="configuring-email-alerts"><a class="anchor" href="#configuring-email-alerts"></a>Configuring Email Alerts</h2>
+<h2 id="configuring-email-alerts"><a class="anchor" href="#configuring-email-alerts"></a>Configuring Alerts</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Email alerts can be dispatched automatically by Couchbase Server, in order to highlight specific issues and problems.
+<p>Alerts can be dispatched automatically by Couchbase Server, in order to highlight specific issues and problems.
 When an issue occurs, an alert is generated, and is sent as an email by Couchbase Server to a configured SMTP server.
 From there, the email is forwarded to a configured list of email recipients.
 Each alert, when received, appears as a pop-up, within the Couchbase Web Console of its recipient.</p>
@@ -4668,7 +4668,7 @@ or the
 </div>
 <div class="paragraph">
 <p>This brings up the main <strong>Settings</strong> screen.
-Now, access the <strong>Email Alerts</strong> panel, by means of the <strong>Email Alerts</strong> tab, located on the horizontal navigation bar, at the top:</p>
+Now, access the <strong>Alerts</strong> panel, by means of the <strong>Alerts</strong> tab, located on the horizontal navigation bar, at the top:</p>
 </div>
 <div class="imageblock text-left">
 <div class="content">
@@ -4853,32 +4853,42 @@ You can also select, by checking checkboxes, whether you wish the alert to be se
 <td class="tableblock halign-left valign-top"><p class="tableblock">All the available RAM on a node is being used to store the metadata for the objects stored.
 This means that there is no memory available for caching values.
 With no memory left for storing metadata, further requests to store data will also fail.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Writing data to disk for a specific bucket has failed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ep_oom_errors</code></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Writing data to disk for a specific bucket has failed</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The disk or device used for persisting data has failed to store persistent data for a bucket.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ep_item_commit_failed</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Writing event to audit log has failed</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Writing event to audit log has failed</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The audit log event writing has failed.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>audit_dropped_events</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Approaching full Indexer RAM warning</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Approaching full Indexer RAM warning</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The indexer RAM limit threshold is approaching warning.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>indexer_ram_max_usage</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Remote mutation timestamp exceeded drift threshold</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Remote mutation timestamp exceeded drift threshold</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The remote mutation timestamp exceeded drift threshold warning.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ep_clock_cas_drift_threshold_exceeded</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Communication issues among some nodes in the cluster</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Communication issues among some nodes in the cluster</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">There are some communication issues in some nodes within the cluster.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>communication_issue</code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Node&#8217;s time is out of sync with some nodes in the cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The clock of this cluster-node needs to be synchronized with the clocks of other cluster-nodes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>time_out_of_sync</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disk usage analyzer is stuck; cannot fetch disk usage data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The disk usage worker is stuck and unresponsive.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>disk_usage_analyzer_stuck</code></p></td>
 </tr>
 </tbody>
 </table>

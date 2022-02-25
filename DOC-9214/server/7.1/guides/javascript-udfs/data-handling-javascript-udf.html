@@ -1455,7 +1455,7 @@
 <li class="menu_list is-parent closed" data-depth="2">
   <span class="menu_line">
     <span class="in-toggle"></span>
-    <a class="menu_title menu_link" href="../../fts/fts-cluster-operations.html">Cluster Configurations</a>
+    <a class="menu_title menu_link" href="#fts:fts-cluster-operations.adoc">Cluster Level Options</a>
   </span>
 <ul class="menu_row">
 <li class="menu_list" data-depth="3">
@@ -2383,7 +2383,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../manage/manage-settings/configure-alerts.html">Email Alerts</a>
+    <a class="menu_title menu_link" href="../../manage/manage-settings/configure-alerts.html">Alerts</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -4720,14 +4720,80 @@ function add(a,b) {
 </div>
 <div class="imageblock kroki">
 <div class="content">
-<img src="../_images/diag-3850c06697e85f673d5084cd9602ce3dc25c65ea.svg" alt="Diagram">
+<img src="../_images/diag-cd2a8bedb366c859a444bea5f5cd29bc561293fb.svg" alt="Diagram">
 </div>
 </div>
 <div class="paragraph">
-<p>Fortunately, Javascript is very adept at working with JSON data, which is the native data formaat used by Couchbase.</p>
+<p>Fortunately, Javascript is very adept at working with JSON data, which is the native data format used by Couchbase.</p>
 </div>
 <div class="paragraph">
-<p>The following function will retrieve all the hotels from the database and return just those that are in the country supplied as a parameter.</p>
+<p>The following function will retrieve all the airlines from the database and return just those that are based in the country supplied as a parameter.
+And rather than the whole document, we just want a list of the airline&#8217;s name and call sign.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/select-airline.js">function selectAirline(country) {
+
+    var q = SELECT * FROM `travel-sample`.`inventory`.`airline` WHERE country = $country;
+
+    var res = [];
+
+    for (const doc of q) {
+
+        var airline = {}
+        airline.name = doc.airline.name;
+        airline.callsign = doc.airline.callsign
+        res.push(airline);
+
+    }
+
+    return res;
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Running this as function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-N1QL hljs" data-lang="N1QL">EXECUTE FUNCTION selectAirlines('United Kingdom');</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will a list formatted in JSON:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">[
+  [
+    {
+      "callsign": null,
+      "name": "Jc royal.britannica"
+    },
+    {
+      "callsign": "FLYSTAR",
+      "name": "Astraeus"
+    },
+    {
+      "callsign": "SPEEDBIRD",
+      "name": "British Airways"
+    },
+    {
+      "callsign": "BRINTEL",
+      "name": "British International Helicopters"
+    },
+    {
+      "callsign": "MIDLAND",
+      "name": "bmi"
+    },
+    {
+      "callsign": "BABY",
+      "name": "bmibaby"
+    }
+  ]
+]</code></pre>
+</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -4736,7 +4802,121 @@ function add(a,b) {
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-It would far easier to do this directly as a SQL++
+It would far easier to do this directly as a SQL++ instead of a Javascript UDF.
+This is just a demonstration.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="handling-dates"><a class="anchor" href="#handling-dates"></a>Handling Dates</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Couchbase, like JSON, doesn&#8217;t have a native date type, but it is recommended that you make use of the <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener">ISO-8601</a> standard, since Javascript has a number of built-in date functions that use this format as their base.
+The following function creates a new airline, but will add an extra field recording the date it began operating.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/add-airline-with-date.js">function addAirlineWithDate(id, name, callsign, country) {
+
+    const full_id = "airline_" + id   <i class="conum" data-value="1"></i><b>(1)</b>
+    const d = new Date().toJSON();    <i class="conum" data-value="2"></i><b>(2)</b>
+
+    var q = insert into `travel-sample`.`inventory`.`airline` values(
+        $full_id, 
+        {"id": $id, 
+            "type": "airline", 
+            "name": $name, 
+            "ca1": "Q5", 
+            "icao": "MLA", 
+            "callsign": $callsign, 
+            "country": $country, 
+            "opdate": $d});    <i class="conum" data-value="3"></i><b>(3)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Create a key for the new record from the supplied <code>id</code> number.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Create a constant that contains the current date.
+Using the <code>to.JSON()</code> call on the <code>Date</code> object, we create a string of the current date in ISO-8601 format and assign to <code>d</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The ISO-8601 data string is used in the embedded SQL++ call to supply the ISO-8601 date.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The record added to the bucket will look something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+  {
+    "airline": {
+      "ca1": "Q5",
+      "callsign": "RAZ-AIR",
+      "country": "United Kingdom",
+      "icao": "MLA",
+      "id": 1220,
+      "name": "Raz Air",
+      "opdate": "2022-02-25T09:40:57.589Z",    <i class="conum" data-value="1"></i><b>(1)</b>
+      "type": "airline"
+    }
+  }
+]</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Note that the date is in ISO-8601 format.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You may be tempted to save a few lines of code by trying something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">    const d = new Date()
+
+    var q = insert into `travel-sample`.`inventory`.`airline` values(
+        $full_id,
+        {"id": $id,
+            "type": "airline",
+            "name": $name,
+            "ca1": "Q5",
+            "icao": "MLA",
+            "callsign": $callsign,
+            "country": $country,
+            "opdate": $d.toJSON()});    <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Although this appears to be a valid shortcut, the Javascript transpiler will only translate simple constants and variable names. Expressions and method calls are not allowed.</td>
+</tr>
+</table>
+</div>
 </td>
 </tr>
 </table>
