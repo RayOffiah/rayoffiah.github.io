@@ -11,8 +11,14 @@
 <script src="../../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="Error handling in Javascript user-defined functions use the same standard exception mechanism as part of the language standard.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+        <link rel="prev" href="data-handling-javascript-udf.html">
+        <link rel="next" href="../../../../home/sdk.html">
 
 
+
+                    <link rel="prev" href="data-handling-javascript-udf.html">
+
+        
 
 <meta name="dcterms.subject" content="server">
 <meta name="dcterms.identifier" content="7.1">
@@ -393,6 +399,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="data-handling-javascript-udf.html">Data handling in Javascript UDFs</a>
+  </span>
+</li>
+<li class="menu_list is-current-page" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link is-current-page" href="handling-errors-javascript-udf.html">Handling Errors in Javascript UDFs</a>
   </span>
 </li>
 </ul>
@@ -4612,6 +4623,9 @@
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../../introduction/intro.html">server</a></li>
+<li class="crumb">Develop</li>
+<li class="crumb"><a href="../intro.html">Developer Guides</a></li>
+<li class="crumb"><a href="introduction.html">User-defined Functions in Javascript</a></li>
 <li class="crumb"><a href="handling-errors-javascript-udf.html">Handling Errors in Javascript UDFs</a></li>
 </ul>
 </nav>
@@ -4629,7 +4643,9 @@
 <span class="last-commit-date" id="commitdate">    </span>
 <ul id="contributorList"></ul>
 <span  id="otherContributor"> + </span>
-</div><div class="quoteblock abstract">
+</div><div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock abstract">
 <blockquote>
 Error handling in Javascript user-defined functions use the same standard exception mechanism as part of the language standard.
 </blockquote>
@@ -4640,7 +4656,7 @@ For example, if we execute a record insertion function with a key that already e
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">EXECUTE FUNCTION AddAirlineWithDate(1220, 'Raz Air', 'RAZ-AIR', 'United Kingdom');</code></pre>
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/execute-airline-function-with-date.n1ql">EXECUTE FUNCTION AddAirlineWithDate(1220, 'Raz Air', 'RAZ-AIR', 'United Kingdom');</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4714,8 +4730,159 @@ This gives the developer the option of responding with a more user-friendly mess
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>If the record key already exists, then calling this method with <code>EXECUTE FUNCTION</code>  will produce the following result:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/add-airline-with-check-failure-response.json5">[
+  "failure"
+]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Unfortunately, this doesn&#8217;t tell use very much about what caused the error, or indeed, the possiblity of taking an alternative course of action depending on the type of error encountered.
+To make the error-handling a bit more useful, we first have to parse the error using  <code>JSON.parse</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/add-airline-check-parse.js">function addAirlineWithCheck(id, name, callsign, country) {
 
-</article>
+    const full_id = "airline_" + id
+    const d = new Date().toJSON();
+
+    try {
+
+        var q = insert into `travel-sample`.`inventory`.`airline` values(
+            $full_id,
+            {"id": $id,
+                "type": "airline",
+                "name": $name,
+                "ca1": "Q5",
+                "icao": "MLA",
+                "callsign": $callsign,
+                "country": $country,
+                "opdate": $d});
+
+        return "success"
+    }
+    catch (error) {
+        const message = JSON.parse(error.message)    <i class="conum" data-value="1"></i><b>(1)</b>
+        return message
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>error</code> object contains a JSON string (<code>message</code>) detailing the nature of the error.
+It is much easier to interrogate the message if it&#8217;s converted back into a JSON object on its own.
+This code will send back the entire message structure.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/parsed-error-in-full.json5">[
+  {
+    "caller": "couchbase:2098",
+    "cause": {
+      "caller": "couchbase:1971",
+      "code": 17012,
+      "key": "dml.statement.duplicatekey",
+      "message": "Duplicate Key: airline_1220"
+    },
+    "code": 12009,
+    "icause": "Duplicate Key: airline_1220",
+    "key": "datastore.couchbase.DML_error",
+    "message": "DML Error, possible causes include concurrent modification. Failed to perform INSERT on key airline_1220",
+    "retry": false
+  }
+]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once we know the structure of the error message, there&#8217;s no reason why we can&#8217;t carry out alternative actions depending on the type of error encountered:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/add-airline-parse-check-2.js">function addAirlineWithCheck(id, name, callsign, country) {
+
+    const full_id = "airline_" + id
+    const d = new Date().toJSON();
+
+    try {
+
+        var q = insert
+        into`travel-sample`.`inventory`.`airline`
+        values(
+            $full_id,
+            {
+                "id": $id,
+                "type": "airline",
+                "name": $name,
+                "ca1": "Q5",
+                "icao": "MLA",
+                "callsign": $callsign,
+                "country": $country,
+                "opdate": $d
+            });
+
+        return "success"
+    } catch (error) {
+
+        const message = JSON.parse(error.message)
+
+        if (message.cause.key == 'dml.statement.duplicatekey') {    <i class="conum" data-value="1"></i><b>(1)</b>
+
+            var myErrorObject = {}
+            myErrorObject.error_type = 'duplicate key'
+            myErrorObject.key_used = message.cause.message.replace('Duplicate Key: ', '')    <i class="conum" data-value="2"></i><b>(2)</b>
+            return myErrorObject
+        } 
+        else {
+            return message
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Check to see if this is a message that can be handled by the function itself.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Strips out the <code>"Duplicate Key: "</code> part of the message, leaving just the duplicate key.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="further-reading"><a class="anchor" href="#further-reading"></a>Further Reading</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="../../tools/query-workbench.html" class="page">The Query Workbench</a><br>
+<a href="../../n1ql/n1ql-language-reference/selectclause.html" class="page">SELECT Clause</a><br>
+<a href="../../n1ql/n1ql-language-reference/execfunction.html" class="page">EXECUTE FUNCTION</a><br></p>
+</div>
+</div>
+</div>
+
+        <nav class="pagination">
+
+                    <span class="prev"><a href="data-handling-javascript-udf.html">Data handling in Javascript UDFs</a></span>
+
+
+                <span>&nbsp;</span>
+            </nav>
+        </article>
 </main>
 </div>
 <footer class="footer">

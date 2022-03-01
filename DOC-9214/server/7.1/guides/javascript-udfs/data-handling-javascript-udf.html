@@ -12,14 +12,14 @@
 <meta name="description" content="Moving data between Javascript UDFs and SQL++.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
         <link rel="prev" href="calling-sqlpp-from-javascript.html">
-        <link rel="next" href="../../../../home/sdk.html">
+        <link rel="next" href="handling-errors-javascript-udf.html">
 
 
 
                 <link rel="prev" href="calling-sqlpp-from-javascript.html">
 
 
-                <link rel="next" href="../../../../home/sdk.html">
+                <link rel="next" href="handling-errors-javascript-udf.html">
 
 
 <meta name="dcterms.subject" content="server">
@@ -401,6 +401,11 @@
 <li class="menu_list is-current-page" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link is-current-page" href="data-handling-javascript-udf.html">Data handling in Javascript UDFs</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="handling-errors-javascript-udf.html">Handling Errors in Javascript UDFs</a>
   </span>
 </li>
 </ul>
@@ -4705,7 +4710,7 @@ function add(a,b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/true-response.json5">[
   {
     "response": "true"
   }
@@ -4759,7 +4764,7 @@ And rather than the whole document, we just want a list of the airline&#8217;s n
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-N1QL hljs" data-lang="N1QL">EXECUTE FUNCTION selectAirlines('United Kingdom');</code></pre>
+<pre class="highlightjs highlight"><code class="language-N1QL hljs" data-lang="N1QL" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/execute-airline-function.n1ql">EXECUTE FUNCTION selectAirlines('United Kingdom');</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4767,7 +4772,7 @@ And rather than the whole document, we just want a list of the airline&#8217;s n
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">[
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/execute-airline-function-response.json5">[
   [
     {
       "callsign": null,
@@ -4861,7 +4866,7 @@ Using the <code>to.JSON()</code> call on the <code>Date</code> object, we create
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/add-airline-with-date-response.json5">[
   {
     "airline": {
       "ca1": "Q5",
@@ -4897,18 +4902,18 @@ Using the <code>to.JSON()</code> call on the <code>Date</code> object, we create
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">    const d = new Date()
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/no-parameter-expressions.js">const d = new Date()
 
-    var q = insert into `travel-sample`.`inventory`.`airline` values(
-        $full_id,
-        {"id": $id,
-            "type": "airline",
-            "name": $name,
-            "ca1": "Q5",
-            "icao": "MLA",
-            "callsign": $callsign,
-            "country": $country,
-            "opdate": $d.toJSON()});    <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+var q = insert into `travel-sample`.`inventory`.`airline` values(
+    $full_id,
+    {"id": $id,
+        "type": "airline",
+        "name": $name,
+        "ca1": "Q5",
+        "icao": "MLA",
+        "callsign": $callsign,
+        "country": $country,
+        "opdate": $d.toJSON()});    <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -4925,13 +4930,22 @@ Using the <code>to.JSON()</code> call on the <code>Date</code> object, we create
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="further-reading"><a class="anchor" href="#further-reading"></a>Further Reading</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="../../n1ql/n1ql-language-reference/insert.html" class="page">INSERT</a><br>
+<a href="../../n1ql/n1ql-language-reference/execfunction.html" class="page">EXECUTE FUNCTION</a><br></p>
+</div>
+</div>
+</div>
 
         <nav class="pagination">
 
                     <span class="prev"><a href="calling-sqlpp-from-javascript.html">Calling SQL++ from Javascript</a></span>
 
 
-                    <span class="next"><a href="../../../../home/sdk.html">SDKs</a></span>
+                    <span class="next"><a href="handling-errors-javascript-udf.html">Handling Errors in Javascript UDFs</a></span>
 
 </article>
 </main>
