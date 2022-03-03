@@ -4667,13 +4667,20 @@ Moreover, Couchbase naturally works with <a href="https://www.w3schools.com/what
 <h2 id="packing-and-unpacking-json-data-in-javascript"><a class="anchor" href="#packing-and-unpacking-json-data-in-javascript"></a>Packing and unpacking JSON data in Javascript</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If we look back at the <code>add</code> function:</p>
+<p>If we look back at the <code>getBusinessDays</code> function:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/add.js">/* a UDF library contains one or more javascript functions */
-function add(a,b) {
-    return(a+b);
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/get-business-days.js">function getBusinessDays(startDate, endDate) {
+    let count = 0;
+    const curDate = new Date(new Date(startDate).getTime());
+    while (curDate &lt;= new Date(endDate)) {
+        const dayOfWeek = curDate.getDay();
+        if(dayOfWeek !== 0 &amp;&amp; dayOfWeek !== 6)
+            count++;
+        curDate.setDate(curDate.getDate() + 1);
+    }
+    return count;
 }</code></pre>
 </div>
 </div>
@@ -4682,7 +4689,7 @@ function add(a,b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/add-statement.n1ql">SELECT MyAdd(2,2)</code></pre>
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/execute-get-business-days.n1ql">EXECUTE FUNCTION GetBusinessDays('02/14/2022', '4/16/2022')</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4690,10 +4697,8 @@ function add(a,b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/add-response.json5">[
-  {
-    "$1": 4
-  }
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/execute-get-business-days-response.json5">[
+  45
 ]</code></pre>
 </div>
 </div>
@@ -4702,11 +4707,11 @@ function add(a,b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-N1SQL hljs" data-lang="N1SQL">select "true" as response where MyAdd(2000, 1) &gt; 2000</code></pre>
+<pre class="highlightjs highlight"><code class="language-N1SQL hljs" data-lang="N1SQL" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/select-true-get-business-days.n1ql">SELECT "true" as response where GetBusinessDays('02/14/2022', '4/16/2022') &gt; 44</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>will unpack the result of <code>MyAdd(2,2)</code> and apply the result to the <code>WHERE</code> clause:</p>
+<p>will unpack the result of the <code>GetBusinessDays</code> call and apply the result to the <code>WHERE</code> clause:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4737,9 +4742,22 @@ function add(a,b) {
 <p>The following function will retrieve all the airlines from the database and return just those that are based in the country supplied as a parameter.
 And rather than the whole document, we just want a list of the airline&#8217;s name and call sign.</p>
 </div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_inline"></a>inline</p>
+</li>
+<li>
+<p><a id="tabset1_n1ql-call"></a>N1QL() call</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_inline">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/select-airline.js">function selectAirline(country) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/select-airline-inline.js">function selectAirline(country) {
 
     var q = SELECT * FROM `travel-sample`.`inventory`.`airline` WHERE country = $country;
 
@@ -4757,6 +4775,33 @@ And rather than the whole document, we just want a list of the airline&#8217;s n
     return res;
 
 }</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_n1ql-call">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/select-airline-n1ql.js">function selectAirline(country) {
+
+    var q = N1QL('SELECT * FROM `travel-sample`.`inventory`.`airline` WHERE country = $country');
+
+    var res = [];
+
+    for (const doc of q) {
+
+        var airline = {}
+        airline.name = doc.airline.name;
+        airline.callsign = doc.airline.callsign
+        res.push(airline);
+
+    }
+
+    return res;
+
+}</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -4824,9 +4869,22 @@ This is just a demonstration.
 <p>Couchbase, like JSON, doesn&#8217;t have a native date type, but it is recommended that you make use of the <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener">ISO-8601</a> standard, since Javascript has a number of built-in date functions that use this format as their base.
 The following function creates a new airline, but will add an extra field recording the date it began operating.</p>
 </div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset2_inline"></a>inline</p>
+</li>
+<li>
+<p><a id="tabset2_n1ql-call"></a>n1ql() call</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_inline">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/add-airline-with-date.js">function addAirlineWithDate(id, name, callsign, country) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/add-airline-with-date-inline.js">function addAirlineWithDate(id, name, callsign, country) {
 
     const full_id = "airline_" + id   <i class="conum" data-value="1"></i><b>(1)</b>
     const d = new Date().toJSON();    <i class="conum" data-value="2"></i><b>(2)</b>
@@ -4842,6 +4900,30 @@ The following function creates a new airline, but will add an extra field record
             "country": $country, 
             "opdate": $d});    <i class="conum" data-value="3"></i><b>(3)</b>
 }</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_n1ql-call">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/add-airline-with-date-n1ql.js">function addAirlineWithDate(id, name, callsign, country) {
+
+    const full_id = "airline_" + id   <i class="conum" data-value="1"></i><b>(1)</b>
+    const d = new Date().toJSON();    <i class="conum" data-value="2"></i><b>(2)</b>
+
+    var q = N1QL('insert into `travel-sample`.`inventory`.`airline` ' +
+        'values($full_id,{\"id\": $id,' +
+        '\"type\": \"airline\",' +
+        '\"name\": $name,' +
+        '\"ca1\": \"Q5\",' +
+        '\"icao\": \"MLA\",' +
+        '\"callsign\": $callsign,' +
+        '\"country\": $country,' +
+        '\"opdate\": $d})');    <i class="conum" data-value="3"></i><b>(3)</b>
+}</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="colist arabic">

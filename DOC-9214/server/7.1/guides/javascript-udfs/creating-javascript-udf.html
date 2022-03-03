@@ -4706,21 +4706,31 @@ Using the Couchbase Query Workbench to create a user-defined function written in
 </div>
 </div>
 <div class="paragraph">
-<p>You have to give the library a name before you can save it; in this example, we&#8217;ve simply called it <code>my-library</code>.</p>
+<p>You have to give the library a name before you can save it; in this example, we&#8217;ve simply called it <code>my-library</code>.
+New libraries are created with a simple <code>add</code> example function to start with.</p>
 </div>
 <div class="paragraph">
-<p>New libraries give you a simple example function to start with:</p>
+<p>You can add your own function, such as the one given below, which will find the number of business days (weekdays) between two dates.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/add.js">/* a UDF library contains one or more javascript functions */
-function add(a,b) {
-    return(a+b);
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/get-business-days.js">function getBusinessDays(startDate, endDate) {
+    let count = 0;
+    const curDate = new Date(new Date(startDate).getTime());
+    while (curDate &lt;= new Date(endDate)) {
+        const dayOfWeek = curDate.getDay();
+        if(dayOfWeek !== 0 &amp;&amp; dayOfWeek !== 6)
+            count++;
+        curDate.setDate(curDate.getDate() + 1);
+    }
+    return count;
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>This is a standard Javascript function that adds its two parameters and returns the results.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/javascript-udfs/added-get-business-days-function.png" alt="added new function" width="600">
+</div>
 </div>
 <div class="paragraph">
 <p>Now, save the library by pressing the <b class="button">Save</b> button.</p>
