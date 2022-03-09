@@ -11,7 +11,15 @@
 <script src="../../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="Using namespaces to allocate libraries to bucket scopes.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+        <link rel="prev" href="removing-javascript-udf.html">
+        <link rel="next" href="../../../../home/sdk.html">
 
+
+
+                <link rel="prev" href="removing-javascript-udf.html">
+
+
+                <link rel="next" href="../../../../home/sdk.html">
 
 
 <meta name="dcterms.subject" content="server">
@@ -388,6 +396,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="removing-javascript-udf.html">Removing a JavaScript UDF</a>
+  </span>
+</li>
+<li class="menu_list is-current-page" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link is-current-page" href="using-javascript-library-hierarchies.html">Using JavaScript Library Hierarchies</a>
   </span>
 </li>
 </ul>
@@ -4607,6 +4620,9 @@
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../../introduction/intro.html">server</a></li>
+<li class="crumb">Develop</li>
+<li class="crumb"><a href="../intro.html">Developer Guides</a></li>
+<li class="crumb"><a href="javascript-udfs.html">User-defined Functions in JavaScript</a></li>
 <li class="crumb"><a href="using-javascript-library-hierarchies.html">Using JavaScript Library Hierarchies</a></li>
 </ul>
 </nav>
@@ -4637,10 +4653,116 @@ Using namespaces to allocate libraries to bucket scopes.
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As well as being defined for global use, libraries can be applied to</p>
+<p>As well as being defined for global use, libraries can be restricted to scopes within a bucket.
+This means that  access to the function can be restricted to users who have the privileges for the bucket.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="creating-a-javascript-function-within-a-scope"><a class="anchor" href="#creating-a-javascript-function-within-a-scope"></a>Creating a JavaScript Function Within a Scope</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can use the Query Workbench UI or the REST API to create a scoped library.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_query-workbench"></a>Query Workbench</p>
+</li>
+<li>
+<p><a id="tabset1_rest-api"></a>REST API</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_query-workbench">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select <b class="button">Query</b> to access the Query Workbench, then select <b class="button">UDF</b> Query Workbench menu.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/javascript-udfs/navigate-to-udf-query.png" alt="route to the user-defined functions screen">
+</div>
+</div>
+</li>
+<li>
+<p>Click on the <strong>&#43; add function library</strong> link in the <code>Javascript Function Libraries</code> table to show the <code>Add Library</code> screen.</p>
+</li>
+<li>
+<p>Select your <code>Namespace</code> from the drop down list.</p>
+</li>
+<li>
+<p>Enter a name for the library in the <code>Library Name</code> field.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/javascript-udfs/add-library-screen.png" alt="add screen" width="600">
+</div>
+</div>
+</li>
+<li>
+<p>Add your own function to the library by typing it in below the preset example.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/javascript-udfs/added-get-business-days-function.png" alt="added new function" width="600">
+</div>
+</div>
+</li>
+<li>
+<p>Save the library by pressing the <b class="button">Save</b> button.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_rest-api">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Start a shell session.</p>
+</li>
+<li>
+<p>Run a <code>curl</code> command to create a JavaScript library within a desired scope.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/create-scoped-javascript-function-with-rest.sh">curl -v -X POST  'http://node1-neo-testing-ubuntu18.vagrants:8093/evaluator/v1/libraries/my-library?bucket=travel-sample&amp;scope=inventory' \  <i class="conum" data-value="1"></i><b>(1)</b>
+ -u Administrator:password \
+ -d 'function getBusinessDays(startDate, endDate) {
+          let count = 0;
+          const curDate = new Date(new Date(startDate).getTime());
+          while (curDate &lt;= new Date(endDate)) {
+              const dayOfWeek = curDate.getDay();
+              if(dayOfWeek !== 0 &amp;&amp; dayOfWeek !== 6)
+                  count++;
+              curDate.setDate(curDate.getDate() + 1);
+          }
+          return count;
+      }' </code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Parameters denote that the function should reside in the <code>travel-sample</code> bucket and under the <code>inventory</code> scope within that bucket.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+        <nav class="pagination">
+
+                    <span class="prev"><a href="removing-javascript-udf.html">Removing a JavaScript UDF</a></span>
+
+
+                    <span class="next"><a href="../../../../home/sdk.html">SDKs</a></span>
 
 </article>
 </main>
