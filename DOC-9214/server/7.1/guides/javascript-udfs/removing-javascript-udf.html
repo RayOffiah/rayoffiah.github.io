@@ -4664,6 +4664,25 @@ Removing a JavaScript UDF and its reference function
 <h2 id="remove-the-sql-reference-function"><a class="anchor" href="#remove-the-sql-reference-function"></a>Remove the SQL++ Reference Function</h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p>Use either the UI, the REST API or the CBQ shell to remove the referencing function.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_query-workbench"></a>Query Workbench</p>
+</li>
+<li>
+<p><a id="tabset1_rest-api"></a>REST API</p>
+</li>
+<li>
+<p><a id="tabset1_cbq-shell"></a>CBQ Shell</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_query-workbench">
+<div class="paragraph">
 <p>Access the <code>UDFs</code> screen from the Query Workbench.</p>
 </div>
 <div class="olist arabic">
@@ -4688,6 +4707,46 @@ Removing a JavaScript UDF and its reference function
 <p>Press the <b class="button">OK</b> button to confirm that you wish to delete the reference function.</p>
 </li>
 </ol>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_rest-api">
+<div class="paragraph">
+<p>Start a command shell and execute the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/drop-sqlpp-reference-function.sh">curl -v http://localhost:8093/query/service \
+  -u Administrator:password \
+  -d 'statement=DROP FUNCTION GetBusinessDays'</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_cbq-shell">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Start the CBQ shell:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/start-up-cbq-shell.sh">/opt/couchbase/bin/cbq -u Administrator</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the password.</p>
+</li>
+<li>
+<p>Enter the following SQL++ command to remove the reference function.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1sql hljs" data-lang="n1sql" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/drop-reference-function.n1sql">DROP FUNCTION GetBusinessDays;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>

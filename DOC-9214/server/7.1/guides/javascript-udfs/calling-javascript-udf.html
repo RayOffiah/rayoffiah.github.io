@@ -4648,8 +4648,25 @@ Calling a JavaScript function from SQL++.
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="creating-javascript-udf.html#create-sqlpp-reference-function" class="page">Once a reference function has been added</a>, a JavaScript function can be called like any other SQL++ function.</p>
+<p>A JavaScript function can be called like any other SQL++ function.
+It can be executed through the Query Workbench, the REST API or the CBQ Shell</p>
 </div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_query-workbench"></a>Query Workbench</p>
+</li>
+<li>
+<p><a id="tabset1_rest-api"></a>REST API</p>
+</li>
+<li>
+<p><a id="tabset1_cbq-shell"></a>CBQ Shell</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_query-workbench">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -4687,11 +4704,103 @@ Calling a JavaScript function from SQL++.
 <div class="listingblock">
 <div class="title">Result</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/execute-get-business-days-response.json5">[
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/execute-get-business-days-response.jsonc">[
   {
     "$1": 45
   }
 ]</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_rest-api">
+<div class="paragraph">
+<p>Open a command shell and execute the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/execute-javascript-function.sh">curl -v http://node1-neo-testing-ubuntu18.vagrants:8093/query/service \
+  -u Administrator:password \
+  -d 'statement=EXECUTE FUNCTION GetBusinessDays("02/14/2022", "04/16/2022")'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/execute-javascript-function-rest-response.jsonc">{
+"requestID": "72261909-4ba7-44b4-91c6-d02a58ee6b4f",
+"signature": null,
+"results": [    <i class="conum" data-value="1"></i><b>(1)</b>
+45
+],
+"status": "success",
+"metrics": {"elapsedTime": "5.378419ms","executionTime": "5.336847ms","resultCount": 1,"resultSize": 2,"serviceLoad": 25}    <i class="conum" data-value="2"></i><b>(2)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>results</code> block contains the answer to the query.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The response contains a <code>metrics</code> block containing measurements related to the query execution.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_cbq-shell">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Start the CBQ shell:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/start-up-cbq-shell.sh">/opt/couchbase/bin/cbq -u Administrator</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the password.</p>
+</li>
+<li>
+<p>Enter the following command to execute the query:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/execute-javascript-function.n1sql">EXECUTE FUNCTION GetBusinessDays("02/14/2022", "04/16/2022");</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/execute-javascript-function-rest-response.jsonc">{
+"requestID": "72261909-4ba7-44b4-91c6-d02a58ee6b4f",
+"signature": null,
+"results": [    <i class="conum" data-value="1"></i><b>(1)</b>
+45
+],
+"status": "success",
+"metrics": {"elapsedTime": "5.378419ms","executionTime": "5.336847ms","resultCount": 1,"resultSize": 2,"serviceLoad": 25}    <i class="conum" data-value="2"></i><b>(2)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>results</code> block contains the answer to the query.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The response contains a <code>metrics</code> block containing measurements related to the query execution.</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>

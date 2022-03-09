@@ -6,25 +6,17 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
-<title>Creating a JavaScript UDF | Couchbase Docs</title>
+<title>Using JavaScript Library Hierarchies | Couchbase Docs</title>
 <link rel="stylesheet" href="../../../../_/css/site.css">
 <script src="../../../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="Using the Couchbase Query Workbench to create a user-defined function written in JavaScript">
+<meta name="description" content="Using namespaces to allocate libraries to bucket scopes.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
-        <link rel="prev" href="javascript-udfs.html">
-        <link rel="next" href="calling-javascript-udf.html">
 
-
-
-                <link rel="prev" href="javascript-udfs.html">
-
-
-                <link rel="next" href="calling-javascript-udf.html">
 
 
 <meta name="dcterms.subject" content="server">
 <meta name="dcterms.identifier" content="7.1">
-<meta name="page-url" content="/server/7.1/guides/javascript-udfs/creating-javascript-udf.html">
+<meta name="page-url" content="/server/7.1/guides/javascript-udfs/using-javascript-library-hierarchies.html">
 <meta name="generator" content="Antora 3.0.0-alpha.5">
 <link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
 </head>
@@ -383,9 +375,9 @@
     <a class="menu_title menu_link" href="javascript-udfs.html">User-defined Functions in JavaScript</a>
   </span>
 <ul class="menu_row">
-<li class="menu_list is-current-page" data-depth="3">
+<li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link is-current-page" href="creating-javascript-udf.html">Creating a JavaScript UDF</a>
+    <a class="menu_title menu_link" href="creating-javascript-udf.html">Creating a JavaScript UDF</a>
   </span>
 </li>
 <li class="menu_list" data-depth="3">
@@ -4553,7 +4545,7 @@
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/pages/javascript-udfs/creating-javascript-udf.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/pages/javascript-udfs/using-javascript-library-hierarchies.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -4615,16 +4607,13 @@
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../../introduction/intro.html">server</a></li>
-<li class="crumb">Develop</li>
-<li class="crumb"><a href="../intro.html">Developer Guides</a></li>
-<li class="crumb"><a href="javascript-udfs.html">User-defined Functions in JavaScript</a></li>
-<li class="crumb"><a href="creating-javascript-udf.html">Creating a JavaScript UDF</a></li>
+<li class="crumb"><a href="using-javascript-library-hierarchies.html">Using JavaScript Library Hierarchies</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Creating a JavaScript UDF</h1>
+<h1 class="page">Using JavaScript Library Hierarchies</h1>
 <div class="labels">
 <ul>
 <li class="edition"><a href="https://www.couchbase.com/products/editions">Enterprise Edition</a></li>
@@ -4639,7 +4628,7 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-Using the Couchbase Query Workbench to create a user-defined function written in JavaScript
+Using namespaces to allocate libraries to bucket scopes.
 </blockquote>
 </div>
 </div>
@@ -4648,357 +4637,10 @@ Using the Couchbase Query Workbench to create a user-defined function written in
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A JavaScript User-Defined function can be created in the Couchbase Query Workbench, or using the Couchbase REST API.</p>
-</div>
-<div class="paragraph">
-<p>Read the following for more information on the Query Workbench and the REST API:</p>
-</div>
-<div class="paragraph">
-<p><a href="../../tools/query-workbench.html" class="page">Query Workbench</a></p>
-</div>
-<div class="paragraph">
-<p><a href="../../rest-api/rest-intro.html" class="page">REST API reference</a></p>
-</div>
-<div class="paragraph">
-<p>In order to create a JavaScript user-defined function, you will</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Create a JavaScript library</p>
-</li>
-<li>
-<p>Add a function to the library</p>
-</li>
-<li>
-<p>Create an SQL++ handler function.</p>
-</li>
-</ol>
+<p>As well as being defined for global use, libraries can be applied to</p>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="creating-a-javascript-library"><a class="anchor" href="#creating-a-javascript-library"></a>Creating a JavaScript Library</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Create a JavaScript library in which you will store your function, using:</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_query-workbench"></a>Query Workbench</p>
-</li>
-<li>
-<p><a id="tabset1_rest-api"></a>REST API</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_query-workbench">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Select <b class="button">Query</b> to access the Query Workbench, then select <b class="button">UDF</b> Query Workbench menu.</p>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/javascript-udfs/navigate-to-udf-query.png" alt="route to the user-defined functions screen">
-</div>
-</div>
-</li>
-<li>
-<p>Click on the <strong>&#43; add function library</strong> link in the <code>Javascript Function Libraries</code> table to show the <code>Add Library</code> screen.</p>
-</li>
-<li>
-<p>Ensure the <code>Namespace</code> is set to <code>global</code>.</p>
-</li>
-<li>
-<p>Enter a name for the library in the <code>Library Name</code> field.</p>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/javascript-udfs/add-library-screen.png" alt="add screen" width="600">
-</div>
-</div>
-</li>
-<li>
-<p>Add your own function to the library by typing it in below the preset example.</p>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/javascript-udfs/added-get-business-days-function.png" alt="added new function" width="600">
-</div>
-</div>
-</li>
-<li>
-<p>Save the library by pressing the <b class="button">Save</b> button.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_rest-api">
-<div class="paragraph">
-<p>You will use the command shell `curl`command to execute REST commands.</p>
-</div>
-<div class="paragraph">
-<p>Execute the following command to create a Javascript function.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/create-javascript-function-with-rest.sh">curl -v POST http://localhost:8093/evaluator/v1/libraries/my-library  \   <i class="conum" data-value="1"></i><b>(1)</b>
- -u Administrator:password \    <i class="conum" data-value="2"></i><b>(2)</b>
- -d ' function getBusinessDays(startDate, endDate) {    <i class="conum" data-value="3"></i><b>(3)</b>
-          let count = 0;
-          const curDate = new Date(new Date(startDate).getTime());
-          while (curDate &lt;= new Date(endDate)) {
-              const dayOfWeek = curDate.getDay();
-              if(dayOfWeek !== 0 &amp;&amp; dayOfWeek !== 6)
-                  count++;
-              curDate.setDate(curDate.getDate() + 1);
-          }
-          return count;
-      }' </code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>In this example, the library is called <code>my-library</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Supply the user name and password for your server.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Supply the function for adding into the library.</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="create-an-sql-reference-function"><a class="anchor" href="#create-an-sql-reference-function"></a>Create an SQL++ Reference Function</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To call a JavaScript function, you first have to add a SQL++ function to reference it.
-This can be done through the UI or the REST API.</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_query-workbench"></a>Query Workbench</p>
-</li>
-<li>
-<p><a id="tabset2_rest-api"></a>REST API</p>
-</li>
-<li>
-<p><a id="tabset2_cbq-shell"></a>CBQ Shell</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_query-workbench">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Click on the <code>&#43;&#160;add function</code> link from the <code>UDFs</code> screen.</p>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/javascript-udfs/my-library-list-add-function-button.png" alt="library list">
-</div>
-</div>
-<div class="paragraph">
-<p>which will display the <code>Add Function</code> screen.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/javascript-udfs/add-function-dialog.png" alt="add function dialog" width="400">
-</div>
-</div>
-</li>
-<li>
-<p>Fill in the details as follows:</p>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><strong>Function Name</strong></dt>
-<dd>
-<p>This is the name of the function that will be used in SQL++ statements.</p>
-</dd>
-<dt class="hdlist1"><strong>Namespace</strong></dt>
-<dd>
-<p>The function can be allocated a namespace that defines who can access it.
-Users must have access rights to the namespace to run the function.
-The <code>global</code> namespace is set at the level of the bucket, so any SQL++ statement run by a user with access to the bucket will be able to run the function.
-We can set the namespace to a particular scope, ensuring that the function is only available within that scope.</p>
-</dd>
-<dt class="hdlist1"><strong>Parameters</strong></dt>
-<dd>
-<p>It is possible to explicitly define the list of parameters the function is expecting.
-However, the default setting  <code>&#8230;&#8203;</code> indicates a variable length parameter list, which will be matched to the JavaScript parameter list when  the function is executed.</p>
-</dd>
-<dt class="hdlist1"><strong>Function Type</strong></dt>
-<dd>
-<p>Set this to <code>Javascript</code>.</p>
-</dd>
-<dt class="hdlist1"><strong>Javascript Library</strong></dt>
-<dd>
-<p>This of name of the JavaScript library where your function is stored.</p>
-</dd>
-<dt class="hdlist1"><strong>Library Function Name</strong></dt>
-<dd>
-<p>The name of the JavaScript function in <code>my-library</code> that this definition will call.</p>
-</dd>
-</dl>
-</div>
-</li>
-<li>
-<p>Press the <b class="button">Save Function</b> button to save the definition.</p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-In the background, The dialog will use the gathered information to generate and execute an SQL++ <a href="../../n1ql/n1ql-language-reference/createfunction.html" class="page"><code>CREATE FUNCTION</code></a> call to generate the function definition.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_rest-api">
-<div class="paragraph">
-<p>Add the reference function to your bucket using a REST call executed from the command shell:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/create-reference-function.sh">curl -v http://localhost:8093/query/service \
-  -u Administrator:password \
-  -d 'statement=CREATE FUNCTION GetBusinessDays(startDate, endDate) LANGUAGE JAVASCRIPT AS "getBusinessDays" AT "my-library"'</code></pre>
-</div>
-</div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>The <code>CREATE FUNCTION</code> in this example can be broken down as follows:<br>
-&#160;</p>
-</div>
-<div class="hdlist">
-<table>
-<tr>
-<td class="hdlist1">
-<code>GetBusinessDays(startDate,&#160;endDate)</code>
-</td>
-<td class="hdlist2">
-<p>This is the name of the SQL++ reference function that will be called in your SQL++ statements.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-<code>getBusinessDays</code>
-</td>
-<td class="hdlist2">
-<p>This is the name of the JavaScript function.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-<code>my-library</code>
-</td>
-<td class="hdlist2">
-<p>The name of the library where the JavaScript function resides.</p>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>For more information on the <code>CREATE FUNCTION</code> statement, see <a href="../../n1ql/n1ql-language-reference/createfunction.html" class="page">CREATE FUNCTION</a></p>
-</div>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_cbq-shell">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Start the CBQ shell:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/start-up-cbq-shell.sh">/opt/couchbase/bin/cbq -u Administrator</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Enter the password.</p>
-</li>
-<li>
-<p>Enter the command to SQL++ statement to create the reference function:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console" data-source-url="https://github.com/RayOffiah/docs-server/blob/undefined/modules/guides/examples/javascript-udfs/create-reference-function.n1sql">CREATE FUNCTION GetBusinessDays(startDate, endDate) LANGUAGE JAVASCRIPT AS "getBusinessDays" AT "my-library;</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>The <code>CREATE FUNCTION</code> in this example can be broken down as follows:<br>
-&#160;</p>
-</div>
-<div class="hdlist">
-<table>
-<tr>
-<td class="hdlist1">
-<code>GetBusinessDays(startDate,&#160;endDate)</code>
-</td>
-<td class="hdlist2">
-<p>This is the name of the SQL++ reference function that will be called in your SQL++ statements.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-<code>getBusinessDays</code>
-</td>
-<td class="hdlist2">
-<p>This is the name of the JavaScript function.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-<code>my-library</code>
-</td>
-<td class="hdlist2">
-<p>The name of the library where the JavaScript function resides.</p>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>For more information on the <code>CREATE FUNCTION</code> statement, see <a href="../../n1ql/n1ql-language-reference/createfunction.html" class="page">CREATE FUNCTION</a></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-        <nav class="pagination">
-
-                    <span class="prev"><a href="javascript-udfs.html">User-defined Functions in JavaScript</a></span>
-
-
-                    <span class="next"><a href="calling-javascript-udf.html">Calling a JavaScript UDF</a></span>
 
 </article>
 </main>
