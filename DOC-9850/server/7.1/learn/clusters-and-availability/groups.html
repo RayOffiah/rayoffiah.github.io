@@ -4668,6 +4668,21 @@ For information on the standard (non-Group-based) distribution of replica vBucke
 <p>The distribution of vBuckets across groups is exemplified below.
 In each illustration, all servers are assumed to be running the Data Service.</p>
 </div>
+<div class="paragraph">
+<p>The number of replicas of each bucket in each group depends on the number of server groups in the rack.
+If there are at least two server groups, then we can broadly say that:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[number\:of\:replicas = number\:of\:server\:groups - 1\]
+</div>
+</div>
+<div class="paragraph">
+<p>If you have two server groups, then Couchbase will place one replica in each node of the other server group.</p>
+</div>
+<div class="paragraph">
+<p>If you have three server groups then Couchbase will place two replicas of each bucket from one node of one server into each node of the other two servers.</p>
+</div>
 <div class="sect2">
 <h3 id="vbucket-distribution-across-equal-groups"><a class="anchor" href="#vbucket-distribution-across-equal-groups"></a>Equal Groups</h3>
 <div class="paragraph">
@@ -5034,5 +5049,22 @@ Consequently, both the index replicas of one index would be assigned to the same
 <script defer src="../../../../_/js/vendor/fontawesome-icon-defs.js"></script>
 <script defer src="../../../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
 <script async src="../../../../_/js/vendor/highlight.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\\]"]], ignoreClass: "nostem|nolatexmath" },
+  asciimath2jax: { delimiters: [["\\$", "\\$"]], ignoreClass: "nostem|noasciimath" },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>
