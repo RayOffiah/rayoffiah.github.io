@@ -4668,8 +4668,15 @@ For information on the standard (non-Group-based) distribution of replica vBucke
 <p>The distribution of vBuckets across groups is exemplified below.
 In each illustration, all servers are assumed to be running the Data Service.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>The number of replicas of each bucket in each group depends on the number of server groups in the rack.
+<p>The number of replicas placed in server groups depends on the number of configured server groups..
 If there are at least two server groups, then we can broadly say that:</p>
 </div>
 <div class="stemblock">
@@ -4677,11 +4684,23 @@ If there are at least two server groups, then we can broadly say that:</p>
 \[number\:of\:replicas = number\:of\:server\:groups - 1\]
 </div>
 </div>
-<div class="paragraph">
-<p>If you have two server groups, then Couchbase will place one replica in each node of the other server group.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If you have two server groups, then Couchbase will place one replica in each node of the other server group.<br></p>
+</li>
+<li>
+<p>If you have three server groups then Couchbase will place two replicas of each bucket from one node of one server into each node of the other two servers.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>If you have three server groups then Couchbase will place two replicas of each bucket from one node of one server into each node of the other two servers.</p>
+<p>Note that this is a change in behaviour from versions of Couchbase prior to 7.1x, where the number of replicas for the vBucket was, broadly speaking,  <em>equal</em> to the number of groups in the rack.
+This change of behaviour only comes into effect if the cluster is configured with more than one server group containing Data Service nodes.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="vbucket-distribution-across-equal-groups"><a class="anchor" href="#vbucket-distribution-across-equal-groups"></a>Equal Groups</h3>
