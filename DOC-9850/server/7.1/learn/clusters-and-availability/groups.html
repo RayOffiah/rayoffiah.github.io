@@ -4627,10 +4627,6 @@ For example, a group should only include the nodes that are in a single <em>serv
 Thus, if the server rack or availability zone becomes unavailable due to a power or network failure, Group Failover, if enabled, allows continued access to the affected data.</p>
 </div>
 <div class="paragraph">
-<p>Protection is optimal when groups are assigned <em>equal numbers of nodes</em>, and replica vBuckets and index replicas are thereby distributed such that none ever occupies the same group as its associated active vBucket or index.
-By contrast, when groups are <em>not</em> assigned equal numbers of nodes, rebalance can only produce a <em>best effort</em> redistribution of replicas: this may result in one or more replica vBuckets and/or index replicas each occupying the same group as their associated active vBuckets or indexes; meaning that vBucket data and/or index data may be lost if such a group becomes unavailable.</p>
-</div>
-<div class="paragraph">
 <p>Note the following:</p>
 </div>
 <div class="ulist">
@@ -4642,20 +4638,14 @@ By contrast, when groups are <em>not</em> assigned equal numbers of nodes, rebal
 <p>Server Group Awareness only applies to the Data and Index Services.</p>
 </li>
 <li>
-<p>If a cluster contains only one node, or only one group of nodes, enabling Group Failover has no effect; meaning that failover can only be performed on a per-node basis.</p>
-</li>
-<li>
-<p>Failover should be enabled for server groups only if three or more server groups have been established, and sufficient capacity exists to absorb the load of any failed-over group.</p>
-</li>
-<li>
 <p>When a new Couchbase Server cluster is initialized, and no server groups are explicitly defined, the first node, and all subsequently added nodes, are automatically placed in a server group named Group 1.
 Once additional server groups are created, a destination server group must be specified for every node that is subsequently added to the cluster.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For information on failing over individual nodes, see
-<a href="../../manage/manage-nodes/fail-nodes-over.html" class="page">Fail a Node over and Rebalance</a>.
+<p>For information on failover, see
+<a href="../../manage/manage-nodes/fail-nodes-over.html" class="page">Failover and Rebalance</a>.
 For information on vBuckets, see <a href="../buckets-memory-and-storage/buckets.html" class="page">Buckets</a>.
 For information on the standard (non-Group-based) distribution of replica vBuckets across a cluster, see <a href="replication-architecture.html" class="page">Availability</a>.</p>
 </div>
