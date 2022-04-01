@@ -1543,7 +1543,7 @@
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
     <span class="in-toggle"></span>
-    <a class="menu_title menu_link" href="../javascript-udfs/javascript-udf-language-constructs.html">JavaScript User-Defined Functions</a>
+    <a class="menu_title menu_link" href="../javascript-udfs/javascript-udf-language-constructs.html">JavaScript UDF Constructs</a>
   </span>
 <ul class="menu_row">
 <li class="menu_list" data-depth="2">
@@ -1553,17 +1553,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../javascript-udfs/calling-n1ql-from-javascript.html">Calling N1QL from Javascript</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../javascript-udfs/using-n1ql-inside-javascript-udfs.html">Using N1QL inside JavaScript UDFs</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../javascript-udfs/built-in-functions.html">Built-In Functions</a>
+    <a class="menu_title menu_link" href="../javascript-udfs/calling-n1ql-from-javascript.html">Calling N1QL from JavaScript</a>
   </span>
 </li>
 </ul>
@@ -4699,6 +4689,79 @@ Using JavaScript user-defined functions, you can:</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="javascript-user-defined-functions"><a class="anchor" href="#javascript-user-defined-functions"></a>JavaScript User-Defined Functions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Javascript functions in Couchbase support most of the language constructs available in <a href="https://en.wikipedia.org/wiki/ECMAScript">ECMAScript</a>, though there are a number of restrictions related to the Couchbase environment.
+There are also additions that have been made to the language for working specifically in the Couchbase environment.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+There is an overview of the constructs available in the JavaScript engine in <a href="../eventing/eventing-language-constructs.html" class="page">Language Constructs</a>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="libraries-and-scopes"><a class="anchor" href="#libraries-and-scopes"></a>Libraries and Scopes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>JavaScript functions are stored inside a <code>library</code> which is simply a file stored within a bucket on the Couchbase server, alongside collections and documents.
+A library can contain one or more functions, and can also be assigned to a <code>scope</code> which allows for a libraries to partitioned for logical grouping.</p>
+</div>
+<div id="javascript-scopes" class="imageblock kroki">
+<div class="content">
+<img src="_images/diag-de4e9314e2233bcb57dc90dedcea48f23b5829c9.svg" alt="Javascript UDFs Structure">
+</div>
+<div class="title">Figure 1. Javascript UDFs Structure</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can find an introduction to scopes in our <a href="../tutorials/buckets-scopes-and-collections.html#_scopes_and_collections" class="page">Couchbase Tutorial</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Furthermore, access restrictions can be applied to scopes, so that only certain groups of users will be able to access buckets and libraries within that scope.</p>
+</div>
+<div id="scopes-for-udf" class="imageblock kroki">
+<div class="content">
+<img src="_images/diag-77cf7d7661e86a0e0292b8350f7de1a90344e137.svg" alt="Scopes for JavaScript Libraries">
+</div>
+<div class="title">Figure 2. Scopes for JavaScript Libraries</div>
+</div>
+<div class="paragraph">
+<p><a href="#scopes-for-udf">Figure 2</a> demonstrates that the library <code>my-library</code> exists under the <code>inventory</code> scope.
+Only users with the correct access rights to the <code>inventory</code> scope will be able to run the functions contained within the <code>my-library</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In Couchbase terminology, you would set the user&#8217;s <code>context</code> to <code>travel-sample.inventory</code> in order for him/her to run the functions in <code>my-library</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="before-you-begin"><a class="anchor" href="#before-you-begin"></a>Before You Begin</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -4710,7 +4773,7 @@ Using JavaScript user-defined functions, you can:</p>
 <h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next Steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>JavaScript User-defined Function Guides</p>
+<p>If you&#8217;re looking to creating your own JavaScript UDFs then there are number of guides to get you started.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -4722,6 +4785,22 @@ Using JavaScript user-defined functions, you can:</p>
 </li>
 <li>
 <p><a href="remove-javascript-udf.html" class="page">Removing a JavaScript UDF</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you wish to look into the constructs and available in the language itself, then you can have a look through the following pagess:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../javascript-udfs/javascript-udf-language-constructs.html" class="page">JavaScript UDF Constructs</a></p>
+</li>
+<li>
+<p><a href="../javascript-udfs/javascript-and-json-objects.html" class="page">JavaScript and JSON Objects</a></p>
+</li>
+<li>
+<p><a href="../javascript-udfs/calling-n1ql-from-javascript.html" class="page">Calling N1QL from JavaScript</a></p>
 </li>
 </ul>
 </div>

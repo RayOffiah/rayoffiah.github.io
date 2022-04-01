@@ -1545,7 +1545,7 @@
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
     <span class="in-toggle"></span>
-    <a class="menu_title menu_link" href="javascript-udf-language-constructs.html">JavaScript User-Defined Functions</a>
+    <a class="menu_title menu_link" href="javascript-udf-language-constructs.html">JavaScript UDF Constructs</a>
   </span>
 <ul class="menu_row">
 <li class="menu_list is-current-page" data-depth="2">
@@ -1555,17 +1555,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="calling-n1ql-from-javascript.html">Calling N1QL from Javascript</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="using-n1ql-inside-javascript-udfs.html">Using N1QL inside JavaScript UDFs</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="built-in-functions.html">Built-In Functions</a>
+    <a class="menu_title menu_link" href="calling-n1ql-from-javascript.html">Calling N1QL from JavaScript</a>
   </span>
 </li>
 </ul>
@@ -4647,7 +4637,7 @@
 <ul>
 <li class="crumb"><a href="../introduction/intro.html">server</a></li>
 <li class="crumb">Develop</li>
-<li class="crumb"><a href="javascript-udf-language-constructs.html">JavaScript User-Defined Functions</a></li>
+<li class="crumb"><a href="javascript-udf-language-constructs.html">JavaScript UDF Constructs</a></li>
 <li class="crumb"><a href="javascript-and-json-objects.html">JavaScript and JSON Objects</a></li>
 </ul>
 </nav>
@@ -4681,7 +4671,7 @@ A brief guide to handling JSON objects in JavaScript.
 <p>Couchbase uses JSON has its native data format, so when building JavaScript User-Defined functions, it&#8217;s important to know how to build JSON data structures natively in JavaScript.</p>
 </div>
 <div class="paragraph">
-<p>You can read more about the JSON data format at <a href="https://www.json.org/" target="_blank" rel="noopener">json.org</a></p>
+<p>You can read more about the JSON data format at <a href="https://www.json.org/" target="_blank" rel="noopener">json.org</a>.</p>
 </div>
 <div class="paragraph">
 <p>Using JSON, you can Couchbase records that store simple data such as numbers and strings, as well as complex types such as objects, dictionaries and arrays.</p>
@@ -4902,13 +4892,223 @@ console.log(JSON.stringify(kv["home_airport"])) </code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="packing-and-unpacking-json-data-in-javascript"><a class="anchor" href="#packing-and-unpacking-json-data-in-javascript"></a>Packing and unpacking JSON data in Javascript</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Couchbase makes use of the standard JavaScript model for creating and extracting data using the JSON data format, which is detailed here: <a href="https://www.w3schools.com/js/js_json.asp" target="_blank" rel="noopener">JavaScript JSON</a></p>
+</div>
+<div class="paragraph">
+<p>Looking at a basic example that returns a number:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/get-business-days.js">function getBusinessDays(startDate, endDate) {
+    let count = 0;
+    const curDate = new Date(new Date(startDate).getTime());
+    while (curDate &lt;= new Date(endDate)) {
+        const dayOfWeek = curDate.getDay();
+        if(dayOfWeek !== 0 &amp;&amp; dayOfWeek !== 6)
+            count++;
+        curDate.setDate(curDate.getDate() + 1);
+    }
+    return count;    <i class="conum" data-value="1"></i><b>(1)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Function returns a number.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When the function is called:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/execute-get-business-days.n1ql">SELECT GetBusinessDays('02/14/2022', '4/16/2022');</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>it returns its result packaged as a <code>json</code> object instead of a Javascript number:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/execute-get-business-days-response.jsonc">[
+  {
+    "$1": 45
+  }
+]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When using the function as part of a statement call, the unpacking processing is handled by the query engine, so that a query such as:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-N1QL hljs" data-lang="N1QL" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/select-true-get-business-days.n1ql">SELECT "true" where GetBusinessDays('02/14/2022', '4/16/2022') &gt; 44;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will unpack the result of the <code>GetBusinessDays</code> call and apply the result to the <code>WHERE</code> clause:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/true-response.jsonc">[
+  {
+    "$1": "true"
+  }
+]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="transforming-data-in-a-javascript-udf"><a class="anchor" href="#transforming-data-in-a-javascript-udf"></a>Transforming data in a Javascript UDF</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you&#8217;re using a user-defined function, then the chances are that you want to perform some kind of transformation on the data received back from an embedded N1QL call, then returning the transformed from your Javascript function:</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="_images/diag-983ed881f752f9ae23773c3c1c33741180ad0529.svg" alt="Diagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The following function will retrieve all the airlines from the database and return just those that are based in the country supplied as a parameter.
+And rather than the whole document, we just want a list of the airline&#8217;s name and call sign.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_inline"></a>inline</p>
+</li>
+<li>
+<p><a id="tabset1_n1ql-call"></a>N1QL() call</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_inline">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/select-airline-inline.js">function selectAirline(country) {
+
+    var q = SELECT name as airline_name, callsign as airline_callsign FROM `travel-sample`.`inventory`.`airline` WHERE country = $country;  <i class="conum" data-value="1"></i><b>(1)</b>
+
+    var res = [];
+
+    for (const doc of q) {
+
+        var airline = {}
+        airline.name = doc.airline_name  <i class="conum" data-value="2"></i><b>(2)</b>
+        airline.callsign = doc.airline_callsign  <i class="conum" data-value="2"></i><b>(2)</b>
+        res.push(airline);
+
+    }
+
+    return res;
+
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_n1ql-call">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/select-airline-n1ql.js">function selectAirline(country) {
+
+    var q = N1QL('SELECT name as airline_name, ' +
+        'callsign as airline_callsign FROM `travel-sample`.`inventory`.`airline` ' +
+        'WHERE country = $country_param', {country_param: country}); <i class="conum" data-value="1"></i><b>(1)</b>
+
+    var res = [];
+
+    for (const doc of q) {
+
+        var airline = {}
+        airline.name = doc.airline_name; <i class="conum" data-value="2"></i><b>(2)</b>
+        airline.callsign = doc.airline_callsign <i class="conum" data-value="2"></i><b>(2)</b>
+        res.push(airline);
+
+    }
+
+    return res;
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Using the <code>AS</code> clause in the N1QL statement renames the specified fields extracted from the collection.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The aliased fields are used in the JavaScript code.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Running this as function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-N1QL hljs" data-lang="N1QL" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/execute-airline-function.n1ql">EXECUTE FUNCTION selectAirlines('United Kingdom');</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will a list formatted in JSON:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/execute-airline-function-response.jsonc">[
+  [
+    {
+      "callsign": null,
+      "name": "Jc royal.britannica"
+    },
+    {
+      "callsign": "FLYSTAR",
+      "name": "Astraeus"
+    },
+    {
+      "callsign": "SPEEDBIRD",
+      "name": "British Airways"
+    },
+    {
+      "callsign": "BRINTEL",
+      "name": "British International Helicopters"
+    },
+    {
+      "callsign": "MIDLAND",
+      "name": "bmi"
+    },
+    {
+      "callsign": "BABY",
+      "name": "bmibaby"
+    }
+  ]
+]</code></pre>
+</div>
+</div>
+</div>
+</div>
 
         <nav class="pagination">
 
-                    <span class="prev"><a href="javascript-udf-language-constructs.html">JavaScript User-Defined Functions</a></span>
+                    <span class="prev"><a href="javascript-udf-language-constructs.html">JavaScript UDF Constructs</a></span>
 
 
-                    <span class="next"><a href="calling-n1ql-from-javascript.html">Calling N1QL from Javascript</a></span>
+                    <span class="next"><a href="calling-n1ql-from-javascript.html">Calling N1QL from JavaScript</a></span>
 
 </article>
 </main>
