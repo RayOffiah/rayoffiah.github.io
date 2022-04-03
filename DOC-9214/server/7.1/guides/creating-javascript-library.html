@@ -4701,10 +4701,38 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-the-javascript-function"><a class="anchor" href="#creating-the-javascript-function"></a>Creating the JavaScript Function</h2>
+<h2 id="creating-the-library-and-adding-your-first-function"><a class="anchor" href="#creating-the-library-and-adding-your-first-function"></a>Creating the Library and Adding Your First Function</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can use the Query Workbench UI or the REST API to create a scoped library.</p>
+<p>You can use the Query Workbench UI or the REST API to create a scoped library.
+The process for creating the library is as follows:</p>
+</div>
+<div id="create-library-udf-sequence" class="imageblock kroki">
+<div class="content">
+<img src="_images/diag-8006c23ecf6b29f21256d1402bd3056402bb19a3.svg" alt="Sequence for Creating a JavaScript UDF Library">
+</div>
+<div class="title">Figure 1. Sequence for Creating a JavaScript UDF Library</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>Create library</strong></dt>
+<dd>
+<p>This creates the logical storage area where a set of functions are kept within a bucket.</p>
+</dd>
+<dt class="hdlist1"><strong>Add functions</strong></dt>
+<dd>
+<p>The developer adds a JavaScript function to the library before saving it.</p>
+</dd>
+<dt class="hdlist1"><strong>Create Reference Function</strong></dt>
+<dd>
+<p>The reference function registers the JavaScript function with the cluster so that it can be called as part of N1QL statements (such as <code>SELECT</code> and <code>EXECUTE FUNCTION</code>).
+Executing JavaScript UDFs is covered in <a href="calling-javascript-udf.html" class="page">Calling a JavaScript UDF</a></p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>As shown in <a href="#create-library-udf-sequence">Figure 1</a>, the library is created and the first function is added in the same step.
+This is the same for both the Query Workbench and the REST API.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -4731,6 +4759,8 @@ You cannot create a JavaScript library using N1QL.
 </div>
 <div class="content">
 <div class="tab-pane" aria-labelledby="tabset1_query-workbench">
+<div class="openblock">
+<div class="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -4745,24 +4775,23 @@ You cannot create a JavaScript library using N1QL.
 <p>Click on the <strong>&#43; add function library</strong> link in the <code>Javascript Function Libraries</code> table to show the <code>Add Library</code> screen.</p>
 </li>
 <li>
-<p>Select your <code>Namespace</code> from the drop-down lists.</p>
+<p>Select your <code>Namespace</code> from the drop-down lists.
+In this example, the namespace has been set to the <code>inventory</code> scope inside the <code>travel-sample</code> bucket.
+You also have the option of leaving the Namespace unset, which will place the library in the global bucket-level scope.</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/javascript-udfs/add-scoped-library.png" alt="add scoped library" width="500">
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The <code>Namespace</code> is made up of the bucket name and the scope.
-You have the option to leave this set for the <code>global</code> scope.
-</td>
-</tr>
-</table>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">A Note on Namespaces</div>
+<div class="paragraph">
+<p>The <code>Namespace</code> defines the <code>scope</code> of the library within the containing bucket.
+(You can read about scopes in the <a href="javascript-udfs.html#libraries-and-scopes" class="page">Introduction</a>).
+Setting the namespace means that functions in the library can only be called users who have their context set to the same scope.</p>
+</div>
+</div>
 </div>
 </li>
 <li>
@@ -4790,6 +4819,20 @@ You have the option to leave this set for the <code>global</code> scope.
 <p>Save the library by pressing the <b class="button">Save</b> button.</p>
 </li>
 </ol>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can, of course, create an empty library and add functions to it later.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset1_rest-api">
@@ -4832,7 +4875,19 @@ You have the option to leave this set for the <code>global</code> scope.
 <h2 id="creating-the-reference-function"><a class="anchor" href="#creating-the-reference-function"></a>Creating the Reference Function</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The calling reference function must be defined with access to the underlying JavaScript function.</p>
+<p>Before running a JavaScript function, you will need to create a N1QL statement that will register to the function with the cluster.</p>
+</div>
+<div class="paragraph">
+<p>The reference function must be defined to run within the same scope as the UDF it&#8217;s calling.</p>
+</div>
+<div id="multiple-references-to-udf" class="imageblock kroki">
+<div class="content">
+<img src="_images/diag-183d3c01d390b38517471ffe0ff65b2cb222a23e.svg" alt="References to a UDF">
+</div>
+<div class="title">Figure 2. References to a UDF</div>
+</div>
+<div class="paragraph">
+<p>As <a href="#multiple-references-to-udf">Figure 2</a> shows, you can define multiple reference functions to point at the same JavaScript function.</p>
 </div>
 <div class="tabset is-loading">
 <div class="ulist tabs">
