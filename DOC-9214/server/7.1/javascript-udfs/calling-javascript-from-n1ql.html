@@ -4758,8 +4758,58 @@ AT "my-library";</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="calling-the-function"><a class="anchor" href="#calling-the-function"></a>Calling the Function</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once the reference function is defined, it can be called as if it were a built-in N1QL function:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/select-get-business-days.n1ql">SELECT GetBusinessDays('02/14/2022', '4/16/2022');</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>which will return the following result:</p>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/select-get-business-days-response.jsonc">[
+  {
+    "$1": 45
+  }
+]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also use the <code>EXECUTE FUNCTION</code> statement to execute the function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/execute-javascript-function.n1ql">EXECUTE FUNCTION GetBusinessDays("02/14/2022", "04/16/2022");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or as part of a complex statement:</p>
+</div>
+<div class="listingblock no-callouts">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/select-true-alias-get-business-days.n1ql">SELECT CASE 
+  WHEN  GetBusinessDays('02/14/2022', '4/16/2022') &gt; 44 THEN "true" 
+  ELSE "false" 
+  END 
+  AS response;    <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="variadic-parameters"><a class="anchor" href="#variadic-parameters"></a>Variadic Parameters</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>You can define a reference function with a variadic parameter, which means that the parameter will accept a list of values which it will pass to the UDF function it references.</p>
+</div>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">🚧 Under Construction 🚧</div>
