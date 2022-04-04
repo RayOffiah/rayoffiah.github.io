@@ -1131,7 +1131,17 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../javascript-udfs/calling-javascript-from-n1ql.html">Calling JavaScript User-Defined Functions from N1QL</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../javascript-udfs/calling-n1ql-from-javascript.html">Calling N1QL from JavaScript</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../javascript-udfs/handling-errors-javascript-udf.html">Handling Errors in Javascript UDFs</a>
   </span>
 </li>
 </ul>
@@ -4709,7 +4719,7 @@ The process for creating the library is as follows:</p>
 </div>
 <div id="create-library-udf-sequence" class="imageblock kroki">
 <div class="content">
-<img src="_images/diag-8006c23ecf6b29f21256d1402bd3056402bb19a3.svg" alt="Sequence for Creating a JavaScript UDF Library">
+<img src="_images/diag-2660041cf3c12d8cae100f90b5a5f7b20288e850.svg" alt="Sequence for Creating a JavaScript UDF Library">
 </div>
 <div class="title">Figure 1. Sequence for Creating a JavaScript UDF Library</div>
 </div>
@@ -4717,7 +4727,27 @@ The process for creating the library is as follows:</p>
 <dl>
 <dt class="hdlist1"><strong>Create library</strong></dt>
 <dd>
-<p>This creates the logical storage area where a set of functions are kept within a bucket.</p>
+<p>This creates the logical storage area where a set of functions are kept. The library can be <code>global</code> or <code>scoped</code>.</p>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<strong>Global</strong>
+</td>
+<td class="hdlist2">
+<p>The library is accessible is not tied to any bucket or scope, so is accessible across the cluster. As long as the user can access the cluster then they can access the function.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<strong>Scoped</strong>
+</td>
+<td class="hdlist2">
+<p>The library is bound to a scope within a bucket, so access rights to that scope are needed to access it.</p>
+</td>
+</tr>
+</table>
+</div>
 </dd>
 <dt class="hdlist1"><strong>Add functions</strong></dt>
 <dd>
@@ -4759,8 +4789,6 @@ You cannot create a JavaScript library using N1QL.
 </div>
 <div class="content">
 <div class="tab-pane" aria-labelledby="tabset1_query-workbench">
-<div class="openblock">
-<div class="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -4817,11 +4845,6 @@ Setting the namespace means that functions in the library can only be called use
 </li>
 <li>
 <p>Save the library by pressing the <b class="button">Save</b> button.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -4833,6 +4856,9 @@ You can, of course, create an empty library and add functions to it later.
 </td>
 </tr>
 </table>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset1_rest-api">
@@ -4877,8 +4903,17 @@ You can, of course, create an empty library and add functions to it later.
 <div class="paragraph">
 <p>Before running a JavaScript function, you will need to create a N1QL statement that will register to the function with the cluster.</p>
 </div>
-<div class="paragraph">
-<p>The reference function must be defined to run within the same scope as the UDF it&#8217;s calling.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The reference function will take the same scope as the JavaScript UDF it is referencing.
+</td>
+</tr>
+</table>
 </div>
 <div id="multiple-references-to-udf" class="imageblock kroki">
 <div class="content">
