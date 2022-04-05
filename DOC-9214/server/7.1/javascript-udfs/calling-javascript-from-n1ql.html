@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="Using a N1QL Reference Function to call JavaScript UDFs.">
+<meta name="keywords" content="scopes, variadic">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -4657,16 +4658,7 @@
 <span class="last-commit-date" id="commitdate">    </span>
 <ul id="contributorList"></ul>
 <span  id="otherContributor"> + </span>
-</div><div id="preamble">
-<div class="sectionbody">
-<div class="quoteblock abstract">
-<blockquote>
-Using a N1QL Reference Function to call JavaScript UDFs.
-</blockquote>
-</div>
-</div>
-</div>
-<div class="sect1">
+</div><div class="sect1">
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -4682,7 +4674,7 @@ The process to do this is explained in the  <a href="../guides/creating-javascri
 </div>
 </div>
 <div class="sect1">
-<h2 id="udfs-and-reference-functions"><a class="anchor" href="#udfs-and-reference-functions"></a>UDFs and Reference Functions</h2>
+<h2 id="scopes-and-reference-functions"><a class="anchor" href="#scopes-and-reference-functions"></a>Scopes and Reference Functions</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>A JavaScript User-Defined Function can be <a href="../guides/creating-javascript-library.html#creating-the-library-and-adding-your-first-function" class="page">created through the WorkBench or through the REST API</a>.</p>
@@ -4721,7 +4713,7 @@ As well as providing a logical separation between JavaScript libraries, using sc
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>This function will reference the <code>getBusinessDays</code> function</td>
+<td>This function will reference the <code>getBusinessDays</code> function.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -4729,9 +4721,8 @@ As well as providing a logical separation between JavaScript libraries, using sc
 </tr>
 </table>
 </div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">The Global scope</div>
+<div class="sect2">
+<h3 id="the-global-scope"><a class="anchor" href="#the-global-scope"></a>The Global scope</h3>
 <div class="paragraph">
 <p>Of course, you can define the library and reference function with a <code>global</code> scope by defining them without the scope parameters.
 Functions with a global scope are accessible across the cluster.</p>
@@ -4744,6 +4735,66 @@ LANGUAGE JAVASCRIPT as "getBusinessDays"
 AT "my-library";</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="using-scopes-to-secure-and-partition-logic"><a class="anchor" href="#using-scopes-to-secure-and-partition-logic"></a>Using Scopes to Secure and Partition Logic</h3>
+<div class="paragraph">
+<p>By placing functions in separate scopes, it&#8217;s possible to reuse the same function name across a number of scopes.</p>
+</div>
+<div class="paragraph">
+<p>For example, say we have a banking application that separates banks across different buckets. Each bank could use a different calculation for daily interest, that should only be accessible by users for that particular bank:</p>
+</div>
+<div id="banking-scope-scenario" class="imageblock kroki">
+<div class="content">
+<img src="_images/diag-9c8f3fad19a658b0e3d17032fcf941e0ee12ebd3.svg" alt="Using Multipe Scopes">
+</div>
+<div class="title">Figure 1. Using Multipe Scopes</div>
+</div>
+<div class="paragraph">
+<p>The important thing to note is that the two reference functions the same name and parameter signature, but have been created to point to two different functions in different libraries/scopes:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_for-the-uk-user"></a>for the UK User</p>
+</li>
+<li>
+<p><a id="tabset1_for-the-us-user"></a>for the US User</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_for-the-uk-user">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/create-bank-interest-function-uk.n1ql">CREATE FUNCTION default:`bank-database`.`UKBank`.GetInterest(...)
+LANGUAGE JAVASCRIPT as "getInterestInSterling"
+AT "bank-database/UKBank/bank-library"</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_for-the-us-user">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/create-bank-interest-function-us.n1ql">CREATE FUNCTION default:`bank-database`.`USBank`.GetInterest(...)
+LANGUAGE JAVASCRIPT as "getInterestInDollars"
+AT "bank-database/USBank/bank-library"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Now when the reference function is called:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/execute-function-get-interest.n1ql">EXECUTE FUNCTION GetInterest(10, 0.25);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>the context of the user will define which of the  reference functions is executed (even though they have the same name), and so which underlying JavaScript function is called.</p>
 </div>
 </div>
 </div>
