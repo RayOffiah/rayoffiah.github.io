@@ -6,20 +6,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
-<title>Calling JavaScript User-Defined Functions from N1QL | Couchbase Docs</title>
+<title>Calling JavaScript UDFs from N1QL | Couchbase Docs</title>
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="Using a N1QL Reference Function to call JavaScript UDFs.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
-        <link rel="prev" href="javascript-and-json-objects.html">
-        <link rel="next" href="calling-n1ql-from-javascript.html">
-
-
-
-                <link rel="prev" href="javascript-and-json-objects.html">
-
-
-                <link rel="next" href="calling-n1ql-from-javascript.html">
 
 
 <meta name="dcterms.subject" content="server">
@@ -1121,7 +1112,7 @@
 <li class="menu_list is-parent closed" data-depth="2">
   <span class="menu_line">
     <span class="in-toggle"></span>
-    <a class="menu_title menu_link" href="javascript-udf-language-constructs.html">JavaScript UDF Constructs</a>
+    <a class="menu_title menu_link" href="javascript-udfs.html">JavaScript User-Defined Functions</a>
   </span>
 <ul class="menu_row">
 <li class="menu_list" data-depth="3">
@@ -1131,7 +1122,7 @@
 </li>
 <li class="menu_list is-current-page" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link is-current-page" href="calling-javascript-from-n1ql.html">Calling JavaScript User-Defined Functions from N1QL</a>
+    <a class="menu_title menu_link is-current-page" href="calling-javascript-from-n1ql.html">Calling JavaScript UDFs from N1QL</a>
   </span>
 </li>
 <li class="menu_list" data-depth="3">
@@ -4648,14 +4639,14 @@
 <li class="crumb"><a href="../introduction/intro.html">server</a></li>
 <li class="crumb">Develop</li>
 <li class="crumb"><a href="../n1ql/query.html">Query</a></li>
-<li class="crumb"><a href="javascript-udf-language-constructs.html">JavaScript UDF Constructs</a></li>
-<li class="crumb"><a href="calling-javascript-from-n1ql.html">Calling JavaScript User-Defined Functions from N1QL</a></li>
+<li class="crumb"><a href="javascript-udfs.html">JavaScript User-Defined Functions</a></li>
+<li class="crumb"><a href="calling-javascript-from-n1ql.html">Calling JavaScript UDFs from N1QL</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Calling JavaScript User-Defined Functions from N1QL</h1>
+<h1 class="page">Calling JavaScript UDFs from N1QL</h1>
 <div class="labels">
 <ul>
 <li class="edition"><a href="https://www.couchbase.com/products/editions">Enterprise Edition</a></li>
@@ -4808,26 +4799,86 @@ AT "my-library";</code></pre>
 <h2 id="variadic-parameters"><a class="anchor" href="#variadic-parameters"></a>Variadic Parameters</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can define a reference function with a variadic parameter, which means that the parameter will accept a list of values which it will pass to the UDF function it references.</p>
+<p>You can define a reference function with a variadic parameter, which means that the parameter will accept a list of values which it will pass to the UDF function it references.
+We can create the <code>GetBusinessDays</code> function using a variadic parameter rather than the <code>startDate</code> and <code>endDate</code> parameters:</p>
 </div>
-<div class="sidebarblock">
+<div class="listingblock">
 <div class="content">
-<div class="title">🚧 Under Construction 🚧</div>
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/create-variadic-reference-function.n1ql">CREATE FUNCTION GetBusinessDays(...)
+LANGUAGE JAVASCRIPT as "getBusinessDays"
+AT "my-library";</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p><strong>Work in progress . . .</strong></p>
+<p>Note that the statement used three dots (&#8230;&#8203;) rather than a list of parameter list. This indicates a variable length parameter list.
+The underlying JavaScript function will reference the parameter list as named variables:</p>
+</div>
+<div class="listingblock no-callouts">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/get-business-days-no-ops.js">function getBusinessDays(startDate, endDate) {
+   
+  // Do calculations  
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can use a variable length parameter list in the JavaScript function itself:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/variadic-sum.js">function sumListOfNumbers(... args) {    <i class="conum" data-value="1"></i><b>(1)</b>
+    
+    var sum = 0;
+    
+    args.forEach(value =&gt; sum = sum  + value);    <i class="conum" data-value="2"></i><b>(2)</b>
+    
+    return sum;
+    
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>JavaScript uses three dots (&#8230;&#8203;) followed by a parameter name to denote a parameter that is an array of values.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Scans through the variadic parameter list, summing all the numbers it contains.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A reference function can now be created that takes a variable length list of numbers as an argument:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/create-sum-function.n1ql">CREATE FUNCTION SumListOfNumbers(...)
+LANGUAGE JAVASCRIPT as "sumListOfNumbers"
+AT "my-library";</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>which can then be called with a variable length list of numbers as a parameter</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/execute-sum-function.n1ql">EXECUTE FUNCTION SumListOfNumbers(1, 2, 4, 8, 16, 32, 64);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/execute-sum-function-result.jsonc">[
+  127
+]</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div>
-
-        <nav class="pagination">
-
-                    <span class="prev"><a href="javascript-and-json-objects.html">JavaScript and JSON Objects</a></span>
-
-
-                    <span class="next"><a href="calling-n1ql-from-javascript.html">Calling N1QL from JavaScript</a></span>
-
 </article>
 </main>
 </div>

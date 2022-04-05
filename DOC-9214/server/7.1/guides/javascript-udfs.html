@@ -1119,7 +1119,7 @@
 <li class="menu_list is-parent closed" data-depth="2">
   <span class="menu_line">
     <span class="in-toggle"></span>
-    <a class="menu_title menu_link" href="../javascript-udfs/javascript-udf-language-constructs.html">JavaScript UDF Constructs</a>
+    <a class="menu_title menu_link" href="../javascript-udfs/javascript-udfs.html">JavaScript User-Defined Functions</a>
   </span>
 <ul class="menu_row">
 <li class="menu_list" data-depth="3">
@@ -1129,7 +1129,7 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../javascript-udfs/calling-javascript-from-n1ql.html">Calling JavaScript User-Defined Functions from N1QL</a>
+    <a class="menu_title menu_link" href="../javascript-udfs/calling-javascript-from-n1ql.html">Calling JavaScript UDFs from N1QL</a>
   </span>
 </li>
 <li class="menu_list" data-depth="3">
@@ -4749,13 +4749,18 @@ You can find an introduction to scopes in our <a href="../tutorials/buckets-scop
 </div>
 <div id="scopes-for-udf" class="imageblock kroki">
 <div class="content">
-<img src="_images/diag-ad6779490715ffd3bdd35a1c05ae289bf42459fd.svg" alt="Scopes for JavaScript Libraries">
+<img src="_images/diag-d042b8e03ea87539b15db0dd5d6df4a66c38fcbb.svg" alt="Scopes for JavaScript Libraries">
 </div>
 <div class="title">Figure 2. Scopes for JavaScript Libraries</div>
 </div>
 <div class="paragraph">
 <p><a href="#scopes-for-udf">Figure 2</a> demonstrates that the library <code>my-library</code> exists under the <code>inventory</code> scope.
 Only users with the correct access rights to the <code>inventory</code> scope will be able to run the functions contained within the <code>my-library</code>.</p>
+</div>
+<div class="paragraph">
+<p>The user does not call the JavaScript functions (shown here as <code>getBusinessDays(startDate, endDate)</code>) directly; an <strong>N1QL reference function</strong> is defined to act as a proxy caller to the JavaScript UDF.
+This makes it possible to define multiple entry points to the same JavaScript function, allowing for the same function to be supplied with different parameter lists.
+(For more information on variable parameter lists, see <a href="../javascript-udfs/calling-javascript-from-n1ql.html#variadic-parameters" class="page">Calling N1QL from JavaScript</a>)</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -4796,10 +4801,13 @@ In Couchbase terminology, you would set the user&#8217;s <code>context</code> to
 <div class="ulist">
 <ul>
 <li>
-<p><a href="../javascript-udfs/javascript-udf-language-constructs.html" class="page">JavaScript UDF Constructs</a></p>
+<p><a href="#javascript-udfs:javascript-udf-language-constructs.adoc" class="page unresolved">javascript-udfs:javascript-udf-language-constructs.adoc</a></p>
 </li>
 <li>
 <p><a href="../javascript-udfs/javascript-and-json-objects.html" class="page">JavaScript and JSON Objects</a></p>
+</li>
+<li>
+<p><a href="../javascript-udfs/calling-javascript-from-n1ql.html" class="page">Calling JavaScript UDFs from N1QL</a></p>
 </li>
 <li>
 <p><a href="../javascript-udfs/calling-n1ql-from-javascript.html" class="page">Calling N1QL from JavaScript</a></p>
