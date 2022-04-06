@@ -4692,8 +4692,143 @@ Using Javascript user-defined functions, you can:</p>
 <div class="paragraph">
 <p>If you want to learn how to create JavaScript User-Defined functions using the administration console and/or the REST-API then take a look at our <a href="../guides/javascript-udfs.html" class="page">JavaScript UDF Guides</a></p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="added-constructs"><a class="anchor" href="#added-constructs"></a>Added Constructs</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>In this section, we&#8217;re going to look at the concepts behind JavaScript User-Defined Functions:</p>
+<p>Javascript functions in Couchbase support most of the language constructs available in <a href="https://en.wikipedia.org/wiki/ECMAScript">ECMAScript</a>, though there are a number of restrictions related to the Couchbase environment.
+There are also additions that have been made to the language for working specifically in the Couchbase environment.</p>
+</div>
+<div class="sect2">
+<h3 id="n1ql-embedded-statements"><a class="anchor" href="#n1ql-embedded-statements"></a>N1QL Embedded Statements</h3>
+<div class="paragraph">
+<p>Top level N1QL keywords, such as SELECT, UPDATE, INSERT and DELETE, are available as inline keywords in Eventing Functions.
+Operations that return values such as SELECT are accessible through a returned iterable handle.
+N1QL Query results, via a SELECT, are streamed in batches to the iterable handle as the iteration progresses through the result set.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/select-airline-inline.js">function selectAirline(country) {
+
+    var q = SELECT name as airline_name, callsign as airline_callsign 
+    FROM `travel-sample`.`inventory`.`airline` 
+    WHERE country = $country;  <i class="conum" data-value="1"></i><b>(1)</b>
+
+    var res = [];
+
+    for (const doc of q) {
+
+        var airline = {}
+        airline.name = doc.airline_name  <i class="conum" data-value="2"></i><b>(2)</b>
+        airline.callsign = doc.airline_callsign  <i class="conum" data-value="2"></i><b>(2)</b>
+        res.push(airline);
+
+    }
+
+    return res;
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The N1QL is written directly into the JavaScript code without having to be used as part of a function call.
+We can even provide parameters than can be used in the N1QL statement.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>A standard JavaScript iterator is used to the values returned from the N1QL statement.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="libraries-and-scopes"><a class="anchor" href="#libraries-and-scopes"></a>Libraries and Scopes</h3>
+<div class="paragraph">
+<p>JavaScript functions are stored inside a <code>library</code>.
+A library can contain one or more functions, and can also be assigned to a <code>scope</code> which allows for a libraries to partitioned for logical grouping.</p>
+</div>
+<div id="javascript-scopes" class="imageblock kroki">
+<div class="content">
+<img src="_images/diag-7adf1bde693c687e9d85db8729063c6b0853f6b7.svg" alt="Javascript UDFs Structure">
+</div>
+<div class="title">Figure 1. Javascript UDFs Structure</div>
+</div>
+<div class="paragraph">
+<p>As shown in <a href="#javascript-scopes">Figure 1</a>, a JavaScript function library can exist as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A global library accessible across the cluster.</p>
+</li>
+<li>
+<p>A library (<code>bucket-library</code>) that is available to anyone with access the bucket.</p>
+</li>
+<li>
+<p>The library <code>my-library</code> lives within the <code>Bucket.Scope</code>, so can only be accessed by users with access rights to that scope.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can find an introduction to scopes in our <a href="../tutorials/buckets-scopes-and-collections.html#scopes_and_collections" class="page">Couchbase Tutorials</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Furthermore, access restrictions can be applied to scopes, so that only certain groups of users will be able to access collections and libraries within that scope.</p>
+</div>
+<div id="scopes-for-udf" class="imageblock kroki">
+<div class="content">
+<img src="_images/diag-dae035388a628754461ad07e204911426a0cd52c.svg" alt="Scopes for JavaScript Libraries">
+</div>
+<div class="title">Figure 2. Scopes for JavaScript Libraries</div>
+</div>
+<div class="paragraph">
+<p><a href="#scopes-for-udf">Figure 2</a> demonstrates that the library <code>my-library</code> exists under the <code>inventory</code> scope.
+Only users with the correct access rights to the <code>inventory</code> scope will be able to run the functions contained within the <code>my-library</code>.</p>
+</div>
+<div class="paragraph">
+<p>The user does not call the JavaScript functions (shown here as <code>getBusinessDays(startDate, endDate)</code>) directly; a <strong>N1QL User-Defined Function</strong> is defined to act as a proxy caller to the JavaScript UDF.
+This makes it possible to define multiple entry points to the same JavaScript function, allowing for the same function to be supplied with different parameter lists.
+(For more information on variable parameter lists, see <a href="calling-javascript-from-n1ql.html#variadic-parameters" class="page">Calling N1QL from JavaScript</a>)</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In Couchbase terminology, you would set the user&#8217;s <code>context</code> to <code>travel-sample.inventory</code> in order for him/her to run the functions in <code>my-library</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="unsupported-features"><a class="anchor" href="#unsupported-features"></a>Unsupported Features</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="browser-extensions"><a class="anchor" href="#browser-extensions"></a>Browser Extensions</h3>
+<div class="paragraph">
+<p>Because JavaScript UDF functions do not execute in the context of a browser, the extensions that browsers add to the core language, such as window methods, DOM events etc. are not available.</p>
+</div>
+<div class="paragraph">
+<p>In the rest of this section, we&#8217;re going to look at the concepts behind JavaScript User-Defined Functions:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -4710,6 +4845,7 @@ Using Javascript user-defined functions, you can:</p>
 <p><a href="handling-errors-javascript-udf.html" class="page">Handling Errors in Javascript UDFs</a></p>
 </li>
 </ul>
+</div>
 </div>
 </div>
 </div>
