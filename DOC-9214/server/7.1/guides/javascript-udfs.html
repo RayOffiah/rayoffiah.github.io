@@ -1124,11 +1124,6 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../javascript-udfs/javascript-and-json-objects.html">JavaScript and JSON Objects</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="3">
-  <span class="menu_line">
     <a class="menu_title menu_link" href="../javascript-udfs/calling-javascript-from-n1ql.html">Calling JavaScript UDFs from N1QL</a>
   </span>
 </li>
@@ -4714,28 +4709,6 @@ There are also additions that have been made to the language for working specifi
 <p>JavaScript functions are stored inside a <code>library</code>.
 A library can contain one or more functions, and can also be assigned to a <code>scope</code> which allows for a libraries to partitioned for logical grouping.</p>
 </div>
-<div id="javascript-scopes" class="imageblock kroki">
-<div class="content">
-<img src="_images/diag-7adf1bde693c687e9d85db8729063c6b0853f6b7.svg" alt="Javascript UDFs Structure">
-</div>
-<div class="title">Figure 1. Javascript UDFs Structure</div>
-</div>
-<div class="paragraph">
-<p>As shown in <a href="#javascript-scopes">Figure 1</a>, a JavaScript function library can exist as:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A global library accessible across the cluster.</p>
-</li>
-<li>
-<p>A library (<code>bucket-library</code>) that is available to anyone with access the bucket.</p>
-</li>
-<li>
-<p>The library <code>my-library</code> lives within the <code>Bucket.Scope</code>, so can only be accessed by users with access rights to that scope.</p>
-</li>
-</ul>
-</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -4753,13 +4726,9 @@ You can find an introduction to scopes in our <a href="../tutorials/buckets-scop
 </div>
 <div id="scopes-for-udf" class="imageblock kroki">
 <div class="content">
-<img src="_images/diag-dae035388a628754461ad07e204911426a0cd52c.svg" alt="Scopes for JavaScript Libraries">
+<img src="_images/diag-a7790a07d6660d36e80e439f66e6dca3e57c47d3.svg" alt="Scopes for JavaScript Libraries">
 </div>
-<div class="title">Figure 2. Scopes for JavaScript Libraries</div>
-</div>
-<div class="paragraph">
-<p><a href="#scopes-for-udf">Figure 2</a> demonstrates that the library <code>my-library</code> exists under the <code>inventory</code> scope.
-Only users with the correct access rights to the <code>inventory</code> scope will be able to run the functions contained within the <code>my-library</code>.</p>
+<div class="title">Figure 1. Scopes for JavaScript Libraries</div>
 </div>
 <div class="paragraph">
 <p>The user does not call the JavaScript functions (shown here as <code>getBusinessDays(startDate, endDate)</code>) directly; a <strong>N1QL User-Defined Function</strong> is defined to act as a proxy caller to the JavaScript UDF.
@@ -4792,6 +4761,9 @@ In Couchbase terminology, you would set the user&#8217;s <code>context</code> to
 <p><a href="creating-javascript-library.html" class="page">Creating a JavaScript Library</a></p>
 </li>
 <li>
+<p><a href="creating-javascript-library.html#add-function-to-library" class="page">Add JavaScript UDF to Library</a></p>
+</li>
+<li>
 <p><a href="calling-javascript-udf.html" class="page">Calling a JavaScript UDF</a></p>
 </li>
 <li>
@@ -4806,9 +4778,6 @@ In Couchbase terminology, you would set the user&#8217;s <code>context</code> to
 <ul>
 <li>
 <p><a href="../javascript-udfs/javascript-udfs.html" class="page">JavaScript User-Defined Functions</a></p>
-</li>
-<li>
-<p><a href="../javascript-udfs/javascript-and-json-objects.html" class="page">JavaScript and JSON Objects</a></p>
 </li>
 <li>
 <p><a href="../javascript-udfs/calling-javascript-from-n1ql.html" class="page">Calling JavaScript UDFs from N1QL</a></p>

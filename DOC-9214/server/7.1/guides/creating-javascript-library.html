@@ -1126,11 +1126,6 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../javascript-udfs/javascript-and-json-objects.html">JavaScript and JSON Objects</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="3">
-  <span class="menu_line">
     <a class="menu_title menu_link" href="../javascript-udfs/calling-javascript-from-n1ql.html">Calling JavaScript UDFs from N1QL</a>
   </span>
 </li>
@@ -4672,39 +4667,17 @@
 <div class="paragraph">
 <p>In this guide you will learn how to create a library for storing JavaScript functions, and how to add a new function to the library.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="before-you-begin"><a class="anchor" href="#before-you-begin"></a>Before You Begin</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>If you want to try out the examples in this section, follow the instructions given in <a href="../getting-started/do-a-quick-install.html" class="page">Do a Quick Install</a> to install Couchbase Server, configure a cluster, and load a sample dataset.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="query-tools"><a class="anchor" href="#query-tools"></a>Query Tools</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Read the following for further information about the tools available for editing and executing queries:</p>
+<p>If you want to try out the examples in this section, follow the instructions given in <a href="../getting-started/do-a-quick-install.html" class="page">Do a Quick Install</a> to install Couchbase Server, configure a cluster, and load a sample dataset.
+Read the following for further information about the tools available for editing and executing queries:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><a href="../tools/cbq-shell.html" class="page">cbq: The Command Line Shell for N1QL</a></p>
-<div class="literalblock">
-<div class="content">
-<pre>cbq&gt;</pre>
-</div>
-</div>
 </li>
 <li>
 <p><a href="../tools/query-workbench.html" class="page">Query Workbench</a></p>
-<div class="imageblock text-left">
-<div class="content">
-<img src="../manage/_images/manage-ui/queryTab.png" alt="queryTab" width="100">
-</div>
-</div>
 </li>
 </ul>
 </div>
@@ -4728,28 +4701,20 @@ The process for creating the library is as follows:</p>
 <dt class="hdlist1"><strong>Create library</strong></dt>
 <dd>
 <p>This creates the logical storage area where a set of functions are kept. The library can be <code>global</code> or <code>scoped</code>.</p>
-<div class="hdlist">
-<table>
-<tr>
-<td class="hdlist1">
-<strong>Global</strong>
-</td>
-<td class="hdlist2">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>Global</strong></dt>
+<dd>
 <p>The library is accessible is not tied to any bucket or scope, so is accessible across the cluster. As long as the user can access the cluster then they can access the function.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-<strong>Scoped</strong>
-</td>
-<td class="hdlist2">
+</dd>
+<dt class="hdlist1"><strong>Scoped</strong></dt>
+<dd>
 <p>The library is bound to a scope within a bucket, so access rights to that scope are needed to access it.</p>
-</td>
-</tr>
-</table>
+</dd>
+</dl>
 </div>
 </dd>
-<dt class="hdlist1"><strong>Add functions</strong></dt>
+<dt class="hdlist1"><strong>Add function</strong></dt>
 <dd>
 <p>The developer adds a JavaScript function to the library before saving it.</p>
 </dd>
@@ -4824,6 +4789,18 @@ Setting the namespace means that functions in the library can only be called use
 </li>
 <li>
 <p>Enter a name for the library in the <code>Library Name</code> field.</p>
+<div id="add-function-to-library" class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+As shown in <a href="#create-library-udf-sequence">Figure 1</a>, adding the JavaScript function is done whilst the library is being created.
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
 <p>Add your own function to the library, for example:</p>
@@ -4869,9 +4846,6 @@ You can, of course, create an empty library and add functions to it later.
 </li>
 <li>
 <p>Run a <code>curl</code> command to create a JavaScript library within a desired scope.</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/create-scoped-javascript-function-with-rest.sh">curl -v -X POST  'http://localhost:8093/evaluator/v1/libraries/my-library?bucket=travel-sample&amp;scope=inventory' \
@@ -4892,6 +4866,9 @@ You can, of course, create an empty library and add functions to it later.
 <div class="paragraph">
 <p>The parameters in the URL denote that the function should reside in the <code>travel-sample</code> bucket and under the <code>inventory</code> scope within that bucket.</p>
 </div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
@@ -4903,26 +4880,8 @@ You can, of course, create an empty library and add functions to it later.
 <div class="paragraph">
 <p>Before running a JavaScript function, you will need to create a N1QL statement that will register to the function with the cluster.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The N1QL User-Defined Function will take the same scope as the JavaScript UDF it is referencing.
-</td>
-</tr>
-</table>
-</div>
-<div id="multiple-references-to-udf" class="imageblock kroki">
-<div class="content">
-<img src="_images/diag-183d3c01d390b38517471ffe0ff65b2cb222a23e.svg" alt="References to a UDF">
-</div>
-<div class="title">Figure 2. References to a UDF</div>
-</div>
 <div class="paragraph">
-<p>As <a href="#multiple-references-to-udf">Figure 2</a> shows, you can define multiple N1QL User-Defined Functions to point at the same JavaScript function.</p>
+<p>The N1QL User-Defined Function will take the same scope as the JavaScript UDF it is referencing.</p>
 </div>
 <div class="tabset is-loading">
 <div class="ulist tabs">

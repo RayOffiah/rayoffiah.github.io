@@ -1126,11 +1126,6 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../javascript-udfs/javascript-and-json-objects.html">JavaScript and JSON Objects</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="3">
-  <span class="menu_line">
     <a class="menu_title menu_link" href="../javascript-udfs/calling-javascript-from-n1ql.html">Calling JavaScript UDFs from N1QL</a>
   </span>
 </li>
@@ -4702,7 +4697,7 @@ Read the following for further information about the tools available for editing
 <h2 id="calling-the-n1ql-user-defined-function"><a class="anchor" href="#calling-the-n1ql-user-defined-function"></a>Calling the N1QL User-Defined Function</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A N1QL User-Defined Function is called through the Query Workbench, the REST API, or the CBQ shell.</p>
+<p>A N1QL User-Defined Function can be called from anywhere that a standard N1QL function can be called.</p>
 </div>
 <div class="tabset is-loading">
 <div class="ulist tabs">
@@ -4776,6 +4771,29 @@ Read the following for further information about the tools available for editing
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/execute-scoped-function.n1ql">EXECUTE FUNCTION default:`travel-sample`.`inventory`.GetBusinessDays("03/10/2022", "05/10.2022");</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The N1QL User-Defined Function can be used in any N1QL statement in exactly the same way as a standard built-in function.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/guides/examples/javascript-udfs/select-true-alias-get-business-days.n1ql">SELECT CASE 
+  WHEN  GetBusinessDays('02/14/2022', '4/16/2022') &gt; 44 THEN "true" 
+  ELSE "false" 
+  END 
+  AS response;</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
