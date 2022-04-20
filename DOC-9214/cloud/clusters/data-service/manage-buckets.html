@@ -238,6 +238,11 @@
     <a class="menu_title menu_link" href="../../clouds/private-network.html">Configure Private Network</a>
   </span>
 </li>
+<li class="menu_list" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../clouds/get-capella-host-name.html">Getting the Capella Host Name</a>
+  </span>
+</li>
 </ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="0">
@@ -894,11 +899,11 @@ In that model, the amount of memory you specify gets allocated on each Data Serv
 </div>
 </li>
 <li>
-<p><a id="backup-schedule"></a>Choose the backup schedule for the bucket.</p>
+<p>Choose the <strong>Backup Schedule</strong> for the bucket.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Choose from the <strong>Set Weekly Schedule</strong>, <strong>Set Daily Schedule</strong>, or <strong>No Schedule</strong> options.</p>
+<p>Choose between a <em>Weekly Schedule</em> or <em>Daily Schedule</em> according to the relative importance of the workload and data.</p>
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -906,26 +911,84 @@ In that model, the amount of memory you specify gets allocated on each Data Serv
 <i class="fa icon-caution" title="Caution"></i>
 </td>
 <td class="content">
-Choosing the <strong>No Schedule</strong> backup option is not recommended for production clusters.
+The <em>No Backup</em> option is not recommended for production clusters.
+It is intended only for development clusters or similar situations.
 </td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p>(<em>Set Weekly Schedule only</em>) Choose the day of the week you want the full backup to take place.</p>
+<p>(<em>Weekly Schedule only</em>) Set the <strong>Day of the week</strong> to when you want the <em>full backup</em> to be taken.
+The default value is <code>Sunday</code>.</p>
 </li>
 <li>
-<p>Set the start time for the full backup to be taken&#8201;&#8212;&#8201;preferably a time when your application is not making heavy use of Capella, unless you have chosen a service configuration with more capacity than you are likely to need.</p>
-</li>
-<li>
-<p>Choose the incremental frequency for the backup schedule.</p>
+<p>Set the <strong>Start at</strong> time of day for the <em>full backup</em> to be taken.</p>
 <div class="paragraph">
-<p>For example, <em>4 hours</em> or <em>1 Day</em>.</p>
+<p>Preferably, this should be a time when your application is not making heavy use of Capella unless you have chosen a VM with more capacity than you are likely to need.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This setting uses your local time zone.
+You can verify the timezone used by your Couchbase Capella account by reviewing your <a href="../../organizations/manage-account.html" class="page">account preferences</a>.
+</td>
+</tr>
+</table>
 </div>
 </li>
 <li>
-<p>Set a retention time in line with your data retention needs and practices.</p>
+<p>Set the <strong>Incremental Every</strong> setting to configure the frequency for <em>incremental backups</em>.</p>
+<div class="paragraph">
+<p>Depending on the schedule you have chosen, this setting can range from <code>4 Hours</code> to <code>1 Day</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you change the <strong>Start at</strong> time, the next Incremental backup may occur at a different time than you might expect.
+This is because the <strong>Incremental Value</strong> is calculated backward from the configured <strong>Start at</strong> time.</p>
+</div>
+<div class="paragraph">
+<p>For example, let&#8217;s say <strong>Incremental Every</strong> is currently set to <code>8 hours</code>, and <strong>Start at</strong> is set to <code>4:00 am</code>.
+If the current time is 9:00 pm, you would see that an Incremental backup was taken at 8:00 pm (an eight-hour interval backward from 4:00 am).
+If you were to then change the <strong>Start at</strong> to <code>6:00 am</code>, you would see another Incremental backup taken at 10:00 pm&#8201;&#8212;&#8201;just two hours after the last backup.
+This new backup occurs at this time because the eight-hour backup interval was recalculated <em>back</em> from the new <code>6:00 am</code> <strong>Incremental Every</strong> value to 10:00 pm.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Set the <strong>Retention Time</strong> so that it is in line with your data retention needs and practices.</p>
+<div class="paragraph">
+<p>The amount of time each backup is preserved can range from <code>30 Days</code> to <code>5 Years</code>.
+After this time period lapses, the backup is deleted.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <strong>Retention Time</strong> setting applies to all <em>future</em> backups for a bucket.
+Previous backups are unaffected by changes to this setting.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>For more information on backups, refer to the <a href="../backup-restore.html" class="page">Backup and Restore section</a>.</p>
 </div>

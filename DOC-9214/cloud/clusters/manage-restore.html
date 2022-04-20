@@ -10,7 +10,7 @@
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/clusters/manage-restore.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="A xref:clusters:backup-restore.adoc[cluster backup] can be restored onto the same cluster that it was created on, or it can be restored onto another cluster.">
+<meta name="description" content="A xref:clusters:backup-restore.adoc[backup] can be restored onto the same cluster that it was created on, or it can be restored onto another cluster.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -236,6 +236,11 @@
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../clouds/private-network.html">Configure Private Network</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../clouds/get-capella-host-name.html">Getting the Capella Host Name</a>
   </span>
 </li>
 </ul>
@@ -657,7 +662,7 @@
 </aside>
 <aside class="toc sidebar"
       data-title="Contents"
-      data-levels="1">
+      data-levels="2">
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
@@ -738,18 +743,390 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-A <a href="backup-restore.html" class="page">cluster backup</a> can be restored onto the same cluster that it was created on, or it can be restored onto another cluster.
+A <a href="backup-restore.html" class="page">backup</a> can be restored onto the same cluster that it was created on, or it can be restored onto another cluster.
 </blockquote>
 </div>
 <div class="paragraph">
-<p>Restoring data from cluster backups should only be considered in worst-case scenarios.
-Other methods of recovery, such as <a href="xdcr/xdcr.html" class="page">XDCR replication</a> from a redundant cluster, should be considered first lines of recovery.</p>
+<p>Restoring data from bucket backups should only be considered in worst-case scenarios.
+Other methods of recovery, such as <a href="xdcr/xdcr.html" class="page">XDCR replication</a> from a redundant cluster, should be considered the first lines of recovery.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="guidelines-and-limitations"><a class="anchor" href="#guidelines-and-limitations"></a>Guidelines and Limitations</h2>
+<h2 id="restore-prerequisites"><a class="anchor" href="#restore-prerequisites"></a>Prerequisites</h2>
 <div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">Permissions Required</div>
+<div class="paragraph">
+<p>To view and restore bucket data from a backup, the following permissions are required:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You must have the <a href="../projects/project-roles.html#project-owner-role" class="page"><code>Project Owner</code></a> role for the project containing the source cluster that created the backup, as well as the project containing the destination cluster of the restore. If you have the <code>Organization Owner</code> role, you already have the <a href="../projects/project-roles.html#project-owner-role" class="page"><code>Project Owner</code></a> role.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The source cluster that created the bucket backup must still exist.</p>
+</li>
+<li>
+<p>Backups can only be restored to a cluster running the same <a href="clusters.html#cluster-version" class="page">major version</a> (or higher) than the source cluster that created the backup.</p>
+</li>
+<li>
+<p>Data can only be restored to an existing bucket with the same name and <a href="data-service/manage-buckets.html#add-bucket" class="page">conflict resolution methods</a> as the bucket from the backup.
+If a bucket of the same name does not yet exist on the target cluster, you can complete a restore by choosing to <a href="#create-missing-bucket">automatically create the missing bucket</a>.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Any conflicts that occur during the restore will be resolved automatically using the conflict resolution method configured for the buckets.
+This means that if a key-value pair in the target bucket is newer than the one in the backup, then the one from the backup is <em>not</em> restored unless <a href="#overwrite-docs">otherwise specified</a> in the restore settings.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="restore-bucket"><a class="anchor" href="#restore-bucket"></a>Restore a Bucket</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to the <strong>Backups</strong> tab of the source cluster that created the backup that you wish to restore.</p>
+<div class="openblock">
+<div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Go to the <strong>Clusters</strong> tab in the main navigation.</p>
+</li>
+<li>
+<p>Find and click on the source cluster.</p>
+<div class="paragraph">
+<p>This action opens the cluster with its <strong>Metrics</strong> tab selected.</p>
+</div>
+</li>
+<li>
+<p>Click the <strong>Backups</strong> tab.</p>
+<div class="paragraph">
+<p>This action shows the <strong>Latest Backups Per Bucket</strong> list.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>You have the option of restoring the latest backup or an earlier backup.</p>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Restore the latest backup</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In the <strong>Latest Backups Per Bucket</strong> list, find the bucket with the backup that you want to restore and click the <strong>More options</strong> icon <span class="icon"><i class="fa fa-ellipsis-v"></i></span> on the right side of that bucket.</p>
+</li>
+<li>
+<p>Click <b class="button">Restore Latest Backup</b>.</p>
+</li>
+</ol>
+</div>
+</dd>
+<dt class="hdlist1">Restore an earlier backup</dt>
+<dd>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In the <strong>Latest Backups Per Bucket</strong> list, click the name of the bucket that you want to restore.</p>
+</li>
+<li>
+<p>A list of backups for the current bucket based on the selected date is shown. Click the <strong>More options</strong> icon <span class="icon"><i class="fa fa-ellipsis-v"></i></span> on the right side of the backup that you want to restore.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Clicking the calendar icon will produce a date picker that allows you to select a previous date when a backup cycle or on-demand backup occurred.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Restore Backup</b>.</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Either option opens the <strong>Restore Backup</strong> fly-out menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/backup-inspect-flyout-full-hosted.png" alt="The inspect fly-out menu of a Full backup. At the bottom of the fly-out is the 'Restore backup' button." width="400">
+</div>
+</div>
+</li>
+<li>
+<p>Specify the <strong>Destination Cluster</strong>.</p>
+<div class="paragraph">
+<p>The restore location can be the current cluster (chosen by default) or a different cluster in your organization.
+If you choose the <strong>Restore to a different cluster</strong> option, the <strong>Choose Cluster</strong> drop-down menu becomes available.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>(<em>Restore to a different cluster only</em>) Use the <strong>Cluster</strong> dropdown menu to select the cluster that is to be the destination of the restore.
+Only clusters that are located in the same <a href="../organizations/organizations.html#organizations" class="page">organization</a> are listed in the dropdown menu.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Choose the <strong>Services to Restore</strong>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Use the checkboxes provided in this section to choose which services you want to restore.
+By default, all options&#8201;&#8212;&#8201;<a href="data-service/data-service.html" class="page">Data</a>, <a href="query-service/query-service.html" class="page">Query</a>, <a href="index-service/index-service.html" class="page">Index</a>, and <a href="search-service/search-service.html" class="page">Search</a>&#8201;&#8212;&#8201;are selected.
+You must select at least one service.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a id="overwrite-docs"></a>(<em>Optional</em>) Apply <strong>Other Options</strong>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><strong>Overwrite Documents From Backup</strong></p>
+<div class="paragraph">
+<p>When enabled, this option will overwrite later versions of documents with earlier versions from the backup.
+This option is disabled by default.</p>
+</div>
+</li>
+<li>
+<p><strong>Automatically Remove Deleted Collections</strong></p>
+<div class="paragraph">
+<p>When enabled, this option will remove empty collections from the restore.
+This option is disabled by default.</p>
+</div>
+</li>
+<li>
+<p><a id="create-missing-bucket"></a><strong>Automatically Create Missing Buckets</strong></p>
+<div class="paragraph">
+<p>This option is useful if you&#8217;re restoring a deleted bucket.
+If you leave this option disabled and try to restore a backup for a bucket that no longer exists, the restore process will fail.
+This option is disabled by default.</p>
+</div>
+</li>
+<li>
+<p><strong>Filter Keys</strong></p>
+<div class="paragraph">
+<p>Use this field to enter a regular expression (RE2) to filter keys.
+This allows you to specifically restore only a portion of your dataset from the backup.</p>
+</div>
+</li>
+<li>
+<p><strong>Filter Values</strong></p>
+<div class="paragraph">
+<p>Use this field to enter a regular expression (RE2) to filter values.
+This allows you to specifically restore only a portion of your dataset from the backup.</p>
+</div>
+</li>
+<li>
+<p><strong>Map Data</strong></p>
+<div class="paragraph">
+<p>This field allows you to map data from the backup to differently named data containers on the cluster.
+For example, buckets can be remapped to other buckets (<code>bucket=newbucket</code>), scopes and collections to other scopes and collections in the same bucket (<code>bucket.scope=bucket.newscope</code> or <code>bucket.scope.collection=bucket.scope.newcollection</code>).
+Note that map sources can only be specified once and cannot overlap.</p>
+</div>
+</li>
+<li>
+<p><strong>Include Data</strong></p>
+<div class="paragraph">
+<p>Use this field to define only those buckets, scopes, or collections that you want to <em>include</em> from the restore.
+When items are added to this field, only those data containers will be restored and nothing else.
+Includes are defined as follows: <code>bucket</code>, <code>bucket.scope</code>, and <code>bucket.scope.collection</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+As buckets can contain periods, they must be escaped: <code>my\.bucket.my-scope</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Note that included data can only be specified once and cannot overlap (e.g. <code>bucket1</code> and <code>bucket1.scope1</code>).</p>
+</div>
+</li>
+<li>
+<p><strong>Exclude Data</strong></p>
+<div class="paragraph">
+<p>Use this field to define any buckets, scopes, or collections that you want to <em>exclude</em> from the restore.
+When items are added to this field, all data containers will be restored except for those that are specified.
+Excludes are defined as follows: <code>bucket</code>, <code>bucket.scope</code>, and <code>bucket.scope.collection</code>.</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Once you&#8217;re ready to initiate the restore, click <b class="button">Restore</b>.</p>
+<div class="paragraph">
+<p>There can be a delay while the restore is scheduled before the restore process takes place.
+Once the process starts, the status of the operation is shown in a <a href="scale-cluster.html#jobs" class="page">jobs panel</a> that will appear near the top of the cluster page. Corresponding events are also added to the <a href="monitoring/activity-explorer.html" class="page">Activity Explorer</a>.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="restore-indexes"><a class="anchor" href="#restore-indexes"></a>Restore Indexes</h2>
+<div class="sectionbody">
+<div id="permissions-required-index" class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">Permissions Required</div>
+<div class="paragraph">
+<p>To access indexes in the Couchbase Capella UI, the following roles are required:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You must have the <a href="../projects/project-roles.html#project-owner-role" class="page"><code>Project Owner</code></a> or <a href="../projects/project-roles.html#project-cluster-data-reader-writer" class="page"><code>Cluster Data Reader/Writer</code></a> role for the project that contains the cluster.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If GSI indexes were included in the bucket that you restored, they are automatically restored in a round-robin fashion among the current nodes running the Index Service.
+However, these indexes will only be created, <em>not built</em>.</p>
+</div>
+<div class="paragraph">
+<p>The reason that indexes are created and not built is that Couchbase Capella does not know the optimal index topology ahead of time.
+By not building the indexes, it gives you the option to manually move each index between nodes and build them yourself.
+However, if you find the automatic index distribution acceptable, you can use the Capella UI to rebuild each index.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">To Rebuild an Automatically-Restored GSI Index</dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to the cluster&#8217;s <strong>Tools &gt; Indexes</strong> tab.</p>
+<div class="openblock">
+<div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Go to the <strong>Clusters</strong> tab in the main navigation.</p>
+</li>
+<li>
+<p>Find and click on the cluster on which you restored a backup.</p>
+<div class="paragraph">
+<p>This opens the cluster with its <strong>Metrics</strong> tab selected.</p>
+</div>
+</li>
+<li>
+<p>Click the <strong>Tools &gt; Indexes</strong> tab.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Each index that was restored will display a status of <strong>Created</strong>.
+Click the Play icon <span class="icon"><i class="fa fa-play"></i></span> in the <strong>Status</strong> column for each index that you wish to rebuild.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/indexes-tab-rebuild-index-after-restore-hosted.png" alt="The 'Tools &gt; Indexes' tab showing multiple indexes with a status of 'Created' with Play icons.">
+</div>
+</div>
+<div class="paragraph">
+<p>Each index that you build will display the <strong>Ready</strong> status when the process is complete.</p>
+</div>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="restore-invpc"><a class="anchor" href="#restore-invpc"></a>Restore a Backup in Own VPC</h2>
+<div class="sectionbody">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This information is for anyone still using Couchbase Server 6.6, hosted in their own cloud provider&#8217;s VPC.
+It does not apply to Couchbase 7.0, hosted in Couchbase&#8217;s VPC and fully managed for you.</p>
+</div>
+<div class="paragraph">
+<p>For further information <a href="https://www.couchbase.com/products/capella">contact Couchbase</a>.</p>
+</div>
+<div class="paragraph">
+<p>The easiest way to get started with Capella, our fully managed DBaaS, is <a href="../get-started/get-started.html" class="page">hosting in Couchbase&#8217;s Cloud</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="guidelines-and-limitations"><a class="anchor" href="#guidelines-and-limitations"></a>Guidelines and Limitations</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -762,7 +1139,7 @@ Other methods of recovery, such as <a href="xdcr/xdcr.html" class="page">XDCR re
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Although backups are preserved in the connected cloud even after a cluster is deleted, the only <em>user-accessible</em> method for restoring a backup requires that you be able to access the source cluster&#8217;s <strong class="ui">Backup &amp; Restore</strong> tab.</p>
+<p>Although backups are preserved in the connected cloud even after a cluster is deleted, the only <em>user-accessible</em> method for restoring a backup requires that you be able to access the source cluster&#8217;s <strong>Backup &amp; Restore</strong> tab.</p>
 </div>
 <div class="paragraph">
 <p>If you need to restore a backup from a cluster that is no longer available in the Capella UI (such as after an accidental cluster deletion), please <a href="../support/manage-support.html" class="page">contact Couchbase Capella Support</a> for assistance.
@@ -819,10 +1196,8 @@ If the failed node is not removed, then the restore will fail.</p>
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="restore-bucket"><a class="anchor" href="#restore-bucket"></a>Restore Bucket Data</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="restore-bucket-vpc"><a class="anchor" href="#restore-bucket-vpc"></a>Restore Bucket Data</h3>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -848,22 +1223,22 @@ If the failed node is not removed, then the restore will fail.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to the <strong class="ui">Backup &amp; Restore</strong> tab of the source cluster that created the backup that you wish to restore.</p>
+<p>Go to the <strong>Backup &amp; Restore</strong> tab of the source cluster that created the backup that you wish to restore.</p>
 <div class="openblock">
 <div class="content">
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Go to the <strong class="ui">Clusters</strong> tab in the main navigation.</p>
+<p>Go to the <strong>Clusters</strong> tab in the main navigation.</p>
 </li>
 <li>
 <p>Find and click on the source cluster.</p>
 <div class="paragraph">
-<p>This opens the cluster with its <strong class="ui">Overview</strong> tab selected.</p>
+<p>This opens the cluster with its <strong>Overview</strong> tab selected.</p>
 </div>
 </li>
 <li>
-<p>Click the <strong class="ui">Backup &amp; Restore</strong> tab.</p>
+<p>Click the <strong>Backup &amp; Restore</strong> tab.</p>
 </li>
 </ol>
 </div>
@@ -871,7 +1246,7 @@ If the failed node is not removed, then the restore will fail.</p>
 </div>
 </li>
 <li>
-<p>In the <strong class="ui">Backups</strong> list, find and click on the backup that you wish to restore.</p>
+<p>In the <strong>Backups</strong> list, find and click on the backup that you wish to restore.</p>
 <div class="paragraph">
 <p>This opens the backup&#8217;s fly-out menu.</p>
 </div>
@@ -885,7 +1260,7 @@ If the failed node is not removed, then the restore will fail.</p>
 <p>Click <b class="button">Restore backup</b>.</p>
 </li>
 <li>
-<p>Specify the <strong class="ui">Restore Location</strong>.</p>
+<p>Specify the <strong>Restore Location</strong>.</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/backup-inspect-flyout-restore-location.png" alt="The Restore fly-out menu showing the 'Restore Location' section." width="500">
@@ -900,10 +1275,10 @@ This can be the same cluster that created the backup, or it can be another clust
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Use the <strong class="ui">Project</strong> dropdown menu to select the project that contains the cluster that is to be the destination of the restore.</p>
+<p>Use the <strong>Project</strong> dropdown menu to select the project that contains the cluster that is to be the destination of the restore.</p>
 </li>
 <li>
-<p>Use the <strong class="ui">Cluster</strong> dropdown menu to select the cluster that is to be the destination of the restore.
+<p>Use the <strong>Cluster</strong> dropdown menu to select the cluster that is to be the destination of the restore.
 Only clusters that are located in the same connected cloud appear in the dropdown menu.</p>
 </li>
 </ol>
@@ -931,10 +1306,8 @@ Only clusters that are located in the same connected cloud appear in the dropdow
 </ol>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="restore-indexes"><a class="anchor" href="#restore-indexes"></a>Restoring Indexes</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="restore-indexes-vpc"><a class="anchor" href="#restore-indexes-vpc"></a>Restoring Indexes</h3>
 <div class="paragraph">
 <p>If GSI indexes were included in the bucket that you restored, they are automatically restored in a round-robin fashion among the current nodes running the Index Service.
 However, these indexes will only be created, <em>not built</em>.</p>
@@ -946,7 +1319,7 @@ By not building the indexes, it gives you the option to manually move each index
 <div class="paragraph">
 <p>However, if you find the automatic index distribution acceptable, you can use the Capella UI to rebuild each index.</p>
 </div>
-<div id="permissions-required" class="admonitionblock important">
+<div id="permissions-required-index-vpc" class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
@@ -972,22 +1345,22 @@ By not building the indexes, it gives you the option to manually move each index
 <div class="title">To Rebuild an Automatically-Restored GSI Index</div>
 <ol class="arabic">
 <li>
-<p>Go to the cluster&#8217;s <strong class="ui">Tools &gt; Indexes</strong> tab.</p>
+<p>Go to the cluster&#8217;s <strong>Tools &gt; Indexes</strong> tab.</p>
 <div class="openblock">
 <div class="content">
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Go to the <strong class="ui">Clusters</strong> tab in the main navigation.</p>
+<p>Go to the <strong>Clusters</strong> tab in the main navigation.</p>
 </li>
 <li>
 <p>Find and click on the cluster on which you restored a backup.</p>
 <div class="paragraph">
-<p>This opens the cluster with its <strong class="ui">Overview</strong> tab selected.</p>
+<p>This opens the cluster with its <strong>Overview</strong> tab selected.</p>
 </div>
 </li>
 <li>
-<p>Click the <strong class="ui">Tools &gt; Indexes</strong> tab.</p>
+<p>Click the <strong>Tools &gt; Indexes</strong> tab.</p>
 </li>
 </ol>
 </div>
@@ -995,8 +1368,8 @@ By not building the indexes, it gives you the option to manually move each index
 </div>
 </li>
 <li>
-<p>Each index that was restored will display a status of <strong class="ui">Created</strong>.
-Click the Play icon in the <strong class="ui">Status</strong> column for each index that you wish to rebuild.</p>
+<p>Each index that was restored will display a status of <strong>Created</strong>.
+Click the Play icon in the <strong>Status</strong> column for each index that you wish to rebuild.</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/indexes-tab-rebuild-index-after-restore.png" alt="The 'Tools &gt; Indexes' tab showing multiple indexes with a status of 'Created' with Play icons.">
@@ -1004,6 +1377,7 @@ Click the Play icon in the <strong class="ui">Status</strong> column for each in
 </div>
 </li>
 </ol>
+</div>
 </div>
 </div>
 </div>

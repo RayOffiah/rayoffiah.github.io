@@ -10,6 +10,7 @@
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/clusters/allow-ip-address.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="Before a cluster can connect to a client, you must add that client&#x27;s IP address to the cluster&#x27;s Allowed IP list.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -235,6 +236,11 @@
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../clouds/private-network.html">Configure Private Network</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../clouds/get-capella-host-name.html">Getting the Capella Host Name</a>
   </span>
 </li>
 </ul>
@@ -736,7 +742,7 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-Before a cluster can connect to a client, you must add that client&#8217;s IP address to the cluster&#8217;s list of allowed IP addresses.
+Before a cluster can connect to a client, you must add that client&#8217;s IP address to the cluster&#8217;s Allowed IP list.
 </blockquote>
 </div>
 </div>
@@ -746,12 +752,10 @@ Before a cluster can connect to a client, you must add that client&#8217;s IP ad
 <div class="sectionbody">
 <div class="paragraph">
 <p>Couchbase Capella only allows clusters to connect to trusted IP addresses.
-Each cluster has a configurable list of <em>allowed IPs</em> that it can connect to.
-Any connection attempts to and from an IP address that isn&#8217;t in a cluster&#8217;s list of allowed IPs are denied.</p>
-</div>
-<div class="paragraph">
-<p>Allowed IPs are configured per cluster and can be configured for a single address or an address space.
-Allowed IPs can also be made temporary with user-specified expiration times.</p>
+Each cluster has a configurable <em>Allowed IP</em> list that can include up to 75 entries.
+Each entry can be a single IP address or an IP address space.
+Any IP address you add to this list can have a user-specified expiration time for temporary access or be permanent.
+Capella automatically denies any connection attempts to and from an IP not in the allowed IP list.</p>
 </div>
 </div>
 </div>
@@ -840,7 +844,7 @@ Hovering your mouse over this icon will reveal the text of the comment in a tool
 <h2 id="add-allowed-ip"><a class="anchor" href="#add-allowed-ip"></a>Add an Allowed IP Address</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To add an IP address to a cluster&#8217;s list of allowed IPs, you must have the <a href="../projects/project-roles.html#project-owner-role" class="page"><code>Project Owner</code></a> or <a href="../projects/project-roles.html#project-cluster-manager-role" class="page"><code>Cluster Manager</code></a> role for the project containing the cluster you are allowing the IP for.</p>
+<p>To add an IP address to a cluster&#8217;s list of up to 75 allowed IPs, you must have the <a href="../projects/project-roles.html#project-owner-role" class="page"><code>Project Owner</code></a> or <a href="../projects/project-roles.html#project-cluster-manager-role" class="page"><code>Cluster Manager</code></a> role for the project containing the cluster you are allowing the IP for.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -854,7 +858,7 @@ Hovering your mouse over this icon will reveal the text of the comment in a tool
 <p>Go to the <strong>Clusters</strong> tab in the main navigation.</p>
 </li>
 <li>
-<p>Find and click on the cluster that you wish to add an allowed IP to.</p>
+<p>Find and click on the cluster where you wish to add an allowed IP.</p>
 <div class="paragraph">
 <p>This opens the cluster with its <strong>Metrics</strong> tab selected.</p>
 </div>
@@ -996,7 +1000,7 @@ Instead, you&#8217;ll need to <a href="#delete-allowed-ip">delete</a> the allowe
 <p>Go to the <strong>Clusters</strong> tab in the main navigation.</p>
 </li>
 <li>
-<p>Find and click on the cluster that you wish to add an allowed IP to.</p>
+<p>Find and click on the cluster where you want to delete an allowed IP.</p>
 <div class="paragraph">
 <p>This opens the cluster with its <strong>Metrics</strong> tab selected.</p>
 </div>

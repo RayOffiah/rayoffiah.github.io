@@ -4746,7 +4746,7 @@ A library can contain one or more functions, and can also be assigned to a <code
 </div>
 <div id="javascript-scopes" class="imageblock kroki">
 <div class="content">
-<img src="_images/diag-7adf1bde693c687e9d85db8729063c6b0853f6b7.svg" alt="Javascript UDFs Structure">
+<img src="_images/diag-375523d4e4664b9a4a134c86e0d2909ca1498344.svg" alt="Javascript UDFs Structure">
 </div>
 <div class="title">Figure 1. Javascript UDFs Structure</div>
 </div>
@@ -4757,9 +4757,6 @@ A library can contain one or more functions, and can also be assigned to a <code
 <ul>
 <li>
 <p>A global library accessible across the cluster.</p>
-</li>
-<li>
-<p>A library (<code>bucket-library</code>) that is available to anyone with access the bucket.</p>
 </li>
 <li>
 <p>The library <code>my-library</code> lives within the <code>Bucket.Scope</code>, so can only be accessed by users with access rights to that scope.</p>
@@ -4783,14 +4780,14 @@ You can find an introduction to scopes in our <a href="../tutorials/buckets-scop
 </div>
 <div id="scopes-for-udf" class="imageblock kroki">
 <div class="content">
-<img src="_images/diag-a7790a07d6660d36e80e439f66e6dca3e57c47d3.svg" alt="Scopes for JavaScript Libraries">
+<img src="_images/diag-fa6ec851e11287afb672ca681537cca64a73cd81.svg" alt="Scopes for JavaScript Libraries">
 </div>
 <div class="title">Figure 2. Scopes for JavaScript Libraries</div>
 </div>
 <div class="paragraph">
 <p>The user does not call the JavaScript functions (shown here as <code>getBusinessDays(startDate, endDate)</code>) directly; a <strong>N1QL User-Defined Function</strong> is defined to act a reference caller to the JavaScript function.
 This makes it possible to define multiple entry points to the same JavaScript function, allowing for the same function to be supplied with different parameter lists.
-(For more information on variable parameter lists, see <a href="calling-javascript-from-n1ql.html#variadic-parameters" class="page">Calling N1QL from JavaScript</a>)</p>
+(For more information on variable parameter lists, see <a href="calling-javascript-from-n1ql.html#variadic-parameters" class="page">Calling N1QL from JavaScript</a>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -4830,7 +4827,8 @@ function increment() {
 </div>
 </div>
 <div class="paragraph">
-<p>Along with global state, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">arrow functions</a> are also not supported.</p>
+<p>Along with global state, global <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">arrow functions</a> are not supported.
+Arrow functions local to individual javascript functions are supported.</p>
 </div>
 </div>
 <div class="sect2">

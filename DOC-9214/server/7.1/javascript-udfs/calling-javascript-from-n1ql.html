@@ -4717,79 +4717,47 @@ As well as providing a logical separation between JavaScript libraries, using sc
 </table>
 </div>
 <div class="sect2">
-<h3 id="the-global-scope"><a class="anchor" href="#the-global-scope"></a>The Global scope</h3>
+<h3 id="global-library-path"><a class="anchor" href="#global-library-path"></a>Global Library Path</h3>
 <div class="paragraph">
-<p>Of course, you can define the library and N1QL User-Defined Function with a <code>global</code> scope by defining them without the scope parameters.
-Functions with a global scope are accessible across the cluster.</p>
+<p>Of course, you can define the library with at the cluster level, where it will be accessible to anyone who has the access rights to the cluster.
+Functions in the global library are accessible across the cluster.</p>
 </div>
 <div class="listingblock">
-<div class="title">Creating a N1QL User-Defined Function with a global scope</div>
+<div class="title">Creating a N1QL User-Defined Function to access the JavaScript function in the global library</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/create-globally-scoped-n1ql-udf.n1ql">CREATE FUNCTION GetBusinessDays(startDate, endDate)
 LANGUAGE JAVASCRIPT as "getBusinessDays"
-AT "my-library";</code></pre>
+AT "my-library";  <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>There is no prefix path before <code>my-library</code> which means the library is a globally accessible library defined at the cluster level.</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="using-scopes-to-secure-and-partition-logic"><a class="anchor" href="#using-scopes-to-secure-and-partition-logic"></a>Using Scopes to Secure and Partition Logic</h3>
+<h3 id="relative-library-path"><a class="anchor" href="#relative-library-path"></a>Relative Library Path</h3>
 <div class="paragraph">
-<p>By placing functions in separate scopes, it&#8217;s possible to reuse the same function name across a number of scopes.</p>
-</div>
-<div class="paragraph">
-<p>For example, say we have a banking application that separates banks across different buckets. Each bank could use a different calculation for daily interest, that should only be accessible by users for that particular bank:</p>
-</div>
-<div id="banking-scope-scenario" class="imageblock kroki">
-<div class="content">
-<img src="_images/diag-0de5abe6654312e5aafed74c7127459994ee607e.svg" alt="Using Multipe Scopes">
-</div>
-<div class="title">Figure 1. Using Multipe Scopes</div>
-</div>
-<div class="paragraph">
-<p>The important thing to note is that the two N1QL User-Defined Functions the same name and parameter signature, but have been created to point to two different functions in different libraries/scopes:</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_for-the-uk-user"></a>for the UK User</p>
-</li>
-<li>
-<p><a id="tabset1_for-the-us-user"></a>for the US User</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_for-the-uk-user">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/create-bank-interest-function-uk.n1ql">CREATE FUNCTION default:`bank-database`.`UKBank`.GetInterest(...)
-LANGUAGE JAVASCRIPT as "getInterestInSterling"
-AT "bank-database/UKBank/bank-library"</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_for-the-us-user">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/create-bank-interest-function-us.n1ql">CREATE FUNCTION default:`bank-database`.`USBank`.GetInterest(...)
-LANGUAGE JAVASCRIPT as "getInterestInDollars"
-AT "bank-database/USBank/bank-library"</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Now when the N1QL User-Defined Function is called:</p>
+<p>You can also use relative paths for the library location:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/execute-function-get-interest.n1ql">EXECUTE FUNCTION GetInterest(10, 0.25);</code></pre>
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/create-relatively-scoped-n1ql-udf.n1ql">CREATE FUNCTION GetBusinessDays(startDate, endDate)
+LANGUAGE JAVASCRIPT as "getBusinessDays"
+AT "./my-library";  <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>the context of the user will define which of the N1QL User-Defined Functions is executed (even though they have the same name), and so which underlying JavaScript function is called.</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>In this case, the User-Defined Function will be created for the JavaScript function under the current <a href="../tools/query-workbench.html#query-context" class="page">query context</a>.</td>
+</tr>
+</table>
 </div>
 </div>
 </div>

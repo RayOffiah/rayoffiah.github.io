@@ -4710,7 +4710,7 @@ This gives the developer the option of responding with a more user-friendly mess
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/add-airline-with-check.js">function addAirlineWithCheck(id, name, callsign, country) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/add-airline-with-check-return.js">function addAirlineWithCheckReturn(id, name, callsign, country) {
 
     const full_id = "airline_" + id   
     const d = new Date().toJSON();    
@@ -4742,14 +4742,156 @@ This gives the developer the option of responding with a more user-friendly mess
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/add-airline-with-check-failure-response.json5">[
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/add-airline-with-check-failure-return-response.jsonc">[
   "failure"
 ]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Unfortunately, this doesn&#8217;t tell use very much about what caused the error, or indeed, the possibility of taking an alternative course of action depending on the type of error encountered.
-To make the error-handling a bit more useful, we first have to parse the error using  <code>JSON.parse</code>.</p>
+<p>Alternatively, we can simply throw the error, rather than returning it as a string:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/add-airline-with-check-throw.js">function addAirlineWithCheckThrow(id, name, callsign, country) {
+
+    const full_id = "airline_" + id   
+    const d = new Date().toJSON();    
+
+    try {
+        
+        var q = insert into `travel-sample`.`inventory`.`airline` values(
+            $full_id,
+            {"id": $id,
+                "type": "airline",
+                "name": $name,
+                "ca1": "Q5",
+                "icao": "MLA",
+                "callsign": $callsign,
+                "country": $country,
+                "opdate": $d}); 
+        
+        return "success"
+    }
+    catch (error) {
+        throw "failure"
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>which will produce the following result:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/add-airline-with-check-failure-throw-response.jsonc">[
+  {
+    "code": 10109,
+    "msg": "Error executing function 'AddAirlineWithCheckThrow' (travel-sample/inventory/my-library:addAirlineWithCheckThrow)",
+    "reason": {
+      "details": {
+        "Code": "        throw \"failure\"",
+        "Exception": "failure",
+        "Location": "functions/travel-sample/inventory/my-library.js:49"
+      },
+      "type": "Exceptions from JS code"
+    }
+  }
+]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As well as wrapping the expection in a detailed JSON object, there is another fundamental difference between throwing an error or returning it:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Throw vs Return</div>
+<div class="paragraph">
+<p>Aside from the data returned, throwing an error or returning a value/error will affect how subsequent N1QL operations are processed.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>Returning an  error</strong></dt>
+<dd>
+<p>If the JavaScript function <em>returns</em> any value, then the N1QL runtime will assume that the function completed successfully, and the caller will continue to run subsequent statements.</p>
+</dd>
+<dt class="hdlist1"><strong>Throwing an error</strong></dt>
+<dd>
+<p>If an error is <em>thrown</em> then this is treated as an error condition, so further statements in the request will not be run.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You can, of course, throw the error object itself, rather than just a string.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/add-airline-with-check-throw-object.js">function addAirlineWithCheckThrowObject(id, name, callsign, country) {
+
+    const full_id = "airline_" + id   
+    const d = new Date().toJSON();    
+
+    try {
+        
+        var q = insert into `travel-sample`.`inventory`.`airline` values(
+            $full_id,
+            {"id": $id,
+                "type": "airline",
+                "name": $name,
+                "ca1": "Q5",
+                "icao": "MLA",
+                "callsign": $callsign,
+                "country": $country,
+                "opdate": $d}); 
+        
+        return "success"
+    }
+    catch (error) {
+        throw error
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>which deliver a lot more useful information than just posting back a string:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/javascript-udfs/examples/add-airline-with-check-failure-throw-object-response.jsonc">[
+  {
+    "code": 10109,
+    "msg": "Error executing function 'AddAirlineWithCheckThrowObject' (travel-sample/inventory/my-library:addAirlineWithCheckThrowObject)",
+    "reason": {
+      "details": {
+        "Code": "        throw error",
+        "Exception": {
+          "caller": "couchbase:2112",
+          "cause": {
+            "caller": "couchbase:1985",
+            "code": 17012,
+            "key": "dml.statement.duplicatekey",
+            "message": "Duplicate Key: airline_10"
+          },
+          "code": 12009,
+          "icause": "Duplicate Key: airline_10",
+          "key": "datastore.couchbase.DML_error",
+          "message": "DML Error, possible causes include concurrent modification. Failed to perform INSERT on key airline_10",
+          "retry": false
+        },
+        "Location": "functions/travel-sample/inventory/my-library.js:75",
+        "Stack": "   at addAirlineWithCheckThrowObject (functions/travel-sample/inventory/my-library.js:61:17)"
+      },
+      "type": "Exceptions from JS code"
+    }
+  }
+]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Another approach is to parse the error using the <code>JSON.parse()</code> function and return the resulting object:</p>
 </div>
 <div class="listingblock">
 <div class="content">
