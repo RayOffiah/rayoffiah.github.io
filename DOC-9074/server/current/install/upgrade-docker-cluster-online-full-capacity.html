@@ -4546,8 +4546,18 @@ A Docker cluster with multiple nodes can be upgraded live, while maintaining ful
 <div class="paragraph">
 <p>The context and overall requirements for upgrading a live cluster without the introduction of one or more additional nodes are described in <a href="upgrade-procedure-selection.html" class="page">Upgrade-Procedure Selection</a>: this  explains the node-by-node upgrade of the cluster, using the <em>swap rebalance</em> process to minimize overhead.</p>
 </div>
-<div class="paragraph">
-<p>It also explains how, if additional nodes are not available, the procedure can be completed with no more than the existing cluster-nodes, provided that the cluster can perform acceptably at reduced capacity, during the upgrade.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is not possible to upgrade a Docker cluster with a single node.
+A second node will need to be added to the cluster.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The precise steps for this procedure are detailed on this page, below.
@@ -4664,7 +4674,7 @@ docker volume prune</code></pre>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="title">Reusing existing volumes</div>
+<div class="title">Re-using existing volumes</div>
 <div class="paragraph">
 <p>You cannot re-use existing volumes when replacing a docker container, so it is not possible to use the same data set by pointing the new container at an existing volume.</p>
 </div>
