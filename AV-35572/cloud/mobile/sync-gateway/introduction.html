@@ -6,17 +6,17 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
-<title>Creating Application Users | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/mobile/user-management/create-user.html">
+<title>The Sync Gateway | Couchbase Docs</title>
+<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/mobile/sync-gateway/introduction.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="Creating users for a synchronized application, using the Capella UI">
+<meta name="description" content="A short introduction to Couchbase&#x27;s Sync Gateway and how to get started using it.]">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="cloud">
 <meta name="dcterms.identifier" content="master">
-<meta name="page-url" content="/cloud/mobile/user-management/create-user.html">
+<meta name="page-url" content="/cloud/mobile/sync-gateway/introduction.html">
 <meta name="generator" content="Antora 3.0.1">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
 </head>
@@ -487,9 +487,9 @@
     <a class="menu_title menu_link" href="../index.html">Overview</a>
   </span>
 </li>
-<li class="menu_list is-current-page" data-depth="1">
+<li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link is-current-page" href="create-user.html">Creating Application Users</a>
+    <a class="menu_title menu_link" href="../user-management/create-user.html">Creating Application Users</a>
   </span>
 </li>
 </ul>
@@ -679,7 +679,7 @@
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/couchbase-cloud/docs/public/modules/mobile/pages/user-management/create-user.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/couchbase-cloud/docs/public/modules/mobile/pages/sync-gateway/introduction.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -738,72 +738,51 @@
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../../index.html">Couchbase Capella</a></li>
-<li class="crumb">Capella Mobile</li>
-<li class="crumb"><a href="create-user.html">Creating Application Users</a></li>
+<li class="crumb"><a href="introduction.html">The Sync Gateway</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Creating Application Users</h1>
+<h1 class="page">The Sync Gateway</h1>
 </div>
 <div class="contributor-list-box">
 <span class="last-commit-date" id="commitdate">    </span>
 <ul id="contributorList"></ul>
 <span  id="otherContributor"> + </span>
-</div><div class="quoteblock abstract">
-<blockquote>
-Creating users for a synchronized application, using the Capella UI
-</blockquote>
+</div><div class="paragraph">
+<p>Sync Gateway is the synchronization server in a Couchbase Mobile deployment.
+It is designed to provide data synchronization for large-scale interactive web, mobile, and IoT applications</p>
 </div>
-<div class="paragraph">
-<p>In this section, we&#8217;ll show you how to create new users  for a gateway application service.
-Before you start, make sure you&#8217;re logged on to your Capella instance as an administrator.</p>
-</div>
-<div class="paragraph">
-<p>From the Capella administration page, select the <b class="menuref">App Services</b> menu item.
-This will bring you to the App Services screen.</p>
-</div>
-<div class="imageblock">
+<div id="fig-mobile-server" class="imageblock">
 <div class="content">
-<img src="../_images/user-management/app-service-screen.png" alt="app service screen">
+<img src="../_images/sync-gateway/cbm-architecture.png" alt="cbm architecture">
 </div>
+<div class="title">Figure 1. Couchbase Mobile&#8201;&#8212;&#8201;Deployment Architecture</div>
 </div>
 <div class="paragraph">
-<p>Now select the app service from the list.
-From the Services screen, you can select the application endpoint.</p>
+<p>As you can see from <a href="#fig-mobile-server">Figure 1</a> Sync Gateway synchronizes changes made by web clients through its REST API, Couchbase Lite mobile-device applications, and Couchbase Server buckets.</p>
 </div>
-<div class="imageblock">
+<div class="paragraph">
+<p>Sync Gateway assures secure access control using:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>User authentication</strong>, which ensures that only authorized users can connect to Sync Gateway.</p>
+</li>
+<li>
+<p><strong>Data Routing</strong>, which ensures that authorized users can only access documents in the channels assigned to them and only in accordance with their assigned privileges.</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
 <div class="content">
-<img src="../_images/user-management/select-app-endpoint.png" alt="select app endpoint">
-</div>
-</div>
+<div class="title">Further reading</div>
 <div class="paragraph">
-<p>The next screen will allow you to configure the endpoint.
-Make sure the Security tab is selected.
-From the Security tab, press <b class="button">App Users</b>:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/user-management/press-for-app-users.png" alt="press for app users">
+<p><a href="introduction.html" class="xref page">The Sync Gateway</a></p>
 </div>
 </div>
-<div class="paragraph">
-<p>This will take you to the App Users tab.
-Click on the <strong>&#43;&#160;Create App User</strong> link on the right of the list.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/user-management/create-app-user-screen.png" alt="create app user screen" width="600">
-</div>
-</div>
-<div class="paragraph">
-<p>From here, you can fill in the UserName, the password and set whether the user is enabled.
-You can also set the application channels that the user will have access to.
-(For more information on channels, see <a href="../channels/channels.html" class="xref page">Channels</a>)</p>
-</div>
-<div class="paragraph">
-<p>At this point, you can also assign administration roles to your new user.</p>
 </div>
 </article>
 </main>

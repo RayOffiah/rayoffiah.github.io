@@ -6,17 +6,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
-<title>Creating Application Users | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/mobile/user-management/create-user.html">
+<title>Channels | Couchbase Docs</title>
+<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/mobile/channels/channels.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="Creating users for a synchronized application, using the Capella UI">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="cloud">
 <meta name="dcterms.identifier" content="master">
-<meta name="page-url" content="/cloud/mobile/user-management/create-user.html">
+<meta name="page-url" content="/cloud/mobile/channels/channels.html">
 <meta name="generator" content="Antora 3.0.1">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
 </head>
@@ -487,9 +486,9 @@
     <a class="menu_title menu_link" href="../index.html">Overview</a>
   </span>
 </li>
-<li class="menu_list is-current-page" data-depth="1">
+<li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link is-current-page" href="create-user.html">Creating Application Users</a>
+    <a class="menu_title menu_link" href="../user-management/create-user.html">Creating Application Users</a>
   </span>
 </li>
 </ul>
@@ -679,7 +678,7 @@
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/couchbase-cloud/docs/public/modules/mobile/pages/user-management/create-user.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/couchbase-cloud/docs/public/modules/mobile/pages/channels/channels.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -738,72 +737,88 @@
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../../index.html">Couchbase Capella</a></li>
-<li class="crumb">Capella Mobile</li>
-<li class="crumb"><a href="create-user.html">Creating Application Users</a></li>
+<li class="crumb"><a href="channels.html">Channels</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Creating Application Users</h1>
+<h1 class="page">Channels</h1>
 </div>
 <div class="contributor-list-box">
 <span class="last-commit-date" id="commitdate">    </span>
 <ul id="contributorList"></ul>
 <span  id="otherContributor"> + </span>
-</div><div class="quoteblock abstract">
+</div><div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock abstract">
 <blockquote>
-Creating users for a synchronized application, using the Capella UI
+About Sync Gateway <em>Channels</em> and their part in data routing and access control for secure cloud-to-edge enterprise data synchronization.
 </blockquote>
 </div>
-<div class="paragraph">
-<p>In this section, we&#8217;ll show you how to create new users  for a gateway application service.
-Before you start, make sure you&#8217;re logged on to your Capella instance as an administrator.</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="concept"><a class="anchor" href="#concept"></a>Concept</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>From the Capella administration page, select the <b class="menuref">App Services</b> menu item.
-This will bring you to the App Services screen.</p>
+<p>Sync Gateway uses <em>Channels</em> to make it easy to share a database&#8217;s documents across a large user base whilst retaining effective access control.
+They serve as a security conduit between the document and a user:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../_images/user-management/app-service-screen.png" alt="app service screen">
+<img src="../_images/channels/channels-example-all.png" alt="Access Control using Channels" width="400">
 </div>
+<div class="title">Figure 1. Channels in Access Control</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Every document in the database is assigned a list of channels it is distributed to.
+Every user (or role) is granted access to a list of channels.
+This dual-purpose is reflected in the way you use channels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>By granting a user access to a channel, you are imposing access control</p>
+</li>
+<li>
+<p>By assigning a document to a channel you are imposing document routing</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Now select the app service from the list.
-From the Services screen, you can select the application endpoint.</p>
+<p>You typically will use channels to:</p>
 </div>
-<div class="imageblock">
+<div class="ulist">
+<ul>
+<li>
+<p>Control who can access what</p>
+</li>
+<li>
+<p>Partition your data set</p>
+</li>
+<li>
+<p>Enable users to access just the documents they need</p>
+</li>
+<li>
+<p>Minimize the amount of data synced to mobile devices</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
 <div class="content">
-<img src="../_images/user-management/select-app-endpoint.png" alt="select app endpoint">
-</div>
-</div>
+<div class="title">Further Reading</div>
 <div class="paragraph">
-<p>The next screen will allow you to configure the endpoint.
-Make sure the Security tab is selected.
-From the Security tab, press <b class="button">App Users</b>:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/user-management/press-for-app-users.png" alt="press for app users">
+<p><a href="../../../sync-gateway/current/channels.html" class="xref page">Channels</a></p>
 </div>
 </div>
-<div class="paragraph">
-<p>This will take you to the App Users tab.
-Click on the <strong>&#43;&#160;Create App User</strong> link on the right of the list.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/user-management/create-app-user-screen.png" alt="create app user screen" width="600">
 </div>
 </div>
-<div class="paragraph">
-<p>From here, you can fill in the UserName, the password and set whether the user is enabled.
-You can also set the application channels that the user will have access to.
-(For more information on channels, see <a href="../channels/channels.html" class="xref page">Channels</a>)</p>
-</div>
-<div class="paragraph">
-<p>At this point, you can also assign administration roles to your new user.</p>
 </div>
 </article>
 </main>
