@@ -198,7 +198,7 @@
 <div class="paragraph">
 <p>Couchbase Sync Gateway is a key component of the Couchbase Mobile stack.
 It is an Internet-facing synchronization mechanism that securely syncs data across devices as well as between devices and the cloud.
-Couchbase Mobile 3.0 introduces centralized persistent module configuration of synchronization, which simplifies the administration of Sync Gateway clusters&#8201;&#8212;&#8201;see <a href="#3.0@sync-gateway::configuration-overview.adoc" class="xref unresolved">Sync Gateway Configuration</a></p>
+Couchbase Mobile 3.0 introduces centralized persistent module configuration of synchronization, which simplifies the administration of Sync Gateway clusters&#8201;&#8212;&#8201;see <a href="../../sync-gateway/current/configuration-overview.html" class="xref page">Sync Gateway Configuration</a></p>
 </div>
 <div class="paragraph">
 <p>The core functions of the Sync Gateway include:</p>
@@ -226,11 +226,11 @@ Couchbase Mobile 3.0 introduces centralized persistent module configuration of s
 <ul>
 <li>
 <p>Set up a basic Couchbase Sync Gateway configuration to sync content between multiple Couchbase Lite enabled clients&#8201;&#8212;&#8201;see: <a href="#lbl-sync-gateway">Sync Gateway</a>.<br>
-We will cover the basics of the <a href="#3.0@sync-gateway::configuration-overview.adoc" class="xref unresolved">Sync Gateway Configuration</a></p>
+We will cover the basics of the <a href="../../sync-gateway/current/configuration-overview.html" class="xref page">Sync Gateway Configuration</a></p>
 </li>
 <li>
 <p>Configure your Sync Gateway to enforce data routing, access control and authorization&#8201;&#8212;&#8201;see: <a href="#lbl-sync-function">Sync Function</a>.<br>
-We will cover the basics of the <a href="#3.0@sync-gateway::sync-function.adoc" class="xref unresolved">Sync Function API</a>.</p>
+We will cover the basics of the <a href="../../sync-gateway/current/sync-function.html" class="xref page">Sync Function API</a>.</p>
 </li>
 <li>
 <p>Configure your Couchbase Lite clients for replication with the Sync Gateway</p>
@@ -244,7 +244,7 @@ We will cover the basics of the <a href="#3.0@sync-gateway::sync-function.adoc" 
 <p>We will be using a Swift App as an example of a Couchbase Lite enabled client.</p>
 </div>
 <div class="paragraph">
-<p>You can learn more about the Sync Gateway here in the <a href="#3.0@sync-gateway::index.adoc" class="xref unresolved">Sync Gateway Documentation</a>.</p>
+<p>You can learn more about the Sync Gateway here in the <a href="../../sync-gateway/current/index.html" class="xref page">Sync Gateway Documentation</a>.</p>
 </div>
 </div>
 </div>
@@ -579,7 +579,7 @@ docker network create -d bridge workshop</code></pre>
 <p>We have a custom docker image <code>priyacouch/couchbase-server-userprofile:7.0.0-dev</code> of Couchbase Server, which creates an empty bucket named “userprofile” and an RBAC user “admin” with “sync gateway” role.</p>
 </div>
 <div class="paragraph">
-<p>Alternatively, you can follow the instructions in our documentation&#8201;&#8212;&#8201;see: <a href="#3.0@sync-gateway::get-started-prepare.adoc" class="xref unresolved">Get Started - Prepare</a>, to install Couchbase Server and configure it with the relevant bucket.</p>
+<p>Alternatively, you can follow the instructions in our documentation&#8201;&#8212;&#8201;see: <a href="../../sync-gateway/current/get-started-prepare.html" class="xref page">Get Started - Prepare</a>, to install Couchbase Server and configure it with the relevant bucket.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -670,13 +670,13 @@ priyacouch/couchbase-server-userprofile:7.0.0-dev</code></pre>
 <div class="sect3">
 <h4 id="lbl-install"><a class="anchor" href="#lbl-install"></a>Configuration</h4>
 <div class="paragraph">
-<p>When using Sync Gateway 3.0, we can opt to provide a bootstrap configuration&#8201;&#8212;&#8201;see: <a href="#3.0@sync-gateway::configuration-overview.adoc" class="xref unresolved">Sync Gateway Configuration</a>.
+<p>When using Sync Gateway 3.0, we can opt to provide a bootstrap configuration&#8201;&#8212;&#8201;see: <a href="../../sync-gateway/current/configuration-overview.html" class="xref page">Sync Gateway Configuration</a>.
 We would then provision database, sync and other configuration using the Admin REST endpoints
 Alternatively, we can continue to run in legacy-mode, using the Pre-3.0 configuration.</p>
 </div>
 <div class="paragraph">
 <p>In this tutorial&#8201;&#8212;&#8201;for the purposes of backward compatibility&#8201;&#8212;&#8201;we will run 3.x using its
-<a href="#3.0@sync-gateway::configuration-properties-legacy.adoc" class="xref unresolved">legacy configuration option</a>.
+<a href="../../sync-gateway/current/configuration-properties-legacy.html" class="xref page">legacy configuration option</a>.
 That is, we will be running with the <code>disable_persistent_config</code> option in the configuration file set to <code>true</code>.
 You can, if you wish, run a 2.8 version of Sync Gateway instead.</p>
 </div>
@@ -922,7 +922,7 @@ The id of the user making the request is specified in the <code>Authorization</c
 </div>
 <div class="paragraph">
 <p>Locate the <code>// Authorization</code> section of the Sync Function.
-You will see that we are using the Sync function&#8217;s <a href="#3.0@sync-gateway::sync-function-api-require-user-cmd.adoc" class="xref unresolved">requireUser()</a> API to verify that the <code>email</code> property specified in the Document matches the id of the user making the request&#8201;&#8212;&#8201;see <a href="#ex-auth">Sync function&#8201;&#8212;&#8201;Authorization</a>.</p>
+You will see that we are using the Sync function&#8217;s <a href="../../sync-gateway/current/sync-function-api-require-user-cmd.html" class="xref page">requireUser()</a> API to verify that the <code>email</code> property specified in the Document matches the id of the user making the request&#8201;&#8212;&#8201;see <a href="#ex-auth">Sync function&#8201;&#8212;&#8201;Authorization</a>.</p>
 </div>
 <div id="ex-auth" class="listingblock">
 <div class="title">Sync function&#8201;&#8212;&#8201;Authorization</div>
@@ -989,7 +989,7 @@ Again, we throw an exception if that&#8217;s not the case.</td>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You can learn more about the Sync Function in the documentation here: <a href="#3.0@sync-gateway::sync-function.adoc" class="xref unresolved">Sync Function API</a>
+You can learn more about the Sync Function in the documentation here: <a href="../../sync-gateway/current/sync-function.html" class="xref page">Sync Function API</a>
 </td>
 </tr>
 </table>
@@ -998,11 +998,11 @@ You can learn more about the Sync Function in the documentation here: <a href="#
 <div class="sect2">
 <h3 id="lbl-route"><a class="anchor" href="#lbl-route"></a>Data Routing</h3>
 <div class="paragraph">
-<p><a href="#3.0@sync-gateway::channels.adoc" class="xref unresolved">Channels</a> provide a mechanism to "tag" documents.
+<p><a href="../../sync-gateway/current/channels.html" class="xref page">Channels</a> provide a mechanism to "tag" documents.
 They are typically used to route/segregate documents based on the contents of those documents&#8201;&#8212;&#8201;as shown in: <a href="#ex-routing">Using channel() to tag/route documents</a>.</p>
 </div>
 <div class="paragraph">
-<p>When combined with the <a href="#3.0@sync-gateway::sync-function-api-access-cmd.adoc" class="xref unresolved">access()</a> and <a href="#3.0@sync-gateway::sync-function-api-require-access-cmd.adoc" class="xref unresolved">requireAccess()</a> API, the <a href="#3.0@sync-gateway::sync-function-api-channel-cmd.adoc" class="xref unresolved">channel()</a> API
+<p>When combined with the <a href="../../sync-gateway/current/sync-function-api-access-cmd.html" class="xref page">access()</a> and <a href="../../sync-gateway/current/sync-function-api-require-access-cmd.html" class="xref page">requireAccess()</a> API, the <a href="../../sync-gateway/current/sync-function-api-channel-cmd.html" class="xref page">channel()</a> API
  can also be used to enforce <a href="#lbl-access">Access Control</a>.</p>
 </div>
 <div class="paragraph">
@@ -1043,7 +1043,7 @@ The channel comes into existence the first time a document is added to it.</td>
 <div class="sect2">
 <h3 id="lbl-access"><a class="anchor" href="#lbl-access"></a>Access Control</h3>
 <div class="paragraph">
-<p>We can enforce access control to channels using the <a href="#3.0@sync-gateway::sync-function-api-access-cmd.adoc" class="xref unresolved">access()</a> API.
+<p>We can enforce access control to channels using the <a href="../../sync-gateway/current/sync-function-api-access-cmd.html" class="xref page">access()</a> API.
 The approach shown in <a href="#ex-access">Controlling access to documents using channel() and access() API</a> ensures that only users with access to a specific channel are able to retrieve documents in the channel.</p>
 </div>
 <div id="ex-access" class="listingblock">
@@ -1520,7 +1520,7 @@ We discussed how to configure your Sync Gateway to enforce relevant access contr
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#3.0@sync-gateway::configuration-overview.adoc" class="xref unresolved">Sync Gateway Configuration</a></p>
+<p><a href="../../sync-gateway/current/configuration-overview.html" class="xref page">Sync Gateway Configuration</a></p>
 </li>
 <li>
 <p><a href="https://blog.couchbase.com/category/couchbase-mobile/?ref=blog-menu">Couchbase Mobile Blog</a></p>
