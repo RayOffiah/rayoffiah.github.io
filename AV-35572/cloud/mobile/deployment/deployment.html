@@ -486,10 +486,18 @@
     <a class="menu_title menu_link" href="../index.html">Overview</a>
   </span>
 </li>
-<li class="menu_list is-current-page" data-depth="1">
+<li class="menu_list is-current-page is-parent closed" data-depth="1">
   <span class="menu_line">
+    <span class="in-toggle"></span>
     <a class="menu_title menu_link is-current-page" href="deployment.html">Deploying an App Service</a>
   </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="configure-app-endpoint.html">Creating an App Endpoint</a>
+  </span>
+</li>
+</ul>
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
@@ -782,54 +790,69 @@ Open your Capella administration page, and view the cluster you wish to add an A
 <div class="paragraph">
 <p>A convenient shortcut is provided here, <b class="menuref">Create Linked App Service</b>, which opens the form to create a new App Service with the Cluster details prefilled.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Screenshot Here
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Enter a name for the App Service and fill in the rest of the details.
-(The provided defaults should be fine to get you started for development.)</p>
+<p>Enter a name for the App Service and fill in the rest of the details.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="deploy-app-endpoint"><a class="anchor" href="#deploy-app-endpoint"></a>Creating an App Endpoint</h2>
+<h2 id="deployment-configuration"><a class="anchor" href="#deployment-configuration"></a>Deployment Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Open the App Service you just created.
-Notice that you currently have "No App Endpoints".
-Follow the prompt to get started.</p>
+<p>The provided default should be fine to get you started for development.
+According to your requirements, you may customize the following parameters:</p>
+</div>
+<div class="ulist">
+<div class="title">Number of nodes</div>
+<ul>
+<li>
+<p>between 2 and 20 nodes (default 2)</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Size of each node</div>
+<ul>
+<li>
+<p><code>c5.large</code>   (2 vCPU &amp; 4 GiB RAM)</p>
+</li>
+<li>
+<p><code>c5.xlarge</code>  (4 vCPU &amp; 8 GiB RAM)</p>
+</li>
+<li>
+<p><code>c5.xlarge</code>  (8 vCPU &amp; 16 GiB RAM) (the default selected instance)</p>
+</li>
+<li>
+<p><code>c5.4xlarge</code> (16 vCPU &amp; 32 GiB RAM)</p>
+</li>
+<li>
+<p><code>c5.9xlarge</code> (36 vCPU &amp; 72 GiB RAM)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="linked-cluster-plan"><a class="anchor" href="#linked-cluster-plan"></a>Linked Cluster&#8217;s Plan</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When deploying a new App Service, you are given confirmation of the Plan selected for the linked cluster,
+and the <strong>increase</strong> in cost after adding the new App Service.</p>
 </div>
 <div class="paragraph">
-<p>Choose which database bucket to synchronize.
-Each App Endpoint is connected to exactly one bucket.</p>
-</div>
-<div class="sect2">
-<h3 id="delta-sync"><a class="anchor" href="#delta-sync"></a>Delta Sync</h3>
-<div class="paragraph">
-<p>Delta Sync provides the ability to replicate only those parts of a Couchbase Mobile document that have changed.
-This can result in significant savings in bandwidth consumption as well as throughput improvements, especially useful where network bandwidth is constrained.</p>
-</div>
-<div class="paragraph">
-<p>See <a href="#sync-gateway:delta-sync.adoc" class="xref unresolved">sync-gateway:delta-sync.adoc</a> for full details how Delta Sync is implemented in the underlying Couchbase Mobile Sync Gateway product.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="import-filter"><a class="anchor" href="#import-filter"></a>Import Filter</h3>
-<div class="paragraph">
-<p>Without a filter (the default), the App Service synchronises all documents that are inserted or mutated in the Couchbase Capella bucket.
-This default setting is recommended unless and until you find a compelling use-case against it.</p>
-</div>
-<div class="paragraph">
-<p>When you do want to alter the subset of documents, simply Enable the Import Filter.</p>
-</div>
-<div class="paragraph">
-<p>A code editor opens to let you enter or import a simple Javascript function,
-and is pre-filled with a useful example template to modify for your needs.
-The function accepts a Document, and returns a Boolean (true or false) to determine whether to synchronise the document.</p>
-</div>
-<div class="paragraph">
-<p>The subset you choose should be based on your application requirements, and will be applied to all future mutations.</p>
-</div>
-<div class="paragraph">
-<p>See <a href="#sync-gateway:import-filter.adoc" class="xref unresolved">sync-gateway:import-filter.adoc</a> for full details how Import Filters are implemented in the underlying in the Couchbase Mobile Sync Gateway product.</p>
-</div>
+<p>See the <a href="https://www.couchbase.com/pricing">Capella pricing page</a> for more details.</p>
 </div>
 </div>
 </div>
