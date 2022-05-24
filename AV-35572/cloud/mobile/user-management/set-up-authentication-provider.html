@@ -520,6 +520,11 @@
     <a class="menu_title menu_link is-current-page" href="set-up-authentication-provider.html">Setting up an Authentication Provider</a>
   </span>
 </li>
+<li class="menu_list" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../connect/connect-apps-to-endpoint.html">Connecting your Apps to an App Endpoint</a>
+  </span>
+</li>
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
     <span class="in-toggle"></span>
@@ -792,7 +797,9 @@
 <span class="last-commit-date" id="commitdate">    </span>
 <ul id="contributorList"></ul>
 <span  id="otherContributor"> + </span>
-</div><div class="quoteblock abstract">
+</div><div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock abstract">
 <blockquote>
 Capella supports a number of authentication providers, which can be configured from the UI.
 </blockquote>
@@ -830,9 +837,11 @@ Make sure the Security tab is selected.</p>
 <img src="../_images/user-management/authentication-provider-screen.png" alt="Application provider">
 </div>
 </div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">Authentication Types</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="authentication-types"><a class="anchor" href="#authentication-types"></a>Authentication Types</h2>
+<div class="sectionbody">
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Basic Authentication</dt>
@@ -875,6 +884,41 @@ There are two implementation methods available with OpenID Connect:</p>
 </div>
 </dd>
 </dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="username-claim"><a class="anchor" href="#username-claim"></a>User Claims</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can use <strong><code>Username Claim</code></strong> to specify a claim other than subject to use as the Sync Gateway username.</p>
+</div>
+<div class="paragraph">
+<p>The specified claim must be a string, as numeric claims may be un-marshalled inconsistently between Sync Gateway and the underlying OIDC library.<br>
+When authenticating incoming OIDC tokens, Sync Gateway currently treats the username as <code>[user_prefix]_[subject]</code>.</p>
+</div>
+<div class="paragraph">
+<p>By default user_prefix is the issuer, but can be customized in the Sync Gateway provider config.
+Subject is always the sub claim in the token.</p>
+</div>
+<div class="sect2">
+<h3 id="behavior"><a class="anchor" href="#behavior"></a>Behavior:</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>If <code>username_claim</code> is set but <code>user_prefix</code> is not set, use that claim as the Sync Gateway username.</p>
+</li>
+<li>
+<p>If <code>username_claim</code> is set and <code>user_prefix</code> is also set, use <code>[user_prefix]_[username_claim]</code> as the Sync Gateway username.</p>
+</li>
+<li>
+<p>If <code>username_claim</code> is not set and <code>user_prefix</code> is set, use <code>[user_prefix]_[subject]</code> as the Sync Gateway username (existing behavior).</p>
+</li>
+<li>
+<p>If neither <code>username_claim</code> nor <code>user_prefix</code> are set, use <code>[issuer]_[subject]</code> as the Sync Gateway username (existing behavior).</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
