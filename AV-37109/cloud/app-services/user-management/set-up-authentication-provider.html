@@ -10,6 +10,7 @@
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/app-services/user-management/set-up-authentication-provider.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
+    <meta name="robots" content="noindex">
 <meta name="description" content="Capella supports a number of authentication providers, which can be configured from the UI.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
@@ -484,7 +485,7 @@
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
     <span class="in-toggle"></span>
-    <span class="menu_title menu_text">App Services</span>
+    <span class="menu_title menu_text">Capella App Services</span>
   </span>
 <ul class="menu_row">
 <li class="menu_list" data-depth="1">
@@ -492,60 +493,74 @@
     <a class="menu_title menu_link" href="../index.html">Overview</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../deployment/deployment.html">Creating an App Service</a>
+    <span class="in-toggle"></span>
+    <span class="menu_title menu_text">Working with App Services</span>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../deployment/creating-an-app-service.html">Creating an App Service</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../deployment/service-configuration.html">App Service Configuration</a>
-  </span>
+</ul>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <span class="menu_title menu_text">Application Endpoints</span>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../deployment/app-endpoint.html">Creating App Endpoints</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../deployment/controlling-app-endpoints.html">Controlling App Endpoints</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../deployment/access-control-data-validation.html">Access Control and Data Validation for App Endpoints</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../deployment/accessing-admin-apis.html">Granting Access to Admin REST APIs</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../connect/connect-apps-to-endpoint.html">Connecting your Apps to an App Endpoint</a>
+  </span>
+</li>
+</ul>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <span class="menu_title menu_text">User Administration</span>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="create-user.html">App User Administration</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="search-users.html">Search for App Users</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="create-app-role.html">Creating App Roles</a>
   </span>
 </li>
-<li class="menu_list is-current-page" data-depth="1">
+<li class="menu_list is-current-page" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link is-current-page" href="set-up-authentication-provider.html">Setting up an Authentication Provider</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../connect/connect-apps-to-endpoint.html">Connecting your Apps to an App Endpoint</a>
-  </span>
+</ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
@@ -785,7 +800,8 @@
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../../index.html">Couchbase Capella</a></li>
-<li class="crumb">App Services</li>
+<li class="crumb">Capella App Services</li>
+<li class="crumb">User Administration</li>
 <li class="crumb"><a href="set-up-authentication-provider.html">Setting up an Authentication Provider</a></li>
 </ul>
 </nav>
@@ -858,58 +874,106 @@ This random looking string is simply a Base64 encoded representation of the User
 </div>
 </div>
 <div class="sect1">
-<h2 id="openid-connect-oidc"><a class="anchor" href="#openid-connect-oidc"></a>OpenID Connect (OIDC)</h2>
+<h2 id="anonymous-authentication"><a class="anchor" href="#anonymous-authentication"></a>Anonymous Authentication</h2>
 <div class="sectionbody">
-<div class="admonitionblock warning">
+<div class="paragraph">
+<p>Allowing anonymous authentication is useful for testing as it allows access to the endpoint without the need for authentication.
+It is also useful for endpoints that might synchronise static information such as information pages which anyone is allowed to access.</p>
+</div>
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-OIDC Connect is not supported as of Preview Launch.
+It is recommended that either <em>basic authentication</em> or <em>ODIC</em> is used for production environments.
 </td>
 </tr>
 </table>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="openid-connect-oidc"><a class="anchor" href="#openid-connect-oidc"></a>OpenID Connect (OIDC)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The service supports OpenID Connect.
 This allows your application to use Couchbase for data synchronization and delegate the authentication to a 3rd party server (known as the Provider).</p>
 </div>
+<div id="oidc-settings" class="imageblock">
+<div class="content">
+<img src="../_images/user-management/oidc-provider-settings.png" alt="OIDC provider settings">
+</div>
+<div class="title">Figure 2. OIDC settings</div>
+</div>
 <div class="paragraph">
 <p>Capella&#8217;s implementation of OpenID Connect uses Implicit Flow.
-This means that the retrieval of the ID token takes place on the device.</p>
+This means that the retrieval of the ID token takes place on the device.
+Capella handles the background set up for the app service, using the details provided in the settings (<a href="#oidc-settings">Figure 2</a>):</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<strong>Issuer</strong>
+</td>
+<td class="hdlist2">
+<p>This is the URL of the authentication provider.
+For example, if you are using Google&#8217;s authentication service, then the URL would be <a href="https://accounts.google.com" class="bare">https://accounts.google.com</a>.
+Details of the URL required should be available on your provider&#8217;s website.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<strong>Client ID</strong>
+</td>
+<td class="hdlist2">
+<p>When you register your App Service with your OIDC provider, you will be given a <code>Client ID</code> unique to your application.
+The provider will use this ID to identify the application using the authentication service.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<strong>Discovery URL</strong>
+</td>
+<td class="hdlist2">
+<p>Providers usually provide a configuration application for their users, which can be accessed through the URL given here.
+This setting is optional.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<strong>Username prefix</strong>
+</td>
+<td class="hdlist2">
+<p>The ODIC username is taken from the App Service user and a prefix is added.
+The prefix itself is derived from the name of the OIDC provider, or optionally, you can supply your own prefix here.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<strong>Username claim</strong>
+</td>
+<td class="hdlist2">
+<p>Specifies a claim other than the subject to use as the Capella App Services username. By default, the <code>issuer</code> is used, but you can use another <code>claim</code> field, such as the email address.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<strong>Auto Register</strong>
+</td>
+<td class="hdlist2">
+<p>The App Service service can be configured to create a new user if it receives a valid authorisation from an unregistered user.</p>
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
-<h3 id="username-claim"><a class="anchor" href="#username-claim"></a>User Claims</h3>
-<div class="paragraph">
-<p>You can use <strong><code>Username Claim</code></strong> to specify a claim other than subject to use as the Capella App Services username.</p>
-</div>
-<div class="paragraph">
-<p>The specified claim must be a string, as numeric claims may be un-marshalled inconsistently between Capella App Services and the underlying OIDC library.<br>
-When authenticating incoming OIDC tokens, Capella App Services currently treats the username as <code>[user_prefix]_[subject]</code>.</p>
-</div>
-<div class="paragraph">
-<p>By default user_prefix is the issuer, but can be customized in the Capella App Services provider config.
-Subject is always the sub claim in the token.</p>
-</div>
-<div class="sect3">
-<h4 id="behavior"><a class="anchor" href="#behavior"></a>Behavior:</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>If <code>username_claim</code> is set but <code>user_prefix</code> is not set, use that claim as the Capella App Services username.</p>
-</li>
-<li>
-<p>If <code>username_claim</code> is set and <code>user_prefix</code> is also set, use <code>[user_prefix]_[username_claim]</code> as the Capella App Services username.</p>
-</li>
-<li>
-<p>If <code>username_claim</code> is not set and <code>user_prefix</code> is set, use <code>[user_prefix]_[subject]</code> as the Capella App Services username (existing behavior).</p>
-</li>
-<li>
-<p>If neither <code>username_claim</code> nor <code>user_prefix</code> are set, use <code>[issuer]_[subject]</code> as the Capella App Services username (existing behavior).</p>
-</li>
-</ul>
+<h3 id="oidc-authorisation-step-by-step"><a class="anchor" href="#oidc-authorisation-step-by-step"></a>OIDC Authorisation: step by step</h3>
+<div class="imageblock kroki">
+<div class="content">
+<img src="../_images/diag-af61c4221f1bf7391907c81ca8bac8f82173bd39.svg" alt="Diagram">
 </div>
 </div>
 </div>

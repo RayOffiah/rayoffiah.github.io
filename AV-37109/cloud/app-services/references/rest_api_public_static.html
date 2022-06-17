@@ -10,6 +10,7 @@
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/app-services/references/rest_api_public_static.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
+    <meta name="robots" content="noindex">
 <meta name="description" content="Description of the Capella App Services Public REST API">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
@@ -484,7 +485,7 @@
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
     <span class="in-toggle"></span>
-    <span class="menu_title menu_text">App Services</span>
+    <span class="menu_title menu_text">Capella App Services</span>
   </span>
 <ul class="menu_row">
 <li class="menu_list" data-depth="1">
@@ -492,60 +493,74 @@
     <a class="menu_title menu_link" href="../index.html">Overview</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../deployment/deployment.html">Creating an App Service</a>
+    <span class="in-toggle"></span>
+    <span class="menu_title menu_text">Working with App Services</span>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../deployment/creating-an-app-service.html">Creating an App Service</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../deployment/service-configuration.html">App Service Configuration</a>
-  </span>
+</ul>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <span class="menu_title menu_text">Application Endpoints</span>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../deployment/app-endpoint.html">Creating App Endpoints</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../deployment/controlling-app-endpoints.html">Controlling App Endpoints</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../deployment/access-control-data-validation.html">Access Control and Data Validation for App Endpoints</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../deployment/accessing-admin-apis.html">Granting Access to Admin REST APIs</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../connect/connect-apps-to-endpoint.html">Connecting your Apps to an App Endpoint</a>
+  </span>
+</li>
+</ul>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <span class="menu_title menu_text">User Administration</span>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../user-management/create-user.html">App User Administration</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../user-management/search-users.html">Search for App Users</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../user-management/create-app-role.html">Creating App Roles</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../user-management/set-up-authentication-provider.html">Setting up an Authentication Provider</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../connect/connect-apps-to-endpoint.html">Connecting your Apps to an App Endpoint</a>
-  </span>
+</ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
@@ -785,7 +800,7 @@
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../../index.html">Couchbase Capella</a></li>
-<li class="crumb">App Services</li>
+<li class="crumb">Capella App Services</li>
 <li class="crumb">References</li>
 <li class="crumb"><a href="rest_api_public_static.html">Public REST API</a></li>
 </ul>
@@ -858,7 +873,13 @@ In the process, documentation may be built first&#8201;&#8212;&#8201;so it is po
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>This request retrieves a file attachment associated with the document. The raw data of the associated attachment is returned (just as if you were accessing a static file). The Content-Type response header is the same content type set when the document attachment was added to the database.  To remove an attachment from a document, simply update the <code>_attachments</code> dictionary of the document in the PUT <code>/{db}/{id}</code> request. From then on, the attachment will not be replicated but will still reside in the Couchbase Server bucket (see open ticket <a href="https://github.com/couchbase/sync_gateway/issues/1648">#1648</a>).</p>
+<p>This request retrieves a file attachment associated with the document.
+The raw data of the associated attachment is returned (just as if you were accessing a static file).
+The Content-Type response header is the same content type set when the document attachment was added to the database.</p>
+</div>
+<div class="paragraph">
+<p>To remove an attachment from a document, simply update the <code>_attachments</code> dictionary of the document in the PUT <code>/{db}/{id}</code> request.
+From then on, the attachment will not be replicated but will still reside in the Couchbase Server bucket (see open ticket <a href="https://github.com/couchbase/sync_gateway/issues/1648">#1648</a>).</p>
 </div>
 </div>
 </div>
@@ -994,12 +1015,12 @@ In the process, documentation may be built first&#8201;&#8212;&#8201;so it is po
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">304</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Not Modified, the attachment wasn&#8217;t modified if ETag equals the If-None-Match header</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Not Found, the specified database, document or attachment was not found.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -1018,7 +1039,20 @@ In the process, documentation may be built first&#8201;&#8212;&#8201;so it is po
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>This request adds or updates the supplied request content as an attachment to the specified document, the maximum content size of an attachment is 20MB. The attachment name must be a URL-encoded string (the file name). You must also supply either the rev query parameter or the If-Match HTTP header for validation, and the Content-Type headers (to set the attachment content type).  When uploading an attachment using an existing attachment name, the corresponding stored content of the database will be updated. Because you must supply the revision information to add an attachment to the document, this serves as validation to update the existing attachment.  Uploading an attachment updates the corresponding document revision. Revisions are tracked for the parent document, not individual attachments.  To remove an attachment from a document, simply update the <code>_attachments</code> dictionary of the document in the PUT <code>/{db}/{id}</code> request. From then on, the attachment will not be replicated but will still reside in the Couchbase Server bucket (see open ticket <a href="https://github.com/couchbase/sync_gateway/issues/1648">#1648</a>).</p>
+<p>This request adds or updates the supplied request content as an attachment to the specified document, the maximum content size of an attachment is 20MB.
+The attachment name must be a URL-encoded string (the file name).
+You must also supply either the rev query parameter or the If-Match HTTP header for validation, and the Content-Type headers (to set the attachment content type).</p>
+</div>
+<div class="paragraph">
+<p>When uploading an attachment using an existing attachment name, the corresponding stored content of the database will be updated. Because you must supply the revision information to add an attachment to the document, this serves as validation to update the existing attachment.</p>
+</div>
+<div class="paragraph">
+<p>Uploading an attachment updates the corresponding document revision.
+Revisions are tracked for the parent document, not individual attachments.</p>
+</div>
+<div class="paragraph">
+<p>To remove an attachment from a document, simply update the <code>_attachments</code> dictionary of the document in the PUT <code>/{db}/{id}</code> request.
+From then on, the attachment will not be replicated but will still reside in the Couchbase Server bucket (see open ticket <a href="https://github.com/couchbase/sync_gateway/issues/1648">#1648</a>).</p>
 </div>
 </div>
 </div>
@@ -1111,13 +1145,13 @@ In the process, documentation may be built first&#8201;&#8212;&#8201;so it is po
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
-
+<div class="paragraph">
+<p>The request body</p>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;&lt;file&gt;&gt;</pre>
 </div>
+<div class="paragraph">
+<p><a href="#file">[file]</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -1229,7 +1263,7 @@ In the process, documentation may be built first&#8201;&#8212;&#8201;so it is po
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">409</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Conflict, the document revision wasn&#8217;t specified or it&#8217;s not the latest.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -1252,7 +1286,12 @@ In the process, documentation may be built first&#8201;&#8212;&#8201;so it is po
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Capella App Services allows users to authenticate using a Facebook account.  Your application is responsible for generating a Facebook token; this generally needs to be done by running the Facebook login flow inside a web-view and capturing the generated token. This endpoint can be used to check the validity of the access token. To allow Facebook Login with Capella App Services, it must be explicitly enabled in the Capella App Services configuration file by setting the <a href="config-properties.html#facebook-register">facebook.register</a> property to <code>true</code>.</p>
+<p>Capella App Services allows users to authenticate using a Facebook account.</p>
+</div>
+<div class="paragraph">
+<p>Your application is responsible for generating a Facebook token; this generally needs to be done by running the Facebook login flow inside a web-view and capturing the generated token.
+This endpoint can be used to check the validity of the access token.
+To allow Facebook Login with Capella App Services, it must be explicitly enabled in the Capella App Services configuration file by setting the <a href="config-properties.html#facebook-register">facebook.register</a> property to <code>true</code>.</p>
 </div>
 </div>
 </div>
@@ -1322,10 +1361,8 @@ In the process, documentation may be built first&#8201;&#8212;&#8201;so it is po
 
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;&lt;InlineObject3&gt;&gt;</pre>
-</div>
+<div class="paragraph">
+<p><a href="#InlineObject3">[InlineObject3]</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -1365,12 +1402,12 @@ In the process, documentation may be built first&#8201;&#8212;&#8201;so it is po
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">401</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Facebook verification server status &lt;Facebook status code&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">502</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Invalid response from Facebook verifier</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -1389,7 +1426,12 @@ In the process, documentation may be built first&#8201;&#8212;&#8201;so it is po
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Capella App Services allows users to authenticate using a Google account.  Your application is responsible for generating a Google token; this generally needs to be done by running the Google login flow inside a web-view and capturing the generated token. This endpoint can be used to check the validity of the access token. To allow Google Login with Capella App Services, it must be explicitly enabled in the Capella App Services configuration file by setting the <a href="config-properties.html#google-register">google.register</a> property to <code>true</code> and setting the <a href="config-properties.html#google-app_client_id">google.app_client_id</a> property with a Google app client ID.</p>
+<p>Capella App Services allows users to authenticate using a Google account.</p>
+</div>
+<div class="paragraph">
+<p>Your application is responsible for generating a Google token; this generally needs to be done by running the Google login flow inside a web-view and capturing the generated token.
+This endpoint can be used to check the validity of the access token.
+To allow Google Login with Capella App Services, it must be explicitly enabled in the Capella App Services configuration file by setting the <a href="config-properties.html#google-register">google.register</a> property to <code>true</code> and setting the <a href="config-properties.html#google-app_client_id">google.app_client_id</a> property with a Google app client ID.</p>
 </div>
 </div>
 </div>
@@ -1459,10 +1501,8 @@ In the process, documentation may be built first&#8201;&#8212;&#8201;so it is po
 
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;&lt;InlineObject4&gt;&gt;</pre>
-</div>
+<div class="paragraph">
+<p><a href="#InlineObject4">[InlineObject4]</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -1502,12 +1542,12 @@ In the process, documentation may be built first&#8201;&#8212;&#8201;so it is po
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">401</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Returns the Google response&#8217;s ErrorDescription</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">502</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Invalid response from Google token verifier</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -1644,17 +1684,17 @@ In the process, documentation may be built first&#8201;&#8212;&#8201;so it is po
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">302</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Redirect to the requested OpenID Connect provider for authentication. Redirect link is returned in the Location header.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">400</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Bad request.  Reason is returned as \"OpenID Connect not configured for database default\".  If a provider was specified in the request, that provider was not defined in the Capella App Services config.  If no provider was specified, OpenID Connect is not configured in the Capella App Services config.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">500</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Server Error.  Capella App Services is unable to connect and validate the OpenID Connect provider requested.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -1741,9 +1781,7 @@ In the process, documentation may be built first&#8201;&#8212;&#8201;so it is po
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>When true, requests a refresh token from the OP.
-Sets access_type=offline and prompt=consent on the redirect to the OP.
-Secure clients should set offline=true and persist the returned refresh token to secure storage.</p>
+<p>When true, requests a refresh token from the OP. Sets access_type=offline and prompt=consent on the redirect to the OP. Secure clients should set offline=true and persist the returned refresh token to secure storage.</p>
 </div>
 </div>
 </div></div></td>
@@ -1756,8 +1794,7 @@ Secure clients should set offline=true and persist the returned refresh token to
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>OpenId Connect provider to be used for authentication, from the list of providers defined in the Capella App Services Config.
-If not specified, will attempt to authenticate using the default provider.</p>
+<p>OpenId Connect provider to be used for authentication, from the list of providers defined in the Capella App Services Config. If not specified, will attempt to authenticate using the default provider.</p>
 </div>
 </div>
 </div></div></td>
@@ -1794,17 +1831,17 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">302</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Redirect to the requested OpenID Connect provider for authentication. Redirect link is returned in the Location header.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">400</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Bad request.  Reason is returned as \"OpenID Connect not configured for database default\".  If a provider was specified in the request, that provider was not defined in the Capella App Services config.  If no provider was specified, OpenID Connect is not configured in the Capella App Services config.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">500</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Server Error.  Capella App Services is unable to connect and validate the OpenID Connect provider requested.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -1946,12 +1983,12 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">400</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Bad request.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">401</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Authentication failed.  Reason returned in the response body.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -2093,12 +2130,12 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">400</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Bad request.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">401</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Authentication failed.  Unable to refresh token.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -2271,10 +2308,8 @@ If not specified, will attempt to authenticate using the default provider.</p>
 </div>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;&lt;String&gt;&gt;</pre>
-</div>
+<div class="paragraph">
+<p><a href="#String">[String]</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
@@ -2421,13 +2456,13 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
-
+<div class="paragraph">
+<p>Request body</p>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;&lt;AllDocs&gt;&gt;</pre>
 </div>
+<div class="paragraph">
+<p><a href="#AllDocs"><em>AllDocs</em></a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -2569,7 +2604,12 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>This request retrieves a sorted list of changes made to documents in the database, in time order of application.  Each document appears at most once, ordered by its most recent change, regardless of how many times it&#8217;s been changed. This request can be used to listen for update and modifications to the database for post processing or synchronization. A continuously connected changes feed is a reasonable approach for generating a real-time log for most applications.</p>
+<p>This request retrieves a sorted list of changes made to documents in the database, in time order of application.</p>
+</div>
+<div class="paragraph">
+<p>Each document appears at most once, ordered by its most recent change, regardless of how many times it&#8217;s been changed.
+This request can be used to listen for update and modifications to the database for post processing or synchronization.
+A continuously connected changes feed is a reasonable approach for generating a real-time log for most applications.</p>
 </div>
 </div>
 </div>
@@ -2719,10 +2759,8 @@ If not specified, will attempt to authenticate using the default provider.</p>
 </div>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;&lt;String&gt;&gt;</pre>
-</div>
+<div class="paragraph">
+<p><a href="#String">[String]</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
@@ -2759,32 +2797,7 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>The <code>heartbeat</code> defines the interval (in milliseconds) at which an empty line (CRLF) is written to the response. It helps prevent Capella App Services from deciding the socket is idle and closing it.</p>
-</div>
-<div class="paragraph">
-<p>The <code>heartbeat</code> value overrides any <code>timeout</code> value, to keep the feed alive indefinitely.</p>
-</div>
-<div class="paragraph">
-<p>Setting <code>heartbeat=0</code> results in no heartbeat.</p>
-</div>
-<div class="paragraph">
-<p><strong>Default:</strong> 0, which is no heartbeat</p>
-</div>
-<div class="paragraph">
-<p><strong>Constraints:</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Applies ONLY where <code>feed=longpoll</code> or <code>feed=continuous</code>.</p>
-</li>
-<li>
-<p>Minimum: 25000 (25 seconds)</p>
-</li>
-<li>
-<p>Maximum: None&#8201;&#8212;&#8201;unless you define one in your configuration file using <code>MaxHeartbeat</code></p>
-</li>
-</ul>
+<p>The <code>heartbeat</code> defines the interval (in milliseconds) at which an empty line (CRLF) is written to the response. It helps prevent Capella App Services from deciding the socket is idle and closing it.  The <code>heartbeat</code> value overrides any <code>timeout</code> value, to keep the feed alive indefinitely.  Setting <code>heartbeat=0</code> results in no heartbeat.  <strong>Default:</strong> 0, which is no heartbeat  <strong>Constraints:</strong>  - Applies ONLY where <code>feed=longpoll</code> or <code>feed=continuous</code>.  - Minimum: 25000 (25 seconds)  - Maximum: None&#8201;&#8212;&#8201;unless you define one in your configuration file using <code>MaxHeartbeat</code></p>
 </div>
 </div>
 </div></div></td>
@@ -2797,29 +2810,7 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>The <code>timeout</code> value defines the maximum period (in milliseconds) to wait for a change, before sending a response. This wait applies even when there are no results.</p>
-</div>
-<div class="paragraph">
-<p>Setting <code>timeout=0</code> results in no timeout.</p>
-</div>
-<div class="paragraph">
-<p><strong>Default:</strong> 300000 (5 minutes/300 seconds)</p>
-</div>
-<div class="paragraph">
-<p><strong>Constraints:</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Applies ONLY where <code>feed=longpoll</code> or <code>feed=continuous</code>.</p>
-</li>
-<li>
-<p>Minimum: 0, no timeout</p>
-</li>
-<li>
-<p>Maximum: 1500000 (15 minutes)</p>
-</li>
-</ul>
+<p>The <code>timeout</code> value defines the maximum period (in milliseconds) to wait for a change, before sending a response. This wait applies even when there are no results.  Setting <code>timeout=0</code> results in no timeout.  <strong>Default:</strong> 300000 (5 minutes/300 seconds)  <strong>Constraints:</strong>  - Applies ONLY where <code>feed=longpoll</code> or <code>feed=continuous</code>.  - Minimum: 0, no timeout  - Maximum: 1500000 (15 minutes)</p>
 </div>
 </div>
 </div></div></td>
@@ -2945,10 +2936,8 @@ If not specified, will attempt to authenticate using the default provider.</p>
 
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;&lt;InlineObject2&gt;&gt;</pre>
-</div>
+<div class="paragraph">
+<p><a href="#InlineObject2">[InlineObject2]</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -3076,12 +3065,12 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">401</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Unauthorized. Login required.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Not Found. Requested database not found.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -3100,7 +3089,14 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>This request returns any number of documents, as individual bodies in a MIME multipart response.  Each enclosed body contains one requested document. The bodies appear in the same order as in the request, but can also be identified by their X-Doc-ID and X-Rev-ID headers. A body for a document with no attachments will have content type application/json and contain the document itself. A body for a document that has attachments will be written as a nested multipart/related body. Its first part will be the document&#8217;s JSON, and the subsequent parts will be the attachments (each identified by a Content-Disposition header giving its attachment name.)</p>
+<p>This request returns any number of documents, as individual bodies in a MIME multipart response.</p>
+</div>
+<div class="paragraph">
+<p>Each enclosed body contains one requested document.
+The bodies appear in the same order as in the request, but can also be identified by their X-Doc-ID and X-Rev-ID headers.
+A body for a document with no attachments will have content type application/json and contain the document itself.
+A body for a document that has attachments will be written as a nested multipart/related body.
+Its first part will be the document&#8217;s JSON, and the subsequent parts will be the attachments (each identified by a Content-Disposition header giving its attachment name.)</p>
 </div>
 </div>
 </div>
@@ -3170,10 +3166,8 @@ If not specified, will attempt to authenticate using the default provider.</p>
 
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;&lt;InlineObject1&gt;&gt;</pre>
-</div>
+<div class="paragraph">
+<p><a href="#InlineObject1">[InlineObject1]</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -3270,7 +3264,7 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Request completed successfully</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">301</p></td>
@@ -3361,13 +3355,13 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
-
+<div class="paragraph">
+<p>Request body</p>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;&lt;array&gt;&gt;</pre>
 </div>
+<div class="paragraph">
+<p><a href="#array">[array]</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -3421,7 +3415,10 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>This request enables you to add, update, or delete multiple documents to a database in a single request. To add new documents, you can either specify the ID (<code>_id</code>) or let the software create an ID. To update existing documents, you must provide the document ID, revision identifier (<code>_rev</code>), and new document values. To delete existing documents you must provide the document ID, revision identifier, and the deletion flag (<code>_deleted</code>).  The JSON returned by the <code>_bulk_docs</code> operation consists of an array of JSON structures, one for each document in the original submission. The returned JSON structure should be examined to ensure that all of the documents submitted in the original request were successfully added to the database.</p>
+<p>This request enables you to add, update, or delete multiple documents to a database in a single request. To add new documents, you can either specify the ID (<code>_id</code>) or let the software create an ID. To update existing documents, you must provide the document ID, revision identifier (<code>_rev</code>), and new document values. To delete existing documents you must provide the document ID, revision identifier, and the deletion flag (<code>_deleted</code>).</p>
+</div>
+<div class="paragraph">
+<p>The JSON returned by the <code>_bulk_docs</code> operation consists of an array of JSON structures, one for each document in the original submission. The returned JSON structure should be examined to ensure that all of the documents submitted in the original request were successfully added to the database.</p>
 </div>
 </div>
 </div>
@@ -3491,10 +3488,8 @@ If not specified, will attempt to authenticate using the default provider.</p>
 
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;&lt;InlineObject&gt;&gt;</pre>
-</div>
+<div class="paragraph">
+<p><a href="#InlineObject">[InlineObject]</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -3557,7 +3552,13 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>This request creates a new document in the specified database.  You can either specify the document ID by including the _id in the request message body (the value must be a string), or let the software generate an ID.  The maximum size allowed for a document is 20MB.</p>
+<p>This request creates a new document in the specified database.</p>
+</div>
+<div class="paragraph">
+<p>You can either specify the document ID by including the _id in the request message body (the value must be a string), or let the software generate an ID.</p>
+</div>
+<div class="paragraph">
+<p>The maximum size allowed for a document is 20MB.</p>
 </div>
 </div>
 </div>
@@ -3624,13 +3625,13 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
-
+<div class="paragraph">
+<p>The document body</p>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;&lt;object&gt;&gt;</pre>
 </div>
+<div class="paragraph">
+<p><a href="#object">[object]</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -3684,7 +3685,24 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>This request creates a new document or creates a new revision of an existing document. It enables you to specify the identifier for a new document rather than letting the software create an identifier.  If you want to create a new document and let the software create an identifier, use the POST /db request.  If the document specified by doc does not exist, a new document is created and assigned the identifier specified in doc. If the document already exists, the document is updated with the JSON document in the message body and given a new revision. The maximum size allowed for a document is 20MB.  Since Capella App Services 1.3, an expiry property (<code>_exp</code>) can also be specified to purge the document after a given time. If <strong>convergence</strong> is enabled (introduced in Capella App Services 1.5), the behavior of the expiry feature changes in the following way: when the expiry value is reached, instead of getting purged, the <strong>active</strong> revision of the document is tombstoned. If there is another non-tombstoned revision for this document (i.e a conflict) it will become the active revision. The tombstoned revision will be purged when the server&#8217;s metadata purge interval is reached.</p>
+<p>This request creates a new document or creates a new revision of an existing document.
+It enables you to specify the identifier for a new document rather than letting the software create an identifier.</p>
+</div>
+<div class="paragraph">
+<p>If you want to create a new document and let the software create an identifier, use the POST /db request.</p>
+</div>
+<div class="paragraph">
+<p>If the document specified by doc does not exist, a new document is created and assigned the identifier specified in doc.
+If the document already exists, the document is updated with the JSON document in the message body and given a new revision.
+The maximum size allowed for a document is 20MB.</p>
+</div>
+<div class="paragraph">
+<p>An expiry property (<code>_exp</code>) can also be specified
+to purge the document after a given time.
+If <strong>convergence</strong> is enabled
+the behavior of the expiry feature changes in the following way: when the expiry value is reached, instead of getting purged, the <strong>active</strong> revision of the document is tombstoned.
+If there is another non-tombstoned revision for this document (i.e a conflict) it will become the active revision.
+The tombstoned revision will be purged when the server&#8217;s metadata purge interval is reached.</p>
 </div>
 </div>
 </div>
@@ -3764,13 +3782,13 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Document</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
-
+<div class="paragraph">
+<p>Request body</p>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;&lt;Document&gt;&gt;</pre>
 </div>
+<div class="paragraph">
+<p><a href="#Document"><em>Document</em></a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -3873,7 +3891,10 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>This request deletes a document from the database.  When a document is deleted, the revision number is updated so the database can track the deletion in synchronized copies.</p>
+<p>This request deletes a document from the database.</p>
+</div>
+<div class="paragraph">
+<p>When a document is deleted, the revision number is updated so the database can track the deletion in synchronized copies.</p>
 </div>
 </div>
 </div>
@@ -4121,10 +4142,8 @@ If not specified, will attempt to authenticate using the default provider.</p>
 </div>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;&lt;String&gt;&gt;</pre>
-</div>
+<div class="paragraph">
+<p><a href="#String">[String]</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
@@ -4135,17 +4154,12 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Option to fetch specified revisions of the document. The value can be <code>all</code> to fetch all leaf revisions or an array of revision numbers (i.e. open_revs=["rev1", "rev2"]). Only <a href="glossary.html">leaf revision</a> bodies that haven&#8217;t been pruned are guaranteed to be returned.</p>
+<p>Option to fetch specified revisions of the document. The value can be <code>all</code> to fetch all leaf revisions or an array of revision numbers (i.e. open_revs=[\"rev1\", \"rev2\"]). Only <a href="glossary.html">leaf revision</a> bodies that haven&#8217;t been pruned are guaranteed to be returned.  If this option is specified the response will be in multipart format. Use the <code>Accept: application/json</code> request header to get the result as a JSON object.</p>
+</div>
+</div>
 </div>
 <div class="paragraph">
-<p>If this option is specified the response will be in multipart format. Use the <code>Accept: application/json</code> request header to get the result as a JSON object.</p>
-</div>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;&lt;String&gt;&gt;</pre>
-</div>
+<p><a href="#String">[String]</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
@@ -4216,362 +4230,6 @@ If not specified, will attempt to authenticate using the default provider.</p>
 
 </div>
 </div>
-<div class="sect2 DocumentLocal">
-<h3 id="documentlocal"><a class="anchor" href="#documentlocal"></a>DocumentLocal</h3>
-<div class="paragraph addOrUpdateLocalDoc">
-<p><code>PUT /{db}/_local/{local_doc}</code></p>
-</div>
-<div class="paragraph">
-<p>Create or Update a Local Document</p>
-</div>
-<div class="sect4">
-<h5 id="description-21"><a class="anchor" href="#description-21"></a>Description</h5>
-<div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>This request creates or updates a local document.  Local document IDs begin with _local/. Local documents are not replicated or indexed, don&#8217;t support attachments, and don&#8217;t save revision histories.  In practice they are almost only used by the client&#8217;s replicator, as a place to store replication checkpoint data.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="parameters-21"><a class="anchor" href="#parameters-21"></a>Parameters</h5>
-<div class="sect5">
-<h6 id="path-parameters-21"><a class="anchor" href="#path-parameters-21"></a>Path Parameters</h6>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 37.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Required</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Pattern</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">db</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>Database name</p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">local_doc</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>Local document IDs begin with _local/.</p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect4">
-<h5 id="return-type-21"><a class="anchor" href="#return-type-21"></a>Return Type</h5>
-<div class="paragraph">
-<p><a href="#Success"><em>Success</em></a></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="responses-21"><a class="anchor" href="#responses-21"></a>Responses</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 50%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Code</th>
-<th class="tableblock halign-left valign-top">Message</th>
-<th class="tableblock halign-left valign-top">Datatype</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">201</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Created</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Success"><em>Success</em></a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="samples-21"><a class="anchor" href="#samples-21"></a>Samples</h5>
-<div class="paragraph deleteLocalDoc">
-<p><code>DELETE /{db}/_local/{local_doc}</code></p>
-</div>
-<div class="paragraph">
-<p>Delete Specific Local Document</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="description-22"><a class="anchor" href="#description-22"></a>Description</h5>
-<div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>This request deletes a local document.  Local document IDs begin with _local/. Local documents are not replicated or indexed, don&#8217;t support attachments, and don&#8217;t save revision histories. In practice they are almost only used by Couchbase Lite&#8217;s replicator, as a place to store replication checkpoint data.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="parameters-22"><a class="anchor" href="#parameters-22"></a>Parameters</h5>
-<div class="sect5">
-<h6 id="path-parameters-22"><a class="anchor" href="#path-parameters-22"></a>Path Parameters</h6>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 37.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Required</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Pattern</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">db</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>Database name</p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">local_doc</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>Local document IDs begin with _local/.</p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect5">
-<h6 id="query-parameters-14"><a class="anchor" href="#query-parameters-14"></a>Query Parameters</h6>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 37.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Required</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Pattern</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">rev</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>Revision identifier of the parent revision the new one should replace. (Not used when creating a new document.)</p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">batch</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>Stores the document in batch mode. To use, set the value to ok.</p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect4">
-<h5 id="return-type-22"><a class="anchor" href="#return-type-22"></a>Return Type</h5>
-<div class="paragraph">
-<p><a href="#Success"><em>Success</em></a></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="responses-22"><a class="anchor" href="#responses-22"></a>Responses</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 50%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Code</th>
-<th class="tableblock halign-left valign-top">Message</th>
-<th class="tableblock halign-left valign-top">Datatype</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Document successfully removed</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Success"><em>Success</em></a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="samples-22"><a class="anchor" href="#samples-22"></a>Samples</h5>
-<div class="paragraph getLocalDoc">
-<p><code>GET /{db}/_local/{local_doc}</code></p>
-</div>
-<div class="paragraph">
-<p>Get Specific Local Document</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="description-23"><a class="anchor" href="#description-23"></a>Description</h5>
-<div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>This request retrieves a local document.  Local document IDs begin with _local/. Local documents are not replicated or indexed, don&#8217;t support attachments, and don&#8217;t save revision histories.  In practice local documents mostly used by Couchbase Lite&#8217;s replicator, as a place to store replication checkpoint data.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="parameters-23"><a class="anchor" href="#parameters-23"></a>Parameters</h5>
-<div class="sect5">
-<h6 id="path-parameters-23"><a class="anchor" href="#path-parameters-23"></a>Path Parameters</h6>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 37.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Required</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Pattern</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">db</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>Database name</p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">local_doc</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>Local document IDs begin with _local/.</p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect4">
-<h5 id="return-type-23"><a class="anchor" href="#return-type-23"></a>Return Type</h5>
-<div class="paragraph">
-<p><a href="#Success"><em>Success</em></a></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="responses-23"><a class="anchor" href="#responses-23"></a>Responses</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 50%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Code</th>
-<th class="tableblock halign-left valign-top">Message</th>
-<th class="tableblock halign-left valign-top">Datatype</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The message body contains the following objects in a JSON document.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Success"><em>Success</em></a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="samples-23"><a class="anchor" href="#samples-23"></a>Samples</h5>
-
-</div>
-</div>
 <div class="sect2 Server">
 <h3 id="server"><a class="anchor" href="#server"></a>Server</h3>
 <div class="paragraph getServerInfo">
@@ -4581,7 +4239,7 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <p>Get Server Data</p>
 </div>
 <div class="sect4">
-<h5 id="description-24"><a class="anchor" href="#description-24"></a>Description</h5>
+<h5 id="description-21"><a class="anchor" href="#description-21"></a>Description</h5>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
@@ -4591,17 +4249,17 @@ If not specified, will attempt to authenticate using the default provider.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-24"><a class="anchor" href="#parameters-24"></a>Parameters</h5>
+<h5 id="parameters-21"><a class="anchor" href="#parameters-21"></a>Parameters</h5>
 
 </div>
 <div class="sect4">
-<h5 id="return-type-24"><a class="anchor" href="#return-type-24"></a>Return Type</h5>
+<h5 id="return-type-21"><a class="anchor" href="#return-type-21"></a>Return Type</h5>
 <div class="paragraph">
 <p><a href="#ServerData_model"><em>ServerDataModel</em></a></p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="responses-24"><a class="anchor" href="#responses-24"></a>Responses</h5>
+<h5 id="responses-21"><a class="anchor" href="#responses-21"></a>Responses</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -4625,7 +4283,7 @@ If not specified, will attempt to authenticate using the default provider.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="samples-24"><a class="anchor" href="#samples-24"></a>Samples</h5>
+<h5 id="samples-21"><a class="anchor" href="#samples-21"></a>Samples</h5>
 
 </div>
 </div>
@@ -4638,19 +4296,22 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <p>Create User Session</p>
 </div>
 <div class="sect4">
-<h5 id="description-25"><a class="anchor" href="#description-25"></a>Description</h5>
+<h5 id="description-22"><a class="anchor" href="#description-22"></a>Description</h5>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>If the credentials provided in the request body are valid, the session is created with an idle session timeout of 24 hours.  An idle session timeout in the context of Capella App Services is defined as the following: if 10% or more of the current expiration time has elapsed when a subsequent request with that session id is processed, the session&#8217;s expiry time is automatically updated to 24 hours from that time.</p>
+<p>If the credentials provided in the request body are valid, the session is created with an idle session timeout of 24 hours.</p>
+</div>
+<div class="paragraph">
+<p>An idle session timeout in the context of Capella App Services is defined as the following: if 10% or more of the current expiration time has elapsed when a subsequent request with that session id is processed, the session&#8217;s expiry time is automatically updated to 24 hours from that time.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-25"><a class="anchor" href="#parameters-25"></a>Parameters</h5>
+<h5 id="parameters-22"><a class="anchor" href="#parameters-22"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="path-parameters-24"><a class="anchor" href="#path-parameters-24"></a>Path Parameters</h6>
+<h6 id="path-parameters-21"><a class="anchor" href="#path-parameters-21"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -4712,10 +4373,8 @@ If not specified, will attempt to authenticate using the default provider.</p>
 
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;&lt;InlineObject5&gt;&gt;</pre>
-</div>
+<div class="paragraph">
+<p><a href="#InlineObject5">[InlineObject5]</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -4726,13 +4385,13 @@ If not specified, will attempt to authenticate using the default provider.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="return-type-25"><a class="anchor" href="#return-type-25"></a>Return Type</h5>
+<h5 id="return-type-22"><a class="anchor" href="#return-type-22"></a>Return Type</h5>
 <div class="paragraph">
 <p><a href="#Session"><em>Session</em></a></p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="responses-25"><a class="anchor" href="#responses-25"></a>Responses</h5>
+<h5 id="responses-22"><a class="anchor" href="#responses-22"></a>Responses</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -4756,7 +4415,7 @@ If not specified, will attempt to authenticate using the default provider.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="samples-25"><a class="anchor" href="#samples-25"></a>Samples</h5>
+<h5 id="samples-22"><a class="anchor" href="#samples-22"></a>Samples</h5>
 <div class="paragraph deleteUserSession">
 <p><code>DELETE /{db}/_session</code></p>
 </div>
@@ -4765,7 +4424,7 @@ If not specified, will attempt to authenticate using the default provider.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="description-26"><a class="anchor" href="#description-26"></a>Description</h5>
+<h5 id="description-23"><a class="anchor" href="#description-23"></a>Description</h5>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
@@ -4775,9 +4434,9 @@ If not specified, will attempt to authenticate using the default provider.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-26"><a class="anchor" href="#parameters-26"></a>Parameters</h5>
+<h5 id="parameters-23"><a class="anchor" href="#parameters-23"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="path-parameters-25"><a class="anchor" href="#path-parameters-25"></a>Path Parameters</h6>
+<h6 id="path-parameters-22"><a class="anchor" href="#path-parameters-22"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -4850,13 +4509,13 @@ If not specified, will attempt to authenticate using the default provider.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="return-type-26"><a class="anchor" href="#return-type-26"></a>Return Type</h5>
+<h5 id="return-type-23"><a class="anchor" href="#return-type-23"></a>Return Type</h5>
 <div class="paragraph">
 <p>-</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="responses-26"><a class="anchor" href="#responses-26"></a>Responses</h5>
+<h5 id="responses-23"><a class="anchor" href="#responses-23"></a>Responses</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -4874,13 +4533,13 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The session was successfully removed.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="samples-26"><a class="anchor" href="#samples-26"></a>Samples</h5>
+<h5 id="samples-23"><a class="anchor" href="#samples-23"></a>Samples</h5>
 
 </div>
 </div>
@@ -4913,7 +4572,13 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">keys</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of <a href="#string">[string]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List of identifiers of the documents to retrieve</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>List of identifiers of the documents to retrieve</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -4943,14 +4608,26 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">last_seq</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Last change sequence number</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Last change sequence number</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">results</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of <a href="#ChangesFeedRow"><em>ChangesFeedRow</em></a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List of changes to the database. See the following table for a list of fields in this object.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>List of changes to the database. See the following table for a list of fields in this object.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -4980,35 +4657,63 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">changes</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of <a href="#ChangesFeedRow_changes"><em>ChangesFeedRowChanges</em></a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List of the document&#8217;s leafs. Each leaf object contains one field, rev.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>List of the document&#8217;s leafs. Each leaf object contains one field, rev.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Document identifier</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Document identifier</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">seq</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Integer">[Integer]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Update sequence number</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Update sequence number</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">deleted</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicate whether the row is deleted</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Indicate whether the row is deleted</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">doc</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5038,7 +4743,13 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">rev</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Identifier of the document revision that changed.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Identifier of the document revision that changed.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5068,49 +4779,91 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">db_name</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the database</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Name of the database</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">db_uuid</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Integer">[Integer]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Database identifier</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Database identifier</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">disk_format_version</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Integer">[Integer]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Database schema version</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Database schema version</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">disk_size</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Integer">[Integer]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Total amount of data stored on the disk (in bytes)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Total amount of data stored on the disk (in bytes)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">instance_start_time</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Date and time the database was opened (in microseconds since 1 January 1970)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Date and time the database was opened (in microseconds since 1 January 1970)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">state</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The state of the specified database. Possible values are 'Online' and 'Offline'. A database can be taken offline and brought back online using the /{db}/_offline and /{db}/_online endpoints on the Admin REST API.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The state of the specified database. Possible values are 'Online' and 'Offline'. A database can be taken offline and brought back online using the /{db}/_offline and /{db}/_online endpoints on the Admin REST API.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">update_seq</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of updates to the database</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of updates to the database</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5140,7 +4893,13 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Document ID.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Document ID.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5170,21 +4929,39 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">offset</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Integer">[Integer]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Position in pagination.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Position in pagination.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Integer">[Integer]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of items to retrieve (100 max).</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of items to retrieve (100 max).</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">count</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Integer">[Integer]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Total number of items available.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Total number of items available.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
 </tr>
 </tbody>
@@ -5214,36 +4991,64 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">_id</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The document ID.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The document ID.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">_rev</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Revision identifier of the parent revision the new one should replace. (Not used when creating a new document.)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Revision identifier of the parent revision the new one should replace. (Not used when creating a new document.)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">_exp</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Expiry time after which the document will be purged. The expiration time is set and managed on the Couchbase Server document (TTL is not supported for databases in walrus mode). The value can be specified in two ways; in ISO-8601 format, for example the 6th of July 2016 at 17:00 in the BST timezone would be 2016-07-06T17:00:00+01:00; it can also be specified as a numeric Couchbase Server expiry value. Couchbase Server expiries are specified as Unix time, and if the desired TTL is below 30 days then it can also represent an interval in seconds from the current time (for example, a value of 5 will remove the document 5 seconds after it is written to Couchbase Server). The document expiration time is returned in the response of GET /{db}/{doc} when show_exp=true is included in the querystring.</p>
-<p class="tableblock">As with the existing explicit purge mechanism, this applies only to the local database; it has nothing to do with replication. This expiration time is not propagated when the document is replicated. The purge of the document does not cause it to be deleted on any other database.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Expiry time after which the document will be purged. The expiration time is set and managed on the Couchbase Server document (TTL is not supported for databases in walrus mode). The value can be specified in two ways; in ISO-8601 format, for example the 6th of July 2016 at 17:00 in the BST timezone would be 2016-07-06T17:00:00+01:00; it can also be specified as a numeric Couchbase Server expiry value. Couchbase Server expiries are specified as Unix time, and if the desired TTL is below 30 days then it can also represent an interval in seconds from the current time (for example, a value of 5 will remove the document 5 seconds after it is written to Couchbase Server). The document expiration time is returned in the response of GET /{db}/{doc} when show_exp=true is included in the querystring.</p>
+</div>
+<div class="paragraph">
+<p>As with the existing explicit purge mechanism, this applies only to the local database; it has nothing to do with replication. This expiration time is not propagated when the document is replicated. The purge of the document does not cause it to be deleted on any other database.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">_revisions</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Document__revisions"><em>DocumentRevisions</em></a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">_attachments</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Document__attachments"><em>DocumentAttachments</em></a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5273,7 +5078,11 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">attachment_name</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Document__attachments_attachment_name"><em>DocumentAttachmentsAttachmentName</em></a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5303,7 +5112,13 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">content_type</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The content type of the attachment.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The content type of the attachment.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5333,14 +5148,26 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">_id</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Document identifier</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Document identifier</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">_rev</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Revision identifier</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Revision identifier</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5370,14 +5197,26 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">start</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Integer">[Integer]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Prefix number for the latest revision.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Prefix number for the latest revision.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ids</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of <a href="#string">[string]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Array of valid revision IDs, in reverse order (latest first).</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Array of valid revision IDs, in reverse order (latest first).</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5407,21 +5246,33 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">code</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Integer">[Integer]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">message</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fields</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5451,42 +5302,74 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">cmdline</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Built-in variables from the Go runtime, lists the command-line arguments</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Built-in variables from the Go runtime, lists the command-line arguments</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">memstats</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Dumps a large amount of information about the memory heap and garbage collector</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Dumps a large amount of information about the memory heap and garbage collector</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">cb</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Variables reported by the Couchbase SDK (go_couchbase package)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Variables reported by the Couchbase SDK (go_couchbase package)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">mc</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Variables reported by the low-level memcached API (gomemcached package)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Variables reported by the low-level memcached API (gomemcached package)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">syncGateway_changeCache</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#ExpVars_syncGateway_changeCache"><em>ExpVarsSyncGatewayChangeCache</em></a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">syncGateway_db</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#ExpVars_syncGateway_db"><em>ExpVarsSyncGatewayDb</em></a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5516,42 +5399,78 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">maxPending</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Max number of sequences waiting on a missing earlier sequence number</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Max number of sequences waiting on a missing earlier sequence number</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">lag-tap-0000ms</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Histogram of delay from doc save till it shows up in Tap feed</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Histogram of delay from doc save till it shows up in Tap feed</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">lag-queue-0000ms</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Histogram of delay from Tap feed till doc is posted to changes feed</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Histogram of delay from Tap feed till doc is posted to changes feed</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">lag-total-0000ms</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Histogram of total delay from doc save till posted to changes feed</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Histogram of total delay from doc save till posted to changes feed</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">outOfOrder</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of out-of-order sequences posted</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of out-of-order sequences posted</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">view_queries</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of queries to channels view</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of queries to channels view</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5581,91 +5500,169 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">channelChangesFeeds</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of calls to db.changesFeed, i.e. generating a changes feed for a single channel.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of calls to db.changesFeed, i.e. generating a changes feed for a single channel.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">channelLogAdds</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of entries added to channel logs</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of entries added to channel logs</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">channelLogAppends</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of times entries were written to channel logs using an APPEND operation</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of times entries were written to channel logs using an APPEND operation</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">channelLogCacheHits</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of requests for channel-logs that were fulfilled from the in-memory cache</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of requests for channel-logs that were fulfilled from the in-memory cache</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">channelLogRewrites</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of times entries were written to channel logs using a SET operation (rewriting the entire log)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of times entries were written to channel logs using a SET operation (rewriting the entire log)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">channelLogRewriteCollisions</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of collisions while attempting to rewrite channel logs using SET</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of collisions while attempting to rewrite channel logs using SET</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">document_gets</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of times a document was read from the database</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of times a document was read from the database</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">revisionCache_adds</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of revisions added to the revision cache</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of revisions added to the revision cache</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">revisionCache_hits</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of times a revision-cache lookup succeeded</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of times a revision-cache lookup succeeded</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">revisionCache_misses</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of times a revision-cache lookup failed</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of times a revision-cache lookup failed</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">revs_added</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of revisions added to the database (including deletions)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of revisions added to the database (including deletions)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">sequence_gets</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of times the database&#8217;s lastSequence was read</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of times the database&#8217;s lastSequence was read</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">sequence_reserves</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of times the database&#8217;s lastSequence was incremented</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of times the database&#8217;s lastSequence was incremented</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5695,28 +5692,44 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">error</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">reason</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Integer">[Integer]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5746,14 +5759,26 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">docs</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of <a href="#Document"><em>Document</em></a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List containing new or updated documents. Each object in the array can contain the following properties _id, _rev, _deleted, and values for new and updated documents.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>List containing new or updated documents. Each object in the array can contain the following properties _id, _rev, _deleted, and values for new and updated documents.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">new_edits</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether to assign new revision identifiers to new edits.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Indicates whether to assign new revision identifiers to new edits.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5783,7 +5808,11 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">docs</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of &lt;&lt;<em>db</em>_bulk_get_docs&gt;&gt;</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5813,90 +5842,190 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Integer">[Integer]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Limits the number of result rows to the specified value. Using a value of 0 has the same effect as the value 1.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Limits the number of result rows to the specified value. Using a value of 0 has the same effect as the value 1.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">style</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Default is 'main_only'. Number of revisions to return in the changes array. The only possible value is all_docs and it returns all leaf revisions including conflicts and deleted former conflicts.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Default is 'main_only'. Number of revisions to return in the changes array. The only possible value is all_docs and it returns all leaf revisions including conflicts and deleted former conflicts.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">active_only</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Default is false. When true, the changes response doesn&#8217;t include either deleted documents, or notification for documents that the user no longer has access to.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Default is false. When true, the changes response doesn&#8217;t include either deleted documents, or notification for documents that the user no longer has access to.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">include_docs</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Default is false. Indicates whether to include the associated document with each result. If there are conflicts, only the winning revision is returned.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Default is false. Indicates whether to include the associated document with each result. If there are conflicts, only the winning revision is returned.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">filter</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates that the returned documents should be filtered. The valid values are sync_gateway/bychannel and _doc_ids.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Indicates that the returned documents should be filtered. The valid values are sync_gateway/bychannel and _doc_ids.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">channels</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A comma-separated list of channel names. The response will be filtered to only documents in these channels. (This parameter must be used with the sync_gateway/bychannel filter parameter; see below.)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>A comma-separated list of channel names. The response will be filtered to only documents in these channels. (This parameter must be used with the sync_gateway/bychannel filter parameter; see below.)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">doc_ids</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of <a href="#string">[string]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A list of document IDs as a valid JSON array. The response will be filtered to only documents with these IDs. (This parameter must be used with the _doc_ids filter parameter; see below.)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>A list of document IDs as a valid JSON array. The response will be filtered to only documents with these IDs. (This parameter must be used with the _doc_ids filter parameter; see below.)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">feed</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Default is 'normal'. Specifies type of change feed. Valid values are normal, continuous, longpoll, websocket.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Default is 'normal'. Specifies type of change feed. Valid values are normal, continuous, longpoll, websocket.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">since</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Starts the results from the change immediately after the given sequence ID. Sequence IDs should be considered opaque; they come from the last_seq property of a prior response.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Starts the results from the change immediately after the given sequence ID. Sequence IDs should be considered opaque; they come from the last_seq property of a prior response.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">heartbeat</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Integer">[Integer]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>heartbeat</code> defines the interval (in milliseconds) at which an empty line (CRLF) is written to the response. It helps prevent Capella App Services from deciding the socket is idle and closing it.</p>
-<p class="tableblock">The <code>heartbeat</code> value overrides any <code>timeout</code> value, to keep the feed alive indefinitely.</p>
-<p class="tableblock">Setting <code>heartbeat=0</code> results in no heartbeat.</p>
-<p class="tableblock"><strong>Default:</strong> 0, which is no heartbeat</p>
-<p class="tableblock"><strong>Constraints:</strong></p>
-<p class="tableblock">- Applies ONLY where <code>feed=longpoll</code> or <code>feed=continuous</code></p>
-<p class="tableblock">- Minimum: 25000 (25 seconds)</p>
-<p class="tableblock">- Maximum: None&#8201;&#8212;&#8201;unless you define one in your configuration file using <code>MaxHeartbeat</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The <code>heartbeat</code> defines the interval (in milliseconds) at which an empty line (CRLF) is written to the response. It helps prevent Capella App Services from deciding the socket is idle and closing it.</p>
+</div>
+<div class="paragraph">
+<p>The <code>heartbeat</code> value overrides any <code>timeout</code> value, to keep the feed alive indefinitely.</p>
+</div>
+<div class="paragraph">
+<p>Setting <code>heartbeat=0</code> results in no heartbeat.</p>
+</div>
+<div class="paragraph">
+<p><strong>Default:</strong> 0, which is no heartbeat</p>
+</div>
+<div class="paragraph">
+<p><strong>Constraints:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Applies ONLY where <code>feed=longpoll</code> or <code>feed=continuous</code></p>
+</li>
+<li>
+<p>Minimum: 25000 (25 seconds)</p>
+</li>
+<li>
+<p>Maximum: None&#8201;&#8212;&#8201;unless you define one in your configuration file using <code>MaxHeartbeat</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">timeout</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Integer">[Integer]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>timeout</code> value defines the maximum period (in milliseconds) to wait for a change, before sending a response. This wait applies even when there are no results.</p>
-<p class="tableblock">Setting <code>timeout=0</code> results in no timeout.</p>
-<p class="tableblock"><strong>Default:</strong> 300000 (5 minutes/300 seconds)</p>
-<p class="tableblock"><strong>Constraints:</strong></p>
-<p class="tableblock">- Applies ONLY where <code>feed=longpoll</code> or <code>feed=continuous</code></p>
-<p class="tableblock">- Minimum: 0, no timeout</p>
-<p class="tableblock">- Maximum: 1500000 (15 minutes)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The <code>timeout</code> value defines the maximum period (in milliseconds) to wait for a change, before sending a response. This wait applies even when there are no results.</p>
+</div>
+<div class="paragraph">
+<p>Setting <code>timeout=0</code> results in no timeout.</p>
+</div>
+<div class="paragraph">
+<p><strong>Default:</strong> 300000 (5 minutes/300 seconds)</p>
+</div>
+<div class="paragraph">
+<p><strong>Constraints:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Applies ONLY where <code>feed=longpoll</code> or <code>feed=continuous</code></p>
+</li>
+<li>
+<p>Minimum: 0, no timeout</p>
+</li>
+<li>
+<p>Maximum: 1500000 (15 minutes)</p>
+</li>
+</ul>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5926,7 +6055,13 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">access_token</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The access token for the user to authenticate</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The access token for the user to authenticate</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5956,7 +6091,13 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id_token</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The access token for the user to authenticate</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The access token for the user to authenticate</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -5986,14 +6127,26 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Username of the user the session will be associated to.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Username of the user the session will be associated to.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">password</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">User password.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>User password.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6023,49 +6176,91 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id_token</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OpenID Connect ID token</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>OpenID Connect ID token</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">refresh_token</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OpenID Connect refresh token</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>OpenID Connect refresh token</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">session_id</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Capella App Services session token</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Capella App Services session token</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Capella App Services username</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Capella App Services username</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">access_token</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OpenID Connect access token</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>OpenID Connect access token</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">token_type</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OpenID Connect token type</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>OpenID Connect token type</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">expires_in</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#BigDecimal">[BigDecimal]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TTL for id_token</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>TTL for id_token</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6095,42 +6290,78 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id_token</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OpenID Connect ID token</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>OpenID Connect ID token</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">session_id</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Capella App Services session token</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Capella App Services session token</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Capella App Services username</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Capella App Services username</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">access_token</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OpenID Connect access token</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>OpenID Connect access token</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">token_type</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OpenID Connect token type</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>OpenID Connect token type</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">expires_in</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#BigDecimal">[BigDecimal]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TTL for id_token</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>TTL for id_token</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6160,7 +6391,13 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">missing</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of <a href="#string">[string]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A list of revision IDs for that document (the ones that are not stored in the database).</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>A list of revision IDs for that document (the ones that are not stored in the database).</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6190,14 +6427,26 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Design document identifier</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Design document identifier</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">rev</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Revision identifier</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Revision identifier</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6227,21 +6476,37 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">_id</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The document ID that was requested</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The document ID that was requested</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">_removed</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">_rev</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The revision number that was requested</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The revision number that was requested</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6271,77 +6536,143 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Access</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">access() calls made by the sync function</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>access() calls made by the sync function</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attach</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Attachment processing</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Attachment processing</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Auth</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Authentication</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Authentication</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Bucket</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Capella App Services interactions with the bucket (verbose logging).</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Capella App Services interactions with the bucket (verbose logging).</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Cache</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interactions with Capella App Services&#8217;s in-memory channel cache (Cache+ for verbose logging)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Interactions with Capella App Services&#8217;s in-memory channel cache (Cache+ for verbose logging)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Changes</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Processing of _changes requests (Changes+ for verbose logging)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Processing of _changes requests (Changes+ for verbose logging)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CRUD</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Updates made by Capella App Services to documents (CRUD+ for verbose logging)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Updates made by Capella App Services to documents (CRUD+ for verbose logging)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DCP</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DCP-feed processing (verbose logging)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>DCP-feed processing (verbose logging)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Events</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Event processing (webhooks) (Events+ for verbose logging)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Event processing (webhooks) (Events+ for verbose logging)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Feed</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Server-feed processing (Feed+ for verbose logging)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Server-feed processing (Feed+ for verbose logging)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">HTTP</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">All requests made to the Capella App Services REST APIs (Sync and Admin). Note that the log keyword HTTP is always enabled, which means that HTTP requests and error responses are always logged (in a non-verbose manner). HTTP+ provides more verbose HTTP logging.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>All requests made to the Capella App Services REST APIs (Sync and Admin). Note that the log keyword HTTP is always enabled, which means that HTTP requests and error responses are always logged (in a non-verbose manner). HTTP+ provides more verbose HTTP logging.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6371,7 +6702,13 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">a_doc_id</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of <a href="#string">[string]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Only possible value is <code>["*"]</code>. It permanently removes all revisions for that document ID.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Only possible value is <code>["*"]</code>. It permanently removes all revisions for that document ID.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6401,21 +6738,37 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">offset</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Starting index of the returned rows.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Starting index of the returned rows.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">rows</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of <a href="#QueryRow"><em>QueryRow</em></a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">total_rows</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Integer">[Integer]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of documents in the database. This number is not the number of rows returned.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Number of documents in the database. This number is not the number of rows returned.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6445,28 +6798,52 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The ID of the document.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The ID of the document.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">key</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The key in the output row.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The key in the output row.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The value in the output row.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The value in the output row.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">doc</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The document body. This is only returned if <code>include_docs=true</code> is specified in the URL.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The document body. This is only returned if <code>include_docs=true</code> is specified in the URL.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6496,14 +6873,26 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ok</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether the replication operation was successful</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Indicates whether the replication operation was successful</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">session_id</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Session identifier</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Session identifier</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6533,28 +6922,52 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">couchdb</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Contains the string 'Welcome' (this is required for compatibility with CouchDB)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Contains the string 'Welcome' (this is required for compatibility with CouchDB)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">vendor/name</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The server type ('Couchbase Capella App Services)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The server type ('Couchbase Capella App Services)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">vendor/version</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The server version</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The server version</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">version</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Capella App Services version number</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Capella App Services version number</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6584,21 +6997,37 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">authentication_handlers</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of <a href="#string">[string]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List of authentication methods.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>List of authentication methods.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ok</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Always true if the operation was successful.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Always true if the operation was successful.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">userCtx</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#UserContext"><em>UserContext</em></a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6628,21 +7057,39 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Design document identifier</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Design document identifier</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">rev</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Revision identifier</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Revision identifier</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ok</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether the operation was successful</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Indicates whether the operation was successful</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6672,56 +7119,104 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the user that will be created</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Name of the user that will be created</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">password</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Password of the user that will be created. Required, unless the allow_empty_password Capella App Services per-database configuration value is set to true, in which case the password can be omitted.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Password of the user that will be created. Required, unless the allow_empty_password Capella App Services per-database configuration value is set to true, in which case the password can be omitted.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">admin_channels</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of <a href="#string">[string]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Array of channel names to give the user access to</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Array of channel names to give the user access to</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">admin_roles</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of <a href="#string">[string]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Array of role names to assign to this user</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Array of role names to assign to this user</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">all_channels</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of <a href="#string">[string]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Array of channel names the user is given access to</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Array of channel names the user is given access to</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">email</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Email of the user that will be created.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Email of the user that will be created.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">disabled</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Boolean">[Boolean]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean property to disable this user. The user will not be able to login if this property is set to true.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Boolean property to disable this user. The user will not be able to login if this property is set to true.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">roles</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of <a href="#string">[string]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Array of role names the user is given access to</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Array of role names the user is given access to</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6751,14 +7246,26 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">channels</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Key-value pairs with a channel name as the key and the sequence number that granted the user access to the channel as value. <code>!</code> is the public channel and every user has access to it.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Key-value pairs with a channel name as the key and the sequence number that granted the user access to the channel as value. <code>!</code> is the public channel and every user has access to it.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The user&#8217;s name.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The user&#8217;s name.</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6788,14 +7295,24 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">_rev</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Revision identifier of the parent revision the new one should replace. (Not used when creating a new document.)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Revision identifier of the parent revision the new one should replace. (Not used when creating a new document.)</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">views</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#View_views"><em>ViewViews</em></a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6825,7 +7342,11 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">my_view_name</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#View_views_my_view_name"><em>ViewViewsMyViewName</em></a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -6855,14 +7376,26 @@ If not specified, will attempt to authenticate using the default provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">map</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Inline JavaScript definition for the map function</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Inline JavaScript definition for the map function</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">reduce</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Inline JavaScript definition for the reduce function</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Inline JavaScript definition for the reduce function</p>
+</div>
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
