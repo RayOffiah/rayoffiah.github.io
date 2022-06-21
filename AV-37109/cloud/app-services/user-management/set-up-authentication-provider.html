@@ -485,7 +485,7 @@
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
     <span class="in-toggle"></span>
-    <span class="menu_title menu_text">Capella App Services</span>
+    <span class="menu_title menu_text">App Services</span>
   </span>
 <ul class="menu_row">
 <li class="menu_list" data-depth="1">
@@ -573,20 +573,28 @@
     <a class="menu_title menu_link" href="../channels/channels.html">Channels</a>
   </span>
 </li>
-<li class="menu_list" data-depth="2">
+<li class="menu_list is-parent closed" data-depth="2">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <a class="menu_title menu_link" href="../references/rest-api-introduction.html">App Services REST API</a>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../references/rest_api_public_static.html">Public REST API</a>
   </span>
 </li>
-<li class="menu_list" data-depth="2">
+<li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../references/rest_api_metrics_static.html">Metrics REST API</a>
   </span>
 </li>
-<li class="menu_list" data-depth="2">
+<li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../references/rest_api_admin_static.html">Admin REST API</a>
   </span>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -800,7 +808,7 @@
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../../index.html">Couchbase Capella</a></li>
-<li class="crumb">Capella App Services</li>
+<li class="crumb">App Services</li>
 <li class="crumb">User Administration</li>
 <li class="crumb"><a href="set-up-authentication-provider.html">Setting up an Authentication Provider</a></li>
 </ul>
@@ -848,6 +856,7 @@ Capella supports a number of authentication providers, which can be configured f
 <div class="content">
 <img src="../_images/user-management/authentication-provider-screen.png" alt="App Provider">
 </div>
+<div class="title">Figure 2. Authentication Provider set up screen</div>
 </div>
 </div>
 </div>
@@ -887,7 +896,7 @@ It is also useful for endpoints that might synchronise static information such a
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-It is recommended that either <em>basic authentication</em> or <em>ODIC</em> is used for production environments.
+It is recommended that either <em>basic authentication</em> or <em>OIDC</em> is used for production environments.
 </td>
 </tr>
 </table>
@@ -905,76 +914,53 @@ This allows your application to use Couchbase for data synchronization and deleg
 <div class="content">
 <img src="../_images/user-management/oidc-provider-settings.png" alt="OIDC provider settings">
 </div>
-<div class="title">Figure 2. OIDC settings</div>
+<div class="title">Figure 3. OIDC settings</div>
 </div>
 <div class="paragraph">
 <p>Capella&#8217;s implementation of OpenID Connect uses Implicit Flow.
 This means that the retrieval of the ID token takes place on the device.
-Capella handles the background set up for the app service, using the details provided in the settings (<a href="#oidc-settings">Figure 2</a>):</p>
+Capella handles the background set up for the app service, using the details provided in the settings (<a href="#oidc-settings">Figure 3</a>):</p>
 </div>
-<div class="hdlist">
-<table>
-<tr>
-<td class="hdlist1">
-<strong>Issuer</strong>
-</td>
-<td class="hdlist2">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>Issuer</strong></dt>
+<dd>
 <p>This is the URL of the authentication provider.
 For example, if you are using Google&#8217;s authentication service, then the URL would be <a href="https://accounts.google.com" class="bare">https://accounts.google.com</a>.
 Details of the URL required should be available on your provider&#8217;s website.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-<strong>Client ID</strong>
-</td>
-<td class="hdlist2">
+</dd>
+<dt class="hdlist1"><strong>Client ID</strong></dt>
+<dd>
 <p>When you register your App Service with your OIDC provider, you will be given a <code>Client ID</code> unique to your application.
 The provider will use this ID to identify the application using the authentication service.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-<strong>Discovery URL</strong>
-</td>
-<td class="hdlist2">
+</dd>
+<dt class="hdlist1"><strong>Discovery URL</strong></dt>
+<dd>
 <p>Providers usually provide a configuration application for their users, which can be accessed through the URL given here.
 This setting is optional.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-<strong>Username prefix</strong>
-</td>
-<td class="hdlist2">
-<p>The ODIC username is taken from the App Service user and a prefix is added.
+</dd>
+<dt class="hdlist1"><strong>Username prefix</strong></dt>
+<dd>
+<p>The OIDC username is taken from the App Service user and a prefix is added.
 The prefix itself is derived from the name of the OIDC provider, or optionally, you can supply your own prefix here.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-<strong>Username claim</strong>
-</td>
-<td class="hdlist2">
-<p>Specifies a claim other than the subject to use as the Capella App Services username. By default, the <code>issuer</code> is used, but you can use another <code>claim</code> field, such as the email address.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-<strong>Auto Register</strong>
-</td>
-<td class="hdlist2">
+</dd>
+<dt class="hdlist1"><strong>Username claim</strong></dt>
+<dd>
+<p>Specifies a claim other than the subject to use as the App Services username. By default, the <code>issuer</code> is used, but you can use another <code>claim</code> field, such as the email address.</p>
+</dd>
+<dt class="hdlist1"><strong>Auto Register</strong></dt>
+<dd>
 <p>The App Service service can be configured to create a new user if it receives a valid authorisation from an unregistered user.</p>
-</td>
-</tr>
-</table>
+</dd>
+</dl>
 </div>
 <div class="sect2">
-<h3 id="oidc-authorisation-step-by-step"><a class="anchor" href="#oidc-authorisation-step-by-step"></a>OIDC Authorisation: step by step</h3>
+<h3 id="oidc-authorization-step-by-step"><a class="anchor" href="#oidc-authorization-step-by-step"></a>OIDC Authorization: step by step</h3>
 <div class="imageblock kroki">
 <div class="content">
-<img src="../_images/diag-af61c4221f1bf7391907c81ca8bac8f82173bd39.svg" alt="Diagram">
+<img src="../_images/diag-af61c4221f1bf7391907c81ca8bac8f82173bd39.svg" alt="OIDC Authorization Sequence">
 </div>
+<div class="title">Figure 4. OIDC Authorization Sequence</div>
 </div>
 </div>
 </div>

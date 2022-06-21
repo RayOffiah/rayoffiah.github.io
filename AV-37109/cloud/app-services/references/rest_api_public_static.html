@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
     <meta name="robots" content="noindex">
-<meta name="description" content="Description of the Capella App Services Public REST API">
+<meta name="description" content="Description of the App Services Public REST API">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -485,7 +485,7 @@
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
     <span class="in-toggle"></span>
-    <span class="menu_title menu_text">Capella App Services</span>
+    <span class="menu_title menu_text">App Services</span>
   </span>
 <ul class="menu_row">
 <li class="menu_list" data-depth="1">
@@ -573,20 +573,28 @@
     <a class="menu_title menu_link" href="../channels/channels.html">Channels</a>
   </span>
 </li>
-<li class="menu_list is-current-page" data-depth="2">
+<li class="menu_list is-parent closed" data-depth="2">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <a class="menu_title menu_link" href="rest-api-introduction.html">App Services REST API</a>
+  </span>
+<ul class="menu_row">
+<li class="menu_list is-current-page" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link is-current-page" href="rest_api_public_static.html">Public REST API</a>
   </span>
 </li>
-<li class="menu_list" data-depth="2">
+<li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="rest_api_metrics_static.html">Metrics REST API</a>
   </span>
 </li>
-<li class="menu_list" data-depth="2">
+<li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="rest_api_admin_static.html">Admin REST API</a>
   </span>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -800,8 +808,9 @@
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../../index.html">Couchbase Capella</a></li>
-<li class="crumb">Capella App Services</li>
+<li class="crumb">App Services</li>
 <li class="crumb">References</li>
+<li class="crumb"><a href="rest-api-introduction.html">App Services REST API</a></li>
 <li class="crumb"><a href="rest_api_public_static.html">Public REST API</a></li>
 </ul>
 </nav>
@@ -841,7 +850,7 @@ In the process, documentation may be built first&#8201;&#8212;&#8201;so it is po
 </div>
 </div>
 </div>
-<h1 id="capella-app-services" class="sect0"><a class="anchor" href="#capella-app-services"></a>Capella App Services</h1>
+<h1 id="app-services" class="sect0"><a class="anchor" href="#app-services"></a>App Services</h1>
 <div class="sect1">
 <h2 id="access"><a class="anchor" href="#access"></a>Access</h2>
 <div class="sectionbody">
@@ -1286,12 +1295,12 @@ From then on, the attachment will not be replicated but will still reside in the
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Capella App Services allows users to authenticate using a Facebook account.</p>
+<p>App Services allows users to authenticate using a Facebook account.</p>
 </div>
 <div class="paragraph">
 <p>Your application is responsible for generating a Facebook token; this generally needs to be done by running the Facebook login flow inside a web-view and capturing the generated token.
 This endpoint can be used to check the validity of the access token.
-To allow Facebook Login with Capella App Services, it must be explicitly enabled in the Capella App Services configuration file by setting the <a href="config-properties.html#facebook-register">facebook.register</a> property to <code>true</code>.</p>
+To allow Facebook Login with App Services, it must be explicitly enabled in the App Services configuration file by setting the <a href="config-properties.html#facebook-register">facebook.register</a> property to <code>true</code>.</p>
 </div>
 </div>
 </div>
@@ -1426,12 +1435,12 @@ To allow Facebook Login with Capella App Services, it must be explicitly enabled
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Capella App Services allows users to authenticate using a Google account.</p>
+<p>App Services allows users to authenticate using a Google account.</p>
 </div>
 <div class="paragraph">
 <p>Your application is responsible for generating a Google token; this generally needs to be done by running the Google login flow inside a web-view and capturing the generated token.
 This endpoint can be used to check the validity of the access token.
-To allow Google Login with Capella App Services, it must be explicitly enabled in the Capella App Services configuration file by setting the <a href="config-properties.html#google-register">google.register</a> property to <code>true</code> and setting the <a href="config-properties.html#google-app_client_id">google.app_client_id</a> property with a Google app client ID.</p>
+To allow Google Login with App Services, it must be explicitly enabled in the App Services configuration file by setting the <a href="config-properties.html#google-register">google.register</a> property to <code>true</code> and setting the <a href="config-properties.html#google-app_client_id">google.app_client_id</a> property with a Google app client ID.</p>
 </div>
 </div>
 </div>
@@ -1647,7 +1656,7 @@ To allow Google Login with Capella App Services, it must be explicitly enabled i
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>OpenId Connect provider to be used for authentication, from the list of providers defined in the Capella App Services Config. If not specified, will attempt to authenticate using the default provider.</p>
+<p>OpenId Connect provider to be used for authentication, from the list of providers defined in the App Services Config. If not specified, will attempt to authenticate using the default provider.</p>
 </div>
 </div>
 </div></div></td>
@@ -1688,12 +1697,12 @@ To allow Google Login with Capella App Services, it must be explicitly enabled i
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">400</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Bad request.  Reason is returned as \"OpenID Connect not configured for database default\".  If a provider was specified in the request, that provider was not defined in the Capella App Services config.  If no provider was specified, OpenID Connect is not configured in the Capella App Services config.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bad request.  Reason is returned as \"OpenID Connect not configured for database default\".  If a provider was specified in the request, that provider was not defined in the App Services config.  If no provider was specified, OpenID Connect is not configured in the App Services config.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">500</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Server Error.  Capella App Services is unable to connect and validate the OpenID Connect provider requested.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Server Error.  App Services is unable to connect and validate the OpenID Connect provider requested.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -1794,7 +1803,7 @@ To allow Google Login with Capella App Services, it must be explicitly enabled i
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>OpenId Connect provider to be used for authentication, from the list of providers defined in the Capella App Services Config. If not specified, will attempt to authenticate using the default provider.</p>
+<p>OpenId Connect provider to be used for authentication, from the list of providers defined in the App Services Config. If not specified, will attempt to authenticate using the default provider.</p>
 </div>
 </div>
 </div></div></td>
@@ -1835,12 +1844,12 @@ To allow Google Login with Capella App Services, it must be explicitly enabled i
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">400</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Bad request.  Reason is returned as \"OpenID Connect not configured for database default\".  If a provider was specified in the request, that provider was not defined in the Capella App Services config.  If no provider was specified, OpenID Connect is not configured in the Capella App Services config.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bad request.  Reason is returned as \"OpenID Connect not configured for database default\".  If a provider was specified in the request, that provider was not defined in the App Services config.  If no provider was specified, OpenID Connect is not configured in the App Services config.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">500</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Server Error.  Capella App Services is unable to connect and validate the OpenID Connect provider requested.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Server Error.  App Services is unable to connect and validate the OpenID Connect provider requested.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -1860,7 +1869,7 @@ To allow Google Login with Capella App Services, it must be explicitly enabled i
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Capella App Services callback URL that clients are redirected to by the OpenID Connect provider.</p>
+<p>App Services callback URL that clients are redirected to by the OpenID Connect provider.</p>
 </div>
 </div>
 </div>
@@ -1941,7 +1950,7 @@ To allow Google Login with Capella App Services, it must be explicitly enabled i
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>OpenId Connect provider to be used for authentication, from the list of providers defined in the Capella App Services Config. If not specified, will attempt to authenticate using the default provider.</p>
+<p>OpenId Connect provider to be used for authentication, from the list of providers defined in the App Services Config. If not specified, will attempt to authenticate using the default provider.</p>
 </div>
 </div>
 </div></div></td>
@@ -2088,7 +2097,7 @@ To allow Google Login with Capella App Services, it must be explicitly enabled i
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>OpenId Connect provider to be used for authentication, from the list of providers defined in the Capella App Services Config. If not specified, will attempt to authenticate using the default provider.</p>
+<p>OpenId Connect provider to be used for authentication, from the list of providers defined in the App Services Config. If not specified, will attempt to authenticate using the default provider.</p>
 </div>
 </div>
 </div></div></td>
@@ -2797,7 +2806,7 @@ A continuously connected changes feed is a reasonable approach for generating a 
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>The <code>heartbeat</code> defines the interval (in milliseconds) at which an empty line (CRLF) is written to the response. It helps prevent Capella App Services from deciding the socket is idle and closing it.  The <code>heartbeat</code> value overrides any <code>timeout</code> value, to keep the feed alive indefinitely.  Setting <code>heartbeat=0</code> results in no heartbeat.  <strong>Default:</strong> 0, which is no heartbeat  <strong>Constraints:</strong>  - Applies ONLY where <code>feed=longpoll</code> or <code>feed=continuous</code>.  - Minimum: 25000 (25 seconds)  - Maximum: None&#8201;&#8212;&#8201;unless you define one in your configuration file using <code>MaxHeartbeat</code></p>
+<p>The <code>heartbeat</code> defines the interval (in milliseconds) at which an empty line (CRLF) is written to the response. It helps prevent App Services from deciding the socket is idle and closing it.  The <code>heartbeat</code> value overrides any <code>timeout</code> value, to keep the feed alive indefinitely.  Setting <code>heartbeat=0</code> results in no heartbeat.  <strong>Default:</strong> 0, which is no heartbeat  <strong>Constraints:</strong>  - Applies ONLY where <code>feed=longpoll</code> or <code>feed=continuous</code>.  - Minimum: 25000 (25 seconds)  - Maximum: None&#8201;&#8212;&#8201;unless you define one in your configuration file using <code>MaxHeartbeat</code></p>
 </div>
 </div>
 </div></div></td>
@@ -4112,7 +4121,7 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Revision identifier of the revision to get. By default, Capella App Services returns the current revision. This parameter is generally only needed for conflict resolution. For example where the app might need to retrieve a conflicting leaf revision that isn&#8217;t the current revision.</p>
+<p>Revision identifier of the revision to get. By default, App Services returns the current revision. This parameter is generally only needed for conflict resolution. For example where the app might need to retrieve a conflicting leaf revision that isn&#8217;t the current revision.</p>
 </div>
 </div>
 </div></div></td>
@@ -4303,7 +4312,7 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <p>If the credentials provided in the request body are valid, the session is created with an idle session timeout of 24 hours.</p>
 </div>
 <div class="paragraph">
-<p>An idle session timeout in the context of Capella App Services is defined as the following: if 10% or more of the current expiration time has elapsed when a subsequent request with that session id is processed, the session&#8217;s expiry time is automatically updated to 24 hours from that time.</p>
+<p>An idle session timeout in the context of App Services is defined as the following: if 10% or more of the current expiration time has elapsed when a subsequent request with that session id is processed, the session&#8217;s expiry time is automatically updated to 24 hours from that time.</p>
 </div>
 </div>
 </div>
@@ -4906,68 +4915,6 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 </table>
 </div>
 <div class="sect2">
-<h3 id="Design"><a class="anchor" href="#Design"></a><em>Design</em></h3>
-<table class="tableblock frame-all grid-all stretch fields-Design">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 10%;">
-<col style="width: 20%;">
-<col style="width: 40%;">
-<col style="width: 10%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Field Name</th>
-<th class="tableblock halign-left valign-top">Required</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Format</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">offset</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Integer">[Integer]</a></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>Position in pagination.</p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Integer">[Integer]</a></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>Number of items to retrieve (100 max).</p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">count</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Integer">[Integer]</a></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>Total number of items available.</p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
 <h3 id="Document"><a class="anchor" href="#Document"></a><em>Document</em></h3>
 <table class="tableblock frame-all grid-all stretch fields-Document">
 <colgroup>
@@ -5455,19 +5402,6 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <div class="content">
 <div class="paragraph">
 <p>Number of out-of-order sequences posted</p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">view_queries</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Object">[Object]</a></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>Number of queries to channels view</p>
 </div>
 </div>
 </div></div></td>
@@ -5962,7 +5896,7 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>The <code>heartbeat</code> defines the interval (in milliseconds) at which an empty line (CRLF) is written to the response. It helps prevent Capella App Services from deciding the socket is idle and closing it.</p>
+<p>The <code>heartbeat</code> defines the interval (in milliseconds) at which an empty line (CRLF) is written to the response. It helps prevent App Services from deciding the socket is idle and closing it.</p>
 </div>
 <div class="paragraph">
 <p>The <code>heartbeat</code> value overrides any <code>timeout</code> value, to keep the feed alive indefinitely.</p>
@@ -6205,7 +6139,7 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Capella App Services session token</p>
+<p>App Services session token</p>
 </div>
 </div>
 </div></div></td>
@@ -6218,7 +6152,7 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Capella App Services username</p>
+<p>App Services username</p>
 </div>
 </div>
 </div></div></td>
@@ -6306,7 +6240,7 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Capella App Services session token</p>
+<p>App Services session token</p>
 </div>
 </div>
 </div></div></td>
@@ -6319,7 +6253,7 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Capella App Services username</p>
+<p>App Services username</p>
 </div>
 </div>
 </div></div></td>
@@ -6430,7 +6364,7 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Design document identifier</p>
+<p>Document identifier</p>
 </div>
 </div>
 </div></div></td>
@@ -6578,7 +6512,7 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Capella App Services interactions with the bucket (verbose logging).</p>
+<p>App Services interactions with the bucket (verbose logging).</p>
 </div>
 </div>
 </div></div></td>
@@ -6591,7 +6525,7 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Interactions with Capella App Services&#8217;s in-memory channel cache (Cache+ for verbose logging)</p>
+<p>Interactions with App Services&#8217;s in-memory channel cache (Cache+ for verbose logging)</p>
 </div>
 </div>
 </div></div></td>
@@ -6617,7 +6551,7 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Updates made by Capella App Services to documents (CRUD+ for verbose logging)</p>
+<p>Updates made by App Services to documents (CRUD+ for verbose logging)</p>
 </div>
 </div>
 </div></div></td>
@@ -6669,7 +6603,7 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>All requests made to the Capella App Services REST APIs (Sync and Admin). Note that the log keyword HTTP is always enabled, which means that HTTP requests and error responses are always logged (in a non-verbose manner). HTTP+ provides more verbose HTTP logging.</p>
+<p>All requests made to the App Services REST APIs (Sync and Admin). Note that the log keyword HTTP is always enabled, which means that HTTP requests and error responses are always logged (in a non-verbose manner). HTTP+ provides more verbose HTTP logging.</p>
 </div>
 </div>
 </div></div></td>
@@ -6938,7 +6872,7 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>The server type ('Couchbase Capella App Services)</p>
+<p>The server type ('Couchbase App Services)</p>
 </div>
 </div>
 </div></div></td>
@@ -6964,7 +6898,7 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Capella App Services version number</p>
+<p>App Services version number</p>
 </div>
 </div>
 </div></div></td>
@@ -7060,7 +6994,7 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Design document identifier</p>
+<p>Document identifier</p>
 </div>
 </div>
 </div></div></td>
@@ -7135,7 +7069,7 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Password of the user that will be created. Required, unless the allow_empty_password Capella App Services per-database configuration value is set to true, in which case the password can be omitted.</p>
+<p>Password of the user that will be created. Required, unless the allow_empty_password App Services per-database configuration value is set to true, in which case the password can be omitted.</p>
 </div>
 </div>
 </div></div></td>
@@ -7263,136 +7197,6 @@ The tombstoned revision will be purged when the server&#8217;s metadata purge in
 <div class="content">
 <div class="paragraph">
 <p>The user&#8217;s name.</p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="View"><a class="anchor" href="#View"></a><em>View</em></h3>
-<table class="tableblock frame-all grid-all stretch fields-View">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 10%;">
-<col style="width: 20%;">
-<col style="width: 40%;">
-<col style="width: 10%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Field Name</th>
-<th class="tableblock halign-left valign-top">Required</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Format</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">_rev</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>Revision identifier of the parent revision the new one should replace. (Not used when creating a new document.)</p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">views</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#View_views"><em>ViewViews</em></a></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
-<div class="content">
-
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="View_views"><a class="anchor" href="#View_views"></a><em>ViewViews</em></h3>
-<table class="tableblock frame-all grid-all stretch fields-ViewViews">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 10%;">
-<col style="width: 20%;">
-<col style="width: 40%;">
-<col style="width: 10%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Field Name</th>
-<th class="tableblock halign-left valign-top">Required</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Format</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">my_view_name</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#View_views_my_view_name"><em>ViewViewsMyViewName</em></a></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
-<div class="content">
-
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="View_views_my_view_name"><a class="anchor" href="#View_views_my_view_name"></a><em>ViewViewsMyViewName</em></h3>
-<table class="tableblock frame-all grid-all stretch fields-ViewViewsMyViewName">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 10%;">
-<col style="width: 20%;">
-<col style="width: 40%;">
-<col style="width: 10%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Field Name</th>
-<th class="tableblock halign-left valign-top">Required</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Format</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">map</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>Inline JavaScript definition for the map function</p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">reduce</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">[String]</a></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>Inline JavaScript definition for the reduce function</p>
 </div>
 </div>
 </div></div></td>
