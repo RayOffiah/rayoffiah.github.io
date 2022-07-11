@@ -4886,9 +4886,32 @@ In the next example, we&#8217;re going to retrieve a list of the hotels stored i
 <p>If the inline statement/N1QL call returns a value then it is executed <em>asynchronously</em>: execution continues before the iterator is returned.
 Each document is fetched from the bucket as it requested by the iterator.</p>
 </div>
-<div class="imageblock kroki">
+<div class="literalblock kroki-error">
 <div class="content">
-<img src="_images/diag-9ab13547528f2fb8a84992b23fbcb25228afd69b.svg" alt="Diagram">
+<pre>@startuml
+
+ actor Dev
+ participant JSEngine
+ participant QueryEngine
+ database Bucket
+
+ Dev -&gt;&gt; JSEngine: JS: var q = select …
+ activate JSEngine
+ JSEngine -&gt;&gt; QueryEngine : N1QL(…) call
+ activate QueryEngine
+ QueryEngine -&gt;&gt; JSEngine  : return query
+ deactivate QueryEngine
+ JSEngine -&gt;&gt; Dev : return q
+ deactivate JSEngine
+
+    loop Every document in q
+      Dev -&gt;&gt; JSEngine   : operate on document
+      JSEngine -&gt;&gt; QueryEngine ++ : get document
+      QueryEngine -&gt;&gt; Bucket ++ : get document
+      Bucket -&gt;&gt; QueryEngine -- : retrieved document
+      QueryEngine -&gt;&gt; JSEngine -- : retrieved document
+    end
+@enduml</pre>
 </div>
 </div>
 </td>
@@ -5023,9 +5046,28 @@ Inline calls only support named parameters.</p>
 <p>A N1QL statement and its corresponding iterator must live entirely within the scope of a transaction.
 If a transaction is started during the iteration process, then the transaction cannot be rolled back entirely.</p>
 </div>
-<div class="imageblock kroki">
+<div class="literalblock kroki-error">
 <div class="content">
-<img src="_images/diag-e1ca741caeb376406f3d98f41874119231d60281.svg" alt="Diagram">
+<pre>@startuml
+
+
+start
+
+:start transaction;
+note right: Transaction started before the initial\nN1QL statement is called
+: var q = execute N1QL statement;
+
+ while (next q?) is (yes)
+
+   : process q;
+
+ endwhile (no)
+
+:commit or rollback;
+
+stop
+
+@enduml</pre>
 </div>
 </div>
 </td>

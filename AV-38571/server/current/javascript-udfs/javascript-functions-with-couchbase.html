@@ -4817,14 +4817,55 @@ We can even provide parameters that can be used in the N1QL statement.</td>
 <p>JavaScript functions are stored inside a <code>library</code>.
 A library can contain one or more functions, and can also be assigned to a <code>scope</code> which allows libraries to be partitioned for logical grouping.</p>
 </div>
-<div id="javascript-scopes" class="imageblock kroki">
+<div id="javascript-scopes" class="literalblock kroki-error">
+<div class="title">Javascript UDFs Structure</div>
 <div class="content">
-<img src="_images/diag-375523d4e4664b9a4a134c86e0d2909ca1498344.svg" alt="Javascript UDFs Structure">
+<pre>@startuml
+
+frame Cluster {
+
+    frame "global library" as globalLibrary #white {
+
+        component function3 #Ivory [
+
+function globalUKHoliday(... args) {
+    ...
+}
+
+        ]
+
+        component function4 #Ivory [
+
+function globalUSHoliday(... args) {
+    ...
+}
+
+        ]
+    }
+
+    database "Bucket" {
+
+        node "Scope" #White {
+
+            frame "my-library" #White {
+
+             component function1 #Ivory [
+
+function add(x, y) {
+    ...
+}
+
+            ]
+
+        }
+    }
+}
+
+@enduml</pre>
 </div>
-<div class="title">Figure 1. Javascript UDFs Structure</div>
 </div>
 <div class="paragraph">
-<p>As shown in <a href="#javascript-scopes">Figure 1</a>, a JavaScript function library can exist as:</p>
+<p>As shown in <a href="#javascript-scopes">Javascript UDFs Structure</a>, a JavaScript function library can exist as:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -4851,11 +4892,51 @@ You can find an introduction to scopes in our <a href="../tutorials/buckets-scop
 <div class="paragraph">
 <p>Furthermore, access restrictions can be applied to scopes, so that only certain groups of users will be able to access collections and libraries within that scope.</p>
 </div>
-<div id="scopes-for-udf" class="imageblock kroki">
+<div id="scopes-for-udf" class="listingblock kroki-error">
+<div class="title">Scopes for JavaScript Libraries</div>
 <div class="content">
-<img src="_images/diag-fa6ec851e11287afb672ca681537cca64a73cd81.svg" alt="Scopes for JavaScript Libraries">
+<pre>@startuml
+allow_mixing
+
+left to right direction
+skinparam actorStyle Awesome
+skinparam linetype polyline
+skinparam linetype ortho
+
+component "getBusinessDays(...)" &lt;&lt;N1QL User-Defined Function&gt;&gt; as n1qlUDFunction
+
+  frame "my-library" as MyLibrary {
+
+   file "getBusinessDays(startDate, \nendDate)" as getBusinessDays
+
+  }
+
+
+
+n1qlUDFunction ---&gt; getBusinessDays
+actor "user" as user
+
+
+
+database "bucket" as bucket {
+  node "**scope**" as scope
+}
+
+
+scope &lt;...r.... MyLibrary
+
+
+
+user --&gt; n1qlUDFunction
+
+note top of user #Ivory
+  can access the getBusinessDays function
+  as long as s/he is working
+  inside the "**bucket.scope**" context
+end note
+
+@enduml</pre>
 </div>
-<div class="title">Figure 2. Scopes for JavaScript Libraries</div>
 </div>
 <div class="paragraph">
 <p>The user does not call a JavaScript function (shown here as <code>getBusinessDays(startDate, endDate)</code>) directly; a <strong>N1QL User-Defined Function</strong> is defined to act a reference caller to the JavaScript function.</p>

@@ -970,11 +970,25 @@ The prefix itself is derived from the name of the OIDC provider, or optionally, 
 </div>
 <div class="sect2">
 <h3 id="oidc-authorization-step-by-step"><a class="anchor" href="#oidc-authorization-step-by-step"></a>OIDC Authorization: step by step</h3>
-<div class="imageblock kroki">
+<div class="literalblock kroki-error">
+<div class="title">OIDC Authorization Sequence</div>
 <div class="content">
-<img src="../_images/diag-1a7a491ee7c53f02c4cbf82a1f9bfcccab79450d.svg" alt="OIDC Authorization Sequence">
+<pre>sequenceDiagram
+  autonumber
+  actor User
+  participant mobile as Mobile App
+  participant appService as App Service
+  participant oidc as OIDC Provider
+
+  User ->> mobile: logs in
+  mobile ->> appService: initiates OIDC authentication
+  appService ->> oidc: GET call via Issuer URL
+  oidc ->> mobile: Instruction to redirect to App Service with authorization code
+  mobile ->> appService: Instruction to initiate handshake with authorization code
+  appService ->> oidc: exchange authorization code and retrieve token
+  oidc ->> appService: returns access token, id token, refresh token
+  appService ->> mobile: returns access token, refresh token and session identifier</pre>
 </div>
-<div class="title">Figure 4. OIDC Authorization Sequence</div>
 </div>
 </div>
 </div>

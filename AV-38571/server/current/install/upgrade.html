@@ -4928,11 +4928,23 @@ This means you can&#8217;t upgrade to a newer version of Couchbase Server while 
 <div class="paragraph">
 <p>For example, if you wanted to upgrade from Couchbase Server 6.6 Community Edition to Couchbase Server 7.0 Enterprise Edition, the process would look like the following:</p>
 </div>
-<div class="imageblock kroki">
+<div class="literalblock kroki-error">
+<div class="title">Example Upgrade Path from Community to Enterprise</div>
 <div class="content">
-<img src="_images/diag-86a51e891e41721ca2339f1114bd9db19b9762a2.svg" alt="Example Upgrade Path from Community to Enterprise">
+<pre>              /-----------------\           /-----------------\
+              |     Step 1:     |           |     Step 2:     |
+              : Upgrade Edition |           : Upgrade Version |
+              \--------+--------/           \--------+--------/
+                       |                             |
+                       |                             |
++-----------------+    :     +-----------------+     :      +-----------------+
+|cBLU             | ---+---&gt; |cC02             | ----+----&gt; |cC02             |
+|Cluster 1        | Rolling  |Cluster 1        |    Any     |Cluster 1        |
+|Version: 6.6     | Online   |Version: 6.6     | Supported  |Version: 7.0     |
+|Edition: CE      | Upgrade  |Edition: EE      |  Upgrade   |Edition: EE      |
+|              {s}|          |              {s}|   Type     |              {s}|
++-----------------+          +-----------------+            +-----------------+</pre>
 </div>
-<div class="title">Figure 1. Example Upgrade Path from Community to Enterprise</div>
 </div>
 <div class="sidebarblock">
 <div class="content">
