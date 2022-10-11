@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
+<title>Using Couchbase Server to Build a User Profile Store | Couchbase Docs</title>
+<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/tutorials/profile-store/java.html">
+<link rel="stylesheet" href="../../_/css/site.css">
+<script src="../../_/js/vendor/jquery.js"></script>
+<link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+
+
+<meta name="dcterms.subject" content="tutorials">
+<meta name="dcterms.identifier" content="master">
+<meta name="page-url" content="/tutorials/profile-store/java.html">
+<meta name="generator" content="Antora 3.0.1">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+</head>
+<body class="article">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="header fixed-top">
+  <div class="header-top-row">
+      <div class="container">
+          <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
+              <ul class="navbar-brand-list">
+                <li class="brand-logo">
+                  <a class="navbar-brand" href="https://www.couchbase.com">
+                    <img src="../../_/img/couchbase-logo.svg" alt="Couchbase" />
+                  </a>
+                </li>
+                <li>
+                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/DOC-9195/home/index.html">
+                    <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
+                    <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  </a>
+                </li>
+              </ul>
+              <button class="navbar-burger" data-target="topbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+          </nav>
+      </div>
+  </div>
+  <div class="header-bottom-row" id="topbar-menu">
+    <div class="container">
+        <nav  class="navbar navbar-new-bottom">
+
+              <div class="navbar-collapse collapse" id="navbar2">
+                <ul class="navbar-nav w-100 justify-content-start">
+                  <li class="nav-item">
+                    <a href="https://rayoffiah.github.io/DOC-9195/home/index.html" class="nav-link">
+                      <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../home/server.html">
+                      Server
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../home/mobile.html">
+                      Mobile
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../cloud/index.html">
+                      Cloud
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../home/sdk.html">
+                      SDKs
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="primary-action">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                  Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
+                </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+
+              </div>
+
+        </nav>
+    </div>
+   </div>
+</header>
+<div class="body container">
+<aside class="nav left-sidebar">
+  <div class="nav-container">
+    <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+<div class="components">
+  <div class="components_group-title">
+    Tutorials
+  </div>
+  <ul class="components_list">
+    <li class="components_list-items">
+      <div class="component_list-version">
+        <span class="component_list_title">tutorials</span>
+      </div>
+      <div class="version_items hide" data-version="master">
+      </div>
+    </li>
+  </ul>
+</div>
+  </div>
+</aside>
+<aside class="toc sidebar"
+      data-title="Contents"
+      data-levels="1">
+  <div class="sidebar-box">
+    <div class="tools" role="navigation">
+<ul>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/tutorials-contrib/modules/profile-store/pages/java.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+</ul>
+</div>
+    <div class="toc-menu"></div>
+    <div class="is-this-helpful-box">
+      <h4> Is this page helpful?</h4>
+      <div class="btn-row">
+        <a href="#" class="like-btn helpful-btn" id="yesBtn" data-page-rating="like" >
+                <i class="far fa-thumbs-up"></i>
+            Yes
+
+            </a>
+        <a href="#" class="dislike-btn helpful-btn" id="noBtn"  data-page-rating="dislike"> <i class="far fa-thumbs-down"></i> No</a>
+      </div>
+      <div class="any-feedback">
+        <a href="#" class="btn any-feedback-btn" id="myCustomTrigger">Leave Additional Feedback? </a>
+      </div>
+      <div class="dialog-box" id="dialogBox">
+        <form>
+            <div class="form-group " id="additionalFeedbackBox">
+              <textarea class="input-control feed-back-msg" rows="8" placeholder="Any Additonal Feedback?"></textarea>
+
+              <div class="action-btn-row ">
+                <a href="#" class="skip-btn" id="skipBtnMsg">Skip</a>
+                  <button class="submit-btn btn blue-btn disabled" > Submit  </button>
+                  <a href="#" class="info-btn"><i class="fas fa-info-circle"></i></a>
+              </div>
+
+
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="feedback-modal modal-popup">
+  <div class="modal-popup-dialogue">
+    <div class="popup-header">
+      <a href="#" class="close-popup"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="popup-content">
+      <p>
+        Please use the form below to provide your feedback. Because your feedback is valuable to us,
+         the information you submit in this form is recorded in our issue tracking system (JIRA), which is publicly available.
+        You can track the status of your feedback using the ticket number displayed in the dialog once you submit the form.
+      </p>
+    </div>
+  </div>
+</div>
+
+<main class="article" data-ceiling="topbar">
+<div class="article-header">
+<nav class="crumbs" aria-label="breadcrumbs">
+<ul>
+<li class="crumb"><a href="../index.html">tutorials</a></li>
+</ul>
+</nav>
+</div>
+<article class="doc">
+<div class="page-heading-title">
+<h1 class="page">Using Couchbase Server to Build a User Profile Store</h1>
+<div class="labels">
+<ul></ul>
+</div>
+
+
+</div>
+<div class="contributor-list-box">
+<span class="last-commit-date" id="commitdate">    </span>
+<ul id="contributorList"></ul>
+<span  id="otherContributor"> + </span>
+</div><div class="sect1">
+<h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This tutorial contains seven main sections:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#what-is-a-user-profile-store">What is a User Profile Store?</a> If you&#8217;re new to user profile stores, this section discusses the how and why.</p>
+</li>
+<li>
+<p><a href="#installing-couchbase">Installing Couchbase</a> Start here if you&#8217;ve never setup Couchbase before.</p>
+</li>
+<li>
+<p><a href="#how-to-create-a-simple-user-profile-store">How to Create a Simple User Profile Store</a> Once you have a Couchbase Cluster set up, this tutorial will show how get started.</p>
+</li>
+<li>
+<p><a href="#querying-the-database">Querying the Database</a>. In contrast to many other NoSQL database options, Couchbase has unique capabilities for querying and exploring your data.</p>
+</li>
+<li>
+<p><a href="#searching-users-with-full-text-search">Searching Users with Full-Text Search</a> You don&#8217;t need to push all your data to a third party tool just to implement an advanced search in your system. With CB FTS you can implement complex string matchings on natural-language texts directly from database.</p>
+</li>
+<li>
+<p><a href="#storing-user-events">Storing User Events</a> Storing events is essential to understand how users behave, in this section we will discuss one strategy to maximize the write/read throughput of your application.</p>
+</li>
+<li>
+<p><a href="#how-to-configure-cross-data-center-replication-xdcr">How to configure Cross Data Center Replication (XDCR)</a> In this section, we will show how to replicate your database in multiple datacenters.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="what-is-a-user-profile-store"><a class="anchor" href="#what-is-a-user-profile-store"></a>What is a User Profile Store?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>One of the most common paradigms in software architecture is to centralize the code responsible for managing user&#8217;s data. With the increasing popularity of microservices, software architects started to create a single service to consolidate this task which is commonly referred to as a <strong>User Profile Store</strong>.</p>
+</div>
+<div class="sect2">
+<h3 id="what-is-stored-in-a-user-profile-store"><a class="anchor" href="#what-is-stored-in-a-user-profile-store"></a>What is stored in a User Profile Store?</h3>
+<div class="paragraph">
+<p>Any user-related data. The most common data stored in a User Profile Store are the user&#8217;s name, login, password, addresses, preferences, security roles, security groups, etc.</p>
+</div>
+<div class="paragraph">
+<p>Some more examples of data you might put in according to your use cases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Orders (for ecommerce);</p>
+</li>
+<li>
+<p>User&#8217;s events</p>
+</li>
+<li>
+<p>Medical history (for HealthCare);</p>
+</li>
+<li>
+<p>Transactions history (for Finance);</p>
+</li>
+<li>
+<p>Grades, certifications (for Education);</p>
+</li>
+<li>
+<p>Contracts, insurance policies;</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="why-couchbase-is-a-good-choice-for-a-user-profile-store"><a class="anchor" href="#why-couchbase-is-a-good-choice-for-a-user-profile-store"></a>Why Couchbase is a good choice for a User Profile Store?</h3>
+<div class="paragraph">
+<p>In the majority of the systems, the user is quite often the most frequently accessed data, as it underpins many other applications within organizations. Consequently, this part of the software should be carefully designed, as it will potentially impact the performance of the whole system.</p>
+</div>
+<div class="paragraph">
+<p>Some of the key non-functional requirements of a successful system are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Strong Consistency</strong>: Operations by key are strong consistent, so you won&#8217;t get outdated data.</p>
+</li>
+<li>
+<p><strong>High read and write throughput</strong>: Couchbase Server has a memory-first architecture. Data can be retrieved with very low latency and writes are asynchronous by default.</p>
+</li>
+<li>
+<p><strong>Caching</strong>: Frequently accessed data is automatically cached, as Couchbase has a <a href="https://www.couchbase.com/caching">managed cache</a> on top of the database</p>
+</li>
+<li>
+<p><strong>A flexible data model</strong>: User data can vary a lot depending on the needs of different roles, levels, etc.</p>
+</li>
+<li>
+<p><strong>Easy and fast querying</strong>: with <a href="#server:n1ql:n1ql-language-reference/index.adoc" class="xref unresolved">N1QL</a> you can query all your data with a powerful implementation of SQL++. In addition, you can also keep your indexes in memory with <a href="#server:learn:services-and-indexes/indexes/storage-modes.adoc" class="xref unresolved">Memory Optimized Indexes (MOI)</a>.</p>
+</li>
+<li>
+<p><strong>Natural-Language matching</strong>: with <a href="#server:fts:full-text-intro.adoc" class="xref unresolved">FTS</a> you can easily implement advanced searches on natural-language texts.</p>
+</li>
+<li>
+<p><strong>High Scalability</strong>: Couchbase make it <a href="#server:learn:services-and-indexes/services/services.adoc" class="xref unresolved">easy to scale</a> horizontally, but it makes it easy to scale individual services vertically with multi-dimensional scaling (MDS).</p>
+</li>
+<li>
+<p><strong>High Availability</strong>: <a href="#server:learn:buckets-memory-and-storage/vbuckets.adoc" class="xref unresolved">No single point of failure</a>. Data can also be located in one or multiple data centers (<a href="#server:learn:clusters-and-availability/xdcr-overview.adoc" class="xref unresolved">XDCR</a>).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<h1 id="user-profile-store-step-by-step" class="sect0"><a class="anchor" href="#user-profile-store-step-by-step"></a>User Profile Store Step-by-step</h1>
+<div class="paragraph">
+<p>The rest of this tutorial will walk you through the steps of using Couchbase to build a User Profile Store:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Installing and setting up Couchbase</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Configuring Couchbase for a user profile store</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Creating a simple Java application</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> How to query the Database</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> How to search natural-language text with CB FTS</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> How to use reactive programming to improve your throughput</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> How to distribute your data globally with XDCR</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installing-couchbase"><a class="anchor" href="#installing-couchbase"></a>Installing Couchbase</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are a number of different ways to get started with Couchbase. Choose the method that&#8217;s easiest for you. Check out <a href="install.html" class="xref page">User Profile Storage Tutorial: Getting Started</a> to review the options.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up-couchbase-server"><a class="anchor" href="#setting-up-couchbase-server"></a>Setting up Couchbase Server</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You will need to start by accessing the Couchbase Server Console with a web browser on port 8091 (for example, http://localhost:8091). Once there, you will see a "Welcome" screen that will start to walk you through the process of setting up a new cluster. For complete details, check out the <a href="#server:manage:manage-nodes/create-cluster.adoc" class="xref unresolved">Create Cluster</a> documentation.</p>
+</div>
+<div class="paragraph">
+<p>Note that you can also set up Couchbase by using <a href="#server:cli:cli-intro.adoc" class="xref unresolved">command line tools</a> and/or <a href="#server:rest-api:rest-intro.adoc" class="xref unresolved">a REST API</a> instead of the UI. Using the UI for this tutorial will help you get comfortable with Couchbase, but in the long run you may want to script/automate cluster management using CLI/REST. If you are using the Kubernetes Operator, these settings can also be configured in a YAML file.</p>
+</div>
+<div class="sect2">
+<h3 id="creating-a-bucket"><a class="anchor" href="#creating-a-bucket"></a>Creating a bucket</h3>
+<div class="paragraph">
+<p>Couchbase clusters contain <a href="#server:learn:buckets-memory-and-storage/buckets.adoc" class="xref unresolved">buckets</a>, which are a collection of documents. Let&#8217;s create a new bucket called <strong>user_profile</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Go to <a href="http://localhost:8091" class="bare">http://localhost:8091</a> and log in with user and password</p>
+</li>
+<li>
+<p>Go to "Buckets" and click on "ADD BUCKET" in the top left corner of the page</p>
+</li>
+<li>
+<p>Add the bucket name and memory quota:</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00101-add-bucket.png" alt="Add Bucket Pop up"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on "Add Bucket";</p>
+</li>
+<li>
+<p>Go to "Query" and create the following primary index:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">create primary index `primary_user_profile_index` on `user_profile` using GSI;</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+In a production environment you should create proper <a href="#server:learn:services-and-indexes/indexes/global-secondary-indexes.adoc" class="xref unresolved">secondary indexes</a> for your data instead of relying on a the primary index.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Then, go to "Security" and click on "ADD USER"</p>
+</li>
+<li>
+<p>Fill out the form with the following data:</p>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00102-create-user.png" alt="Add Bucket Pop up"></span></p>
+</div>
+<div class="paragraph">
+<p><strong>Username:</strong> user_profile <br>
+<strong>Full Name:</strong> user_profile <br>
+<strong>Password:</strong> password <br>
+<strong>Verify Password:</strong> password<br>
+<strong>Roles:</strong> under "user_profile", select "Application Access"</p>
+</div>
+</li>
+<li>
+<p>Finally, click on "Add User".</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more details on how to create a bucket and all of the advanced settings, check out the <a href="#server:manage:manage-buckets/create-bucket.adoc" class="xref unresolved">Create Bucket</a> documentation.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="how-to-create-a-simple-user-profile-store"><a class="anchor" href="#how-to-create-a-simple-user-profile-store"></a>How to Create a Simple User Profile Store</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The complete source code for this example is <a href="https://github.com/couchbaselabs/userProfileStore">available on GitHub</a> if you&#8217;d like to follow along. Assuming you&#8217;ve got Couchbase, the JDK and Maven installed, there are three steps to get the example running:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>git clone</code> the repository</p>
+</li>
+<li>
+<p>Add you Couchbase credentials to the <strong>application.properties</strong> file</p>
+</li>
+<li>
+<p>Run <code>mvn spring-boot:run</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To start with, let&#8217;s create a brand new project using Spring Initialzr:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Go to Spring Initialzr at <a href="https://start.spring.io/" class="bare">https://start.spring.io/</a></p>
+</li>
+<li>
+<p>Fill out the for with the following data:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Group: com.cb.demo</p>
+</li>
+<li>
+<p>Artifact: userprofile</p>
+</li>
+<li>
+<p>Dependencies:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Couchbase</p>
+</li>
+<li>
+<p>Lombok</p>
+</li>
+<li>
+<p>Validation</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00201-spring-initializr.png" alt="Spring Initalizr"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on "Generate Project"</p>
+</li>
+<li>
+<p>Open the project on Intellij or Eclipse.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Now, we need to connect our new application to our database by defining the following configuration in the <strong>application.properties</strong> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">spring.couchbase.bootstrap-hosts=localhost
+spring.couchbase.bucket.name=user_profile
+spring.couchbase.bucket.password=password
+spring.data.couchbase.auto-index=true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, let&#8217;s create a simple entity called User:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">@Data
+@Document
+public class UserEntity {
+    @Id
+    private String id;
+    @NotNull
+    @Size(max = 2, min=2)
+    private String countryCode;
+    @NotNull
+    private String username;
+    @NotNull
+    private String password;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>@Data:</strong> Lombok annotation responsible to generate getter and setters.</p>
+</li>
+<li>
+<p><strong>@Document:</strong> Couchbase annotation which defines that this entity is a top-level document</p>
+</li>
+<li>
+<p><strong>@Id:</strong> Spring Data annotation which defines the attribute called "id" as the document id.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here is the respective repository for the entity that we just created:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">@N1qlPrimaryIndexed
+@N1qlSecondaryIndexed(indexName = "userEntity")
+public interface UserEntityRepository extends CouchbasePagingAndSortingRepository&lt;UserEntity, String&gt; {
+
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>As we are extending the CouchbaseRepository interface, an implementation of our UserEntityRepository class will be automatically generated during compile time.</p>
+</li>
+<li>
+<p>The generated implementation will already contain methods like save, delete, findById, etc</p>
+</li>
+<li>
+<p>Check out the documentation about each annotation <a href="https://docs.spring.io/spring-data/couchbase/docs/current/reference/html/#couchbase.repository.indexing">here</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Finally, let&#8217;s see our code in action:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">@Autowired
+private UserEntityRepository userEntityRepository;
+
+public void doSomething() {
+    UserEntity user = new UserEntity();
+    user.setId("someId");
+    user.setCountryCode("DE");
+    user.setPassword("password");
+    user.setUsername("bilbo");
+
+    userEntityRepository.save(user);
+    //read after write
+    Optional&lt;UserEntity&gt; savedUser = userEntityRepository.findById(user.getId());
+    System.out.println(savedUser.get());
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The code above might look trivial for you, especially if you are coming from the relational world. But there is a lot going on under the hood:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Couchbase is <a href="#server:learn:buckets-memory-and-storage/vbuckets.adoc#understanding-vbuckets" class="xref unresolved">automatically sharding the data</a>, and this process is totally transparent for the developer.</p>
+</li>
+<li>
+<p>You can read after write.</p>
+</li>
+<li>
+<p>The document is automaticaly cached.</p>
+</li>
+<li>
+<p>Operations like findById, save, delete and upsert, use internally the Key-Value Store Engine, which is, from a 10 000 feet view, a big distributed hash map.  This kind of structure is fast for reads and writes and as Couchbase already has a totally transparent manage cache internally, you will get a very good performance without any extra effort.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Even though we haven&#8217;t written a lot of code yet, we already achieved 3 of our initial Non-functional requirements:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Strong Consistency:</strong> - Core operations like Updates/Save/getById are strong consistent.</p>
+</li>
+<li>
+<p><strong>High read and write throughput</strong> - Writes are asynchronous,reads by key uses internally the key value store, queries can use Memory Optimized Indexes (MOI)</p>
+</li>
+<li>
+<p><strong>Caching</strong> - Documents are automatically cached.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="querying-the-database"><a class="anchor" href="#querying-the-database"></a>Querying the Database</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s first expand our example to something closer to the real world by adding a few extra attributes (firstName, middleName, lastName and securityRoles) and also a few entities (PreferenceEntity and AddressEntity) . Here is the respective code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">@Data
+@Document
+public class UserEntity {
+
+    @Id
+    private String id;
+    @NotNull
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private boolean enabled;
+    @NotNull
+    private Integer tenantId;
+    @NotNull
+    @Size(max = 2, min=2)
+    private String countryCode;
+    @NotNull
+    private String username;
+    @NotNull
+    private String password;
+    private String socialSecurityNumber;
+
+    private List&lt;TelephoneEntity&gt; telephones;
+    private List&lt;PreferenceEntity&gt; preferences;
+    private List&lt;AddressEntity&gt; addresses;
+    private List&lt;String&gt; securityRoles;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Even though we added some new attributes, our coded has barely changed:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>No extra annotations were added;</p>
+</li>
+<li>
+<p>No change is needed in our UserEntityRepository;</p>
+</li>
+<li>
+<p>Arrays and nested entities will be handled automatically by Couchbase</p>
+</li>
+<li>
+<p>No need to implement a Lazy/Eager behavior. There is no extra cost on bringing the whole document other than the size of the document itself.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here is how our current structure will look like on the database:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-JavaScript hljs" data-lang="JavaScript">{
+  "_class" : "com.cb.demo.userProfile.model.UserEntity",
+  "firstName": "Denis",
+  "lastName": "Rosa",
+  "enabled": true,
+  "countryCode": "DE",
+  "username": "someUser",
+  "password": "letMeIn",
+  "securityRoles": ["USER", "ADMIN"],
+  "tenantId" : 4,
+  "preferences": [
+    {
+      "name": "lang",
+      "value": "en"
+    },
+    {
+      "name": "currency",
+      "value": "EUR"
+    }
+  ],
+  "addresses": [
+    {
+      "name": "Home",
+      "street": "Marienplatz",
+      "number": "1",
+      "zipCode": "80913",
+      "city": "Munich",
+      "state": "Bayern",
+      "countryCode": "DE"
+    }
+  ],
+  "telephones": [
+      {
+          "name": "cell",
+          "number": "111-222-3333"
+      }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Couchbase has no concept similar to tables in an RDBMS, all documents are analogous. Therefore, if you need to differentiate documents, you will need to add a property which will work as a document type. Spring Data does it automatically for you by adding the attribute <strong>_class</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Couchbase has a SQL-like language called <a href="https://query-tutorial.couchbase.com/tutorial/#1">N1QL</a> which you can use to query the database. However, you can also use the Spring Data SDK to make your code even simpler.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.spring.io/spring-data/couchbase/docs/current/reference/html/">Spring Data</a> allows you to easily query your database while reducing significantly the amount of code needed. You can retrieve data with it by simply naming your method according to <a href="https://docs.spring.io/spring-data/couchbase/docs/current/reference/html/">Spring Data&#8217;s syntax</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">@N1qlPrimaryIndexed
+@N1qlSecondaryIndexed(indexName = "userEntity")
+public interface UserEntityRepository extends CouchbasePagingAndSortingRepository&lt;UserEntity, String&gt; {
+
+    List&lt;UserEntity&gt; findByFirstNameIgnoreCase(String firstName);
+
+    List&lt;UserEntity&gt; findByTenantIdOrderByFirstNameAsc(Integer tenantId, Pageable pageable);
+
+    List&lt;UserEntity&gt; deleteByTenantId(Integer tenantId);
+    
+    @Query("Select meta().id as id, username, tenantId, firstName, lastname from  #{#n1ql.bucket} where #{#n1ql.filter} " +
+            " and  tenantId = $1 order by firstName asc limit $3 offset $2 ")
+    List&lt;SimpleUserVO&gt; listTenantUsers(Integer tenantId, Integer offset, Integer limit);
+
+
+    @Query("#{#n1ql.selectEntity} where  #{#n1ql.filter}  and firstName like $1 and enabled = $2 and countryCode = $3 order by firstName desc limit $4 offset $5")
+    List&lt;UserEntity&gt; findActiveUsersByFirstName(String firstName, boolean enabled, String countryCode,
+                                                                                 int limit, int offset);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see in the code above, you can query the database in two different ways: The Spring Data DSL or writing N1QL queries directly with the <strong>@Query</strong> annotation.</p>
+</div>
+<div class="paragraph">
+<p>There are also in the second case few <strong>SpEL</strong> expressions, which are syntax-sugars to make the query smaller:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>#{#n1ql.selectEntity}</strong> – Same as SELECT META(`b`).id AS _ID, META(`b`).cas AS _CAS, <code>b</code>.* FROM ` bucketName` b</p>
+</li>
+<li>
+<p><strong>#{#n1ql.filter}</strong> – Same as  _class = "your_package.YourClassName"</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can check the documentation about SpEL syntax <a href="https://docs.spring.io/spring-data/couchbase/docs/current/reference/html/#couchbase.repository.querying">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>You can also return Value Objects (VOs) instead of your main entity:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">@Data
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+public class SimpleUserVO implements Serializable {
+
+    private String id;
+    private Long tenantId;
+    private String firstName;
+    private String lastName;
+    private String username;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And then, in our repository we can rewrite our method to return the <strong>SimpleUserVO</strong> class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">List&lt;SimpleUserVO&gt; findByTenantIdOrderByFirstNameAsc(Integer tenantId, Pageable pageable);</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="maximizing-schema-flexibility"><a class="anchor" href="#maximizing-schema-flexibility"></a>Maximizing Schema Flexibility</h3>
+<div class="paragraph">
+<p>Although we do not need to change anything in the database when we add a new attribute to our entity, in the example above the schema of your data is limited to the schema described in your class. Therefore, if you need to be even more flexible, the standard <a href="https://docs.couchbase.com/java-sdk/2.7/start-using-sdk.html">Couchbase Java SDK</a> might be a better solution for you as it takes a more generic approach.</p>
+</div>
+<div class="paragraph">
+<p>Now that you know how to query your user profile store, let&#8217;s revisit our list of non-functional requirements:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Strong Consistency:</strong> - Core operations like Updates/Save/getById are strong consistent.</p>
+</li>
+<li>
+<p><strong>High read and write throughput</strong> - Writes are asynchronous,reads by key uses internally the key value store, queries can use Memory Optimized Indexes (MOI)</p>
+</li>
+<li>
+<p><strong>Caching</strong> - Documents are automatically cached.</p>
+</li>
+<li>
+<p><strong>Easy to query</strong> – via Spring Data or N1QL;</p>
+</li>
+<li>
+<p><strong>A flexible data model</strong> – No need to specify a schema, no need to change the database when a new column is added.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="searching-users-with-full-text-search"><a class="anchor" href="#searching-users-with-full-text-search"></a>Searching Users with Full-Text Search</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>One of the important requirements in a User profile Store is to quickly search for a user or to quickly search through all the history of interactions with him. This feature could enable, for instance, a better post-sales experience in retail or a more accessible patient history in a health care system.</p>
+</div>
+<div class="paragraph">
+<p>For many years developers have been using pure SQL to implement these types of functionalities. However, this type of technology has proven to be inefficient to deal with language nuances and
+ limited in terms of performance.</p>
+</div>
+<div class="paragraph">
+<p>Searching for people&#8217;s name, for instance,  is a tricky scenario, where the same name might have dozens of variations. In this session, let&#8217;s try to solve this issue by enhancing our users listing using Couchbase Full-Text Search on it. The goal is to implement a simple search that is able to return users called <strong>Allex</strong> or <strong>Alec</strong> when we search for <strong>Alex</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The first step is to create a Full-Text Search index via Search → Add Index, with the following parameters:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00301-create-index.png" alt="Create Index"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Name:</strong> the name of the index;</p>
+</li>
+<li>
+<p><strong>Bucket:</strong> The target bucket where your documents are stored;</p>
+</li>
+<li>
+<p><strong>JSON type field:</strong> As we are using Spring Data, our object type is the attribute called "_class"</p>
+</li>
+<li>
+<p><strong>Advanced → Store Dynamic Fields:</strong> Let&#8217;s also store our documents in the index.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Creating a primary index is easy, but is not recommended for production. Creating the right indexes can be difficult. If you are having trouble creating the right index, here are two paths you can take to get help:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Starting in Couchbase Server 6.5, there is an index advisor that can automatically make index recommendations for you. To learn more about this, read the <a href="building-indexes.html" class="xref page">User Profile Indexing tutorial</a>. This tutorial uses the same type of data that you&#8217;ve already been creating if you&#8217;ve been following along with this User Profile Tutorial.</p>
+</li>
+<li>
+<p>Check out the <a href="https://forums.couchbase.com/c/n1ql">N1QL category on the Couchbase Forums</a>. You can post a question about N1QL queries or indexes, and the community there can often help you.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Click on your index, type "Alex" and hit Search to check if your index was created correctly:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00302-show-index-results.png" alt="Index results"></span></p>
+</div>
+<div class="paragraph">
+<p>The results should be similar to the following:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00303-index-results-listing.png" alt="Index results Listing"></span></p>
+</div>
+<div class="paragraph">
+<p>You can read more about <a href="#server:fts:fts-creating-indexes.adoc#specifying-fields" class="xref unresolved">how to index only specific fields here</a>.</p>
+</div>
+<div class="paragraph">
+<p>Now that we already have our index in place, let&#8217;s see how we can make the same US users query using Couchbase FTS Engine:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">@Override
+public List&lt;SimpleUserVO&gt; ftsListActiveUsers(String firstName,  boolean enabled, String countryCode,  Integer limit, Integer skip ) {
+
+    String indexName = "user_index";
+    MatchQuery firstNameFuzzy = SearchQuery.match(firstName).fuzziness(1).field("firstName");
+    MatchQuery firstNameSimple = SearchQuery.match(firstName).field("firstName");
+    DisjunctionQuery nameQuery = SearchQuery.disjuncts(firstNameSimple, firstNameFuzzy);
+    BooleanFieldQuery isEnabled = SearchQuery.booleanField(enabled).field("enabled");
+    MatchQuery countryFilter = SearchQuery.match(countryCode).field("countryCode");
+    ConjunctionQuery conj = SearchQuery.conjuncts(nameQuery, isEnabled, countryFilter);
+    SearchQueryResult result = userEntityRepository.getCouchbaseOperations().getCouchbaseBucket().query(
+            new SearchQuery(indexName, conj)
+                    .fields("id", "tenantId", "firstName", "lastName", "username" )
+                    .skip(skip)
+                    .limit(limit));
+
+
+    List&lt;SimpleUserVO&gt; simpleUsers = new ArrayList&lt;&gt;();
+    if (result != null &amp;&amp; result.errors().isEmpty()) {
+        Iterator&lt;SearchQueryRow&gt; resultIterator = result.iterator();
+        while (resultIterator.hasNext()) {
+            SearchQueryRow row = resultIterator.next();
+            Map&lt;String, String&gt; fields = row.fields();
+            simpleUsers.add(new SimpleUserVO(
+                    row.id(),
+                    new Long(fields.get("tenantId")),
+                    fields.get("firstName"),
+                    fields.get("lastName"),
+                    fields.get("username")
+            ));
+        }
+    }
+
+    return simpleUsers;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the code above, we start by creating a disjunction query using the user&#8217;s first name. The disjunction query is something similar to an "OR" operator in SQL.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">MatchQuery firstNameFuzzy = SearchQuery.match(firstName).fuzziness(1).field("firstName");
+MatchQuery firstNameSimple = SearchQuery.match(firstName).field("firstName");
+DisjunctionQuery nameQuery = SearchQuery.disjuncts(firstNameSimple, firstNameFuzzy);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that <strong>firstNameSimple</strong> is an exact match of the target term, and firstNameFuzzy <a href="https://blog.couchbase.com/fuzzy-matching/">allows a match with a levenshtein distance of 1</a>. As an exact match will score higher than a fuzzy match, a combination of those two will allow you bring the exact matches first.</p>
+</div>
+<div class="paragraph">
+<p>Then, we filter by country and if the user is active:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">BooleanFieldQuery isEnabled = SearchQuery.booleanField(enabled).field("enabled");
+MatchQuery countryFilter = SearchQuery.match(countryCode).field("countryCode");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And join all filters using a <strong>conjunction query</strong>, something similar to an "AND" operator in SQL.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">ConjunctionQuery conj = SearchQuery.conjuncts(nameQuery, isEnabled, countryFilter);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, we execute the query specifying which fields we want to be returned and parse the result:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">SearchQueryResult result = userEntityRepository.getCouchbaseOperations().getCouchbaseBucket().query(
+        new SearchQuery(indexName, conj)
+                .fields("id", "tenantId", "firstName", "lastName", "username" )
+                .skip(skip)
+                .limit(limit));
+
+
+List&lt;SimpleUserVO&gt; simpleUsers = new ArrayList&lt;&gt;();
+if (result != null &amp;&amp; result.errors().isEmpty()) {
+    Iterator&lt;SearchQueryRow&gt; resultIterator = result.iterator();
+    while (resultIterator.hasNext()) {
+        SearchQueryRow row = resultIterator.next();
+        Map&lt;String, String&gt; fields = row.fields();
+        simpleUsers.add(new SimpleUserVO(
+                row.id(),
+                new Long(fields.get("tenantId")),
+                fields.get("firstName"),
+                fields.get("lastName"),
+                fields.get("username")
+        ));
+    }
+}
+
+return simpleUsers;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For instance, a search for the term <strong>Alex</strong> would return a result similar to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">SimpleUserVO(id=user-7, tenantId=1, firstName=Alex, lastName=Davis, username=user7)
+SimpleUserVO(id=user-23, tenantId=1, firstName=Alex, lastName=Williams, username=user23)
+SimpleUserVO(id=user-11, tenantId=1, firstName=Alex, lastName=Smith, username=user11)
+SimpleUserVO(id=user-47, tenantId=1, firstName=Alex, lastName=Garcia, username=user47)
+SimpleUserVO(id=user-10, tenantId=1, firstName=Alec, lastName=Jones, username=user10)
+SimpleUserVO(id=user-17, tenantId=1, firstName=Alec, lastName=Jones, username=user17)
+SimpleUserVO(id=user-116, tenantId=1, firstName=Alec, lastName=Miller, username=user116)
+SimpleUserVO(id=user-39, tenantId=1, firstName=Alec, lastName=Smith, username=user39)
+SimpleUserVO(id=user-90, tenantId=1, firstName=Alec, lastName=Martinez, username=user90)
+SimpleUserVO(id=user-135, tenantId=1, firstName=Alec, lastName=Lopez, username=user135)
+SimpleUserVO(id=user-181, tenantId=1, firstName=Alec, lastName=Davis, username=user181)
+SimpleUserVO(id=user-21, tenantId=1, firstName=Allex, lastName=Gonzalez, username=user21)
+SimpleUserVO(id=user-28, tenantId=1, firstName=Allex, lastName=Johnson, username=user28)
+SimpleUserVO(id=user-1, tenantId=1, firstName=Allex, lastName=Garcia, username=user1)
+SimpleUserVO(id=user-109, tenantId=1, firstName=Allex, lastName=Hernandez, username=user109)
+SimpleUserVO(id=user-70, tenantId=1, firstName=Allex, lastName=Hernandez, username=user70)
+SimpleUserVO(id=user-97, tenantId=1, firstName=Allex, lastName=Rodriguez, username=user97)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The users will be automatically sorted by their score, but you can still <a href="#server:fts:fts-sorting.adoc" class="xref unresolved">sort the results by a specific field</a> if needed.</p>
+</div>
+<div class="paragraph">
+<p>Couchbase Full-Text Search should be the primary choice <a href="https://blog.couchbase.com/why-you-should-avoid-like-deep-dive-on-fts-part-1/">whenever you need to search for complex strings or any type of fuzzy matching</a>. You can read more about it <a href="#server:fts:full-text-intro.adoc" class="xref unresolved">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>Lastly, let&#8217;s add a new item to our list of non-functional requirements:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Strong Consistency:</strong> - Core operations like Updates/Save/getById are strong consistent.</p>
+</li>
+<li>
+<p><strong>High read and write throughput</strong> - Writes are asynchronous,reads by key uses internally the key value store, queries can use Memory Optimized Indexes (MOI)</p>
+</li>
+<li>
+<p><strong>Caching</strong> - Documents are automatically cached.</p>
+</li>
+<li>
+<p><strong>Easy to query</strong> – via Spring Data or N1QL;</p>
+</li>
+<li>
+<p><strong>A flexible data model</strong> – No need to specify a schema, no need to change the database when a new column is added.</p>
+</li>
+<li>
+<p><strong>Natural-Language matching</strong>: <a href="#server:fts:full-text-intro.adoc" class="xref unresolved">FTS</a> is a powerful search engine framework which allows you to query natural-language text at scale.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="storing-user-events"><a class="anchor" href="#storing-user-events"></a>Storing User Events</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>So far, in our User Profile Store, we discussed about how to store basic data about our users without targeting any specific scenario. Just as a quick exercise, let&#8217;s imagine what else we could store in our application according to each use case:</p>
+</div>
+<div class="sect2">
+<h3 id="e-commerce"><a class="anchor" href="#e-commerce"></a>E-Commerce</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Credit Cards</p>
+</li>
+<li>
+<p>Recommendations</p>
+</li>
+<li>
+<p>Alerts</p>
+</li>
+<li>
+<p>Customer 360 data</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="health-care"><a class="anchor" href="#health-care"></a>Health Care</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Results and images of medical exams.</p>
+</li>
+<li>
+<p>History of previous diseases</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finance"><a class="anchor" href="#finance"></a>Finance</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>User&#8217;s transactions history</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Even though the requirements of a User Profile Store might be very specific for each vertical, they all can benefit from a common use case: storing user events.</p>
+</div>
+<div class="paragraph">
+<p>Events are essential to understand how the user behaves and might feed several AI/Analytics systems to build predictions or recommendations. However, it will usually demand a high write/read throughput architecture.</p>
+</div>
+<div class="paragraph">
+<p>One of well-known strategies to improve throughput of a system is to use a non-blocking programming approach. As Couchbase itself was internally designed to be reactive, you can develop a true end-to-end non-blocking system.</p>
+</div>
+<div class="paragraph">
+<p>Both Java and Spring SDK can be used reactively, the main difference between these two is that the Spring Data works with both <a href="https://projectreactor.io/">Reactor</a> and <a href="https://github.com/ReactiveX/RxJava">RxJava</a>, while the Java SDK is designed to use RxJava only.</p>
+</div>
+<div class="paragraph">
+<p>If you are not familiar with reactive programming, I highly recommend you to <a href="http://reactivex.io/tutorials.html">check this out first</a>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s start by adding two new dependencies to our repository: <strong>rxjava-reactive-streams</strong> and <strong>spring-boot-starter-webflux</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;dependency&gt;
+   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+   &lt;artifactId&gt;spring-boot-starter-webflux&lt;/artifactId&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+   &lt;groupId&gt;io.reactivex&lt;/groupId&gt;
+   &lt;artifactId&gt;rxjava-reactive-streams&lt;/artifactId&gt;
+   &lt;version&gt;1.2.1&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, let&#8217;s enable reactive repositories with the annotation <strong>@EnableReactiveCouchbaseRepositories</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">@SpringBootApplication
+@EnableReactiveCouchbaseRepositories
+public class UserProfileApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(UserProfileApplication.class, args);
+	}
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we create our reactive repository by extending the <strong>ReactiveCouchbaseSortingRepository</strong> class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">public interface ReactiveUserEventRepository extends ReactiveCouchbaseSortingRepository&lt;UserEventEntity, String&gt; {
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you might guess, this repository already contains by default the save, delete, get, and many other methods. However, they return Flux&lt;T&gt; and Mono&lt;T&gt; instead of returning directly your entity type.</p>
+</div>
+<div class="paragraph">
+<p><strong>Mono</strong> and <strong>Flux</strong> are the two main return types when you are working with reactor (the reactive library chosen by Spring Webflux). In a rough summary, <strong>Flux</strong> allows you to emit zero or more items while <strong>Mono</strong> can only emit one item at the most.</p>
+</div>
+<div class="paragraph">
+<p>In our small use case, we will only need two methods:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>addEvents:</strong> Store new events reactively. No repository changes needed, as the save method is already provided.</p>
+</li>
+<li>
+<p><strong>findLatestUserEvents:</strong> Return the latest N events by type.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">public interface ReactiveUserEventRepository extends ReactiveCouchbaseSortingRepository&lt;UserEventEntity, String&gt; {
+
+    @Query("#{#n1ql.selectEntity} where  #{#n1ql.filter}  and userId = $1 and eventType = $2  order by createdDate desc limit $3  offset $4")
+    Flux&lt;UserEventEntity&gt; findLatestUserEvents(String userId, String eventType,  int limit, int offset);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can now define a class called <strong>UserEventServiceImpl</strong> which will be responsible for connecting our repositories with the controller layer:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">@Service
+public class UserEventServiceImpl implements UserEventService {
+
+    @Autowired
+    private ReactiveUserEventRepository reactiveUserEventRepository;
+
+    @Override
+    public Flux&lt;UserEventEntity&gt; save(List&lt;UserEventEntity&gt; events){
+        return reactiveUserEventRepository.saveAll(events);
+    }
+
+    @Override
+    public Flux&lt;UserEventEntity&gt; findLatestUserEvents(String userId, String eventType,  int limit, int offset) {
+        return reactiveUserEventRepository.findLatestUserEvents(userId, eventType, limit, offset);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, if you also want to create a reactive rest endpoint, all you need to do is to define a controller returning your Mono/Flux result:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">@RestController("/events")
+public class UserEventController {
+
+    @Autowired
+    private UserEventService userEventService;
+
+    @PostMapping(value="/add", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux&lt;UserEventEntity&gt; save(@Valid @RequestBody List&lt;UserEventEntity&gt; events) {
+        return userEventService.save(events);
+    }
+
+    @GetMapping(value="/findLatest", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux&lt;UserEventEntity&gt; findLatestUserEvents(@RequestParam("userId") String userId,
+                                                 @RequestParam("eventType") String eventType,
+                                                 @RequestParam("limit") int limit,
+                                                 @RequestParam("offset") int offset) {
+        return userEventService.findLatestUserEvents(userId, eventType, limit, offset);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the event-driven architecture we have explained in this session, your application won&#8217;t need to wait for a response from the database. This approach can improve significantly your read/write throughput at scale.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For more on User Events, read the <a href="window-functions.html" class="xref page">Querying Time-Series data in Couchbase with Window Functions</a> which uses some features only available starting in Couchbase Server 6.5.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="how-to-configure-cross-data-center-replication-xdcr"><a class="anchor" href="#how-to-configure-cross-data-center-replication-xdcr"></a>How to configure Cross Data Center Replication (XDCR)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="#server:manage:manage-xdcr/xdcr-management-overview.adoc" class="xref unresolved">Cross Data Center Replication</a> is one of the most appealing features in Couchbase, with it you can easily distribute and replicate your data globally using a secure and reliable protocols that can be paused and resumed at any time.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00501-xdcr.png" alt="XDCR"></span></p>
+</div>
+<div class="paragraph">
+<p>XDCR supports replication between clusters of different sizes, and it is configured on the bucket level (between buckets of two or more clusters). You can also configure the <a href="#server:learn:clusters-and-availability/xdcr-overview.adoc#xdcr-direction-and-topology" class="xref unresolved">direction of the replication</a>.</p>
+</div>
+<div class="paragraph">
+<p>In our User Profile Store example, we will have 2 datacenters: one in the US and the other in Europe. Therefore, if a user living in the USA travels to Europe, he will connect to our European Datacenter.</p>
+</div>
+<div class="paragraph">
+<p>The user should be able to log in and access his profile, but we won&#8217;t leverage his previous events/recommendations, as EU is a different market with different products, regulations, taxes, currencies, etc.</p>
+</div>
+<div class="paragraph">
+<p>In practice, we will need to replicate only the <strong>UserEntity</strong> to achieve this behavior. the rest of entities will be local to each cluster. To simulate this scenario, we will use two Couchbase instances, one running local and the second on docker, here is how to set up them:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Let&#8217;s start by setting up a second Couchbase instance. Feel free to choose where you want to run it, but the two machines should be able to talk to each other.</p>
+</li>
+<li>
+<p>Once you have created your new instance, go to <strong>Buckets→ ADD BUCKET</strong>, and then create a new bucket called <strong>user_profile</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00502-create-bucket.png" alt="Create Bucket"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Now let&#8217;s connect our EU cluster with our US one. Click on <strong>XDCR→ Add Remote Cluster</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00503-remote-cluster.png" alt="Remote Cluster"></span></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Cluster Name:</strong> Name of the cluster you are connecting to</p>
+</li>
+<li>
+<p><strong>IP/Hostname:</strong> IP address of one of the nodes of the remote cluster</p>
+</li>
+<li>
+<p><strong>Username/Password:</strong> username and password of the remote cluster</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>XDCR → Add Replication</strong>, and fill out the form like the following:</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00504-add-rep.png" alt="Add replication"></span></p>
+</div>
+<div class="paragraph">
+<p>Note that we have checked the option <strong>Enable advanced filtering</strong>. It will allow you to filter which documents should be replicated. Since Couchbase 6.5 you can filter documents using multiple attributes of your document using a syntax very similar to N1QL. You can read more about it <a href="#server:xdcr-reference:xdcr-filtering-expressions.adoc" class="xref unresolved">here</a></p>
+</div>
+<div class="paragraph">
+<p>In the case above, only documents with the attribute <strong>_class</strong> equals to <strong>com.cb.demo.userProfile.model.UserEntity</strong> will be replicated. As in our User Profile store, only the <strong>UserEntity</strong> has this prefix, it will be the only document type which will be replicated to other clusters.</p>
+</div>
+<div class="paragraph">
+<p>The final result should be similar to the following:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00505-repl1.png" alt="Replication 1"></span></p>
+</div>
+<div class="paragraph">
+<p>The replication will start automatically and in a few seconds you will be able to see documents appearing in the EU Cluster:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/005051-eu-cluster.png" alt="EU Cluster"></span></p>
+</div>
+<div class="paragraph">
+<p>As we are filtering which documents should be replicated between clusters, the total number of documents will be different in both clusters:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/005052-us-cluster.png" alt="US Cluster"></span></p>
+</div>
+<div class="sect2">
+<h3 id="configuring-bidirectional-replication"><a class="anchor" href="#configuring-bidirectional-replication"></a>Configuring Bidirectional Replication</h3>
+<div class="paragraph">
+<p>In our current scenario, EU users also should be replicated to US. It will require us to do nearly the same configuration in our US cluster, but this time pointing the replication to the EU Cluster.</p>
+</div>
+<div class="paragraph">
+<p>As you might already guess, we need to first register our EU Cluster in our US Cluster:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00506-remote-rep.png" alt="Remote Repl"></span></p>
+</div>
+<div class="paragraph">
+<p>Finally, we can add the replication from EU to US:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00507-eu-replication.png" alt="EU Replication"></span></p>
+</div>
+<div class="paragraph">
+<p>Here is how your replication should look like:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00508-repl-result2.png" alt="Replication EU to US"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="disaster-recovery-with-xdcr"><a class="anchor" href="#disaster-recovery-with-xdcr"></a>Disaster Recovery with XDCR</h3>
+<div class="paragraph">
+<p>XDCR is also commonly used in disaster recovery plans (DRP). In this scenario, all you need to do is to set up a new Couchbase cluster in your DRP environment, then create a replication from your maib cluster to your DRP. On the top of it, you could still use the <a href="https://blog.couchbase.com/couchbase-high-availability-disaster-recovery-java-multi-cluster-aware-client/">multi-cluster aware (MCA) SDK</a> which can automatically redirect traffic to a different cluster according to a set of rules.</p>
+</div>
+<div class="paragraph">
+<p>With XDCR, the MCA SDK and all Couchbase internal features, like replication and <a href="#server:learn:clusters-and-availability/automatic-failover.adoc" class="xref unresolved">AutoFailover</a>, we can update our list of non-functional requirements:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Strong Consistency:</strong> - Core operations like Updates/Save/getById are strong consistent.</p>
+</li>
+<li>
+<p><strong>High read and write throughput</strong> - Writes are asynchronous,reads by key uses internally the key value store, queries can use Memory Optimized Indexes (MOI)</p>
+</li>
+<li>
+<p><strong>Caching</strong> - Documents are automatically cached.</p>
+</li>
+<li>
+<p><strong>Easy to query</strong> – via Spring Data or N1QL;</p>
+</li>
+<li>
+<p><strong>A flexible data model</strong> – No need to specify a schema, no need to change the database when a new column is added.</p>
+</li>
+<li>
+<p><strong>Natural-Language matching</strong>: <a href="#server:fts:full-text-intro.adoc" class="xref unresolved">FTS</a> is a powerful search engine framework which allows you to query natural-language text at scale.</p>
+</li>
+<li>
+<p><strong>High Availability</strong> - XDCR, MCA and <a href="https://docs.couchbase.com/server/6.0/learn/buckets-memory-and-storage/vbuckets.html">No single point of failure</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <div class="col">
+        <div class="footer-logo">
+          <a href="https://www.couchbase.com" class="icon">
+            <img src="../../_/img/couchbase-logo.svg" alt="Couchbase">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://docs.couchbase.com" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://forums.couchbase.com" target="_blank" rel="noopener">Forums</a></li>
+          <li><a href="https://support.couchbase.com" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://developer.couchbase.com" target="_blank" rel="noopener">Developer Portal</a></li>
+          <li><a href="https://blog.couchbase.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://www.couchbase.com/resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://www.couchbase.com/get-started-developing-nosql">Get Started</a></li>
+          <li><a href="https://www.couchbase.com/downloads">Downloads</a></li>
+          <li><a href="https://learn.couchbase.com/store?utf8=%E2%9C%93&ss=1&ct=78327&commit=Filter" target="_blank" rel="noopener">Training</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="social-icons">
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32.1 26.1"> <path id="twitter" class="cls-1" d="M32,7.1a11.836,11.836,0,0,1-3.8,1,6.462,6.462,0,0,0,2.9-3.6,12.606,12.606,0,0,1-4.2,1.6A6.492,6.492,0,0,0,22.1,4a6.594,6.594,0,0,0-6.6,6.6,7.719,7.719,0,0,0,.2,1.5A18.458,18.458,0,0,1,2.2,5.2a6.294,6.294,0,0,0-.9,3.3A6.765,6.765,0,0,0,4.2,14a6.109,6.109,0,0,1-3-.8v.1a6.543,6.543,0,0,0,5.3,6.4,4.678,4.678,0,0,1-1.7.2,4.869,4.869,0,0,1-1.2-.1,6.679,6.679,0,0,0,6.1,4.6,12.917,12.917,0,0,1-8.2,2.8,9.151,9.151,0,0,1-1.6-.1,18.438,18.438,0,0,0,10.1,3c12.1,0,18.7-10,18.7-18.7v-.8A13.336,13.336,0,0,0,32,7.2Z" transform="translate(0.1 -4)"/></svg>
+            <a href="https://twitter.com/couchbase" class="icon">
+              Twitter
+            </a>
+          </li>
+          <li>
+          <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="linkedin" class="cls-1" d="M29,0H3A3.076,3.076,0,0,0,0,3V29a3.009,3.009,0,0,0,3,3H29a2.946,2.946,0,0,0,3-3V3A3.009,3.009,0,0,0,29,0ZM12,26H8V12h4ZM10,10a2,2,0,1,1,2-2A2.006,2.006,0,0,1,10,10ZM26,26H22V18a2,2,0,0,0-4,0v8H14V12h4v2.5c.8-1.1,2.1-2.5,3.5-2.5A4.736,4.736,0,0,1,26,17Z"/></svg>
+              <a href="https://www.linkedin.com/company/couchbase" class="icon">
+             Linkedin
+            </a>
+          </li>
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="facebook" class="cls-1" d="M29,0H3A2.652,2.652,0,0,0,0,3V29a2.652,2.652,0,0,0,3,3H16V18H12V14h4V12a6.452,6.452,0,0,1,6-6h4v4H22a2.151,2.151,0,0,0-2,2v2h6l-1,4H20V32h9a2.652,2.652,0,0,0,3-3V3A2.652,2.652,0,0,0,29,0Z"/></svg>
+            <a href="https://www.facebook.com/Couchbase" class="icon">
+            Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-terms">
+      <div class="footer-terms-copyright">
+          <span>© 2022 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+      </div>
+      <div class="footer-terms-links">
+        <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
+        <a href="https://www.couchbase.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.couchbase.com/cookie-policy">Cookie Policy</a>
+        <a href="https://www.couchbase.com/support-policy">Support Policy</a>
+        <a href="https://info.couchbase.com/unsubscribe-or-manage-preferences.html" target="_blank" rel="noopener">Marketing Preference Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<template id="run-code-panel">
+<div class="action-panel">
+  <form class="action-panel-control" method="POST" action="https://couchbase.live/run" target="run-code-output">
+    <input type="hidden" name="lang">
+    <input type="hidden" name="code">
+    <input type="hidden" name="from" value="docs">
+    <div class="controls">
+      <button class="control-button rerun" type="submit"><i class="fas fa-redo"></i></button>
+      <span class="shell-name control-label">Output</span>
+      <button class="control-button close"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </form>
+  <iframe class="run-code-output" name="run-code-output"></iframe>
+</div>
+</template>
+<script id="site-script" src="../../_/js/site.js"></script>
+<script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+</body>
+</html>
