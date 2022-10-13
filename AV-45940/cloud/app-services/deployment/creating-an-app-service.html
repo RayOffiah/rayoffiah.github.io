@@ -579,6 +579,19 @@
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
     <span class="in-toggle"></span>
+    <span class="menu_title menu_text">Migrating</span>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../migrating/on-prem-to-capella.html">From Self-Managed Servers</a>
+  </span>
+</li>
+</ul>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
     <span class="menu_title menu_text">References</span>
   </span>
 <ul class="menu_row">
@@ -899,7 +912,7 @@ Creating an App Service, using the Capella UI
 </td>
 <td class="content">
 <div class="paragraph">
-<p>App Services is available on both <a href="../../reference/aws.html" class="xref page">AWS</a> and <a href="../../reference/gcp.html" class="xref page">GCP (supported regions)</a>.
+<p>App Services are available on both <a href="../../reference/aws.html" class="xref page">AWS</a> and <a href="../../reference/gcp.html" class="xref page">GCP (supported regions)</a>.
 The cluster you select:</p>
 </div>
 <div class="ulist">
@@ -911,7 +924,7 @@ The cluster you select:</p>
 <p>MUST have at least one Bucket to connect an App Endpoint to</p>
 </li>
 <li>
-<p>must NOT already have an App Service linked to it</p>
+<p>must NOT have an existing App Service linked to it</p>
 </li>
 <li>
 <p>must NOT have XDCR with another Cluster that already has an App Service linked to it</p>
@@ -951,10 +964,13 @@ The options offered vary depending on which cloud service you have chosen for th
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<div class="title">Metadata Requirements</div>
+<div class="title">Service Cluster Size Implications</div>
 <div class="paragraph">
-<p>When deciding on the size of your cluster, bear in mind that Capella will generate metadata information during the normal course of its operation.
-This data is automatically purged every sixty days, but should be accounted for when sizing you cluster.</p>
+<p>When linking App Services to a cluster, bear in mind that App Services will generate some additional sync-related metadata documents during the normal course of its operation.
+The metadata is stored in the backing server bucket.</p>
+</div>
+<div class="paragraph">
+<p>In addition to this, when linking App Services to a cluster, documents that have been deleted (or <code>tombstoned</code> documents) will remain in the bucket for a period of 60 days following the deletion. This will provide the opportunity for disconnected clients to sync down deleted documents via App Services when they come back online anytime within the 60-day partition window.</p>
 </div>
 </td>
 </tr>
