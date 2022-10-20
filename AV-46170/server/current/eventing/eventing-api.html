@@ -560,6 +560,11 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../learn/services-and-indexes/indexes/early-filters-and-pagination.html">Early Filters, Order and Pagination</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../learn/services-and-indexes/indexes/index-replication.html">Index Availability</a>
   </span>
 </li>
@@ -3466,6 +3471,11 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../rest-api/rest-initialize-cluster.html">Initializing a Cluster</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="4">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../rest-api/rest-initialize-node.html">Initializing a Node</a>
   </span>
 </li>
@@ -3636,7 +3646,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../rest-api/rest-cluster-email-notifications.html">Notifications</a>
+    <a class="menu_title menu_link" href="../rest-api/rest-cluster-email-notifications.html">Setting Alerts</a>
   </span>
 </li>
 </ul>
@@ -3946,6 +3956,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../rest-api/rest-auditing.html">Configure Auditing</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../rest-api/rest-specify-node-addition-conventions.html">Restrict Node-Addition</a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="3">
@@ -5736,9 +5751,6 @@ Note, if we had specified <em>deployed=false</em> we would get all undeployed fu
 The response shows all global Eventing settings.  There are currently just two settings:
 <strong>enable_debugger</strong> (default value of false) and <strong>ram_quota</strong> (default value of 256 MB).
 Both of these settings can also be adjusted via the UI.</p>
-</div>
-<div class="paragraph">
-<p>Any user Administrator or non-Administrator can read the configuration.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5748,7 +5760,7 @@ Both of these settings can also be adjusted via the UI.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">curl -XGET http://anyAuthedUser:password@192.168.1.5:8096/api/v1/config</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">curl -XGET http://Administrator:password@192.168.1.5:8096/api/v1/config</code></pre>
 </div>
 </div></div></td>
 </tr>
@@ -5759,9 +5771,6 @@ Both of these settings can also be adjusted via the UI.</p>
 <p>Modify global configuration.
 During an edit, settings provided are merged. Unspecified attributes retain their prior values.
 The response indicates whether the Eventing service must be restarted for the new changes to take effect.</p>
-</div>
-<div class="paragraph">
-<p>Only users with Administrator roles can alter the configuration.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5783,6 +5792,34 @@ The response indicates whether the Eventing service must be restarted for the ne
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">curl -XPOST -d '{"enable_debugger": true}' http://Administrator:password@192.168.1.5:8096/api/v1/config</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Sample API (allow interbucket recursion):</p>
+</div>
+<div class="paragraph">
+<p>Note, setting the value of "allow_interbucket_recursion" to true is highly discouraged unless you have an advanced use case and follow strict non-production coding and verification.  This will disable the safety checks that prevent running basic infinite recursive Eventing Functions</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">curl -X POST -u Administrator:password http://192.168.1.5:8091/_p/event/api/v1/config -d '{"allow_interbucket_recursion":true}'</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Sample API (disallow interbucket recursion):</p>
+</div>
+<div class="paragraph">
+<p>This is the default setting of which applies some sanity checks to disable running basic infinite recursive Eventing Functions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">curl -X POST -u Administrator:password http://192.168.1.5:8091/_p/event/api/v1/config -d '{"allow_interbucket_recursion":false}'</code></pre>
 </div>
 </div></div></td>
 </tr>

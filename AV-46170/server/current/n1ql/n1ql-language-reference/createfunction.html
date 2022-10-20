@@ -560,6 +560,11 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../learn/services-and-indexes/indexes/early-filters-and-pagination.html">Early Filters, Order and Pagination</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../../learn/services-and-indexes/indexes/index-replication.html">Index Availability</a>
   </span>
 </li>
@@ -3466,6 +3471,11 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-initialize-cluster.html">Initializing a Cluster</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="4">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-initialize-node.html">Initializing a Node</a>
   </span>
 </li>
@@ -3636,7 +3646,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Notifications</a>
+    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Setting Alerts</a>
   </span>
 </li>
 </ul>
@@ -3946,6 +3956,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-auditing.html">Configure Auditing</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-specify-node-addition-conventions.html">Restrict Node-Addition</a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="3">
@@ -4872,7 +4887,7 @@ Refer to <a href="#create-function-inline">Inline Functions</a> or <a href="#cre
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L155">create-function ::= create-function-inline | create-function-external</code></pre>
+<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L167">create-function ::= create-function-inline | create-function-external</code></pre>
 </div>
 </div>
 <div class="imageblock text-left">
@@ -4888,7 +4903,7 @@ The two syntaxes are synonymous.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L159-L161">create-function-inline ::= 'CREATE' ( 'OR' 'REPLACE' )? 'FUNCTION' function '(' params? ')'
+<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L171-L173">create-function-inline ::= 'CREATE' ( 'OR' 'REPLACE' )? 'FUNCTION' function '(' params? ')'
                            ( 'IF' 'NOT' 'EXISTS' )?
                            ( '{' body '}' | 'LANGUAGE' 'INLINE' 'AS' body )</code></pre>
 </div>
@@ -4918,7 +4933,7 @@ The two syntaxes are synonymous.</p>
 <h4 id="inline-name"><a class="anchor" href="#inline-name"></a>Function Name</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L171">function ::= ( namespace ':' ( bucket '.' scope '.' )? )? identifier</code></pre>
+<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L183">function ::= ( namespace ':' ( bucket '.' scope '.' )? )? identifier</code></pre>
 </div>
 </div>
 <div class="imageblock text-left">
@@ -4944,7 +4959,7 @@ A function name with a specified namespace or scope may have the same name as a 
 <h4 id="inline-parameter"><a class="anchor" href="#inline-parameter"></a>Function Parameters</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L175">params ::= identifier ( "," identifier )* | "..."</code></pre>
+<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L187">params ::= identifier ( "," identifier )* | "..."</code></pre>
 </div>
 </div>
 <div class="imageblock text-left">
@@ -5034,7 +5049,7 @@ If the statement contains both the <code>OR REPLACE</code> clause and the <code>
 <h3 id="create-function-external"><a class="anchor" href="#create-function-external"></a>External Functions</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L165-L167">create-function-external ::= 'CREATE' ( 'OR' 'REPLACE' )? 'FUNCTION' function '(' params? ')'
+<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L177-L179">create-function-external ::= 'CREATE' ( 'OR' 'REPLACE' )? 'FUNCTION' function '(' params? ')'
                              ( 'IF' 'NOT' 'EXISTS' )?
                              'LANGUAGE' 'JAVASCRIPT' 'AS' obj 'AT' library</code></pre>
 </div>
@@ -5068,7 +5083,7 @@ If the statement contains both the <code>OR REPLACE</code> clause and the <code>
 <h4 id="external-name"><a class="anchor" href="#external-name"></a>Function Name</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L171">function ::= ( namespace ':' ( bucket '.' scope '.' )? )? identifier</code></pre>
+<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L183">function ::= ( namespace ':' ( bucket '.' scope '.' )? )? identifier</code></pre>
 </div>
 </div>
 <div class="imageblock text-left">
@@ -5094,7 +5109,7 @@ A function name with a specified namespace or scope may have the same name as a 
 <h4 id="external-parameter"><a class="anchor" href="#external-parameter"></a>Function Parameters</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L175">params ::= identifier ( "," identifier )* | "..."</code></pre>
+<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L187">params ::= identifier ( "," identifier )* | "..."</code></pre>
 </div>
 </div>
 <div class="imageblock text-left">

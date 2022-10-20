@@ -560,6 +560,11 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../services-and-indexes/indexes/early-filters-and-pagination.html">Early Filters, Order and Pagination</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../services-and-indexes/indexes/index-replication.html">Index Availability</a>
   </span>
 </li>
@@ -3466,6 +3471,11 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-initialize-cluster.html">Initializing a Cluster</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="4">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-initialize-node.html">Initializing a Node</a>
   </span>
 </li>
@@ -3636,7 +3646,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Notifications</a>
+    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Setting Alerts</a>
   </span>
 </li>
 </ul>
@@ -3946,6 +3956,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-auditing.html">Configure Auditing</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-specify-node-addition-conventions.html">Restrict Node-Addition</a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="3">
@@ -4866,6 +4881,14 @@ For instructions on configuring the file&#8217;s <em>rotation time</em>, see <a 
 <div class="paragraph">
 <p>Note that audit log-files are not automatically deleted: their eventual deletion is the responsibility of the administrator.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sample-audit-records"><a class="anchor" href="#sample-audit-records"></a>Sample Audit Records</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A number of sample audit records are presented below.</p>
+</div>
 <div class="sect2">
 <h3 id="login"><a class="anchor" href="#login"></a>Login</h3>
 <div class="paragraph">
@@ -4944,7 +4967,7 @@ For instructions on configuring the file&#8217;s <em>rotation time</em>, see <a 
   "description": "Bucket was created",
   "id": 8201,
   "local": {
-    "ip": "10.144.210.101",
+    "ip": "10.144.231.102",
     "port": 8091
   },
   "name": "create bucket",
@@ -4957,9 +4980,6 @@ For instructions on configuring the file&#8217;s <em>rotation time</em>, see <a 
     "max_ttl": 0,
     "num_replicas": 1,
     "num_threads": 3,
-    "pitr_enabled": false,
-    "pitr_granularity": 600,
-    "pitr_max_history_age": 86400,
     "purge_interval": "undefined",
     "ram_quota": 268435456,
     "replica_index": false,
@@ -4970,11 +4990,11 @@ For instructions on configuring the file&#8217;s <em>rotation time</em>, see <a 
     "user": "Administrator"
   },
   "remote": {
-    "ip": "10.144.210.1",
-    "port": 53374
+    "ip": "10.144.231.1",
+    "port": 53837
   },
-  "sessionid": "eb1411eaa5eb041ea07fb86ffe93a94a59f8e8e2",
-  "timestamp": "2021-02-09T14:47:06.257Z",
+  "sessionid": "3f8472056c30014d32f19aca0bb22b10d5cefbee",
+  "timestamp": "2022-08-23T10:05:34.489Z",
   "type": "membase"
 }</code></pre>
 </div>
@@ -5113,11 +5133,11 @@ The <code>max_ttl</code> is now represented as <code>100000</code> seconds.</p>
 <div class="paragraph">
 <p>Eventing for each cluster-node is <em>disabled</em> by default; and can be explicitly <em>enabled</em>.
 When enablement has occurred, a default subset of Couchbase Server-events is audited, with records duly concatenated to the end of the <code>audit.log</code> file.
-The events in this default subset are <em>non-filterable</em>; meaning that while auditing is enabled for the node, <em>all</em> the events in the subset are <em>always</em> recorded, and cannot be selectively disabled.</p>
+Some of the events in this default subset are <em>non-filterable</em>; meaning that while auditing is enabled for the node, <em>all</em> the events in the subset are <em>always</em> recorded, and cannot be selectively disabled.</p>
 </div>
 <div class="paragraph">
-<p>An additional event-subset, of <em>filterable</em> events, is provided.
-These events relate to the same modules as the non-filterable events: however, filterable events can be individually disabled or enabled; and, optionally, all filterable events can be ignored, for specified users.</p>
+<p>Other events, including ones that are initially disabled, are <em>filterable</em>; meaning that while auditing is enabled for the node, each can be individually enabled or disabled by the administrator.
+Note also that optionally, filterable events can be ignored for specified users.</p>
 </div>
 <div class="paragraph">
 <p>For information on how to filter events, see <a href="../../manage/manage-security/manage-auditing.html" class="xref page">Manage Auditing</a>.</p>

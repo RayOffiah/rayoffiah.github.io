@@ -560,6 +560,11 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../learn/services-and-indexes/indexes/early-filters-and-pagination.html">Early Filters, Order and Pagination</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../../learn/services-and-indexes/indexes/index-replication.html">Index Availability</a>
   </span>
 </li>
@@ -3466,6 +3471,11 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-initialize-cluster.html">Initializing a Cluster</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="4">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-initialize-node.html">Initializing a Node</a>
   </span>
 </li>
@@ -3636,7 +3646,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Notifications</a>
+    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Setting Alerts</a>
   </span>
 </li>
 </ul>
@@ -3946,6 +3956,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-auditing.html">Configure Auditing</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-specify-node-addition-conventions.html">Restrict Node-Addition</a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="3">
@@ -4795,13 +4810,8 @@ However, following rotation of a server-side&#8217;s root certificate and chains
 <p>Couchbase Server supports <a href="../../learn/clusters-and-availability/node-to-node-encryption.html" class="xref page">Node-to-Node Encryption</a>, whereby network traffic between the individual nodes of a cluster is encrypted.</p>
 </div>
 <div class="paragraph">
-<p>Node-to-node encryption, which is managed by means of the Couchbase CLI, must be <em>disabled</em> before the rotation of either a <em>root</em> or an <em>intermediate</em> certificate is performed.
-To determine the status of node-to-node encryption, use the <a href="#cli:cbcli/couchbase-cli-node-to-node-encryption.adoc" class="xref unresolved">node-to-node-encryption</a> command with the <code>--get</code> flag.
-If the command output shows that node-to-node encryption is enabled, disable it; using the same command, with the <code>--disable</code> flag.
-Once certificate-rotation has been concluded, use the same command with the <code>--enable</code> flag, to re-enable node-to-node encryption.</p>
-</div>
-<div class="paragraph">
-<p>Note that the <em>node</em> certificates for a cluster can be rotated <em>without</em> node-to-node-encryption being disabled.</p>
+<p>Note that prior to Couchbase Server Version 7.1, node-to-node encryption, which is managed by means of the Couchbase CLI, needed to be <em>disabled</em> before management of either <em>root</em> or <em>intermediate</em> certificates could be performed.
+This restriction is lifted in version 7.1: therefore, root and intermediate certificates <em>can</em> now be managed while node-to-node encryption is enabled.</p>
 </div>
 </div>
 </div>

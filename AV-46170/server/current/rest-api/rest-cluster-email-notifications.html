@@ -6,11 +6,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
-<title>Setting Email Notifications | Couchbase Docs</title>
+<title>Setting Alerts | Couchbase Docs</title>
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/server/current/rest-api/rest-cluster-email-notifications.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="Alert settings specify whether email alerts are sent and the events that trigger emails. This is a global setting for all clusters.">
+<meta name="description" content="Alerts can be configured; to be dispatched or displayed automatically by Couchbase Server, in order to notify users of specific issues and problems.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -556,6 +556,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../n1ql/n1ql-language-reference/groupby-aggregate-performance.html">Grouping and Aggregate Pushdown</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../learn/services-and-indexes/indexes/early-filters-and-pagination.html">Early Filters, Order and Pagination</a>
   </span>
 </li>
 <li class="menu_list" data-depth="3">
@@ -3466,6 +3471,11 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="rest-initialize-cluster.html">Initializing a Cluster</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="4">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="rest-initialize-node.html">Initializing a Node</a>
   </span>
 </li>
@@ -3636,7 +3646,7 @@
 </li>
 <li class="menu_list is-current-page" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link is-current-page" href="rest-cluster-email-notifications.html">Notifications</a>
+    <a class="menu_title menu_link is-current-page" href="rest-cluster-email-notifications.html">Setting Alerts</a>
   </span>
 </li>
 </ul>
@@ -3946,6 +3956,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="rest-auditing.html">Configure Auditing</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="rest-specify-node-addition-conventions.html">Restrict Node-Addition</a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="3">
@@ -4730,13 +4745,13 @@
 <li class="crumb"><a href="rest-intro.html">REST API Reference</a></li>
 <li class="crumb"><a href="rest-cluster-intro.html">Nodes and Clusters API</a></li>
 <li class="crumb"><a href="rest-settings-and-connections-overview.html">Settings and Connections</a></li>
-<li class="crumb"><a href="rest-cluster-email-notifications.html">Notifications</a></li>
+<li class="crumb"><a href="rest-cluster-email-notifications.html">Setting Alerts</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Setting Email Notifications</h1>
+<h1 class="page">Setting Alerts</h1>
 <div class="labels">
 <ul><li class="reference"><span><i class="fas fa-book"></i></i> reference</span></li>
 </ul>
@@ -4752,352 +4767,393 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-Alert settings specify whether email alerts are sent and the events that trigger emails. This is a global setting for all clusters.
-Authentication is required to read this value.
+Alerts can be configured; to be dispatched or displayed automatically by Couchbase Server, in order to notify users of specific issues and problems.
 </blockquote>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="rest-cluster-alerts-get"><a class="anchor" href="#rest-cluster-alerts-get"></a>Getting Alert Settings</h2>
+<h2 id="http-methods-and-uris"><a class="anchor" href="#http-methods-and-uris"></a>HTTP Methods and URIs</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>GET /settings/alerts
+
+POST /settings/alerts
+
+GET /settings/alerts/limits
+
+POST /settings/alerts/limits
+
+POST /settings/alerts/sendTestEmail</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="description"><a class="anchor" href="#description"></a>Description</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Email alerts can be dispatched automatically when a significant error occurs — see
-<a href="../manage/manage-settings/configure-alerts.html" class="xref page">Email Alerts</a>.</p>
+<p>Alerts can be dispatched or displayed automatically by Couchbase Server, in order to highlight specific issues and problems.
+When an issue arises, an alert is generated, and one or both of the following can be configured to occur:</p>
 </div>
-<div class="sect2">
-<h3 id="http-method-and-uri"><a class="anchor" href="#http-method-and-uri"></a>HTTP method and URI</h3>
-<div class="listingblock">
-<div class="content">
-<pre>GET /settings/alerts</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="syntax"><a class="anchor" href="#syntax"></a>Syntax</h3>
-<div class="paragraph">
-<p>Curl request syntax:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>curl -u [admin]:[password ]
-    http://[localhost]:8091/settings/alerts</pre>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The alert is sent as an email by Couchbase Server to a configured SMTP server.
+From there, the email is forwarded to a configured list of email recipients.
+All cluster-nodes must have network access to the configured SMTP server, for the system to be fully effective.</p>
+</li>
+<li>
+<p>The alert appears as a pop-up, within Couchbase Web Console.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Raw HTTP request syntax:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>GET /settings/alerts HTTP/1.1
-Host: [localhost]:8091
-Authorization: Basic YWRtaW46YWRtaW4= Accept: */*</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="example"><a class="anchor" href="#example"></a>Example</h3>
-<div class="paragraph">
-<p>Curl request example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>curl -u Administrator:password
-    http://10.5.2.54:8091/settings/alerts</pre>
-</div>
+<p>To configure alerts, either the Full Admin or Cluster Admin role is required.</p>
 </div>
 <div class="paragraph">
-<p>Raw HTTP request example:</p>
+<p>The <code>GET /settings/alerts</code> method and URI return the current alert settings.
+The <code>POST /settings/alerts</code> method and URI establish the alert settings.</p>
+</div>
+<div class="paragraph">
+<p>The <code>GET /settings/alerts/limits</code> method and URI return the current memory-alert thresholds.
+The <code>POST /settings/alerts/limits</code> method and URI establish the thresholds at which memory-alerts are set, and can also be used to enable or disable individual thresholds.</p>
+</div>
+<div class="paragraph">
+<p>The <code>POST /settings/alerts/sendTestEmail</code> method and URI configure dispatch of a test email.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="curl-syntax"><a class="anchor" href="#curl-syntax"></a>Curl Syntax</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>curl -X GET -u http://&lt;ip-address-or-domain-name&gt;:8091/settings/alerts
+  -u &lt;username&gt;:&lt;password&gt;
+
+curl -X POST -u http://&lt;ip-address-or-domain-name&gt;:8091/settings/alerts
+  -u &lt;username&gt;:&lt;password&gt;
+  -d emailPass=&lt;email-password&gt;
+  -d sender=&lt;sender-email-address&gt;
+  -d recipients=&lt;list-of-recipient-email-addresses&gt;
+  -d emailHost=&lt;ip-address-or-domain-name&gt;
+  -d emailPort=&lt;email-server-port-number&gt;
+  -d emailEncrypt=[ true | false ]
+  -d alerts=&lt;[alert-name]*&gt;
+  -d pop_up_alerts=&lt;[alert-name]*&gt;
+  -d enabled=[ true | false]
+
+curl -X POST http://&lt;ip-address-or-domain-name:8091&gt;/settings/alerts/limits
+  -u &lt;username&gt;:&lt;password&gt;
+  -d memoryNoticeThreshold=&lt;integer&gt;
+  -d memoryWarningThreshold=&lt;integer&gt;
+  -d memoryCriticalThreshold=&lt;integer&gt;
+
+curl -X POST http://&lt;ip-address-or-domain-name&gt;:8091/settings/alert/sendTestEmail
+  -u &lt;username&gt;:&lt;password&gt;</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>username</code> and <code>password</code>.
+The username and password of the administrator who is managing the settings.
+The Full Admin or Cluster Admin role is required.
+(See <a href="../learn/security/roles.html" class="xref page">Roles</a>.)</p>
+</li>
+<li>
+<p><code>emailPass</code>.
+The password of the email server that will dispatch the emails.
+This parameter is optional.
+The default is an empty string.</p>
+</li>
+<li>
+<p><code>sender</code>.
+The email address of the sender.
+This parameter is optional.
+The default value is <code>couchbase@localhost</code>.</p>
+</li>
+<li>
+<p><code>recipients</code>.
+A list of comma-separated email addresses of the intended recipients.
+This parameter is optional.
+The default value is <code>root@localhost</code>.</p>
+</li>
+<li>
+<p><code>emailHost</code>.
+The IP address or domain name of the email server to dispatch the alerts.
+This parameter is optional.
+The default value is <code>localhost</code>.</p>
+</li>
+<li>
+<p><code>emailPort</code>.
+The port that will be used by the email server.
+This parameter is optional.
+The default value is <code>25</code>.</p>
+</li>
+<li>
+<p><code>emailEncrypt</code>.
+Determines whether emails should be dispatched in encrypted form: the value must be <code>true</code> or <code>false</code> (the default).
+This parameter is optional.</p>
+</li>
+<li>
+<p><code>alerts</code>.
+A list of email-alert names.
+If the alert-name is included in the list, a corresponding email-alert will be sent as appropriate, when <code>enabled</code> is <code>true</code>.
+If the name of an alert is not included in the list, the email-alert is not dispatched.
+This parameter is optional.
+The default value contains all alerts: these are listed in <a href="../manage/manage-settings/configure-alerts.html#available-alerts" class="xref page">Available Alerts</a>.</p>
+</li>
+<li>
+<p><code>pop_up_alerts</code>.
+A list of pop-up-alert names.
+If the alert-name is included in the list, a corresponding pop-up alert will be displayed as appropriate, when <code>enabled</code> is <code>true</code>.
+If the name of an alert is not included in the list, the corresponding pop-up alert is not displayed.
+This parameter is optional.
+The default value contains all alerts: these are listed in <a href="../manage/manage-settings/configure-alerts.html#available-alerts" class="xref page">Available Alerts</a>.</p>
+</li>
+<li>
+<p><code>enabled</code>.
+Enables or disables alerts: the value can be <code>true</code> or <code>false</code> (the default).
+This parameter is optional.
+If alerts are enabled, any alert that appears in the list that is passed as the value of <code>alerts</code> or <code>pop_up_alerts</code> (see immediately below) will have an email and/or pop-up display generated as appropriate.</p>
+</li>
+<li>
+<p><code>memoryNoticeThreshold</code>, <code>memoryWarningThreshold</code>, and <code>memoryCriticalThreshold</code>.
+Thresholds for memory-usage.
+These are all disabled until the <code>memory_threshold</code> alert is enabled&#8201;&#8212;&#8201;for email or for pop-up display, or for both&#8201;&#8212;&#8201;by means of <code>POST /settings/alerts</code> (see <a href="../manage/manage-settings/configure-alerts.html#available-alerts" class="xref page">Available Alerts</a> for the full list of alerts).
+Note that even when <code>memory_threshold</code> is enabled, any of these thresholds can be individually disabled, by setting its value to <code>-1</code>.
+When a threshold is fully enabled, its value is an integer between <code>1</code> and <code>100</code>: the integer specifies the percentage of total system memory that must have been consumed for an email and/or pop-up alert to be correspondingly generated.
+Thresholds are enabled, disabled, and configured by means of <code>POST /settings/alerts/limits</code>; and their values are retrieved by means of <code>GET /settings/alerts/limits</code>.</p>
+<div class="paragraph">
+<p>The thresholds are intended to be assigned values in ascending order; with <code>memoryNoticeThreshold</code> the lowest, and <code>memoryCriticalThreshold</code> the highest.
+The default values are, for <code>memoryNoticeThreshold</code> <code>-1</code> (meaning disabled), for <code>memoryWarningThreshold</code> <code>90</code>, and for <code>memoryCriticalThreshold</code> <code>95</code>.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="responses"><a class="anchor" href="#responses"></a>Responses</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A successful call returns <code>200 OK</code>.</p>
+</div>
+<div class="paragraph">
+<p>Failure to authenticate returns <code>401 Unauthorized</code>.
+Incorrect specification of method or URI returns <code>404 Object Not Found</code>.
+Failures to specify parameters correctly return <code>400 Bad Request</code>, with error-messages such as the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Failure to specify <code>enabled</code>: <code>{"errors":{"enabled":"The value must be one of the following: [true,false]"}}</code></p>
+</li>
+<li>
+<p>Invalid key: <code>{"errors":{"enabled":"The value must be one of the following: [true,false]"}}</code></p>
+</li>
+<li>
+<p>Unsupported key: <code>{"errors":{"port":"Unsupported key"}}</code></p>
+</li>
+<li>
+<p>Incorrect specification of recipients list: <code>{"errors":{"recipients":"recipients must be a comma separated list of valid email addresses."}}</code></p>
+</li>
+<li>
+<p>Incorrect specification of <code>emailEncrypt</code>: <code>{"errors":{"emailEncrypt":"The value must be one of the following: [true,false]"}}</code></p>
+</li>
+<li>
+<p>Incorrect specification of <code>sender</code>: <code>{"errors":{"sender":"The value must be a valid email address"}}</code></p>
+</li>
+<li>
+<p>Incorrect specification of a memory threshold: <code>{"errors":{"memoryWarningThreshold":"The value must be in range from -1 to 100"}}</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following returns the default settings for all alerts.
+Note that the call is piped to the <a href="http://stedolan.github.io/jq" target="_blank" rel="noopener">jq</a> command, to facilitate readability.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>GET /settings/alerts HTTP/1.1
-Host: 10.5.2.54:8091
-Authorization: Basic YWRtaW46YWRtaW4= Accept: */*</pre>
+<pre>curl -v -X GET http://localhost:8091/settings/alerts -u Administrator:password | jq '.'</pre>
 </div>
 </div>
+<div class="paragraph">
+<p>If successful, the command returns <code>200 OK</code> and the following object, which contains all alerts at their default settings:</p>
 </div>
-<div class="sect2">
-<h3 id="response"><a class="anchor" href="#response"></a>Response</h3>
 <div class="listingblock">
 <div class="content">
 <pre>{
-    "alerts": [
-        "auto_failover_node",
-        "auto_failover_maximum_reached",
-        "auto_failover_other_nodes_down",
-        "auto_failover_cluster_too_small",
-        "ip",
-        "disk",
-        "overhead",
-        "ep_oom_errors",
-        "ep_item_commit_failed"
-    ],
-    "emailServer": {
-        "encrypt": false,
-        "host": "localhost",
-        "pass": "",
-        "port": 25,
-        "user": ""
-    },
-    "enabled": false,
-    "recipients": [
-        "root@localhost"
-    ],
-    "sender": "couchbase@localhost"
+  "recipients": [
+    "root@localhost"
+  ],
+  "sender": "couchbase@localhost",
+  "enabled": false,
+  "emailServer": {
+    "user": "",
+    "pass": "",
+    "host": "localhost",
+    "port": 25,
+    "encrypt": false
+  },
+  "alerts": [
+    "memory_threshold",
+    "auto_failover_node",
+    "auto_failover_maximum_reached",
+    "auto_failover_other_nodes_down",
+    "auto_failover_cluster_too_small",
+    "auto_failover_disabled",
+    "ip",
+    "disk",
+    "overhead",
+    "ep_oom_errors",
+    "ep_item_commit_failed",
+    "audit_dropped_events",
+    "indexer_ram_max_usage",
+    "ep_clock_cas_drift_threshold_exceeded",
+    "communication_issue",
+    "time_out_of_sync",
+    "disk_usage_analyzer_stuck"
+  ],
+  "pop_up_alerts": [
+    "memory_threshold",
+    "auto_failover_node",
+    "auto_failover_maximum_reached",
+    "auto_failover_other_nodes_down",
+    "auto_failover_cluster_too_small",
+    "auto_failover_disabled",
+    "ip",
+    "disk",
+    "overhead",
+    "ep_oom_errors",
+    "ep_item_commit_failed",
+    "audit_dropped_events",
+    "indexer_ram_max_usage",
+    "ep_clock_cas_drift_threshold_exceeded",
+    "communication_issue",
+    "time_out_of_sync",
+    "disk_usage_analyzer_stuck"
+  ]
 }</pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-For security reasons, the <code>pass</code> field of the <code>emailServer</code> is always empty.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="response-codes"><a class="anchor" href="#response-codes"></a>Response codes</h3>
 <div class="paragraph">
-<p>Possible errors include:</p>
+<p>Note that for security reasons, the <code>pass</code> field within the <code>emailServer</code> subdocument is always returned as blank, irrespective of its actual setting.</p>
+</div>
+<div class="paragraph">
+<p>The following example sets a shorter alert list for pop-up, and none for email:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>This endpoint isn't available yet.</pre>
+<pre>curl -v -X POST http://localhost:8091/settings/alerts -u Administrator:password \
+-d pop_up_alerts=auto_failover_node,memory_threshold,indexer_ram_max_usage \
+-d enabled=true</pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The results of the modification can be examined by means of <code>GET /settings/alerts</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>curl -v -X GET http://localhost:8091/settings/alerts -u Administrator:password | jq '.'</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This returns the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "recipients": [],
+  "sender": "couchbase@localhost",
+  "enabled": true,
+  "emailServer": {
+    "user": "",
+    "pass": "",
+    "host": "localhost",
+    "port": 25,
+    "encrypt": false
+  },
+  "alerts": [],
+  "pop_up_alerts": [
+    "memory_threshold",
+    "auto_failover_node",
+    "indexer_ram_max_usage"
+  ]
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This confirms that Couchbase Server is now configured to provide three pop-up alerts, and no email alerts.</p>
+</div>
+<div class="paragraph">
+<p>The current threshold for memory management can be returned as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>curl -v -X GET http://localhost:8091/settings/alerts/limits -u Administrator:password | jq '.'</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If successful, this returns <code>200 OK</code> and an object such as the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "maxDiskUsedPerc": 90,
+  "maxIndexerRamPerc": 75,
+  "maxOverheadPerc": 50,
+  "memoryCriticalThreshold": 95,
+  "memoryNoticeThreshold": -1,
+  "memoryWarningThreshold": 90
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This shows that all parameters are at their default values.
+The <code>memoryWarningThreshold</code> can be reconfigured as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>curl -v -X POST http://localhost:8091/settings/alerts/limits \
+-d "memoryWarningThreshold=85" \
+-u Administrator:password | jq '.'</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the call is successful, the following output is returned:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "maxDiskUsedPerc": 90,
+  "maxIndexerRamPerc": 75,
+  "maxOverheadPerc": 50,
+  "memoryCriticalThreshold": 95,
+  "memoryNoticeThreshold": -1,
+  "memoryWarningThreshold": 85
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This confirms that the setting has been changed.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="rest-cluster-alerts-enabledisable"><a class="anchor" href="#rest-cluster-alerts-enabledisable"></a>Enabling and Disabling Email Notifications</h2>
+<h2 id="see-also"><a class="anchor" href="#see-also"></a>See Also</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="http-method-and-uri-2"><a class="anchor" href="#http-method-and-uri-2"></a>HTTP method and URI</h3>
 <div class="paragraph">
-<p>This is a global setting for all clusters.
-Authentication is required to change this value.
-If this is enabled, Couchbase Server sends an email when certain events occur.
-Only events related to auto-failover trigger notification.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>POST /settings/alerts</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Possible parameters  include:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>alerts</code> (string) (optional, default: auto_failover_node, auto_failover_maximum_reached, auto_failover_other_nodes_down, auto_failover_cluster_too_small).
-Comma separated list of alerts that should cause an email to be sent.
-Possible values are: auto_failover_node, auto_failover_maximum_reached, auto_failover_other_nodes_down, auto_failover_cluster_too_small.</p>
-</li>
-<li>
-<p><code>enabled</code> : (true | false) (required).
-Whether to enable or disable email notifications</p>
-</li>
-<li>
-<p><code>sender</code> (string) (optional, default: couchbase@localhost).
-Email address of the sender.</p>
-</li>
-<li>
-<p><code>recipients</code> (string) (required).
-A comma separated list of recipients of the of the emails.</p>
-</li>
-<li>
-<p><code>emailServer host</code> (string) (optional, default: localhost).
-Host address of the SMTP server</p>
-</li>
-<li>
-<p><code>emailServer port</code> (integer) (optional, default: 25).
-Port of the SMTP server</p>
-</li>
-<li>
-<p><code>emailServer encrypt</code> (true | false) (optional, default: false).
-Whether you want to use TLS or not</p>
-</li>
-<li>
-<p><code>emailServer user</code> (string) (optional, default: ""): Username for the SMTP server</p>
-</li>
-<li>
-<p><code>emailServer pass</code> (string) (optional, default: ""): Password for the SMTP server</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="syntax-2"><a class="anchor" href="#syntax-2"></a>Syntax</h3>
-<div class="paragraph">
-<p>Curl request syntax:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>curl -i -u [admin]:[password]
-    http://[localhost]:8091/settings/alerts
-    -d [parameter]</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="example-2"><a class="anchor" href="#example-2"></a>Example</h3>
-<div class="paragraph">
-<p>Curl request example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>curl -i -u Administrator:password \
-    http://10.5.2.54:8091/settings/alerts \
-    -d 'enabled=true&amp;sender=couchbase@10.5.2.54&amp;recipients=admin@10.5.2.54,membi@10.5.2.54&amp;emailHost= \
-    10.5.2.54&amp;emailPort=25&amp;emailEncrypt=false'</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Raw request example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>POST /settings/alerts HTTP/1.1
-Host: 10.5.2.54:8091
-Content-Type: application/x-www-form-urlencoded
-Authorization: Basic YWRtaW46YWRtaW4=
-Content-Length: 14 enabled=true&amp;sender=couchbase@10.5.2.54&amp;recipients=admin@10.5.2.54,membi@localhost&amp;emailHost= \
-10.5.2.54&amp;emailPort=25&amp;emailEncrypt=false�</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="response-codes-2"><a class="anchor" href="#response-codes-2"></a>Response codes</h3>
-<div class="listingblock">
-<div class="content">
-<pre>HTTP/1.1 200 OK</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Possible HTTP errors include:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>400 Bad Request
-401 Unauthorized
-JSON object ({"errors": {"key": "error"}}) with errors.</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Possible errors returned in a JSON document include:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>alerts: alerts contained invalid keys.
-Valid keys are: [list_of_keys].</p>
-</li>
-<li>
-<p>email_encrypt: emailEncrypt must be either true or false.</p>
-</li>
-<li>
-<p>email_port: emailPort must be a positive integer less than 65536.</p>
-</li>
-<li>
-<p>enabled: enabled must be either true or false.</p>
-</li>
-<li>
-<p>recipients: recipients must be a comma separated list of valid email addresses.</p>
-</li>
-<li>
-<p>sender: sender must be a valid email address.</p>
-</li>
-<li>
-<p>general: No valid parameters given.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="rest-cluster-alerts-send"><a class="anchor" href="#rest-cluster-alerts-send"></a>Sending Test Emails</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="http-method-and-uri-3"><a class="anchor" href="#http-method-and-uri-3"></a>HTTP method and URI</h3>
-<div class="listingblock">
-<div class="content">
-<pre>POST /settings/alerts/sendTestEmail</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="syntax-3"><a class="anchor" href="#syntax-3"></a>Syntax</h3>
-<div class="paragraph">
-<p>Curl request syntax:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>curl -i -u admin:password
-    http://localhost:8091/settings/alerts/testEmail \
-    -d [parameter]</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Raw HTTP request syntax</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>POST /settings/alerts/sendTestEmail HTTP/1.1
-Host: [localhost]:8091
-Content-Type: application/x-www-form-urlencoded
-Authorization: Basic YWRtaW46YWRtaW4=</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="example-3"><a class="anchor" href="#example-3"></a>Example</h3>
-<div class="paragraph">
-<p>Curl request example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>curl -i -u Administrator:password \
-    http://10.5.2.54:8091/settings/alerts/testEmail \
-    -d 'subject=Test+email+from+Couchbase&amp; \
-    body=This+email+was+sent+to+you+to+test+the+email+alert+email+server+settings.&amp;enabled=true&amp; \
-    recipients=vmx%4010.5.2.54&amp;sender=couchbase%4010.5.2.54&amp; \
-    emailUser=&amp;emailPass=&amp;emailHost=10.5.2.54&amp;emailPort=25&amp;emailEncrypt=false&amp; \
-    alerts=auto_failover_node%2Cauto_ \
-    failover_maximum_reached%2Cauto_failover_other_nodes_down%2Cauto_failover_cluster_too_small'</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Raw HTTP request example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>POST /settings/alerts/sendTestEmail HTTP/1.1
-Host: 10.5.2.54:8091
-Content-Type: application/x-www-form-urlencoded
-Authorization: Basic YWRtaW46YWRtaW4=</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="response-codes-3"><a class="anchor" href="#response-codes-3"></a>Response codes</h3>
-<div class="paragraph">
-<p>Possible response code include:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>200 OK
-400 Bad Request: Unknown macro: {"error"} 401 Unauthorized
-This endpoint isn't available yet.</pre>
-</div>
-</div>
+<p>Information on managing alerts by means of the UI and CLI is provided in <a href="../manage/manage-settings/configure-alerts.html#available-alerts" class="xref page">Available Alerts</a>.
+An overview of memory management is provided in <a href="../learn/buckets-memory-and-storage/memory.html" class="xref page">Memory</a>.</p>
 </div>
 </div>
 </div>

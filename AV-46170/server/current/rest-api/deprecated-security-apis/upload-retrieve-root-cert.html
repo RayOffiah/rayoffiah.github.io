@@ -560,6 +560,11 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../learn/services-and-indexes/indexes/early-filters-and-pagination.html">Early Filters, Order and Pagination</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../../learn/services-and-indexes/indexes/index-replication.html">Index Availability</a>
   </span>
 </li>
@@ -3466,6 +3471,11 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../rest-initialize-cluster.html">Initializing a Cluster</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="4">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../rest-initialize-node.html">Initializing a Node</a>
   </span>
 </li>
@@ -3636,7 +3646,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../rest-cluster-email-notifications.html">Notifications</a>
+    <a class="menu_title menu_link" href="../rest-cluster-email-notifications.html">Setting Alerts</a>
   </span>
 </li>
 </ul>
@@ -3946,6 +3956,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../rest-auditing.html">Configure Auditing</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../rest-specify-node-addition-conventions.html">Restrict Node-Addition</a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="3">
@@ -4804,11 +4819,12 @@ Either the Full Admin or the Security Admin role is required.
 The certificate must be specified as binary data, in a location on the filesystem, for successful upload to occur.
 For security reasons, in versions 7.1 and after, by default, this method and URI can be used on <em>localhost</em> only (see <a href="#rest-api:upload-retrieve-root-cert.adoc#responses" class="xref unresolved">Responses</a>, below, for the associated error message).
 However, this default setting can be changed, by means of the <code>POST</code> method and <code>/settings/security/allowNonLocalCACertUpload</code> URI, with the <code>-d false</code> flag: this also can be used on <em>localhost</em> only.
-The status of the current setting can be retrieved with the <code>GET</code> method and <code>/settings/security/allowNonLocalCACertUpload</code> URI.</p>
+The status of the current setting can be retrieved with the <code>GET</code> method and <code>/settings/security/allowNonLocalCACertUpload</code> URI.
+See <a href="../rest-setting-security.html" class="xref page">Configure On-the-Wire Security</a>, for more information.</p>
 </div>
 <div class="paragraph">
 <p>The <code>GET</code> method and <code>/pools/default/certificate</code> URI are deprecated in 7.1.
-After the cluster has been upgraded to 7.1, they continue to return the most recent certificate uploaded by means of the deprecated API <code>POST /controller/uploadClusterCA</code>, until at least one new root certificate is uploaded using the new, 7.1 API <code>POST /node/controller/loadTrustedCAs</code> (as described in <a href="../load-trusted-cas.html" class="xref page">Load Root Certificates</a>): following which they always return <code>400 Bad Request</code>, with the message <code>this API is disabled, please use GET /pools/default/trustedCAs, see documentation for details</code>.
+After the cluster has been upgraded to 7.1, they continue to return the most recent certificate uploaded by means of the deprecated API <code>POST /controller/uploadClusterCA</code>, until at least one new root certificate is uploaded using the new, 7.1 API <code>POST /node/controller/loadTrustedCAs</code> (as described in <a href="../load-trusted-cas.html" class="xref page">Load Root Certificates</a>): following which they always return <code>400 Bad Request</code>, with the message <code>this API is disabled, please use GET /pools/default/trustedCAs</code>&#8201;&#8212;&#8201;see <a href="../get-trusted-cas.html" class="xref page">Get Root Certificates</a>, for details.
 This call is authorized for all Couchbase Server roles.</p>
 </div>
 </div>

@@ -10,7 +10,7 @@
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/server/current/learn/services-and-indexes/indexes/index_pushdowns.html">
 <link rel="stylesheet" href="../../../../../_/css/site.css">
 <script src="../../../../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="The Query engine implements many query processing optimizations to achieve the best possible performance for N1QL queries.">
+<meta name="description" content="Index Pushdowns are performance optimizations where the Query engine pushes more of the work down to the Indexer.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -556,6 +556,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../../n1ql/n1ql-language-reference/groupby-aggregate-performance.html">Grouping and Aggregate Pushdown</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="early-filters-and-pagination.html">Early Filters, Order and Pagination</a>
   </span>
 </li>
 <li class="menu_list" data-depth="3">
@@ -3466,6 +3471,11 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../../rest-api/rest-initialize-cluster.html">Initializing a Cluster</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="4">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../../../rest-api/rest-initialize-node.html">Initializing a Node</a>
   </span>
 </li>
@@ -3636,7 +3646,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../../rest-api/rest-cluster-email-notifications.html">Notifications</a>
+    <a class="menu_title menu_link" href="../../../rest-api/rest-cluster-email-notifications.html">Setting Alerts</a>
   </span>
 </li>
 </ul>
@@ -3946,6 +3956,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../../rest-api/rest-auditing.html">Configure Auditing</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../../rest-api/rest-specify-node-addition-conventions.html">Restrict Node-Addition</a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="3">
@@ -4750,13 +4765,15 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-The Query engine implements many query processing optimizations to achieve the best possible performance for N1QL queries.
-The GSI Indexes are a vital part of query performance and are tightly coupled with the Query engine.
+Index Pushdowns are performance optimizations where the Query engine pushes more of the work down to the Indexer.
 </blockquote>
 </div>
 <div class="paragraph">
-<p>Index Pushdowns are performance optimizations where the Query engine pushes more of the work down to the Indexer.
-Query Indexer not only indexes data, it also supports various operations such as point scans, range scans, array indexing, sort order, and pagination.
+<p>The GSI Indexes are a vital part of query performance and are tightly coupled with the Query engine.
+The Query engine implements many query processing optimizations to achieve the best possible performance for N1QL queries.</p>
+</div>
+<div class="paragraph">
+<p>Query Indexer not only indexes data, it also supports various operations such as point scans, range scans, array indexing, sort order, and pagination.
 The Query engine tries to leverage the indexer functionality as much as possible by pushing down operations to the indexer as part of the index scan.
 This helps performance, predominantly, in two ways:</p>
 </div>
@@ -5763,11 +5780,8 @@ ORDER BY city DESC;</code></pre>
 <p>The Query engine tries to avoid unnecessary processing operators such as MIN(), MAX(), and COUNT(), which can be processed by the Indexer much more efficiently.
 In such cases, the Query engine pushes down necessary hints or options to the Indexer to process the following operators.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="max-pushdown"><a class="anchor" href="#max-pushdown"></a>MAX() Pushdown</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="max-pushdown"><a class="anchor" href="#max-pushdown"></a>MAX() Pushdown</h3>
 <div class="paragraph">
 <p>This function returns the highest value of the input field based on the default collation rules. (For details, see <a href="../../../n1ql/n1ql-language-reference/datatypes.html" class="xref page">Data types</a> and <a href="../../../n1ql/n1ql-language-reference/comparisonops.html" class="xref page">Comparison Operators</a>.)</p>
 </div>
@@ -5830,10 +5844,8 @@ WHERE city IS NOT NULL;</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="min-pushdown"><a class="anchor" href="#min-pushdown"></a>MIN() Pushdown</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="min-pushdown"><a class="anchor" href="#min-pushdown"></a>MIN() Pushdown</h3>
 <div class="paragraph">
 <p>This function returns the lowest value of the input field based on the default collation rules. (For details, see <a href="../../../n1ql/n1ql-language-reference/datatypes.html" class="xref page">Data types</a> and <a href="../../../n1ql/n1ql-language-reference/comparisonops.html" class="xref page">Comparison Operators</a>.)</p>
 </div>
@@ -5896,10 +5908,8 @@ WHERE city IS NOT NULL;</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="count-pushdown"><a class="anchor" href="#count-pushdown"></a>COUNT() Pushdown</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="count-pushdown"><a class="anchor" href="#count-pushdown"></a>COUNT() Pushdown</h3>
 <div class="paragraph">
 <p>This function returns the total number of non-Null values of an input field from the matching documents of an index scan.</p>
 </div>
@@ -5993,10 +6003,8 @@ WHERE city IS NOT NULL;</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="countdistinct-pushdown"><a class="anchor" href="#countdistinct-pushdown"></a>COUNT(DISTINCT) Pushdown</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="countdistinct-pushdown"><a class="anchor" href="#countdistinct-pushdown"></a>COUNT(DISTINCT) Pushdown</h3>
 <div class="paragraph">
 <p>This function returns the total number of unique non-Null values of an input field from the matching documents of an index scan.</p>
 </div>
@@ -6089,6 +6097,28 @@ WHERE city IS NOT NULL;</code></pre>
 </table>
 </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="related-links"><a class="anchor" href="#related-links"></a>Related Links</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="index-scans.html#query-execution-details" class="xref page">Query Execution: Details</a></p>
+</li>
+<li>
+<p><a href="../../../n1ql/n1ql-language-reference/covering-indexes.html" class="xref page">Covering Indexes</a></p>
+</li>
+<li>
+<p><a href="../../../n1ql/n1ql-language-reference/groupby-aggregate-performance.html" class="xref page">Grouping and Aggregate Pushdown</a></p>
+</li>
+<li>
+<p><a href="early-filters-and-pagination.html" class="xref page">Early Filters, Ordering and Pagination</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>

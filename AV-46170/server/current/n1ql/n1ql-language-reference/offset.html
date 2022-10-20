@@ -10,7 +10,8 @@
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/server/current/n1ql/n1ql-language-reference/offset.html">
 <link rel="stylesheet" href="../../../../_/css/site.css">
 <script src="../../../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="The &lt;code&gt;OFFSET&lt;/code&gt; clause specifies the number of resultset objects to skip in a &lt;code&gt;SELECT&lt;/code&gt; query.">
+<meta name="description" content="The OFFSET clause specifies the number of resultset objects to skip in a SELECT query.">
+<meta name="keywords" content="paginate, pagination">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -556,6 +557,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="groupby-aggregate-performance.html">Grouping and Aggregate Pushdown</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../learn/services-and-indexes/indexes/early-filters-and-pagination.html">Early Filters, Order and Pagination</a>
   </span>
 </li>
 <li class="menu_list" data-depth="3">
@@ -3466,6 +3472,11 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-initialize-cluster.html">Initializing a Cluster</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="4">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-initialize-node.html">Initializing a Node</a>
   </span>
 </li>
@@ -3636,7 +3647,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Notifications</a>
+    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Setting Alerts</a>
   </span>
 </li>
 </ul>
@@ -3946,6 +3957,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-auditing.html">Configure Auditing</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-specify-node-addition-conventions.html">Restrict Node-Addition</a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="3">
@@ -4739,7 +4755,8 @@
 <div class="page-heading-title">
 <h1 class="page">OFFSET clause</h1>
 <div class="labels">
-<ul></ul>
+<ul><li class="reference"><span><i class="fas fa-book"></i></i> reference</span></li>
+</ul>
 </div>
 
 
@@ -4752,7 +4769,7 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-The <code>OFFSET</code> clause specifies the number of resultset objects to skip in a <code>SELECT</code> query.
+The OFFSET clause specifies the number of resultset objects to skip in a SELECT query.
 </blockquote>
 </div>
 </div>
@@ -4764,10 +4781,14 @@ The <code>OFFSET</code> clause specifies the number of resultset objects to skip
 <p>When you want the resultset to skip over the first few resulting objects, use the <code>OFFSET</code> clause to specify that number of objects to ignore.</p>
 </div>
 <div class="paragraph">
-<p>The LIMIT and OFFSET clauses are evaluated after the ORDER BY clause.</p>
+<p>The <code>LIMIT</code> and <code>OFFSET</code> clauses are evaluated after the <code>ORDER BY</code> clause.</p>
 </div>
 <div class="paragraph">
 <p>If a <code>LIMIT</code> clause is also present, the <code>OFFSET</code> is applied prior to the <code>LIMIT</code>; that is, the specified number of objects is omitted from the result set before enforcing a specified <code>LIMIT</code>.</p>
+</div>
+<div class="paragraph">
+<p>
+You can use the <code>OFFSET</code> and <code>LIMIT</code> clauses together to <em class="def">paginate</em> the results&#8201;&#8212;&#8201;that is, to split the resultset into pages, each containing a specified number of documents, for display purposes.</p>
 </div>
 </div>
 </div>
@@ -4776,12 +4797,12 @@ The <code>OFFSET</code> clause specifies the number of resultset objects to skip
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>OFFSET expr</pre>
+<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/dql.ebnf#L460">offset-clause ::= 'OFFSET' expr</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="../_images/n1ql-language-reference/offset-clause.png" alt="offset clause">
+<img src="../_images/n1ql-language-reference/offset-clause.png" alt="Syntax diagram">
 </div>
 </div>
 </div>
@@ -4829,6 +4850,47 @@ OFFSET 200;</code></pre>
   },
   {
     "city": "Bryan"
+  }
+]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 2. Paginate the results using OFFSET and LIMIT</div>
+<div class="content">
+<div class="paragraph">
+<p>The following query uses named parameters and expressions to display the specified page of results, assuming that page numbering starts at zero.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/select/limit-expr.n1ql">SELECT name, address, city, country, url
+FROM `travel-sample`.inventory.hotel
+WHERE vacancy = true
+OFFSET $page * $results
+LIMIT $results;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Setting the page number to zero, with two results per page, the results are as follows.</p>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/select/limit-result.jsonc">[
+  {
+    "address": "Capstone Road, ME7 3JE",
+    "city": "Medway",
+    "country": "United Kingdom",
+    "name": "Medway Youth Hostel",
+    "url": "http://www.yha.org.uk"
+  },
+  {
+    "address": "6 rue aux Juifs",
+    "city": "Giverny",
+    "country": "France",
+    "name": "The Robins",
+    "url": "http://givernyguesthouse.com/robin.htm"
   }
 ]</code></pre>
 </div>

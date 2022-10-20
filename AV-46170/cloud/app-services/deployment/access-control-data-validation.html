@@ -10,6 +10,7 @@
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/app-services/deployment/access-control-data-validation.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="Access Control and Data Validation is vital to the security of your App Endpoint.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -257,7 +258,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../clouds/clouds.html">Overview</a>
+    <a class="menu_title menu_link" href="#clouds:clouds.adoc">Overview</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -267,7 +268,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../clouds/manage-clouds.html">Connect &amp; Manage Clouds</a>
+    <a class="menu_title menu_link" href="#clouds:manage-clouds.adoc">Connect &amp; Manage Clouds</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -560,7 +561,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="app-endpoint.html">Creating App Endpoints</a>
+    <a class="menu_title menu_link" href="creating-an-app-endpoint.html">Creating App Endpoints</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -612,6 +613,19 @@
   <span class="menu_line">
     <a class="menu_title menu_link" href="../billing/billing.html">Billing</a>
   </span>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <span class="menu_title menu_text">Migrating</span>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../migrating/on-prem-to-capella.html">From Self-Managed Servers</a>
+  </span>
+</li>
+</ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
@@ -903,6 +917,11 @@
 <span  id="otherContributor"> + </span>
 </div><div id="preamble">
 <div class="sectionbody">
+<div class="quoteblock abstract">
+<blockquote>
+Access Control and Data Validation is vital to the security of your App Endpoint.
+</blockquote>
+</div>
 <div id="updating-access-and-validation-function-image" class="imageblock">
 <div class="content">
 <img src="../_images/app-endpoint/access-control-data-validation.png" alt="Updating the Access Control and Data Validation function">
@@ -910,9 +929,46 @@
 <div class="title">Figure 1. Updating the Access Control and Data Validation function</div>
 </div>
 <div class="paragraph">
-<p>This feature is vital to the security of your App Endpoint.
-It is in charge of data validation, access control and routing.
-The provided Javascript function executes every time a new revision/update is made to a document.</p>
+<p>The Access Control and Data Validation function for an App Endpoint can be accessed through the App Endpoint&#8217;s configuration screen:</p>
+</div>
+<div class="paragraph">
+<p>From the App Services screen, you can select the <b class="menuref">App Endpoints</b> tab.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/user-management/select-app-endpoint.png" alt="Select app endpoint">
+</div>
+<div class="title">Figure 2. Select App Endpoint</div>
+</div>
+<div class="paragraph">
+<p>The next screen will allow you to configure the endpoint.</p>
+</div>
+<div class="paragraph">
+<p>Select the <span class="menuseq"><b class="menu">Security</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Access and Validation</b></span> option.</p>
+</div>
+<div class="paragraph">
+<p>The provided Javascript function executes every time a new revision/update is made to a document.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Capella UI (shown in <a href="#updating-access-and-validation-function-image">Figure 1</a>) will check that the JavaScript function is valid when the <b class="button">APPLY</b> button is pressed.<br>
+You can restore the function to its original default by clicking <b class="button">RESTORE TO DEFAULT</b>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="the-access-control-and-data-validation-function"><a class="anchor" href="#the-access-control-and-data-validation-function"></a>The Access Control and Data Validation function</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The default function does no validation, and simply assigns the document to the channels specified in its 'channels' attribute.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -921,15 +977,10 @@ The provided Javascript function executes every time a new revision/update is ma
 }</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>The function arguments are:</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table id="arguments" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -975,7 +1026,7 @@ So instead of embedding channel information directly within the document body, u
 </div>
 </div>
 <div class="sect1">
-<h2 id="example"><a class="anchor" href="#example"></a>Example</h2>
+<h2 id="writing-a-custom-access-control-and-data-validation-function"><a class="anchor" href="#writing-a-custom-access-control-and-data-validation-function"></a>Writing a custom Access Control and Data Validation function</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Consider your access control and document distribution requirements. For example:</p>
@@ -996,93 +1047,138 @@ So instead of embedding channel information directly within the document body, u
 </li>
 </ul>
 </div>
-<div id="ex-sample-function" class="listingblock">
+<div id="ex-sample-function" class="paragraph">
 <div class="title">Access Control function Example</div>
+<p>This example demonstrates a number of possible use-cases that may be useful to you.
+Start by creating your function as usual:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function (doc, oldDoc, meta) {
-    if (doc._deleted) {
-        // Only editors with write access can delete documents:
-        requireRole("role:editor"); <i class="conum" data-value="1"></i><b>(1)</b>
-        requireUser(oldDoc.writers); <i class="conum" data-value="2"></i><b>(2)</b>
-        // Skip other validation because a deletion has no other properties:
-        return;
-    }
-    // Required properties:
-    if (!doc.title || !doc.creator ||
-            !doc.channels || !doc.writers) { <i class="conum" data-value="3"></i><b>(3)</b>
-        throw({forbidden: "Missing required properties"});
-    } else if (doc.writers.length == 0) {
-        throw({forbidden: "No writers"});
-    }
-    if (oldDoc == null) {
-        // Only editors can create documents:
-        requireRole("role:editor"); <i class="conum" data-value="4"></i><b>(4)</b>
-        // The 'creator' property must match the user creating the document:
-        requireUser(doc.creator) <i class="conum" data-value="5"></i><b>(5)</b>
-    } else {
-        // Only users in the existing doc's writers list can change a document:
-        requireUser(oldDoc.writers); <i class="conum" data-value="6"></i><b>(6)</b>
-        // The "creator" property is immutable:
-        if (doc.creator != oldDoc.creator) {
-                throw({forbidden: "Can't change creator"}); <i class="conum" data-value="7"></i><b>(7)</b>
-        }
-    }
-    // Finally, assign the document to the channels in the list:
-    channel(meta.xattrs.[xattrName]); <i class="conum" data-value="8"></i><b>(8)</b>
+    // ...
 }</code></pre>
 </div>
 </div>
+<div class="sect2">
+<h3 id="handling-deletion"><a class="anchor" href="#handling-deletion"></a>Handling deletion</h3>
 <div class="paragraph">
-<p>Our requirements for this example are that:</p>
+<p>In this example, we require the user to:</p>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The user must be an editor to delete documents.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>And only the editor who is one of the document&#8217;s writers can delete it.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The document must have the following properties: a <em>creator</em>, a list of <em>writers</em>, a <em>title</em>,  and a list of <em>channels</em>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Only editors can create documents.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>The editor will only be syncing new documents s/he created.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Only editors in the document&#8217;s <em>writers</em> list can change it.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>The document&#8217;s original creator cannot be changed to someone else.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="8"></i><b>8</b></td>
-<td>We will assign the document to the channel(s) identified within the documents contents or metadata.</td>
-</tr>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p>have the Editor role</p>
+</li>
+<li>
+<p>be one of the original writers of the document.</p>
+</li>
+</ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The Capella UI (shown in <a href="#updating-access-and-validation-function-image">Figure 1</a>) will check that the JavaScript function is valid when the <b class="button">Save</b> button is pressed.<br>
-You can restore the function to its original default by clicking <b class="button">Restore to Default</b>.
-</td>
-</tr>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">    if (doc._deleted) {
+        requireRole("role:editor");
+        requireUser(oldDoc.writers);
+
+        // Skip other validation because a deletion has no other properties:
+        return;
+    }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="handling-required-properties"><a class="anchor" href="#handling-required-properties"></a>Handling required properties</h3>
+<div class="paragraph">
+<p>In this example, we:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>require the properties: 'title', 'creator', 'channels', 'writers'</p>
+</li>
+<li>
+<p>expect the 'channels' and 'writers' properties to be lists, and require the 'writers' list to be non-empty.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">    if (!doc.title ||
+        !doc.creator ||
+        !doc.channels ||
+        !doc.writers)
+    {
+        throw({forbidden: "Missing required properties"});
+    }
+    else if (doc.writers.length == 0) {
+        throw({forbidden: "No writers"});
+    }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="handling-creation"><a class="anchor" href="#handling-creation"></a>Handling creation</h3>
+<div class="paragraph">
+<p>If <code>oldDoc</code> is not passed to the function, then a new document is being created.
+In this example, we:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>require the user to have the 'editor' role</p>
+</li>
+<li>
+<p>require the user to match the original 'creator' of the document.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">    if (! oldDoc) {
+        requireRole("role:editor");
+        requireUser(doc.creator)
+    }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="handling-modification"><a class="anchor" href="#handling-modification"></a>Handling modification</h3>
+<div class="paragraph">
+<p>If <code>oldDoc</code> is passed to the function, we know that document is being modified.
+In this example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Only users in the existing doc&#8217;s writers list can change a document</p>
+</li>
+<li>
+<p>The 'creator' property is immutable.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">    if (oldDoc) {
+        requireUser(oldDoc.writers);
+
+        if (doc.creator != oldDoc.creator) {
+                throw({forbidden: "Can't change creator"});
+        }
+    }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="assigning-the-document-to-channels"><a class="anchor" href="#assigning-the-document-to-channels"></a>Assigning the document to channels</h3>
+<div class="paragraph">
+<p>In this example, we assign the document to the channels in the list:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">    channel(meta.xattrs.[xattrName]);</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>

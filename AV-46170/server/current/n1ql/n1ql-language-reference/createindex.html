@@ -561,6 +561,11 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../learn/services-and-indexes/indexes/early-filters-and-pagination.html">Early Filters, Order and Pagination</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../../learn/services-and-indexes/indexes/index-replication.html">Index Availability</a>
   </span>
 </li>
@@ -3467,6 +3472,11 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-initialize-cluster.html">Initializing a Cluster</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="4">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-initialize-node.html">Initializing a Node</a>
   </span>
 </li>
@@ -3637,7 +3647,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Notifications</a>
+    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Setting Alerts</a>
   </span>
 </li>
 </ul>
@@ -3947,6 +3957,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-auditing.html">Configure Auditing</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-specify-node-addition-conventions.html">Restrict Node-Addition</a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="3">
@@ -4739,8 +4754,7 @@
 <div class="page-heading-title">
 <h1 class="page">CREATE INDEX</h1>
 <div class="labels">
-<ul>
-<li class="concept"><span><i class="far fa-lightbulb"></i> concept</span></li>
+<ul><li class="reference"><span><i class="fas fa-book"></i></i> reference</span></li>
 </ul>
 </div>
 
@@ -4807,7 +4821,7 @@ You must drop the failed index using the <code>DROP INDEX</code> command.</p>
 </div>
 <div class="paragraph">
 <p>You can create multiple identical secondary indexes on a keyspace and place them on separate nodes for better index availability.
-In Couchbase Server Enterprise Edition, the recommended way to do this is using the <code>num_replicas</code> option.
+In Couchbase Server Enterprise Edition, the recommended way to do this is using the <code>num_replica</code> option.
 In Couchbase Server Community Edition, you need to create multiple identical indexes and place them using the <code>nodes</code> option.
 Refer to <a href="#index-with">WITH Clause</a> below for more details.</p>
 </div>
@@ -4830,7 +4844,7 @@ For more details about user roles, see
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L65-L67">create-index ::= 'CREATE' 'INDEX' index-name ( 'IF' 'NOT' 'EXISTS' )? 'ON' keyspace-ref
-                 '(' index-key index-order? ( ',' index-key index-order? )* ')'
+                 '(' index-key lead-key-attribs? ( ( ',' index-key key-attribs? )+ )? ')'
                  index-partition? where-clause? index-using? index-with?</code></pre>
 </div>
 </div>
@@ -4864,10 +4878,10 @@ Refer to <a href="#keyspace-ref">Keyspace Reference</a> below.</p>
 <p>[Required] Specifies an index key.
 Refer to <a href="#index-key">Index Key</a> below.</p>
 </dd>
-<dt class="hdlist1">index-order</dt>
+<dt class="hdlist1">lead-key-attribs, key-attribs</dt>
 <dd>
-<p>[Optional] Specifies the sort order of the index key.
-Refer to <a href="#index-order">Index Order</a> below.</p>
+<p>[Optional] Specifies attributes for an index key.
+Refer to <a href="#index-key-attrib">Index Key Attributes</a> below.</p>
 </dd>
 <dt class="hdlist1">index-partition</dt>
 <dd>
@@ -5047,16 +5061,56 @@ This cannot use constant expressions, aggregate functions, or sub-queries.</p>
 <dt class="hdlist1">array-expr</dt>
 <dd>
 <p>An array expression.
-For details about array expressions, refer to <a href="#array-indexing">Array Indexing</a> below.</p>
+Array indexing enables you to create global indexes on array elements and optimize the execution of queries involving array elements.
+For details, refer to <a href="indexing-arrays.html" class="xref page">Array Indexing</a>.</p>
 </dd>
 </dl>
 </div>
 </div>
 <div class="sect2">
-<h3 id="index-order"><a class="anchor" href="#index-order"></a>Index Order</h3>
+<h3 id="index-key-attrib"><a class="anchor" href="#index-key-attrib"></a>Index Key Attributes</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L75">index-order ::= 'ASC' | 'DESC'</code></pre>
+<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L75">lead-key-attribs ::= index-order include-missing? | include-missing index-order?</code></pre>
+</div>
+</div>
+<div class="imageblock text-left">
+<div class="content">
+<img src="../_images/n1ql-language-reference/lead-key-attribs.png" alt="Syntax diagram: refer to source code listing">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L79">key-attribs ::= index-order</code></pre>
+</div>
+</div>
+<div class="imageblock text-left">
+<div class="content">
+<img src="../_images/n1ql-language-reference/key-attribs.png" alt="Syntax diagram: refer to source code listing">
+</div>
+</div>
+<div class="paragraph">
+<p>Specifies attributes for the index key.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">index-order</dt>
+<dd>
+<p>[Optional] All index keys may include an index order clause.
+Refer to <a href="#index-order">Index Order</a> below.</p>
+</dd>
+<dt class="hdlist1">include-missing</dt>
+<dd>
+<p>[Optional] In Couchbase Server 7.1.2 and later, the leading index key may also include <code>INCLUDE MISSING</code> clause.
+Refer to <a href="#include-missing">INCLUDE MISSING Clause</a> below.</p>
+</dd>
+</dl>
+</div>
+<div class="sect3">
+<h4 id="index-order"><a class="anchor" href="#index-order"></a>Index Order</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L87">index-order ::= 'ASC' | 'DESC'</code></pre>
 </div>
 </div>
 <div class="imageblock text-left">
@@ -5083,11 +5137,40 @@ For details about array expressions, refer to <a href="#array-indexing">Array In
 <p>This clause is optional; if omitted, the default is <code>ASC</code>.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="include-missing"><a class="anchor" href="#include-missing"></a>INCLUDE MISSING Clause</h4>
+<div class="paragraph">
+<p><span class="status">Couchbase Server 7.1.2</span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L83">include-missing ::= 'INCLUDE' 'MISSING'</code></pre>
+</div>
+</div>
+<div class="imageblock text-left">
+<div class="content">
+<img src="../_images/n1ql-language-reference/include-missing.png" alt="Syntax diagram: refer to source code listing">
+</div>
+</div>
+<div class="paragraph">
+<p>In Couchbase Server versions prior to 7.1.2, if the field denoted by the index key does not exist in the document, then the document is not indexed.</p>
+</div>
+<div class="paragraph">
+<p>In Couchbase Server version 7.1.2 or later, the optional <code>INCLUDE MISSING</code> clause ensures that documents which do not include the index key field are indexed regardless.
+If this clause is not present, then documents without the index key field are not indexed.</p>
+</div>
+<div class="paragraph">
+<p>The <code>INCLUDE MISSING</code> clause can only be applied to the leading index key.
+The <code>INCLUDE MISSING</code> clause may be included before or after the <code>ASC</code> or <code>DESC</code> keyword.</p>
+</div>
+</div>
+</div>
 <div class="sect2">
 <h3 id="index-partition"><a class="anchor" href="#index-partition"></a>PARTITION BY HASH Clause</h3>
 <div class="paragraph">
 <p>Used to partition the index.
-For details, refer to <a href="#index-partitioning">Index Partitioning</a> below.</p>
+Index partitioning helps increase the query performance by dividing and spreading a large index of documents across multiple nodes, horizontally scaling out an index as needed.
+For details, refer to <a href="index-partitioning.html" class="xref page">Index Partitioning</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -5268,24 +5351,10 @@ We recommend that you do not create (or drop) secondary indexes when any node wi
 </table>
 </div>
 <div class="sect2">
-<h3 id="array-indexing"><a class="anchor" href="#array-indexing"></a>Array Indexing</h3>
-<div class="paragraph">
-<p>Array indexing enables you to create global indexes on array elements and optimize the execution of queries involving array elements.
-For details, refer to <a href="indexing-arrays.html" class="xref page">Array Indexing</a>.</p>
-</div>
-</div>
-<div class="sect2">
 <h3 id="indexing-metadata"><a class="anchor" href="#indexing-metadata"></a>Using the <code>meta().id</code> Function</h3>
 <div class="paragraph">
 <p>You can create indexes on metadata information.
 For details, refer to <a href="indexing-meta-info.html" class="xref page">Indexing Meta Info</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="index-partitioning"><a class="anchor" href="#index-partitioning"></a>Index Partitioning</h3>
-<div class="paragraph">
-<p>Index partitioning helps increase the query performance by dividing and spreading a large index of documents across multiple nodes, horizontally scaling out an index as needed.
-For details, refer to <a href="index-partitioning.html" class="xref page">Index Partitioning</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -5563,6 +5632,32 @@ First set the <a href="../n1ql-intro/sysinfo.html#query-context" class="xref pag
 <td>The index has now been created.</td>
 </tr>
 </table>
+</div>
+</div>
+</div>
+<div id="ex-create-idx-missing" class="exampleblock">
+<div class="title">Example 5. Create Index with Missing Leading Key</div>
+<div class="content">
+<div class="paragraph">
+<p><span class="status">Couchbase Server 7.1.2</span></p>
+</div>
+<div class="paragraph">
+<p>The following statement will not index airports where the <code>district</code> field is missing.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/n1ql-language-reference/create-idx-missing.n1ql">CREATE INDEX idx_airport_missing
+ON `travel-sample`.inventory.airport(district, name);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following statement will index all airports, even if the <code>district</code> field is not included in the document.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/n1ql-language-reference/create-idx-include.n1ql">CREATE INDEX idx_airport_include
+ON `travel-sample`.inventory.airport(district INCLUDE MISSING, name);</code></pre>
+</div>
 </div>
 </div>
 </div>

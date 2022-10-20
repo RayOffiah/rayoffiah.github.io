@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="../../../../_/css/site.css">
 <script src="../../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="The LIMIT clause specifies the maximum number of documents to be returned in a resultset by a SELECT statement.">
+<meta name="keywords" content="paginate, pagination">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -556,6 +557,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="groupby-aggregate-performance.html">Grouping and Aggregate Pushdown</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../learn/services-and-indexes/indexes/early-filters-and-pagination.html">Early Filters, Order and Pagination</a>
   </span>
 </li>
 <li class="menu_list" data-depth="3">
@@ -3466,6 +3472,11 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-initialize-cluster.html">Initializing a Cluster</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="4">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-initialize-node.html">Initializing a Node</a>
   </span>
 </li>
@@ -3636,7 +3647,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Notifications</a>
+    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Setting Alerts</a>
   </span>
 </li>
 </ul>
@@ -3946,6 +3957,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-auditing.html">Configure Auditing</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-specify-node-addition-conventions.html">Restrict Node-Addition</a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="3">
@@ -4739,7 +4755,8 @@
 <div class="page-heading-title">
 <h1 class="page">LIMIT clause</h1>
 <div class="labels">
-<ul></ul>
+<ul><li class="reference"><span><i class="fas fa-book"></i></i> reference</span></li>
+</ul>
 </div>
 
 
@@ -4761,13 +4778,14 @@ The LIMIT clause specifies the maximum number of documents to be returned in a r
 <h2 id="purpose"><a class="anchor" href="#purpose"></a>Purpose</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When you don&#8217;t need the entire resultset, use the LIMIT clause to specify the maximum number of documents to be returned in a resultset by a SELECT query.</p>
+<p>When you don&#8217;t need the entire resultset, use the <code>LIMIT</code> clause to specify the maximum number of documents to be returned in a resultset by a <code>SELECT</code> query.</p>
 </div>
 <div class="paragraph">
-<p>The LIMIT and OFFSET clauses are evaluated after the ORDER BY clause.</p>
+<p>The <code>LIMIT</code> and <code>OFFSET</code> clauses are evaluated after the <code>ORDER BY</code> clause.</p>
 </div>
 <div class="paragraph">
-<p>A negative value is the same as <code>LIMIT 0</code>.</p>
+<p>
+You can use the <code>OFFSET</code> and <code>LIMIT</code> clauses together to <em class="def">paginate</em> the results&#8201;&#8212;&#8201;that is, to split the resultset into pages, each containing a specified number of documents, for display purposes.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -4789,12 +4807,12 @@ It indicates that the actual number of mutations will be less than or equal to t
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>LIMIT expr</pre>
+<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/dql.ebnf#L453">limit-clause ::= 'LIMIT' expr</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="../_images/n1ql-language-reference/limit-clause.png" alt="limit clause">
+<img src="../_images/n1ql-language-reference/limit-clause.png" alt="Syntax diagram">
 </div>
 </div>
 </div>
@@ -4806,7 +4824,8 @@ It indicates that the actual number of mutations will be less than or equal to t
 <dl>
 <dt class="hdlist1">expr</dt>
 <dd>
-<p>Integer or an expression that evaluates to an integer representing the number of resulting documents.</p>
+<p>Integer or an expression that evaluates to an integer representing the number of resulting documents.
+A negative value is the same as <code>LIMIT 0</code>.</p>
 </dd>
 </dl>
 </div>
@@ -4850,15 +4869,22 @@ LIMIT 2;</code></pre>
 </div>
 </div>
 <div id="ex2" class="exampleblock">
-<div class="title">Example 2. Set the limit of <a href="#ex1">Example 1</a> based on an equation</div>
+<div class="title">Example 2. Paginate the results using OFFSET and LIMIT</div>
 <div class="content">
+<div class="paragraph">
+<p>The following query uses named parameters and expressions to display the specified page of results, assuming that page numbering starts at zero.</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/select/limit-expr.n1ql">SELECT name, address, city, country, url
 FROM `travel-sample`.inventory.hotel
 WHERE vacancy = true
-LIMIT (20/10);</code></pre>
+OFFSET $page * $results
+LIMIT $results;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Setting the page number to zero, with two results per page, the results are the same as <a href="#ex1">Example 1</a>.</p>
 </div>
 <div class="listingblock">
 <div class="title">Result</div>

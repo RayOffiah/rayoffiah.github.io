@@ -258,7 +258,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../clouds/clouds.html">Overview</a>
+    <a class="menu_title menu_link" href="#clouds:clouds.adoc">Overview</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -268,7 +268,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../clouds/manage-clouds.html">Connect &amp; Manage Clouds</a>
+    <a class="menu_title menu_link" href="#clouds:manage-clouds.adoc">Connect &amp; Manage Clouds</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -561,7 +561,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../app-services/deployment/app-endpoint.html">Creating App Endpoints</a>
+    <a class="menu_title menu_link" href="../app-services/deployment/creating-an-app-endpoint.html">Creating App Endpoints</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -613,6 +613,19 @@
   <span class="menu_line">
     <a class="menu_title menu_link" href="../app-services/billing/billing.html">Billing</a>
   </span>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <span class="menu_title menu_text">Migrating</span>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../app-services/migrating/on-prem-to-capella.html">From Self-Managed Servers</a>
+  </span>
+</li>
+</ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
@@ -1253,251 +1266,6 @@ You&#8217;ll receive a notification when the deployment is done.</p>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="invpc"><a class="anchor" href="#invpc"></a>Create a Cluster in Own VPC</h2>
-<div class="sectionbody">
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This information is for anyone still using Couchbase Server 6.6, hosted in their own cloud provider&#8217;s VPC.
-It does not apply to Couchbase 7.0, hosted in Couchbase&#8217;s VPC and fully managed for you.</p>
-</div>
-<div class="paragraph">
-<p>For further information <a href="https://www.couchbase.com/products/capella">contact Couchbase</a>.</p>
-</div>
-<div class="paragraph">
-<p>The easiest way to get started with Capella, our fully managed DBaaS, is <a href="../get-started/get-started.html" class="xref page">hosting in Couchbase&#8217;s Cloud</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h3>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="title">Permissions Required</div>
-You must have the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> or <a href="../projects/project-roles.html#project-cluster-manager-role" class="xref page"><code>Project manager</code></a> project role.
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>When creating a cluster, you must add it to a <a href="../projects/projects.html" class="xref page">project</a>.
-You can <a href="../projects/manage-projects.html#create-project" class="xref page">create a project</a> before creating a cluster or during the cluster creation process if you have the <a href="../organizations/organization-user-roles.html#organization-role-organization-owner" class="xref page"><code>Organization Owner</code></a> or <a href="../organizations/organization-user-roles.html#organization-role-project-creator" class="xref page"><code>Project Creator</code></a> organization role.</p>
-</li>
-<li>
-<p>When using your own cloud account, you must have a <a href="../clouds/clouds.html" class="xref page">connected cloud</a>.
-You can connect a new cloud before creating a cluster or during the cluster creation process if you have the <a href="../organizations/organization-user-roles.html#organization-role-organization-owner" class="xref page"><code>Organization Owner</code></a> or <a href="../organizations/organization-user-roles.html#organization-role-cloud-manager" class="xref page"><code>Cloud Manager</code></a> organization role.
-This is <em>not</em> a requirement if you&#8217;re using Capella&#8217;s fully-hosted option.</p>
-</li>
-<li>
-<p>If you&#8217;re using a free trial, you cannot create more than one cluster, and the cluster configuration options are limited.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="procedure-2"><a class="anchor" href="#procedure-2"></a>Procedure</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Open the <strong>Clusters</strong> tab in the main navigation.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Click <b class="button">Create a Cluster</b> if this is the first cluster in your organization, or click <b class="button">Create Cluster</b> in the upper-right corner of the page if there are existing clusters.</p>
-<div class="paragraph">
-<p>This action opens the <em>Create Cluster</em> page.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/cluster-create.png" alt="A view of the Create Cluster page.">
-</div>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Select a cloud deployment type.</p>
-<div class="paragraph">
-<p>You have the option of deploying a cluster that is hosted by Couchbase or by your own AWS or Azure cloud account.</p>
-</div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>If it isn&#8217;t already selected, choose your own cloud account by clicking the <strong>Bring your own Cloud</strong> box.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Select a cloud.</p>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Existing Cloud</dt>
-<dd>
-<p>Use the <strong>Cloud</strong> drop-down menu to select an existing <a href="../clouds/clouds.html" class="xref page">connected cloud</a>.</p>
-</dd>
-<dt class="hdlist1">New Cloud</dt>
-<dd>
-<p>Add a new connected cloud to deploy your cluster by clicking <b class="button">+ New Cloud</b>.
-For instructions to configure a new connected cloud, refer to <a href="../clouds/manage-clouds.html" class="xref page">Connect and Manage Clouds</a>.</p>
-</dd>
-</dl>
-</div>
-</li>
-<li>
-<p>Customize the configuration and resources for the cluster.</p>
-<div class="paragraph">
-<p>The <em>Configuration</em> area provides multiple ways to size and configure your cluster:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Templates</dt>
-<dd>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Click the <strong>choose a template</strong> link to open the <strong>Configuration Templates</strong> flyout. This flyout allows you to choose from all of the available templates.</p>
-<div class="paragraph">
-<p>Cluster templates provide pre-defined cluster configurations based on common workloads.
-Each template has a variety of different sizes, and selecting one will populate the entire cluster configuration for you.</p>
-</div>
-<div class="paragraph">
-<p>Read more about how to use <a href="sizing.html#templates" class="xref page">templates</a>.</p>
-</div>
-</li>
-</ol>
-</div>
-</dd>
-<dt class="hdlist1">Custom Deployments</dt>
-<dd>
-<p>You can create custom configurations that provide the most granular control over sizing and service functionality.
-This option works well if you already have experience with Couchbase Server or want to re-create an existing Couchbase deployment using Couchbase Capella.</p>
-<div class="paragraph">
-<p>Read more about how to create a <a href="sizing.html#custom-deployment-mode" class="xref page">custom deployment</a>.</p>
-</div>
-</dd>
-</dl>
-</div>
-</li>
-<li>
-<p>Choose a <em>Plan</em> for your cluster.</p>
-<div class="paragraph">
-<p>All clusters in an organization must be on a <a href="../billing/billing.html#support-plans" class="xref page">Service Plan</a>.
-The Service Plan determines the level of human support a cluster can receive and what features and services it can support.
-If you are using a free trial of Couchbase Capella for your own cloud, only the <a href="../billing/billing.html#free-trial-plan" class="xref page">Free Trial Service Plan</a> is available.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-For more information on Capella&#8217;s support levels, review the <a href="https://www.couchbase.com/support-policy/cloud">Capella Cloud Service Support Policy</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Click on the block of the Service Plan you want to apply to the cluster you are creating.</p>
-<div class="paragraph">
-<p>If you have chosen the <em>Developer Pro</em> or <em>Enterprise</em> plans, you must select a <a href="../support/support.html#support-time-zones" class="xref page">Support Time Zone</a>.</p>
-</div>
-</li>
-<li>
-<p>Use the <strong>Support Time Zone</strong> drop-down menu to choose the Support Time Zone that is appropriate for the cluster.
-You should include factors like when cluster administrators can interact with Couchbase Support staff when changing this setting.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Select a project for your cluster.</p>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Existing Project</dt>
-<dd>
-<p>Use the <strong>Select Project</strong> drop-down menu to select an existing project in your organization.</p>
-</dd>
-<dt class="hdlist1">New Project</dt>
-<dd>
-<p><a href="../projects/manage-projects.html#create-project" class="xref page">Create a new project</a> for your cluster by clicking <b class="button">+ Add Project</b>.</p>
-</dd>
-</dl>
-</div>
-</li>
-<li>
-<p>(Optional) Customize the cluster name.</p>
-<div class="paragraph">
-<p>Your new cluster is automatically assigned a generated name.
-This name appears in the <strong>Cluster Name</strong> field, where you can modify it as needed.
-As this isn&#8217;t the cluster&#8217;s hostname, you can change the cluster name at any time.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Cluster names can only include letters, numbers, spaces, periods (<code>.</code>), dashes (<code>-</code>), and underscores (<code>_</code>).
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>(Optional) Add a description for the cluster.</p>
-<div class="paragraph">
-<p>In the <strong>Description</strong> field, you can add any notes or details that you want to record about the new cluster.</p>
-</div>
-</li>
-<li>
-<p>Review the new cluster&#8217;s configuration.</p>
-<div class="paragraph">
-<p>Once you&#8217;ve specified a name, project, and description (optional) for the cluster, you are ready to deploy.
-Review the summary of the new cluster configuration in the pane on the right side of the page to ensure it meets your expectations.
-You can make any further changes directly on the <em>Create Cluster</em> page.</p>
-</div>
-</li>
-<li>
-<p>Deploy the new cluster.</p>
-<div class="paragraph">
-<p>Once you&#8217;re satisfied with the cluster configuration, click <b class="button">Deploy</b>.</p>
-</div>
-<div class="paragraph">
-<p>Capella will proceed with automatically deploying the cluster to your selected cloud.
-This process will generally take up to 15 minutes to deploy, though it can take longer depending on certain factors such as cluster size and cloud provider performance.
-Leaving the <strong>Configuring Your Cluster</strong> page will not affect deployment progress; feel free to return to the cluster page at any time.
-You&#8217;ll receive a notification when the deployment is done.</p>
-</div>
-<div class="paragraph">
-<p>When returning to a cluster after it has successfully deployed, you will see the cluster&#8217;s <a href="monitoring/metrics-dashboard.html" class="xref page"><strong>Metrics</strong></a> tab.</p>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>

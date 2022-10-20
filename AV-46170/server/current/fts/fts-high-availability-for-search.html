@@ -559,6 +559,11 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../learn/services-and-indexes/indexes/early-filters-and-pagination.html">Early Filters, Order and Pagination</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../learn/services-and-indexes/indexes/index-replication.html">Index Availability</a>
   </span>
 </li>
@@ -3465,6 +3470,11 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../rest-api/rest-initialize-cluster.html">Initializing a Cluster</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="4">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../rest-api/rest-initialize-node.html">Initializing a Node</a>
   </span>
 </li>
@@ -3635,7 +3645,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../rest-api/rest-cluster-email-notifications.html">Notifications</a>
+    <a class="menu_title menu_link" href="../rest-api/rest-cluster-email-notifications.html">Setting Alerts</a>
   </span>
 </li>
 </ul>
@@ -3945,6 +3955,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../rest-api/rest-auditing.html">Configure Auditing</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../rest-api/rest-specify-node-addition-conventions.html">Restrict Node-Addition</a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="3">
@@ -4806,19 +4821,20 @@ Optimum distribution - when the number of index replicas created for a given ind
 <div class="paragraph">
 <p>By contrast, when groups are not assigned equal numbers of nodes, rebalance can only produce the best effort redistribution of replicas: this may result in one or more replica index partitions each occupying the same group as their associated primary counterparts; meaning that index partition data may be lost if such a group becomes unavailable.</p>
 </div>
-<div class="imageblock text-left">
+<div class="imageblock">
 <div class="content">
-<img src="_images/fts-index-over-server-groups.png" alt="fts index over server groups" width="220">
+<img src="_images/fts-index-over-server-groups.png" alt="FTS index over server groups">
 </div>
 </div>
 <div class="paragraph">
-<p>The above picture shows a sample allocation when we have a single index with 2 partitions and 1 replica’s enabled in a cluster with 2 Server Groups.</p>
+<p>The above picture shows a sample allocation when we have a single index with 2 partitions and 1 replica enabled in a cluster with 2 Server Groups.</p>
 </div>
 <div class="paragraph">
 <p>And we can see, here every rack/server group is hosting the complete set of primary and replica partitions to provide the High Availability to the Search Service.</p>
 </div>
 <div class="paragraph">
-<p>The Search service doesn’t offer auto-failover capability now (7.1) upon node/rack down situations.  In the case of server groups/rack down scenarios, the administrator has to explicitly failover the nodes to ensure the seamless service for Search.</p>
+<p>As of Couchbase Server 7.1, the Search service doesn’t offer auto-failover capability upon node/rack down situations.
+In the case of server groups/rack down scenarios, the administrator has to explicitly failover the nodes to ensure the seamless service for Search.</p>
 </div>
 </div>
 </div>

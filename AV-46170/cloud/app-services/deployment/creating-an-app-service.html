@@ -258,7 +258,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../clouds/clouds.html">Overview</a>
+    <a class="menu_title menu_link" href="#clouds:clouds.adoc">Overview</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -268,7 +268,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../clouds/manage-clouds.html">Connect &amp; Manage Clouds</a>
+    <a class="menu_title menu_link" href="#clouds:manage-clouds.adoc">Connect &amp; Manage Clouds</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -561,7 +561,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="app-endpoint.html">Creating App Endpoints</a>
+    <a class="menu_title menu_link" href="creating-an-app-endpoint.html">Creating App Endpoints</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -613,6 +613,19 @@
   <span class="menu_line">
     <a class="menu_title menu_link" href="../billing/billing.html">Billing</a>
   </span>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <span class="menu_title menu_text">Migrating</span>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../migrating/on-prem-to-capella.html">From Self-Managed Servers</a>
+  </span>
+</li>
+</ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
@@ -912,23 +925,36 @@ Creating an App Service, using the Capella UI
 <div class="paragraph">
 <p>In this section, we&#8217;ll show you how to create an App Service for your mobile apps to connect to.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="basics"><a class="anchor" href="#basics"></a>Basics</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the main screen, select the <b class="menuref">Projects</b> tab.</p>
+</li>
+<li>
+<p>Select your project from the project list.</p>
+</li>
+<li>
+<p>Select the <b class="menuref">App Services</b> tab.</p>
+</li>
+<li>
+<p>Click the <b class="button">&#43;Create App Service</b> button.</p>
 <div class="imageblock">
 <div class="content">
 <img src="../_images/app-service/create-app-service.png" alt="creating the App Service">
 </div>
 <div class="title">Figure 1. Creating an App Service</div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="basics"><a class="anchor" href="#basics"></a>Basics</h2>
-<div class="sectionbody">
-<div class="paragraph">
+</li>
+<li>
 <p>Enter a name for the App Service.</p>
-</div>
-<div class="paragraph">
-<p>Choose the Cluster you want to connect to.</p>
-</div>
+</li>
+<li>
+<p>Choose the database you want to connect to.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -937,8 +963,8 @@ Creating an App Service, using the Capella UI
 </td>
 <td class="content">
 <div class="paragraph">
-<p>App Services is available on both <a href="../../reference/aws.html" class="xref page">AWS</a> and <a href="../../reference/gcp.html" class="xref page">GCP (supported regions)</a>.
-The cluster you select:</p>
+<p>App Services are available on both <a href="../../reference/aws.html" class="xref page">AWS</a> and <a href="../../reference/gcp.html" class="xref page">GCP (supported regions)</a>.
+The database you select:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -952,13 +978,33 @@ The cluster you select:</p>
 <p>must NOT already have an App Service linked to it</p>
 </li>
 <li>
-<p>must NOT have XDCR with another Cluster that already has an App Service linked to it</p>
+<p>must NOT have XDCR with another Cluster.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You may subsequently enable XDCR on clusters linked with App Services,
+as long as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>you are setting up unidirectional XDCR between the clusters</p>
+</li>
+<li>
+<p>the other cluster does not have App Services linked to it.</p>
 </li>
 </ul>
 </div>
 </td>
 </tr>
 </table>
+</div>
+</li>
+<li>
+<p>Now click the <b class="button">Create App Service</b> button to instantiate the service.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -980,15 +1026,15 @@ According to your requirements, you may customize the following parameters:</p>
 <div class="paragraph">
 <div class="title">Size of each node</div>
 <p>Choose the size of the node:
-The options offered vary depending on which cloud service you have chosen for the cluster.</p>
+The options offered vary depending on which cloud service you have chosen for the database.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="linked-cluster-plan"><a class="anchor" href="#linked-cluster-plan"></a>Linked Cluster&#8217;s Plan</h2>
+<h2 id="linked-database-plan"><a class="anchor" href="#linked-database-plan"></a>Linked Database&#8217;s Plan</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When deploying a new App Service, you are given confirmation of the Plan selected for the linked cluster,
+<p>When deploying a new App Service, you are given confirmation of the Plan selected for the linked database,
 and the <strong>increase</strong> in cost after adding the new App Service.</p>
 </div>
 <div class="paragraph">
@@ -1002,8 +1048,18 @@ and the <strong>increase</strong> in cost after adding the new App Service.</p>
 <div class="paragraph">
 <p>By increasing the number and/or the specifications of the nodes, you can adjust the cost and performance of the App Service.</p>
 </div>
-<div class="paragraph">
-<p>The configuration of the nodes is carried out from the App Service screen. Select the <b class="menuref">Configuration</b> tab.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select the App Service you want to configure from the list of App Services attached to your project.</p>
+</li>
+<li>
+<p>Select the <b class="menuref">Settings</b> tab.</p>
+</li>
+<li>
+<p>Select <b class="menuref">Configuration</b> from the menu list on the left of the screen.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1025,7 +1081,7 @@ and the <strong>increase</strong> in cost after adding the new App Service.</p>
 The App Services will continue to run while the system is reconfigured.</p>
 </div>
 <div class="paragraph">
-<p>Capella will also allow reconfiguration of  App Services while the host cluster is undergoing rescaling.</p>
+<p>Capella will also allow reconfiguration of  App Services while the host database is undergoing rescaling.</p>
 </div>
 </td>
 </tr>

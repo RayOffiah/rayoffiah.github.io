@@ -560,6 +560,11 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../learn/services-and-indexes/indexes/early-filters-and-pagination.html">Early Filters, Order and Pagination</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../../learn/services-and-indexes/indexes/index-replication.html">Index Availability</a>
   </span>
 </li>
@@ -3466,6 +3471,11 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-initialize-cluster.html">Initializing a Cluster</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="4">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-initialize-node.html">Initializing a Node</a>
   </span>
 </li>
@@ -3636,7 +3646,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Notifications</a>
+    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Setting Alerts</a>
   </span>
 </li>
 </ul>
@@ -3946,6 +3956,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-auditing.html">Configure Auditing</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-specify-node-addition-conventions.html">Restrict Node-Addition</a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="3">
@@ -4739,7 +4754,8 @@
 <div class="page-heading-title">
 <h1 class="page">Array Indexing</h1>
 <div class="labels">
-<ul></ul>
+<ul><li class="reference"><span><i class="fas fa-book"></i></i> reference</span></li>
+</ul>
 </div>
 
 
@@ -4824,12 +4840,22 @@ See <a href="#query-predicate-format">Format of Query Predicate</a> for details.
 </tr>
 </table>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><span class="status">Couchbase Server 7.1.2</span></p>
+</div>
+<div class="paragraph">
+<p>In Couchbase Server 7.1.2 and later, you can add the <code>INCLUDE MISSING</code> modifier to a leading array index key, just as you can with any other leading index key, in order to index documents in which the specified array is missing.</p>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="array-expr"><a class="anchor" href="#array-expr"></a>Array Expression</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L79">array-expr ::= full-array-expr | simple-array-expr</code></pre>
+<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L91">array-expr ::= full-array-expr | simple-array-expr</code></pre>
 </div>
 </div>
 <div class="imageblock text-left">
@@ -4844,7 +4870,7 @@ See <a href="#query-predicate-format">Format of Query Predicate</a> for details.
 <h4 id="full-array-expr"><a class="anchor" href="#full-array-expr"></a>Full Array Expression</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L83-L85">full-array-expr ::= ( 'ALL' | 'DISTINCT' ) 'ARRAY' var-expr
+<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L95-L97">full-array-expr ::= ( 'ALL' | 'DISTINCT' ) 'ARRAY' var-expr
                     'FOR' var ( 'IN' | 'WITHIN' ) expr
                     ( ',' var ( 'IN' | 'WITHIN' ) expr )* ( 'WHEN' cond )? 'END'</code></pre>
 </div>
@@ -4895,22 +4921,32 @@ Refer to <a href="#query-predicate-format">Format of Query Predicate</a> below.<
 <div class="paragraph">
 <p>The <code>var-expr</code> itself may be a nested <a href="#array-expr">array expression</a>.
 This enables creating array indexes on nested array fields.
-Refer to <a href="#example-5">Example 5</a> below.</p>
+Refer to <a href="#example-5">Example 6</a> below.</p>
 </div>
 <div class="paragraph">
 <p>To create an array index involving multiple array elements or multiple arrays, you may construct the <code>var-expr</code> as a compound object constituted with different elements of the same array or multiple arrays.
-Refer to <a href="#example-6">Example 6</a> below.</p>
+Refer to <a href="#example-6">Example 7</a> below.</p>
 </div>
 </td>
 </tr>
 </table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><span class="status">Couchbase Server 7.1.2</span></p>
+</div>
+<div class="paragraph">
+<p>In Couchbase Server 7.1.2 and later, you can add the <code>INCLUDE MISSING</code> modifier to the first argument in the <a href="metafun.html#flatten_keys" class="xref page">FLATTEN_KEYS()</a> function, in order to index array elements in which the specified field is missing.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="simple-array-expr"><a class="anchor" href="#simple-array-expr"></a>Simple Array Expression</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L89">simple-array-expr ::= ( 'ALL' | 'DISTINCT' ) expr</code></pre>
+<pre class="highlightjs highlight"><code class="language-ebnf hljs" data-lang="ebnf" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/partials/grammar/ddl.ebnf#L101">simple-array-expr ::= ( 'ALL' | 'DISTINCT' ) expr</code></pre>
 </div>
 </div>
 <div class="imageblock text-left">
@@ -5129,11 +5165,11 @@ AND (v.day=1) END; <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The ANY operator uses the index key <code>v.flight</code> on which the <a href="#C2">Index</a> is defined.</td>
+<td>The ANY operator uses the index key <code>v.flight</code> on which <a href="#C2">Index</a> is defined.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The ANY-SATISFIES condition <code>v.day=1</code> in the <a href="#Q2">Query</a> is sargable to that in the index definition WHEN clause <code>v.day &lt; 4</code>.</td>
+<td>The ANY-SATISFIES condition <code>v.day=1</code> in the <a href="#Q2">Query</a> is sargable to the WHEN clause condition <code>v.day &lt; 4</code> in the index definition.</td>
 </tr>
 </table>
 </div>
@@ -5241,8 +5277,43 @@ Even though the ORDER BY key uses an array index key, it can use index order, an
 </div>
 </div>
 </div>
+<div id="example-missing" class="exampleblock">
+<div class="title">Example 4. Array index with missing leading key</div>
+<div class="content">
+<div class="paragraph">
+<p><span class="status">Couchbase Server 7.1.2</span></p>
+</div>
+<div class="paragraph">
+<p>The following statement creates an index of flight numbers from the <code>schedule</code> array for all routes.
+If the schedule array is missing from any route, that route is indexed anyway.</p>
+</div>
+<div class="paragraph">
+<p>Compare this statement with the <a href="#C1">Index</a> in <a href="#example-1">Example 1</a>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Index I: Create an array index, including missing leading key</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">CREATE INDEX idx_sched_missing
+ON `travel-sample`.inventory.route
+(DISTINCT ARRAY v.flight FOR v IN schedule END INCLUDE MISSING);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following statement creates a flattened index on the time (<code>utc</code>) and day from the <code>schedule</code> array for all routes.
+If the <code>utc</code> element is missing from any schedule, that schedule is indexed anyway.</p>
+</div>
+<div class="listingblock">
+<div class="title">Index II: Create a flattened array index, including missing leading key</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">CREATE INDEX ixf_sched_missing
+ON `travel-sample`.inventory.route
+(DISTINCT ARRAY FLATTEN_KEYS(v.utc INCLUDE MISSING, v.day) FOR v IN schedule END);</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div id="example-4" class="exampleblock">
-<div class="title">Example 4. Composite array index</div>
+<div class="title">Example 5. Composite array index</div>
 <div class="content">
 <div id="C4" class="listingblock">
 <div class="title">Index: Create an index on individual elements of an array and other non-array fields</div>
@@ -5263,7 +5334,7 @@ AND ANY v IN schedule SATISFIES v.flight LIKE 'FL%' END;</code></pre>
 </div>
 </div>
 <div id="example-5" class="exampleblock">
-<div class="title">Example 5. Nested array index</div>
+<div class="title">Example 6. Nested array index</div>
 <div class="content">
 <div class="admonitionblock warning">
 <table>
@@ -5378,7 +5449,7 @@ WHERE sf.flight IS NOT NULL AND s.day = 7;</code></pre>
 </div>
 </div>
 <div id="example-6" class="exampleblock">
-<div class="title">Example 6. Array index on compound object</div>
+<div class="title">Example 7. Array index on compound object</div>
 <div class="content">
 <div id="C6" class="listingblock">
 <div class="title">Index: Create an index on multiple elements of an array</div>
@@ -5397,7 +5468,7 @@ WHERE ANY v in schedule SATISFIES [v.flight, v.day] = ["US681", 2] END;</code></
 </div>
 </div>
 <div id="example-7" class="exampleblock">
-<div class="title">Example 7. Simplified array index</div>
+<div class="title">Example 8. Simplified array index</div>
 <div class="content">
 <div id="C7" class="listingblock">
 <div class="title">Index: Create an index on all schedules using simplified array index syntax</div>
@@ -5466,7 +5537,7 @@ In general, the array field itself should be included as one of the index keys i
 For instance, in <a href="#example-1">Example 1</a>, the <a href="#C1">Index</a> does not cover the <a href="#Q1">Query</a> because the <a href="#Q1">Query</a> projection list includes * which needs to fetch the document from the Data Service.</p>
 </div>
 <div id="example-8" class="exampleblock">
-<div class="title">Example 8. Covering Array Index</div>
+<div class="title">Example 9. Covering Array Index</div>
 <div class="content">
 <div id="C8i" class="listingblock">
 <div class="title">Index I: Creating a Covering Array Index</div>
@@ -5683,7 +5754,7 @@ This special optimization applies to those queries and DML which have WHERE clau
 For example:</p>
 </div>
 <div id="example-9" class="exampleblock">
-<div class="title">Example 9. ANY operator with an =, &lt;, &gt;, and LIKE predicate in the SATISFIES clause</div>
+<div class="title">Example 10. ANY operator with an =, &lt;, &gt;, and LIKE predicate in the SATISFIES clause</div>
 <div class="content">
 <div class="paragraph">
 <p>Note that the GSI indexes are tree structures that support exact match and range matches.
@@ -5741,14 +5812,14 @@ WHERE ANY v IN schedule SATISFIES v.flight LIKE 'UA%' END;</code></pre>
 </div>
 </div>
 <div id="example-10" class="exampleblock">
-<div class="title">Example 10. UNNEST operator with =, &lt;, &gt;, or LIKE predicate in the WHERE clause</div>
+<div class="title">Example 11. UNNEST operator with =, &lt;, &gt;, or LIKE predicate in the WHERE clause</div>
 <div class="content">
 <div class="paragraph">
 <p>This applies to only ALL array indexes because, for such index, all array elements are indexed in the array index, and the UNNEST operation needs all the elements to reconstruct the array.
 Note that the array cannot be reconstructed if on DISTINCT elements of the array are indexed.</p>
 </div>
 <div class="paragraph">
-<p>In this example, <a href="#Q10A">Query A</a> can be covered with the ALL index <code>idx_sched_cover_simple_all</code> defined by the <a href="#C10">Index</a>, but <a href="#Q10B">Query B</a> is not covered when using the DISTINCT index <code>idx_sched_cover_simple</code> defined by the <a href="#C9">Index</a> in <a href="#example-9">Example 9</a>.</p>
+<p>In this example, <a href="#Q10A">Query A</a> can be covered with the ALL index <code>idx_sched_cover_simple_all</code> defined by the <a href="#C10">Index</a>, but <a href="#Q10B">Query B</a> is not covered when using the DISTINCT index <code>idx_sched_cover_simple</code> defined by the <a href="#C9">Index</a> in <a href="#example-9">Example 10</a>.</p>
 </div>
 <div id="C10" class="listingblock">
 <div class="title">Index: UNNEST covered with the ALL index</div>

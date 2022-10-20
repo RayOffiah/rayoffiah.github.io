@@ -560,6 +560,11 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../learn/services-and-indexes/indexes/early-filters-and-pagination.html">Early Filters, Order and Pagination</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../learn/services-and-indexes/indexes/index-replication.html">Index Availability</a>
   </span>
 </li>
@@ -3466,6 +3471,11 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../rest-api/rest-initialize-cluster.html">Initializing a Cluster</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="4">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../rest-api/rest-initialize-node.html">Initializing a Node</a>
   </span>
 </li>
@@ -3636,7 +3646,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../rest-api/rest-cluster-email-notifications.html">Notifications</a>
+    <a class="menu_title menu_link" href="../rest-api/rest-cluster-email-notifications.html">Setting Alerts</a>
   </span>
 </li>
 </ul>
@@ -3946,6 +3956,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../rest-api/rest-auditing.html">Configure Auditing</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../rest-api/rest-specify-node-addition-conventions.html">Restrict Node-Addition</a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="3">
@@ -4745,27 +4760,666 @@
 <ul id="contributorList"></ul>
 <span  id="otherContributor"> + </span>
 </div><div class="sect1">
-<h2 id="release-712"><a class="anchor" href="#release-712"></a>Release 7.1.2 (August 2022)</h2>
+<h2 id="release-712"><a class="anchor" href="#release-712"></a>Release 7.1.2  (October 2022)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase Server 7.1.2 was released in August 2022.
-This maintenance release contains enhancements and fixes.</p>
+<p>Couchbase Server 7.1.2 was released in October 2022.
+This maintenance release contains fixes to issues.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="fixed-issues"><a class="anchor" href="#fixed-issues"></a>Fixed Issues</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="cluster-manager"><a class="anchor" href="#cluster-manager"></a>Cluster Manager</h3>
+<table id="table-known-issues-712-cluster-manager" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 27.4725%;">
+<col style="width: 72.5275%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53848/">MB-53848</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User database upgrade might render cluster unusable under the constant flow of auth attempts</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53811/">MB-53811</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The socket pool manager for REST calls process should be further down the start order</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53210/">MB-53210</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Update ns_server GOVERSION to not specify minor version number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53153/">MB-53153</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CVE-2022-30634 Update NS Server GoLang to 1.18.3+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53122/">MB-53122</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Incorrect alerts migration to 7.0: disabling of autofailover popup alerts</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53120/">MB-53120</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cgroups memory used is not reported</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53077/">MB-53077</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Couchbase Server should have warnings for high system memory usage</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52833/">MB-52833</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CVE-2022-29526 Update NS Server GoLang to 1.18.2+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52043/">MB-52043</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cert files are not collected by cbcollect</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-51544/">MB-51544</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">log redaction corrupts cbcollect_info N1QL output</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
-<h3 id="new-supported-platforms"><a class="anchor" href="#new-supported-platforms"></a>New supported platforms</h3>
-<div class="paragraph">
-<p>This release adds support for the following platforms:</p>
+<h3 id="storage"><a class="anchor" href="#storage"></a>Storage</h3>
+<table id="table-known-issues-712-storage" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 27.4725%;">
+<col style="width: 72.5275%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53964/">MB-53964</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backport for MB-53662 / Process crashes during delta recovery</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53156/">MB-53156</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CVE-2022-30634 Update Plasma GoLang to 1.18.4+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52857/">MB-52857</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Initial index time in Magma GSI test increased from 49 minutes to 93.7 minutes on build 7.1.2-3345 and 7.2.0-1530</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52518/">MB-52518</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Investigate high buffer memory usage (Backport MB-51801)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52499/">MB-52499</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[Magma] Rebalance exited with reason old_buckets_shutdown_wait_failed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52046/">MB-52046</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[System Test]  Caught unhandled std::exception-derived exception. what(): kvstore-194/rev-000000001: found keyIndex seqno &lt; seqIndex seqno (2071646 &lt; 2073699)</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>ARM v8 now supported on Ubuntu 20.04 (AWS Graviton)</p>
-</li>
-</ul>
+<div class="sect2">
+<h3 id="data-service"><a class="anchor" href="#data-service"></a>Data Service</h3>
+<table id="table-known-issues-712-data-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 27.4725%;">
+<col style="width: 72.5275%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53282/">MB-53282</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">early return in AuditFile::close_and_rotate_file don&#8217;t reset open_time</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52357/">MB-52357</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Improve performance for document access auditing when using filtering</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="paragraph">
-<p>See <a href="../install/install-platforms.html" class="xref page">Supported Platforms</a> for the complete list of supported platforms..</p>
+<div class="sect2">
+<h3 id="views"><a class="anchor" href="#views"></a>Views</h3>
+<table id="table-known-issues-712-views" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 27.4725%;">
+<col style="width: 72.5275%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53924/">MB-53924</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multiple couchstore map-reduce tests failing on macOS after V8 10.7.21 upgrade</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52201/">MB-52201</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST view query requires view writer permission</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-51672/">MB-51672</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[System Test] Rebalance failed with error mover_crashed</p></td>
+</tr>
+</tbody>
+</table>
 </div>
+<div class="sect2">
+<h3 id="xdcr"><a class="anchor" href="#xdcr"></a>XDCR</h3>
+<table id="table-known-issues-712-xdcr" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 27.4725%;">
+<col style="width: 72.5275%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53621/">MB-53621</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.1.2-3425 causes goxdcr to randomly seg fault</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53152/">MB-53152</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CVE-2022-30634 Update XDCR GoLang to 1.18.3+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53102/">MB-53102</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.2] - XMEM will leak memory if pipeline is paused with full buffer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52834/">MB-52834</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CVE-2022-29526 Update XDCR GoLang to 1.18.2+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52665/">MB-52665</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[Backport 7.1.2] Enable OSO support in XDCR for magma buckets</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52282/">MB-52282</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.1.] Support new cgroup API from sigar in XDCR</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52106/">MB-52106</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[System Test][XDCR] error observed in longevity - ERRO GOXDCR.P2PManager: Unable to respond to caller given type VBMasterCheck opaque xxx timed out chan 0xxxx</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="query-service"><a class="anchor" href="#query-service"></a>Query Service</h3>
+<table id="table-known-issues-712-query-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 27.4725%;">
+<col style="width: 72.5275%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53043/">MB-53043</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">correlated subquery request has exceeded memory quota</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53029/">MB-53029</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pytpcc UDF tests failed on build 7.1.2-3378</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53011/">MB-53011</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE OR REPLACE function fails with function not found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52959/">MB-52959</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.1.2 [BP MB-52944]UNNEST query 'usedMemory' issue when using Query Memory Quota</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52910/">MB-52910</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N1QL UDF RBAC permissions issue</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52907/">MB-52907</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[System Test] Panic seen in query logs - invalid memory address or nil pointer dereference</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52836/">MB-52836</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CVE-2022-29526 Update Query Service GoLang to 1.18.2+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52792/">MB-52792</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[ipv6-only] One of the cbq-engine processes seems to be binding to ipv4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52764/">MB-52764</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.1.2 [BP MB-52112 ] Race condition between stop signal and timeout</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52689/">MB-52689</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Advise with subquery returns No index recommendation at this time: no keyspace found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52629/">MB-52629</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Incorrect result from query if USE KEYS clause contains correlated subquery</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52529/">MB-52529</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Re-enable subquery explain/timings/advise, early sort, early filters for 7.1.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52509/">MB-52509</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Early Order pagination is not considered if limit is query/named parameter</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52443/">MB-52443</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.2 of MB-52378] Include missing key Index syntax on Index workbench doesn&#8217;t show include keyword in definition</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52112/">MB-52112</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Race condition between stop signal and timeout</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="eventing-service"><a class="anchor" href="#eventing-service"></a>Eventing Service</h3>
+<table id="table-known-issues-712-eventing-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 27.4725%;">
+<col style="width: 72.5275%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53968/">MB-53968</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unexplained lost mutations in Eventing</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52904/">MB-52904</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP of MB-52903]: Eventing RBAC: Function remains deployed after deletion of owner</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52850/">MB-52850</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CVE-2022-29526 Update eventing Service GoLang to 1.18.2+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52808/">MB-52808</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.2] - Eventing function deployment taking a long time</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52772/">MB-52772</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.2 MB-52718]- [System Test] Eventing rebalance failed due to 20 min timeout</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52746/">MB-52746</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.2 MB-52671] - Eventing: Number of cpu cores mentioned in UI warning does not take into account container limits</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52745/">MB-52745</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.2 MB-52651] - Memory limits are not checked while setting eventingMemoryQuota via REST API</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52705/">MB-52705</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.2 MB-52696] - Function app-log Write hangs when called after Close</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52645/">MB-52645</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.2 MB-52572] - Change in error returned when non-existing bucket used in function creation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52589/">MB-52589</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP of MB-52588]: [System Test] Rebalance exited due to 1200 second timeout</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52587/">MB-52587</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP of MB-52578] Eventing Multi Collection: Inter function recursion not detected in case of sbm handler</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52560/">MB-52560</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP of MB-52474]: [Upgrade] Timers handler stuck in deploying state after offline upgrade from 6.6.5 to 7.1.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52540/">MB-52540</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP of MB-52539]: multi-collection-eventing: eventing leaks source bucket mutation to eventing consumer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52473/">MB-52473</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP of MB-52408] Eventing Multi Collection: Function deployment successful for a function listening at scope level even though scope does not exist</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52374/">MB-52374</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.2 MB-51778] - Log a system event when an eventing function is auto undeployed due to RBAC changes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52372/">MB-52372</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.1 MB-51442] - [Eventing RBAC][UI] Unable to modify function settings when user has only eventing_manage_functions role</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52371/">MB-52371</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.1 MB-48516] - Eventing: work around - LCB_ERR_TIMEOUT thrown when keyspace for a bucket binding does not exist</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52370/">MB-52370</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.2 MB-51909] - Incorrect query param encoding for curl binding and path param is not encoded</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52369/">MB-52369</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.1 MB-52029] - Eventing Service should honor the CPU &amp; Memory limits set in cgroups</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52367/">MB-52367</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.1 MB-51534] - Log function scope for lifecycle operation audit logs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52366/">MB-52366</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.1 MB-51607] - [System Test] Eventing rebalance stuck at 99%</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52365/">MB-52365</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.1 MB-52111] - appcode rest api returns bytes instead of string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-51856/">MB-51856</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allow Eventing Handlers to be created on magma buckets</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="analytics-service"><a class="anchor" href="#analytics-service"></a>Analytics Service</h3>
+<table id="table-known-issues-712-analytics-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 27.4725%;">
+<col style="width: 72.5275%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53674/">MB-53674</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cannot remove failed over after rebalance-in cancellation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53558/">MB-53558</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[CX] Reading Parquet from external stores fails if node2node encryption is enabled</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53491/">MB-53491</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Security update Apache Hadoop FileUtil.unTar CVE-2022-25168</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53490/">MB-53490</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Security update Apache Parquet-MR CVE-2021-41561</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53145/">MB-53145</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Update Jetty to 9.4.47 or higher</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53038/">MB-53038</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data in few datasets is not getting flushed when bucket on which dataset is created is flushed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52984/">MB-52984</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Update OpenJDK to 11.0.16 to address CVEs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52955/">MB-52955</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Analytics Upgrade Golang to address CVEs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52890/">MB-52890</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Loading travel-sample bucket fails</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52872/">MB-52872</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cbas using unsupported cipher suite</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52869/">MB-52869</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[CX] Upgrade Google Cloud Storage dependencies</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52816/">MB-52816</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[CX] AWS S3 Parquet returns "internal error" on permission denied</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52783/">MB-52783</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Select * query throws Failure contacting server for parquet files</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52771/">MB-52771</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[CX] object-concat() should issue a warning on duplicate fields</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52752/">MB-52752</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CBAS port is vulnerable for "secure client initiated renegotiation"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52679/">MB-52679</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Parquet options missing in UI when creating external collection</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52617/">MB-52617</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[CX] Queries fail with internal error when object constructor encounters a missing field name</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52522/">MB-52522</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Internal error while querying external dataset when other file formats are also present in same S3 bucket</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52414/">MB-52414</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[CX] create array index results in misleading message when column type is not specified</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52240/">MB-52240</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Security update netty to 4.1.77 or higher</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52239/">MB-52239</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Upgrade Apache Tomcat tomcat-annotations-api to 10.0.21 or higher</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52084/">MB-52084</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Update THIRDPARTY for javax.ws.rs-api to indicate GPL2 w/ CPE not EPL 2.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-51789/">MB-51789</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[CX] Inconsistent metadata state after dropping scope containing connected collections</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-51767/">MB-51767</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[Windows] Rebalancing Out CBAS node fails</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="index-service"><a class="anchor" href="#index-service"></a>Index Service</h3>
+<table id="table-known-issues-712-index-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 27.4725%;">
+<col style="width: 72.5275%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53900/">MB-53900</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[Backport MB-52790 to 7.1.2] - perf tests stuck due to failed cbindex</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53174/">MB-53174</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CVE-2022-30634 Update indexing GoLang to 1.18.4+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53057/">MB-53057</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Snapshot invariant <span class="menuseq"><b class="menu">snapStart</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">previous completed snapEnd</b></span> broken during  autofailover</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52998/">MB-52998</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[Backport MB-52925 to 7.1.2] - panic : concurrent map read and map write</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52976/">MB-52976</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[7.1.2] Leading missing keys indexes get created in mixed-mode clusters</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52922/">MB-52922</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enable OSO for magma only for non-default collections</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52871/">MB-52871</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[Backport MB-52835 to 7.1.2] CVE-2022-29526 Update Index Service GoLang to 1.18.2+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52744/">MB-52744</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compilation failure on indexer due to cbauth service imported and not being used</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52556/">MB-52556</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Move "processCollectionDrop No Index found" messages to verbose level</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52541/">MB-52541</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP to 7.1.2 of MB-52355][System Test] Panic observed on indexer during data load with Magma run</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52443/">MB-52443</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.2 of MB-52378] Include missing key Index syntax on Index workbench doesn&#8217;t show include keyword in definition</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52397/">MB-52397</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[Backport 7.1.2] Enable OSO support in GSI for magma buckets</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52243/">MB-52243</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[System Test] Indexer crashed with error "fatal error: concurrent map iteration and map write" during failover and rebalancing out 2i node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52204/">MB-52204</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[Backport MB-51063 to 7.1.2] [CBSE] PickRandom: filterByTiming: Dont refetch the load stats again after leastLoad value is calculated</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52203/">MB-52203</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[Backport MB-51066 to 7.1.2] [CBSE] Fix Logging in PickRandom function for printing stats and needed info on error</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-51947/">MB-51947</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.1] - indexer blocked during storage warmup on MOI storage, causing rebalance failure.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-51946/">MB-51946</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[BP 7.1.1] [System Test] Indexer crash with error "panic: Fail to find real index instance 3055985754217342362"</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="search-service"><a class="anchor" href="#search-service"></a>Search Service</h3>
+<table id="table-known-issues-712-search-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 27.4725%;">
+<col style="width: 72.5275%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-53050/">MB-53050</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[FTS] updating a geopoint fts index after upgrade returns wrong results</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52907/">MB-52907</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[System Test] Panic seen in query logs - invalid memory address or nil pointer dereference</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52853/">MB-52853</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cbft process crash and restart multiple times</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52832/">MB-52832</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CVE-2022-29526 Update FTS GoLang to 1.18.2+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52656/">MB-52656</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[Backport 7.1.2] Enable OSO support in FTS for magma buckets</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52465/">MB-52465</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flex queries over indexes with docid_prefix and docid_regexp run verification (unnecessarily)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52405/">MB-52405</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Redundant loading of Hebrew dictionary</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52163/">MB-52163</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FTS Flex index should sargable if SATISFIES has IN clause</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52030/">MB-52030</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FTS should honor the CPU &amp; Memory limits set in cgroups</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52004/">MB-52004</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For shingle filters the UI can not pass a space from a form</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-51855/">MB-51855</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allow FTS indexes to be created on magma buckets</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-51832/">MB-51832</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FTS does not set http agent string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-49199/">MB-49199</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FTS - Improve Geo query performance</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -4777,13 +5431,13 @@ This maintenance release contains enhancements and fixes.</p>
 This maintenance release contains fixes to issues.</p>
 </div>
 <div class="sect2">
-<h3 id="fixed-issues"><a class="anchor" href="#fixed-issues"></a>Fixed Issues</h3>
+<h3 id="fixed-issues-2"><a class="anchor" href="#fixed-issues-2"></a>Fixed Issues</h3>
 <div class="paragraph">
 <p>This release contains the fixes listed below.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="data-service"><a class="anchor" href="#data-service"></a>Data Service</h3>
+<h3 id="data-service-2"><a class="anchor" href="#data-service-2"></a>Data Service</h3>
 <table id="table-known-issues-711-dataservice" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
@@ -4804,7 +5458,7 @@ This maintenance release contains fixes to issues.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="xdcr"><a class="anchor" href="#xdcr"></a>XDCR</h3>
+<h3 id="xdcr-2"><a class="anchor" href="#xdcr-2"></a>XDCR</h3>
 <table id="table-known-issues-711-xdcr" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
@@ -4821,11 +5475,15 @@ This maintenance release contains fixes to issues.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-51939" target="_blank" rel="noopener">MB-51939</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">XDCR does not update memcached flag/body after txn xattribute removal if user xattr is not found</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52431" target="_blank" rel="noopener">MB-52431</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add authType back to bucket properties in pools/default/buckets/bucket-name</p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="query-service"><a class="anchor" href="#query-service"></a>Query Service</h3>
+<h3 id="query-service-2"><a class="anchor" href="#query-service-2"></a>Query Service</h3>
 <table id="table-known-issues-711-queryservice" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
@@ -4870,7 +5528,7 @@ This maintenance release contains fixes to issues.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="eventing-service"><a class="anchor" href="#eventing-service"></a>Eventing Service</h3>
+<h3 id="eventing-service-2"><a class="anchor" href="#eventing-service-2"></a>Eventing Service</h3>
 <table id="table-known-issues-711-eventingservice" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
@@ -4982,7 +5640,7 @@ See <a href="../learn/security/on-the-wire-security.html" class="xref page">On t
 </li>
 <li>
 <p>Heightened security is now provided for adding nodes to clusters.
-Once  a cluster is using uploaded certificates, a node that is to be added must itself be provisioned with conformant certificates before addition can be successfully performed.
+Once a cluster is using uploaded certificates, a node that is to be added must itself be provisioned with conformant certificates before addition can be successfully performed.
 The new node is now always added over an encrypted connection.
 See <a href="../manage/manage-security/configure-server-certificates.html#adding-new-nodes" class="xref page">Adding New Nodes</a>.</p>
 </li>
@@ -5120,7 +5778,7 @@ For details, see <a href="../rest-api/deprecated-security-apis/deprecated-certif
 </div>
 </div>
 <div class="sect2">
-<h3 id="fixed-issues-2"><a class="anchor" href="#fixed-issues-2"></a>Fixed Issues</h3>
+<h3 id="fixed-issues-3"><a class="anchor" href="#fixed-issues-3"></a>Fixed Issues</h3>
 <div class="paragraph">
 <p>This release contains the fixes listed below.</p>
 </div>
@@ -5150,7 +5808,7 @@ For details, see <a href="../rest-api/deprecated-security-apis/deprecated-certif
 </table>
 </div>
 <div class="sect3">
-<h4 id="cluster-manager"><a class="anchor" href="#cluster-manager"></a>Cluster Manager</h4>
+<h4 id="cluster-manager-2"><a class="anchor" href="#cluster-manager-2"></a>Cluster Manager</h4>
 <table id="table-known-issues-710-cluster-manager" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
@@ -5175,7 +5833,7 @@ For details, see <a href="../rest-api/deprecated-security-apis/deprecated-certif
 </table>
 </div>
 <div class="sect3">
-<h4 id="storage"><a class="anchor" href="#storage"></a>Storage</h4>
+<h4 id="storage-2"><a class="anchor" href="#storage-2"></a>Storage</h4>
 <table id="table-known-issues-710-storage" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
@@ -5196,7 +5854,7 @@ For details, see <a href="../rest-api/deprecated-security-apis/deprecated-certif
 </table>
 </div>
 <div class="sect3">
-<h4 id="data-service-2"><a class="anchor" href="#data-service-2"></a>Data Service</h4>
+<h4 id="data-service-3"><a class="anchor" href="#data-service-3"></a>Data Service</h4>
 <table id="table-known-issues-710-data-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
@@ -5225,7 +5883,7 @@ For details, see <a href="../rest-api/deprecated-security-apis/deprecated-certif
 </table>
 </div>
 <div class="sect3">
-<h4 id="views"><a class="anchor" href="#views"></a>Views</h4>
+<h4 id="views-2"><a class="anchor" href="#views-2"></a>Views</h4>
 <table id="table-known-issues-710-views" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
@@ -5250,7 +5908,7 @@ For details, see <a href="../rest-api/deprecated-security-apis/deprecated-certif
 </table>
 </div>
 <div class="sect3">
-<h4 id="analytics-service"><a class="anchor" href="#analytics-service"></a>Analytics Service</h4>
+<h4 id="analytics-service-2"><a class="anchor" href="#analytics-service-2"></a>Analytics Service</h4>
 <table id="table-known-issues-710-analytics-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
@@ -5264,14 +5922,6 @@ For details, see <a href="../rest-api/deprecated-security-apis/deprecated-certif
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-48315" target="_blank" rel="noopener">MB-48315</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Analytics UI is blank in Mixed mode cluster</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-50601" target="_blank" rel="noopener">MB-50601</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Analytics Service cannot be added nor re-added to a 6.6.5 cluster w/ node-to-node encryption configured</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-51446" target="_blank" rel="noopener">MB-51446</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">On corrupt remote link details in metakv, analytics cluster becomes permanently unusable on restart</p></td>
 </tr>
@@ -5279,7 +5929,7 @@ For details, see <a href="../rest-api/deprecated-security-apis/deprecated-certif
 </table>
 </div>
 <div class="sect3">
-<h4 id="query-service-2"><a class="anchor" href="#query-service-2"></a>Query Service</h4>
+<h4 id="query-service-3"><a class="anchor" href="#query-service-3"></a>Query Service</h4>
 <table id="table-known-issues-710-query-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
@@ -5316,7 +5966,7 @@ For details, see <a href="../rest-api/deprecated-security-apis/deprecated-certif
 </table>
 </div>
 <div class="sect3">
-<h4 id="index-service"><a class="anchor" href="#index-service"></a>Index Service</h4>
+<h4 id="index-service-2"><a class="anchor" href="#index-service-2"></a>Index Service</h4>
 <table id="table-known-issues-710-index-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
@@ -5349,7 +5999,7 @@ For details, see <a href="../rest-api/deprecated-security-apis/deprecated-certif
 </table>
 </div>
 <div class="sect3">
-<h4 id="search-service"><a class="anchor" href="#search-service"></a>Search Service</h4>
+<h4 id="search-service-2"><a class="anchor" href="#search-service-2"></a>Search Service</h4>
 <table id="table-known-issues-710-search-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
@@ -5406,7 +6056,7 @@ For details, see <a href="../rest-api/deprecated-security-apis/deprecated-certif
 </table>
 </div>
 <div class="sect3">
-<h4 id="eventing-service-2"><a class="anchor" href="#eventing-service-2"></a>Eventing Service</h4>
+<h4 id="eventing-service-3"><a class="anchor" href="#eventing-service-3"></a>Eventing Service</h4>
 <table id="table-known-issues-710-eventing-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
@@ -5441,7 +6091,7 @@ For details, see <a href="../rest-api/deprecated-security-apis/deprecated-certif
 <p>This release contains the following known issue.</p>
 </div>
 <div class="sect3">
-<h4 id="query-service-3"><a class="anchor" href="#query-service-3"></a>Query Service</h4>
+<h4 id="query-service-4"><a class="anchor" href="#query-service-4"></a>Query Service</h4>
 <table id="table-known-issues-710-query-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">

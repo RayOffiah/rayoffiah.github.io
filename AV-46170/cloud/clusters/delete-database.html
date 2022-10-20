@@ -257,7 +257,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../clouds/clouds.html">Overview</a>
+    <a class="menu_title menu_link" href="#clouds:clouds.adoc">Overview</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -267,7 +267,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../clouds/manage-clouds.html">Connect &amp; Manage Clouds</a>
+    <a class="menu_title menu_link" href="#clouds:manage-clouds.adoc">Connect &amp; Manage Clouds</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -560,7 +560,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../app-services/deployment/app-endpoint.html">Creating App Endpoints</a>
+    <a class="menu_title menu_link" href="../app-services/deployment/creating-an-app-endpoint.html">Creating App Endpoints</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -612,6 +612,19 @@
   <span class="menu_line">
     <a class="menu_title menu_link" href="../app-services/billing/billing.html">Billing</a>
   </span>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <span class="menu_title menu_text">Migrating</span>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../app-services/migrating/on-prem-to-capella.html">From Self-Managed Servers</a>
+  </span>
+</li>
+</ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
@@ -931,8 +944,6 @@ You must have the <a href="../projects/project-roles.html#project-owner-role" cl
 <div class="sect1">
 <h2 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="couchbases-cloud-account"><a class="anchor" href="#couchbases-cloud-account"></a>Couchbase&#8217;s Cloud Account</h3>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -988,101 +999,6 @@ Once complete, the cluster is removed entirely.</p>
 </div>
 </li>
 </ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="own-cloud-account"><a class="anchor" href="#own-cloud-account"></a>Own Cloud Account</h3>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deleting a database deletes all of its data.</p>
-</li>
-<li>
-<p>Deleting a database is a permanent action and cannot be reversed.</p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Cluster backups for clusters hosted in your own cloud account are not deleted when a cluster is deleted.
-A cluster&#8217;s backups will continue to be stored in the connected cloud VPC in your cloud provider according to the backup policy that was in place when the cluster was deleted, or until the connected cloud is <a href="../clouds/manage-clouds.html#delete-cloud" class="xref page">deleted</a>.</p>
-</div>
-<div class="paragraph">
-<p>For more information, refer to <a href="backup-restore.html" class="xref page">Backup and Restore Cluster Data and Settings</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This information is for anyone still using Couchbase Server 6.6, hosted in their own cloud provider&#8217;s VPC.
-It does not apply to Couchbase 7.0, hosted in Couchbase&#8217;s VPC and fully managed for you.</p>
-</div>
-<div class="paragraph">
-<p>For further information <a href="https://www.couchbase.com/products/capella">contact Couchbase</a>.</p>
-</div>
-<div class="paragraph">
-<p>The easiest way to get started with Capella, our fully managed DBaaS, is <a href="../get-started/get-started.html" class="xref page">hosting in Couchbase&#8217;s Cloud</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>To delete a Couchbase Capella cluster hosted in your own cloud account:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Go to the <strong>Clusters</strong> tab in the main navigation, and find the cluster you want to delete.</p>
-<div class="paragraph">
-<p>You can also find a cluster by navigating to the <strong>Projects</strong> tab in the main navigation and clicking on the project that contains the cluster in question.</p>
-</div>
-</li>
-<li>
-<p>Still in the <strong>Clusters</strong> tab, click the Trash icon <span class="icon"><i class="fa fa-trash-alt"></i></span> on the same row as the cluster you want to delete.</p>
-<div class="paragraph">
-<p>This action opens the <strong>Delete Cluster</strong> flyout.
-Review the cluster name at the top of the flyout to verify that the correct cluster is selected.</p>
-</div>
-</li>
-<li>
-<p>In the <strong>Delete Cluster</strong> flyout, type <code>delete</code>.</p>
-</li>
-<li>
-<p>Click <b class="button">Confirm</b>.</p>
-<div class="paragraph">
-<p>Once you delete a cluster, it is queued for automatic deletion and will remain visible with the <em>Destroying</em> status.
-This process can take up to 15 minutes.
-Once complete, the cluster is removed, but cluster backups are still retained in the connected cloud VPC in your cloud provider.</p>
-</div>
-</li>
-</ol>
-</div>
 </div>
 </div>
 </div>

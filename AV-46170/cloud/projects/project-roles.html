@@ -257,7 +257,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../clouds/clouds.html">Overview</a>
+    <a class="menu_title menu_link" href="#clouds:clouds.adoc">Overview</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -267,7 +267,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../clouds/manage-clouds.html">Connect &amp; Manage Clouds</a>
+    <a class="menu_title menu_link" href="#clouds:manage-clouds.adoc">Connect &amp; Manage Clouds</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -560,7 +560,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../app-services/deployment/app-endpoint.html">Creating App Endpoints</a>
+    <a class="menu_title menu_link" href="../app-services/deployment/creating-an-app-endpoint.html">Creating App Endpoints</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -612,6 +612,19 @@
   <span class="menu_line">
     <a class="menu_title menu_link" href="../app-services/billing/billing.html">Billing</a>
   </span>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <span class="menu_title menu_text">Migrating</span>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../app-services/migrating/on-prem-to-capella.html">From Self-Managed Servers</a>
+  </span>
+</li>
+</ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
@@ -903,16 +916,16 @@
 <span  id="otherContributor"> + </span>
 </div><div class="quoteblock abstract">
 <blockquote>
-Project roles are used to grant privileges to project members.
+Project roles are used to grant privileges to project collaborators.
 </blockquote>
 </div>
 <div class="paragraph">
-<p>Each project member is assigned one or more <em>project roles</em> that determine their privileges within the project.
+<p>Each project collaborator is assigned one or more project roles that determine their privileges within the project.
 Project roles are separate from <a href="../organizations/organization-user-roles.html" class="xref page">organization roles</a>, which grant overall privileges to Couchbase Capella.
-Project roles control who can create database credentials and their level of access to cluster data.</p>
+Project roles control who can create database credentials and their level of access to database data.</p>
 </div>
 <div class="paragraph">
-<p>The following table describes the available project roles and their associated privileges.</p>
+<p>The following table describes the available project roles and their privileges.</p>
 </div>
 <table id="table-project-roles" class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Project Roles</caption>
@@ -932,22 +945,23 @@ Project roles control who can create database credentials and their level of acc
 <p><code><strong>Project Owner</strong></code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Provides complete cluster-management access. Users with this role can access data within any cluster in a project.</p>
+<p>Provides complete database-management access.
+Users with this role can access data in any database in a project.</p>
 </div>
 <div class="paragraph">
-<p>It includes the following privileges:</p>
+<p>A Project Owner has the following privileges:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Create and manage clusters</p>
+<p>Create and manage databases</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Edit cluster configurations and settings</p>
+<p>Edit database configurations and settings</p>
 </li>
 <li>
-<p>Manage cluster services, including cluster scaling</p>
+<p>Manage database services, including database scaling</p>
 </li>
 <li>
 <p>Manage replications</p>
@@ -968,13 +982,13 @@ Project roles control who can create database credentials and their level of acc
 </div>
 </li>
 <li>
-<p>Create and manage database credentials for all clusters in the project</p>
+<p>Create and manage database credentials for all databases in the project</p>
 </li>
 <li>
-<p>Access data within any cluster in the project</p>
+<p>Access data within any database in the project</p>
 </li>
 <li>
-<p>Manage project members and their roles</p>
+<p>Manage project collaborators and their roles</p>
 </li>
 <li>
 <p>Delete the project</p>
@@ -987,25 +1001,26 @@ Project roles control who can create database credentials and their level of acc
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div id="project-cluster-manager-role" class="paragraph">
-<p><code><strong>Project manager</strong></code></p>
+<p><code><strong>Project Manager</strong></code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Provides access to management actions for all clusters in a project. This role can create and delete clusters but does not provide access to data.</p>
+<p>Provides access to management actions for all databases in a project.
+This role can create and delete databases but doesn&#8217;t provide access to data.</p>
 </div>
 <div class="paragraph">
-<p>It includes the following privileges within the project:</p>
+<p>A Project Manager has the following privileges for a project:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Create and manage clusters</p>
+<p>Create and manage databases</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Edit cluster configurations and settings</p>
+<p>Edit database configurations and settings</p>
 </li>
 <li>
-<p>Manage cluster services, including cluster scaling</p>
+<p>Manage database services, including database scaling</p>
 </li>
 <li>
 <p>Configure allowed IP addresses</p>
@@ -1021,25 +1036,26 @@ Project roles control who can create database credentials and their level of acc
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div id="project-cluster-viewer-role" class="paragraph">
-<p><code><strong>Cluster Viewer</strong></code></p>
+<p><code><strong>Project Viewer</strong></code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Provides read-only access to view all clusters in a project. This role does not provide access to data.</p>
+<p>Provides read-only access to view all databases in a project.
+This role doesn&#8217;t provide access to data.</p>
 </div>
 <div class="paragraph">
-<p>It includes the following privileges within the project:</p>
+<p>A Project Viewer has the following privileges for a project:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>View all clusters in the project</p>
+<p>View all databases in the project</p>
 <div class="ulist">
 <ul>
 <li>
-<p>View cluster activity, statistics, and logs</p>
+<p>View database activity, statistics, and logs</p>
 </li>
 <li>
-<p>View cluster configuration details and settings</p>
+<p>View database configuration details and settings</p>
 </li>
 <li>
 <p>View allowed IP addresses</p>
@@ -1051,13 +1067,13 @@ Project roles control who can create database credentials and their level of acc
 <p>View database credentials and their permissions</p>
 </li>
 <li>
-<p>View cluster certificates</p>
+<p>View database certificates</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>View database credentials for the clusters in the project</p>
+<p>View database credentials for the databases in the project</p>
 </li>
 <li>
 <p>View members of the project and their roles</p>
@@ -1070,25 +1086,26 @@ Project roles control who can create database credentials and their level of acc
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div id="project-cluster-data-reader" class="paragraph">
-<p><code><strong>Cluster Data Reader</strong></code></p>
+<p><code><strong>Database Data Reader</strong></code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Provides read-only access to view data within any cluster in a project. This role allows use of tools like Query Workbench to read data but can&#8217;t modify or write data.</p>
+<p>Provides read-only access to view data within any database in a project.
+This role allows use of tools like Query Workbench to read data but can&#8217;t modify or write data.</p>
 </div>
 <div class="paragraph">
-<p>It includes the following privileges within the project:</p>
+<p>A Database Data Reader has the following privileges for a project:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>View all clusters in the project</p>
+<p>View all databases in the project</p>
 <div class="ulist">
 <ul>
 <li>
-<p>View cluster activity, statistics, and logs</p>
+<p>View database activity, statistics, and logs</p>
 </li>
 <li>
-<p>View cluster configuration details and settings</p>
+<p>View database configuration details and settings</p>
 </li>
 <li>
 <p>View allowed IP addresses</p>
@@ -1097,13 +1114,13 @@ Project roles control who can create database credentials and their level of acc
 <p>View database credentials and their permissions</p>
 </li>
 <li>
-<p>View cluster certificates</p>
+<p>View database certificates</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>View database credentials for the clusters in the project</p>
+<p>View database credentials for the databases in the project</p>
 </li>
 <li>
 <p>View members of the project and their roles</p>
@@ -1112,32 +1129,32 @@ Project roles control who can create database credentials and their level of acc
 <p>View project activity</p>
 </li>
 <li>
-<p>Read data within any cluster in the project</p>
+<p>Read data within any database in the project</p>
 </li>
 </ul>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div id="project-cluster-data-reader-writer" class="paragraph">
-<p><code><strong>Cluster Data Reader/Writer</strong></code></p>
+<p><code><strong>Database Data Reader/Writer</strong></code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Provides read and write access to data within any cluster in a project.</p>
+<p>Provides read and write access to data within any database in a project.</p>
 </div>
 <div class="paragraph">
-<p>It includes the following privileges within the project:</p>
+<p>A Database Data Reader/Writer has the following privileges for a project:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>View all clusters in the project</p>
+<p>View all databases in the project</p>
 <div class="ulist">
 <ul>
 <li>
-<p>View cluster activity, statistics, and logs</p>
+<p>View database activity, statistics, and logs</p>
 </li>
 <li>
-<p>View cluster configuration details and settings</p>
+<p>View database configuration details and settings</p>
 </li>
 <li>
 <p>View allowed IP addresses</p>
@@ -1146,13 +1163,13 @@ Project roles control who can create database credentials and their level of acc
 <p>View database credentials and their permissions</p>
 </li>
 <li>
-<p>View cluster certificates</p>
+<p>View database certificates</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>View database credentials for the clusters in the project</p>
+<p>View database credentials for the databases in the project</p>
 </li>
 <li>
 <p>View members of the project and their roles</p>
@@ -1161,7 +1178,7 @@ Project roles control who can create database credentials and their level of acc
 <p>View project activity</p>
 </li>
 <li>
-<p>Read and write data within any cluster in the project</p>
+<p>Read and write data within any database in the project</p>
 </li>
 </ul>
 </div></div></td>

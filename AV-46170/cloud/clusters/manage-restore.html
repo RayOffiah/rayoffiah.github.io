@@ -258,7 +258,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../clouds/clouds.html">Overview</a>
+    <a class="menu_title menu_link" href="#clouds:clouds.adoc">Overview</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -268,7 +268,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../clouds/manage-clouds.html">Connect &amp; Manage Clouds</a>
+    <a class="menu_title menu_link" href="#clouds:manage-clouds.adoc">Connect &amp; Manage Clouds</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -561,7 +561,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../app-services/deployment/app-endpoint.html">Creating App Endpoints</a>
+    <a class="menu_title menu_link" href="../app-services/deployment/creating-an-app-endpoint.html">Creating App Endpoints</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -613,6 +613,19 @@
   <span class="menu_line">
     <a class="menu_title menu_link" href="../app-services/billing/billing.html">Billing</a>
   </span>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <span class="menu_title menu_text">Migrating</span>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../app-services/migrating/on-prem-to-capella.html">From Self-Managed Servers</a>
+  </span>
+</li>
+</ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
@@ -820,7 +833,7 @@
 </aside>
 <aside class="toc sidebar"
       data-title="Contents"
-      data-levels="2">
+      data-levels="1">
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
@@ -1266,286 +1279,6 @@ Click the Play icon <span class="icon"><i class="fa fa-play"></i></span> in the 
 </div>
 </dd>
 </dl>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="restore-invpc"><a class="anchor" href="#restore-invpc"></a>Restore a Backup in Own VPC</h2>
-<div class="sectionbody">
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This information is for anyone still using Couchbase Server 6.6, hosted in their own cloud provider&#8217;s VPC.
-It does not apply to Couchbase 7.0, hosted in Couchbase&#8217;s VPC and fully managed for you.</p>
-</div>
-<div class="paragraph">
-<p>For further information <a href="https://www.couchbase.com/products/capella">contact Couchbase</a>.</p>
-</div>
-<div class="paragraph">
-<p>The easiest way to get started with Capella, our fully managed DBaaS, is <a href="../get-started/get-started.html" class="xref page">hosting in Couchbase&#8217;s Cloud</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="guidelines-and-limitations"><a class="anchor" href="#guidelines-and-limitations"></a>Guidelines and Limitations</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>The source database that originally created the backup must still exist and be accessible within the Capella UI.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Although backups are preserved in the connected cloud even after a database is deleted, the only <em>user-accessible</em> method for restoring a backup requires that you be able to access the source database&#8217;s <strong>Backup &amp; Restore</strong> tab.</p>
-</div>
-<div class="paragraph">
-<p>If you need to restore a backup from a database that is no longer available in the Capella UI (such as after an accidental database deletion), please <a href="../support/manage-support.html" class="xref page">contact Couchbase Capella Support</a> for assistance.
-In the meantime, it is highly recommended that you <a href="manage-backup.html#view-backup-files" class="xref page">download the backup</a> from cloud storage so as to ensure it is not deleted as part of the database&#8217;s <a href="backup-restore.html#backup-retention" class="xref page">retention policy</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>For customers hosting Capella in their own cloud provider&#8217;s VPC, a backup can only be restored to a database that is deployed in the same <a href="../clouds/clouds.html" class="xref page">connected cloud</a> as the source database that created the backup.</p>
-</li>
-<li>
-<p>Backups can only be restored to a database that is running the same <a href="databases.html#cluster-version" class="xref page">major version</a> (or higher) than the source database that originally created the backup.</p>
-</li>
-<li>
-<p>Data can only be restored to buckets that have the same names and <a href="data-service/manage-buckets.html#add-bucket" class="xref page">conflict resolution methods</a> as the buckets from the backup.
-Ensure that you&#8217;ve configured buckets on the target database that have the same names and conflict resolution methods as the ones you are trying to restore data from.
-If a bucket of the same name does not exist on the target database, no data from that bucket will be restored from the backup.</p>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Any conflicts that occur during the restore will be resolved automatically using the conflict resolution method configured for the buckets.
-This means that if a key-value pair in the target bucket is newer than the one in the backup, then the one from the backup is <em>not</em> restored.</p>
-</div>
-<div class="paragraph">
-<p>If the goal of the restore is to overwrite the current data with the data from the backup, it is recommended that you restore the data to a brand new bucket of the same name on another database.
-That way, all data will be restored in the state that it is in the backup.
-From there you can copy the data over to the desired bucket as you see fit.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>When restoring from a <a href="backup-restore.html#series-backup" class="xref page">Series backup</a>, data will be restored from the latest Incremental backup in the series.
-The restore process will take into account any failovers that may have occurred in between the time that the backups were originally taken.
-If a failover did occur in between the backups, and the backup archive contains data that no longer exists in the database, then the data that no longer exists will be skipped during the restore.
-If no failovers occurred in between backups, then restoring a Series backup will restore all data from the series.</p>
-</li>
-<li>
-<p>Restoring database backups is supported during rebalances and failovers.
-If a rebalance is in progress, the restore process will track any data movement around the database and ensure that data is restored to the appropriate node.
-If a failover occurs during restore, the restore process will recover so long as the failed node is removed from the database within three minutes.
-If the failed node is not removed, then the restore will fail.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="restore-bucket-vpc"><a class="anchor" href="#restore-bucket-vpc"></a>Restore Bucket Data</h3>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="title">Permissions Required</div>
-<div class="paragraph">
-<p>To restore bucket data from a backup, the following permissions are required:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>You must have the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role for the project containing the source database that created the backup, as well as the project containing the destination database of the restore.</p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Go to the <strong>Backup &amp; Restore</strong> tab of the source database that created the backup that you wish to restore.</p>
-<div class="openblock">
-<div class="content">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Go to the <strong>Databases</strong> tab in the main navigation.</p>
-</li>
-<li>
-<p>Find and click on the source database.</p>
-<div class="paragraph">
-<p>This opens the database with its <strong>Overview</strong> tab selected.</p>
-</div>
-</li>
-<li>
-<p>Click the <strong>Backup &amp; Restore</strong> tab.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>In the <strong>Backups</strong> list, find and click on the backup that you wish to restore.</p>
-<div class="paragraph">
-<p>This opens the backup&#8217;s fly-out menu.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/backup-inspect-flyout-full.png" alt="The inspect fly-out menu of a Full backup. At the bottom of the fly-out is the 'Restore backup' button." width="500">
-</div>
-</div>
-</li>
-<li>
-<p>Click <b class="button">Restore backup</b>.</p>
-</li>
-<li>
-<p>Specify the <strong>Restore Location</strong>.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/backup-inspect-flyout-restore-location.png" alt="The Restore fly-out menu showing the 'Restore Location' section." width="500">
-</div>
-</div>
-<div class="paragraph">
-<p>The restore location is the database that you wish to restore the backup to.
-This can be the same database that created the backup, or it can be another database in the same connected cloud.</p>
-</div>
-<div class="openblock">
-<div class="content">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Use the <strong>Project</strong> dropdown menu to select the project that contains the database that is to be the destination of the restore.</p>
-</li>
-<li>
-<p>Use the <strong>Database</strong> dropdown menu to select the database that is to be the destination of the restore.
-Only databases that are located in the same connected cloud appear in the dropdown menu.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Once you&#8217;ve selected the database, click <b class="button">Next</b>.</p>
-</div>
-</li>
-<li>
-<p>To confirm that you&#8217;re restoring to the desired database, enter the name of the destination database.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/backup-inspect-flyout-destination-name.png" alt="The Restore fly-out menu showing the field to enter the name of the destination database." width="500">
-</div>
-</div>
-</li>
-<li>
-<p>Once you&#8217;re ready, click <b class="button">Restore</b> to begin restoring the backup.</p>
-<div class="paragraph">
-<p>Note that there can be a slight delay while the restore is scheduled, after which the fly-out will close.</p>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="restore-indexes-vpc"><a class="anchor" href="#restore-indexes-vpc"></a>Restoring Indexes</h3>
-<div class="paragraph">
-<p>If GSI indexes were included in the bucket that you restored, they are automatically restored in a round-robin fashion among the current nodes running the Index Service.
-However, these indexes will only be created, <em>not built</em>.</p>
-</div>
-<div class="paragraph">
-<p>The reason that indexes are created and not built is because Couchbase Capella does not know the optimal index topology ahead of time.
-By not building the indexes, it gives you the option to manually move each index between nodes and build them yourself.</p>
-</div>
-<div class="paragraph">
-<p>However, if you find the automatic index distribution acceptable, you can use the Capella UI to rebuild each index.</p>
-</div>
-<div id="permissions-required-index-vpc" class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="title">Permissions Required</div>
-<div class="paragraph">
-<p>In order to access indexes in the Couchbase Capella UI, the following roles are required:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>You must have the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> or <a href="../projects/project-roles.html#project-cluster-data-reader-writer" class="xref page"><code>Database Data Reader/Writer</code></a> role for the project that contains the database.</p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<div class="title">To Rebuild an Automatically-Restored GSI Index</div>
-<ol class="arabic">
-<li>
-<p>Go to the database&#8217;s <strong>Tools &gt; Indexes</strong> tab.</p>
-<div class="openblock">
-<div class="content">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Go to the <strong>Databases</strong> tab in the main navigation.</p>
-</li>
-<li>
-<p>Find and click on the database on which you restored a backup.</p>
-<div class="paragraph">
-<p>This opens the database with its <strong>Overview</strong> tab selected.</p>
-</div>
-</li>
-<li>
-<p>Click the <strong>Tools &gt; Indexes</strong> tab.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Each index that was restored will display a status of <strong>Created</strong>.
-Click the Play icon in the <strong>Status</strong> column for each index that you wish to rebuild.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/indexes-tab-rebuild-index-after-restore.png" alt="The 'Tools &gt; Indexes' tab showing multiple indexes with a status of 'Created' with Play icons.">
-</div>
-</div>
-</li>
-</ol>
-</div>
 </div>
 </div>
 </div>

@@ -559,6 +559,11 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../learn/services-and-indexes/indexes/early-filters-and-pagination.html">Early Filters, Order and Pagination</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../learn/services-and-indexes/indexes/index-replication.html">Index Availability</a>
   </span>
 </li>
@@ -3465,6 +3470,11 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../rest-api/rest-initialize-cluster.html">Initializing a Cluster</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="4">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../rest-api/rest-initialize-node.html">Initializing a Node</a>
   </span>
 </li>
@@ -3635,7 +3645,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../rest-api/rest-cluster-email-notifications.html">Notifications</a>
+    <a class="menu_title menu_link" href="../rest-api/rest-cluster-email-notifications.html">Setting Alerts</a>
   </span>
 </li>
 </ul>
@@ -3945,6 +3955,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../rest-api/rest-auditing.html">Configure Auditing</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../rest-api/rest-specify-node-addition-conventions.html">Restrict Node-Addition</a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="3">
@@ -4836,11 +4851,14 @@ Only valid Functions get deployed. Using the <em>log()</em> option within a <em>
 <div class="paragraph">
 <p>Eventing Functions can trigger data mutations. To avoid a cyclic generation of data changes, ensure that you carefully consider the below aspects while specifying source and destination collections:</p>
 </div>
+<div class="sect2">
+<h3 id="infinite-recursion-protection"><a class="anchor" href="#infinite-recursion-protection"></a>Infinite recursion protection</h3>
 <div class="ulist">
 <ul>
 <li>
 <p>Avoid infinite recursions.
-If you are using a series of Eventing Functions, then ensure that destination collections to which Eventing Functions perform a write operation, do not have other Eventing Functions configured that can create a loop by triggering cyclic mutations. For example the following design demonstrates an infinite recursion:</p>
+If you are using a series of Eventing Functions, ensure they do not cause cyclic mutations by triggering write operations that, in turn, trigger other Eventing Functions.
+For example the following design demonstrates an infinite recursion:</p>
 <div class="paragraph">
 <p><strong>functionA</strong> with source collectionA target collectionB aliased as same.</p>
 </div>
@@ -4954,6 +4972,35 @@ function get_numip_first_3_octets(ip) {
 </div>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="recursionchecks"><a class="anchor" href="#recursionchecks"></a>Disabling infinite recursion checks</h3>
+<div class="paragraph">
+<p>Although not encouraged, in some cases a client may still require the creation of potentially recursive loops.</p>
+</div>
+<div class="paragraph">
+<p>For example trying to run <a href="eventing-handler-ConvertBucketToCollections.html" class="xref page">ConvertBucketToCollections</a> in a single bucket (as both source and target) will emit an 'ERR_INTER_FUNCTION_RECURSION' error.</p>
+</div>
+<div class="paragraph">
+<p>To allow recursion and thus the above Function to run a special configuration flag may be toggled via a REST API call to any Eventing node as follows:</p>
+</div>
+<div class="paragraph">
+<p>To disable recursion checks (requires admin privileges):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">curl -X POST -u Administrator:password http://192.168.1.5:8091/_p/event/api/v1/config -d '{"allow_interbucket_recursion":true}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To re-enable recursion checks (requires admin privileges):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">curl -X POST -u Administrator:password http://192.168.1.5:8091/_p/event/api/v1/config -d '{"allow_interbucket_recursion":false}'</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>

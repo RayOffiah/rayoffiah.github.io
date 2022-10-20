@@ -258,7 +258,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../clouds/clouds.html">Overview</a>
+    <a class="menu_title menu_link" href="#clouds:clouds.adoc">Overview</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -268,7 +268,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../clouds/manage-clouds.html">Connect &amp; Manage Clouds</a>
+    <a class="menu_title menu_link" href="#clouds:manage-clouds.adoc">Connect &amp; Manage Clouds</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -561,7 +561,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../app-services/deployment/app-endpoint.html">Creating App Endpoints</a>
+    <a class="menu_title menu_link" href="../app-services/deployment/creating-an-app-endpoint.html">Creating App Endpoints</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -613,6 +613,19 @@
   <span class="menu_line">
     <a class="menu_title menu_link" href="../app-services/billing/billing.html">Billing</a>
   </span>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <span class="menu_title menu_text">Migrating</span>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../app-services/migrating/on-prem-to-capella.html">From Self-Managed Servers</a>
+  </span>
+</li>
+</ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
@@ -912,19 +925,6 @@ As part of an overall disaster recovery plan for production data, a robust sched
 <p>Couchbase Capella supports scheduled and on-demand backups of bucket data.
 All buckets have the option to be deployed with a daily or weekly <a href="manage-backup.html#configure-automatic-backups" class="xref page">backup schedule</a>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Deployments hosted by Couchbase, using Couchbase Server 7.x, have backups configured on a per-bucket basis.
-Clusters that are hosted in your own cloud account, that use Couchbase Server 6.6, have backups taken on a <a href="#vpc-backups">per-cluster basis</a>.
-</td>
-</tr>
-</table>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -1007,182 +1007,6 @@ On-demand backups are retained for 30 days.</p>
 </div>
 <div class="paragraph">
 <p>For more information on restoring a bucket backup, refer to <a href="manage-restore.html" class="xref page">Restore a Backup</a>.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="vpc-backups"><a class="anchor" href="#vpc-backups"></a>About Cluster Backups for Couchbase Capella in Own VPC</h2>
-<div class="sectionbody">
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This information is for anyone still using Couchbase Server 6.6, hosted in their own cloud provider&#8217;s VPC.
-It does not apply to Couchbase 7.0, hosted in Couchbase&#8217;s VPC and fully managed for you.</p>
-</div>
-<div class="paragraph">
-<p>For further information <a href="https://www.couchbase.com/products/capella">contact Couchbase</a>.</p>
-</div>
-<div class="paragraph">
-<p>The easiest way to get started with Capella, our fully managed DBaaS, is <a href="../get-started/get-started.html" class="xref page">hosting in Couchbase&#8217;s Cloud</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Capella supports automatic and manual cluster backups for clusters hosted in your own Cloud provider.
-Automatic backups are mandatory for all such clusters in Capella, and upon successful deployment, a cluster will begin to take automatic backups according to a default schedule.
-Each cluster&#8217;s automatic backup schedule can be <a href="manage-backup.html#configure-automatic-backups-vpc" class="xref page">modified</a> at any time to better fit the needs of the cluster.
-In addition, <a href="manage-backup.html#create-manual-backup-vpc" class="xref page">manual backups</a> can also be created at any time.</p>
-</div>
-<div class="paragraph">
-<p>Couchbase Capella uses its own backup utility and does not utilize or support the native snapshot capabilities of your cloud provider.
-When a backup or restore job starts, Capella launches a separate compute instance that is specifically dedicated to running the backup utility for that particular backup job.
-Since the backup utility runs in a separate instance and connects to the cluster over the cloud network, it has minimal impact on cluster performance.
-Once the job has finished, the instance running the backup utility is decommissioned.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Since the backup instance is not a part of the cluster, it does not appear alongside cluster nodes in areas such as the cluster&#8217;s <strong>Services</strong> tab.
-However, you can view the instance in your cloud provider&#8217;s console.
-In AWS, for example, the EC2 instance uses the same naming scheme as the nodes in the cluster, except that it has <code>dbbackup</code> appended to it.</p>
-</div>
-<div class="paragraph">
-<p>The only backup-related infrastructure that remains between jobs is a persistent volume, which is only utilized for automatic backups (not manual backups or restores).</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="contents-of-a-cluster-backup"><a class="anchor" href="#contents-of-a-cluster-backup"></a>Contents of a Cluster Backup</h3>
-<div class="ulist">
-<div class="title">Things that are included in a cluster backup:</div>
-<ul>
-<li>
-<p>All data in all buckets</p>
-</li>
-<li>
-<p>Index definitions</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Although index definitions are included in cluster backups, they are only <em>re-created</em> when restoring from a backup, not rebuilt.
-Refer to <a href="manage-restore.html#restore-indexes-vpc" class="xref page">Restoring Indexes</a> for more information.
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Things that are <em>not</em> included in a cluster backup:</div>
-<ul>
-<li>
-<p>Point-in-time snapshot of the entire cluster</p>
-<div class="paragraph">
-<p>Capella does not currently support point-in-time snapshots of cluster data.
-While the data in a cluster backup is per-item consistent, the data items are written to the backup at slightly different times, and therefore the state of one item does not infer the state of another item.</p>
-</div>
-</li>
-<li>
-<p>Cluster settings</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="backup-types"><a class="anchor" href="#backup-types"></a>Backup Types</h3>
-<div class="paragraph">
-<p>Couchbase Capella supports three types of backups: <em>Full</em>, <em>Incremental</em>, and <em>Series</em>.</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Full backups</dt>
-<dd>
-<p>A <em>Full</em> backup provides the best restore performance, but takes the most time to complete, requires the most storage, and puts the most theoretical strain on cluster resources.
-Full backups can generally be expected to be ~40% of the size of the original data set.</p>
-</dd>
-<dt class="hdlist1">Incremental backups</dt>
-<dd>
-<p>An <em>Incremental</em> backup is a required part of a <a href="#series-backup-vpc">Series</a> backup.
-Incremental backups will only ever appear within Series backups, because they are dependent on a Full backup in order to be restored.
-Incremental backups only include the data that has changed since the last backup in the series, and thus only take a fraction of the time and storage space to create.
-When restoring a Series backup, the Full backup and all associated Incremental backups are restored.</p>
-</dd>
-</dl>
-</div>
-<div id="series-backup-vpc" class="dlist">
-<dl>
-<dt class="hdlist1">Series backups</dt>
-<dd>
-<p>A <em>Series</em> backup is a combination of a Full backup and one or more <em>Incremental</em> backups.
-Each Series backup starts with a Full backup, and then uses Incremental backups for each subsequent backup over a set period of time.
-The Incremental backups only include the data that has changed since the last backup in the series, and thus only take a fraction of the time and storage space to create.
-By utilizing both Full and Incremental backups, the Series backup type provides the best compromise between performance (both backup and restore) and required storage.</p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>A Full backup and a Series backup each provide a complete backup of all bucket data.
-A Full backup is a reflection of all the bucket data that was present when the backup was created.
-A Series backup is a reflection of all the bucket data that was present when the last Incremental backup in the series was created.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="backup-retention"><a class="anchor" href="#backup-retention"></a>Backup Retention</h3>
-<div class="paragraph">
-<p>All of a cluster&#8217;s backups are retained according to the <strong>Backup Retention</strong> setting in the cluster&#8217;s <a href="manage-backup.html#configure-automatic-backups-vpc" class="xref page">Autosave Schedule</a>.
-This includes both automatic <em>and</em> manual backups.</p>
-</div>
-<div class="paragraph">
-<p>Backups are <a href="manage-backup.html#view-backup-files-vpc" class="xref page">stored separately</a> from the cluster within the connected cloud, and they are not deleted when the cluster is deleted.
-Backups will continue to be retained according to the <strong>Backup Retention</strong> setting that was configured at the time the cluster was deleted.</p>
-</div>
-<div class="paragraph">
-<p>For more information about the different ways that backups can be deleted, refer to <a href="manage-backup.html#delete-backup-vpc" class="xref page">Delete a Backup</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="administering-cluster-backups"><a class="anchor" href="#administering-cluster-backups"></a>Administering Cluster Backups</h3>
-<div class="paragraph">
-<p>For information on how to create, manage, and delete cluster backups, refer to <a href="manage-backup.html#view-and-manage-backups-for-couchbase-capella-in-own-vpc" class="xref page">View and Manage Backups for Couchbase Capella in Own VPC</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="restoring-a-cluster-from-a-backup"><a class="anchor" href="#restoring-a-cluster-from-a-backup"></a>Restoring a Cluster From a Backup</h3>
-<div class="paragraph">
-<p>Cluster backups can be restored in the following ways:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Restore a backup to the same cluster (if it is healthy)</p>
-</li>
-<li>
-<p>Restore a backup to a different cluster (destination cluster must be healthy; both clusters must be in the same connected cloud)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For more information on restoring a cluster backup, refer to <a href="manage-restore.html#restore-invpc" class="xref page">Restore a Backup in Own VPC</a>.</p>
 </div>
 </div>
 </div>

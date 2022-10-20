@@ -257,7 +257,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../clouds/clouds.html">Overview</a>
+    <a class="menu_title menu_link" href="#clouds:clouds.adoc">Overview</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -267,7 +267,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../clouds/manage-clouds.html">Connect &amp; Manage Clouds</a>
+    <a class="menu_title menu_link" href="#clouds:manage-clouds.adoc">Connect &amp; Manage Clouds</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -560,7 +560,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../app-services/deployment/app-endpoint.html">Creating App Endpoints</a>
+    <a class="menu_title menu_link" href="../../app-services/deployment/creating-an-app-endpoint.html">Creating App Endpoints</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -612,6 +612,19 @@
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../app-services/billing/billing.html">Billing</a>
   </span>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <span class="menu_title menu_text">Migrating</span>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../app-services/migrating/on-prem-to-capella.html">From Self-Managed Servers</a>
+  </span>
+</li>
+</ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
@@ -945,19 +958,6 @@ Bidirectional replications appear under the <strong class="ui">Replications</str
 </div>
 <div class="sect2">
 <h3 id="replications-summary"><a class="anchor" href="#replications-summary"></a>Replications Summary</h3>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_couchbase-7-0"></a>Couchbase 7.0+</p>
-</li>
-<li>
-<p><a id="tabset1_couchbase-6-6"></a>Couchbase 6.6</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_couchbase-7-0">
 <div class="paragraph">
 <p>A cluster&#8217;s <strong class="ui">Replications</strong> tab shows a summary of all the replications for which the cluster is the source.
 The summary is displayed in table format with a row for each replication.</p>
@@ -993,45 +993,6 @@ The normal state is <strong class="ui">Active</strong>, which indicates the repl
 <p>A <strong>More options</strong> (<span class="icon"><i class="fa fa-ellipsis-v"></i></span>) button is displayed at the end of each row, which is used to access commands that <a href="#pause-replication">pause</a>, <a href="#resume-replication">resume</a> and <a href="#delete-replication">delete</a> the replication.</p>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_couchbase-6-6">
-<div class="paragraph">
-<p>A cluster&#8217;s <strong class="ui">Replications</strong> tab shows a summary of all the replications for which the cluster is the source.
-The summary is displayed in table format, with sortable columns and a row for each replication.</p>
-</div>
-<div class="paragraph">
-<p>The replications summary displays the following information about each replication:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Source Project/Cluster</strong>
-The name of the cluster that is the source of the replication (the current cluster), and the name of the project that contains the cluster.</p>
-</li>
-<li>
-<p><strong>Buckets</strong>
-The names of the source and destination buckets are displayed, along with arrows indicating the direction of the replication.
-The source bucket is displayed on the left, and the destination bucket is displayed on the right.
-One of the arrows between the source and destination buckets will be highlighted, indicating the <a href="xdcr.html#xdcr-direction" class="xref page">direction</a> of the replication.
-When both arrows are highlighted, it indicates that the replication is <em>bidirectional</em>.</p>
-</li>
-<li>
-<p><strong>Destination Project/Cluster</strong>
-The name of the cluster that is the destination of the replication, and the name of the project that contains that cluster.</p>
-</li>
-<li>
-<p><strong>Status</strong>
-The current state of the replication.
-The normal state is <strong class="ui">Replicating</strong>, which indicates the replication is active and replicating bucket data changes.</p>
-<div class="paragraph">
-<p>A Pause/Play icon is displayed at the end of each row, which can be used to <a href="#pause-replication">pause</a> or <a href="#resume-replication">resume the replication</a>.</p>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -1053,7 +1014,7 @@ Each replication targets a bucket on a different cluster, known as the <em>desti
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Clusters hosted by Couchbase Capella (Couchbase Server 7.0+) currently support the following replications:</p>
+<p>Clusters hosted by Couchbase Capella support the following replications:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1089,20 +1050,17 @@ If the buckets use different conflict resolution methods, then the replication w
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset2_couchbase-7-0"></a>Couchbase 7.0+</p>
+<p><a id="tabset1_couchbase-7-0"></a>Couchbase 7.0+</p>
 </li>
 <li>
-<p><a id="tabset2_couchbase-6-6"></a>Couchbase 6.6</p>
-</li>
-<li>
-<p><a id="tabset2_vpn-accessed-cluster"></a>VPN-Accessed Cluster</p>
+<p><a id="tabset1_vpn-accessed-cluster"></a>VPN-Accessed Cluster</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_couchbase-7-0">
+<div class="tab-pane" aria-labelledby="tabset1_couchbase-7-0">
 <div class="paragraph">
-<p>To create a replication using clusters with Couchbase 7.0 or later (any cluster hosted by Couchbase Capella):</p>
+<p>To create a replication using clusters hosted by Couchbase Capella:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1325,136 +1283,7 @@ When creating replication between clusters, it may take a minute or two for the 
 </table>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset2_couchbase-6-6">
-<div class="paragraph">
-<p>To create a replication using clusters using Couchbase Server 6.6:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Go to the <em>source</em> cluster&#8217;s <strong class="ui">Replications</strong> tab.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Go to the <strong class="ui">Clusters</strong> tab in the main navigation.</p>
-</li>
-<li>
-<p>Find and click on the cluster that is to be the source of the replication.</p>
-<div class="paragraph">
-<p>This opens the cluster with its <strong class="ui">Overview</strong> tab selected.</p>
-</div>
-</li>
-<li>
-<p>Click the <strong class="ui">Replications</strong> tab.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Click <b class="button">Add Replication</b>.
-(If no replications are configured on the cluster, click <b class="button">Setup Replication</b>.)</p>
-<div class="paragraph">
-<p>This opens the <strong class="ui">Setup Replication</strong> fly-out menu.</p>
-</div>
-</li>
-<li>
-<p>Select the destination cluster.</p>
-<div class="paragraph">
-<p>Click the <strong class="ui">Destination Cluster</strong> drop-down menu and select the cluster that contains the destination bucket that you wish to replicate data to.</p>
-</div>
-<div class="paragraph">
-<p>Any cluster that is contained within a project in which you have a <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code><strong>Project Owner</strong></code></a> role is available for selection.
-The current cluster is also available for selection for the purposes of setting up <a href="xdcr.html#intra-cluster-xdcr" class="xref page">intra-cluster XDCR</a>.</p>
-</div>
-</li>
-<li>
-<p>Select a source bucket.</p>
-<div class="paragraph">
-<p>Click the <strong class="ui">Source Bucket</strong> drop-down menu and select the source bucket for the replication.</p>
-</div>
-<div class="paragraph">
-<p>All of the buckets on the current cluster are available for selection.
-The bucket you select will be the bucket <em>from</em> which data is replicated.</p>
-</div>
-</li>
-<li>
-<p>Select a destination bucket.</p>
-<div class="paragraph">
-<p>Click the <strong class="ui">Destination Bucket</strong> drop-down menu and select the destination bucket for the replication.</p>
-</div>
-<div class="paragraph">
-<p>All of the buckets on the destination cluster are available for selection.
-The bucket you select will be the bucket <em>to</em> which data is replicated.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The destination bucket must be configured with the same <a href="xdcr.html#conflict-resolution" class="xref page">conflict resolution method</a> as the source bucket, otherwise the replication will fail to be created.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>(Optional) Make the replication <em>bidirectional</em>.</p>
-<div class="paragraph">
-<p>Selecting the <strong class="ui">Bidirectional</strong> checkbox means that the source and target buckets will each be configured with a unidirectional replication to each other.
-Refer to <a href="xdcr.html#xdcr-direction" class="xref page">Replication Direction</a> for more information.</p>
-</div>
-</li>
-<li>
-<p>(Optional) Add a filter expression.</p>
-<div class="paragraph">
-<p>A <a href="xdcr.html#xdcr-advanced-filtering" class="xref page">filter expression</a> allows a limited subset of documents to be replicated from the source bucket.</p>
-</div>
-<div class="paragraph">
-<p>To add a filter expression:</p>
-</div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Enter the expression in the <strong class="ui">Filter Expression</strong> field.</p>
-<div class="paragraph">
-<p>A filter expression can be formatted as either a <a href="../../../server/current/xdcr-reference/xdcr-regular-expressions.html" class="xref page">regular expression (regex)</a> or an <a href="../../../server/current/xdcr-reference/xdcr-filtering-expressions.html" class="xref page">XDCR filtering expression</a>.</p>
-</div>
-</li>
-<li>
-<p>Test the expression against a specified document.</p>
-<div class="paragraph">
-<p>In the <strong class="ui">Test Key</strong> field, enter the key/ID of a document that you expect to be included by the filter.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-An expression must be tested successfully before it can be included as part of the replication.
-If an expression is specified without having been tested, the expression is ignored when the replication is saved; and the replication is thus started in unfiltered form.
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Once you&#8217;re satisfied with the configuration, click <b class="button">Save</b>.</p>
-<div class="paragraph">
-<p>The fly-out menu will close and the replication will appear in the summary table.
-Once the status of the replication changes to <strong class="ui">Replicating</strong>, data will immediately start replicating from the source bucket to the destination bucket.</p>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_vpn-accessed-cluster">
+<div class="tab-pane" aria-labelledby="tabset1_vpn-accessed-cluster">
 <div class="paragraph">
 <p>You may have a cluster that you access through a VPN, such as an on-premises cluster behind a company firewall.</p>
 </div>
@@ -1672,19 +1501,6 @@ To pause both directions of a bidirectional replication, you will need to pause 
 </tr>
 </table>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset3_couchbase-7-0"></a>Couchbase 7.0+</p>
-</li>
-<li>
-<p><a id="tabset3_couchbase-6-6"></a>Couchbase 6.6</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_couchbase-7-0">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1696,26 +1512,34 @@ To pause both directions of a bidirectional replication, you will need to pause 
 </li>
 <li>
 <p>Find and click on the cluster that is the source of the replication that you wish to pause.</p>
-<div class="paragraph">
-<p>This opens the cluster with its <strong class="ui">Metrics</strong> tab selected.</p>
-</div>
-</li>
-<li>
-<p>Click the <strong class="ui">Replications</strong> tab.</p>
 </li>
 </ol>
 </div>
 </li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This opens the cluster with its <strong class="ui">Metrics</strong> tab selected.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Click the <strong class="ui">Replications</strong> tab.</p>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>Find the replication that you wish to pause, and click the <strong>More options</strong> button (<span class="icon"><i class="fa fa-ellipsis-v"></i></span>) at the end of its row on the right side.</p>
 </li>
 <li>
 <p>In the provided menu, click the <strong>Pause</strong> option.</p>
-<div class="paragraph">
-<p>The <strong class="ui">Status</strong> field will indicate <strong>Pausing</strong> before eventually entering a <strong class="ui">Paused</strong> state.</p>
+</li>
+</ol>
 </div>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>The <strong class="ui">Status</strong> field will indicate <strong>Pausing</strong> before eventually entering a <strong class="ui">Paused</strong> state.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1730,44 +1554,6 @@ When you click on an active replication, the <strong>XDCR Replication</strong> f
 </table>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset3_couchbase-6-6">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Go to the <em>source</em> cluster&#8217;s <strong class="ui">Replications</strong> tab.</p>
-<div class="openblock">
-<div class="content">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Go to the <strong class="ui">Clusters</strong> tab in the main navigation.</p>
-</li>
-<li>
-<p>Find and click on the cluster that is the source of the replication that you wish to pause.</p>
-<div class="paragraph">
-<p>This opens the cluster with its <strong class="ui">Metrics</strong> tab selected.</p>
-</div>
-</li>
-<li>
-<p>Click the <strong class="ui">Replications</strong> tab.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Find the replication that you wish to pause, and click the Pause icon at the end of the row on the right side.</p>
-<div class="paragraph">
-<p>The <strong class="ui">Status</strong> field will indicate that the replication is in the process of being paused, before eventually entering a <strong class="ui">Paused</strong> state.</p>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="sect1">
 <h2 id="resume-replication"><a class="anchor" href="#resume-replication"></a>Resume a Replication</h2>
@@ -1778,19 +1564,6 @@ When you click on an active replication, the <strong>XDCR Replication</strong> f
 <div class="paragraph">
 <p>To resume a replication, you must have the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role for the project that contains the <em>source</em> cluster of the paused replication.</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset4_couchbase-7-0"></a>Couchbase 7.0+</p>
-</li>
-<li>
-<p><a id="tabset4_couchbase-6-6"></a>Couchbase 6.6</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset4_couchbase-7-0">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1802,16 +1575,21 @@ When you click on an active replication, the <strong>XDCR Replication</strong> f
 </li>
 <li>
 <p>Find and click on the cluster that is the source of the paused replication.</p>
-<div class="paragraph">
-<p>This opens the cluster with its <strong class="ui">Metrics</strong> tab selected.</p>
-</div>
-</li>
-<li>
-<p>Click the <strong class="ui">Replications</strong> tab.</p>
 </li>
 </ol>
 </div>
 </li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This opens the cluster with its <strong class="ui">Metrics</strong> tab selected.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Click the <strong class="ui">Replications</strong> tab.</p>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>Find the paused replication that you wish to resume, and click the <strong>More options</strong> button (<span class="icon"><i class="fa fa-ellipsis-v"></i></span>) at the end of its row on the right side.</p>
 </li>
@@ -1819,6 +1597,9 @@ When you click on an active replication, the <strong>XDCR Replication</strong> f
 <p>In the provided menu, click the <strong>Resume</strong> option.</p>
 <div class="paragraph">
 <p>Once the status of the replication changes to <strong class="ui">Active</strong>, data replication resumes from the source bucket to the destination bucket.</p>
+</div>
+</li>
+</ol>
 </div>
 </li>
 </ol>
@@ -1834,40 +1615,6 @@ When you click on an active replication, the <strong>XDCR Replication</strong> f
 </td>
 </tr>
 </table>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset4_couchbase-6-6">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Go to the <em>source</em> cluster&#8217;s <strong class="ui">Replications</strong> tab.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Go to the <strong class="ui">Clusters</strong> tab in the main navigation.</p>
-</li>
-<li>
-<p>Find and click on the cluster that is the source of the paused replication.</p>
-<div class="paragraph">
-<p>This opens the cluster with its <strong class="ui">Metrics</strong> tab selected.</p>
-</div>
-</li>
-<li>
-<p>Click the <strong class="ui">Replications</strong> tab.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Find the paused replication that you wish to resume, and click the Play icon at the end of the row on the right side.</p>
-<div class="paragraph">
-<p>Once the status of the replication changes to <strong class="ui">Replicating</strong>, data replication resumes from the source bucket to the destination bucket.</p>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -1902,19 +1649,6 @@ If the replication is bidirectional, both directions of the replication are dele
 </tr>
 </table>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset5_couchbase-7-0"></a>Couchbase 7.0+</p>
-</li>
-<li>
-<p><a id="tabset5_couchbase-6-6"></a>Couchbase 6.6</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset5_couchbase-7-0">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1968,50 +1702,6 @@ When you click a replication, the <strong>XDCR Replication</strong> fly-out will
 </div>
 </li>
 </ol>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset5_couchbase-6-6">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Go to the <em>source</em> cluster&#8217;s <strong class="ui">Replications</strong> tab.
-(If the replication is bidirectional, you can go to the <strong class="ui">Replications</strong> tab of either cluster.)</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Go to the <strong class="ui">Clusters</strong> tab in the main navigation.</p>
-</li>
-<li>
-<p>Find and click on the cluster that is the <em>source</em> of the replication that you wish to delete.</p>
-<div class="paragraph">
-<p>This opens the cluster with its <strong class="ui">Metrics</strong> tab selected.</p>
-</div>
-</li>
-<li>
-<p>Click the <strong class="ui">Replications</strong> tab.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Find the replication that you wish to delete, and click on its row.</p>
-<div class="paragraph">
-<p>This opens the <strong class="ui">Edit Replication</strong> fly-out menu.</p>
-</div>
-</li>
-<li>
-<p>Click <b class="button">Delete</b>.</p>
-</li>
-<li>
-<p>When prompted to confirm the deletion, click <b class="button">Confirm</b>.</p>
-<div class="paragraph">
-<p>The replication is deleted, and any new changes in the source bucket are no longer replicated to the destination bucket.</p>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>

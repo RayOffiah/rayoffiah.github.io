@@ -560,6 +560,11 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../learn/services-and-indexes/indexes/early-filters-and-pagination.html">Early Filters, Order and Pagination</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../../learn/services-and-indexes/indexes/index-replication.html">Index Availability</a>
   </span>
 </li>
@@ -3466,6 +3471,11 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-initialize-cluster.html">Initializing a Cluster</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="4">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-initialize-node.html">Initializing a Node</a>
   </span>
 </li>
@@ -3636,7 +3646,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Notifications</a>
+    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Setting Alerts</a>
   </span>
 </li>
 </ul>
@@ -3946,6 +3956,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-auditing.html">Configure Auditing</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-specify-node-addition-conventions.html">Restrict Node-Addition</a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="3">
@@ -4738,8 +4753,7 @@
 <div class="page-heading-title">
 <h1 class="page">PREPARE</h1>
 <div class="labels">
-<ul>
-<li class="concept"><span><i class="far fa-lightbulb"></i> concept</span></li>
+<ul><li class="reference"><span><i class="fas fa-book"></i></i> reference</span></li>
 </ul>
 </div>
 
@@ -4822,26 +4836,22 @@ For more details, refer to <a href="#result">Result</a> below.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="usage"><a class="anchor" href="#usage"></a>Usage</h2>
+<h2 id="query-context"><a class="anchor" href="#query-context"></a>Query Context</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can prepare a statement in three ways:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Using the PREPARE statement in the Query Workbench.</p>
-</li>
-<li>
-<p>Using the PREPARE statement in the the <a href="../../tools/cbq-shell.html" class="xref page">cbq</a> command line shell.</p>
-</li>
-<li>
-<p>Using the <a href="../n1ql-rest-api/index.html" class="xref page">Query REST API</a> (<code>/query/service</code> endpoint).</p>
-</li>
-</ul>
+<p>A prepared statement is created and stored relative to the current <em>query context</em>.
+You can create multiple prepared statements with the same name, each stored relative to a different query context.
+This enables you to run multiple instances of the same application against different datasets.</p>
 </div>
 <div class="paragraph">
-<p>For information on how to use prepared statements with various SDKs, refer to <a href="#java-sdk:concept-docs:n1ql-query.adoc#prepared-statements-for-query-optimization" class="xref unresolved">Querying with N1QL</a> and <a href="#java-sdk:howtos:n1ql-queries-with-sdk.adoc#parameterized-queries" class="xref unresolved">N1QL from the SDK</a>.</p>
+<p>To execute a prepared statement, the query context must be the same as it was when the prepared statement was created; otherwise the prepared statement will not be found.</p>
+</div>
+<div class="paragraph">
+<p>You must therefore set the required query context, or unset the query context if necessary, before creating the prepared statement.
+If you do not set the query context, it defaults to the empty string.</p>
+</div>
+<div class="paragraph">
+<p>For further information, refer to <a href="../n1ql-intro/sysinfo.html#query-context" class="xref page">Query Context</a>.</p>
 </div>
 </div>
 </div>
@@ -4943,8 +4953,8 @@ This has the format <code>[host:port]local-name-or-UUID</code>, and consists of:
 <dt class="hdlist1">encoded_plan</dt>
 <dd>
 <p>The full prepared statement in encoded format.
-This is included in Couchbase Server 6.5 for for compatibility with previous versions.
-In previous versions of Couchbase Server, you can use the encoded plan in a request to execute a prepared statement.</p>
+This is included for backward compatibility.
+In versions of Couchbase Server prior to Couchbase Server 6.5, you can use the encoded plan in a request to execute a prepared statement.</p>
 </dd>
 </dl>
 </div>
@@ -5256,6 +5266,15 @@ WHERE airline = "FL";</code></pre>
 <ul>
 <li>
 <p>For information on executing the prepared statement, refer to <a href="execute.html" class="xref page">EXECUTE</a>.</p>
+</li>
+<li>
+<p>For information on using prepared statements with the <code>cbq</code> command line shell, refer to <a href="../../tools/cbq-shell.html" class="xref page">cbq: The Command Line Shell for N1QL</a>.</p>
+</li>
+<li>
+<p>For information on using prepared statements with the Query REST API (<code>/query/service</code> endpoint), refer to <a href="../n1ql-rest-api/index.html" class="xref page">N1QL REST API</a>.</p>
+</li>
+<li>
+<p>For information on using prepared statements with an SDK, refer to <a href="#java-sdk:concept-docs:n1ql-query.adoc#prepared-statements-for-query-optimization" class="xref unresolved">Querying with N1QL</a> and <a href="#java-sdk:howtos:n1ql-queries-with-sdk.adoc#parameterized-queries" class="xref unresolved">N1QL from the SDK</a>.</p>
 </li>
 </ul>
 </div>

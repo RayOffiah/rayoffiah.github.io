@@ -258,7 +258,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="clouds.html">Overview</a>
+    <a class="menu_title menu_link" href="#clouds:clouds.adoc">Overview</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -268,7 +268,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="manage-clouds.html">Connect &amp; Manage Clouds</a>
+    <a class="menu_title menu_link" href="#clouds:manage-clouds.adoc">Connect &amp; Manage Clouds</a>
   </span>
 </li>
 <li class="menu_list is-current-page" data-depth="1">
@@ -561,7 +561,7 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../app-services/deployment/app-endpoint.html">Creating App Endpoints</a>
+    <a class="menu_title menu_link" href="../app-services/deployment/creating-an-app-endpoint.html">Creating App Endpoints</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -613,6 +613,19 @@
   <span class="menu_line">
     <a class="menu_title menu_link" href="../app-services/billing/billing.html">Billing</a>
   </span>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <span class="menu_title menu_text">Migrating</span>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../app-services/migrating/on-prem-to-capella.html">From Self-Managed Servers</a>
+  </span>
+</li>
+</ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
@@ -1517,303 +1530,6 @@ If you see that the public IP is returned for this node then you should validate
 </li>
 </ol>
 </div>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-If you are having trouble setting up the connection, see the <a href="#troubleshoot-private-network-issues">troubleshooting section</a> at the end of the page.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="invpc"><a class="anchor" href="#invpc"></a>Private Network to Couchbase Capella Hosted in Own VPC</h2>
-<div class="sectionbody">
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This information is for anyone still using Couchbase Server 6.6, hosted in their own cloud provider&#8217;s VPC.
-It does not apply to Couchbase 7.0, hosted in Couchbase&#8217;s VPC and fully managed for you.</p>
-</div>
-<div class="paragraph">
-<p>For further information <a href="https://www.couchbase.com/products/capella">contact Couchbase</a>.</p>
-</div>
-<div class="paragraph">
-<p>The easiest way to get started with Capella, our fully managed DBaaS, is <a href="../get-started/get-started.html" class="xref page">hosting in Couchbase&#8217;s Cloud</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Couchbase Capella has been available to be hosted in your own Cloud provider&#8217;s VPC&#8201;&#8212;&#8201;AWS or Azure&#8201;&#8212;&#8201;with Couchbase Server 6.6.
-Setting up private networking differs in this case, as outlined in the following section.</p>
-</div>
-<div class="sect2">
-<h3 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h3>
-<div class="paragraph">
-<p>The following services must be enabled before you set up a private network.</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_aws"></a>AWS</p>
-</li>
-<li>
-<p><a id="tabset2_azure"></a>Azure</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_aws">
-<div class="ulist">
-<ul>
-<li>
-<p>Route53 must be enabled on your AWS account.</p>
-</li>
-<li>
-<p>AWS VPC peering connection must be set up. For information on setting up a VPC peering connection, refer to the AWS documentation: <a href="https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html">Creating and Accepting a VPC Peering Connection</a>.</p>
-</li>
-<li>
-<p>Ensure that the application VPC and Couchbase Capella cluster VPC have different CIDR.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_azure">
-<div class="ulist">
-<ul>
-<li>
-<p>Private DNS must be enabled on your Azure subscription.</p>
-</li>
-<li>
-<p>Azure Virtual Network peering connection must be set up. For information on setting up a VNet peering connection, refer to the Azure documentation: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview">Azure virtual network peering</a>.</p>
-</li>
-<li>
-<p>Ensure that the application VNet and Couchbase Capella cluster VNet have different CIDR.</p>
-</li>
-<li>
-<p>Ensure the network security group on both sides allow VNETInbound.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="setting-up-a-private-network"><a class="anchor" href="#setting-up-a-private-network"></a>Setting up a Private Network</h3>
-<div class="paragraph">
-<p>Setting up a private network involves the following steps:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Set up AWS VPC peering or Azure VNet peering. Refer to your Cloud provider documentation for details.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Create a peering request from AWS VPC or Azure VNET (Requester) to Couchbase Capella cluster VPC (Acceptor)</p>
-</li>
-<li>
-<p>Accept the pending peering request on Couchbase Capella Cluster VPC (Acceptor).</p>
-</li>
-<li>
-<p>If you are on AWS&#8201;&#8212;&#8201;update route tables on the requestor by adding routes to Capella VPC over peering connection.
-This should be done for route tables that are associated with private subnets (subnets with a route to Nat gateway)</p>
-</li>
-<li>
-<p>If you are on AWS&#8201;&#8212;&#8201;update route tables on Capella VPC to add routes to requestor AWS VPC over peering connection.
-This should be done for route tables that are associated with private subnets (subnets with a route to Nat gateway).
-These route tables are marked as Couchbase cloud internal route tables.</p>
-</li>
-<li>
-<p>Enable DNS resolution on peering connection.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Set up a private network zone in Couchbase Capella.</p>
-</li>
-<li>
-<p>Associate the AWS VPC or Azure VNet with the private network zone.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Depending on where your application VPC or VNet resides, an optional manual step may be required to complete associating the AWS VPC or Azure VNet peering with the private network you create.
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="aws"><a class="anchor" href="#aws"></a>AWS</h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-We recommend a maximum of 42 virtual private networks on your AWS account.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Go to the <strong class="ui">Clusters</strong> tab in the main navigation and select the Couchbase Capella cluster for which you want to configure a virtual private network.</p>
-</li>
-<li>
-<p>Go to <strong class="ui">Connect</strong> tab and click <b class="button">Setup Private Networks</b>.</p>
-</li>
-<li>
-<p>In the <strong>Setup Private Networks</strong> dialog, confirm that you have enabled Route53 and Virtual Network Peering in your AWS account by selecting the checkboxes and then click <b class="button">Submit</b>.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/setup-private-network-check-prerequisities.png" alt="Select the checkboxed to confirm that you have enabled Route53 and Virtual Network Peering in your AWS acount, and then click Submit.">
-</div>
-</div>
-</li>
-<li>
-<p>In the <strong>Link Private Networks</strong> screen, provide the following details to peer your AWS VPC with the Capella virtual network.</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong class="ui">Name</strong>: Enter the name of the application VPC.</p>
-</li>
-<li>
-<p><strong class="ui">AWS Account ID</strong>: Optional [AWS&#8217;s numeric ID&#8201;&#8212;&#8201;not your own alias].</p>
-</li>
-<li>
-<p><strong class="ui">Virtual Network ID</strong>: Enter the application VPC ID that was noted when setting up the peering connection.</p>
-</li>
-<li>
-<p><strong class="ui">Available Regions</strong>: Select the same AWS region as your application VPC and Capella VPC.</p>
-</li>
-<li>
-<p><strong class="ui">CIDR block</strong>: Enter the CIDR block for your application VPC.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/setup-private-network-link.png" alt="Provide details to create a private network.">
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Click <b class="button">Submit</b> to create the virtual private network.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>When the linking is complete, the UI is refreshed to display the private endpoint.</p>
-</div>
-<div class="paragraph">
-<p>The status field provides information about different states during this process.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the application VPC resides in a separate AWS account, you need to manually run the command displayed on the <strong>Connect</strong> tab to complete associating the VPC peering with the private network.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="azure"><a class="anchor" href="#azure"></a>Azure</h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Azure private networking will work within one Azure tenant across subscriptions. We do not support private networking across multiple Azure tenants.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Go to the <strong class="ui">Clusters</strong> tab in the main navigation and select the Couchbase Capella cluster for which you want to configure a virtual private network.</p>
-</li>
-<li>
-<p>Go to <strong class="ui">Connect</strong> tab and click <b class="button">Setup Private Networks</b>.</p>
-</li>
-<li>
-<p>In the <strong>Setup Private Networks</strong> dialog, confirm that you have enabled Private DNS and Virtual Network Peering in your Azure account by selecting the checkboxes and then click <b class="button">Submit</b>.</p>
-</li>
-<li>
-<p>In the <strong>Link Private Networks</strong> screen, provide the following details to peer your Azure VNet with the Capella virtual network.</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong class="ui">Name</strong>: Enter the name of the application VNet.</p>
-</li>
-<li>
-<p><strong class="ui">Azure Subscription ID</strong>: Enter the subscription ID that was noted when setting up the peering connection.</p>
-</li>
-<li>
-<p><strong class="ui">Virtual Network ID</strong>: Enter the virtual network ID defined when setting up the peering connection.</p>
-</li>
-<li>
-<p><strong class="ui">Resource Group</strong>: Enter the resource group name for your subscription.</p>
-</li>
-<li>
-<p><strong class="ui">CIDR block</strong>: Enter the CIDR block for your application VNet.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Click <b class="button">Submit</b> to create the virtual private network.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>When the linking is complete, the UI is refreshed to display the private endpoint.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the application VNet resides in a different subscription, you need to manually run the command displayed on the <strong>Connect</strong> tab to complete associating the VNet peering with the private network.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>

@@ -560,6 +560,11 @@
 </li>
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../learn/services-and-indexes/indexes/early-filters-and-pagination.html">Early Filters, Order and Pagination</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../../learn/services-and-indexes/indexes/index-replication.html">Index Availability</a>
   </span>
 </li>
@@ -3466,6 +3471,11 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-initialize-cluster.html">Initializing a Cluster</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="4">
+  <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-initialize-node.html">Initializing a Node</a>
   </span>
 </li>
@@ -3636,7 +3646,7 @@
 </li>
 <li class="menu_list" data-depth="4">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Notifications</a>
+    <a class="menu_title menu_link" href="../../rest-api/rest-cluster-email-notifications.html">Setting Alerts</a>
   </span>
 </li>
 </ul>
@@ -3946,6 +3956,11 @@
 <li class="menu_list" data-depth="3">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../rest-api/rest-auditing.html">Configure Auditing</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../rest-api/rest-specify-node-addition-conventions.html">Restrict Node-Addition</a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="3">
@@ -4759,12 +4774,19 @@ Email alerts can be dispatched automatically.
 <div class="sectionbody">
 <div class="paragraph">
 <p>Alerts can be dispatched automatically by Couchbase Server, in order to highlight specific issues and problems.
-When an issue occurs, an alert is generated, and is sent as an email by Couchbase Server to a configured SMTP server.
-From there, the email is forwarded to a configured list of email recipients.
-Each alert, when received, appears as a pop-up, within the Couchbase Web Console of its recipient.</p>
+When an issue arises, one or both of the following can occur, based on user-configuration:</p>
 </div>
-<div class="paragraph">
-<p>All cluster-nodes must have network access to the configured SMTP server, for the system to be fully effective.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The alert is sent as an email by Couchbase Server to a configured SMTP server.
+From there, the email is forwarded to a configured list of email recipients.
+All cluster-nodes must have network access to the configured SMTP server, for the system to be fully effective.</p>
+</li>
+<li>
+<p>The alert appears as a pop-up, within the Couchbase Web Console of its recipient.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Only Full Administrators and Cluster Administrators can configure email alerts.
@@ -5010,6 +5032,13 @@ With no memory left for storing metadata, further requests to store data will al
 <td class="tableblock halign-left valign-top"><p class="tableblock">The disk usage worker is stuck and unresponsive.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>disk_usage_analyzer_stuck</code></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Memory usage threshold exceeded</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">System memory use as a percentage of total available memory has exceeded a threshold.
+Note that a warning-level alert is issued when system memory, as a percentage of total available memory, exceeds the <em>warning</em> threshold (90% by default).
+A critical-level alert is issued when system memory exceeds the <em>critical</em> threshold (95% by default).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>memory_threshold</code></p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -5029,7 +5058,8 @@ With no memory left for storing metadata, further requests to store data will al
 --email-recipients user1@couchbase.com,user2@couchbase.com \
 --email-sender noreply@couchbase.com --enable-email-encrypt 0 \
 --alert-auto-failover-node --alert-auto-failover-max-reached \
---alert-auto-failover-node-down --alert-auto-failover-cluster-small</pre>
+--alert-auto-failover-node-down --alert-auto-failover-cluster-small \
+--alert-memory-threshold</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5039,7 +5069,7 @@ Additional flags specify the username and password required by the mail server, 
 The <code>enable-mail-encrypt</code> flag specifies encryption as off.</p>
 </div>
 <div class="paragraph">
-<p>A further four flags are used to indicate which alerts should be sent.
+<p>Additional flags are used to indicate which alerts should be sent.
 Note that every possible alert has a flag: if a flag is not specified, the corresponding alert will not be sent.</p>
 </div>
 <div class="paragraph">
@@ -5059,7 +5089,7 @@ See <a href="#cli:cbcli/couchbase-cli-setting-alert.adoc" class="xref unresolved
 <pre>curl -v -X POST http://10.143.192.101:8091/settings/alerts \
 -u Administrator:password  \
 -d 'emailPass=password' \
--d 'alerts=auto_failover_node,auto_failover_maximum_reached,auto_failover_other_nodes_down,auto_failover_cluster_too_small' \
+-d 'alerts=auto_failover_node,auto_failover_maximum_reached,auto_failover_other_nodes_down,auto_failover_cluster_too_small,memory_threshold' \
 -d 'sender=noreply@couchbase.com' \
 -d 'recipients=user1@couchbase.com,user2@couchbase.com' \
 -d 'emailHost=mail.couchbase.com' \
@@ -5073,7 +5103,10 @@ See <a href="#cli:cbcli/couchbase-cli-setting-alert.adoc" class="xref unresolved
 Emails settings are enabled with the <code>enabled</code> flag; and encryption is specified as off, by means of the <code>emailEncrypt</code> flag.
 A list of the alerts that can be sent is provided as the value to the <code>alerts</code> flag.
 See the <strong>Code</strong> column of the <a href="#available-alerts">Available Alerts</a> table, above, for additional event-codes.
-See <a href="#email-settings">Email Settings</a>, above, for a description of available settings.</p>
+See <a href="#email-settings">Email Settings</a>, above, for a description of available email settings.</p>
+</div>
+<div class="paragraph">
+<p>For more information on configuring alerts by means of the REST API, see <a href="../../rest-api/rest-cluster-email-notifications.html" class="xref page">Setting Alerts</a>.</p>
 </div>
 </div>
 </div>
