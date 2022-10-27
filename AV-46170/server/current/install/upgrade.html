@@ -4788,7 +4788,7 @@ To upgrade a Couchbase-Server cluster means to revise upwards the version of Cou
 <div class="sectionbody">
 <div class="paragraph">
 <p>To <em>upgrade</em> a Couchbase-Server cluster means to revise upwards the version of the server that is running on every node.
-For example, a cluster each of whose nodes has been running Couchbase Server Enterprise Edition Version 6.6 is modified; such that each of its nodes subsequently runs Couchbase Server Enterprise Edition Version 7.1.</p>
+For example, a cluster each of whose nodes has been running Couchbase Server Enterprise Edition Version 6.6 is modified; such that each of its nodes subsequently runs Couchbase Server Enterprise Edition Version 7.0.</p>
 </div>
 <div class="paragraph">
 <p>An <em>upgrade procedure</em>, like an install procedure, involves both preparation routines and specific upgrade commands that are performed on each individual node.
@@ -4804,7 +4804,7 @@ A review of the factors that determine the appropriateness of an upgrade-procedu
 <p>An upgrade <em>path</em> declares that the upgrade of one version of Couchbase Server to another is <em>supported</em>.
 The tables in the following subsections list upgrade paths for Enterprise Edition and for Community Edition, respectively.
 Each instance of the sign &#8594; declares support for the upgrade of the server-version on the left of the sign to the server-version on the right.
-Note that upgrade between non-adjacent version-numbers is frequently <em>not</em> supported: for example, to upgrade from 5.5.0+ to 7.1, upgrade must be performed <em>twice</em>; first from 5.5.0+ to 6.6, and secondly from 6.6 to 7.1.</p>
+Note that upgrade between non-adjacent version-numbers is frequently <em>not</em> supported: for example, to upgrade from 5.5.0+ to 7.0, upgrade must be performed <em>twice</em>; first from 5.5.0+ to 6.6, and secondly from 6.6 to 7.0.</p>
 </div>
 <div class="paragraph">
 <p>All supported upgrades can be performed with the cluster either <em>offline</em> or <em>online</em>.</p>
@@ -4818,7 +4818,7 @@ Note that upgrade between non-adjacent version-numbers is frequently <em>not</em
 <td class="content">
 <div class="paragraph">
 <p>If you are upgrading several nodes at once, then the version of the software on each node must be kept in step throughout the upgrade process.<br>
-For example, if you are upgrading three enterprise nodes (<code><strong>Node&#160;1</strong></code>, <code><strong>Node&#160;2</strong></code> and <code><strong>Node&#160;3</strong></code>) from version 5.0x to 7.1, then you would use the following sequence:</p>
+For example, if you are upgrading three enterprise nodes (<code><strong>Node&#160;1</strong></code>, <code><strong>Node&#160;2</strong></code> and <code><strong>Node&#160;3</strong></code>) from version 5.0x to 7.0, then you would use the following sequence:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -4850,10 +4850,10 @@ For example, if you are upgrading three enterprise nodes (<code><strong>Node&#16
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Upgrade all nodes from 6.6 to 7.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>Node&#160;1</strong></code> &#8658; 6.6 &#8594; 7.1<br>
-<code><strong>Node&#160;2</strong></code> &#8658;  6.6 &#8594; 7.1<br>
-<code><strong>Node&#160;3</strong></code> &#8658; 6.6 &#8594; 7.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Upgrade all nodes from 6.6 to 7.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>Node&#160;1</strong></code> &#8658; 6.6 &#8594; 7.0<br>
+<code><strong>Node&#160;2</strong></code> &#8658;  6.6 &#8594; 7.0<br>
+<code><strong>Node&#160;3</strong></code> &#8658; 6.6 &#8594; 7.0</p></td>
 </tr>
 </tbody>
 </table>
@@ -4877,13 +4877,13 @@ For example, if you are upgrading three enterprise nodes (<code><strong>Node&#16
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5.0.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.x and 5.1.x &#8594; 6.0.4+ &#8594; 6.6 &#8594; 7.1x</p>
-<p class="tableblock">5.0.x and 5.1.x &#8594; 6.6 &#8594; 7.1x</p>
-<p class="tableblock">5.5.0+ &#8594; 6.6 &#8594; 7.1x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.x and 5.1.x &#8594; 6.0.4+ &#8594; 6.6 &#8594; 7.0 &#8594; 7.1x</p>
+<p class="tableblock">5.0.x and 5.1.x &#8594; 6.6 &#8594; 7.0 &#8594; 7.1x</p>
+<p class="tableblock">5.5.0+ &#8594; 6.6 &#8594; 7.0 &#8594; 7.1x</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">6.0 &#8594; 6.5 &#8594; 7.1x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.0 &#8594; 6.5 &#8594; 6.6 &#8594; 7.0 &#8594; 7.1x</p></td>
 </tr>
 </tbody>
 </table>
@@ -4904,11 +4904,11 @@ For example, if you are upgrading three enterprise nodes (<code><strong>Node&#16
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.x &#8594; 6.0 &#8594; 6.5 &#8594; 7.1x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.x &#8594; 6.0 &#8594; 6.5 &#8594; 6.6 &#8594; 7.0 &#8594; 7.1x</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">6.0 &#8594; 6.5 &#8594; 7.1x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.0 &#8594; 6.5 &#8594; 6.6 &#8594; 7.0 &#8594; 7.1x</p></td>
 </tr>
 </tbody>
 </table>

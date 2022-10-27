@@ -4825,7 +4825,7 @@ curl -u Administrator:password -X POST
     -d allowedTimePeriod[abortOutside]=[ true | false ]
     -d parallelDBAndViewCompaction=[ true | false ]
     -d purgeInterval=[numberofdays]
-    -d indexCompactionMode=[ full | circular ]
+    -d indexCompactionMode=[ standard | circular ]
     -d indexCircularCompaction[daysOfWeek]=[daynames-comma-separated]
     -d indexCircularCompaction[interval][fromHour]=[integer]
     -d indexCircularCompaction[interval][fromMinute]=[integer]
@@ -4899,7 +4899,7 @@ The default value is 3.0; the minimum 0.04; the maximum 60.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>indexCompactionMode</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The compaction mode for indexes.
-Can be either <code>full</code> or <code>circular</code>.
+Can be either <code>standard</code> or <code>circular</code>.
 This parameter is for Community Edition only.</p></td>
 </tr>
 <tr>
@@ -5087,7 +5087,7 @@ Note that the output is piped to the <a href="https://stedolan.github.io/jq/">jq
 <p>This example establishes fragmentation thresholds and sizes for database and view, and specifies the time-period during which compaction should occur.
 It specifies that compaction be aborted if it should overrun this time-period.
 Parallel compaction for database and view is switched <em>off</em>.
-The tombstone purge interval is set to 3 days; and <em>circular</em> compaction is specified for particular days and hours.</p>
+The tombstone purge interval is set to 3 days; and <em>circular</em> standard compaction is specified for particular days and hours.</p>
 </div>
 </div>
 </div>

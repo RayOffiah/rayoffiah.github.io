@@ -4874,20 +4874,20 @@ Statement Level Atomicity is provided for N1QL statements that are executed insi
     int andyBalance = andyContent.getInt("account_balance");
     var beth = txnctx.get(collection, "Beth");
 
-    var bethContent = beth.contentAsObject();
+	var bethContent = beth.contentAsObject();
     int bethBalance = bethContent.getInt("account_balance");
 
     // if Beth has sufficient funds, make the transfer
     if (bethBalance &gt; transferAmount) {
-        andyContent.put("account_balance", andyBalance + transferAmount);
+	 	andyContent.put("account_balance", andyBalance + transferAmount);
         txnctx.replace(andy, andyContent);
 
         bethContent.put("account_balance", bethBalance - transferAmount);
         txnctx.replace(beth, bethContent)
-    } else
-        throw new InsufficientFunds();
-   // commit transaction - optional, can be omitted
-   txnctx.commit();
+        }
+        else throw new InsufficientFunds();
+   	// commit transaction - optional, can be omitted
+   	txnctx.commit();
 });</code></pre>
 </div>
 </div>
@@ -5097,9 +5097,9 @@ When a query is used inside a transaction, the transactional scan consistency is
 <div class="paragraph">
 <p>Assuming that the 2 documents involved in this transaction live in two different nodes, here are the high-level steps that the transaction follows:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock unresolved">
 <div class="content">
-<img src="../_images/data/transaction-mechanics-steps.png" alt="Transaction mechanics explaining the high-level steps that a transaction follows">
+<img src="modules:learn:data/transaction-mechanics-steps.png" alt="Transaction mechanics explaining the high-level steps that a transaction follows">
 </div>
 </div>
 <div class="paragraph">

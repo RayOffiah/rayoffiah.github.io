@@ -5082,6 +5082,27 @@ Thus is 100K timers are scheduled to fire one (1) year in the future and cancele
 Note the <em>cancelTimer()</em> function was introduced in version 6.6.0.</p>
 </div>
 </li>
+<li>
+<p>When I undeploy all Eventing Functions the metadata collection is not fully cleared (this is a regression in 6.6.1 only).</p>
+<div class="paragraph">
+<p>This issue, <a href="https://issues.couchbase.com/browse/MB-43272">MB-43272</a>, will happen when a Function is paused and then undeployed from the paused state (without resuming it again).
+There are two solutions to avoid this issue</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In version 6.6.1 never undeploy from the paused state.</p>
+</li>
+<li>
+<p>After this issue occurs in version 6.6.1 (deploying from the passed state) you can clean things up via an Export, Delete and Import of the impacted Function after this issue occurs.</p>
+<div class="paragraph">
+<p>Note the Export, Delete and Import actions won&#8217;t actually delete the orphaned documents in metadata collection but this sequence will create a new functionUUID for the Eventing function and this function will only concern with the document (timer doc and checkpoint docs) created by the new functionUUID.
+If this is an issue in your specific deployment please ask for a patch release.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
 </ul>
 </div>
 </div>

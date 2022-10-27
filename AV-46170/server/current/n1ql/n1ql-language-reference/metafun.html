@@ -5955,106 +5955,16 @@ LIMIT  1;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="unnest-pos"><a class="anchor" href="#unnest-pos"></a>UNNEST_POS(<code>expr</code>)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can use the <code>UNNEST_POS()</code> function with the <a href="unnest.html" class="xref page">UNNEST Clause</a> to return the position of each element in an unnested array.</p>
-</div>
-<div class="paragraph">
-<p>This function has a synonym <a href="#unnest-position">UNNEST_POSITION()</a>.</p>
-</div>
-<div class="sect2">
-<h3 id="description-8"><a class="anchor" href="#description-8"></a>Description</h3>
-<div class="paragraph">
-<p>The <code>UNNEST_POS</code> function takes an unnested array and returns the position value of each element in the array.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="arguments-8"><a class="anchor" href="#arguments-8"></a>Arguments</h3>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">expr</dt>
-<dd>
-<p>[Required] The alias of the unnested array from an <a href="unnest.html" class="xref page">UNNEST Clause</a>.</p>
-</dd>
-</dl>
-</div>
-</div>
-<div class="sect2">
-<h3 id="return-values"><a class="anchor" href="#return-values"></a>Return Values</h3>
-<div class="paragraph">
-<p>The <code>UNNEST_POS</code> function returns the position of each element in the unnested array, <code>expr</code>, as an integer. It returns each position value as a separate row in JSON format. The first element in the array is at position <code>0</code>.</p>
-</div>
-<div class="paragraph">
-<p>In all other cases, the <code>UNNEST_POS</code> function returns <code>NULL</code> or <code>MISSING</code>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="example-4"><a class="anchor" href="#example-4"></a>Example</h3>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>In the following example, the <code>UNNEST_POS</code> function takes the result of an <code>UNNEST</code> Clause on a given array, <code>a1</code>. The <code>UNNEST</code> function returns the position of each element in the unnested <code>a1</code> array , <code>u</code>, as the <code>upos</code> value.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-N1QL hljs" data-lang="N1QL" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/functions/unnest-pos.n1ql">SELECT UNNEST_POS(u) AS upos, u FROM [{"a1":[10,9,4]}] AS d UNNEST d.a1 AS u;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Results</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-server/modules/n1ql/examples/functions/unnest-pos.jsonc">[
-    {
-        "u": 10,
-        "upos": 0
-    },
-    {
-        "u": 9,
-        "upos": 1
-    },
-    {
-        "u": 4,
-        "upos": 2
-    }
-]</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="unnest-position"><a class="anchor" href="#unnest-position"></a>UNNEST_POSITION(<code>expr</code>)</h3>
-<div class="paragraph">
-<p>Synonym of <a href="#unnest-pos">UNNEST_POS()</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="related-clauses"><a class="anchor" href="#related-clauses"></a>Related Clauses</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="unnest.html" class="xref page">UNNEST Clause</a></p>
-</li>
-<li>
-<p><a href="from.html" class="xref page">FROM Clause</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="uuid"><a class="anchor" href="#uuid"></a>UUID()</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="description-9"><a class="anchor" href="#description-9"></a>Description</h3>
+<h3 id="description-8"><a class="anchor" href="#description-8"></a>Description</h3>
 <div class="paragraph">
 <p>Generates a universally unique identifier (UUID) according to <a href="https://www.ietf.org/rfc/rfc4122.txt" target="_blank" rel="noopener">RFC 4122</a>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="arguments-9"><a class="anchor" href="#arguments-9"></a>Arguments</h3>
+<h3 id="arguments-8"><a class="anchor" href="#arguments-8"></a>Arguments</h3>
 <div class="paragraph">
 <p>None.</p>
 </div>
@@ -6066,7 +5976,7 @@ LIMIT  1;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="example-5"><a class="anchor" href="#example-5"></a>Example</h3>
+<h3 id="example-4"><a class="anchor" href="#example-4"></a>Example</h3>
 <div id="uuid-ex" class="exampleblock">
 <div class="content">
 <div class="paragraph">
