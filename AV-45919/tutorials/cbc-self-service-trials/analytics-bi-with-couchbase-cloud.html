@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
+<title>Analytics and BI with Couchbase Cloud | Couchbase Docs</title>
+<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/tutorials/cbc-self-service-trials/analytics-bi-with-couchbase-cloud.html">
+<link rel="stylesheet" href="../../_/css/site.css">
+<script src="../../_/js/vendor/jquery.js"></script>
+<link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+
+
+<meta name="dcterms.subject" content="tutorials">
+<meta name="dcterms.identifier" content="master">
+<meta name="page-url" content="/tutorials/cbc-self-service-trials/analytics-bi-with-couchbase-cloud.html">
+<meta name="generator" content="Antora 3.0.1">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+</head>
+<body class="article">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="header fixed-top">
+  <div class="header-top-row">
+      <div class="container">
+          <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
+              <ul class="navbar-brand-list">
+                <li class="brand-logo">
+                  <a class="navbar-brand" href="https://www.couchbase.com">
+                    <img src="../../_/img/couchbase-logo.svg" alt="Couchbase" />
+                  </a>
+                </li>
+                <li>
+                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/DOC-9195/home/index.html">
+                    <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
+                    <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  </a>
+                </li>
+              </ul>
+              <button class="navbar-burger" data-target="topbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+          </nav>
+      </div>
+  </div>
+  <div class="header-bottom-row" id="topbar-menu">
+    <div class="container">
+        <nav  class="navbar navbar-new-bottom">
+
+              <div class="navbar-collapse collapse" id="navbar2">
+                <ul class="navbar-nav w-100 justify-content-start">
+                  <li class="nav-item">
+                    <a href="https://rayoffiah.github.io/DOC-9195/home/index.html" class="nav-link">
+                      <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../home/server.html">
+                      Server
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../home/mobile.html">
+                      Mobile
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../cloud/index.html">
+                      Cloud
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../home/sdk.html">
+                      SDKs
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="primary-action">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                  Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
+                </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+
+              </div>
+
+        </nav>
+    </div>
+   </div>
+</header>
+<div class="body container">
+<aside class="nav left-sidebar">
+  <div class="nav-container">
+    <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+<div class="components">
+  <div class="components_group-title">
+    Tutorials
+  </div>
+  <ul class="components_list">
+    <li class="components_list-items">
+      <div class="component_list-version">
+        <span class="component_list_title">tutorials</span>
+      </div>
+      <div class="version_items hide" data-version="master">
+      </div>
+    </li>
+  </ul>
+</div>
+  </div>
+</aside>
+<aside class="toc sidebar"
+      data-title="Contents"
+      data-levels="1">
+  <div class="sidebar-box">
+    <div class="tools" role="navigation">
+<ul>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/tutorials-contrib/modules/cbc-self-service-trials/pages/analytics-bi-with-couchbase-cloud.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+</ul>
+</div>
+    <div class="toc-menu"></div>
+    <div class="is-this-helpful-box">
+      <h4> Is this page helpful?</h4>
+      <div class="btn-row">
+        <a href="#" class="like-btn helpful-btn" id="yesBtn" data-page-rating="like" >
+                <i class="far fa-thumbs-up"></i>
+            Yes
+
+            </a>
+        <a href="#" class="dislike-btn helpful-btn" id="noBtn"  data-page-rating="dislike"> <i class="far fa-thumbs-down"></i> No</a>
+      </div>
+      <div class="any-feedback">
+        <a href="#" class="btn any-feedback-btn" id="myCustomTrigger">Leave Additional Feedback? </a>
+      </div>
+      <div class="dialog-box" id="dialogBox">
+        <form>
+            <div class="form-group " id="additionalFeedbackBox">
+              <textarea class="input-control feed-back-msg" rows="8" placeholder="Any Additonal Feedback?"></textarea>
+
+              <div class="action-btn-row ">
+                <a href="#" class="skip-btn" id="skipBtnMsg">Skip</a>
+                  <button class="submit-btn btn blue-btn disabled" > Submit  </button>
+                  <a href="#" class="info-btn"><i class="fas fa-info-circle"></i></a>
+              </div>
+
+
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="feedback-modal modal-popup">
+  <div class="modal-popup-dialogue">
+    <div class="popup-header">
+      <a href="#" class="close-popup"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="popup-content">
+      <p>
+        Please use the form below to provide your feedback. Because your feedback is valuable to us,
+         the information you submit in this form is recorded in our issue tracking system (JIRA), which is publicly available.
+        You can track the status of your feedback using the ticket number displayed in the dialog once you submit the form.
+      </p>
+    </div>
+  </div>
+</div>
+
+<main class="article" data-ceiling="topbar">
+<div class="article-header">
+<nav class="crumbs" aria-label="breadcrumbs">
+<ul>
+<li class="crumb"><a href="../index.html">tutorials</a></li>
+</ul>
+</nav>
+</div>
+<article class="doc">
+<div class="page-heading-title">
+<h1 class="page">Analytics and BI with Couchbase Cloud</h1>
+<div class="labels">
+<ul></ul>
+</div>
+
+
+</div>
+<div class="contributor-list-box">
+<span class="last-commit-date" id="commitdate">    </span>
+<ul id="contributorList"></ul>
+<span  id="otherContributor"> + </span>
+</div><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is the third tutorial in the series of “First Timer” tutorials. By following the steps in order, you will end up with an analytics report that illustrates how Couchbase Cloud can power analysis and data visualization. Let&#8217;s get going!</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<strong>Step 1</strong>
+</td>
+<td class="hdlist2">
+<p><a href="#run-first-analytics-query">Run Your First Analytics Query</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<strong>Step 2</strong>
+</td>
+<td class="hdlist2">
+<p><a href="#run-analytics-query-joins">Run an Analytics Query with JOINs</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<strong>Step 3</strong>
+</td>
+<td class="hdlist2">
+<p><a href="#visualizing-data-on-cloud-using-bi-tools">Visualizing Data on Couchbase Cloud Using Business Intelligence Tools</a></p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="run-first-analytics-query"><a class="anchor" href="#run-first-analytics-query"></a>Run Your First Analytics Query</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Couchbase Cloud comes equipped with a powerful MPP-based analytics service that provides a parallel data-management capability; allowing the running of complex queries against millions of records without any impact to overall database performance.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create Analytics datasets.</p>
+<div class="paragraph">
+<p>Analytics datasets are containers that hold collections of JSON objects. They are similar to tables in an RDBMS or keyspaces in N1QL.
+A dataset is linked to a Couchbase bucket, so that the dataset can ingest data from Couchbase Server.</p>
+</div>
+<div class="paragraph">
+<p>Create an analytics dataset using data from the <code>beer-sample</code> bucket by following these steps.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Log in to your Couchbase Cloud account, then click Clusters in the side navigation.</p>
+<div class="paragraph">
+<p>Click your cluster name to display the cluster overview screen.</p>
+</div>
+</li>
+<li>
+<p>In the Tools menu, select Analytics Workbench.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/abi3.png" alt="Select the Analytics Workbench from the Tools menu on your cluster overview screen.">
+</div>
+</div>
+<div class="paragraph">
+<p>The Analytics Editor is displayed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/abi4.png" alt="The Analytics Editor is displayed">
+</div>
+</div>
+</li>
+<li>
+<p>In the Analytics Editor, paste this statement to create a dataset of breweries made up of all “brewery” type documents in the beer-sample bucket.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">CREATE DATASET breweries ON `beer-sample` WHERE `type` = "brewery";</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Click Execute to create the dataset.</p>
+</div>
+<div class="paragraph">
+<p>You will see the brewery dataset with a yellow indicator to the right of the editor.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/abi6.png" alt="The brewery dataset with a yellow indicator is displayed to the right of the Analytics Editor">
+</div>
+</div>
+</li>
+<li>
+<p>Next create a dataset of beers made up of all “beer” type documents in the beer-sample bucket.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">CREATE DATASET beers ON `beer-sample` WHERE `type` = "beer";</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Click Execute. The beers dataset appears with a yellow indicator to the right of the editor.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/abi7.png" alt="The beers dataset with a yellow indicator is displayed to the right of the Analytics Editor">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Link the Analytics Datasets to your local.</p>
+<div class="paragraph">
+<p>To link the datasets to your local beer-sample bucket, paste the following statement into the Analytics Editor:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">CONNECT LINK Local;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Click Execute. The datasets should display to the right of the Analytics Editor each with a green icon, indicating successful dataset creation.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/abi8.png" alt="When the datasets are created" width="they are displayed to the right of the Analytics Editor" height="each with a green icon.">
+</div>
+</div>
+<div class="paragraph">
+<p>You have just created 2 datasets linked to your local beer-sample bucket.</p>
+</div>
+</li>
+<li>
+<p>Now you can analyze the data using N1QL for Analytics.</p>
+<div class="paragraph">
+<p>A big advantage is that N1QL for Analytics can construct new objects to return based on combinations of variable bindings.
+This gives it the power to do projections and joins much like those done using multi-table FROM clauses in SQL.
+For example, suppose that you wanted a list of all breweries paired with their associated beers, with the list enumerating the brewery name and the beer name for each such pair. You can do this as follows in N1QL for Analytics while also limiting the answer set size to 3 results.</p>
+</div>
+<div class="paragraph">
+<p>Copy and paste the following query into to the Analytics Editor:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">SELECT bw.name AS brewer, br.name AS beer
+FROM breweries bw, beers br
+WHERE br.brewery_id = meta(bw).id
+ORDER BY bw.name, br.name
+LIMIT 3;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Click Execute.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/abi10.png" alt="The results of your first analytics query are displayed">
+</div>
+</div>
+<div class="paragraph">
+<p>Congratulations! You just ran your first analytics query and see the results in the Analytics Editor.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="run-analytics-query-joins"><a class="anchor" href="#run-analytics-query-joins"></a>Run an Analytics Query with JOINs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now let&#8217;s try a more advanced N1QL for Analytics query using JOINs.</p>
+</div>
+<div class="paragraph">
+<p>JOINs enable you to join datasets for richer analysis.</p>
+</div>
+<div class="paragraph">
+<p>Left outer joins are particularly important in SQL, for example, to print a summary of customers and orders grouped by customer, without omitting those customers who haven’t placed any orders yet.</p>
+</div>
+<div class="paragraph">
+<p>N1QL for Analytics supports nesting, both of queries and of query results, and the combination allows for a cleaner and more natural approach to such queries. As an example, suppose you want each brewery to produce an object that contains the brewery name along with a list of all of the brewery’s offered beer names and alcohol percentages. In the flat (also known as 1NF) world of SQL, approximating this query would involve a left outer join between breweries and beers, ordered by brewery, with the brewery name being repeated along side each beer’s information. In the richer (NoSQL) world of N1QL for Analytics this use case can be handled more naturally as follows.</p>
+</div>
+<div class="paragraph">
+<p>Copy the following query and paste it into the Analytics Editor:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">SELECT bw.name AS brewer,
+  (SELECT br.name, br.abv FROM beers br
+   WHERE br.brewery_id = meta(bw).id
+   ORDER BY br.name) AS beers
+FROM breweries bw
+ORDER BY bw.name
+LIMIT 2;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Click Execute. The results are displayed as follows:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/abi11.png" alt="The results of your left outer join query using N1QL for Analytics are displayed">
+</div>
+</div>
+<div class="paragraph">
+<p>Congratulations, you have successfully created analytics datasets using data in your Couchbase Cloud cluster, and have used N1QL to query and join the datasets.</p>
+</div>
+<div class="paragraph">
+<p>Go <a href="#server:analytics:primer-beer.adoc" class="xref unresolved">here</a> for more information and examples about the Couchbase Analytics Service.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="visualizing-data-on-cloud-using-bi-tools"><a class="anchor" href="#visualizing-data-on-cloud-using-bi-tools"></a>Visualizing Data on Couchbase Cloud Using Business Intelligence Tools</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Couchbase Cloud Analytics can be analyzed directly using popular business intelligence tools.</p>
+</div>
+<div class="sect2">
+<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In this example we will utilize <a href="https://www.tableau.com/trial/download-tableau">Tableau Desktop</a> to visualize data in a Couchbase Cloud Analytics Dataset leveraging the <a href="https://www.cdata.com/drivers/couchbase/jdbc/">CData JDBC Driver For Couchbase</a>. To complete this exercise you can download and install the free trials of Tableau Desktop and the CData driver if you don’t already have these tools installed.</p>
+</li>
+<li>
+<p>You must also have your Couchbase Cloud cluster endpoint URL and your cluster Security Certificate handy to make the connection to Couchbase Cloud using the CData JDBC connector.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>To get these settings, click Clusters in the side menu then click on your cluster name.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/abi12.png" alt="Copy the Couchbase Cloud cluster endpoint URL and your cluster Security Certificate from the Connect tab">
+</div>
+<div class="title">Figure 1. .Copy the Couchbase Cloud cluster endpoint URL and your cluster Security Certificate for entering into the CData JDBC driver for Couchbase.</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Note your cluster database username and password, as set in <a href="getting-started.html" class="xref page">the first tutorial</a>, to connect from BI tools.</p>
+<div class="paragraph">
+<p>To review the database username and password, click Users in the left navigation, click on your username, then note the database user for your cluster.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="install-the-jdbc-driver-and-bi-tool"><a class="anchor" href="#install-the-jdbc-driver-and-bi-tool"></a>Install the JDBC Driver and BI Tool</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download and follow the instructions to install the <a href="https://www.cdata.com/drivers/couchbase/jdbc/">CData JDBC Driver For Couchbase</a> (you can use the free trial).</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/cdata_page.png" alt="Download and install the CData JDBC Driver for Couchbase">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download and follow the instructions to install <a href="https://www.tableau.com/products/desktop/download">Tableau Desktop</a> (you can use the free trial).</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/tbdt.png" alt="Download and install the Tableau Desktop">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Copy the CData JDBC .jar file to the drivers folder in your Tableau installation.</p>
+<div class="paragraph">
+<p>Go to the <code>/lib</code> folder under the CData root install folder to copy the .jar file.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;_CData install folder_&gt;/CData/CData JDBC Driver for Couchbase 2020/lib</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Copy the file <code>cdata.jdbc.couchbase.jar</code>.</p>
+</div>
+</li>
+<li>
+<p>Paste the <code>cdata.jdbc.couchbase.jar</code> file into the Tableau install folder for your operating system.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Windows: C:\Program Files\Tableau\Drivers</p>
+</li>
+<li>
+<p>Mac: ~/Library/Tableau/Drivers</p>
+</li>
+<li>
+<p>Linux: /opt/tableau/tableau_driver/jdbc</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Restart Tableau to pick up the driver.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configure-the-jdbc-connection-using-the-cdata-jdbc-driver-for-couchbase-interface"><a class="anchor" href="#configure-the-jdbc-connection-using-the-cdata-jdbc-driver-for-couchbase-interface"></a>Configure the JDBC Connection Using the CData JDBC Driver For Couchbase Interface</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the interface by double clicking <code>cdata.jdbc.couchbase.jar</code> under the CData root install folder.</p>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;CData install folder&gt;/CData/CData JDBC Driver for Couchbase 2020/lib/cdata.jdbc.couchbase.jar</pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the Authentication connection properties, add the following settings:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>User: Insert your cluster database username</p>
+</li>
+<li>
+<p>Password: Insert your cluster database user password</p>
+</li>
+<li>
+<p>Server: Insert your cluster endpoint URL</p>
+</li>
+<li>
+<p>Couchbase Service: Analytics</p>
+</li>
+<li>
+<p>UseSSL: True</p>
+</li>
+<li>
+<p>ConnectionMode: Cloud</p>
+</li>
+<li>
+<p>DNSServer: 8.8.8.8</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/cdatajdbc_aa.png" alt="Add the authentication connection properties">
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Under Misc connection properties, add the following setting:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>SSLServerCert: Paste your copied cluster Server Certificate</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/cdatajdbc_bb.png" alt="Paste your copied cluster Server certificate">
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Test Connection</b> to verify the connection.</p>
+</li>
+<li>
+<p>Click “Copy to Clipboard” to copy the JDBC connection string, you will paste the string into Tableau Desktop when connecting.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="connect-tableau-desktop-to-couchbase-cloud-cluster"><a class="anchor" href="#connect-tableau-desktop-to-couchbase-cloud-cluster"></a>Connect Tableau Desktop to Couchbase Cloud Cluster</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Launch Tableau Desktop, then in the left side menu click “Other Databases (JDBC)”, the “Other Databases (JDBC)” properties window displays.</p>
+</li>
+<li>
+<p>In the URL setting, paste the connection string you copied from the CData JDBC Driver for Couchbase interface  (you may optionally enter the cluster database username and password into the username and password property settings instead of in the connection string, this will prompt you for valid credentials whenever you refresh the report).</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/tab.png" alt="Paste the connection string copied from the CData JDBC Driver for Couchbsae in the URL setting">
+</div>
+</div>
+</li>
+<li>
+<p>Click “Sign in”, the Tableau Desktop Data Source editor displays.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/tabl_query1.png" alt="Sign in; the Tableau Desktop Data Source editor displays">
+</div>
+</div>
+</li>
+<li>
+<p>In the left side menu under “Databases”, select CData.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/tabl_query2.png" alt="In the left side menu under “Databases”" width="select CData">
+</div>
+</div>
+</li>
+<li>
+<p>In the left side menu under “Schema”, select Couchbase.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/tabl_query3.png" alt="In the left side menu under Schema" width="select Couchbase">
+</div>
+</div>
+</li>
+<li>
+<p>In the left side menu under “Table”, you will see the breweries and beers Analytics Datasets we created earlier in this tutorial.</p>
+<div class="paragraph">
+<p>Click on “Default.breweries” and drag to the table pallet</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/tabl_query4.png" alt="Click &quot;Default.breweries&quot; and drag to the table pallet">
+</div>
+</div>
+</li>
+<li>
+<p>Next click “Go to worksheet” to visualize the data.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/tabl_query5.png" alt="Click &quot;Go to worksheet&quot; to visualize the data">
+</div>
+</div>
+<div class="paragraph">
+<p>In the worksheet editor, the table fields are displayed in the left side menu.</p>
+</div>
+</li>
+<li>
+<p>We will visualize all of the breweries in the breweries Analytics Dataset by plotting their locations on a map. First we need to convert the latitude and longitude data from a measure to a dimension.</p>
+<div class="paragraph">
+<p>In the tables fields, under Measure Names, on the field “Geo.Lat” and in the drop down property menu select “Convert to Dimension”</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/tab4.png" alt="Convert lattitude from a measure to a dimension field">
+</div>
+</div>
+<div class="paragraph">
+<p>Repeat this for the field “Geo.lon” to convert it from a measure to a dimension field.</p>
+</div>
+</li>
+<li>
+<p>Now lets map the latitude and longitude coordinates.</p>
+<div class="paragraph">
+<p>In the left side menu, click on “Geo.lon” and drag it to “Columns”.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/tab7.png" alt="Choose the longitude">
+</div>
+</div>
+<div class="paragraph">
+<p>Next click on “Geo.lat” and drag it to “Rows”. Tableau Desktop will automatically choose the map visualization based on the lat and lon coordinates.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/analytics-bi/tab5.png" alt="Choose the lattitude. Based on the lattitude and longitude chosen" width="Tableau Desktop will automatically choose the map visualiztion">
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Congratulations! You have successfully connected Tableau Desktop to your Couchbase Cloud Analytics Dataset and created a visualization of the brewery locations, well done!</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <div class="col">
+        <div class="footer-logo">
+          <a href="https://www.couchbase.com" class="icon">
+            <img src="../../_/img/couchbase-logo.svg" alt="Couchbase">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://docs.couchbase.com" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://forums.couchbase.com" target="_blank" rel="noopener">Forums</a></li>
+          <li><a href="https://support.couchbase.com" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://developer.couchbase.com" target="_blank" rel="noopener">Developer Portal</a></li>
+          <li><a href="https://blog.couchbase.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://www.couchbase.com/resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://www.couchbase.com/get-started-developing-nosql">Get Started</a></li>
+          <li><a href="https://www.couchbase.com/downloads">Downloads</a></li>
+          <li><a href="https://learn.couchbase.com/store?utf8=%E2%9C%93&ss=1&ct=78327&commit=Filter" target="_blank" rel="noopener">Training</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="social-icons">
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32.1 26.1"> <path id="twitter" class="cls-1" d="M32,7.1a11.836,11.836,0,0,1-3.8,1,6.462,6.462,0,0,0,2.9-3.6,12.606,12.606,0,0,1-4.2,1.6A6.492,6.492,0,0,0,22.1,4a6.594,6.594,0,0,0-6.6,6.6,7.719,7.719,0,0,0,.2,1.5A18.458,18.458,0,0,1,2.2,5.2a6.294,6.294,0,0,0-.9,3.3A6.765,6.765,0,0,0,4.2,14a6.109,6.109,0,0,1-3-.8v.1a6.543,6.543,0,0,0,5.3,6.4,4.678,4.678,0,0,1-1.7.2,4.869,4.869,0,0,1-1.2-.1,6.679,6.679,0,0,0,6.1,4.6,12.917,12.917,0,0,1-8.2,2.8,9.151,9.151,0,0,1-1.6-.1,18.438,18.438,0,0,0,10.1,3c12.1,0,18.7-10,18.7-18.7v-.8A13.336,13.336,0,0,0,32,7.2Z" transform="translate(0.1 -4)"/></svg>
+            <a href="https://twitter.com/couchbase" class="icon">
+              Twitter
+            </a>
+          </li>
+          <li>
+          <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="linkedin" class="cls-1" d="M29,0H3A3.076,3.076,0,0,0,0,3V29a3.009,3.009,0,0,0,3,3H29a2.946,2.946,0,0,0,3-3V3A3.009,3.009,0,0,0,29,0ZM12,26H8V12h4ZM10,10a2,2,0,1,1,2-2A2.006,2.006,0,0,1,10,10ZM26,26H22V18a2,2,0,0,0-4,0v8H14V12h4v2.5c.8-1.1,2.1-2.5,3.5-2.5A4.736,4.736,0,0,1,26,17Z"/></svg>
+              <a href="https://www.linkedin.com/company/couchbase" class="icon">
+             Linkedin
+            </a>
+          </li>
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="facebook" class="cls-1" d="M29,0H3A2.652,2.652,0,0,0,0,3V29a2.652,2.652,0,0,0,3,3H16V18H12V14h4V12a6.452,6.452,0,0,1,6-6h4v4H22a2.151,2.151,0,0,0-2,2v2h6l-1,4H20V32h9a2.652,2.652,0,0,0,3-3V3A2.652,2.652,0,0,0,29,0Z"/></svg>
+            <a href="https://www.facebook.com/Couchbase" class="icon">
+            Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-terms">
+      <div class="footer-terms-copyright">
+          <span>© 2022 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+      </div>
+      <div class="footer-terms-links">
+        <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
+        <a href="https://www.couchbase.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.couchbase.com/cookie-policy">Cookie Policy</a>
+        <a href="https://www.couchbase.com/support-policy">Support Policy</a>
+        <a href="https://info.couchbase.com/unsubscribe-or-manage-preferences.html" target="_blank" rel="noopener">Marketing Preference Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<template id="run-code-panel">
+<div class="action-panel">
+  <form class="action-panel-control" method="POST" action="https://couchbase.live/run" target="run-code-output">
+    <input type="hidden" name="lang">
+    <input type="hidden" name="code">
+    <input type="hidden" name="from" value="docs">
+    <div class="controls">
+      <button class="control-button rerun" type="submit"><i class="fas fa-redo"></i></button>
+      <span class="shell-name control-label">Output</span>
+      <button class="control-button close"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </form>
+  <iframe class="run-code-output" name="run-code-output"></iframe>
+</div>
+</template>
+<script id="site-script" src="../../_/js/site.js"></script>
+<script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+</body>
+</html>
