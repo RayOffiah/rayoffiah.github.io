@@ -10,6 +10,7 @@
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/clusters/data-service/scopes-collections.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="Scopes and collections, which allow documents to be categorized and organized within a bucket, can be created and deleted within the Capella UI.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -142,7 +143,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../clouds/get-capella-host-name.html">Getting the Capella Host Name</a>
+    <a class="menu_title menu_link" href="../../clouds/get-capella-host-name.html">Get the Capella Host Name</a>
   </span>
 </li>
 </ul>
@@ -379,7 +380,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../app-services/deployment/controlling-app-endpoints.html">Controlling App Endpoints</a>
+    <a class="menu_title menu_link" href="../../app-services/deployment/configuring-app-endpoints.html">Configuring App Endpoints</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -879,47 +880,64 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-Scopes and collections, which allow documents to be categorized and organized within a bucket, can be created and deleted.
+Scopes and collections, which allow documents to be categorized and organized within a bucket, can be created and deleted within the Capella UI.
 </blockquote>
 </div>
 <div class="paragraph">
 <p>Scopes and collections categorize and organize documents within a bucket.
 A collection is a data container within a bucket.
-A scope is a mechanism that groups multiple collections together.
-Each cluster can hold up to 1000 scopes and up to 1000 collections.
+A scope is a mechanism that groups multiple collections.
+Each database can hold up to 1000 scopes and up to 1000 collections.
 For a complete overview, see <a href="../../../server/current/learn/data/scopes-and-collections.html" class="xref page">Scopes and Collections</a>.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Scopes and collections is a Couchbase Server 7.0+ feature that is not available to clusters running Couchbase Server 6.6.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="accessing-scopes-in-the-couchbase-capella-ui"><a class="anchor" href="#accessing-scopes-in-the-couchbase-capella-ui"></a>Accessing Scopes in the Couchbase Capella UI</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Scopes can be viewed and managed from the <strong>Clusters</strong> section, in the <strong>Buckets</strong> tab, by clicking the <strong>More options</strong> <span class="icon"><i class="fa fa-ellipsis-v"></i></span> button  at the end of the row on the right side of the bucket you are working with and clicking <strong>Scopes</strong>:</p>
-</div>
-<div class="imageblock">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the <strong>Buckets</strong> page for your database:</p>
+<div class="openblock">
 <div class="content">
-<img src="../_images/scopes_button.png" alt="A cluster&#8217;s 'Buckets' tab showing a table of multiple buckets with the Scopes menu option shown.">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you&#8217;re working with.</p>
+</li>
+<li>
+<p>With the <strong>Databases</strong> tab open, click the database you&#8217;re working with.</p>
+</li>
+<li>
+<p>Click the <strong>Data Tools</strong> tab.</p>
+</li>
+<li>
+<p>In the navigation menu, click <b class="button">Buckets</b>.</p>
+</li>
+</ol>
 </div>
+</div>
+</div>
+</li>
+<li>
+<p>Click the bucket with the scopes you want to view.</p>
+</li>
+</ol>
 </div>
 <div class="sect2">
 <h3 id="scopes-view"><a class="anchor" href="#scopes-view"></a>Scopes View</h3>
 <div class="paragraph">
-<p>A bucket’s <strong>Scopes</strong> view lists all the scopes within that bucket in a tabular format, including the number of collections within each scope.
-Actions are available to create and delete scopes, as well as add collections to a scope.
-Above this table is a drop-down list that allows you to quickly switch between buckets in the current cluster and view their respective scopes.</p>
+<p>A bucket&#8217;s <strong>Scopes</strong> view lists all the scopes within that bucket in a tabular format, including the number of collections within each scope.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/scopes_view.png" alt="A database&#8217;s list of scopes.">
+</div>
+</div>
+<div class="paragraph">
+<p>Actions are available to create and delete scopes, and add collections to an open scope.
+The <strong>Bucket</strong> list allows you to switch between buckets in the current database and view their respective scopes.</p>
 </div>
 </div>
 </div>
@@ -928,70 +946,50 @@ Above this table is a drop-down list that allows you to quickly switch between b
 <h2 id="create-a-scope"><a class="anchor" href="#create-a-scope"></a>Create a Scope</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To create a scope, you need to have the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</a></code> or <a href="../../projects/project-roles.html#project-cluster-manager-role" class="xref page"><code>Project manager</code></a> role for the project that contains the cluster and bucket in which you are creating the scope.</p>
+<p>To create a scope, you need the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</a></code> or <a href="../../projects/project-roles.html#project-cluster-manager-role" class="xref page"><code>Project Manager</code></a> role for the project with the database where you&#8217;re creating the scope.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to the cluster&#8217;s <strong>Buckets</strong> tab.</p>
+<p>Open the <strong>Buckets</strong> page for your database:</p>
 <div class="openblock">
 <div class="content">
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Go to the <strong>Clusters</strong> tab in the main navigation.</p>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you&#8217;re working with.</p>
 </li>
 <li>
-<p>Find and click on the cluster that you wish to add a scope to.</p>
+<p>With the <strong>Databases</strong> tab open, click the database you&#8217;re working with.</p>
+</li>
+<li>
+<p>Click the <strong>Data Tools</strong> tab.</p>
+</li>
+<li>
+<p>In the navigation menu, click <b class="button">Buckets</b>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Click the bucket where you want to create a scope.</p>
+</li>
+<li>
+<p>With the <strong>Scopes</strong> view open, click <b class="button">Create Scope</b>.</p>
+</li>
+<li>
+<p>Enter a name for the scope.</p>
 <div class="paragraph">
-<p>This opens the cluster with its <strong>Metrics</strong> tab selected.</p>
-</div>
-</li>
-<li>
-<p>Click the <strong>Buckets</strong> tab.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Open the <strong>Scopes</strong> page.</p>
-<div class="openblock">
-<div class="content">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>At the end of the row on the right side of the bucket you are working with, click the <strong>More options</strong> <span class="icon"><i class="fa fa-ellipsis-v"></i></span> button.</p>
-</li>
-<li>
-<p>Click <strong>Scopes</strong>.</p>
-</li>
-</ol>
-</div>
-</div>
+<p>In the <strong>Name</strong> field, enter a scope name.
+A scope name can only contain the <code>A-Z</code>, <code>a-z</code>, and <code>0-9</code> characters as well as the <code>-</code>, <code>_</code>, and <code>%</code> symbols.
+It can&#8217;t start with either the <code>_</code> or <code>%</code> symbols.
+It can&#8217;t be longer than 251 characters in length and is <em>case-sensitive</em>.</p>
 </div>
 </li>
 <li>
 <p>Click <b class="button">Create Scope</b>.</p>
-<div class="paragraph">
-<p>This opens the <strong>Create Scope</strong> fly-out menu.</p>
-</div>
-</li>
-<li>
-<p>Specify a name for the scope.</p>
-<div class="paragraph">
-<p>In the <strong>Name of scope</strong> field, enter a name for the scope.
-A scope name can only contain the <code>A-Z</code>, <code>a-z</code>, and <code>0-9</code> characters as well as the <code>-</code>, <code>_</code>, and <code>%</code> symbols.
-It cannot start with either the <code>_</code> or <code>%</code> symbols.
-It cannot be longer than 251 characters in length and is <em>case-sensitive</em>.</p>
-</div>
-</li>
-<li>
-<p>Click <b class="button">Add</b>.</p>
-<div class="paragraph">
-<p>Once the scope is created it is listed in the <strong>Scopes</strong> view for the current bucket.</p>
-</div>
 </li>
 </ol>
 </div>
@@ -1001,7 +999,7 @@ It cannot be longer than 251 characters in length and is <em>case-sensitive</em>
 <h2 id="delete-a-scope"><a class="anchor" href="#delete-a-scope"></a>Delete a Scope</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To delete a scope, you need to have the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> or <a href="../../projects/project-roles.html#project-cluster-manager-role" class="xref page"><code>Project manager</code></a> role for the project that contains the cluster and bucket in which you are deleting the scope.</p>
+<p>To delete a scope, you need the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</a></code> or <a href="../../projects/project-roles.html#project-cluster-manager-role" class="xref page"><code>Project Manager</code></a> role for the project with the database where you&#8217;re deleting a scope.</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -1011,8 +1009,8 @@ It cannot be longer than 251 characters in length and is <em>case-sensitive</em>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Deleting a scope will also delete all of the collections and documents within that scope from the cluster.
-You can only restore these from a previous backup.</p>
+<p>Deleting a scope deletes all of the collections and documents in that scope from the database.
+You can only restore them from a previous backup.</p>
 </div>
 </td>
 </tr>
@@ -1021,22 +1019,22 @@ You can only restore these from a previous backup.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to the cluster&#8217;s <strong>Buckets</strong> tab.</p>
+<p>Open the <strong>Buckets</strong> page for your database:</p>
 <div class="openblock">
 <div class="content">
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Go to the <strong>Clusters</strong> tab in the main navigation.</p>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you&#8217;re working with.</p>
 </li>
 <li>
-<p>Find and click on the cluster where you wish to delete a scope.</p>
-<div class="paragraph">
-<p>This opens the cluster with its <strong>Metrics</strong> tab selected.</p>
-</div>
+<p>With the <strong>Databases</strong> tab open, click the database you&#8217;re working with.</p>
 </li>
 <li>
-<p>Click the <strong>Buckets</strong> tab.</p>
+<p>Click the <strong>Data Tools</strong> tab.</p>
+</li>
+<li>
+<p>In the navigation menu, click <b class="button">Buckets</b>.</p>
 </li>
 </ol>
 </div>
@@ -1044,60 +1042,22 @@ You can only restore these from a previous backup.</p>
 </div>
 </li>
 <li>
-<p>Open the <strong>Scopes</strong> page.</p>
-<div class="openblock">
-<div class="content">
+<p>Click the bucket where you want to delete a scope.</p>
+</li>
+<li>
+<p>With the <strong>Scopes</strong> view open, at the end of the row of the scope you&#8217;re deleting, click the <strong>Trash</strong> <span class="icon"><i class="fa fa-trash-alt"></i></span> icon.</p>
+</li>
+<li>
+<p>Confirm the delete request:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>At the end of the row on the right side of the bucket you are working with, click the <strong>More options</strong> <span class="icon"><i class="fa fa-ellipsis-v"></i></span> button.</p>
+<p>Type <code>delete</code> into the confirmation field.</p>
 </li>
 <li>
-<p>Click <strong>Scopes</strong>.</p>
+<p>Click <b class="button">Delete Scope</b>.</p>
 </li>
 </ol>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Click <strong>Delete Scope</strong>.</p>
-<div class="openblock">
-<div class="content">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>At the end of the row on the right side of the scope you are working with, click the <strong>More options</strong> <span class="icon"><i class="fa fa-ellipsis-v"></i></span> button.</p>
-</li>
-<li>
-<p>Click <strong>Delete Scope</strong>.</p>
-<div class="paragraph">
-<p>This opens the <strong>Delete Scope</strong> fly-out menu.</p>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Confirm the delete request.</p>
-<div class="openblock">
-<div class="content">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>In the <strong>Type “delete” to confirm</strong> field, type <code>delete</code>.</p>
-</li>
-<li>
-<p>Click <b class="button">Confirm</b>.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>When a scope is successfully deleted, a confirmation notification will appear near the top of the screen and the deleted scope will be removed from the <strong>Scopes</strong> view.</p>
 </div>
 </li>
 </ol>
@@ -1108,32 +1068,57 @@ You can only restore these from a previous backup.</p>
 <h2 id="accessing-collections-in-the-couchbase-capella-ui"><a class="anchor" href="#accessing-collections-in-the-couchbase-capella-ui"></a>Accessing Collections in the Couchbase Capella UI</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Collections can be viewed and managed from the <strong>Clusters</strong> section, in the <strong>Buckets</strong> tab, by clicking the <strong>More options</strong> <span class="icon"><i class="fa fa-ellipsis-v"></i></span> button  at the end of the row on the right side of the bucket you are working with and clicking <strong>Collections</strong>:</p>
+<p>To view and manage collections in a bucket, open a scope&#8217;s <strong>Collections</strong> view:</p>
 </div>
-<div class="imageblock">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the <strong>Buckets</strong> page for your database:</p>
+<div class="openblock">
 <div class="content">
-<img src="../_images/collections_button.png" alt="A cluster&#8217;s 'Buckets' tab showing a table of multiple buckets with the Collections menu option shown.">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you&#8217;re working with.</p>
+</li>
+<li>
+<p>With the <strong>Databases</strong> tab open, click the database you&#8217;re working with.</p>
+</li>
+<li>
+<p>Click the <strong>Data Tools</strong> tab.</p>
+</li>
+<li>
+<p>In the navigation menu, click <b class="button">Buckets</b>.</p>
+</li>
+</ol>
 </div>
+</div>
+</div>
+</li>
+<li>
+<p>Click the bucket with the collections you want to view.</p>
+</li>
+<li>
+<p>Click the scope with the collection you want to view.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>This shows the <strong>Collections</strong> view for the <code>_default</code> scope.
-You can change the scope whose collections you wish to view using the drop-down list above the table.</p>
-</div>
-<div class="paragraph">
-<p>For a broader overview of the collections within a bucket, the <a href="#accessing-scopes-in-the-couchbase-capella-ui"><strong>Scopes</strong> view</a> lists the number of collections within each scope.
-Clicking a collections count number in a scope row lists all the collections within that scope.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/select_collections.png" alt=" A Scopes page showing the number of collections within a scope">
-</div>
+<p>This shows the <strong>Collections</strong> view for the chosen scope.</p>
 </div>
 <div class="sect2">
 <h3 id="collections-view"><a class="anchor" href="#collections-view"></a>Collections View</h3>
 <div class="paragraph">
-<p>A scope’s <strong>Collections</strong> view lists all the collections within the current scope in tabular format, including a time to live (TTL) value for each.
-Buttons are available to delete individual collections.
-Above this table are drop-down lists that allow you to quickly switch between buckets and scopes in the current cluster.</p>
+<p>A scope&#8217;s <strong>Collections</strong> view lists all the collections within the current scope in tabular format, including a time to live (TTL) value for each.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/collections_view.png" alt="A database&#8217;s list of collections.">
+</div>
+</div>
+<div class="paragraph">
+<p>Buttons are available to delete individual collections.
+You can change the scope whose collections you wish to view using the <strong>Scopes</strong> list.</p>
 </div>
 </div>
 </div>
@@ -1142,24 +1127,27 @@ Above this table are drop-down lists that allow you to quickly switch between bu
 <h2 id="create-a-collection"><a class="anchor" href="#create-a-collection"></a>Create a Collection</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To create a collection, you need to have the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> or <a href="../../projects/project-roles.html#project-cluster-manager-role" class="xref page"><code>Project manager</code></a> role for the project that contains the cluster, bucket, and scope in which you are creating the collection.</p>
+<p>To create a collection, you need the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</a></code> or <a href="../../projects/project-roles.html#project-cluster-manager-role" class="xref page"><code>Project Manager</code></a> role for the project with the database where you&#8217;re creating the collection.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to the cluster&#8217;s <strong>Buckets</strong> tab.</p>
+<p>Open the <strong>Buckets</strong> page for your database:</p>
 <div class="openblock">
 <div class="content">
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Go to the <strong>Clusters</strong> tab in the main navigation.</p>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you&#8217;re working with.</p>
 </li>
 <li>
-<p>Find and click on the cluster where you wish to create a collection.</p>
-<div class="paragraph">
-<p>This opens the cluster with its <strong>Metrics</strong> tab selected.</p>
-</div>
+<p>With the <strong>Databases</strong> tab open, click the database you&#8217;re working with.</p>
+</li>
+<li>
+<p>Click the <strong>Data Tools</strong> tab.</p>
+</li>
+<li>
+<p>In the navigation menu, click <b class="button">Buckets</b>.</p>
 </li>
 </ol>
 </div>
@@ -1167,60 +1155,29 @@ Above this table are drop-down lists that allow you to quickly switch between bu
 </div>
 </li>
 <li>
-<p>Click the <strong>Buckets</strong> tab.</p>
+<p>Click the bucket where you want to create a collection.</p>
 </li>
 <li>
-<p>Open the <strong>Scopes</strong> view.</p>
-<div class="openblock">
-<div class="content">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>At the end of the row on the right side of the bucket you are working with, click the <strong>More options</strong> <span class="icon"><i class="fa fa-ellipsis-v"></i></span> button.</p>
+<p>With the <strong>Scopes</strong> view open, click the scope where you want to create a collection.</p>
 </li>
 <li>
-<p>Click <strong>Scopes</strong>.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
+<p>With the <strong>Collections</strong> view open, click <b class="button">Create Collection</b>.</p>
 </li>
 <li>
-<p>Open the <strong>Collections</strong> view.</p>
-<div class="openblock">
-<div class="content">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Click the <strong>Collections</strong> count number in the row of the scope in question.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Click <b class="button">Create Collection</b>.</p>
-<div class="paragraph">
-<p>This opens the <strong>Create Collection</strong> fly-out menu.</p>
-</div>
-</li>
-<li>
-<p>Specify a name for the collection.</p>
+<p>Enter a name for the collection.</p>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>In the <strong>Name of collection</strong> field, enter a name for the collection.
-A collection name can only contain the <code>A-Z</code>, <code>a-z</code>, and <code>0-9</code> characters as well as the <code>-</code>, <code>_</code>, and <code>%</code> symbols.
-It cannot start with either the <code>_</code> or <code>%</code> symbols.
-It cannot be longer than 251 characters in length and is <em>case-sensitive</em>.</p>
+<p>In the <strong>Name</strong> field, enter a name for the new collection.
+A collection name can contain the <code>A-Z</code>, <code>a-z</code>, and <code>0-9</code> characters as well as the <code>-</code>, <code>_</code>, and <code>%</code> symbols.
+It can&#8217;t start with either the <code>_</code> or <code>%</code> symbols.
+It can&#8217;t be longer than 251 characters in length and is <em>case-sensitive</em>.</p>
 </div>
 </div>
 </div>
 </li>
 <li>
-<p>Specify a time to live (TTL) value.</p>
+<p>Enter a time to live (TTL) value.</p>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -1229,8 +1186,8 @@ It cannot be longer than 251 characters in length and is <em>case-sensitive</em>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>A collection’s TTL cannot be changed after its creation.
-Take care to ensure that this value is set correctly to match your requirements.</p>
+<p>You can&#8217;t change a collection&#8217;s TTL after you create it.
+Make sure this value matches your requirements.</p>
 </div>
 </td>
 </tr>
@@ -1238,23 +1195,16 @@ Take care to ensure that this value is set correctly to match your requirements.
 </div>
 <div class="openblock">
 <div class="content">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>In the <strong>TTL (Time To Live) in seconds</strong> field, enter an expiration time for the new collection.
-By default, this field is set to <code>0</code>, which indicates that no expiration time is applied.
-For more information on expirations and collections, see <a href="#server:learn:buckets-memory-and-storage/expiration.adoc" class="xref unresolved">Expiration</a>.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Click <b class="button">Add</b>.</p>
 <div class="paragraph">
-<p>Once the collection is created, it is listed in the <strong>Collections</strong> view for the current scope.</p>
+<p>In the <strong>TTL (Time To Live) in seconds</strong> field, enter an expiration time for the new collection.
+By default, this field is set to <code>0</code>, indicating that no expiration time is applied.
+For more information about expirations and collections, see <a href="#server:learn:buckets-memory-and-storage/expiration.adoc" class="xref unresolved">Expiration</a>.</p>
 </div>
+</div>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Create Collection</b>.</p>
 </li>
 </ol>
 </div>
@@ -1264,7 +1214,7 @@ For more information on expirations and collections, see <a href="#server:learn:
 <h2 id="delete-a-collection"><a class="anchor" href="#delete-a-collection"></a>Delete a Collection</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To delete a collection, you need to have the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> or <a href="../../projects/project-roles.html#project-cluster-manager-role" class="xref page"><code>Project manager</code></a> role for the project that contains the cluster, bucket, and scope in which you are deleting the collection.</p>
+<p>To delete a collection, you need the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</a></code> or <a href="../../projects/project-roles.html#project-cluster-manager-role" class="xref page"><code>Project Manager</code></a> role for the project with the database where you&#8217;re deleting the collection.</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -1273,8 +1223,8 @@ For more information on expirations and collections, see <a href="#server:learn:
 <i class="fa icon-caution" title="Caution"></i>
 </td>
 <td class="content">
-Deleting a collection will delete all of the documents within it from the cluster.
-You can only restore these documents from a previous backup.
+Deleting a collection deletes all of the documents within it from the database.
+You can restore these documents from a previous backup.
 </td>
 </tr>
 </table>
@@ -1282,19 +1232,22 @@ You can only restore these documents from a previous backup.
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to the cluster&#8217;s <strong>Buckets</strong> tab.</p>
+<p>Open the <strong>Buckets</strong> page for your database:</p>
 <div class="openblock">
 <div class="content">
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Go to the <strong>Clusters</strong> tab in the main navigation.</p>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you&#8217;re working with.</p>
 </li>
 <li>
-<p>Find and click on the cluster where you wish to delete a collection.</p>
-<div class="paragraph">
-<p>This opens the cluster with its <strong>Metrics</strong> tab selected.</p>
-</div>
+<p>With the <strong>Databases</strong> tab open, click the database you&#8217;re working with.</p>
+</li>
+<li>
+<p>Click the <strong>Data Tools</strong> tab.</p>
+</li>
+<li>
+<p>In the navigation menu, click <b class="button">Buckets</b>.</p>
 </li>
 </ol>
 </div>
@@ -1302,52 +1255,22 @@ You can only restore these documents from a previous backup.
 </div>
 </li>
 <li>
-<p>Click the <strong>Buckets</strong> tab.</p>
+<p>With the <strong>Scopes</strong> view open, click the scope where you want to create a collection.</p>
 </li>
 <li>
-<p>Open the <strong>Collections</strong> view page.</p>
-<div class="openblock">
-<div class="content">
+<p>With the <strong>Collections</strong> view open, at the end of the row of the collection you&#8217;re deleting, click the <strong>Trash</strong> <span class="icon"><i class="fa fa-trash-alt"></i></span> icon.</p>
+</li>
+<li>
+<p>Confirm the deletion:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>At the end of the row on the right side of the bucket you are working with, click the <strong>More options</strong> <span class="icon"><i class="fa fa-ellipsis-v"></i></span> button.</p>
+<p>Type <code>delete</code> into the confirmation field.</p>
 </li>
 <li>
-<p>Click <strong>Collections</strong>.</p>
+<p>Click <b class="button">Delete Collection</b>.</p>
 </li>
 </ol>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Using the <strong>Scopes</strong> drop-down menu above the list of collections, choose the scope you wish to open.</p>
-</li>
-<li>
-<p>Find the collection that you wish to delete, and click the Trash icon at the end of the row on the right side.</p>
-<div class="paragraph">
-<p>This opens the <strong>Delete Collection</strong> fly-out menu.</p>
-</div>
-</li>
-<li>
-<p>Confirm the delete request.</p>
-<div class="openblock">
-<div class="content">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>In the <strong>Type “delete” to confirm</strong> field, type <code>delete</code>.</p>
-</li>
-<li>
-<p>Click <b class="button">Confirm</b>.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>When a collection is successfully deleted, a confirmation notification is shown near the top of the screen and the deleted collection will be removed from the Collections view.</p>
 </div>
 </li>
 </ol>
