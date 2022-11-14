@@ -10,6 +10,7 @@
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/clusters/query-service/query-workbench.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="The Query Workbench is a user interface tool that can perform query development.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -356,11 +357,6 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../app-services/maintenance/app-service-maintenance.html">App Service Maintenance</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
     <a class="menu_title menu_link" href="../../app-services/deployment/accessing-admin-apis.html">Granting Admin Access to REST APIs</a>
   </span>
 </li>
@@ -420,6 +416,11 @@
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../app-services/connect/connect-apps-to-endpoint.html">Connecting your Apps to an App Endpoint</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../app-services/maintenance/app-service-maintenance.html">App Services Maintenance</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -879,11 +880,11 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-The Query Workbench provides a rich graphical user interface to perform query development.
+The Query Workbench is a user interface tool that can perform query development.
 </blockquote>
 </div>
 <div class="paragraph">
-<p>Using the Query Workbench, you can conveniently explore data, create, edit, run, and save N1QL queries, view and save query results, and explore the document structures in a bucket - all in a single window.</p>
+<p>Using the Query Workbench, you can explore data, create, edit, run, and save SQL++ queries, view and save query results, and explore the document structures in a bucket&#8212;&#8203;all in a single window.</p>
 </div>
 <div class="paragraph">
 <p>Features of the Query Workbench include:</p>
@@ -894,10 +895,10 @@ The Query Workbench provides a rich graphical user interface to perform query de
 <p>A single, integrated visual interface to perform query development and testing.</p>
 </li>
 <li>
-<p>Easy viewing and editing of complex queries by providing features such as multi-line formatting, copy-and-paste, syntax coloring, auto completion of N1QL keywords and bucket and field names, and easy cursor movement.</p>
+<p>Easy viewing and editing of complex queries by providing features such as multi-line formatting, copy-and-paste, syntax coloring, auto-completion of SQL++ keywords and bucket and field names, and easy cursor movement.</p>
 </li>
 <li>
-<p>View the structure of the documents in a bucket by using the N1QL <a href="../../../server/current/n1ql/n1ql-language-reference/infer.html" class="xref page">INFER</a> command.
+<p>View the structure of the documents in a bucket by using the SQL++ <a href="../../../server/current/n1ql/n1ql-language-reference/infer.html" class="xref page">INFER</a> command.
 You no longer have to select the documents at random and guess the structure of the document.</p>
 </li>
 <li>
@@ -906,17 +907,13 @@ You can also save the query results to a file on disk.</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The Query Workbench is only available on clusters that are running the <a href="query-service.html" class="xref page">Query Service</a>.
-</td>
-</tr>
-</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The database you&#8217;re using must have the Query Service running.</p>
 </div>
 </div>
 </div>
@@ -932,17 +929,31 @@ The Query Workbench is only available on clusters that are running the <a href="
 <td class="content">
 <div class="title">Permissions Required</div>
 <div class="paragraph">
-<p>To access the Query Workbench and execute queries that <em>read</em> documents, you must have the <a href="../../projects/project-roles.html#project-cluster-data-reader" class="xref page"><code>Cluster Data Reader</code></a> project role. To execute queries that <em>read</em> and <em>modify</em> documents, you must have the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> or <a href="../../projects/project-roles.html#project-cluster-data-reader-writer" class="xref page"><code>Cluster Data / Reader</code></a> role.</p>
+<p>To view the Query Workbench and run queries that <em>read</em> documents, you need the <a href="../../projects/project-roles.html#project-cluster-data-reader" class="xref page"><code>Database Data Reader</code></a> project role.
+To run queries that read and modify documents, you need the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> or <a href="../../projects/project-roles.html#project-cluster-data-reader-writer" class="xref page"><code>Database Data / Reader</code></a> role.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>If a cluster is running the <a href="query-service.html" class="xref page">Query Service</a>, the Query Workbench can be accessed under the cluster&#8217;s <strong>Tools &gt; Query Workbench</strong> tab.</p>
+<p>To open the Query Workbench in a database running the Query Service:</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="../_images/cluster-query-workbench.png" alt="<span class=&quot;menuseq&quot;><b class=&quot;menu&quot;>The cluster&#8217;s 'Advanced</b>&#160;<i class=&quot;fa fa-angle-right caret&quot;></i> <b class=&quot;menuitem&quot;>Query Workbench' tab.</b></span>"></span></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you&#8217;re working with.</p>
+</li>
+<li>
+<p>With the <strong>Databases</strong> tab open, select your database.</p>
+</li>
+<li>
+<p>Click the <strong>Data Tools</strong> tab.</p>
+</li>
+<li>
+<p>In the navigation menu, click <b class="button">Query</b>.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>The Query Workbench consists of three working areas:</p>
@@ -950,20 +961,20 @@ The Query Workbench is only available on clusters that are running the <a href="
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#n1ql-editor">Query Editor</a></p>
+<p><a href="#query-editor">Query Editor</a></p>
 </li>
 <li>
 <p><a href="#results">Query Results and Plans</a></p>
 </li>
 <li>
-<p><a href="#insights-sidebar">Data / Bucket Insights</a></p>
+<p><a href="#insights-sidebar">Data Insights</a></p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="n1ql-editor"><a class="anchor" href="#n1ql-editor"></a>Using the Query Editor</h2>
+<h2 id="query-editor"><a class="anchor" href="#query-editor"></a>Using the Query Editor</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Query Editor is where you build and run queries, and view query execution plans.
@@ -976,7 +987,7 @@ Enter a query into the Query Editor, and then run the query by clicking <b class
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-You can also execute queries by typing a semi-colon (<code>;</code>) at the end of the query and hitting <kbd>Enter</kbd>.
+You can also execute queries by typing a semi-colon (<code>;</code>) at the end of the query and pressing <kbd>Enter</kbd>.
 </td>
 </tr>
 </table>
@@ -987,10 +998,10 @@ You can also execute queries by typing a semi-colon (<code>;</code>) at the end 
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Syntax coloring</strong>&#8201;&#8212;&#8201;For easy viewing, N1QL keywords, numbers and string literals are differently colored.</p>
+<p><strong>Syntax coloring</strong>: For easy viewing, SQL++ keywords, numbers, and string literals are differently colored.</p>
 </li>
 <li>
-<p><strong>Support for N1QL INFER statements</strong>&#8201;&#8212;&#8201;The tool supports the N1QL <a href="../../../server/current/n1ql/n1ql-language-reference/infer.html" class="xref page">INFER</a> statement.</p>
+<p><strong>Support for SQL++ INFER statements</strong>: Support the SQL++ <a href="../../../server/current/n1ql/n1ql-language-reference/infer.html" class="xref page">INFER</a> statement.</p>
 </li>
 </ul>
 </div>
@@ -999,29 +1010,16 @@ You can also execute queries by typing a semi-colon (<code>;</code>) at the end 
 <div class="sect1">
 <h2 id="specify-bucket-and-scope-context"><a class="anchor" href="#specify-bucket-and-scope-context"></a>Specify Bucket and Scope Context</h2>
 <div class="sectionbody">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_couchbase-7-0"></a>Couchbase 7.0+</p>
-</li>
-<li>
-<p><a id="tabset1_couchbase-6-6"></a>Couchbase 6.6</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_couchbase-7-0">
 <div class="paragraph">
 <p>You can specify the bucket and scope query context using the drop-down menus near the top left of the Query Editor.
-When the query context is set to a specified bucket and scope, you can write queries using just the collection name and do not need to specify the keyspace path.</p>
+When the query context is set to a specified bucket and scope, you can write queries using just the collection name and don&#8217;t need to specify the keyspace path.</p>
 </div>
 <div class="paragraph">
 <p>For example, here&#8217;s how a query would look without specifying a bucket and scope in the Query Editor:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-N1QL hljs" data-lang="N1QL">SELECT * FROM `travel-sample`.`inventory`.`airline`;</code></pre>
+<pre class="highlightjs highlight"><code class="language-sql++ hljs" data-lang="sql++">SELECT * FROM `travel-sample`.`inventory`.`airline`;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1029,7 +1027,7 @@ When the query context is set to a specified bucket and scope, you can write que
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-N1QL hljs" data-lang="N1QL">SELECT * FROM `airline`;</code></pre>
+<pre class="highlightjs highlight"><code class="language-sql++ hljs" data-lang="sql++">SELECT * FROM `airline`;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1050,17 +1048,8 @@ Using this drop-down, you can choose a different scope within the current bucket
 <p>To remove the query context, open the <strong>bucket</strong> drop-down and choose <code>Select a bucket</code>.</p>
 </div>
 <div class="paragraph">
-<p>For more information on scopes and collections, refer to
+<p>For more information about scopes and collections, refer to
 <a href="../../../server/current/learn/data/scopes-and-collections.html" class="xref page">Scopes and Collections</a>.</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_couchbase-6-6">
-<div class="paragraph">
-<p>If you are using Couchbase Server 6.6 in Capella, you are unable to specify scope and bucket context.
-This feature relies on scopes and collections introduced in <a href="../../../server/current/introduction/whats-new.html" class="xref page">Couchbase Server 7.0</a>.</p>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -1068,9 +1057,9 @@ This feature relies on scopes and collections introduced in <a href="../../../se
 <h2 id="run-a-query"><a class="anchor" href="#run-a-query"></a>Run a Query</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After entering a query, you can execute the query either by typing a semicolon (<code>;</code>) and pressing <kbd>Enter</kbd>, or by clicking the <b class="button">Execute</b> button.
+<p>After entering a query, you can run it by typing a semicolon (<code>;</code>) and pressing <kbd>Enter</kbd> or clicking <b class="button">Execute</b>.
 When the query is running, the <b class="button">Execute</b> button changes to <b class="button">Cancel</b>, which allows you to cancel the running query.
-When you cancel a running query, it stops the activity on the cluster side as well.</p>
+When you cancel a running query, it stops the activity on the database side as well.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1079,7 +1068,7 @@ When you cancel a running query, it stops the activity on the cluster side as we
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The <b class="button">Cancel</b> button does not cancel index creation statements.
+The <b class="button">Cancel</b> button doesn&#8217;t cancel index creation statements.
 The index creation continues on the server side even though it appears to have been canceled from the Query Workbench.
 </td>
 </tr>
@@ -1090,73 +1079,28 @@ The index creation continues on the server side even though it appears to have b
 <div class="sect1">
 <h2 id="run-a-transaction"><a class="anchor" href="#run-a-transaction"></a>Run a Transaction</h2>
 <div class="sectionbody">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_couchbase-7-0"></a>Couchbase 7.0+</p>
-</li>
-<li>
-<p><a id="tabset2_couchbase-6-6"></a>Couchbase 6.6</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_couchbase-7-0">
 <div class="paragraph">
-<p>The Query Editor can be used to run a Couchbase transaction.
+<p>You can run a Couchbase transaction using the Query Editor.
 A transaction is a group of operations that are either committed to the database together or are all undone from the database if there&#8217;s a failure.
-For a complete overview of Couchbase transaction, see <a href="../../../server/current/learn/data/transactions.html" class="xref page">Transactions</a>.</p>
+For more information about Couchbase transactions, see <a href="../../../server/current/learn/data/transactions.html" class="xref page">Transactions</a>.</p>
 </div>
 <div class="paragraph">
 <p>You can use the Query Editor to run a single statement as a transaction.
 To do this, enter the statement into the Query Editor and click <b class="button">Transaction</b>.</p>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset2_couchbase-6-6">
-<div class="paragraph">
-<p>If you are using Couchbase Server 6.6 in Capella, you are unable to run a Couchbase transaction using the Query Editor.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="sect1">
 <h2 id="index-advisor"><a class="anchor" href="#index-advisor"></a>Index Advisor</h2>
 <div class="sectionbody">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset3_couchbase-7-0"></a>Couchbase 7.0+</p>
-</li>
-<li>
-<p><a id="tabset3_couchbase-6-6"></a>Couchbase 6.6</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_couchbase-7-0">
 <div class="paragraph">
 <p>The <a href="../../../server/current/n1ql/n1ql-language-reference/advise.html" class="xref page">ADVISE</a> command generates index advice that optimizes response time for a query.
 You can use this command with <a href="../../../server/current/n1ql/n1ql-language-reference/selectintro.html" class="xref page">SELECT</a>, <a href="../../../server/current/n1ql/n1ql-language-reference/merge.html" class="xref page">MERGE</a>, <a href="../../../server/current/n1ql/n1ql-language-reference/update.html" class="xref page">UPDATE</a>, or <a href="../../../server/current/n1ql/n1ql-language-reference/delete.html" class="xref page">DELETE</a> queries.
 To display index advice for a query entered into the Query Editor, click <b class="button">Advise</b>.</p>
 </div>
 <div class="paragraph">
-<p>Query Workbench will then show any suggested indexes in the Query Results area using JSON format.
-This will not prepend <a href="../../../server/current/n1ql/n1ql-language-reference/advise.html" class="xref page">ADVISE</a> to the current query in the Query Editor</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset3_couchbase-6-6">
-<div class="paragraph">
-<p>The Advise button is not available with clusters using Couchbase Server 6.6 in Capella.</p>
-</div>
-<div class="paragraph">
-<p>You can still manually prepend the <a href="../../../server/current/n1ql/n1ql-language-reference/advise.html" class="xref page">ADVISE</a> command to a query in the Query Editor and run it to get results.</p>
-</div>
-</div>
-</div>
+<p>Query Workbench shows any suggested indexes in the Query Results area using JSON format.
+This won&#8217;t prepend <a href="../../../server/current/n1ql/n1ql-language-reference/advise.html" class="xref page">ADVISE</a> to the current query in the Query Editor</p>
 </div>
 </div>
 </div>
@@ -1164,7 +1108,7 @@ This will not prepend <a href="../../../server/current/n1ql/n1ql-language-refere
 <h2 id="results"><a class="anchor" href="#results"></a>Viewing the Query Results</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When you execute a query, the results are displayed in the <strong>Query Results</strong> area.
+<p>When you execute a query, the results are in the <strong>Query Results</strong> area.
 Since large result sets can take a long time to display, it&#8217;s recommended that you use the <a href="../../../server/current/n1ql/n1ql-language-reference/limit.html" class="xref page">LIMIT</a> clause as part of your query when appropriate.</p>
 </div>
 <div class="paragraph">
@@ -1172,11 +1116,11 @@ Since large result sets can take a long time to display, it&#8217;s recommended 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">SELECT * FROM `travel-sample` WHERE type="airport" LIMIT 1;</code></pre>
+<pre class="highlightjs highlight"><code class="language-sql++ hljs" data-lang="sql++">SELECT * FROM `travel-sample` WHERE type="airport" LIMIT 1;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>When a query finishes, metrics for that query are displayed between the <strong>Query Editor</strong> and the <strong>Query Results</strong> areas.</p>
+<p>When a query finishes, metrics for that query appear between the <strong>Query Editor</strong> and the <strong>Query Results</strong> areas.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1184,37 +1128,45 @@ Since large result sets can take a long time to display, it&#8217;s recommended 
 </div>
 </div>
 <div class="paragraph">
-<p>The following query metrics are displayed:</p>
+<p>The following query metrics are shown with the query results:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Status</strong>&#8201;&#8212;&#8201;Shows the status of the query.
-The values can be: success, failed, or HTTP codes.</p>
-</li>
-<li>
-<p><strong>Last Run</strong>&#8201;&#8212;&#8201;The time at which the query was last executed.</p>
-</li>
-<li>
-<p><strong>Round-trip time (RTT)</strong>&#8201;&#8212;&#8201;The total time it took to send the request and receive the response from the server.</p>
-</li>
-<li>
-<p><strong>Elapsed</strong>&#8201;&#8212;&#8201;The time taken by the server to process the request.</p>
-</li>
-<li>
-<p><strong>Execution</strong>&#8201;&#8212;&#8201;The time taken by the server to execute the query.</p>
-</li>
-<li>
-<p><strong>Docs</strong>&#8201;&#8212;&#8201;The number of documents returned.</p>
-</li>
-<li>
-<p><strong>Mutation Count</strong>&#8201;&#8212;&#8201;The number of documents deleted or changed by the query.
-This appears only for <a href="../../../server/current/n1ql/n1ql-language-reference/update.html" class="xref page">UPDATE</a> and <a href="../../../server/current/n1ql/n1ql-language-reference/delete.html" class="xref page">DELETE</a> queries instead of Result Count.</p>
-</li>
-<li>
-<p><strong>Size</strong>&#8201;&#8212;&#8201;The total size, in bytes, of the documents returned.</p>
-</li>
-</ul>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Status</dt>
+<dd>
+<p>Shows the status of the query.
+The values can be success, failed, or HTTP codes.</p>
+</dd>
+<dt class="hdlist1">Last Run</dt>
+<dd>
+<p>The time at which the query was last executed.</p>
+</dd>
+<dt class="hdlist1">Round-trip time (RTT)</dt>
+<dd>
+<p>The total time it took to send the request and receive the response from the server.</p>
+</dd>
+<dt class="hdlist1">Elapsed</dt>
+<dd>
+<p>The time taken by the server to process the request.</p>
+</dd>
+<dt class="hdlist1">Execution</dt>
+<dd>
+<p>The time taken by the server to execute the query.</p>
+</dd>
+<dt class="hdlist1">Docs</dt>
+<dd>
+<p>The number of documents returned.</p>
+</dd>
+<dt class="hdlist1">Mutation Count</dt>
+<dd>
+<p>The number of documents deleted or changed by the query.
+This appears for <a href="../../../server/current/n1ql/n1ql-language-reference/update.html" class="xref page">UPDATE</a> and <a href="../../../server/current/n1ql/n1ql-language-reference/delete.html" class="xref page">DELETE</a> queries instead of Result Count.</p>
+</dd>
+<dt class="hdlist1">Size</dt>
+<dd>
+<p>The total size, in bytes, of the documents returned.</p>
+</dd>
+</dl>
 </div>
 <div class="sect2">
 <h3 id="json-format"><a class="anchor" href="#json-format"></a>JSON Format</h3>
@@ -1245,9 +1197,9 @@ If you clicked <b class="button">Explain</b>, the results are the same as <a hre
 <h3 id="table-format"><a class="anchor" href="#table-format"></a>Table Format</h3>
 <div class="paragraph">
 <p>The <strong>Table</strong> tab presents the results in a tabular format.
-The tool converts the JSON documents to HTML tables, and presents sub-objects or sub-arrays as sub-tables.
+The tool converts the JSON documents to HTML tables and presents sub-objects or sub-arrays as sub-tables.
 This format works well for queries that return an array of objects, like <code>select `beer-sample`.* from `beer-sample`;</code>.
-You can hover the mouse pointer over a data value to see the path to that value in a tool tip.
+You can hover the mouse pointer over a data value to see the path to that value in a tooltip.
 You can sort a column by clicking the column header.</p>
 </div>
 <div class="imageblock">
@@ -1259,11 +1211,11 @@ You can sort a column by clicking the column header.</p>
 <div class="sect2">
 <h3 id="plans"><a class="anchor" href="#plans"></a>Plans</h3>
 <div class="paragraph">
-<p>Each time a query is executed, an <a href="../../../server/current/n1ql/n1ql-language-reference/explain.html" class="xref page">EXPLAIN</a> command is automatically run in the background to retrieve the query plan for that query.
+<p>Each time you execute a query, an <a href="../../../server/current/n1ql/n1ql-language-reference/explain.html" class="xref page">EXPLAIN</a> command is automatically run in the background to retrieve the query plan for that query.
 You may also generate the query plan by clicking <b class="button">Explain</b>.</p>
 </div>
 <div class="paragraph">
-<p>There are two ways to display the query plan: <a href="#results-plan">Plan</a> (graphical) and <a href="#results-plan-text">Plan Text</a>.</p>
+<p>The two ways to display the query plan are <a href="#results-plan">Plan</a> (graphical) and <a href="#results-plan-text">Plan Text</a>.</p>
 </div>
 <div class="sect3">
 <h4 id="results-plan"><a class="anchor" href="#results-plan"></a>Plan</h4>
@@ -1428,8 +1380,8 @@ In this example query:</p>
 <p>The <strong>Plan Text</strong> tab shows the <a href="../../../server/current/n1ql/n1ql-language-reference/explain.html" class="xref page">EXPLAIN</a> query execution plan in JSON format.</p>
 </div>
 <div class="paragraph">
-<p>If you clicked <b class="button">Execute</b>, a detailed query execution plan is shown, which includes information about how long each step in the plan took to execute.
-If you clicked <b class="button">Explain</b>, the intended query execution plan is shown (minus the details that would be included if you actually executed the query).</p>
+<p>If you chose <b class="button">Execute</b>, a detailed query execution plan appears with information about how long each step in the plan took to execute.
+If you chose <b class="button">Explain</b>, the intended query execution plan appears without the details that an executed query includes.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1448,7 +1400,7 @@ If you clicked <b class="button">Explain</b>, the intended query execution plan 
 <div class="paragraph">
 <p>If you edit a previous query and execute it, the new query is stored at the end of the history.
 The history is persistent across browser sessions.
-The query history only saves queries; due to limited browser storage it does not save query results.
+The query history saves queries; due to limited browser storage, it doesn&#8217;t save query results.
 Thus, when you restart the browser or reload the page, you can see your old queries, but you must re-execute the queries if you want to see their results.</p>
 </div>
 <div class="admonitionblock note">
@@ -1472,16 +1424,16 @@ Clearing the browser history clears the history maintained by the Query Editor a
 </div>
 </div>
 <div class="paragraph">
-<p>You can scroll through the entire query history, and click on an individual query to be taken to that particular point in the history.</p>
+<p>You can scroll through the entire query history, and click an individual query to view that particular point in the history.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Search history</strong>&#8201;&#8212;&#8201;You can search the query history by entering text in the <strong>Filter Queries</strong> search box.
+<p><strong>Search history</strong>: You can search the query history by entering text in the <strong>Filter Queries</strong> search box.
 All matching queries are displayed.</p>
 </li>
 <li>
-<p><strong>Delete a specific entry</strong>&#8201;&#8212;&#8201;Click the Trash icon next to a particular query to delete it from the history.</p>
+<p><strong>Delete a specific entry</strong>: Click the Trash icon next to a particular query to delete it from the history.</p>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -1496,7 +1448,7 @@ This can be useful if you want a more manicured history when you <a href="#expor
 </div>
 </li>
 <li>
-<p><strong>Delete all entries</strong>&#8201;&#8212;&#8201;Click <strong>Clear</strong> to delete the entire query history.</p>
+<p><strong>Delete all entries</strong>: Click <strong>Clear</strong> to delete the entire query history.</p>
 </li>
 </ul>
 </div>
@@ -1507,7 +1459,7 @@ This can be useful if you want a more manicured history when you <a href="#expor
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can load a new query history into the Query Workbench from a JSON file.
-This can be the <a href="#export-query">exported query history</a> from a different cluster.</p>
+This can be the <a href="#export-query">exported query history</a> from a different database.</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -1516,7 +1468,7 @@ This can be the <a href="#export-query">exported query history</a> from a differ
 <i class="fa icon-caution" title="Caution"></i>
 </td>
 <td class="content">
-Importing query history will overwrite your current query history.
+Importing query history overwrites your current query history.
 </td>
 </tr>
 </table>
@@ -1524,7 +1476,7 @@ Importing query history will overwrite your current query history.
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>From the cluster&#8217;s <strong>Tools &gt; Query Workbench</strong> tab, click <b class="button">History</b>.</p>
+<p>From the database&#8217;s <span class="menuseq"><b class="menu">Data Tools</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Query</b></span> page, click <b class="button">History</b>.</p>
 <div class="paragraph">
 <p>This opens the <strong>Query History</strong> fly-out menu.</p>
 </div>
@@ -1536,10 +1488,10 @@ Importing query history will overwrite your current query history.
 </div>
 </li>
 <li>
-<p>Click <b class="button">Import JSON</b> and select a local <code>.json</code> file that you wish to import.</p>
+<p>Click <b class="button">Choose a File</b> and select a local <code>.json</code> file that you wish to import.</p>
 </li>
 <li>
-<p>Click <b class="button">Save</b>.</p>
+<p>Click <b class="button">Import Queries</b>.</p>
 <div class="paragraph">
 <p>The preexisting query history is overwritten with the query history of the imported file.</p>
 </div>
@@ -1552,13 +1504,12 @@ Importing query history will overwrite your current query history.
 <h2 id="export-query"><a class="anchor" href="#export-query"></a>Export Query History</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can export the current query history to a JSON file.
-This file can be <a href="#import-query">imported</a> onto other clusters.</p>
+<p>You can export the current query history to a JSON file, which you <a href="#import-query">import</a> into other databases.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>From the cluster&#8217;s <strong>Tools &gt; Query Workbench</strong> tab, click <b class="button">History</b>.</p>
+<p>From the database&#8217;s <span class="menuseq"><b class="menu">Data Tools</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Query</b></span> page, click <b class="button">History</b>.</p>
 <div class="paragraph">
 <p>This opens the <strong>Query History</strong> fly-out menu.</p>
 </div>
@@ -1575,7 +1526,7 @@ This file can be <a href="#import-query">imported</a> onto other clusters.</p>
 <li>
 <p>Click <b class="button">Export</b>.</p>
 <div class="paragraph">
-<p>The fly-out menu closes and the file is downloaded onto your computer.</p>
+<p>The fly-out menu closes and the file downloads to your computer.</p>
 </div>
 </li>
 </ol>
@@ -1588,11 +1539,6 @@ This file can be <a href="#import-query">imported</a> onto other clusters.</p>
 <div class="paragraph">
 <p>You can specify various settings for the Query Workbench by clicking <strong>Settings</strong> near the top-left corner of the Query Editor.
 This opens the <strong>Query Settings</strong> fly-out menu.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/query-workbench-settings.png" alt="The 'Query Settings' fly-out menu, showing the workbench settings." width="500">
-</div>
 </div>
 <div class="paragraph">
 <p>Configure the following settings and click <b class="button">Submit</b> to save the configuration.</p>
@@ -1612,8 +1558,8 @@ This opens the <strong>Query Settings</strong> fly-out menu.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Timeout</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The timeout parameter (specified in seconds) can be used to limit the running time of a query,
-up to a maximum of 1800 seconds</p>
+<p>The timeout parameter in seconds limiting the running time of a query.
+You can set this to a maximum of 1800 seconds</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1640,6 +1586,10 @@ Select one of the following options:</p>
 </div></div></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Transaction Timeout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the maximum time in seconds spent on a transaction before timing out.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Named Parameters</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">For the prepared queries, this option allows you to specify any number of named parameters.
 Click the <b class="button">+</b> button to add new named parameters, and the <b class="button">-</b> button to remove the parameters.
@@ -1650,7 +1600,7 @@ Otherwise, they are interpreted as parameters to the Query REST API.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Positional Parameters</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">For the prepared queries, this option allows you to specify values for $1, $2, and so on up to as many positional parameters as you have.
 Click the <b class="button">+</b> button to add new positional parameters, and the <b class="button">-</b> button to remove the parameters.
-The parameters are automatically labelled as "$1", "$2", and so on.</p></td>
+The parameters are automatically labeled as "$1", "$2", and so on.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1659,22 +1609,9 @@ The parameters are automatically labelled as "$1", "$2", and so on.</p></td>
 <div class="sect1">
 <h2 id="insights-sidebar"><a class="anchor" href="#insights-sidebar"></a>Data / Bucket Insights</h2>
 <div class="sectionbody">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset4_couchbase-7-0"></a>Couchbase 7.0+</p>
-</li>
-<li>
-<p><a id="tabset4_couchbase-6-6"></a>Couchbase 6.6</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset4_couchbase-7-0">
 <div class="paragraph">
-<p>The <strong>Data Insights</strong> area displays the buckets, scopes, and collections in the current cluster.
-These keyspaces are shown in a hierarchy that you can expand or collapse.</p>
+<p>The <strong>Data Insights</strong> area displays the buckets, scopes, and collections in the current database.
+These keyspaces are in a hierarchy that you can expand or collapse.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1694,63 +1631,6 @@ The number of collections within the bucket is displayed to the right of the buc
 <div class="imageblock">
 <div class="content">
 <img src="../_images/query-workbench-data-insights.png" alt="The 'Data Insights' panel." width="399">
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset4_couchbase-6-6">
-<div class="paragraph">
-<p>The <strong>Bucket Insights</strong> area displays all installed buckets in the cluster.
-By default, when the Query Workbench is first loaded, it retrieves a list of available buckets from the cluster.
-The <strong>Bucket Insights</strong> area is automatically refreshed when buckets or indexes are added or removed, but you can manually refresh it using the refresh button.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/query-workbench-bucket-insights.png" alt="The 'Bucket Insights' panel." width="399">
-</div>
-</div>
-<div class="paragraph">
-<p>The buckets are grouped into the following categories based on the indexes created for the bucket:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Queryable Buckets</strong>&#8201;&#8212;&#8201;Contain a primary index or a primary index and secondary indexes.</p>
-</li>
-<li>
-<p><strong>Queryable on Indexed Fields</strong>&#8201;&#8212;&#8201;Do not contain a primary index, but have one or more secondary indexes.</p>
-</li>
-<li>
-<p><strong>Non-Indexed Buckets</strong>&#8201;&#8212;&#8201;Do not contain any indexes.
-These buckets do not support queries.
-You must first define an index before querying these buckets.</p>
-<div class="paragraph">
-<p>You can expand any bucket to view the schema for that bucket: field names, types, and if you hover the mouse pointer over a field name, you can see example values for that field.
-Bucket analysis is based on the N1QL <a href="../../../server/current/n1ql/n1ql-language-reference/infer.html" class="xref page">INFER</a> statement, which you can run manually to get more detailed results.
-This command infers a schema for a bucket by examining a random sample of documents.
-Because the command is based on a random sample, the results may vary slightly from run to run.
-The default sample size is 1000 documents.
-The syntax of the command is:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">INFER bucket-name [ WITH options ];</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>where <code class="var">options</code> is a JSON object, specifying values for one or more of <code class="var">sample_size</code>, <code class="var">similarity_metric</code>, <code class="var">num_sample_values</code>, or <code class="var">dictionary_threshold</code>.</p>
-</div>
-<div class="paragraph">
-<p>For example, to increase the sample size to 3000, you could use the following query:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">INFER `travel-sample` WITH {"sample_size":3000};</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</div>
 </div>
 </div>
 </div>

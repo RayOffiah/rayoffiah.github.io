@@ -10,6 +10,7 @@
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/clusters/index-service/index-service.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="The Index Service supports the creation of primary and secondary indexes on items stored within Couchbase databases.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -356,11 +357,6 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../app-services/maintenance/app-service-maintenance.html">App Service Maintenance</a>
-  </span>
-</li>
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
     <a class="menu_title menu_link" href="../../app-services/deployment/accessing-admin-apis.html">Granting Admin Access to REST APIs</a>
   </span>
 </li>
@@ -420,6 +416,11 @@
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../app-services/connect/connect-apps-to-endpoint.html">Connecting your Apps to an App Endpoint</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../app-services/maintenance/app-service-maintenance.html">App Services Maintenance</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -878,7 +879,7 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-The <em>Index Service</em> supports the creation of <em>primary</em> and <em>secondary</em> indexes on items stored within Couchbase clusters.
+The Index Service supports the creation of primary and secondary indexes on items stored within Couchbase databases.
 Indexes enable and enhance the performance of query operations.
 </blockquote>
 </div>
@@ -888,38 +889,41 @@ Indexes enable and enhance the performance of query operations.
 <h2 id="about-the-index-service"><a class="anchor" href="#about-the-index-service"></a>About the Index Service</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <em>Index Service</em> is used to create indexes from predefined subsets of bucket-data.
-The <em>Query Service</em> relies on indexes provided by the Index Service.</p>
+<p>The Index Service creates indexes from predefined subsets of bucket data.
+The Query Service relies on indexes provided by the Index Service.</p>
 </div>
 <div class="paragraph">
-<p>The N1QL query language is used to instruct the Index Service to create indexes.
+<p>The SQL++ query language instructs the Index Service to create indexes.
 The Index Service can create two types of indexes:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>Secondary</em>: Based on an attribute <em>within</em> a document.
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Secondary</dt>
+<dd>
+<p>Based on an attribute within a document.
 The value associated with the attribute can be of any type: scalar, object, or array.</p>
 <div class="paragraph">
-<p>A Secondary Index is frequently referred to as a <em>Global Secondary Index</em>, or <em>GSI</em>.
-This is the kind of index used most frequently in Couchbase Server, for queries performed with the <em>N1Ql</em> query-language.
-The <a href="../../../server/current/n1ql/n1ql-language-reference/createindex.html" class="xref page">CREATE INDEX</a> statement is used to create secondary indexes.</p>
+<p>A Secondary Index is often called a Global Secondary Index, or GSI.
+This index is used frequently in Couchbase Server for queries performed with the SQL++ query language.
+The <a href="../../../server/current/n1ql/n1ql-language-reference/createindex.html" class="xref page">CREATE INDEX</a> statement creates secondary indexes.</p>
 </div>
-</li>
-<li>
-<p><em>Primary</em>: Based on on the unique key of every item in a specified bucket or collection (Couchbase Server 7.0+).
+</dd>
+<dt class="hdlist1">Primary</dt>
+<dd>
+<p>Based on the unique key of every item in a specified bucket or collection.
 Every primary index is maintained asynchronously.</p>
 <div class="paragraph">
-<p>A primary index is intended to be used for simple queries, which have no filters or predicates.
-The <a href="../../../server/current/n1ql/n1ql-language-reference/createprimaryindex.html" class="xref page">CREATE PRIMARY INDEX</a> statement is used to create primary indexes.</p>
+<p>A primary index is for simple queries that have no filters or predicates.
+The <a href="../../../server/current/n1ql/n1ql-language-reference/createprimaryindex.html" class="xref page">CREATE PRIMARY INDEX</a> statement creates primary indexes.</p>
 </div>
-</li>
-</ul>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
-<p>Couchbase Capella supports <a href="../../../server/current/learn/services-and-indexes/indexes/storage-modes.html#standard-index-storage" class="xref page"><em>standard</em> index storage</a> for saving indexes.
-By default, an index is saved on the node on which it is created.
-Each index is created on one keyspace (bucket or collection) only; but multiple indexes may be created on a single keyspace (bucket or collection).</p>
+<p>Couchbase Capella supports <a href="../../../server/current/learn/services-and-indexes/indexes/storage-modes.html#standard-index-storage" class="xref page">standard index storage</a> for saving indexes.
+By default, an index is saved on the node where it&#8217;s created.
+Each index is created on one keyspace&#8212;&#8203;a bucket or collection.
+Multiple indexes can be created on a single keyspace.</p>
 </div>
 </div>
 </div>
@@ -927,14 +931,13 @@ Each index is created on one keyspace (bucket or collection) only; but multiple 
 <h2 id="using-the-index-service"><a class="anchor" href="#using-the-index-service"></a>Using the Index Service</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Like the other Couchbase services, the Index Service can be deployed during <a href="../create-database.html" class="xref page">database creation</a>, or by <a href="../scale-database.html" class="xref page">adding it to an existing cluster</a>.
-The Index Service depends on the <a href="../data-service/data-service.html" class="xref page"><em>Data Service</em></a> for underlying functionality, and depends on the <a href="../query-service/query-service.html" class="xref page"><em>Query Service</em></a> for creating and managing indexes via the N1QL query language.
-These services must also be deployed on the cluster in order to use the Index Service.
-(Information about how these services interact with one another can be found in the <a href="../../../server/current/learn/services-and-indexes/services/index-service.html" class="xref page">Couchbase Server documentation</a>.)</p>
+<p>Like the other Couchbase services, you can deploy the Index Service during <a href="../create-database.html" class="xref page">database creation</a> or by <a href="../scale-database.html" class="xref page">adding it to an existing database</a>.
+The Index Service depends on the <a href="../data-service/data-service.html" class="xref page">Data Service</a> for underlying functionality and the <a href="../query-service/query-service.html" class="xref page">Query Service</a> for creating and managing indexes using the SQL++ query language.
+For more information about how these services interact, see <a href="../../../server/current/learn/services-and-indexes/services/index-service.html" class="xref page">Couchbase Server | Indexes</a>.</p>
 </div>
 <div class="paragraph">
-<p>If a cluster has the Index and Query Services deployed, indexes can be managed and monitored from the <a href="manage-indexes.html" class="xref page">Couchbase Capella UI</a>.
-In addition, the <a href="../query-service/query-workbench.html" class="xref page">Query Workbench</a> can be used to do things like <a href="../../../server/current/n1ql/n1ql-language-reference/createindex.html" class="xref page">create</a>, <a href="../../../server/current/n1ql/n1ql-language-reference/alterindex.html" class="xref page">modify</a>, and <a href="../../../server/current/n1ql/n1ql-language-reference/dropindex.html" class="xref page">drop</a> indexes using N1QL statements.</p>
+<p>If a database has both the Index Service and Query Service, you can manage and monitor indexes using the <a href="manage-indexes.html" class="xref page">Couchbase Capella UI</a>.
+You can also use the <a href="../query-service/query-workbench.html" class="xref page">Query Workbench</a> to <a href="../../../server/current/n1ql/n1ql-language-reference/createindex.html" class="xref page">create</a>, <a href="../../../server/current/n1ql/n1ql-language-reference/alterindex.html" class="xref page">modify</a>, and <a href="../../../server/current/n1ql/n1ql-language-reference/dropindex.html" class="xref page">drop</a> indexes using SQL++ statements.</p>
 </div>
 </div>
 </div>

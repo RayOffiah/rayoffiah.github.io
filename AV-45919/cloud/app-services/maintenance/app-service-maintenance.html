@@ -6,11 +6,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
-<title>App Service Maintenance | Couchbase Docs</title>
+<title>App Services Maintenance | Couchbase Docs</title>
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/app-services/maintenance/app-service-maintenance.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="Scheduling database upgrades for Capella App Services">
+<meta name="description" content="Scheduling for Capella App Services">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -355,11 +355,6 @@
     <a class="menu_title menu_link" href="../monitoring/monitoring-app-services.html">Monitoring App Services</a>
   </span>
 </li>
-<li class="menu_list is-current-page" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link is-current-page" href="app-service-maintenance.html">App Service Maintenance</a>
-  </span>
-</li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../deployment/accessing-admin-apis.html">Granting Admin Access to REST APIs</a>
@@ -421,6 +416,11 @@
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../connect/connect-apps-to-endpoint.html">Connecting your Apps to an App Endpoint</a>
+  </span>
+</li>
+<li class="menu_list is-current-page" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link is-current-page" href="app-service-maintenance.html">App Services Maintenance</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -858,14 +858,13 @@
 <ul>
 <li class="crumb"><a href="../../index.html">Couchbase Capella</a></li>
 <li class="crumb">App Services</li>
-<li class="crumb">Working with App Services</li>
-<li class="crumb"><a href="app-service-maintenance.html">App Service Maintenance</a></li>
+<li class="crumb"><a href="app-service-maintenance.html">App Services Maintenance</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">App Service Maintenance</h1>
+<h1 class="page">App Services Maintenance</h1>
 <div class="labels">
 <ul></ul>
 </div>
@@ -880,11 +879,11 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-Scheduling database upgrades for Capella App Services
+Scheduling for Capella App Services
 </blockquote>
 </div>
 <div class="paragraph">
-<p>The databases used by App Services will require periodic upgrading as new versions of back-end server are rolled out.
+<p>The underlying framework used by App Services will require periodic upgrading as new versions are rolled out.
 These upgrades can be scheduled on a per-App Service
 basis to ensure that they occur at the time best suited to maintain high availability for your services.
 You can also log incidents and maintenance requests.</p>
@@ -892,13 +891,15 @@ You can also log incidents and maintenance requests.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="server-version-support"><a class="anchor" href="#server-version-support"></a>Couchbase Server Version Support</h2>
+<h2 id="app-services-version-support"><a class="anchor" href="#app-services-version-support"></a>App Services Version Support</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can deploy and upgrade databases to new Couchbase Server versions as they become available on Capella.
-This typically includes the following releases:</p>
+<p>You can deploy and upgrade databases to new versions of the App Services framework as they become available.</p>
 </div>
-<table id="table-couchbase-server-version-support" class="tableblock frame-all grid-all stretch">
+<div class="paragraph">
+<p>In general, releases follow this pattern:</p>
+</div>
+<table id="table-app-services-version-support" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -925,22 +926,19 @@ This typically includes the following releases:</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>The versions offered in Capella are supported until they reach the end of maintenance on Capella.
+<p>The App Service framework versions offered in Capella are supported until they reach the end of maintenance.
 This support typically aligns with the full maintenance lifespan of the major or minor version provided by Couchbase.
-See <a href="#server-version-maintenance-support">Couchbase Server Version Maintenance Support</a>.</p>
+(See <a href="#app-services-version-maintenance-support">App Service Version Maintenance Support</a>.)</p>
 </div>
 <div class="paragraph">
-<p>To provide secure and reliable service, databases are deployed on the latest available patch version.
+<p>To provide secure and reliable service, the version of the App Service framework deployed will be the latest available patch version.
 You can expect to be upgraded to the latest patch version shortly after it becomes available on Capella.</p>
 </div>
 <div class="paragraph">
-<p>In addition to Couchbase Server upgrades, Capella may schedule routine maintenance upgrades which do not upgrade the Couchbase Server version, but apply essential updates to the systems your cluster runs on.</p>
-</div>
-<div class="paragraph">
-<p>When maintenance or an upgrade is scheduled, you can choose to upgrade your database at any time before the scheduled date.
-When the scheduled time is reached, the database is automatically upgraded.
+<p>When maintenance or an upgrade is scheduled, you can choose to upgrade your App Service framework at any time before the scheduled date.
+When the scheduled time is reached, the framework is upgraded automatically.
 The notice that Capella aims to provide varies depending on the nature of the upgrade.
-See <a href="#database-upgrade-timeframes">Database Upgrade Timeframes</a>.</p>
+See <a href="#app-services-upgrade-timeframes">App Service Upgrade Timeframes</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -958,12 +956,12 @@ Version availability, upgrade schedules, and timeframes may vary compared to the
 </div>
 </div>
 <div class="sect1">
-<h2 id="server-version-maintenance-support"><a class="anchor" href="#server-version-maintenance-support"></a>Couchbase Server Version Maintenance Support</h2>
+<h2 id="app-services-version-maintenance-support"><a class="anchor" href="#app-services-version-maintenance-support"></a>App Services Version Maintenance Support</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Couchbase versions, release dates, and end of maintenance on Capella is as follows:</p>
 </div>
-<table id="table-couchbase-server-version-maintenance-support" class="tableblock frame-all grid-all stretch">
+<table id="table-app-services-version-maintenance-support" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -978,13 +976,13 @@ Version availability, upgrade schedules, and timeframes may vary compared to the
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Couchbase Server 7.1</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">October 30, 2022</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>App Services 3.0.4</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">October 2022</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TBA</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Couchbase Server 7.0</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">July 30, 2021</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>App Services 3.0.3</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">June 2022</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TBA</p></td>
 </tr>
 </tbody>
@@ -992,12 +990,12 @@ Version availability, upgrade schedules, and timeframes may vary compared to the
 </div>
 </div>
 <div class="sect1">
-<h2 id="database-upgrade-timeframes"><a class="anchor" href="#database-upgrade-timeframes"></a>Database Upgrade Timeframes</h2>
+<h2 id="app-services-upgrade-timeframes"><a class="anchor" href="#app-services-upgrade-timeframes"></a>App Services Upgrade Timeframes</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Within our best practice, we typically provide the notice period described below for the upgrade or maintenance types shown in the following table:</p>
 </div>
-<table id="table-database-upgrade-timeframes" class="tableblock frame-all grid-all stretch">
+<table id="table-app-services-upgrade-timeframes" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -1054,9 +1052,9 @@ A shorter than best practice period might apply depending on particular circumst
 <p>Maintenance job statuses are pending, running, and completed.</p>
 </div>
 <div class="paragraph">
-<p>All upgrades and maintenance patches have a target start time. Capella aims to start the maintenance of your database at this time.
-However, maintenance jobs are sometimes delayed when a database cannot be upgraded.
-For example, when a database is reconfiguring.</p>
+<p>All upgrades and maintenance patches have a target start time. Capella aims to start the maintenance of your App Services at this time.
+However, maintenance jobs are sometimes delayed when the App Services cannot be upgraded.
+For example, when an underlying database is reconfiguring.</p>
 </div>
 <div class="paragraph">
 <p>For each individual maintenance job, you can:</p>
@@ -1091,23 +1089,17 @@ For example, when a database is reconfiguring.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>You can review all scheduled maintenance jobs on the Activity tab that have run on the cluster.
-For more information, see <a href="../../clusters/monitoring/activity-log.html" class="xref page">Activity Log</a>.</p>
-</div>
-<div class="paragraph">
 <p>You can reschedule the target start time for an individual maintenance job or choose to run the maintenance job immediately.
 However, maintenance jobs cannot be deferred indefinitely because each maintenance job has a latest possible upgrade date.</p>
 </div>
 <div class="paragraph">
-<p>When a maintenance job runs, the database is moved to a <code>redeploying</code> state while nodes are rebalanced to apply the maintenance changes.
-Maintenance redeployments are not time-bound, and the time taken varies depending on the size of the database, volume of data, and load.
-Couchbase Capella databases are designed to remain available throughout the upgrade.
-Database reconfiguration options are not available during an upgrade, though data tools remain accessible in the Capella UI.</p>
+<p>When a maintenance job runs, the App Service is moved to a <code>pending</code> state.
+Maintenance redeployments are not time-bound, and the time taken varies depending on the size of framework upgrade.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="accessing-the-app-service-maintenance-schedule"><a class="anchor" href="#accessing-the-app-service-maintenance-schedule"></a>Accessing the App Service Maintenance Schedule</h2>
+<h2 id="accessing-the-app-services-maintenance-schedule"><a class="anchor" href="#accessing-the-app-services-maintenance-schedule"></a>Accessing the App Services Maintenance Schedule</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -1130,29 +1122,12 @@ Database reconfiguration options are not available during an upgrade, though dat
 <p>Select the service you wish to reschedule and click <b class="button">Edit Time</b></p>
 <div id="app-service-maintenace-screen-image" class="imageblock">
 <div class="content">
-<img src="../_images/maintenance/edit-maintenance-schedule.png" alt="Maintenance Screen">
+<img src="../_images/maintenance/edit-time.png" alt="Maintenance Screen" width="400">
 </div>
-<div class="title">Figure 2. Maintenance screen</div>
-</div>
-<div class="paragraph">
-<p>You can adjust the schedule to a new time and date, or you can schedule the upgrade to run immediately.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The <code>Run Now</code> option may be subject to a delay of up to 10 minutes.</p>
+<div class="title">Figure 2. Edit Maintenance date and time</div>
 </div>
 <div class="paragraph">
-<p>If there are other jobs currently running, then the job will be delayed until the others have been completed.</p>
-</div>
-</td>
-</tr>
-</table>
+<p>You can adjust the schedule to a new time and date.</p>
 </div>
 </li>
 </ol>
@@ -1176,7 +1151,7 @@ From here, click the <b class="button">Create Support Ticket</b> button.</p>
 </div>
 <div class="paragraph">
 <p>Fill in as much detail as possible as to the nature of the problem,
-including the name of the project the service is attached to, and the database is using.
+including the name of the project the service is attached to, and the database the service is using.
 If you have any information held in files (service logs, example),
 then drop them into the <code>Choose a File</code> box for uploading.
 When the ticket is filled in, then press the <b class="button">Create Support Ticket</b> button.</p>
