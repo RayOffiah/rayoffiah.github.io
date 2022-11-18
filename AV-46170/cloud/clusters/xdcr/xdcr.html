@@ -142,7 +142,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../clouds/get-capella-host-name.html">Getting the Capella Host Name</a>
+    <a class="menu_title menu_link" href="../../clouds/get-capella-host-name.html">Get the Capella Host Name</a>
   </span>
 </li>
 </ul>
@@ -374,7 +374,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../app-services/deployment/controlling-app-endpoints.html">Controlling App Endpoints</a>
+    <a class="menu_title menu_link" href="../../app-services/deployment/configuring-app-endpoints.html">Configuring App Endpoints</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -873,11 +873,11 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-<em>Cross Data Center Replication</em> (XDCR) allows data to be replicated across clusters that are potentially located in different clouds and different data centers.
+<em>Cross Data Center Replication</em> (XDCR) allows data to be replicated across databases that are potentially located in different clouds and different data centers.
 </blockquote>
 </div>
 <div class="paragraph">
-<p>Cross Data Center Replication (XDCR) can be used to replicate data between clusters.
+<p>Cross Data Center Replication (XDCR) can be used to replicate data between databases.
 XDCR can protect against data-center failure, and also provide high-performance access to data for globally distributed mission-critical applications.
 Replications, once established, continuously replicate data until they are paused or deleted.</p>
 </div>
@@ -887,31 +887,31 @@ Replications, once established, continuously replicate data until they are pause
 <h2 id="replication-sources-and-destinations"><a class="anchor" href="#replication-sources-and-destinations"></a>Replication Sources and Destinations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>XDCR replicates data from a specific bucket on a source cluster to a specific bucket on a destination cluster.
-Data from the source bucket is pushed to the destination bucket using an XDCR agent, running on the source cluster, using the Database Change Protocol.
-Any bucket on a cluster can be specified as a source or a destination for one or more XDCR replications.</p>
+<p>XDCR replicates data from a specific bucket on a source database to a specific bucket on a destination (or <em>target</em>) database.
+Data from the source bucket is pushed to the destination bucket using an XDCR agent, running on the source database, using the <em>Database Change Protocol</em>.
+Any bucket on a database can be specified as a source or a destination for one or more XDCR replications.</p>
 </div>
 <div class="paragraph">
-<p>Replication sources and destinations can be on clusters in an organization.
-The source cluster can be in a different <a href="../../projects/projects.html" class="xref page">project</a> from the destination cluster.
-Source and destination clusters can also be on different <a href="#clouds:clouds.adoc" class="xref unresolved">connected clouds</a>&#8201;&#8212;&#8201;with replications being sent efficiently over your cloud provider&#8217;s regional networks.</p>
+<p>Replication sources and destinations can be on databases in an organization.
+The source database can be in a different <a href="../../projects/projects.html" class="xref page">project</a> from the destination database.
+Source and destination databases can also be on different <a href="#clouds:clouds.adoc" class="xref unresolved">connected clouds</a>&#8201;&#8212;&#8201;with replications being sent efficiently over your cloud provider&#8217;s regional networks.</p>
 </div>
 <div class="sect2">
 <h3 id="about-scopes-and-collections"><a class="anchor" href="#about-scopes-and-collections"></a>About Scopes and Collections</h3>
 <div class="paragraph">
-<p>Those clusters using Couchbase Server 7&#8201;&#8212;&#8201;this includes all clusters hosted on Couchbase&#8217;s Cloud account&#8201;&#8212;&#8201;have the option to replicate data from a specific scope and collection on the source cluster to a specific scope and collection on a destination cluster.
-Scopes and collections that do not exist on a target cluster with the same name as the source will not be replicated.
-The data will instead be added to the target&#8217;s <code>_default</code> scope and collection.</p>
+<p>All Capella databases have the option to replicate data from a specific scope and collection on the source database to a specific scope and collection on a destination database.
+If identically named scopes and collections have been defined on the source and destination, data can optionally be replicated from each scope and collection on the source to to each corresponding, identically named scope and collection on the destination.
+Alternatively, replication can be explicitly configured to occur between differently named scopes and collections.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="intra-cluster-xdcr"><a class="anchor" href="#intra-cluster-xdcr"></a>About <em>Intra</em>-Cluster XDCR</h3>
+<h3 id="intra-cluster-xdcr"><a class="anchor" href="#intra-cluster-xdcr"></a>About <em>Intra</em>-database XDCR</h3>
 <div class="paragraph">
-<p>XDCR is traditionally used for inter-cluster replication: the source bucket and the destination bucket are on different clusters.
-However, Capella also supports <em>intra</em>-cluster XDCR&#8201;&#8212;&#8201;where the source bucket and the destination bucket are on the <em>same</em> cluster.</p>
+<p>XDCR is traditionally used for inter-database replication: the source bucket and the destination bucket are on different databases.
+However, Capella also supports <em>intra</em>-database XDCR&#8201;&#8212;&#8201;where the source bucket and the destination bucket are on the <em>same</em> database.</p>
 </div>
 <div class="paragraph">
-<p>To set up intra-cluster XDCR, you will specify the source cluster as the destination cluster when <a href="#clusters:xdcr/create-replication.adoc" class="xref unresolved">creating a replication</a>.</p>
+<p>To set up intra-database XDCR, you will specify the source database as the destination database when creating a replication.</p>
 </div>
 </div>
 </div>
@@ -921,11 +921,11 @@ However, Capella also supports <em>intra</em>-cluster XDCR&#8201;&#8212;&#8201;w
 <div class="sectionbody">
 <div class="paragraph">
 <p>XDCR only replicates bucket data; it does not replicate indexes.
-You&#8217;ll need to reproduce indexes manually.
-Indexes can only be replicated manually, or by administrator-provided automation: when the definitions are pushed to the destination cluster, the indexes are regenerated there.</p>
+Indexes must be replicated manually, or by administrator-provided automation.
+When the index-definitions are pushed to the destination database, the indexes are regenerated there.</p>
 </div>
 <div class="paragraph">
-<p>When encountered on the source cluster, non-UTF-8 encoded document IDs are automatically filtered out of replication: they are therefore not transferred to the destination cluster. For each such ID, the warning output is written to <code>xdcr_errors.*</code> log files on the source cluster.</p>
+<p>When encountered on the source database, non-UTF-8 encoded document IDs are automatically filtered out of replication: they are therefore not transferred to the destination database. For each such ID, the warning output is written to <code>xdcr_errors.*</code> log files on the source database.</p>
 </div>
 </div>
 </div>
@@ -933,14 +933,14 @@ Indexes can only be replicated manually, or by administrator-provided automation
 <h2 id="xdcr-direction"><a class="anchor" href="#xdcr-direction"></a>Replication Direction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>XDCR can occur between source and destination clusters in either of the following ways:</p>
+<p>XDCR can occur between source and destination databases in either of the following ways:</p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Unidirectional (One Way)</dt>
 <dd>
 <p>The data contained in a specified source bucket is replicated to a specified destination bucket.
-Although the replicated data on the destination cluster could be used for the routine serving of data, it is in fact intended principally as a backup, to support disaster recovery.</p>
+Although the replicated data on the destination database could be used for the routine serving of data, it is in fact intended principally as a backup, to support disaster recovery.</p>
 </dd>
 <dt class="hdlist1">Bidirectional (Two Way)</dt>
 <dd>
@@ -948,15 +948,15 @@ Although the replicated data on the destination cluster could be used for the ro
 This allows both buckets to be used for the serving of data, which may provide faster data access for users and applications in remote geographies.</p>
 <div class="paragraph">
 <p>Technically, XDCR only performs unidirectional replication.
-A bidirectional topology is created by implementing two unidirectional replications, in opposite directions, between two clusters; such that a bucket on each cluster functions as both source and destination.</p>
+A bidirectional topology is created by implementing two unidirectional replications, in opposite directions, between two databases; such that a bucket on each database functions as both source and destination.</p>
 </div>
 </dd>
 </dl>
 </div>
 <div class="paragraph">
-<p>When <a href="manage-xdcr-replications.html#create-replication" class="xref page">creating a replication</a>, you will specify whether to make the replication <em>bidirectional</em>.
-If left unspecified, the replication will be unidirectional from the source bucket to the destination bucket and will appear under the <strong class="ui">Replications</strong> tab of the source cluster.
-If the replication is configured to be bidirectional, the replication will appear under the <strong class="ui">Replications</strong> tab of both the source cluster <em>and</em> the destination cluster.</p>
+<p>When creating a replication, you will specify whether to make the replication <em>bidirectional</em>.
+If left unspecified, the replication will be unidirectional from the source bucket to the destination bucket and will appear under the <strong class="ui">Replication</strong> tab of the source database.
+If the replication is configured to be bidirectional, the replication will appear under the <strong class="ui">Replication</strong> tab of both the source database <em>and</em> the destination database.</p>
 </div>
 <div class="paragraph">
 <p>Learn more about XDCR direction and topology in the <a href="../../../server/current/learn/clusters-and-availability/xdcr-overview.html#xdcr-direction-and-topology" class="xref page">Couchbase Server documentation</a>.</p>
@@ -968,10 +968,10 @@ If the replication is configured to be bidirectional, the replication will appea
 <div class="sectionbody">
 <div class="paragraph">
 <p>XDCR filtering allows specified subsets of documents to be replicated from the source bucket.
-A document can be included in or excluded from, a filtered replication, based on the document&#8217;s fields and values.</p>
+A document can be included in or excluded from a filtered replication, based on the document&#8217;s fields and values.</p>
 </div>
 <div class="paragraph">
-<p>When a replication starts, the cluster examines the specified source bucket, and determines which documents to replicate:</p>
+<p>When a replication starts, the database examines the specified source bucket, and determines which documents to replicate:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -984,28 +984,8 @@ A document can be included in or excluded from, a filtered replication, based on
 </ul>
 </div>
 <div class="paragraph">
-<p>XDCR filters are normally configured when <a href="manage-xdcr-replications.html#create-replication" class="xref page">creating a replication</a>, but can also be specified when modifying an existing replication.</p>
-</div>
-<div class="sect2">
-<h3 id="supported-filters"><a class="anchor" href="#supported-filters"></a>Supported Filters</h3>
-<div class="paragraph">
-<p>Filter match requirements are specified using:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>Regular Expressions</em>.
-These can be used to specify case-sensitive character-matches, and thereby determine whether a field-name or value may entitle a document to be included in a replication.</p>
-</li>
-<li>
-<p><em>Filtering Expressions</em>.
-These allow comparisons and calculations to be made on the fields and values identified using <em>regular</em> expressions: based on the results, a document either is or is not included in a replication.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Learn more about XDCR expressions in the <a href="../../../server/current/learn/clusters-and-availability/xdcr-filtering.html" class="xref page">Couchbase Server documentation</a>.</p>
-</div>
+<p>XDCR filters are configured when creating a replication.
+For more information on filters, see the <a href="../../../server/current/learn/clusters-and-availability/xdcr-filtering.html" class="xref page">Couchbase Server documentation</a>.</p>
 </div>
 </div>
 </div>
@@ -1013,7 +993,7 @@ These allow comparisons and calculations to be made on the fields and values ide
 <h2 id="conflict-resolution"><a class="anchor" href="#conflict-resolution"></a>Conflict Resolution</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In some cases, especially when bi-directionally replicated data is being modified by applications in different locations, <em>conflicts</em> may arise: meaning that the data of one or more documents have been differently modified more or less simultaneously, requiring resolution.
+<p>In some cases, especially when bidirectionally replicated data is being modified by applications in different locations, <em>conflicts</em> may arise: meaning that the data of one or more documents have been differently modified more or less simultaneously, requiring resolution.
 XDCR provides two types of <em>conflict resolution</em>, based on either <em>sequence number</em> or <em>timestamp</em>, whereby conflicted data can be saved consistently on source and target.</p>
 </div>
 <div class="dlist">
@@ -1045,7 +1025,7 @@ Conflict resolution is configured on a per-bucket basis at <a href="../data-serv
 <h2 id="administering-replications"><a class="anchor" href="#administering-replications"></a>Administering Replications</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For information on how to create, manage, and delete replications, refer to <a href="manage-xdcr-replications.html" class="xref page">Manage Replications</a>.</p>
+<p>For information on how to create, observe, pause, and delete replications, refer to <a href="manage-xdcr-replications.html" class="xref page">Manage Replications</a>.</p>
 </div>
 </div>
 </div>

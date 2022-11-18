@@ -10,6 +10,7 @@
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/clusters/index-service/manage-indexes.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="You can perform some index management tasks using the Couchbase Capella UI.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -142,7 +143,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../clouds/get-capella-host-name.html">Getting the Capella Host Name</a>
+    <a class="menu_title menu_link" href="../../clouds/get-capella-host-name.html">Get the Capella Host Name</a>
   </span>
 </li>
 </ul>
@@ -374,7 +375,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../app-services/deployment/controlling-app-endpoints.html">Controlling App Endpoints</a>
+    <a class="menu_title menu_link" href="../../app-services/deployment/configuring-app-endpoints.html">Configuring App Endpoints</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -874,23 +875,14 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-You can perform certain index management tasks through the Couchbase Capella UI.
+You can perform some index management tasks using the Couchbase Capella UI.
 </blockquote>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="accessing-indexes-in-the-couchbase-capella-ui"><a class="anchor" href="#accessing-indexes-in-the-couchbase-capella-ui"></a>Accessing Indexes in the Couchbase Capella UI</h2>
+<h2 id="accessing-indexes-in-the-capella-ui"><a class="anchor" href="#accessing-indexes-in-the-capella-ui"></a>Accessing Indexes in the Capella UI</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>If a cluster is running the <a href="index-service.html" class="xref page">Index Service</a>, indexes can be accessed under the cluster&#8217;s <strong class="ui">Tools &gt; Indexes</strong> tab.
-An index list, showing a summary of all indexes, is displayed in table format.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/cluster-indexes-tab.png" alt="The cluster&#8217;s 'Tools &gt; Indexes' tab.">
-</div>
-</div>
 <div id="permissions-required" class="admonitionblock important">
 <table>
 <tr>
@@ -900,12 +892,12 @@ An index list, showing a summary of all indexes, is displayed in table format.</
 <td class="content">
 <div class="title">Permissions Required</div>
 <div class="paragraph">
-<p>In order to access indexes in the Couchbase Capella UI, the following permissions are required:</p>
+<p>To access indexes in the Couchbase Capella UI, you need the following permissions:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>You must have the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> or <a href="../../projects/project-roles.html#project-cluster-data-reader-writer" class="xref page"><code>Cluster Data/Reader</code></a> role for the project that contains the cluster.</p>
+<p>You need the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> or <a href="../../projects/project-roles.html#project-cluster-data-reader-writer" class="xref page"><code>Database Data Reader/Writer</code></a> role for the project containing the database.</p>
 </li>
 </ul>
 </div>
@@ -913,14 +905,33 @@ An index list, showing a summary of all indexes, is displayed in table format.</
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>To view the Indexes page for a database that&#8217;s running the <a href="index-service.html" class="xref page">Index Service</a>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you&#8217;re working with.</p>
+</li>
+<li>
+<p>With the <strong>Databases</strong> tab open, select your database.</p>
+</li>
+<li>
+<p>Click the <strong>Data Tools</strong> tab.</p>
+</li>
+<li>
+<p>In the navigation menu, click <b class="button">Indexes</b>.</p>
+</li>
+</ol>
+</div>
 <div class="sect2">
 <h3 id="index-summary"><a class="anchor" href="#index-summary"></a>Index Summary</h3>
 <div class="paragraph">
-<p>A cluster&#8217;s <strong class="ui">Tools &gt; Indexes</strong> tab shows a summary of all the indexes on the cluster.
-The summary is displayed in table format, with sortable columns and a row for each index.</p>
+<p>The Indexes page summarizes all indexes on the database in a tabular format.
+It includes sortable columns and a row for each index.</p>
 </div>
 <div class="paragraph">
-<p>The index list displays the following information about each index:</p>
+<p>Each index has the following information:</p>
 </div>
 <div class="dlist">
 <dl>
@@ -930,7 +941,8 @@ The summary is displayed in table format, with sortable columns and a row for ea
 </dd>
 <dt class="hdlist1">Status</dt>
 <dd>
-<p>The current state of the Index Service on the node on which this index is stored: <strong class="ui">ready</strong>, <strong class="ui">pause</strong>, or <strong class="ui">warmup</strong>.</p>
+<p>The current state of the Index Service on the node where this index is stored.
+The possible statuses include <strong>ready</strong>, <strong>pause</strong>, or <strong>warmup</strong>.</p>
 </dd>
 <dt class="hdlist1">Requests/sec</dt>
 <dd>
@@ -942,11 +954,11 @@ The summary is displayed in table format, with sortable columns and a row for ea
 </dd>
 <dt class="hdlist1">Items</dt>
 <dd>
-<p>The number of items currently indexed.</p>
+<p>The number of items indexed.</p>
 </dd>
 <dt class="hdlist1">Data Size</dt>
 <dd>
-<p>The size of indexable data that is maintained for the index or replica.</p>
+<p>The size of indexable data that&#8217;s maintained for the index or replica.</p>
 </dd>
 <dt class="hdlist1">Bucket</dt>
 <dd>
@@ -962,20 +974,8 @@ The summary is displayed in table format, with sortable columns and a row for ea
 </dd>
 </dl>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Scopes and collections information is only available for clusters using Couchbase Server 7.0+.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
-<p>A Trash icon is displayed at the end of each row, which can be used to <a href="#delete-index">drop the index</a>.</p>
+<p>Each index has a Trash icon <span class="icon"><i class="fa fa-trash-alt"></i></span> at the end of its row, which you can use to <a href="#delete-index">drop the associated index</a>.</p>
 </div>
 </div>
 </div>
@@ -984,17 +984,23 @@ Scopes and collections information is only available for clusters using Couchbas
 <h2 id="create-an-index"><a class="anchor" href="#create-an-index"></a>Create an Index</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Indexes are created by means of the N1QL query language.
-The <a href="../query-service/query-workbench.html" class="xref page">Query Workbench</a> can be used to do things like <a href="../../../server/current/n1ql/n1ql-language-reference/createindex.html" class="xref page">create</a>, <a href="../../../server/current/n1ql/n1ql-language-reference/alterindex.html" class="xref page">modify</a>, and <a href="../../../server/current/n1ql/n1ql-language-reference/dropindex.html" class="xref page">drop</a> indexes using N1QL statements.</p>
+<p>Indexes are created using the SQL++ query language.
+The <a href="../query-service/query-workbench.html" class="xref page">Query Workbench</a> can <a href="../../../server/current/n1ql/n1ql-language-reference/createindex.html" class="xref page">create</a>, <a href="../../../server/current/n1ql/n1ql-language-reference/alterindex.html" class="xref page">modify</a>, and <a href="../../../server/current/n1ql/n1ql-language-reference/dropindex.html" class="xref page">drop</a> indexes using SQL++ statements.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="inspect-an-existing-index"><a class="anchor" href="#inspect-an-existing-index"></a>Inspect an Existing Index</h2>
+<h2 id="inspect-an-index"><a class="anchor" href="#inspect-an-index"></a>Inspect an Index</h2>
 <div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>To view the details of an index, select its name on the Indexes page.</p>
 <div class="paragraph">
-<p>To work with an index, begin by finding it in the index summary and clicking on its row.
-This opens the index&#8217;s fly-out menu:</p>
+<p>This action opens the index fly-out menu:</p>
+</div>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1002,56 +1008,37 @@ This opens the index&#8217;s fly-out menu:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>At the top of the fly-out menu, the <strong class="ui">Index Definition</strong> section displays the N1QL statement used to define the index.
+<p>At the top of the fly-out menu is the <strong>Index Definition</strong> section.
+This section displays the SQL++ statement used to define the index.
 Directly below it is a snippet of the information from the <a href="#index-summary">index list</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="open-the-index-definition"><a class="anchor" href="#open-the-index-definition"></a>Open the Index Definition</h3>
-<div class="paragraph">
-<p>Click <b class="button">Open in Workbench</b> to open the index definition in the <a href="../query-service/query-workbench.html" class="xref page">Query Workbench</a>.</p>
-</div>
-<div class="paragraph">
-<p>The index definition is loaded into the <strong class="ui">Query Editor</strong>.
-From here you can modify the index definition as required in order to create a new index.
-(You cannot change the definition of the existing index, but you can create a new index with the modified definition.)</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div class="ulist">
 <ul>
 <li>
-<p><a id="tabset1_couchbase-7-0"></a>Couchbase 7.0+</p>
-</li>
-<li>
-<p><a id="tabset1_couchbase-6-6"></a>Couchbase 6.6</p>
+<p>Click <b class="button">Open in Workbench</b> to open the index definition in the <a href="../query-service/query-workbench.html" class="xref page">Query Workbench</a>.</p>
+<div class="paragraph">
+<p>The index definition is added to the <strong>Query Editor</strong>.</p>
+</div>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_couchbase-7-0">
-<div class="imageblock">
-<div class="content">
-<img src="../_images/query-workbench-CB7-index-definition.png" alt="The Query Workbench for a Couchbase Server 7.0+ cluster showing the index definition displayed in the Query Editor.">
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_couchbase-6-6">
-<div class="imageblock">
-<div class="content">
-<img src="../_images/query-workbench-index-definition.png" alt="The Query Workbench for a Couchbase Server 6.6 cluster showing the index definition displayed in the Query Editor.">
-</div>
-</div>
-</div>
-</div>
-</div>
 <div class="paragraph">
-<p>The defining and editing of indexes is performed by means of the N1QL query language.
-The Query Workbench can be used to do things like <a href="../../../server/current/n1ql/n1ql-language-reference/createindex.html" class="xref page">create</a>, <a href="../../../server/current/n1ql/n1ql-language-reference/alterindex.html" class="xref page">modify</a>, and <a href="../../../server/current/n1ql/n1ql-language-reference/dropindex.html" class="xref page">drop</a> indexes using N1QL statements.</p>
+<p>The defining and editing of indexes is performed using the SQL++ query language.
+Using the <strong>Query Editor</strong>, you can modify the index definition as required to create a new index.
+You can&#8217;t change the definition of the existing index, but you can create a new index with the modified definition and then drop the old index.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/query-workbench-CB7-index-definition.png" alt="The Query Workbench showing the index definition displayed in the Query Editor.">
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="view-index-performance"><a class="anchor" href="#view-index-performance"></a>View Index Performance</h3>
 <div class="paragraph">
-<p>The <strong class="ui">Bucket&#8217;s Index Performance</strong> section displays statistics for the Index Service as a whole, as well as the specific bucket that the current index is defined for.</p>
+<p>The <strong>Bucket&#8217;s Index Performance</strong> section displays statistics for the Index Service and the specific bucket the current index is defined for.</p>
 </div>
 <div class="paragraph">
 <p>The following statistics apply to the Index Service as a whole:</p>
@@ -1105,7 +1092,7 @@ This indicates the percentage of disk space consumed by the indexes, but not uti
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>From the cluster&#8217;s <strong class="ui">Tools &gt; Indexes</strong> tab, find the index you wish to drop and click on the Trash icon at the end of the index&#8217;s row.</p>
+<p>On the Indexes page, find the index you wish to drop and click the Trash icon <span class="icon"><i class="fa fa-trash-alt"></i></span> at the end of its row.</p>
 </li>
 <li>
 <p>When prompted to confirm the deletion, click <b class="button">Confirm</b> to drop the index.</p>
@@ -1119,7 +1106,7 @@ This indicates the percentage of disk space consumed by the indexes, but not uti
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-You can also drop an index using the N1QL <a href="../../../server/current/n1ql/n1ql-language-reference/dropindex.html" class="xref page">DROP INDEX</a> or <a href="../../../server/current/n1ql/n1ql-language-reference/dropprimaryindex.html" class="xref page">DROP PRIMARY INDEX</a> commands.
+You can also drop an index using the SQL++ <a href="../../../server/current/n1ql/n1ql-language-reference/dropindex.html" class="xref page">DROP INDEX</a> or <a href="../../../server/current/n1ql/n1ql-language-reference/dropprimaryindex.html" class="xref page">DROP PRIMARY INDEX</a> commands.
 </td>
 </tr>
 </table>

@@ -142,7 +142,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../clouds/get-capella-host-name.html">Getting the Capella Host Name</a>
+    <a class="menu_title menu_link" href="../../clouds/get-capella-host-name.html">Get the Capella Host Name</a>
   </span>
 </li>
 </ul>
@@ -374,7 +374,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../app-services/deployment/controlling-app-endpoints.html">Controlling App Endpoints</a>
+    <a class="menu_title menu_link" href="../../app-services/deployment/configuring-app-endpoints.html">Configuring App Endpoints</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -875,78 +875,47 @@
 <div class="quoteblock abstract">
 <blockquote>
 Configure XDCR to replicate data between source and destination buckets.
-An XDCR replication allows bucket data to be replicated continuously from a specified bucket on a source cluster to a specified bucket on a target cluster.
+An XDCR replication allows bucket data to be replicated continuously from a specified bucket on a source database to a specified bucket on a target database.
 </blockquote>
 </div>
 <div class="paragraph">
-<p>Use the procedures on this page to create and manage XDCR (Cross Data Center Replication) between Capella clusters.
-For general information on XDCR in Couchbase Capella and how it works, see <a href="xdcr.html" class="xref page">Cross Data Center Replication (XDCR)</a>.</p>
+<p>Use the procedures on this page to create and manage XDCR (Cross Data Center Replication) between Capella databases.
+For general information on XDCR in Capella and how it works, see <a href="xdcr.html" class="xref page">Cross Data Center Replication (XDCR)</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="accessing-replications-in-the-capella-ui"><a class="anchor" href="#accessing-replications-in-the-capella-ui"></a>Accessing Replications in the Capella UI</h2>
+<h2 id="accessing-replications"><a class="anchor" href="#accessing-replications"></a>Accessing Replications</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Replications can be viewed and managed by users with the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role.</p>
-</div>
-<div class="paragraph">
-<p>Replications can be viewed and managed under the <em>source</em> cluster&#8217;s <strong class="ui">Replications</strong> tab.
-A summary of all the replications <em>for which the cluster is the source</em> is displayed in table format.</p>
+<p>Replications, which can be viewed and managed by users with the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role, can be accessed on the <em>source</em> database&#8217;s <strong>Settings</strong> screen, by clicking on the <strong class="ui">Replication</strong> tab, which is located in the navigation panel, at the left.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../_images/cluster-replications-tab.png" alt="A cluster&#8217;s 'Replications' tab showing a table of multiple replications.">
+<img src="../_images/cluster-replication-tab-devexui.png" alt="The 'Replication' tab for a database.">
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Replications for which the cluster is the <em>destination</em> are not displayed unless those replications are <a href="xdcr.html#xdcr-direction" class="xref page">bidirectional</a>.
-Bidirectional replications appear under the <strong class="ui">Replications</strong> tab of both the source and destination clusters since each cluster is the source of one direction of the replication.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>If no replication has yet been set up, a button for starting setup is displayed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/cluster-replication-setup-devexui.png" alt="The 'Setup' button for replications.">
+</div>
+</div>
+<div class="paragraph">
+<p>Note that if replications have already been defined for database, a summary of these is displayed in table format.
+For an example, see <a href="#observing">Observe an Ongoing Replication</a>, below.</p>
 </div>
 <div class="sect2">
 <h3 id="replications-summary"><a class="anchor" href="#replications-summary"></a>Replications Summary</h3>
 <div class="paragraph">
-<p>A cluster&#8217;s <strong class="ui">Replications</strong> tab shows a summary of all the replications for which the cluster is the source.
-The summary is displayed in table format with a row for each replication.</p>
+<p>After the <strong class="ui">Setup Replication</strong> button has been clicked, the <strong class="ui">Setup</strong> screen appears.</p>
 </div>
-<div class="paragraph">
-<p>The replications summary displays the following information about each replication:</p>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/cluster-replication-setup-blank-devexui.png" alt="The 'Setup' screen, for replications.">
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Source Project/Cluster</strong>
-The name of the cluster that is the source of the replication (the current cluster), and the name of the project that contains the cluster.</p>
-</li>
-<li>
-<p><strong>Bucket Mapping</strong>
-The names of the source and destination buckets are displayed, along with arrows indicating the direction of the replication.
-The source bucket is displayed on the left, and the destination bucket is displayed on the right.
-An arrow between the source and target buckets indicates the <a href="xdcr.html#xdcr-direction" class="xref page">direction</a> of the replication.
-A double-headed arrow (&#8592;&#8594;) indicates that the replication is <em>bidirectional</em>.</p>
-</li>
-<li>
-<p><strong>Target Project/Cluster</strong>
-The name of the cluster that is the target of the replication, and the name of the project that contains that cluster.</p>
-</li>
-<li>
-<p><strong>Status</strong>
-The current state of the replication.
-The normal state is <strong class="ui">Active</strong>, which indicates the replication is active and replicating bucket data changes.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>A <strong>More options</strong> (<span class="icon"><i class="fa fa-ellipsis-v"></i></span>) button is displayed at the end of each row, which is used to access commands that <a href="#pause-replication">pause</a>, <a href="#resume-replication">resume</a> and <a href="#delete-replication">delete</a> the replication.</p>
 </div>
 </div>
 </div>
@@ -983,268 +952,302 @@ Each replication targets a bucket on a different cluster, known as the <em>desti
 <li>
 <p>Capella Hosted (GCP) &#8592;&#8594; Capella Hosted (GCP)</p>
 </li>
+<li>
+<p>Own Cloud (GCP) &#8594; Capella Hosted (GCP)</p>
+</li>
 </ul>
 </div>
 </td>
 </tr>
 </table>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-The source and destination buckets must have the same <a href="xdcr.html#conflict-resolution" class="xref page">conflict resolution method</a> configured.
-If the buckets use different conflict resolution methods, then the replication will fail to be created.
-</td>
-</tr>
-</table>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_couchbase-7-0"></a>Couchbase 7.0+</p>
-</li>
-<li>
-<p><a id="tabset1_vpn-accessed-cluster"></a>VPN-Accessed Cluster</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_couchbase-7-0">
 <div class="paragraph">
-<p>To create a replication using clusters hosted by Couchbase Capella:</p>
+<p>Note that source and destination buckets must have the same <a href="xdcr.html#conflict-resolution" class="xref page">conflict resolution method</a> configured.
+If the buckets use different conflict resolution methods, then the replication will fail to be created.</p>
+</div>
+<div class="paragraph">
+<p>A replication can be created from one Capella database to any other.
+This is described immediately below, in <a href="#between-capella-dbs">Create a Replication Between Capella Databases</a>.</p>
+</div>
+<div class="paragraph">
+<p>A replication can also be created from an <em>on-premises</em> database to a Capella database: this procedure is described below, in <a href="#from-on-prem-to-capella">Create a Replication to Capella from a VPN-Accessed Cluster</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="between-capella-dbs"><a class="anchor" href="#between-capella-dbs"></a>Create a Replication Between Capella Databases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To create a replication using Capella databases, proceed as follows:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to the <em>source</em> cluster&#8217;s <strong class="ui">Replications</strong> tab.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Go to the <strong class="ui">Clusters</strong> tab in the main navigation.</p>
+<p>Go to <strong class="ui">Select Direction of Replication</strong>.
+Choose to create a <strong class="ui">One-way</strong> or a <strong class="ui">Two-way</strong> replication, by selecting the appropriate option.
+A <em>one-way</em> replication replicates data only from the source to the target.
+A <em>two-way</em> replication replicates data both from the source to the target, and from the target to the source.
+For example, to define a <em>one-way</em> replication, select <strong class="uk">One-way</strong>:</p>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/cluster-replication-direction-selection-devexui.png" alt="Setting up the direction of a replication." width="400">
+</div>
+</div>
 </li>
 <li>
-<p>Find and click on the cluster that is to be the source of the replication.</p>
+<p>Go to <strong class="ui">Select Database</strong>.
+The source database is already determined by the database on which you are currently configuring the replication.
+The target database must be selected from the <strong class="ui">Target Database</strong> menu.</p>
+</li>
+<li>
+<p>Go to <strong class="ui">Select Bucket</strong>.
+Each replication proceeds from a source bucket to a target bucket.
+Select these buckets from the <strong class="ui">Source Bucket</strong> and <strong class="ui">Target Bucket</strong> menus.</p>
 <div class="paragraph">
-<p>This opens the cluster with its <strong class="ui">Metrics</strong> tab selected.</p>
+<p>For example, if the source database and bucket are respectively named <code>test-db</code> and <code>travel-sample</code>, and the target database and bucket are named  <code>test-db-2</code> and <code>travel-sample-backup</code>, the UI should be configured to appear as follows:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/cluster-replication-db-and-bucket-selection-devexui.png" alt="Establishing source and target for replication." width="400">
+</div>
 </div>
 </li>
 <li>
-<p>Click the <strong class="ui">Replications</strong> tab.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Click <b class="button">Setup Replication</b> or, if replications are already configured, click <b class="button">Setup Replication</b>.</p>
+<p>Go to <strong class="ui">Filter Documents</strong>.
+To apply a filter to the replication, select <strong class="ui">Yes</strong>.
+This displays an interactive field into which the filter expression can be entered.</p>
 <div class="paragraph">
-<p>This opens the <strong class="ui">Setup Replication</strong> fly-out menu.</p>
+<p>To ensure that only documents that contain the value <code>United States</code> for the key <code>country</code>, and the value <code>MILE-AIR</code> for the key <code>callsign</code>, enter the expression <code>REGEXP_CONTAINS(country, "United States") AND callsign = "MILE-AIR"</code>.
+For example:</p>
 </div>
-</li>
-<li>
-<p>(Optional) Make the replication <em>bidirectional</em>.</p>
-<div class="paragraph">
-<p>In the Direction section, you can toggle between <strong>One Way</strong> (unidirectional) and <strong>Two Way</strong> (bidirectional) replication between the source and the target.
-By default, One Way is selected but choosing Two Way means that the source and target will each be configured with a unidirectional replication to each other.
-Refer to <a href="xdcr.html#xdcr-direction" class="xref page">Replication Direction</a> for more information.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/cluster-replication-filter-devxui.png" alt="Establishing a filter for replication." width="400">
 </div>
-</li>
-<li>
-<p>Select the target cluster.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Click the <strong class="ui">Target</strong> drop-down menu and select the cluster that contains the destination bucket that you wish to replicate data to.</p>
-<div class="paragraph">
-<p>Any cluster that is contained within a project in which you have the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role is available for selection.
-The current cluster is also available for selection to set up <a href="xdcr.html#intra-cluster-xdcr" class="xref page">intra-cluster XDCR</a>.</p>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Select the source bucket.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Click the <strong class="ui">Source</strong> drop-down menu and select the source bucket for the replication.</p>
-<div class="paragraph">
-<p>All of the buckets on the current cluster are available for selection.
-The bucket you select will be the bucket <em>from</em> which data is replicated.</p>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Select a target bucket.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Click the <strong class="ui">Target</strong> drop-down menu and select the destination bucket for the replication.</p>
-<div class="paragraph">
-<p>All of the buckets on the destination cluster are available for selection.
-The bucket you select will be the bucket <em>to</em> which data is replicated.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The destination bucket must be configured with the same <a href="xdcr.html#conflict-resolution" class="xref page">conflict resolution method</a> as the source bucket, otherwise the replication will fail to be created.
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Click <b class="button">Next</b>.</p>
-</li>
-<li>
-<p>(Optional) Specify scope and collection to replicate.</p>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-Scopes and collections that do not exist on a target cluster with the same names, will not be replicated.
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
-<p>You can specify a specific scope and collection within the source bucket that you want to replicate, as well as the desired target scope and collection.</p>
-</div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Near the top of the fly-out, click to change the <strong>Replicate all scopes and collections in source bucket</strong> toggle to <strong>No</strong>.</p>
-</li>
-<li>
-<p>Using the <strong>Source</strong> drop-down menu, choose the scope and collection within the source bucket that you want to replicate.</p>
-</li>
-<li>
-<p>Using the <strong>Target</strong> drop-down menu, choose the desired target scope and collection.</p>
-</li>
-</ol>
+<p>Note that the expression must contain at least <em>two</em> keys.
+An error-notification appears on the console, if the expression is in any way invalid.</p>
 </div>
 </li>
 <li>
-<p>Click <b class="button">Next</b></p>
+<p>Go to <strong class="ui">Select Priority of Replication</strong>.
+Select <strong>High</strong>, <strong>Medium</strong>, or <strong>Low</strong>.
+The meaning of each option is described in the UI.
+Note that a setting only takes effect if there are multiple replications with different priorities.</p>
 </li>
 <li>
-<p>(Optional) Add a filter expression.</p>
-<div class="paragraph">
-<p>A <a href="xdcr.html#xdcr-advanced-filtering" class="xref page">filter expression</a> allows a limited subset of documents to be replicated from the source bucket.</p>
+<p>Go to <strong class="ui">Set Network Usage Limit</strong>.
+This option allows an upper limit for network usage to be established.
+To establish an upper limit, select <strong class="ui">Enable</strong>. This displays an interactive field, into which the limit, in MiB per second, should be entered:</p>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/cluster-replication-network-usage-devexui.png" alt="Establishing a network-usage limit for replication." width="400">
+</div>
 </div>
 <div class="paragraph">
-<p>To add a filter expression:</p>
+<p>Note that an established limit applies to all replications for the entire database.
+If no limit need be established, select <strong class="ui">Disable</strong>.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Near the top of the fly-out, click to change the <strong>Filter documents to replicate</strong> toggle to <strong>Yes</strong>.</p>
 </li>
 <li>
-<p>Enter the expression in the <strong class="ui">Filter documents to replicate</strong> field.</p>
+<p>Go to <strong class="ui">Replicate All Scopes and Collections</strong>.
+If the replication is intended to replicate to the target <em>all</em> scopes and collections that have been defined on the source, allow the default <strong>Yes</strong> setting to remain.
+Note that for scopes and collections to be replicated in this way, each scope and collection must already exist with the same name on source and target.</p>
 <div class="paragraph">
-<p>A filter expression can be formatted as either a <a href="../../../server/current/xdcr-reference/xdcr-regular-expressions.html" class="xref page">regular expression (regex)</a> or an <a href="../../../server/current/xdcr-reference/xdcr-filtering-expressions.html" class="xref page">XDCR filtering expression</a>.</p>
+<p>If the replication is intended to replicate documents to a differently named combination of scope and collection on the target, the target scope and collection can be individually specified.
+To do this, select the <strong>No</strong> setting.
+The UI now presents an interactive <strong class="ui">Add Scope and Collection</strong> tab.
+When this is clicked on, the UI expands as follows:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/cluster-replication-target-scope-collection-setting-devexui.png" alt="Establishing a target scope and collection for replication." width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Two interactive fields are now displayed, allowing a scope and collection to be specified for both source and target.
+When clicked with the mouse, each field presents a menu, from which selections can be made.
+The first selection is for a scope.
+For example, the scope on the source can be selected as follows:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/cluster-replication-select-scope-devexui.png" alt="Establishing a source scope for replication." width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>After a scope has been selected, a further menu allows selection of a collection within the selected scope.
+For example:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/cluster-replication-select-collection-devexui.png" alt="Establishing a source collection for replication." width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Once appropriate selections have been made for source and target, the <strong>Replication All Scopes and Collections</strong> UI might appear as follows:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/cluster-replication-scopes-and-collections-devexui.png" alt="Source and target scopes and collections, for replication." width="400">
+</div>
+</div>
+</li>
+<li>
+<p>Click on the <strong class="ui">Setup Replication</strong> button, at the bottom of the screen, to start the replication:</p>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/cluster-replication-start-setup-button-devexui.png" alt="Start replication." width="200">
+</div>
 </div>
 </li>
 </ol>
 </div>
-</li>
-<li>
-<p>Click <b class="button">Next</b></p>
-</li>
-<li>
-<p>Specify the priority of replication.</p>
 <div class="paragraph">
-<p>Each replication can be prioritized against other ongoing replications.</p>
+<p>Notifications now appear, explaining the some time must now elapse, to allow setup to be performed.
+Once setup is complete, details of the new, ongoing replication are displayed in the UI.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Click the tile with the level of priority that you want to be applied to this replication.</p>
+</div>
+</div>
+<div class="sect1">
+<h2 id="observing"><a class="anchor" href="#observing"></a>Observe an Ongoing Replication</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>There are three options:</p>
+<p>Once one or more replications are underway, these are displayed on the <strong class="ui">Replications</strong> screen.
+For example:</p>
 </div>
-<div class="ulist">
-<ul>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/cluster-replication-ongoing-devexui.png" alt="The 'Replications' screen, showing an ongoing replication.">
+</div>
+</div>
+<div class="paragraph">
+<p>The process for defining an additional replication can be started by clicking the <strong class="ui">Setup Replication</strong> button.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pause-resume-replication"><a class="anchor" href="#pause-resume-replication"></a>Pause and Resume a Replication</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Pausing an XDCR replication temporarily suspends the replication of data from the source to the target.
+Pausing a replication always occurs on the source cluster.
+Subsequent to being paused, a replication can be resumed.</p>
+</div>
+<div class="paragraph">
+<p>To pause a replication, you must have the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role for the project that contains the <em>source</em> cluster.
+Note that when pausing a bidirectional replication, only the replication <em>from</em> the current cluster will be paused.
+To pause both directions of a bidirectional replication, you will need to pause the replication on both clusters individually.</p>
+</div>
+<div class="paragraph">
+<p>Proceed as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p><strong>High</strong>&#8201;&#8212;&#8201;No resource constraints are applied.</p>
+<p>On the <strong class="ui">Replications</strong> screen, identify the ongoing replication that you wish to pause.</p>
 </li>
 <li>
-<p><strong>Medium</strong> (Default)&#8201;&#8212;&#8201;Resource constraints are applied against the initial replication process only when needed.</p>
+<p>Click on the name of the source bucket for the replication.
+A summary of the replication is now displayed.
+For example:</p>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/cluster-replications-pause-devexui.png" alt="Summary of ongoing replication.">
+</div>
+</div>
 </li>
 <li>
-<p><strong>Low</strong>&#8201;&#8212;&#8201;Resource constraints are applied if there are other high-priority replications.</p>
-</li>
-</ul>
+<p>Locate the <strong class="ui">Pause</strong> button at the upper right.
+To pause the replication, click on the <strong class="ui">Pause</strong> button.</p>
+<div class="paragraph">
+<p>The replication is now paused.
+This is reflected in the upper area of the screen, which appears as follows:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/cluster-replication-paused-devexui.png" alt="Summary of paused replication.">
+</div>
 </div>
 </li>
 </ol>
 </div>
-</li>
-<li>
-<p>(Optional) Specify a network usage limit.</p>
 <div class="paragraph">
-<p>When enabled, this option allows you to set an upper limit for network usage during replication.</p>
+<p>Note that the button previously labeled <strong class="ui">Pause</strong> is now labeled <strong class="ui">Resume</strong>.
+To resume the replication, click the <strong class="ui">Resume</strong> button.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
+</div>
+</div>
+<div class="sect1">
+<h2 id="modify-a-replication"><a class="anchor" href="#modify-a-replication"></a>Modify a Replication</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Replications cannot be modified after creation.
+Desired modifications must be configured for an <em>entirely new replication</em>: with the old replication being deleted, if appropriate.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="delete-replication"><a class="anchor" href="#delete-replication"></a>Delete a Replication</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Deleting an XDCR replication stops the replication of data, and removes the defined replication from the cluster.
+Any replicated data will not be deleted.</p>
+</div>
+<div class="paragraph">
+<p>To delete a replication, you must have the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role for the projects that contain both the source <em>and</em> destination clusters.
+Note that if the replication is bidirectional, when the replication is deleted on the source, <em>both</em> directions of the replication are thereby deleted, and are removed from the <strong class="ui">Replications</strong> tab of both clusters.</p>
+</div>
+<div class="paragraph">
+<p>Proceed as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Click the <strong>Network Usage Limit</strong> toggle to switch it to <strong>Enable</strong>.</p>
+<p>On the <strong class="ui">Replications</strong> screen, identify the ongoing replication that you wish to delete.</p>
 </li>
 <li>
-<p>Using the provided field, specify the upper limit in MiB per second.</p>
+<p>Click on the name of the source bucket for the replication.
+A summary of the replication is now displayed.
+For example:</p>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/cluster-replications-pause-devexui.png" alt="Summary of ongoing replication.">
+</div>
+</div>
+</li>
+<li>
+<p>Locate the <strong class="ui">Delete</strong> button at the upper right.
+To delete the replication, click on the <strong class="ui">Delete</strong> button.</p>
 <div class="paragraph">
-<p>Note that this limit applies only to mutations and not other XDCR communications.</p>
+<p>A dialog appears, requesting confirmation:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/cluster-replications-delete-dialog-devexui.png" alt="Dialog to confirm deletion of replication." width="360">
+</div>
+</div>
+<div class="paragraph">
+<p>To confirm, enter the word <code>delete</code> into the interactive field.
+Then click on <strong class="ui">Delete Replication</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The replication is now deleted, and is removed from the list of ongoing replications.</p>
 </div>
 </li>
 </ol>
 </div>
-</li>
-<li>
-<p>Once you&#8217;re satisfied with the configuration, click <b class="button">Setup Replication</b>.</p>
-<div class="paragraph">
-<p>The fly-out will close and the replication will appear in the summary table with the <strong>Pending</strong> status.
-Once the status of the replication changes to <strong class="ui">Active</strong>, data will immediately start replicating from the source bucket to the destination bucket.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-When creating replication between clusters, it may take a minute or two for the process to complete.
-</td>
-</tr>
-</table>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_vpn-accessed-cluster">
+<div class="sect1">
+<h2 id="from-on-prem-to-capella"><a class="anchor" href="#from-on-prem-to-capella"></a>Create a Replication to Capella from a VPN-Accessed Cluster</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>You may have a cluster that you access through a VPN, such as an on-premises cluster behind a company firewall.</p>
 </div>
 <div class="paragraph">
-<p>To set up XDCR from the on-premises cluster, first follow these steps, then review the <strong>Connected Cluster</strong> tab of the <a href="#create-replication">Create a Replication section, above</a>, from <em>Step 3</em>, to see the last step here in more depth.</p>
+<p>To set up XDCR from the on-premises cluster, follow these steps.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1252,7 +1255,7 @@ When creating replication between clusters, it may take a minute or two for the 
 <p>Add a Database User in your Cloud Cluster.</p>
 <div class="imageblock">
 <div class="content">
-<img src="../_images/add-user.png" alt="Adding a user in the UI." width="400">
+<img src="../_images/add-user.png" alt="Adding a user in the UI." width="500">
 </div>
 </div>
 </li>
@@ -1283,7 +1286,7 @@ When creating replication between clusters, it may take a minute or two for the 
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../_images/allowlist.png" alt="Adding an IP to the Allowlist.">
+<img src="../_images/allowlist.png" alt="Adding an IP to the Allowlist." width="700">
 </div>
 </div>
 </li>
@@ -1301,7 +1304,7 @@ When creating replication between clusters, it may take a minute or two for the 
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../_images/wan.png" alt="WAN from Cluster &#8594; Connect screen">
+<img src="../_images/wan.png" alt="WAN from Cluster &#8594; Connect screen" width="700">
 </div>
 </div>
 </li>
@@ -1425,236 +1428,6 @@ When setting up a XDCR remote reference from your on-premise cluster Web Console
 <div class="content">
 <img src="../_images/xdcr-setup-complete.png" alt="XDCR setup completed.">
 </div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="pause-replication"><a class="anchor" href="#pause-replication"></a>Pause a Replication</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Pausing an XDCR replication temporarily suspends the replication of data from the source bucket to the target.
-Pausing a replication always occurs on the source cluster.</p>
-</div>
-<div class="paragraph">
-<p>To pause a replication, you must have the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role for the project that contains the <em>source</em> cluster.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-When pausing a bidirectional replication, only the replication <em>from</em> the current cluster will be paused.
-To pause both directions of a bidirectional replication, you will need to pause the replication on both clusters individually.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Go to the <em>source</em> cluster&#8217;s <strong class="ui">Replications</strong> tab.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Go to the <strong class="ui">Clusters</strong> tab in the main navigation.</p>
-</li>
-<li>
-<p>Find and click on the cluster that is the source of the replication that you wish to pause.</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>This opens the cluster with its <strong class="ui">Metrics</strong> tab selected.</p>
-</div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Click the <strong class="ui">Replications</strong> tab.</p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Find the replication that you wish to pause, and click the <strong>More options</strong> button (<span class="icon"><i class="fa fa-ellipsis-v"></i></span>) at the end of its row on the right side.</p>
-</li>
-<li>
-<p>In the provided menu, click the <strong>Pause</strong> option.</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>The <strong class="ui">Status</strong> field will indicate <strong>Pausing</strong> before eventually entering a <strong class="ui">Paused</strong> state.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-When you click on an active replication, the <strong>XDCR Replication</strong> fly-out will be shown and provide a <strong>Pause</strong> button.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="resume-replication"><a class="anchor" href="#resume-replication"></a>Resume a Replication</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>After an XDCR replication has been <a href="#pause-replication">paused</a>, resuming it restarts the replication of data from the source bucket to the target.</p>
-</div>
-<div class="paragraph">
-<p>To resume a replication, you must have the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role for the project that contains the <em>source</em> cluster of the paused replication.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Go to the <em>source</em> cluster&#8217;s <strong class="ui">Replications</strong> tab.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Go to the <strong class="ui">Clusters</strong> tab in the main navigation.</p>
-</li>
-<li>
-<p>Find and click on the cluster that is the source of the paused replication.</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>This opens the cluster with its <strong class="ui">Metrics</strong> tab selected.</p>
-</div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Click the <strong class="ui">Replications</strong> tab.</p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Find the paused replication that you wish to resume, and click the <strong>More options</strong> button (<span class="icon"><i class="fa fa-ellipsis-v"></i></span>) at the end of its row on the right side.</p>
-</li>
-<li>
-<p>In the provided menu, click the <strong>Resume</strong> option.</p>
-<div class="paragraph">
-<p>Once the status of the replication changes to <strong class="ui">Active</strong>, data replication resumes from the source bucket to the destination bucket.</p>
-</div>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-When you click on an active replication, the <strong>XDCR Replication</strong> fly-out will be shown and provide a <strong>Resume</strong> button.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="modify-a-replication"><a class="anchor" href="#modify-a-replication"></a>Modify a Replication</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Replications cannot be modified after creation.
-To make changes to a replication&#8201;&#8212;&#8201;for example, to add a filter&#8201;&#8212;&#8201;you will need to <a href="#create-replication">create a new replication</a> with the desired configuration (and <a href="#delete-replication">delete the old replication</a>, if desired).</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="delete-replication"><a class="anchor" href="#delete-replication"></a>Delete a Replication</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Deleting an XDCR replication stops the replication of data, and removes the defined replication from the cluster.
-Any replicated data will not be deleted.</p>
-</div>
-<div class="paragraph">
-<p>To delete a replication, you must have the <a href="../../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role for the projects that contain both the source <em>and</em> destination clusters.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the replication is bidirectional, both directions of the replication are deleted and duly removed from the <strong class="ui">Replications</strong> tab of both clusters.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Go to the <em>source</em> cluster&#8217;s <strong class="ui">Replications</strong> tab.
-(If the replication is bidirectional, you can go to the <strong class="ui">Replications</strong> tab of either cluster.)</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Go to the <strong class="ui">Clusters</strong> tab in the main navigation.</p>
-</li>
-<li>
-<p>Find and click on the cluster that is the <em>source</em> of the replication that you wish to delete.</p>
-<div class="paragraph">
-<p>This opens the cluster with its <strong class="ui">Metrics</strong> tab selected.</p>
-</div>
-</li>
-<li>
-<p>Click the <strong class="ui">Replications</strong> tab.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Find the paused replication that you wish to delete, and click the <strong>More options</strong> button (<span class="icon"><i class="fa fa-ellipsis-v"></i></span>) at the end of its row on the right side.</p>
-</li>
-<li>
-<p>In the provided menu, click the <strong>Delete</strong> option.</p>
-<div class="paragraph">
-<p>This opens the <strong class="ui">Delete Replication</strong> fly-out menu.</p>
-</div>
-</li>
-<li>
-<p>Type <code>delete</code> into the provided field to confirm you want to delete this replication.</p>
-</li>
-<li>
-<p>Click <b class="button">Delete</b>.</p>
-<div class="paragraph">
-<p>The replication is deleted, and any new changes in the source bucket are no longer replicated to the destination bucket.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-When you click a replication, the <strong>XDCR Replication</strong> fly-out will be shown and provide a Trash icon <span class="icon"><i class="fa fa-trash-alt"></i></span> that will allow you to delete the current replication.
-</td>
-</tr>
-</table>
 </div>
 </li>
 </ol>

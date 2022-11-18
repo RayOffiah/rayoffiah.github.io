@@ -142,7 +142,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../clouds/get-capella-host-name.html">Getting the Capella Host Name</a>
+    <a class="menu_title menu_link" href="../../clouds/get-capella-host-name.html">Get the Capella Host Name</a>
   </span>
 </li>
 </ul>
@@ -374,7 +374,7 @@
 </li>
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../../app-services/deployment/controlling-app-endpoints.html">Controlling App Endpoints</a>
+    <a class="menu_title menu_link" href="../../app-services/deployment/configuring-app-endpoints.html">Configuring App Endpoints</a>
   </span>
 </li>
 <li class="menu_list" data-depth="2">
@@ -874,11 +874,11 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-The Couchbase Capella UI provides a document editor that you can use to view and edit documents.
+The Couchbase Capella UI provides the Documents tool that you can use to view and edit documents.
 </blockquote>
 </div>
 <div class="paragraph">
-<p>This page describes how you can interact with and manage documents in a Couchbase cluster using the Capella UI.</p>
+<p>This page describes how you can interact with and manage documents in a Couchbase database using the Documents tool in the Capella UI.</p>
 </div>
 <div id="permissions-required" class="admonitionblock important">
 <table>
@@ -894,10 +894,10 @@ The Couchbase Capella UI provides a document editor that you can use to view and
 <div class="ulist">
 <ul>
 <li>
-<p>To <em>view</em> the documents within a cluster, you must have the <a href="../../projects/project-roles.html#project-cluster-data-reader" class="xref page"><code><strong>Cluster Data Reader</strong></code></a> project role for the project containing the cluster.</p>
+<p>To <em>view</em> the documents within a database, you must have the <a href="../../projects/project-roles.html#project-cluster-data-reader" class="xref page"><code><strong>Database Data Reader</strong></code></a> project role for the project containing the database.</p>
 </li>
 <li>
-<p>To <em>view</em>, <em>add</em>, <em>edit</em>, and <em>delete</em> documents in a cluster, you must have the <a href="../../projects/project-roles.html#project-cluster-data-reader-writer" class="xref page"><code><strong>Cluster Data Reader/Writer</strong></code></a> project role for the project containing the cluster.</p>
+<p>To <em>view</em>, <em>add</em>, <em>edit</em>, and <em>delete</em> documents in a database, you must have the <a href="../../projects/project-roles.html#project-cluster-data-reader-writer" class="xref page"><code><strong>Database Data Reader/Writer</strong></code></a> project role for the project containing the database.</p>
 </li>
 </ul>
 </div>
@@ -911,67 +911,50 @@ The Couchbase Capella UI provides a document editor that you can use to view and
 <h2 id="accessing-documents-in-the-capella-ui"><a class="anchor" href="#accessing-documents-in-the-capella-ui"></a>Accessing Documents in the Capella UI</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Documents can be viewed and managed under each cluster&#8217;s <strong>Tools &gt; Documents</strong> tab.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/cluster-documents-tab.png" alt="A cluster&#8217;s 'Tools &gt; Documents' tab, showing a table of document results from the 'beer-sample' bucket.">
-</div>
+<p>You can use the <strong>Documents</strong> tool to view and manage documents in a database.
+Open the <strong>Documents</strong> tool by opening a database and clicking <span class="menuseq"><b class="menu">Data Tools</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Documents</b></span>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="retrieve-documents"><a class="anchor" href="#retrieve-documents"></a>Retrieve Documents</h2>
 <div class="sectionbody">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_couchbase-7-0"></a>Couchbase 7.0+</p>
-</li>
-<li>
-<p><a id="tabset1_couchbase-6-6"></a>Couchbase 6.6</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_couchbase-7-0">
 <div class="paragraph">
-<p>The <strong>Tools &gt; Documents</strong> tab allows you to retrieve and view the individual documents contained within a bucket, scope, or collection on the cluster.
+<p>You can use the <strong>Documents</strong> tool to retrieve and view the individual documents contained within a bucket, scope, or collection on the database.
 The retrieved documents are summarized in a table format, with a row for each retrieved document.
-Document retrieval controls at the top of the summary control which documents are retrieved and displayed.</p>
+Document retrieval controls at the top of the summary control the retrieval and display of documents.</p>
 </div>
 <div class="paragraph">
-<p>The following controls are available:</p>
+<p>The <strong>Documents</strong> tool has the following controls:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><strong>Bucket</strong>: A drop-down menu that displays the name of the bucket whose documents are shown.
-You can use the drop-down menu to select from a list of buckets in the current cluster.</p>
+You can use the drop-down menu to select from a list of buckets in the current database.</p>
 </li>
 <li>
-<p><strong>Scope</strong>: A drop-down menu that displays the name of the scope whose documents are currently shown.
-The <code>_default</code> scope is selected by default.
+<p><strong>Scope</strong>: A drop-down menu that displays the name of the scope whose documents are shown.
+The <code>_default</code> scope is the default.
 You can use the drop-down menu to select from a list of all the scopes within the current bucket.</p>
 </li>
 <li>
-<p><strong>Collection</strong>: A drop-down menu that displays the name of the collection whose documents are currently shown.
-The <code>_default</code> collection is selected by default.
+<p><strong>Collection</strong>: A drop-down menu that displays the name of the collection whose documents are shown.
+The <code>_default</code> collection is the default.
 You can use the drop-down menu to select from a list of all the collections within the current scope.</p>
 </li>
 <li>
-<p><strong>Limit</strong>: The maximum number of rows (documents) to retrieve and display at once.</p>
+<p><strong>Limit</strong>: The maximum number of rows&#8212;&#8203;documents&#8212;&#8203;to retrieve and display at once.</p>
 </li>
 <li>
-<p><strong>Offset</strong>: The number of documents in the entire set of the current bucket that should be skipped, before display begins.</p>
+<p><strong>Offset</strong>: The number of documents in the entire set of the current bucket that is skipped, before display begins.</p>
 </li>
 <li>
 <p><strong>Document ID</strong>: Accepts the ID of a specific document.
 Leave this field blank to retrieve documents based on <strong>Limit</strong> and <strong>Offset</strong>.</p>
 </li>
 <li>
-<p><strong>N1QL WHERE</strong>: Accepts a N1QL query — specifically a WHERE clause — which determines the subset of documents to be displayed.</p>
+<p><strong>N1QL WHERE</strong>: Accepts a N1QL query-—a WHERE clause-—which determines the subset of documents to show.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -979,7 +962,7 @@ Leave this field blank to retrieve documents based on <strong>Limit</strong> and
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This field is only enabled if the <a href="../query-service/query-service.html" class="xref page">Query Service</a> is running on the cluster.
+This field is enabled if the <a href="../query-service/query-service.html" class="xref page">Query Service</a> is running on the database.
 </td>
 </tr>
 </table>
@@ -992,52 +975,6 @@ This field is only enabled if the <a href="../query-service/query-service.html" 
 After using the <strong>Limit</strong>, <strong>Offset</strong>, <strong>Document ID</strong>, or <strong>N1QL WHERE</strong> controls, you must click <b class="button">Retrieve Docs</b> to retrieve a new set of documents based on your new configuration.</p>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_couchbase-6-6">
-<div class="paragraph">
-<p>The <strong>Tools &gt; Documents</strong> tab allows you to retrieve and view the individual documents that are contained within a bucket on the cluster.
-The retrieved documents are summarized in a table format, with a row for each retrieved document.
-Document retrieval controls are provided at the top of the summary, which you can use to control which documents are retrieved and displayed in the summary.</p>
-</div>
-<div class="paragraph">
-<p>The following controls are available:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Bucket</strong>: A drop-down menu that displays the name of the bucket whose documents are currently being viewed.
-You can use the drop-down menu to select from a list of buckets in the current cluster.</p>
-</li>
-<li>
-<p><strong>Limit</strong>: The maximum number of rows (documents) to retrieve and display at once.</p>
-</li>
-<li>
-<p><strong>Offset</strong>: The number of documents in the entire set of the current bucket that should be skipped, before display begins.</p>
-</li>
-<li>
-<p><strong>Document ID</strong>: Accepts the ID of a specific document.
-Leave this field blank to retrieve documents based on <strong>Limit</strong> and <strong>Offset</strong>.</p>
-</li>
-<li>
-<p><strong>N1QL WHERE</strong>: Accepts a N1QL query — specifically a WHERE clause — which determines the subset of documents to be displayed.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This field is only enabled if the <a href="../query-service/query-service.html" class="xref page">Query Service</a> is running on the cluster.
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="sect1">
 <h2 id="view-and-edit-existing-documents"><a class="anchor" href="#view-and-edit-existing-documents"></a>View and Edit Existing Documents</h2>
@@ -1047,14 +984,14 @@ This field is only enabled if the <a href="../query-service/query-service.html" 
 This fly-out menu allows you to view and edit the document directly.</p>
 </div>
 <div class="paragraph">
-<p>The document displays in the <strong>JSON</strong> tab and consists of a series of <em>key-value</em> pairs (or, as they are sometimes expressed, <em>name-value</em> pairs).
+<p>The document displays in the <strong>JSON</strong> tab and consists of a series of key-value pairs&#8212;&#8203;which are sometimes expressed as name-value pairs.
 You can make modifications to key-values in the <strong>JSON</strong> editor.
 Click <b class="button">Save</b> to save your changes.</p>
 </div>
 <div class="paragraph">
-<p>You can view the document&#8217;s <em>metadata</em> by clicking on the <strong>Meta</strong> tab.
-Couchbase generates metadata in association with each document when the document is saved, so you can’t edit it directly.
-(Read more about <a href="../../../server/current/learn/data/data.html#metadata" class="xref page">document metadata</a>.)</p>
+<p>You can view the document&#8217;s metadata by clicking on the <strong>Meta</strong> tab.
+It&#8217;s not possible to edit a document&#8217;s metadata as Couchbase Capella generates it in association with each document when they&#8217;re saved.
+For more information, see <a href="../../../server/current/learn/data/data.html#metadata" class="xref page">document metadata</a>.</p>
 </div>
 </div>
 </div>
@@ -1063,12 +1000,13 @@ Couchbase generates metadata in association with each document when the document
 <div class="sectionbody">
 <div class="paragraph">
 <p>If you want to create a new document, you can click <b class="button">Add Document</b>.
-This opens the <strong>Document</strong> fly-out menu, which has a field for entering the <strong>Document ID</strong>, as well as an editor for entering the contents of the document.
+This opens the <strong>Document</strong> fly-out menu, which has a field for entering the <strong>Document ID</strong>, and an editor for entering the contents of the document.
 Click <b class="button">Save</b> to create the document.</p>
 </div>
 <div class="paragraph">
 <p>To delete a document, start by <a href="#retrieve-documents">retrieving</a> the desired document so that it appears in the results area.
-Then click the Trash icon at the end of the row on the right side.</p>
+Then click the Trash icon <span class="icon"><i class="fa fa-trash-alt"></i></span> at the end of the row on the right side.
+When prompted to confirm the deletion, click <b class="button">Confirm</b>.</p>
 </div>
 <div class="paragraph">
 <p>To import a set of JSON documents or a CSV file, see the <a href="import-data-documents.html" class="xref page">Import page</a>.</p>
