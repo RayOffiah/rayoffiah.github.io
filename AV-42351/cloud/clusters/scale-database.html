@@ -10,7 +10,7 @@
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/clusters/scale-database.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="Databases can be multi-dimensionally scaled by adding or removing service instances and whole services, and by adjusting the size of service instances.">
+<meta name="description" content="Databases can be multi-dimensionally scaled by adding or removing service instances and whole services, and by adjusting service instance sizes.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -874,11 +874,12 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-Databases can be multi-dimensionally scaled by adding or removing service instances and whole services, and by adjusting the size of service instances.
+Databases can be multi-dimensionally scaled by adding or removing service instances and whole services, and by adjusting service instance sizes.
 </blockquote>
 </div>
 <div class="paragraph">
-<p>This page walks you through multi-dimensional database scaling. It includes information about database services, rebalancing, statuses, events, and jobs.</p>
+<p>This page walks you through multi-dimensional database scaling.
+It includes information about database services, rebalancing, statuses, events, and jobs.</p>
 </div>
 <div class="paragraph">
 <p>The dimensions of multi-dimensional scaling are:</p>
@@ -903,31 +904,31 @@ Databases can be multi-dimensionally scaled by adding or removing service instan
 <div class="sectionbody">
 <div class="paragraph">
 <p>Couchbase databases comprise multiple independent <a href="databases.html#couchbase-services" class="xref page">services</a>.
-The capacity of a database is measured by the individual capacities of each service that run on the database.
-Scaling a database means scaling the individual capacities of each service running on the database.
-Services are set up on a per-node basis.
+Database capacity is determined by the capacity of each service running on the database.
+Scaling a database means scaling the capacities of each service.
+Capella sets up services on a per-node basis.
 Each node runs one instance of a service.</p>
 </div>
 <div class="paragraph">
-<p>The capacity of an individual service is determined by multiplying the following factors:</p>
+<p>You can determine the capacity of an individual service by multiplying these factors:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The number of instances (nodes) that make up a service</p>
+<p>The number of instances, or nodes, that make up a service</p>
 </li>
 <li>
-<p>The size of those instances (VM instance type and storage)</p>
+<p>The size of those instances, including VM instance type and storage.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>Each of these factors can be independently scaled.
-Adding additional instances to a service is known as <em>scaling out</em>.
-Increasing the size of a service&#8217;s instances is known as <em>scaling up</em>.
-Removing instances is known as <em>scaling in</em>.
-Reducing the size of instances is known as <em>scaling down</em>.
-These scaling techniques, together with the ability to add and remove whole services within a cluster, enable <em>multi-dimensional scaling</em>.</p>
+Adding additional instances to a service is scaling out.
+Increasing the size of a service&#8217;s instances is scaling up.
+Removing instances is scaling in.
+Reducing the size of instances is scaling down.
+These scaling techniques, together with the ability to add and remove whole services within a database, enable multi-dimensional scaling.</p>
 </div>
 </div>
 </div>
@@ -936,16 +937,17 @@ These scaling techniques, together with the ability to add and remove whole serv
 <div class="sectionbody">
 <div class="paragraph">
 <p>All types of scaling result in the addition or removal of nodes from a database.
-Even changing the size of service instances results in new nodes being added to the cluster, since the underlying virtual machines are swapped out for new ones.
-After performing any of these procedures, the database will <em>rebalance</em> to accommodate the new number of active member nodes.</p>
+Even changing a service instance size adds new nodes to the database, since Capella swaps out the underlying virtual machines for new ones.
+After performing any of these procedures, the database rebalances to accommodate the new number of active member nodes.</p>
 </div>
 <div class="paragraph">
-<p>Database rebalance is a process that is required for redistributing data and indexes among available nodes whenever nodes have been added or removed.
+<p>Database rebalance is a process that&#8217;s required for redistributing data and indexes among available nodes whenever nodes are added or removed.
 During rebalance, the database continues to service requests for data while the database map is correspondingly updated and distributed to clients.</p>
 </div>
 <div class="paragraph">
-<p>Couchbase Server is designed to maintain consistent availability and performance during rebalance.
-See the <a href="../../server/current/learn/clusters-and-availability/rebalance.html" class="xref page">rebalance documentation</a> to familiarize yourself with how each service behaves during a rebalance, so you can assess the impacts of this process on your deployments accordingly.</p>
+<p>Couchbase Server maintains consistent availability and performance during rebalancing.
+See the <a href="#server:learn:clusters-and-availability/rebalance.adoc" class="xref unresolved">rebalance documentation</a> to learn about how each service behaves during a rebalance.
+It can help you assess the impacts of this process on your deployments.</p>
 </div>
 </div>
 </div>
@@ -953,132 +955,44 @@ See the <a href="../../server/current/learn/clusters-and-availability/rebalance.
 <h2 id="cluster-status"><a class="anchor" href="#cluster-status"></a>Database Scaling Statuses</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When you create, modify, or delete a database, from the main navigation, you can open your Project to see the status of the project&#8217;s databases:
-For example, <code>Deploying</code>, <code>Normal</code>, or <code>Unhealthy</code>, or <code>Destroying</code>:</p>
+<p>When you create, delete, or modify a database, you can see its status when you <a href="../projects/manage-projects.html#accessing-projects-in-the-capella-ui" class="xref page">open its project</a>.</p>
 </div>
 <div id="database-status-page" class="imageblock">
 <div class="content">
 <img src="_images/check-database-statuses.png" alt="Check the database statuses">
 </div>
-<div class="title">Figure 1. List of databases in project</div>
+<div class="title">Figure 1. List of databases in a project</div>
 </div>
 <div class="paragraph">
-<p>When you click an individual database to open it during the creation process, you can view a deployment message that the new database is being configured.
-When a database has finished deploying, you can view its status on the project&#8217;s database list (see <a href="#database-status-page">Figure 1</a>).</p>
-</div>
-<div class="sect2">
-<h3 id="color-coded-database-statuses"><a class="anchor" href="#color-coded-database-statuses"></a>Color-coded Database Statuses</h3>
-<div class="paragraph">
-<p>The following color-coded statuses are applicable to your database:</p>
-</div>
-<table id="optional-id" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 60%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Status</th>
-<th class="tableblock halign-left valign-top">Color</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DEPLOYING</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Amber</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A database is initially deploying or redeploying.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NORMAL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Green</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>A database is operating normally.</p>
-</div>
-<div class="paragraph">
-<p>The following apply to a normal database:</p>
+<p>A database satus can be:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Deployed</p>
+<p><code>Deploying</code></p>
 </li>
 <li>
-<p>Scaling</p>
+<p><code>Deployment Failed</code></p>
 </li>
 <li>
-<p>Upgrading</p>
+<p><code>Healthy</code></p>
 </li>
 <li>
-<p>Peering</p>
+<p><code>Unhealthy</code></p>
 </li>
 <li>
-<p>Rebalancing</p>
+<p><code>Scaling</code></p>
 </li>
 <li>
-<p>Destroying (deleting the database)</p>
+<p><code>Rebalance Failed</code></p>
 </li>
 <li>
-<p>Needs Redeployment</p>
+<p><code>Destroying</code></p>
+</li>
+<li>
+<p><code>Destroy Failed</code></p>
 </li>
 </ul>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UNHEALTHY</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Red</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>A database is not healthy.</p>
-</div>
-<div class="paragraph">
-<p>One of the following database actions was not successful:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Deployment</p>
-</li>
-<li>
-<p>Scale</p>
-</li>
-<li>
-<p>Upgrade</p>
-</li>
-<li>
-<p>Rebalance</p>
-</li>
-<li>
-<p>Peering</p>
-</li>
-<li>
-<p>Destroy (delete)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>When a database deletion or deployment has not been successful, try the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Try deleting your database again.</p>
-</li>
-<li>
-<p>Recreate your database.</p>
-</li>
-<li>
-<p>Contact Couchbase support.</p>
-</li>
-</ul>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Click an individual database and view detailed statistics for it on the Metrics dashboard.
-See <a href="monitoring/metrics-dashboard.html" class="xref page">Metrics Dashboard</a>.</p>
-</div>
 </div>
 </div>
 </div>
@@ -1086,7 +1000,23 @@ See <a href="monitoring/metrics-dashboard.html" class="xref page">Metrics Dashbo
 <h2 id="events"><a class="anchor" href="#events"></a>Database Events</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>From the <code>Database Settings</code> page, you can click the <b class="menuref">Activity Log</b> item from the left-hand menu to view the  summary events for the database.</p>
+<p>You can find a list of all your database events by opening the Activity Log:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>With the <strong>Projects</strong> tab in your organization open, select the project with the database you&#8217;re working with.</p>
+</li>
+<li>
+<p>With the <strong>Databases</strong> tab open, select your database.</p>
+</li>
+<li>
+<p>Click the <strong>Settings</strong> tab.</p>
+</li>
+<li>
+<p>In the navigation menu, click <b class="button">Activity Log</b>.</p>
+</li>
+</ol>
 </div>
 <div id="database-activity-log" class="imageblock">
 <div class="content">
@@ -1095,71 +1025,35 @@ See <a href="monitoring/metrics-dashboard.html" class="xref page">Metrics Dashbo
 <div class="title">Figure 2. Database Activity Log</div>
 </div>
 <div class="paragraph">
-<p>For example, Database Deployment and Database Deployment Completed, or Database Deletion Requested and Database Deletion Completed.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="jobs"><a class="anchor" href="#jobs"></a>Database Running Jobs</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>From the <strong>Clusters</strong> or <strong>Projects</strong> tab, when you click an individual cluster that might be scaling, you can view the following in the jobs panel that are currently in progress and running:</p>
+<p>When scaling your database, you&#8217;ll see these events:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Scaling</p>
+<p>A <strong>Cluster Configuration Updated</strong> event when you first request any changes.</p>
 </li>
 <li>
-<p>Recovering</p>
-</li>
-<li>
-<p>Upgrading</p>
-</li>
-<li>
-<p>Backing up</p>
-</li>
-<li>
-<p>Restoring</p>
-</li>
-<li>
-<p>Importing</p>
+<p>A <strong>Cluster Scaling Complete</strong> event when Capella has finished applying the new configuration.</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>For every cluster, you can view the following in the jobs panel for each job running:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Job name</p>
-</li>
-<li>
-<p>Current step in progress</p>
-</li>
-<li>
-<p>Job start time</p>
-</li>
-<li>
-<p>Current completion percentage</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>When there are multiple jobs running on a cluster, you can scroll through each one.
-When a job successfully completes, or fails and does not complete, it is removed from the jobs panel.
-When no jobs are running, the jobs panel is not displayed.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="see-also"><a class="anchor" href="#see-also"></a>See Also</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>To add and remove nodes on a cluster, or increase and decrease the size of existing nodes, see <a href="modify-database.html#modify-existing-service" class="xref page">Modify the Database Configuration</a>.
-To add a new service to a database, see <a href="modify-database.html#add-service" class="xref page">Add a Service</a>.
-To remove a service from a database, see <a href="modify-database.html#remove-service" class="xref page">Remove a Service</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>To add and remove nodes in a database, or increase and decrease the size of existing nodes, see <a href="modify-database.html#modify-existing-service" class="xref page">Modify the Database Configuration</a>.</p>
+</li>
+<li>
+<p>To add a new service to a database, see <a href="modify-database.html#add-service" class="xref page">Add a Service</a>.</p>
+</li>
+<li>
+<p>To remove a service from a database, see <a href="modify-database.html#remove-service" class="xref page">Remove a Service</a>.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

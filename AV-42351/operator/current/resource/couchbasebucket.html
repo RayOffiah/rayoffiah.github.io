@@ -7,14 +7,13 @@
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
 <title>CouchbaseBucket Resource | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/operator/current/resource/couchbasebucket.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.3">
+<meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/operator/current/resource/couchbasebucket.html">
 <meta name="generator" content="Antora 3.0.1">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
@@ -109,10 +108,10 @@
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.3" data-url="../overview.html" selected>2.3</option>
+          <option value="2.5" data-url="../overview.html" selected>2.5</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.3">
+      <div class="version_items hide" data-version="2.5">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -1157,7 +1156,8 @@ A CouchbaseBucket provides replication and persistence for documents contained b
     <a href="#couchbasebuckets-spec-scopes-resources">resources</a>:
     - <a href="#couchbasebuckets-spec-scopes-resources-kind">kind</a>: CouchbaseScope
       <a href="#couchbasebuckets-spec-scopes-resources-name">name</a>: ""
-    <a href="#couchbasebuckets-spec-scopes-selector">selector</a>: {}</code></pre>
+    <a href="#couchbasebuckets-spec-scopes-selector">selector</a>: {}
+  <a href="#couchbasebuckets-spec-storagebackend">storageBackend</a>: ""</code></pre>
 </div>
 </div>
 </div>
@@ -1696,6 +1696,28 @@ Legal scope names have a maximum length of 251 characters and may be composed of
 <div class="paragraph">
 <p>Selector allows resources to be implicitly considered for inclusion in this bucket.
 More info: <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#labelselector-v1-meta" class="bare">https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#labelselector-v1-meta</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbasebuckets-spec-storagebackend"><a class="anchor" href="#couchbasebuckets-spec-storagebackend"></a>couchbasebuckets.spec.storageBackend</h3>
+<div class="sect3">
+<h4 id="constraints-26"><a class="anchor" href="#constraints-26"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>string</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Enumerations</strong>: <code>couchstore, magma</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-26"><a class="anchor" href="#description-26"></a>Description</h4>
+<div class="paragraph">
+<p>StorageBackend to be assigned to and used by the bucket.
+Only valid for Couchbase Server 7.0.0 onward.
+Two different backend storage mechanisms can be used - "couchstore" or "magma", defaulting to "couchstore".
+This cannot be edited after bucket creation.
+Note: "magma" is only valid for Couchbase Server 7.1.0 onward.</p>
 </div>
 </div>
 </div>

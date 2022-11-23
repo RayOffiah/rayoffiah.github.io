@@ -10,7 +10,7 @@
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/clusters/modify-database.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="Review, modify, and rename Couchbase Capella clusters.">
+<meta name="description" content="Review, modify, and rename Couchbase Capella databases.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -875,12 +875,12 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-Review, modify, and rename Couchbase Capella clusters.
+Review, modify, and rename Couchbase Capella databases.
 </blockquote>
 </div>
 <div class="paragraph">
 <p>Use the procedures on this page to modify an existing Couchbase Capella database.
-If you want to learn about scaling a cluster, see <a href="scale-database.html" class="xref page">Database Scaling</a>.</p>
+If you want to learn about scaling a database, see <a href="scale-database.html" class="xref page">Database Scaling</a>.</p>
 </div>
 </div>
 </div>
@@ -888,7 +888,7 @@ If you want to learn about scaling a cluster, see <a href="scale-database.html" 
 <h2 id="cluster-change-options"><a class="anchor" href="#cluster-change-options"></a>Change Options</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can change the following  in a deployed Couchbase Capella cluster:</p>
+<p>You can change the following options in a deployed Couchbase Capella database:</p>
 </div>
 <table id="optional-id" class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -919,7 +919,7 @@ If you want to learn about scaling a cluster, see <a href="scale-database.html" 
 <div class="paragraph">
 <p><a href="../billing/manage-billing.html#modify-cluster-support-time-zone" class="xref page">Modify a Database&#8217;s Support Time Zone</a></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">You may be unable to downgrade a service plan if your cluster uses features specific to its current plan.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">You may be unable to downgrade a service plan if your database uses features specific to its current plan.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Couchbase Services</strong></p></td>
@@ -930,9 +930,8 @@ If you want to learn about scaling a cluster, see <a href="scale-database.html" 
 <p><a href="#remove-service">Remove a Service</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>A service can only be added once to a cluster.
-The Data Service cannot be removed.
-These actions are not supported for clusters using your own cloud account (inVPC).</p>
+<p>A service can only be added once to a database.
+The Data Service can&#8217;t be removed.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -953,18 +952,18 @@ All other services require at least two nodes.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#change-disk">Change disk type</a></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><strong>AWS</strong>: The options are GP3 or IO2.
-GP3 is general purpose to balance price and performance where you can provision performance independent of storage capacity.
+GP3 is general-purpose to balance price and performance where you can provision performance independent of storage capacity.
 IO2 is higher performance and more durable with better reliability.</p>
 </div>
 <div class="paragraph">
-<p><strong>GCP</strong>: PD-SSD is the only disk type and cannot be changed.</p>
+<p><strong>GCP</strong>: PD-SSD is the only disk type and can&#8217;t be changed.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Storage</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#increase-storage">Increase storage</a></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>You cannot decrease storage once it has been added to a cluster.</p>
+<p>You can&#8217;t decrease storage once it has been added to a database.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -974,8 +973,8 @@ IO2 is higher performance and more durable with better reliability.</p>
 <p><strong>AWS</strong>: The available IOPS range depends on the disk type.</p>
 </div>
 <div class="paragraph">
-<p><strong>GCP</strong>: IOPS is not a directly configurable value.
-It&#8217;s set based on the amount of storage you&#8217;ve assigned to a service group (30 read and 30 write IOPS per GB).</p>
+<p><strong>GCP</strong>: IOPS isn&#8217;t a directly configurable value.
+It&#8217;s set based on the amount of storage you&#8217;ve assigned to a service group: 30 read and 30 write IOPS per GB.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -993,7 +992,7 @@ It&#8217;s set based on the amount of storage you&#8217;ve assigned to a service
 </td>
 <td class="content">
 <div class="title">Permissions Required</div>
-For any change, you must have the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> or <a href="../projects/project-roles.html#project-cluster-manager-role" class="xref page"><code>Database Manager</code></a> role for the project containing the cluster you want to modify.
+To make any database change, you need the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> or <a href="../projects/project-roles.html#project-cluster-manager-role" class="xref page"><code>Project Manager</code></a> role for the project with the cluster you&#8217;re modifying.
 </td>
 </tr>
 </table>
@@ -1001,46 +1000,44 @@ For any change, you must have the <a href="../projects/project-roles.html#projec
 </div>
 </div>
 <div class="sect1">
-<h2 id="view-config"><a class="anchor" href="#view-config"></a>View Database Configuration</h2>
+<h2 id="view-config"><a class="anchor" href="#view-config"></a>View Database Node Configurations</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Before modifying a database, you can review a list of all individual nodes running on it.
 This list includes the hostname, status, and services associated with each node. It also describes each node&#8217;s CPU, RAM, and disk usage.
-Node statuses are <em>Normal</em>, <em>Deploying</em>, and <em>Unhealthy</em>.
-Nodes added or removed from a cluster are shown or removed as appropriate.</p>
+Node statuses are Normal, Deploying, and Unhealthy.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Select your project from the project window.
-This will take you to your list of databases:</p>
-<div class="imageblock">
+<p>Open the <strong>Settings</strong> page for your database:</p>
+<div class="openblock">
 <div class="content">
-<img src="_images/database-list.png" alt="Database list page">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you&#8217;re working with.</p>
+</li>
+<li>
+<p>With the <strong>Databases</strong> tab open, select your database.</p>
+</li>
+<li>
+<p>Click the <b class="menuref">Settings</b> tab.</p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </li>
 <li>
-<p>Select the database you wish to review.</p>
-</li>
-<li>
-<p>Select the <b class="menuref">Settings</b> tab, which will take you to the <code>Database Settings</code> page.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/database-settings.png" alt="Database settings page">
-</div>
-</div>
-</li>
-<li>
-<p>Now, click <b class="menuref">Services</b> from the <code>General</code> menu on the left:</p>
+<p>In the navigation pane, click <b class="menuref">Nodes</b>:</p>
 <div id="database-services-page-image" class="imageblock">
 <div class="content">
-<img src="_images/database-settings-service.png" alt="Database Services Page">
+<img src="_images/database-settings-service.png" alt="Database nodes page">
 </div>
-<div class="title">Figure 1. Database services page</div>
 </div>
 <div class="paragraph">
-<p>From this page you can change the services, nodes and resources for your database.</p>
+<p>To modify service configurations, see <a href="#modify-existing-service">Modify the Database Configuration</a>.</p>
 </div>
 </li>
 </ol>
@@ -1050,30 +1047,9 @@ This will take you to your list of databases:</p>
 <div class="sect1">
 <h2 id="modify-existing-service"><a class="anchor" href="#modify-existing-service"></a>Modify the Database Configuration</h2>
 <div class="sectionbody">
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-When using Capella with your own cloud account (inVPC), you cannot decrease the number of nodes, change the capacity (VM instance type), or change the storage of service nodes.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Cluster configuration options depend on the cluster&#8217;s cloud provider.
-For more information on the configuration options available for each cloud provider, see <a href="../reference/aws.html" class="xref page">Amazon Web Services (AWS)</a> and <a href="../reference/gcp.html" class="xref page">Google Cloud Platform (GCP)</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Database configuration options depend on the chosen cloud provider.
+For more information about the configuration options available for each cloud provider, see <a href="../reference/aws.html" class="xref page">Amazon Web Services (AWS)</a> and <a href="../reference/gcp.html" class="xref page">Google Cloud Platform (GCP)</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="add-service"><a class="anchor" href="#add-service"></a>Add a Service</h3>
@@ -1085,7 +1061,7 @@ For more information on the configuration options available for each cloud provi
 </td>
 <td class="content">
 <div class="title">Limitations</div>
-You cannot add a service to a database when the same service is already on the same database.
+You can&#8217;t add a service when that service already exists on the database.
 </td>
 </tr>
 </table>
@@ -1096,33 +1072,54 @@ You cannot add a service to a database when the same service is already on the s
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to the database&#8217;s services configuration page (see <a href="#database-services-page-image">Figure 1</a>).</p>
+<p>Open the <strong>Settings</strong> page for your database:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you&#8217;re working with.</p>
 </li>
 <li>
-<p>Use the <b class="menuref">Services</b> dropdown to add services to your database:</p>
+<p>With the <strong>Databases</strong> tab open, select your database.</p>
+</li>
+<li>
+<p>Click the <b class="menuref">Settings</b> tab.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In the navigation pane, click <b class="menuref">Services</b></p>
+</li>
+<li>
+<p>Use the <b class="menuref">Services</b> list to select the services you want to add:</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/adding-services.png" alt="Adding services to database" width="600">
 </div>
 </div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Add more services to an existing service group by clicking the <strong>Services</strong> drop-down menu and selecting the services you require.
-Alternatively, you can add more service groups by clicking <b class="button">Add Service Group</b>.</p>
-</div>
-<div class="paragraph">
-<p>Only services not on the cluster are available to add.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can also add another service group by clicking <b class="button">Add Service Group</b>.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Once you add a service to a new or existing service group, you may need to adjust its hardware configuration.
-For more information on sizing a cluster, see <a href="sizing.html" class="xref page">Sizing a Cluster</a>.</p>
+For more information about sizing a database, see <a href="sizing.html" class="xref page">Sizing a Cluster</a>.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
-<p>If you have no other cluster changes to make, you need to <a href="#apply-changes">review and apply your current changes</a>.</p>
+<p>With no other database changes to make, <a href="#apply-changes">review and apply your changes</a>.</p>
 </li>
 </ol>
 </div>
@@ -1137,7 +1134,7 @@ For more information on sizing a cluster, see <a href="sizing.html" class="xref 
 </td>
 <td class="content">
 <div class="title">Limitations</div>
-You cannot remove the Data Service.
+You can&#8217;t remove the Data Service.
 </td>
 </tr>
 </table>
@@ -1145,10 +1142,30 @@ You cannot remove the Data Service.
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to the database&#8217;s services configuration page (see <a href="#database-services-page-image">Figure 1</a>).</p>
+<p>Open the <strong>Settings</strong> page for your database:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you&#8217;re working with.</p>
 </li>
 <li>
-<p>To delete a service, click on the <code>X</code> against service name in the <code>Services</code> list:</p>
+<p>With the <strong>Databases</strong> tab open, select your database.</p>
+</li>
+<li>
+<p>Click the <b class="menuref">Settings</b> tab.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In the navigation pane, click <b class="menuref">Services</b></p>
+</li>
+<li>
+<p>To remove a service, click the <strong>x</strong> icon for the service you&#8217;re removing in the <strong>Services</strong> list:</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/deleting-service.png" alt="Deleting a database service">
@@ -1156,7 +1173,7 @@ You cannot remove the Data Service.
 </div>
 </li>
 <li>
-<p>If you have no other cluster changes to make, you need to <a href="#apply-changes">review and apply your current changes</a>.</p>
+<p>With no other database changes to make, <a href="#apply-changes">review and apply your current changes</a>.</p>
 </li>
 </ol>
 </div>
@@ -1172,7 +1189,7 @@ You cannot remove the Data Service.
 <td class="content">
 <div class="title">Limitations</div>
 Services require a minimum of two nodes, except for the Data Service which needs three.
-A cluster can have up to 27 nodes.
+A database can have up to 27 nodes.
 </td>
 </tr>
 </table>
@@ -1180,13 +1197,33 @@ A cluster can have up to 27 nodes.
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to the database&#8217;s services configuration page (see <a href="#database-services-page-image">Figure 1</a>).</p>
+<p>Open the <strong>Settings</strong> page for your database:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you&#8217;re working with.</p>
 </li>
 <li>
-<p>Using the <strong>Nodes</strong> drop-down of the service group you&#8217;re modifying, choose a new number of nodes you want for this configuration.</p>
+<p>With the <strong>Databases</strong> tab open, select your database.</p>
 </li>
 <li>
-<p>If you have no other cluster changes to make, you need to <a href="#apply-changes">review and apply your current changes</a>.</p>
+<p>Click the <b class="menuref">Settings</b> tab.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In the navigation pane, click <b class="menuref">Services</b></p>
+</li>
+<li>
+<p>Using the <strong>Nodes</strong> list in the service group you&#8217;re modifying, choose a new number of nodes for this configuration.</p>
+</li>
+<li>
+<p>With no other database changes to make, <a href="#apply-changes">review and apply your current changes</a>.</p>
 </li>
 </ol>
 </div>
@@ -1196,16 +1233,36 @@ A cluster can have up to 27 nodes.
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to the database&#8217;s services configuration page (see <a href="#database-services-page-image">Figure 1</a>).</p>
+<p>Open the <strong>Settings</strong> page for your database:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you&#8217;re working with.</p>
+</li>
+<li>
+<p>With the <strong>Databases</strong> tab open, select your database.</p>
+</li>
+<li>
+<p>Click the <b class="menuref">Settings</b> tab.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In the navigation pane, click <b class="menuref">Services</b></p>
 </li>
 <li>
 <p>Using the <strong>Compute</strong> drop-down of the service group you&#8217;re modifying, choose a new compute instance type for this configuration.</p>
 <div class="paragraph">
-<p>The <code>compute</code> option dictates the number of vCPUs and memory provisioned for each node in a service group.</p>
+<p>The compute dictates the number of vCPUs and memory provisioned for each node in a service group.</p>
 </div>
 </li>
 <li>
-<p>If you have no other cluster changes to make, you need to <a href="#apply-changes">review and apply your current changes</a>.</p>
+<p>With no other database changes to make, <a href="#apply-changes">review and apply your current changes</a>.</p>
 </li>
 </ol>
 </div>
@@ -1220,8 +1277,8 @@ A cluster can have up to 27 nodes.
 </td>
 <td class="content">
 <div class="title">Limitations</div>
-GCP only supports PD-SSD.
-You can only change the disk type for clusters deployed with AWS (GP3 or IO2).
+GCP supports PD-SSD.
+You can only change the disk type for databases deployed with AWS (GP3 or IO2).
 </td>
 </tr>
 </table>
@@ -1229,13 +1286,33 @@ You can only change the disk type for clusters deployed with AWS (GP3 or IO2).
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to the database&#8217;s services configuration page (see <a href="#database-services-page-image">Figure 1</a>).</p>
+<p>Open the <strong>Settings</strong> page for your database:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you&#8217;re working with.</p>
 </li>
 <li>
-<p>Use the <strong>Disk Type</strong> toggle to switch between <em>GP3</em> and <em>IO2</em> for the configuration you&#8217;re modifying.</p>
+<p>With the <strong>Databases</strong> tab open, select your database.</p>
 </li>
 <li>
-<p>If you have no other cluster changes to make, you need to <a href="#apply-changes">review and apply your current changes</a>.</p>
+<p>Click the <b class="menuref">Settings</b> tab.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In the navigation pane, click <b class="menuref">Services</b></p>
+</li>
+<li>
+<p>Use the <strong>Disk Type</strong> toggle to switch between GP3 and IO2 for the configuration you&#8217;re modifying.</p>
+</li>
+<li>
+<p>With no other database changes to make, <a href="#apply-changes">review and apply your current changes</a>.</p>
 </li>
 </ol>
 </div>
@@ -1250,7 +1327,7 @@ You can only change the disk type for clusters deployed with AWS (GP3 or IO2).
 </td>
 <td class="content">
 <div class="title">Limitations</div>
-Storage cannot be removed from a service configuration once added.
+Storage can&#8217;t be removed from a service configuration once added.
 </td>
 </tr>
 </table>
@@ -1258,13 +1335,33 @@ Storage cannot be removed from a service configuration once added.
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to the cluster&#8217;s <a href="#view-config"><strong>Configuration</strong> tab</a>.</p>
+<p>Open the <strong>Settings</strong> page for your database:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you&#8217;re working with.</p>
 </li>
 <li>
-<p>Using the <strong>Storage</strong> field of the service group you&#8217;re modifying, increment to or enter the amount (GB) of storage you want per node for this configuration.</p>
+<p>With the <strong>Databases</strong> tab open, select your database.</p>
 </li>
 <li>
-<p>If you have no other cluster changes to make, you need to <a href="#apply-changes">review and apply your current changes</a>.</p>
+<p>Click the <b class="menuref">Settings</b> tab.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In the navigation pane, click <b class="menuref">Services</b></p>
+</li>
+<li>
+<p>Using the <strong>Storage</strong> box of the service group you&#8217;re modifying, enter the amount (GB) of storage you want per node for this configuration.</p>
+</li>
+<li>
+<p>With no other database changes to make, <a href="#apply-changes">review and apply your current changes</a>.</p>
 </li>
 </ol>
 </div>
@@ -1279,7 +1376,7 @@ Storage cannot be removed from a service configuration once added.
 </td>
 <td class="content">
 <div class="title">Limitations</div>
-IOPS (Input/Output Operations per Second) is not a directly configurable value for clusters deployed with GCP.
+IOPS (Input/Output Operations per Second) isn&#8217;t a directly configurable value for databases deployed with GCP.
 Instead, it&#8217;s automatically set at 30 reads and 30 writes IOPS per GB of storage provisioned.
 </td>
 </tr>
@@ -1288,16 +1385,36 @@ Instead, it&#8217;s automatically set at 30 reads and 30 writes IOPS per GB of s
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to the database&#8217;s services configuration page (see <a href="#database-services-page-image">Figure 1</a>).</p>
+<p>Open the <strong>Settings</strong> page for your database:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you&#8217;re working with.</p>
 </li>
 <li>
-<p>Using the <strong>IOPS</strong> field, increment to or enter the IOPS value for the service group you&#8217;re modifying.</p>
-<div class="paragraph">
-<p>This field is not shown when a cluster uses GCP as its cloud provider.</p>
+<p>With the <strong>Databases</strong> tab open, select your database.</p>
+</li>
+<li>
+<p>Click the <b class="menuref">Settings</b> tab.</p>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </li>
 <li>
-<p>If you have no other cluster changes to make, you need to <a href="#apply-changes">review and apply your current changes</a>.</p>
+<p>In the navigation pane, click <b class="menuref">Services</b></p>
+</li>
+<li>
+<p>Using the <strong>IOPS</strong> box, enter the IOPS value for the service group you&#8217;re modifying.</p>
+<div class="paragraph">
+<p>This field isn&#8217;t shown when a database uses GCP as its cloud provider.</p>
+</div>
+</li>
+<li>
+<p>With no other database changes to make, <a href="#apply-changes">review and apply your current changes</a>.</p>
 </li>
 </ol>
 </div>
@@ -1312,26 +1429,23 @@ Instead, it&#8217;s automatically set at 30 reads and 30 writes IOPS per GB of s
 <li>
 <p>Review and update configuration</p>
 <div class="paragraph">
-<p>Any changes you make to a cluster appear on the <em>Configuration</em> page.
+<p>All the changes you make to a database are on the <strong>Service</strong> page.
 Review this new configuration to  that it meets your requirements.</p>
 </div>
 <div class="paragraph">
-<p>Any warnings about your proposed changes are shown on the page and will not let you update the configuration until you resolve them.
+<p>Any warnings about your proposed changes appear on the <strong>Service</strong> page and can prevent you from updating the configuration until you resolve them.
 If you need to discard your changes, click <b class="button">Cancel</b>.</p>
 </div>
 </li>
 <li>
-<p>Once you have reviewed the changes, click <b class="button">Update Configuration</b>.</p>
-</li>
-<li>
-<p>In the notification that appears, click <b class="button">Confirm</b>.</p>
-<div class="paragraph">
-<p>The cluster will <a href="scale-database.html#rebalance" class="xref page">rebalance</a> and redistribute service data over the new superset of nodes.
-The amount of time taken for the new nodes to rebalance into the cluster depends on the service of the new nodes, and how much data is redistributed.
-The cluster remains up and available during the rebalance, but you will not be able to make further changes until the rebalancing is complete.</p>
-</div>
+<p>Once you have reviewed the changes, click <b class="button">Apply</b>.</p>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>The database <a href="scale-database.html#rebalance" class="xref page">rebalances</a> and redistributes service data over the new superset of nodes.
+The amount of time taken for the new nodes to rebalance into the database depends on the service of the new nodes, and how much data is redistributed.
+The database remains up and available during the rebalance, but you can&#8217;t make further changes until the rebalancing is complete.</p>
 </div>
 </div>
 </div>
@@ -1341,28 +1455,30 @@ The cluster remains up and available during the rebalance, but you will not be a
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>From the <strong>Clusters</strong> tab, find the cluster you want to rename and click its name.</p>
-<div class="paragraph">
-<p>This opens the cluster with its <strong>Metrics</strong> tab selected.</p>
+<p>Open the <strong>Settings</strong> page for your database:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you&#8217;re working with.</p>
+</li>
+<li>
+<p>With the <strong>Databases</strong> tab open, select your database.</p>
+</li>
+<li>
+<p>Click the <b class="menuref">Settings</b> tab.</p>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </li>
 <li>
-<p>Click the vertical ellipsis icon <span class="icon"><i class="fa fa-ellipsis-v"></i></span> to the right of the cluster&#8217;s name.</p>
+<p>In the <strong>Database Name</strong> field, enter a new name for the database.</p>
 </li>
 <li>
-<p>From the drop-down menu, click <strong>Edit Cluster Name</strong>.</p>
-<div class="paragraph">
-<p>This action opens the <strong>Update Cluster Name</strong> flyout.</p>
-</div>
-</li>
-<li>
-<p>In the field provided, type a new name for the cluster.</p>
-</li>
-<li>
-<p>Click <b class="button">Update Cluster Name</b>.</p>
-<div class="paragraph">
-<p>The cluster name is updated immediately.</p>
-</div>
+<p>Click <b class="button">Apply</b>.</p>
 </li>
 </ol>
 </div>

@@ -6,15 +6,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
-<title>Release Notes for Couchbase Autonomous Operator 2.3 | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/operator/current/release-notes.html">
+<title>Release Notes for Couchbase Autonomous Operator 2.5 | Couchbase Docs</title>
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.3">
+<meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/operator/current/release-notes.html">
 <meta name="generator" content="Antora 3.0.1">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -109,10 +108,10 @@
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.3" data-url="overview.html" selected>2.3</option>
+          <option value="2.5" data-url="overview.html" selected>2.5</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.3">
+      <div class="version_items hide" data-version="2.5">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -1112,7 +1111,7 @@
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Release Notes for Couchbase Autonomous Operator 2.3</h1>
+<h1 class="page">Release Notes for Couchbase Autonomous Operator 2.5</h1>
 <div class="labels">
 <ul></ul>
 </div>
@@ -1126,7 +1125,7 @@
 </div><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase Autonomous Operator 2.3 is a significant release that expands support for
+<p>Couchbase Autonomous Operator 2.5 is a significant release that expands support for
 Couchbase Server 7, providing full support for scope and collections.</p>
 </div>
 <div class="paragraph">
@@ -1153,7 +1152,7 @@ Couchbase Server 7, providing full support for scope and collections.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="upgrading-to-autonomous-operator-2-3"><a class="anchor" href="#upgrading-to-autonomous-operator-2-3"></a>Upgrading to Autonomous Operator 2.3</h2>
+<h2 id="upgrading-to-autonomous-operator-2-5"><a class="anchor" href="#upgrading-to-autonomous-operator-2-5"></a>Upgrading to Autonomous Operator 2.5</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The necessary steps needed to upgrade to this release depend on which version of the Autonomous Operator you are upgrading from.</p>
@@ -1305,92 +1304,18 @@ This has been fixed so that logs older than or equal to the time period are clea
 </div>
 </div>
 <div class="sect1">
-<h2 id="release-v232"><a class="anchor" href="#release-v232"></a>Release 2.3.2</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Couchbase Autonomous Operator 2.3.2 was released in August 2022.</p>
-</div>
-<div class="sect2">
-<h3 id="new-features-and-behavioral-changes"><a class="anchor" href="#new-features-and-behavioral-changes"></a>New Features and Behavioral Changes</h3>
-<div class="sect3">
-<h4 id="golang-compiler-upgraded"><a class="anchor" href="#golang-compiler-upgraded"></a>Golang Compiler Upgraded</h4>
-<div class="paragraph">
-<p>The Golang compiler used by couchbase-exporter has been upgraded to version 1.18.4 to maintain compatibility and take advantage of improvements in the compiler.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="fixed-issues"><a class="anchor" href="#fixed-issues"></a>Fixed Issues</h3>
-<table id="table-fixed-issues-v232" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 27.4725%;">
-<col style="width: 72.5275%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Issue</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-2779">K8S-2779</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong> The backup sidecar used by the Operator expects secrets to contain a "ca.crt" field as used by cert-manager.
-The specified secret is mounted to the backup pod, and passes the '/path/ca.crt' argument to the backup.</p>
-</div>
-<div class="paragraph">
-<p>Native Kubernetes secrets do not contain the ca.crt argument, causing backups to fail when TLS
-is enabled.</p>
-</div>
-<div class="paragraph">
-<p>Beginning in this release, the Operator is able to use either type of certificate for backup.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-2795">K8S-2795</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>In prior releases, native TLS secrets were incompatible with the Exporter, causing Exporter to
-fail when used with a configured cluster.</p>
-</div>
-<div class="paragraph">
-<p>Beginning in Operator 2.3.2, Exporter can accept TLS secrets in the native format.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-2803">K8S-2803</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>In previous versions of Couchbase Operator, an incorrect flag for --disable-ft-alias was passed
-to the backup process, causing it to fail.</p>
-</div>
-<div class="paragraph">
-<p>This flag has been corrected beginning in version 2.3.2.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="release-v231"><a class="anchor" href="#release-v231"></a>Release 2.3.1</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Couchbase Autonomous Operator 2.3.1 was released in July 2022.</p>
 </div>
 <div class="sect2">
-<h3 id="new-features-and-behavioral-changes-2"><a class="anchor" href="#new-features-and-behavioral-changes-2"></a>New Features and Behavioral Changes</h3>
+<h3 id="new-features-and-behavioral-changes"><a class="anchor" href="#new-features-and-behavioral-changes"></a>New Features and Behavioral Changes</h3>
 <div class="sect3">
 <h4 id="operator-recognizes-and-distinguishes-server-containers"><a class="anchor" href="#operator-recognizes-and-distinguishes-server-containers"></a>Operator Recognizes and Distinguishes Server Containers</h4>
 <div class="paragraph">
 <p>Versions of Couchbase Server available in the Red Hat Container Catalog
-lacked SHA-256 tagging to allow the Operator to distinguish between versions. As of release 2.3.1,
+lacked SHA-256 tagging to allow the Operator to distinguish between versions. As of release 2.3.1
 all versions of Couchbase Server are recognizable and distinguishable by the Operator.</p>
 </div>
 </div>
@@ -1403,18 +1328,9 @@ that were valid for Couchbase Server. This release adds support for "external_st
 use of this supported role.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="the-operator-now-checks-both-locations-when-using-user-tls-certificates"><a class="anchor" href="#the-operator-now-checks-both-locations-when-using-user-tls-certificates"></a>The Operator now checks both locations when using user TLS certificates.</h4>
-<div class="paragraph">
-<p>In previous versions in order to derive multiple Root CA certificates,
-the Operator required multiple secrets, delivered in multiple files. This is inconsistent
-with the wider implementation of multiple certificates. Version 2.3.1 can derive multiple
-root certificates from a single secrets file.</p>
-</div>
-</div>
 </div>
 <div class="sect2">
-<h3 id="fixed-issues-2"><a class="anchor" href="#fixed-issues-2"></a>Fixed Issues</h3>
+<h3 id="fixed-issues"><a class="anchor" href="#fixed-issues"></a>Fixed Issues</h3>
 <table id="table-fixed-issues-v231" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
@@ -1617,12 +1533,7 @@ Passing the <code>-storage-class</code> flag to the command will only affect vol
 </div>
 <div class="sect2">
 <h3 id="changes-in-behavior-v230-beta1"><a class="anchor" href="#changes-in-behavior-v230-beta1"></a>New Features and Behavioral Changes</h3>
-<div class="sect3">
-<h4 id="support-for-couchbase-server-7-1-x"><a class="anchor" href="#support-for-couchbase-server-7-1-x"></a>Support for Couchbase Server 7.1.x</h4>
-<div class="paragraph">
-<p>Couchbase Autonomous Operator 2.3.0-beta1 includes support for Coucbhase Server 7.1.x.</p>
-</div>
-</div>
+
 </div>
 <div class="sect2">
 <h3 id="logging-defaults"><a class="anchor" href="#logging-defaults"></a>Logging Defaults</h3>
@@ -1784,7 +1695,7 @@ Also, the Couchbase Helm Chart has been improved to shorten the default cluster 
 <div class="ulist">
 <ul>
 <li>
-<p><a href="../../server/current/release-notes/relnotes.html" class="xref page">Couchbase Server Release Notes</a></p>
+<p><a href="#server:release-notes:relnotes.adoc" class="xref unresolved">Couchbase Server Release Notes</a></p>
 </li>
 </ul>
 </div>

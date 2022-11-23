@@ -7,14 +7,13 @@
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
 <title>Exposing Sync Gateway to Couchbase Lite Clients | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/operator/current/tutorial-sync-gateway-clients.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.3">
+<meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/operator/current/tutorial-sync-gateway-clients.html">
 <meta name="generator" content="Antora 3.0.1">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -109,10 +108,10 @@
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.3" data-url="overview.html" selected>2.3</option>
+          <option value="2.5" data-url="overview.html" selected>2.5</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.3">
+      <div class="version_items hide" data-version="2.5">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -1152,11 +1151,11 @@ For further help in the event of a problem, contact the relevant software mainta
 <p>This tutorial defines best practices for exposing Sync Gateway cluster for Couchbase Lite clients to connect to.</p>
 </div>
 <div class="paragraph">
-<p>In a production deployment, you will likely have more than one Sync Gateway nodes fronted by a <a href="../../sync-gateway/current/load-balancer.html" class="xref page">load balancer</a> or a reverse-proxy.
+<p>In a production deployment, you will likely have more than one Sync Gateway nodes fronted by a <a href="#sync-gateway::load-balancer.adoc" class="xref unresolved">load balancer</a> or a reverse-proxy.
 Couchbase Lite clients connect to the Layer4 or Layer7 Load Balancer.</p>
 </div>
 <div class="paragraph">
-<p>In addition, on production environments, it is also <a href="../../sync-gateway/current/load-balancer.html#transport-layer-security-https-ssl" class="xref page">recommended</a> that all communication between Couchbase Lite clients and Sync Gateway be secured using TLS.</p>
+<p>In addition, on production environments, it is also <a href="#sync-gateway::load-balancer.adoc#transport-layer-security-https-ssl" class="xref unresolved">recommended</a> that all communication between Couchbase Lite clients and Sync Gateway be secured using TLS.</p>
 </div>
 <div class="paragraph">
 <p>You have couple of options on how to configure your Kubernetes deployment for TLS. Here are some recommendations</p>
@@ -1412,11 +1411,11 @@ Please use a <a href="https://kubernetes.io/docs/concepts/services-networking/se
 <div class="ulist">
 <ul>
 <li>
-<p>Creating X.509 certificates is beyond the scope of this documentation. You can generate TLS certificate and Private Key for your deployments by following instructions  <a href="../../sync-gateway/current/load-balancer.html" class="xref page">here</a>.
+<p>Creating X.509 certificates is beyond the scope of this documentation. You can generate TLS certificate and Private Key for your deployments by following instructions  <a href="#sync-gateway::load-balancer.adoc" class="xref unresolved">here</a>.
 Through the remainder of the instructions, we will refer to the public certificate as <code>sgw-lb-cert.pem</code> and the private key as <code>sgw-lb-key.pem</code> respectively</p>
 </li>
 <li>
-<p>Update the Sync Gateway configuration file described in <a href="#Configuring Sync-Gateway">[Configuring Sync-Gateway]</a> section with the relevant properties to specify the certificate and private keys as defined <a href="../../sync-gateway/current/load-balancer.html#transport-layer-security-https-ssl" class="xref page">here</a>.
+<p>Update the Sync Gateway configuration file described in <a href="#Configuring Sync-Gateway">[Configuring Sync-Gateway]</a> section with the relevant properties to specify the certificate and private keys as defined <a href="#sync-gateway::load-balancer.adoc#transport-layer-security-https-ssl" class="xref unresolved">here</a>.
 The updated version of configuration file would look like the following (only relevant configuration is shown)</p>
 </li>
 </ul>
@@ -1606,7 +1605,7 @@ In this case, it targets any pods with the <code>app=sync-gateway</code> label w
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
 <td><code>spec.ports[].targetPort</code>: The load balancer service targets port 4984 on the Sync Gateway cluster.
-This is the Sync Gateway port corresponding to the <a href="../../sync-gateway/current/rest-api.html" class="xref page">REST API</a>.
+This is the Sync Gateway port corresponding to the <a href="#sync-gateway::rest-api.adoc" class="xref unresolved">REST API</a>.
 For security purposes, it is recommended that you do not expose the admin port (4985) over the Internet.</td>
 </tr>
 </table>
@@ -1731,7 +1730,7 @@ This must grant permission to pull container images from the Red Hat Container R
 <div class="ulist">
 <ul>
 <li>
-<p><a href="../../sync-gateway/current/introduction.html" class="xref page">Sync-Gateway Documentation</a></p>
+<p><a href="#sync-gateway::introduction.adoc" class="xref unresolved">Sync-Gateway Documentation</a></p>
 </li>
 <li>
 <p><a href="tutorial-sync-gateway.html" class="xref page">Connecting Sync-Gateway to Couchbase Server</a></p>

@@ -875,12 +875,12 @@
 <div class="quoteblock abstract">
 <blockquote>
 Backups contain bucket data.
-Backups can be taken on-demand or use a configurable automatic schedule.
+You can take a backup on-demand or use a configurable automatic schedule.
 </blockquote>
 </div>
 <div class="paragraph">
 <p>Use the procedures on this page to create on-demand backups, schedule automatic backups, and manage those backups.
-To learn more about how backups work in Couchbase Capella, see <a href="backup-restore.html" class="xref page">Backup and Restore Cluster Data</a>.</p>
+To learn more about how backups work in Couchbase Capella, see <a href="backup-restore.html" class="xref page">Backup and Restore Data</a>.</p>
 </div>
 </div>
 </div>
@@ -896,12 +896,12 @@ To learn more about how backups work in Couchbase Capella, see <a href="backup-r
 <td class="content">
 <div class="title">Permissions Required</div>
 <div class="paragraph">
-<p>To view and manage backups in the Capella UI, the following permissions are required:</p>
+<p>To view and manage backups in the Capella UI:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>You must have the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role for the project that contains the cluster.
+<p>You must have the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role for the project that contains the database.
 If you have the <a href="../organizations/organization-user-roles.html#organization-role-organization-owner" class="xref page"><code>Organization Owner</code></a> role, you already have <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> access.</p>
 </li>
 </ul>
@@ -910,24 +910,60 @@ If you have the <a href="../organizations/organization-user-roles.html#organizat
 </tr>
 </table>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Backup options are unavailable to free trial clusters.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
-<h3 id="accessing-cluster-backups-in-the-capella-ui"><a class="anchor" href="#accessing-cluster-backups-in-the-capella-ui"></a>Accessing Cluster Backups in the Capella UI</h3>
+<h3 id="accessing-database-backups-in-the-capella-ui"><a class="anchor" href="#accessing-database-backups-in-the-capella-ui"></a>Accessing Database Backups in the Capella UI</h3>
 <div class="paragraph">
-<p>Backups can be accessed under a cluster&#8217;s <strong>Backups</strong> tab.</p>
+<p>You can access a database&#8217;s backups from the <strong>Backup</strong> page.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the <strong>Backup</strong> page for your database:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you want to work with.</p>
+</li>
+<li>
+<p>With the <strong>Databases</strong> tab open, select your database.</p>
+</li>
+<li>
+<p>Click the <strong>Backup</strong> tab.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/cluster-backup-restore-tab-hosted.png" alt="The cluster&#8217;s 'Backups' tab.">
+<img src="_images/cluster-backup-restore-tab-hosted.png" alt="The database&#8217;s 'Backups' tab.">
 </div>
 </div>
 <div class="sect3">
 <h4 id="backup-summary"><a class="anchor" href="#backup-summary"></a>Backup Summary</h4>
 <div class="paragraph">
-<p>A cluster&#8217;s <strong>Backups</strong> tab shows a summary of the latest backup per bucket that exist for the cluster.
-The summary is in a table format, with sortable columns and a row for each bucket.</p>
+<p>A database&#8217;s <strong>Backups</strong> page shows a summary of the latest backups per bucket that exist for the database.
+You can sort the backup information by bucket name.</p>
 </div>
 <div class="paragraph">
-<p>The following information is shown for the most recent backup of each bucket with backups:</p>
+<p>Each bucket includes the following information about its most recent backup:</p>
 </div>
 <table id="table-backup-fields" class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -942,41 +978,41 @@ The summary is in a table format, with sortable columns and a row for each bucke
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Bucket</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the bucket with backups.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Bucket Name</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the bucket.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Last Backup</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The last time there was a backup of the bucket, and information about the <a href="backup-restore.html#backup-types" class="xref page">backup type</a>, the backup size, and how long it took.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Latest Backup</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The last time there was a backup of the bucket, the <a href="backup-restore.html#bucket-backup-types" class="xref page">backup type</a>, the backup size, and how long it took.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Items</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The number of items that are included in the backup.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of items in the backup.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Tombstones</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The number of <a href="../../server/current/learn/buckets-memory-and-storage/storage-settings.html#tombstones" class="xref page">tombstones</a>&#8201;&#8212;&#8201;records for removed items&#8201;&#8212;&#8201;that are included in the backup.
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of <a href="#server:learn:buckets-memory-and-storage/storage.adoc#tombstones" class="xref unresolved">tombstones</a>, or records for removed items, in the backup.
 This number includes tombstones for deleted documents and any dropped collections.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>GSI</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The number of <a href="index-service/index-service.html" class="xref page">Global Secondary Indexes (GSI)</a> included in the backup.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of <a href="index-service/index-service.html" class="xref page">Global Secondary Indexes (GSI)</a> in the backup.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>FTS</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The number of <a href="search-service/search-service.html" class="xref page">Full Test Search (FTS) indexes</a> included in the backup.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of <a href="search-service/search-service.html" class="xref page">Full Test Search (FTS) indexes</a> in the backup.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>CBAS</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The number of indexes for the <a href="analytics-service/analytics-service.html" class="xref page">Couchbase Analytics Service (CBAS)</a> included in the backup.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of indexes for the <a href="analytics-service/analytics-service.html" class="xref page">Couchbase Analytics Service (CBAS)</a> in the backup.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Event</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The number of <a href="eventing-service/eventing-service.html" class="xref page">eventing functions</a> included in the backup.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of <a href="eventing-service/eventing-service.html" class="xref page">eventing functions</a> in the backup.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Expires On</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The date that the backup expires.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The date the backup expires and is deleted.</p></td>
 </tr>
 </tbody>
 </table>
@@ -986,33 +1022,34 @@ This number includes tombstones for deleted documents and any dropped collection
 <h3 id="configure-automatic-backups"><a class="anchor" href="#configure-automatic-backups"></a>Configure Scheduled Backups</h3>
 <div class="paragraph">
 <p>You can configure scheduled backups for buckets at any time.
-Once you set a backup schedule, the bucket will automatically backup the bucket depending on the chosen schedule.
-When creating a bucket, the default setting is the <em>Weekly Schedule</em>.
-Other options include the <em>Daily Schedule</em> or <em>No Schedule</em>.</p>
+Once you set a backup schedule, the bucket automatically backs up the bucket based on the chosen schedule.
+When creating a bucket, the default setting is a <strong>Weekly Schedule</strong>.
+You can also use a <strong>Daily Schedule</strong> or <strong>No Schedule</strong>.</p>
 </div>
 <div class="paragraph">
-<p>It&#8217;s recommended that you change each bucket&#8217;s Backup Schedule according to your <a href="https://en.wikipedia.org/wiki/Recovery_time_objective" target="_blank" rel="noopener">Recovery Time Objective</a> (RTO) and <a href="https://en.wikipedia.org/wiki/Recovery_point_objective" target="_blank" rel="noopener">Recovery Point Objective</a> (RPO).
-For example, production clusters and their included buckets may require a much smaller backup window and a much longer backup retention period than buckets in development clusters.</p>
+<p>Couchbase recommends that you change each bucket&#8217;s Backup Schedule according to your <a href="https://en.wikipedia.org/wiki/Recovery_time_objective" target="_blank" rel="noopener">Recovery Time Objective</a> (RTO) and <a href="https://en.wikipedia.org/wiki/Recovery_point_objective" target="_blank" rel="noopener">Recovery Point Objective</a> (RPO).
+For example, buckets in production databases might require a much smaller backup window and a much longer backup retention period than buckets in development databases.</p>
+</div>
+<div class="paragraph">
+<p>You can edit a bucket&#8217;s backup schedule when <a href="data-service/manage-buckets.html#edit-bucket" class="xref page">modifying a bucket</a> or from the <strong>Backup</strong> page for your database.
+To change a bucket&#8217;s backup schedule from the <strong>Backup</strong> page:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to the cluster&#8217;s <strong>Buckets</strong> tab.</p>
+<p>Open the <strong>Backup</strong> page for your database:</p>
 <div class="openblock">
 <div class="content">
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Go to the <strong>Clusters</strong> tab in the main navigation.</p>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you want to work with.</p>
 </li>
 <li>
-<p>Find and click on the cluster on which you want to configure automatic backups.</p>
-<div class="paragraph">
-<p>This action opens the cluster with its <strong>Metrics</strong> tab selected.</p>
-</div>
+<p>With the <strong>Databases</strong> tab open, select your database.</p>
 </li>
 <li>
-<p>Click the <strong>Buckets</strong> tab.</p>
+<p>Click the <strong>Backup</strong> tab.</p>
 </li>
 </ol>
 </div>
@@ -1020,42 +1057,37 @@ For example, production clusters and their included buckets may require a much s
 </div>
 </li>
 <li>
-<p>On the far right side of the bucket you are working with, click <strong>More options</strong> (<span class="icon"><i class="fa fa-ellipsis-v"></i></span>) <strong>&gt; Settings</strong>:</p>
-<div class="paragraph">
-<p>This action opens the bucket&#8217;s fly-out menu.</p>
-</div>
+<p>Select the bucket you want to change.</p>
 </li>
 <li>
-<p>Click the <strong>Backup Schedule</strong> tab.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/backup-autosave-schedule-flyout-hosted.png" alt="The 'Autosave Schedule' fly-out menu showing the default configuration values that are set for every new cluster." width="400">
-</div>
-</div>
+<p>Click <b class="button">Edit Schedule</b>.</p>
 </li>
 <li>
-<p>Choose the <strong>Backup Schedule</strong> for the bucket.</p>
-<div class="admonitionblock note">
+<p>If it&#8217;s not already selected, use the <strong>Bucket</strong> list to choose the bucket you want to change.</p>
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Backup options are unavailable to free trial clusters.
+Using the <strong>Bucket</strong> list, you can select multiple buckets to bulk edit backup schedules.
 </td>
 </tr>
 </table>
 </div>
+</li>
+<li>
+<p><a id="backup-schedule"></a>Choose the backup schedule for the bucket.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Choose <strong>Weekly Schedule</strong>, <strong>Daily Schedule</strong>, or <strong>Do Not Backup</strong> according to the relative importance of the workload and data.</p>
-<div class="admonitionblock caution">
+<p>Choose <strong>Set Weekly Schedule</strong>, <strong>Set Daily Schedule</strong>, or <strong>Do Not Backup</strong> according to the relative importance of the workload and data.</p>
+<div class="admonitionblock warning">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
 The <strong>Do Not Backup</strong> option isn&#8217;t recommended for production databases.
@@ -1066,23 +1098,23 @@ It&#8217;s intended for development databases or similar situations.
 </div>
 </li>
 <li>
-<p>(<strong>Weekly Schedule</strong>) Set the <strong>Day of the week</strong> to when you want Capella to take the full backup.
+<p>If you&#8217;ve chosen <strong>Set Weekly Schedule</strong>, choose the <strong>Day of the week</strong> when you want Capella to take the full backup.
 The default value is <code>Sunday</code>.</p>
 </li>
 <li>
 <p>Set the <strong>Start at</strong> time of day for the full backup.</p>
 <div class="paragraph">
-<p>This should be a time when your application isn&#8217;t making heavy use of Capella unless you have chosen a VM with more capacity than you may need.</p>
+<p>Select a <strong>Start at</strong> time when your application isn&#8217;t using Capella heavily unless you&#8217;ve chosen a database configuration with more capacity than you need.</p>
 </div>
 <div class="paragraph">
 <p>This setting uses your local time zone.
-You can verify the timezone used by your Couchbase Capella account by reviewing your <a href="../organizations/manage-account.html" class="xref page">account preferences</a>.</p>
+You can view the timezone used by your Couchbase Capella account by reviewing your <a href="../organizations/manage-account.html" class="xref page">account preferences</a>.</p>
 </div>
 </li>
 <li>
-<p>Set the <strong>Incremental Every</strong> setting to configure the frequency for incremental backups.</p>
+<p>Use the <strong>Incremental Every</strong> list to set the frequency of incremental backups.</p>
 <div class="paragraph">
-<p>Depending on the schedule you have chosen, this setting can range from <code>4 Hours</code> to <code>1 Day</code>.</p>
+<p>Depending on your chosen schedule, this setting can range from <code>4 Hours</code> to <code>1 Day</code>.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1092,14 +1124,14 @@ You can verify the timezone used by your Couchbase Capella account by reviewing 
 </td>
 <td class="content">
 <div class="paragraph">
-<p>If you change the <strong>Start at</strong> time, the next incremental backup may occur at a different time than you might expect.
-This is because the <strong>Incremental Value</strong> is calculated backward from the configured <strong>Start at</strong> time.</p>
+<p>If you change the <strong>Start at</strong> time, the next incremental backup might happen at a different time than you expect.
+This is because Capella calculates the <strong>Incremental Value</strong> backward from the configured <strong>Start at</strong> time.</p>
 </div>
 <div class="paragraph">
-<p>For example, suppose <strong>Incremental Every</strong> was set to <code>8 hours</code>, and the <strong>Start at</strong> time is 4 AM.
-If the current time is 9 PM, you would see an incremental backup was taken at 8 PM, an eight-hour interval backward from 4 AM.
-If you were to then change the <strong>Start at</strong> to 6 AM, you would see another incremental backup is taken at 10 PM&#8212;&#8203;just two hours after the last backup.
-This new backup occurs at this time because Capella recalculates the eight-hour backup interval back from the new 6 AM <strong>Incremental Every</strong> setting to 10 PM.</p>
+<p>For example, suppose <strong>Incremental Every</strong> is <code>8 hours</code>, and the <strong>Start at</strong> time is 4 AM.
+If the current time is 9 PM, Capella takes an incremental backup at 8 PM, an eight-hour interval backward from 4 AM.
+If you were to then change the <strong>Start at</strong> to 6 AM, you would see another incremental backup at 10 PM&#8212;&#8203;just two hours after the last backup.
+The backup occurs at this time because Capella recalculates the eight-hour backup interval back from the new 6 AM <strong>Start at</strong> time.</p>
 </div>
 </td>
 </tr>
@@ -1132,61 +1164,16 @@ Changes to this setting don&#8217;t affect previous backups.</p>
 </div>
 </li>
 <li>
-<p>Once you&#8217;re satisfied with the configuration, click <b class="button">Update</b>.</p>
+<p>Once you&#8217;re satisfied with the configuration, click <b class="button">Apply</b>.</p>
 <div class="paragraph">
-<p>If no backup schedule currently exists for the bucket, then the first automatic backup will occur at the next increment of the <strong>Incremental Every</strong> value, calculated <em>backward</em> from the configured <strong>Start at</strong> time.</p>
+<p>The first automatic backup occurs at the next increment of the <strong>Incremental Every</strong> value, calculated backward from the configured <strong>Start at</strong> time.</p>
 </div>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p>Once the backup has successfully completed, it will display under the <strong>Backups</strong> tab.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="create-manual-backup"><a class="anchor" href="#create-manual-backup"></a>Create an On-Demand Backup</h3>
-<div class="paragraph">
-<p>In addition to <a href="#configure-automatic-backups">scheduled backups</a>, you can also create an on-demand backup of a bucket.
-An on-demand backup is always a <em>Full backup</em> and is always scheduled immediately, irrespective of the bucket&#8217;s Backup Schedule.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Go to the cluster&#8217;s <strong>Buckets</strong> tab.</p>
-<div class="openblock">
-<div class="content">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Go to the <strong>Clusters</strong> tab in the main navigation.</p>
-</li>
-<li>
-<p>Find and click on the cluster on which you want to create an on-demand backup.</p>
-<div class="paragraph">
-<p>This action opens the cluster with its <strong>Metrics</strong> tab selected.</p>
-</div>
-</li>
-<li>
-<p>Click the <strong>Buckets</strong> tab.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>On the far right side of the bucket you are working with, click <strong>More options</strong> (<span class="icon"><i class="fa fa-ellipsis-v"></i></span>) <strong>&gt; Settings</strong>:</p>
-<div class="paragraph">
-<p>There can be a slight delay while the backup is scheduled and when the backup is run.
-After a few moments, the jobs panel near the top of the cluster screen will show that a backup is running and its progress.
-On-demand backup events are also shown in the <a href="monitoring/activity-log.html" class="xref page">Activity Log</a>, which includes events for when an on-demand backup was triggered, when it started, and when it was completed.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Once the backup has successfully completed, it will display under the <strong>Backups</strong> tab.</p>
-</div>
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -1194,49 +1181,96 @@ On-demand backup events are also shown in the <a href="monitoring/activity-log.h
 <i class="fa icon-caution" title="Caution"></i>
 </td>
 <td class="content">
-On-demand backups are retained for 30 days.
+Capella keeps on-demand backups for 30 days.
 </td>
 </tr>
 </table>
 </div>
-</div>
-<div class="sect2">
-<h3 id="view-backup-details"><a class="anchor" href="#view-backup-details"></a>View Backup Details</h3>
 <div class="paragraph">
-<p>You can view more detailed information about a cluster backup by inspecting it in the Capella UI.</p>
+<p>An on-demand backup of a bucket is always a Full backup.
+Capella schedules on-demand backup to start immediately.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to the cluster&#8217;s <strong>Backups</strong> tab.</p>
+<p>Open the <strong>Backup</strong> page for your database:</p>
 <div class="openblock">
 <div class="content">
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Go to the <strong>Clusters</strong> tab in the main navigation.</p>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you want to work with.</p>
 </li>
 <li>
-<p>Find and click on the cluster with the backup details you want to see.</p>
-<div class="paragraph">
-<p>This action opens the cluster with its <strong>Metrics</strong> tab selected.</p>
+<p>With the <strong>Databases</strong> tab open, select your database.</p>
+</li>
+<li>
+<p>Click the <strong>Backup</strong> tab.</p>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </li>
 <li>
-<p>Click the <strong>Backups</strong> tab.</p>
+<p>Select the bucket you&#8217;re creating an on-demand backup for.</p>
+</li>
+<li>
+<p>Click <b class="button">Backup Now</b>.</p>
+</li>
+<li>
+<p>Use the <strong>Bucket</strong> list to choose the buckets you want to back up.</p>
+</li>
+<li>
+<p>Click <b class="button">Backup Now</b>.</p>
+<div class="paragraph">
+<p>There can be a slight delay while Capella schedules the backup.</p>
+</div>
+<div class="paragraph">
+<p>The <a href="monitoring/activity-log.html" class="xref page">Activity Log</a> lists on-demand backup events.
+This includes when a backup was triggered, when it started, and when it finished.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The <strong>Backup</strong> page shows the details of a bucket&#8217;s backup when it&#8217;s done.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="view-backup-details"><a class="anchor" href="#view-backup-details"></a>View Backup Details</h3>
+<div class="paragraph">
+<p>You can view the details of a database backup by inspecting it in the Capella UI.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the <strong>Backup</strong> page for your database:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you want to work with.</p>
+</li>
+<li>
+<p>With the <strong>Databases</strong> tab open, select your database.</p>
+</li>
+<li>
+<p>Click the <strong>Backup</strong> tab.</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>The <strong>Latest Backups Per Bucket</strong> list shows the details of the most recent backup for each bucket in the cluster where a backup exists.</p>
+<p>The <strong>Backup</strong> page shows the details of the most recent backup for each bucket in the database.</p>
 </div>
 </li>
 <li>
-<p>Click the name of the bucket whose backups you want to inspect.</p>
+<p>Select the bucket with the backups you want to view.</p>
 <div class="paragraph">
-<p>This action opens the <strong>All Backups</strong> screen with the current bucket selected and its recent backups shown.</p>
+<p>The bucket page lists recent backups grouped by the on-demand and scheduled backup types:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1244,8 +1278,8 @@ On-demand backups are retained for 30 days.
 </div>
 </div>
 <div class="paragraph">
-<p>Each backup is listed with the date and time that it finished, the <a href="backup-restore.html#backup-types" class="xref page">backup type</a>, and if it was a <strong>Scheduled</strong> or <strong>On Demand</strong> backup, depending on whether the backup was created automatically according to the cluster&#8217;s <a href="#configure-automatic-backups">automatic backup schedule</a> or if it was created <a href="#create-manual-backup">on-demand</a>.
-If the backup method is <strong>Scheduled</strong>, the number each backup falls in the series is shown.</p>
+<p>Each backup has the date and time it was created, the <a href="backup-restore.html#backup-types" class="xref page">backup type</a>, and the expiry time.
+A Scheduled backup also includes a number for the backup&#8217;s position in the backup series.</p>
 </div>
 </li>
 </ol>
@@ -1253,21 +1287,18 @@ If the backup method is <strong>Scheduled</strong>, the number each backup falls
 <div class="sect3">
 <h4 id="view-backups-by-date"><a class="anchor" href="#view-backups-by-date"></a>View Backups by Date</h4>
 <div class="paragraph">
-<p>The <strong>All Backups</strong> page shows only those backups for the current backup cycle.
+<p>A bucket&#8217;s page shows backups for the current backup cycle.
 To view backups that belong to previous cycles:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
-<p>On the right side of the <strong>All Backups</strong> page, click the calendar icon.</p>
-</li>
-<li>
-<p>Use this date picker to select the date when the backup cycle that you want to view took place.</p>
+<p>Use the <strong>From Date</strong> date picker to select the start date for the backup cycle you want to view.</p>
 <div class="paragraph">
-<p>This action will automatically refresh the page to show older scheduled and on-demand backups.</p>
+<p>Choosing a new <strong>From Date</strong> automatically refreshes the page to show scheduled and on-demand backups based on this new date.</p>
 </div>
 </li>
-</ol>
+</ul>
 </div>
 </div>
 </div>
@@ -1286,8 +1317,8 @@ Deleting a backup is a permanent action.
 </table>
 </div>
 <div class="paragraph">
-<p>When you delete a cluster, you are also deleting any bucket backups it may contain.
-When deleting a bucket, the bucket backups are maintained until their preconfigured Backup Time.</p>
+<p>When you delete a database, you also delete its bucket backups.
+When you delete a bucket, Capella keeps its backups until their configured retention time.</p>
 </div>
 <div class="paragraph">
 <p>In Couchbase Capella, backups are deleted in the following ways:</p>
@@ -1296,26 +1327,24 @@ When deleting a bucket, the bucket backups are maintained until their preconfigu
 <dl>
 <dt class="hdlist1">Manual deletion</dt>
 <dd>
-<p>You have the option to manually delete a set of scheduled backups or individual manual backups.</p>
+<p>You can manually delete a set of scheduled backups or individual manual backups.
+You can&#8217;t undo a backup deletion.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to the cluster&#8217;s <strong>Backups</strong> tab.</p>
+<p>Open the <strong>Backup</strong> page for your database:</p>
 <div class="openblock">
 <div class="content">
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Go to the <strong>Clusters</strong> tab in the main navigation.</p>
+<p>With the <strong>Projects</strong> tab in your organization open, click the project with the database you want to work with.</p>
 </li>
 <li>
-<p>Find and click on the cluster on which you want to delete a backup.</p>
-<div class="paragraph">
-<p>This action opens the cluster with its <strong>Metrics</strong> tab selected.</p>
-</div>
+<p>With the <strong>Databases</strong> tab open, select your database.</p>
 </li>
 <li>
-<p>Click the <strong>Backups</strong> tab.</p>
+<p>Click the <strong>Backup</strong> tab.</p>
 </li>
 </ol>
 </div>
@@ -1323,33 +1352,23 @@ When deleting a bucket, the bucket backups are maintained until their preconfigu
 </div>
 </li>
 <li>
-<p>Click the name of the bucket with the backups that you are deleting.</p>
+<p>Select the bucket with the backups you are deleting.</p>
+</li>
+<li>
+<p>Click <b class="button">Delete</b> for the backup you want to delete.</p>
 <div class="paragraph">
-<p>This action opens the <strong>All Backups</strong> page.</p>
+<p>If you&#8217;re deleting a scheduled series of backups, delete the most recent backup.</p>
 </div>
 </li>
 <li>
-<p>Click the <strong>More options</strong> icon <span class="icon"><i class="fa fa-ellipsis-v"></i></span> that corresponds with the backup you want to delete.</p>
-<div class="paragraph">
-<p>If you are deleting a scheduled series of backups, find the most recent backup.
-If you are deleting an on-demand backup, find that backup.</p>
-</div>
-</li>
-<li>
-<p>In the <strong>More options</strong> menu, click <b class="button">Delete Backup</b></p>
-<div class="paragraph">
-<p>This action opens the <strong>Delete Backup</strong> fly-out menu.</p>
-</div>
-</li>
-<li>
-<p>Confirm the delete request.</p>
+<p>Confirm the backup deletion request.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
 <p>Type <code>delete</code> into the provided field.</p>
 </li>
 <li>
-<p>Click <b class="button">Delete</b></p>
+<p>Click <b class="button">Delete Backup</b>.</p>
 </li>
 </ol>
 </div>
@@ -1357,24 +1376,16 @@ If you are deleting an on-demand backup, find that backup.</p>
 </ol>
 </div>
 </dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>The specified backup is deleted.
-This action cannot be undone.</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Exceeding the Backup Time</dt>
+<dt class="hdlist1">Exceeding the retention time</dt>
 <dd>
 <div class="paragraph">
-<p>Once a backup&#8217;s age exceeds the value set for <strong>Backup Time</strong> in the <a href="#configure-automatic-backups">Backup Schedule</a>, it will automatically be deleted.</p>
+<p>If a backup&#8217;s age is greater than the retention time set in the <a href="#configure-automatic-backups">Backup Schedule</a>, Capella automatically deletes the backup.</p>
 </div>
 </dd>
-<dt class="hdlist1">The cluster is deleted</dt>
+<dt class="hdlist1">Deleting a database</dt>
 <dd>
 <div class="paragraph">
-<p>If the cluster in which the backup resides is <a href="delete-database.html" class="xref page">deleted</a>, then all of the backups that were stored in the cluster are also deleted.</p>
+<p>If you <a href="delete-database.html" class="xref page">delete a database</a> with bucket backups, all the backups stored in the database are also deleted.</p>
 </div>
 </dd>
 </dl>

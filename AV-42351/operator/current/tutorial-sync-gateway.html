@@ -7,14 +7,13 @@
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
 <title>Connecting Sync Gateway to a Couchbase Cluster | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/operator/current/tutorial-sync-gateway.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.3">
+<meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/operator/current/tutorial-sync-gateway.html">
 <meta name="generator" content="Antora 3.0.1">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -109,10 +108,10 @@
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.3" data-url="overview.html" selected>2.3</option>
+          <option value="2.5" data-url="overview.html" selected>2.5</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.3">
+      <div class="version_items hide" data-version="2.5">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -1150,7 +1149,7 @@ For further help in the event of a problem, contact the relevant software mainta
 </div>
 <div class="paragraph">
 <p>Sync Gateway is a synchronization server that is responsible for secure data synchronization and routing between Couchbase Lite-enabled clients and Couchbase Server.
-It is an integral component of the <a href="../../sync-gateway/current/index.html" class="xref page">Couchbase Mobile</a> platform.</p>
+It is an integral component of the <a href="#sync-gateway::index.adoc" class="xref unresolved">Couchbase Mobile</a> platform.</p>
 </div>
 <div class="paragraph">
 <p>This tutorial defines best practices for deploying Sync Gateway on Kubernetes.
@@ -1177,27 +1176,231 @@ However, this guide and all of its instructions assume that Couchbase Server is 
 <h2 id="configuring-sync-gateway"><a class="anchor" href="#configuring-sync-gateway"></a>Configuring Sync Gateway</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>sync gateway</code> bootstrap configuration is provisioned as a JSON file.
-Unless directed otherwise, the container will look for the configuration file: <code>/home/sync_gateway/sync_gateway.json</code>.</p>
-</div>
-<div class="paragraph">
-<p>Use the following command to start the sync gateway:</p>
+<p>Sync Gateway is configured with a configuration file within its container.
+The configuration contains sensitive data such as usernames, passwords, and TLS private keys.
+We therefore should define the configuration as a secret.
+Create a <code>sync-gateway-config.yaml</code> file with the relevant configuration variables.
+An example is shown below:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sync_gateway sync-gateway-bootstrap.json</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: sync-gateway
+stringData:
+  config.json: |-
+    {
+      "logging": {
+        "console": {
+          "enabled": true, <i class="conum" data-value="1"></i><b>(1)</b>
+          "log_level": "info", <i class="conum" data-value="2"></i><b>(2)</b>
+          "log_keys": [
+            "*"
+          ]
+        }
+      },
+      "databases": {
+        "cb-example": { <i class="conum" data-value="3"></i><b>(3)</b>
+          "server": "couchbase://cb-example-srv.my-namespace?network=default", <i class="conum" data-value="4"></i><b>(4)</b>
+          "bucket": "default", <i class="conum" data-value="5"></i><b>(5)</b>
+          "username": "Administrator", <i class="conum" data-value="6"></i><b>(6)</b>
+          "password": "password", <i class="conum" data-value="7"></i><b>(7)</b>
+          "users": {
+            "GUEST": {
+              "disabled": false,
+              "admin_channels": [
+                "*"
+              ]
+            }
+          },
+          "allow_conflicts": false,
+          "revs_limit": 20,
+          "enable_shared_bucket_access": true
+        }
+      }
+    }</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>logging.console.enabled</code> enables logging to the console.
+This is especially relevant on Kubernetes where applications are expected to log to standard out.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>logging.console.log_level</code> defines what messages are printed.
+For most use cases <code>info</code> is sufficient, however <code>debug</code> may provide additional information that can aid in problem determination.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>databases.cb-example</code> is the name of a database connection.
+The database name is arbitrary.
+In this instance we have named it after the <code>CouchbaseCluster</code> resource it references.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><code>databases.cb-example.server</code> defines the connection string of the Couchbase Server instance that Sync Gateway will connect to.
+The connection string may be determined in the same way as for <a href="howto-client-sdks.html" class="xref page">client SDKs</a>.
+<div class="paragraph">
+<p>The connection string in the example&#8201;&#8212;&#8201;<code>couchbase://cb-example-srv.my-namespace</code>&#8201;&#8212;&#8201;assumes that Sync Gateway and Couchbase Server are running on the same Kubernetes cluster.
+If we examine each part of the string:</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>couchbase</code> (as opposed to <code>couchbases</code>) specifies that the connection is over plain text and not secured by TLS</p>
+</li>
+<li>
+<p><code>cb-example</code> is the name of the Couchbase cluster</p>
+</li>
+<li>
+<p><code>-srv</code> specifies that the connection utilizes DNS SRV lookup to <a href="howto-client-sdks.html#dns-based-addressing" class="xref page">discover</a> Couchbase cluster pods running the Data Service</p>
+</li>
+<li>
+<p><code>?network=default</code> instructs Sync Gateway to <a href="howto-client-sdks.html#client-explicit-network-selection" class="xref page">explicitly select</a> the internal network addresses of Couchbase cluster pods.
+<em>Requires Sync Gateway 2.8.2 or higher; otherwise omit this parameter.</em></p>
+</li>
+<li>
+<p><code>my-namespace</code> is the namespace in which the Couchbase cluster is deployed.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>server</code> property can technically accept connection endpoints as defined in the Sync Gateway <a href="#sync-gateway::configuration-properties.adoc#databases-this_db-server" class="xref unresolved">documentation</a>.
+However, many of these connection endpoints are not recommended (some not even supported) when connecting to Couchbase Server deployments that are managed by the Autonomous Operator.
+In particular, there are <a href="concept-couchbase-networking.html#sync-gateway-exposed-features-limitations" class="xref page">limitations when using exposed features</a> that affect which connection methods can be used with certain versions of Sync Gateway.
+</td>
+</tr>
+</table>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><code>databases.cb-example.bucket</code> defines the <code>metadata.name</code> to connect to and use to store mobile data.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><code>databases.cb-example.username</code> defines the user that will be used to connect to the cluster.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td><code>databases.cb-example.password</code> defines the user password that will be used to connect to the cluster.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If the configuration file is named <code>sync-gateway-config.yaml</code>, the command to deploy it would be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ kubectl create -f sync-gateway.yaml</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="bootstrap-configuration-schema"><a class="anchor" href="#bootstrap-configuration-schema"></a>Bootstrap Configuration Schema</h3>
-<div id="swagger-ui"></div>
+<h3 id="enabling-tls-connectivity-to-couchbase-server"><a class="anchor" href="#enabling-tls-connectivity-to-couchbase-server"></a>Enabling TLS Connectivity to Couchbase Server</h3>
+<div class="paragraph">
+<p>TLS is fully supported between Sync Gateway and Couchbase Server.
+This includes <a href="concept-tls.html" class="xref page">server-side TLS or mutual TLS</a>.</p>
+</div>
+<div class="paragraph">
+<p>Your Sync Gateway configuration can be modified to allow use of TLS as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: sync-gateway
+stringData:
+  config.json: |-
+    {
+      "databases": {
+        "cb-example": {
+            "cacertpath": "/etc/sync_gateway/ca.pem", <i class="conum" data-value="1"></i><b>(1)</b>
+            "certpath": "/etc/sync_gateway/cert.pem", <i class="conum" data-value="2"></i><b>(2)</b>
+            "keypath": "/etc/sync_gateway/key.pem", <i class="conum" data-value="3"></i><b>(3)</b>
+        }
+      }
+    }
+  ca.pem: |- <i class="conum" data-value="4"></i><b>(4)</b>
+    -----BEGIN CERTIFICATE-----
+    MIIDSzCCAjOgAwIBAgIUDsYnaG+RFwhtoz9hSMwyzfoxOCcwDQYJKoZIhvcNAQEL
+    ...
+  cert.pem: |- <i class="conum" data-value="5"></i><b>(5)</b>
+    -----BEGIN CERTIFICATE-----
+    MIIDXDCCAkSgAwIBAgIRAOUsHgVlGyJbvOIYuxD90x4wDQYJKoZIhvcNAQELBQAw
+    ...
+  key.pem: |- <i class="conum" data-value="6"></i><b>(6)</b>
+    -----BEGIN PRIVATE KEY-----
+    MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDLaRvd8BxDBsPc
+    ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Certificates have been truncated for brevity.</p>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>databases.cb-example.cacertpath</code> defines where the CA certificate will be read from.
+This path is related to the deployment volume mount as described in <a href="#deploying-sync-gateway">Deploying Sync Gateway</a> and the file name as described in this <code>Secret</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><strong>Mutual TLS Only:</strong> <code>databases.cb-example.certpath</code> defines where the client certificate chain will be read from.
+This path is related to the deployment volume mount as described in <a href="#deploying-sync-gateway">Deploying Sync Gateway</a> and the file name as described in this <code>Secret</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><strong>Mutual TLS Only:</strong> <code>databases.cb-example.keypath</code> defines where the client key will be read from.
+This path is related to the deployment volume mount as described in <a href="#deploying-sync-gateway">Deploying Sync Gateway</a> and the file name as described in this <code>Secret</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The <code>ca.pem</code> secret is the CA certificate.
+The name of this secret data item defines the file name as used by <code>databases.cb-example.cacertpath</code> in the Sync Gateway configuration.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><strong>Mutual TLS Only:</strong> The <code>cert.pem</code> secret is the client certificate chain.
+The name of this secret data item defines the file name as used by <code>databases.cb-example.certpath</code> in the Sync Gateway configuration.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><strong>Mutual TLS Only:</strong> The <code>key.pem</code> secret is the client key.
+The name of this secret data item defines the file name as used by <code>databases.cb-example.keypath</code> in the Sync Gateway configuration.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If the configuration file is named <code>sync-gateway-tls.yaml</code>, the command to deploy it would be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ kubectl create -f sync-gateway-tls.yaml</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configure-an-rbac-user-for-sync-gateway"><a class="anchor" href="#configure-an-rbac-user-for-sync-gateway"></a>Configuring an RBAC User for Sync Gateway</h3>
 <div class="paragraph">
 <p>If not using client certificate authentication, secure the system further by using a limited role to access Couchbase Server.
 In doing so, the scope of operations that can be performed in the event that the Sync Gateway configuration is compromised is limited.
-The RBAC user corresponding to Sync Gateway can be manually configured as specified in the Sync Gateway <a href="../../sync-gateway/current/get-started-prepare.html#configure-server" class="xref page">Getting Started Guide</a>.</p>
+The RBAC user corresponding to Sync Gateway can be manually configured as specified in the Sync Gateway <a href="#sync-gateway::get-started-prepare.adoc#configure-server" class="xref unresolved">Getting Started Guide</a>.</p>
 </div>
 <div class="paragraph">
 <p>Alternatively, you can take advantage of the <a href="concept-user-rbac.html" class="xref page">Couchbase user RBAC management</a> capability introduced in Autonomous Operator 2.0.
@@ -1588,7 +1791,7 @@ Refer to <a href="install-openshift.html" class="xref page">Install the Operator
 <div class="ulist">
 <ul>
 <li>
-<p><a href="../../sync-gateway/current/index.html" class="xref page">Sync Gateway Documentation</a></p>
+<p><a href="#sync-gateway::index.adoc" class="xref unresolved">Sync Gateway Documentation</a></p>
 </li>
 <li>
 <p><a href="tutorial-sync-gateway-clients.html" class="xref page">Exposing Sync Gateway to Couchbase Lite Clients</a></p>
@@ -1684,16 +1887,6 @@ Refer to <a href="install-openshift.html" class="xref page">Install the Operator
 </div>
 </template>
 <script id="site-script" src="../../_/js/site.js"></script>
-<link rel="stylesheet" href="https://couchbase-docs.s3.amazonaws.com/assets/json-config-ui/json-config-ui.css">
-<script src="https://couchbase-docs.s3.amazonaws.com/assets/json-config-ui/json-config-ui-bundle.js"></script>
-<script id="json-config-ui-script" data-url="_attachments/sg-Bootstrap_model.yaml" data-version="">
-;(function (config) {
-  JSONConfigUIBundle({
-    specs: [{ version: config.version, url: config.url }],
-    current: config.version,
-  })
-})(document.getElementById('json-config-ui-script').dataset)
-</script>
 <script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
 <script defer src="../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
 <script async src="../../_/js/vendor/highlight.js"></script>

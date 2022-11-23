@@ -7,14 +7,13 @@
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
 <title>Access the Couchbase Server User Interface | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/operator/current/howto-ui.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.3">
+<meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/operator/current/howto-ui.html">
 <meta name="generator" content="Antora 3.0.1">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -109,10 +108,10 @@
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.3" data-url="overview.html" selected>2.3</option>
+          <option value="2.5" data-url="overview.html" selected>2.5</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.3">
+      <div class="version_items hide" data-version="2.5">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -1200,7 +1199,8 @@ Forwarding from [::1]:8091 -&gt; 8091</code></pre>
 <div class="paragraph">
 <p>If you must connect over TLS then forward port 18091 and use the address <code>https://localhost:18091</code>.
 Ensure your cluster administrator has provided a CA certificate to be installed into your browser&#8217;s trust store.
-If certificate based authentication is used, then ensure you have installed your client certificate/key into your browser too.
+If certificate-based authentication is used,
+then ensure you have installed your client certificate/key into your browser too.
 As you are connecting to <code>localhost</code> it is also important that your cluster administrator has added the <code>localhost</code> subject alternative address name into the cluster TLS certificate.</p>
 </div>
 </td>
@@ -1229,12 +1229,13 @@ Given the DNS domain <code>my-cluster.acme.org</code>, to connect to the cluster
 <div class="sectionbody">
 <div class="paragraph">
 <p>A <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/" target="_blank" rel="noopener">Kubernetes ingress</a> can be used to expose the Couchbase administrative console to a network external to the Kubernetes cluster.
-Ingresses are not managed by the Operator because the required configuration is not generic, however the configuration for your specific provider can be summarized as:</p>
+Ingresses are not managed by the Operator because the required configuration is not generic.
+However, the configuration for your specific provider can be summarized as:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Enable cookie based client session affinity.</p>
+<p>Enable cookie-based client session affinity.</p>
 </li>
 </ul>
 </div>
@@ -1254,17 +1255,17 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/affinity: cookie <i class="conum" data-value="1"></i><b>(1)</b>
     nginx.ingress.kubernetes.io/affinity-mode: persistent
-  spec:
-    rules:
-    - http: <i class="conum" data-value="2"></i><b>(2)</b>
-        paths:
-        - path: / <i class="conum" data-value="3"></i><b>(3)</b>
-          pathType: Prefix
-          backend:
-            service:
-              name: my-cluster <i class="conum" data-value="4"></i><b>(4)</b>
-              port:
-                number: 8091 <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+spec:
+rules:
+- http: <i class="conum" data-value="2"></i><b>(2)</b>
+    paths:
+    - path: / <i class="conum" data-value="3"></i><b>(3)</b>
+      pathType: Prefix
+      backend:
+        service:
+          name: my-cluster <i class="conum" data-value="4"></i><b>(4)</b>
+          port:
+            number: 8091 <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1290,7 +1291,7 @@ The service will be named the same as a Couchbase cluster resource.</td>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
 <td>The port is the backend port to connect to.
-In this instance the ingress is plain text HTTP, so 8091.</td>
+In this instance, the ingress is plain text HTTP, so 8091.</td>
 </tr>
 </table>
 </div>
