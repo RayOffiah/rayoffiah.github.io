@@ -303,13 +303,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a href="../../server/current/n1ql/n1ql-language-reference/index.html" class="xref page">N1QL querying</a> - the ability to easily query sessions with SQL for business insight</p>
+<p><a href="#server:n1ql:n1ql-language-reference/index.adoc" class="xref unresolved">N1QL querying</a> - the ability to easily query sessions with SQL for business insight</p>
 </li>
 <li>
-<p><a href="../../server/current/learn/services-and-indexes/indexes/storage-modes.html" class="xref page">Memory Optimized Indexes (MOI)</a> - enabling high-speed maintenance and scanning by keeping the indexes in memory</p>
+<p><a href="#server:learn:services-and-indexes/indexes/storage-modes.adoc" class="xref unresolved">Memory Optimized Indexes (MOI)</a> - enabling high-speed maintenance and scanning by keeping the indexes in memory</p>
 </li>
 <li>
-<p><a href="../../server/current/learn/services-and-indexes/services/services.html" class="xref page">Scaling</a> - not only does Couchbase make it easy to scale horizontally, but it makes it easy to scale individual services vertically with multi-dimensional scaling (MDS)</p>
+<p><a href="#server:learn:services-and-indexes/services/services.adoc" class="xref unresolved">Scaling</a> - not only does Couchbase make it easy to scale horizontally, but it makes it easy to scale individual services vertically with multi-dimensional scaling (MDS)</p>
 </li>
 <li>
 <p>Couchbase&#8217;s memory-first architecture with real-time disk-based persistance makes it a good choice for both short- and long-term session storage.</p>
@@ -360,16 +360,16 @@
 <div class="sect2">
 <h3 id="setting-up-couchbase-server"><a class="anchor" href="#setting-up-couchbase-server"></a>Setting up Couchbase Server</h3>
 <div class="paragraph">
-<p>You will need to start by accessing the Couchbase Server Console with a web browser on port 8091 (for example, http://localhost:8091). Once there, you will see a "Welcome" screen that will start to walk you through the process of setting up a new cluster. For complete details, check out the <a href="../../server/current/manage/manage-nodes/create-cluster.html" class="xref page">Create Cluster</a> documentation.</p>
+<p>You will need to start by accessing the Couchbase Server Console with a web browser on port 8091 (for example, http://localhost:8091). Once there, you will see a "Welcome" screen that will start to walk you through the process of setting up a new cluster. For complete details, check out the <a href="#server:manage:manage-nodes/create-cluster.adoc" class="xref unresolved">Create Cluster</a> documentation.</p>
 </div>
 <div class="paragraph">
-<p>Note that you can also set up Couchbase by using <a href="../../server/current/cli/cli-intro.html" class="xref page">command line tools</a> and/or <a href="../../server/current/rest-api/rest-intro.html" class="xref page">a REST API</a> instead of the UI. Using the UI for this tutorial will help you get comfortable with Couchbase, but in the long run you may want to script/automate cluster management using CLI/REST. If you are using the Kubernetes Operator, these settings can also be configured in a YAML file.</p>
+<p>Note that you can also set up Couchbase by using <a href="#server:cli:cli-intro.adoc" class="xref unresolved">command line tools</a> and/or <a href="#server:rest-api:rest-intro.adoc" class="xref unresolved">a REST API</a> instead of the UI. Using the UI for this tutorial will help you get comfortable with Couchbase, but in the long run you may want to script/automate cluster management using CLI/REST. If you are using the Kubernetes Operator, these settings can also be configured in a YAML file.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="creating-a-bucket"><a class="anchor" href="#creating-a-bucket"></a>Creating a bucket</h3>
 <div class="paragraph">
-<p>Couchbase clusters contain <a href="../../server/current/learn/buckets-memory-and-storage/buckets.html" class="xref page">buckets</a>, which are a collection of key/value pairs.</p>
+<p>Couchbase clusters contain <a href="#server:learn:buckets-memory-and-storage/buckets.adoc" class="xref unresolved">buckets</a>, which are a collection of key/value pairs.</p>
 </div>
 <div class="paragraph">
 <p>To store session data, you need at least one bucket. In the Couchbase Server Console, navigate to "Buckets" and then "Add Bucket". Give it whatever name you&#8217;d like, for example "sessionstore".</p>
@@ -381,7 +381,7 @@
 <p>Two important factors that this tutorial will touch on is bucket types: "Ephemeral vs Couchbase". This tutorial will also touch on replication, briefly.</p>
 </div>
 <div class="paragraph">
-<p>For more details on how to create a bucket and all of the advanced settings, check out the <a href="../../server/current/manage/manage-buckets/create-bucket.html" class="xref page">Create Bucket</a> documentation.</p>
+<p>For more details on how to create a bucket and all of the advanced settings, check out the <a href="#server:manage:manage-buckets/create-bucket.adoc" class="xref unresolved">Create Bucket</a> documentation.</p>
 </div>
 <div class="sect3">
 <h4 id="couchbase-vs-ephemeral"><a class="anchor" href="#couchbase-vs-ephemeral"></a>Couchbase vs Ephemeral</h4>
@@ -402,7 +402,7 @@
 <p>There&#8217;s actually a third kind of bucket: Memcached. These are also memory-only buckets. If memory is full, items will be ejected to make room as new items are added. Unless you need Memcached compatibility, you are better off using Couchbase or Ephemeral buckets.</p>
 </div>
 <div class="paragraph">
-<p>For more details about the different bucket types, check out <a href="../../server/current/learn/buckets-memory-and-storage/buckets.html" class="xref page">Buckets</a> in the Couchbase documentation.</p>
+<p>For more details about the different bucket types, check out <a href="#server:learn:buckets-memory-and-storage/buckets.adoc" class="xref unresolved">Buckets</a> in the Couchbase documentation.</p>
 </div>
 </div>
 <div class="sect3">
@@ -737,7 +737,7 @@ LIMIT 10;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>First off, this N1QL query is using BASE64_DECODE to turn the base64 representations into a JSON object that can be more easily queried (see <a href="../../server/current/n1ql/n1ql-language-reference/metafun.html" class="xref page">more about BASE64_DECODE</a> in documentation).</p>
+<p>First off, this N1QL query is using BASE64_DECODE to turn the base64 representations into a JSON object that can be more easily queried (see <a href="#server:n1ql:n1ql-language-reference/metafun.adoc" class="xref unresolved">more about BASE64_DECODE</a> in documentation).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -752,7 +752,7 @@ If you are using Couchbase Server 6.5+, you can <a href="udf.html" class="xref p
 </table>
 </div>
 <div class="paragraph">
-<p>Second, to make this query work, we&#8217;ll need appropriate indexing. The <code>shoppingcart</code> field at least needs to be indexed. It&#8217;s also a good idea to add <code>BASE64_DECODE(shoppingcart)</code> to make it a <a href="../../server/current/n1ql/n1ql-language-reference/covering-indexes.html" class="xref page">covering index</a>. Create an index like this:</p>
+<p>Second, to make this query work, we&#8217;ll need appropriate indexing. The <code>shoppingcart</code> field at least needs to be indexed. It&#8217;s also a good idea to add <code>BASE64_DECODE(shoppingcart)</code> to make it a <a href="#server:n1ql:n1ql-language-reference/covering-indexes.adoc" class="xref unresolved">covering index</a>. Create an index like this:</p>
 </div>
 <div class="paragraph">
 <p><code>CREATE INDEX ix_shoppingcart ON sessionstore (shoppingcart, BASE64_DECODE(shoppingcart));</code></p>
@@ -785,7 +785,7 @@ ORDER BY SUM(i.Quantity) DESC</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Again, BASE64_DECODE needs to be used here. This query uses the <a href="../../server/current/n1ql/n1ql-language-reference/from.html#unnest" class="xref page"><code>UNNEST</code> keyword</a> to break down the nested objects in each shopping cart to the root level.</p>
+<p>Again, BASE64_DECODE needs to be used here. This query uses the <a href="#server:n1ql:n1ql-language-reference/from.adoc#unnest" class="xref unresolved"><code>UNNEST</code> keyword</a> to break down the nested objects in each shopping cart to the root level.</p>
 </div>
 <div class="paragraph">
 <p>Fortunately, the index that was created in the above example also works for this query, so no additional index is needed. Here&#8217;s an example of a report that uses the above query (also included in the sample project on GitHub):</p>
@@ -832,7 +832,7 @@ ORDER BY SUM(i.Quantity) DESC</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>But your journey with Couchbase is just beginning. Depending on your requirements, you may also want to look into <a href="../../server/current/eventing/eventing-overview.html" class="xref page">Couchbase Eventing</a>, to respond to data changes on the cluster directly. <a href="../../server/current/fts/fts-introduction.html" class="xref page">Full Text Search</a> may also be useful for searching through any text that is being stored in your sessions. <a href="#server:analytics:introduction.adoc" class="xref unresolved">Analytics</a> can help with bigger sets and more complex queries against long-term/historical session store data. All of these services are available on a single platform: no extra integration is required.</p>
+<p>But your journey with Couchbase is just beginning. Depending on your requirements, you may also want to look into <a href="#server:eventing:eventing-overview.adoc" class="xref unresolved">Couchbase Eventing</a>, to respond to data changes on the cluster directly. <a href="#server:fts:full-text-intro.adoc" class="xref unresolved">Full Text Search</a> may also be useful for searching through any text that is being stored in your sessions. <a href="#server:analytics:introduction.adoc" class="xref unresolved">Analytics</a> can help with bigger sets and more complex queries against long-term/historical session store data. All of these services are available on a single platform: no extra integration is required.</p>
 </div>
 <div class="paragraph">
 <p>For more information about using Couchbase as a session store, check out these resources:</p>
@@ -846,7 +846,7 @@ ORDER BY SUM(i.Quantity) DESC</code></pre>
 <p><a href="https://github.com/couchbaselabs/couchbase-aspnet/">Couchbase ASP.NET Integration</a> - if you haven&#8217;t switched to ASP.NET Core yet, you can still use this library to store ASP.NET session in Couchbase</p>
 </li>
 <li>
-<p><a href="../../server/current/n1ql/n1ql-language-reference/index.html" class="xref page">N1QL documentation</a></p>
+<p><a href="#server:n1ql:n1ql-language-reference/index.adoc" class="xref unresolved">N1QL documentation</a></p>
 </li>
 <li>
 <p><a href="https://docs.couchbase.com/dotnet-sdk/2.7/start-using-sdk.html">Couchbase .NET SDK documentation</a></p>

@@ -7,14 +7,13 @@
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
 <title>Installing AKS | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/operator/current/tutorial-aks.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.3">
+<meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/operator/current/tutorial-aks.html">
 <meta name="generator" content="Antora 3.0.1">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -109,10 +108,10 @@
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.3" data-url="overview.html" selected>2.3</option>
+          <option value="2.5" data-url="overview.html" selected>2.5</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.3">
+      <div class="version_items hide" data-version="2.5">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -1221,12 +1220,12 @@ Also, the default virtual machine type is <code>Standard_DS2_v2</code> which sup
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ subnet_id=$(az network vnet show -g myResourceGroup -n myAKSVnet --query subnets[].id -o tsv)</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ subnet_id=$(az network vnet show -g myResourceGroup -n myAKSVnet --query 'subnets[].id' -o tsv)</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ az aks create -g myResourceGroup -n myAKSCluster --node-count 3  --vnet-subnet-id $subnet_id --service-cidr 10.0.0.0/16 --dns-service-ip 10.0.0.10 --generate-ssh-keys   --location eastus  --network-plugin azure  --kubernetes-version 1.12.7</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ az aks create -g myResourceGroup -n myAKSCluster --node-count 3  --vnet-subnet-id $subnet_id --service-cidr 10.0.0.0/16 --dns-service-ip 10.0.0.10 --generate-ssh-keys   --location eastus  --network-plugin azure  --kubernetes-version 1.24.6</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1241,7 +1240,7 @@ Also, the default virtual machine type is <code>Standard_DS2_v2</code> which sup
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ az aks get-versions --location eastus --query orchestrators[].orchestratorVersion -o tsv`</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ az aks get-versions --location eastus --query 'orchestrators[].orchestratorVersion' -o tsv`</code></pre>
 </div>
 </div>
 </td>
@@ -1298,7 +1297,7 @@ The following steps outline how to perform an upgrade using the <code>az-cli</co
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ az aks get-upgrades -g myResourceGroup -n myAKSCluster --query agentPoolProfiles[].upgrades -o tsv</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ az aks get-upgrades -g myResourceGroup -n myAKSCluster --query 'agentPoolProfiles[].upgrades' -o tsv</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1306,7 +1305,7 @@ The following steps outline how to perform an upgrade using the <code>az-cli</co
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ az aks upgrade -g myResourceGroup -n myAKSCluster --kubernetes-version 1.13.5</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ az aks upgrade -g myResourceGroup -n myAKSCluster --kubernetes-version 1.24.6</code></pre>
 </div>
 </div>
 </div>

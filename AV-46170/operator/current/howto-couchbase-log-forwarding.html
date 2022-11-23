@@ -7,14 +7,13 @@
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
 <title>Configure Log Forwarding | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/operator/current/howto-couchbase-log-forwarding.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.3">
+<meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/operator/current/howto-couchbase-log-forwarding.html">
 <meta name="generator" content="Antora 3.0.1">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -109,10 +108,10 @@
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.3" data-url="overview.html" selected>2.3</option>
+          <option value="2.5" data-url="overview.html" selected>2.5</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.3">
+      <div class="version_items hide" data-version="2.5">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -1138,7 +1137,7 @@ Configure Couchbase Server logs to be forwarded to standard console output.
 <h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase Server produces a <a href="../../server/current/manage/manage-logging/manage-logging.html#log-file-listing" class="xref page">variety</a> of log files.
+<p>Couchbase Server produces a <a href="#server:manage:manage-logging/manage-logging.adoc#log-file-listing" class="xref unresolved">variety</a> of log files.
 By default, these logs cannot be collected from the Couchbase Server container&#8217;s standard console output.
 This limits the ability to integrate Couchbase logging with 3rd-party monitoring or collection technologies deployed within a Kubernetes cluster.</p>
 </div>
@@ -1310,10 +1309,10 @@ spec:
     server:
       enabled: true
       manageConfiguration: true <i class="conum" data-value="1"></i><b>(1)</b>
-      configurationName: "fluent-bit-config" <i class="conum" data-value="2"></i><b>(2)</b>
+      configurationName: “fluent-bit-config” <i class="conum" data-value="2"></i><b>(2)</b>
       sidecar:
-        image: "couchbase/fluent-bit:1.2.0" <i class="conum" data-value="3"></i><b>(3)</b>
-        configurationMountPath: "/fluent-bit/config/"
+        image: couchbase/fluent-bit:1.2.0” <i class="conum" data-value="3"></i><b>(3)</b>
+        configurationMountPath: “/fluent-bit/config/”
         resources:
           requests:
             cpu: 100m
@@ -1401,10 +1400,10 @@ spec:
     server:
       enabled: true
       manageConfiguration: false <i class="conum" data-value="1"></i><b>(1)</b>
-      configurationName: "fluent-bit-config" <i class="conum" data-value="2"></i><b>(2)</b>
+      configurationName: fluent-bit-config” <i class="conum" data-value="2"></i><b>(2)</b>
       sidecar:
-        image: "couchbase/fluent-bit:1.2.0" <i class="conum" data-value="3"></i><b>(3)</b>
-        configurationMountPath: "/fluent-bit/config/" <i class="conum" data-value="4"></i><b>(4)</b>
+        image: couchbase/fluent-bit:1.2.0” <i class="conum" data-value="3"></i><b>(3)</b>
+        configurationMountPath: “/fluent-bit/config/” <i class="conum" data-value="4"></i><b>(4)</b>
         resources:
           requests:
             cpu: 100m

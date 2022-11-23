@@ -7,14 +7,13 @@
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
 <title>cao | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/operator/current/tools/cao.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.3">
+<meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/operator/current/tools/cao.html">
 <meta name="generator" content="Antora 3.0.1">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
@@ -109,10 +108,10 @@
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.3" data-url="../overview.html" selected>2.3</option>
+          <option value="2.5" data-url="../overview.html" selected>2.5</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.3">
+      <div class="version_items hide" data-version="2.5">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -1388,10 +1387,10 @@ cao certify --namespace istio-enabled-namespace -- -istio</code></pre>
 <dd>
 <p><strong>Type</strong>: int</p>
 <div class="paragraph">
-<p><strong>Default</strong>: 8</p>
+<p><strong>Default</strong>: 1</p>
 </div>
 <div class="paragraph">
-<p>Test concurrency</p>
+<p>Controls how many tests are executed concurrently.  This value should be based on the size of your kubernetes cluster.  See our documention at <a href="https://docs.couchbase.com/operator/current/concept-platform-certification.html#platform-requirements" class="bare">https://docs.couchbase.com/operator/current/concept-platform-certification.html#platform-requirements</a> for help on understanding what parallelism to utilize.</p>
 </div>
 </dd>
 <dt class="hdlist1">--registry</dt>
@@ -2829,6 +2828,16 @@ cao create operator --pod-creation-timeout 1h</code></pre>
 <p>How long to wait before declaring an error when provisioning a pod.</p>
 </div>
 </dd>
+<dt class="hdlist1">--pod-delete-delay</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 0s</p>
+</div>
+<div class="paragraph">
+<p>How long to wait before performing a delete on a failed pod.</p>
+</div>
+</dd>
 <dt class="hdlist1">--scope</dt>
 <dd>
 <p><strong>Type</strong>: string</p>
@@ -4107,6 +4116,16 @@ cao generate operator --pod-creation-timeout 1h</code></pre>
 </div>
 <div class="paragraph">
 <p>How long to wait before declaring an error when provisioning a pod.</p>
+</div>
+</dd>
+<dt class="hdlist1">--pod-delete-delay</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 0s</p>
+</div>
+<div class="paragraph">
+<p>How long to wait before performing a delete on a failed pod.</p>
 </div>
 </dd>
 <dt class="hdlist1">--scope</dt>

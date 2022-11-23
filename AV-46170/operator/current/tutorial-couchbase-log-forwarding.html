@@ -7,14 +7,13 @@
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
 <title>Forwarding Couchbase Logs with Fluent Bit | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/operator/current/tutorial-couchbase-log-forwarding.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.3">
+<meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/operator/current/tutorial-couchbase-log-forwarding.html">
 <meta name="generator" content="Antora 3.0.1">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -109,10 +108,10 @@
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.3" data-url="overview.html" selected>2.3</option>
+          <option value="2.5" data-url="overview.html" selected>2.5</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.3">
+      <div class="version_items hide" data-version="2.5">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -1156,7 +1155,7 @@ For further help in the event of a problem, contact the relevant software mainta
 <div class="paragraph">
 <p>Having a containerized application&#8217;s logs available on standard console output is desirable in Kubernetes environments, since it allows for <a href="https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/#examine-pod-logs" target="_blank" rel="noopener">simple debugging</a>, as well as standards-based integration with centralized log management systems running in a Kubernetes cluster.
 Unfortunately, the Couchbase Server container doesn&#8217;t natively write its logs to standard console output.
-Instead, the <a href="concept-couchbase-logging.html#default-logging" class="xref page">default behavior</a> of the Couchbase Server container (in deployments managed by the Autonomous Operator) is to write its <a href="../../server/current/manage/manage-logging/manage-logging.html#log-file-listing" class="xref page">various log files</a> to the <code>default</code> or <code>logs</code> persistent volumes.</p>
+Instead, the <a href="concept-couchbase-logging.html#default-logging" class="xref page">default behavior</a> of the Couchbase Server container (in deployments managed by the Autonomous Operator) is to write its <a href="#server:manage:manage-logging/manage-logging.adoc#log-file-listing" class="xref unresolved">various log files</a> to the <code>default</code> or <code>logs</code> persistent volumes.</p>
 </div>
 <div class="paragraph">
 <p>However, as of version 2.2, the Autonomous Operator can optionally deploy and manage a third party log processor on each Couchbase pod which enables Couchbase Server logs to be <a href="concept-couchbase-logging.html#log-forwarding" class="xref page">forwarded</a> to the log processor&#8217;s standard console output as well as other destinations.
@@ -1981,7 +1980,7 @@ This example assumes you&#8217;ve deployed the CouchbaseCluster resource describ
 These facilities can be effectively utilized to redact sensitive information from log events.</p>
 </div>
 <div class="paragraph">
-<p>When Couchbase Server writes an event to a log file, it encases certain <a href="../../server/current/manage/manage-logging/manage-logging.html#understanding_redaction" class="xref page">sensitive information</a> in special tags.
+<p>When Couchbase Server writes an event to a log file, it encases certain <a href="#server:manage:manage-logging/manage-logging.adoc#understanding_redaction" class="xref unresolved">sensitive information</a> in special tags.
 Therefore, the goal of redaction is to remove or replace the contents of the <code>&lt;ud&gt;&#8230;&#8203;&lt;/ud&gt;</code> tags in the string.</p>
 </div>
 <div class="paragraph">

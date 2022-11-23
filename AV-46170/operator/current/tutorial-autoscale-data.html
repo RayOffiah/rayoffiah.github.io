@@ -7,14 +7,13 @@
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
 <title>Auto-scaling the Couchbase Data Service | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/operator/current/tutorial-autoscale-data.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.3">
+<meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/operator/current/tutorial-autoscale-data.html">
 <meta name="generator" content="Antora 3.0.1">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -109,10 +108,10 @@
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.3" data-url="overview.html" selected>2.3</option>
+          <option value="2.5" data-url="overview.html" selected>2.5</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.3">
+      <div class="version_items hide" data-version="2.5">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -1154,7 +1153,7 @@ For further help in the event of a problem, contact the relevant software mainta
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this tutorial you&#8217;ll learn how to use the Autonomous Operator to automatically scale the Couchbase Data Service in order to maintain a target memory utilization threshold for an <a href="../../server/current/learn/buckets-memory-and-storage/buckets.html" class="xref page">Ephemeral bucket</a>.
+<p>In this tutorial you&#8217;ll learn how to use the Autonomous Operator to automatically scale the Couchbase Data Service in order to maintain a target memory utilization threshold for an <a href="#server:learn:buckets-memory-and-storage/buckets.adoc" class="xref unresolved">Ephemeral bucket</a>.
 You&#8217;ll also learn more about how the Kubernetes <a href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/" target="_blank" rel="noopener">Horizontal Pod Autoscaler</a> (HPA) initiates a request to scale the Data Service in order to maintain desired thresholds.</p>
 </div>
 </div>
@@ -1685,7 +1684,7 @@ To do this, we&#8217;ll be attempting to induce auto-scaling behavior by loading
 <h3 id="load-data"><a class="anchor" href="#load-data"></a>Load Data</h3>
 <div class="paragraph">
 <p>Let&#8217;s start loading some data into <code>travel-sample</code> bucket to increase memory usage towards the auto-scaling threshold.
-Run the following command to create a Kubernetes Job that runs the Couchbase <a href="#server:cli:cbtools/cbworkloadgen.adoc" class="xref unresolved"><code>cbworkloadgen</code></a> tool:</p>
+Run the following command to create a Kubernetes Job that runs the Couchbase <a href="../../server/current/cli/cbtools/cbworkloadgen.html" class="xref page"><code>cbworkloadgen</code></a> tool:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1713,8 +1712,8 @@ EOF</code></pre>
 <div class="sect2">
 <h3 id="verify-auto-scaling"><a class="anchor" href="#verify-auto-scaling"></a>Verify Auto-scaling</h3>
 <div class="paragraph">
-<p>Memory utilization of the <code>travel-sample</code> bucket should increase as <a href="#server:cli:cbtools/cbworkloadgen.adoc" class="xref unresolved"><code>cbworkloadgen</code></a> loads documents.
-In the Couchbase Web Console, you should see the <a href="../../server/current/manage/manage-ui/manage-ui.html#console-buckets" class="xref page">RAM used/quota</a> increasing for the <code>travel-sample</code> bucket as <code>cbworkloadgen</code> loads documents.</p>
+<p>Memory utilization of the <code>travel-sample</code> bucket should increase as <a href="../../server/current/cli/cbtools/cbworkloadgen.html" class="xref page"><code>cbworkloadgen</code></a> loads documents.
+In the Couchbase Web Console, you should see the <a href="#server:manage:manage-ui/manage-ui.adoc#console-buckets" class="xref unresolved">RAM used/quota</a> increasing for the <code>travel-sample</code> bucket as <code>cbworkloadgen</code> loads documents.</p>
 </div>
 <div class="paragraph">
 <p>The workload generator will create 2 M documents at 1 KB each.

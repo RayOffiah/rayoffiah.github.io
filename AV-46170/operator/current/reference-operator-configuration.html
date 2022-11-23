@@ -7,14 +7,13 @@
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
 <title>Operator Deployment Settings | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/operator/current/reference-operator-configuration.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.3">
+<meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/operator/current/reference-operator-configuration.html">
 <meta name="generator" content="Antora 3.0.1">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -109,10 +108,10 @@
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.3" data-url="overview.html" selected>2.3</option>
+          <option value="2.5" data-url="overview.html" selected>2.5</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.3">
+      <div class="version_items hide" data-version="2.5">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -1337,6 +1336,45 @@ This data may contain user names and passwords in plain text along with any othe
 </div>
 </dd>
 </dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="environment-variables"><a class="anchor" href="#environment-variables"></a>Environment Variables</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When running in different contexts such as Red Hat Marketplace in <a href="https://docs.openshift.com/container-platform/4.6/operators/operator_sdk/osdk-generating-csvs.html#olm-enabling-operator-for-restricted-network_osdk-generating-csvs" target="_blank" rel="noopener">disconnected mode</a>, additional environment variables may be added to adjust behavior of the Autonomous Operator.</p>
+</div>
+<div class="paragraph">
+<p>The following example shows supported image variables that can be used to override the default images provided to the Autonomous Operator.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  spec:
+    containers:
+    - args:
+      - --pod-create-timeout=10m0s
+      env:
+      - name: RELATED_IMAGE_COUCHBASE_SERVER <i class="conum" data-value="1"></i><b>(1)</b>
+        value: registry.connect.redhat.com/couchbase/server@sha256:76f227833f929115adbbbc28988f721b2af9aa825219ee9429482a2287a91603
+      - name: RELATED_IMAGE_COUCHBASE_BACKUP
+        value: registry.connect.redhat.com/couchbase/operator-backup@sha256:e46c4e32e645df4b9a6a2cfda04fbf8ecb66da1fdf47d073de9ec49796bd3935
+      - name: RELATED_IMAGE_COUCHBASE_METRICS
+        value: registry.connect.redhat.com/couchbase/exporter@sha256:fda5d8278acb72682ebc0151ab77f4c212ba3c7b850e3074b54408cd85cf0df6</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The Couchbase Server image which is equivalent to the <a href="https://docs.couchbase.com/operator/current/resource/couchbasecluster.html#couchbaseclusters-spec-image"><code>spec.Image</code></a> of the Couchbase Cluster resource.
+When used in disconnected mode for Red Hat Marketplace, the image tag must be a sha256 value.
+During deployment OpenShift will pre-download all related images used by Operator for offline use on premises.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <a href="https://docs.couchbase.com/operator/current/resource/couchbasecluster.html#couchbaseclusters-spec-env-image-precedence"><code>spec.EnvImagePrecedence</code></a> of the CouchbaseCluster resource must also be set to true to give environment variables precedence over default images provided for Couchbase Server and sidecar images.</p>
 </div>
 </div>
 </div>
