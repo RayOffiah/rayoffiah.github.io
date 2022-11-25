@@ -1418,31 +1418,52 @@ Related Content&#8201;&#8212;&#8201;<a href="database.html" class="xref page">Da
 <div class="sect2">
 <h3 id="document-structure"><a class="anchor" href="#document-structure"></a>Document Structure</h3>
 <div class="paragraph">
-<p>In <em>Couchbase&#160;Lite</em> the term 'document' refers to an entry in the database; a record, or row in a table if you like.</p>
+<p>In <em>Couchbase&#160;Lite</em> the term 'document' refers to an entry in the database.
+You can compare it to a record, or a row in a table.</p>
 </div>
 <div class="paragraph">
-<p>Each document has an ID (primary key in other databases) by which it can be located.
-This ID can be automatically generated (as a UUID) or specified programmatically;
-the only constraints are that it must be unique within the database, and it can&#8217;t be changed.
-The document also has a value which contains the actual application data.
-This value is stored as a dictionary collection of key-value (k-v) pairs where the values themselves may comprise different types of data such as numbers, strings, arrays or even nested objects&#8201;&#8212;&#8201;see: <a href="#data-types">Data Types</a></p>
+<p>Each document has an ID or unique identifier.
+This ID is similar to a primary key in other databases.</p>
+</div>
+<div class="paragraph">
+<p>You can specify the ID programmatically.
+If you omit it, it will be automatically generated as a UUID.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the ID must be unique within the database.
+You cannot change it after you have written the document.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The document also has a value which contains the actual application data.
+This value is stored as a dictionary collection of key-value (k-v) pairs.
+The values can be made of up several different <a href="#data-types">Data Types</a> such as numbers, strings, arrays, and nested objects.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="data-encoding"><a class="anchor" href="#data-encoding"></a>Data Encoding</h3>
 <div class="paragraph">
-<p>The document body is stored in an internal, efficient, binary form (
-<a href="https://github.com/couchbaselabs/fleece#readme">Fleece</a>
-).<br>
-This internal form is easily converted into a manageable native dictionary format for manipulation in applications.</p>
+<p>The document body is stored in an internal, efficient, binary form called
+<a href="https://github.com/couchbaselabs/fleece#readme">Fleece</a>.
+This internal form can be easily converted into a manageable native dictionary format for manipulation in applications.</p>
 </div>
 <div class="paragraph">
-<p>Fleece data is stored in the smallest format that will hold the value, whilst maintaining the integrity of the value.</p>
+<p>Fleece data is stored in the smallest format that will hold the value whilst maintaining the integrity of the value.</p>
 </div>
 <h3 id="fleece-data-encoding" class="discrete">Fleece data encoding</h3>
 <div class="paragraph">
 <p>When working with Android-Java, the Fleece encoding cycle can result in the Java type information being lost.
-So, care should be taken when storing and recovering data in a document - or converting that document to JSON and back - using non-explicit functions such as <code>toArray()</code> or <code>toMap()</code>.</p>
+Therefore care should be taken with non-explicit functions such as <code>toArray()</code> or <code>toMap()</code>,
+when storing and recovering data in a document,
+or converting that document to JSON and back.</p>
 </div>
 <div class="paragraph">
 <p>Always use explicit creation of the expected type, whenever the type of result is not itself explicit. For example:</p>
@@ -1460,95 +1481,63 @@ Long testVal = Long.valueOf(doc.get(“test”))</code></pre>
 <div class="sect2">
 <h3 id="data-types"><a class="anchor" href="#data-types"></a>Data Types</h3>
 <div class="paragraph">
-<p>The <code>Document</code> class offers a set of property accessors for various scalar types, including boolean, integers, floating-point and strings.
-These accessors take care of converting to/from JSON encoding, and make sure you get the type you&#8217;re expecting.</p>
+<p>The <code>Document</code> class offers a set of property accessors for various scalar types, such as:</p>
 </div>
-<div class="paragraph">
-<p>So your document content may well comprise one or more supporting data types such as:</p>
-</div>
-<table class="tableblock frame-all grid-none stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<div class="ulist">
 <ul>
 <li>
 <p>Boolean</p>
 </li>
-</ul>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
-<ul>
 <li>
 <p>Date</p>
 </li>
-</ul>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
-<ul>
 <li>
 <p>Double</p>
 </li>
-</ul>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
-<ul>
 <li>
 <p>Float</p>
 </li>
+<li>
+<p>Int</p>
+</li>
+<li>
+<p>Long</p>
+</li>
+<li>
+<p>String</p>
+</li>
 </ul>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
+<div class="paragraph">
+<p>These accessors take care of converting to/from JSON encoding, and make sure you get the type you expect.</p>
+</div>
 <div class="paragraph">
 <p>In addition to these basic data types Couchbase Lite provides for the following:</p>
 </div>
-<table class="tableblock frame-all grid-none stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
-<ul>
-<li>
-<p>Dictionary&#8201;&#8212;&#8201;represents a read-only key-value pair collection</p>
-</li>
-<li>
-<p>MutableDictionary&#8201;&#8212;&#8201;represents a writeable key-value pair collection</p>
-</li>
-</ul>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
-<ul>
-<li>
-<p>Array&#8201;&#8212;&#8201;represents a readonly ordered collection of objects</p>
-</li>
-<li>
-<p>MutableArray&#8201;&#8212;&#8201;represents a writeable collection of objects</p>
-</li>
-</ul>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
-<ul>
-<li>
-<p>Blob&#8201;&#8212;&#8201;represents an arbitrary piece of binary data</p>
-</li>
-</ul>
-</div></div></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Dictionary</dt>
+<dd>
+<p>represents a read-only key-value pair collection</p>
+</dd>
+<dt class="hdlist1">MutableDictionary</dt>
+<dd>
+<p>represents a writeable key-value pair collection</p>
+</dd>
+<dt class="hdlist1">Array</dt>
+<dd>
+<p>represents a readonly ordered collection of objects</p>
+</dd>
+<dt class="hdlist1">MutableArray</dt>
+<dd>
+<p>represents a writeable collection of objects</p>
+</dd>
+<dt class="hdlist1">Blob</dt>
+<dd>
+<p>represents an arbitrary piece of binary data</p>
+</dd>
+</dl>
+</div>
 </div>
 <div class="sect2">
 <h3 id="json"><a class="anchor" href="#json"></a>JSON</h3>
@@ -1562,12 +1551,16 @@ These accessors take care of converting to/from JSON encoding, and make sure you
 <h2 id="constructing-a-document"><a class="anchor" href="#constructing-a-document"></a>Constructing a Document</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>An individual document often represents a single instance of an object in application code.
-A document might be considered equivalent to a row in a relational table; with each of the document’s attributes being equivalent to a column.</p>
+<p>An individual document often represents a single instance of an object in application code.</p>
+</div>
+<div class="paragraph">
+<p>You can consider a document as the equivalent of a 'row' in a relational table,
+with each of the document&#8217;s attributes being equivalent to a 'column'.</p>
 </div>
 <div class="paragraph">
 <p>Documents can contain nested structures.
-This allows developers to express many-to-many relationships without requiring a reference or junction table; and is naturally expressive of hierarchical data.</p>
+This allows developers to express many-to-many relationships without requiring a reference or join table,
+and is naturally expressive of hierarchical data.</p>
 </div>
 <div class="paragraph">
 <p>Most apps will work with one or more documents, persisting them to a local database and optionally syncing them, either centrally or to the cloud.</p>
@@ -1596,8 +1589,8 @@ This allows developers to express many-to-many relationships without requiring a
 <div class="sect2">
 <h3 id="ex-usage"><a class="anchor" href="#ex-usage"></a>Open a Database</h3>
 <div class="paragraph">
-<p>First we open your database.
-If the database does not already exist, Couchbase Lite will create it for us.</p>
+<p>First open your database.
+If the database does not already exist, Couchbase Lite will create it for you.</p>
 </div>
 <div class="tabset is-loading">
 <div class="ulist tabs">
@@ -1644,16 +1637,16 @@ Database database = new Database("getting-started", config);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>See: <a href="database.html" class="xref page">Databases</a> for more information</p>
+<p>See <a href="database.html" class="xref page">Databases</a> for more information</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="create-a-document"><a class="anchor" href="#create-a-document"></a>Create a Document</h3>
 <div class="paragraph">
-<p>Now we create a new document to hold our application&#8217;s data.</p>
+<p>Now create a new document to hold your application&#8217;s data.</p>
 </div>
 <div class="paragraph">
-<p>Because we will be adding data to the document we must use its mutable form.</p>
+<p>Use the mutable form, so that you can add data to the document.</p>
 </div>
 <div class="tabset is-loading">
 <div class="ulist tabs">
@@ -1688,17 +1681,16 @@ MutableDocument mutableDoc = new MutableDocument();</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For more on using <strong>Documents</strong>, see: <a href="#document-initializers">Document Initializers</a> and <a href="#mutability">Mutability</a>.</p>
+<p>For more on using <strong>Documents</strong>, see <a href="#document-initializers">Document Initializers</a> and <a href="#mutability">Mutability</a>.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="create-a-dictionary"><a class="anchor" href="#create-a-dictionary"></a>Create a Dictionary</h3>
 <div class="paragraph">
-<p>Here we create a dictionary (<code>address</code>).
-Because we want to add values into the dictionary, we must create it in <em>mutable</em> form.</p>
+<p>Now create a mutable dictionary (<code>address</code>).</p>
 </div>
 <div class="paragraph">
-<p>When the dictionary is retrieved, each element&#8217;s value is directly accessible via its own key.</p>
+<p>Each element of the dictionary value will be directly accessible via its own key.</p>
 </div>
 <div class="tabset is-loading">
 <div class="ulist tabs">
@@ -1743,14 +1735,13 @@ address.setString("code"), "90210");</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For more on using <strong>Dictionaries</strong>, see: <a href="#using-dictionaries">Using Dictionaries</a></p>
+<p>Learn more about <a href="#using-dictionaries">Using Dictionaries</a>.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="create-an-array"><a class="anchor" href="#create-an-array"></a>Create an Array</h3>
 <div class="paragraph">
-<p>Since our hotel may have multiple lines we provide an array (<code>phones</code>) to hold contact numbers.
-Again, because we want to add values into the array, we create it in <em>mutable</em> form.</p>
+<p>Since the hotel may have multiple contact numbers, provide a field (<code>phones</code>) as a mutable array.</p>
 </div>
 <div class="tabset is-loading">
 <div class="ulist tabs">
@@ -1787,13 +1778,14 @@ phones.addString("650-000-0001");</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For more on using <strong>Arrays</strong>, see: <a href="#using-arrays">Using Arrays</a></p>
+<p>Learn more about <a href="#using-arrays">Using Arrays</a></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="populate-a-document"><a class="anchor" href="#populate-a-document"></a>Populate a Document</h3>
 <div class="paragraph">
-<p>Here we add our data to the mutable document we created earlier. Each data item is stored as a key-value pair.</p>
+<p>Now add your data to the mutable document created earlier.
+Each data item is stored as a key-value pair.</p>
 </div>
 <div class="tabset is-loading">
 <div class="ulist tabs">
@@ -1812,20 +1804,17 @@ phones.addString("650-000-0001");</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">// Initialize and populate the document
 
-// Add document type to document properties <i class="conum" data-value="1"></i><b>(1)</b>
+// Add document type and hotel name as string
 mutable_doc.setString("type", "hotel"))
-
-// Add hotel name string to document properties <i class="conum" data-value="2"></i><b>(2)</b>
 mutable_doc.setString("name", "Hotel Java Mo"))
 
-// Add float to document properties <i class="conum" data-value="3"></i><b>(3)</b>
+// Add average room rate (float)
 mutable_doc.setFloat("room_rate", 121.75f)
 
-// Add dictionary to document's properties <i class="conum" data-value="4"></i><b>(4)</b>
+// Add address (dictionary)
 mutable_doc.setDictionary("address", address)
 
-
-// Add array to document's properties <i class="conum" data-value="5"></i><b>(5)</b>
+// Add phone numbers(array)
 mutable_doc.setArray("phones", phones)</code></pre>
 </div>
 </div>
@@ -1835,50 +1824,32 @@ mutable_doc.setArray("phones", phones)</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">// Initialize and populate the document
 
-// Add document type to document properties <i class="conum" data-value="1"></i><b>(1)</b>
+// Add document type and hotel name as string
 mutable_doc.setString("type", "hotel"));
-
-// Add hotel name string to document properties <i class="conum" data-value="2"></i><b>(2)</b>
 mutable_doc.setString("name", "Hotel Java Mo"));
 
-// Add float to document properties <i class="conum" data-value="3"></i><b>(3)</b>
+// Add average room rate (float)
 mutable_doc.setFloat("room_rate", 121.75f);
 
-// Add dictionary to document's properties <i class="conum" data-value="4"></i><b>(4)</b>
+// Add address (dictionary)
 mutable_doc.setDictionary("address", address);
 
-
-// Add array to document's properties <i class="conum" data-value="5"></i><b>(5)</b>
+// Add phone numbers(array)
 mutable_doc.setArray("phones", phones);</code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="colist arabic">
+<div class="admonitionblock note">
 <table>
 <tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Add hotel name (string)</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Add average room rate (float)</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Add document type (string)<br>
-Couchbase recommend using a <code>type</code> attribute to define each logical document type.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Add address (dictionary)
-The <code>address</code> dictionary is added to the document and stored with the key <code>address</code>. We will use this to retrieve it when needed.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Add phone numbers (array)
-The <code>phones</code> arrary is added to the document and stored with the key <code>phones</code>. We will use this to retrieve it when needed.</td>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Couchbase recommend using a <code>type</code> attribute to define each logical document type.
+</td>
 </tr>
 </table>
 </div>
@@ -1886,7 +1857,8 @@ The <code>phones</code> arrary is added to the document and stored with the key 
 <div class="sect2">
 <h3 id="save-a-document"><a class="anchor" href="#save-a-document"></a>Save a Document</h3>
 <div class="paragraph">
-<p>With the document now populated, we can persist to our Couchbase Lite database, auto-generating the document id.</p>
+<p>Now persist the populated document to your Couchbase Lite database.
+This will auto-generate the document id.</p>
 </div>
 <div class="tabset is-loading">
 <div class="ulist tabs">
@@ -1903,16 +1875,14 @@ The <code>phones</code> arrary is added to the document and stored with the key 
 <div class="tab-pane" aria-labelledby="tabset6_kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">// Save the document changes <i class="conum" data-value="1"></i><b>(1)</b>
-database.save(mutable_doc)</code></pre>
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">database.save(mutable_doc)</code></pre>
 </div>
 </div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset6_java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">// Save the document changes <i class="conum" data-value="1"></i><b>(1)</b>
-database.save(mutable_doc);</code></pre>
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">database.save(mutable_doc);</code></pre>
 </div>
 </div>
 </div>
@@ -1922,7 +1892,7 @@ database.save(mutable_doc);</code></pre>
 <div class="sect2">
 <h3 id="close-the-database"><a class="anchor" href="#close-the-database"></a>Close the Database</h3>
 <div class="paragraph">
-<p>With our document saved, we can now close our Couchbase Lite database.</p>
+<p>With your document saved, you can now close our Couchbase Lite database.</p>
 </div>
 <div class="tabset is-loading">
 <div class="ulist tabs">
@@ -1939,16 +1909,14 @@ database.save(mutable_doc);</code></pre>
 <div class="tab-pane" aria-labelledby="tabset7_kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">// Close the database <i class="conum" data-value="1"></i><b>(1)</b>
-database.close()</code></pre>
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">database.close()</code></pre>
 </div>
 </div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset7_java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">// Close the database <i class="conum" data-value="1"></i><b>(1)</b>
-database.close();</code></pre>
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">database.close();</code></pre>
 </div>
 </div>
 </div>
@@ -1963,10 +1931,10 @@ database.close();</code></pre>
 <div class="sect2">
 <h3 id="checking-a-documents-properties"><a class="anchor" href="#checking-a-documents-properties"></a>Checking a Document&#8217;s Properties</h3>
 <div class="paragraph">
-<p>To check whether a given property exists in the document, you should use the <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-android/com/couchbase/lite/Document.html#contains-java.lang.String-">`Document.Contains(String key)</a> method.</p>
+<p>To check whether a given property exists in the document, use the <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-android/com/couchbase/lite/Document.html#contains-java.lang.String-">`Document.Contains(String key)</a> method.</p>
 </div>
 <div class="paragraph">
-<p>If the property doesn&#8217;t exist, the call will return the default value for that getter method (0 for <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-android/com/couchbase/lite/Document.html#getInt-java.lang.String-">Document.getInt()</a> 0.0 for <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-android/com/couchbase/lite/Document.html#getFloat-java.lang.String-">Document.getFloat()</a> etc.).</p>
+<p>If you try to access a property which doesn&#8217;t exist in the document, the call will return the default value for that getter method (0 for <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-android/com/couchbase/lite/Document.html#getInt-java.lang.String-">Document.getInt()</a> 0.0 for <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-android/com/couchbase/lite/Document.html#getFloat-java.lang.String-">Document.getFloat()</a> etc.).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1989,7 +1957,7 @@ Interpreting data as boolean can also give inconsistent results.</p>
 <div class="sect2">
 <h3 id="date-accessors"><a class="anchor" href="#date-accessors"></a>Date accessors</h3>
 <div class="paragraph">
-<p>As a convenience Couchbase Lite offers <em>Date</em> accessors.
+<p>Couchbase Lite offers <em>Date</em> accessors as a convenience.
 Dates are a common data type, but JSON doesn&#8217;t natively support them, so the convention is to store them as strings in ISO-8601 format.</p>
 </div>
 <div id="ex-date-getter" class="exampleblock">
@@ -2062,8 +2030,7 @@ Date date = newTask.getDate("createdAt");</code></pre>
 <div class="tab-pane" aria-labelledby="tabset9_kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">  // NOTE: No error handling, for brevity (see getting started)
-  val document = database!!.getDocument("doc1")
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">  val document = database!!.getDocument("doc1")
 
   // Getting a dictionary from the document's properties
   val dict = document?.getDictionary("address")
@@ -2084,8 +2051,7 @@ val mutable_Dict = dict.toMutable()</code></pre>
 <div class="tab-pane" aria-labelledby="tabset9_java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">// NOTE: No error handling, for brevity (see getting started)
-Document document = database.getDocument("doc1");
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">Document document = database.getDocument("doc1");
 
 // Getting a dictionary from the document's properties
 Dictionary dict = document.getDictionary("address");
@@ -2126,9 +2092,7 @@ MutableDictionary mutable_Dict = dict.toMutable();</code></pre>
 <div class="tab-pane" aria-labelledby="tabset10_kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">// NOTE: No error handling, for brevity (see getting started)
-
-// Create a new mutable dictionary and populate some keys/values
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">// Create a new mutable dictionary and populate some keys/values
 val mutable_dict = MutableDictionary()
 mutable_dict.setString("street", "1 Main st.")
 mutable_dict.setString("city", "San Francisco")
@@ -2143,9 +2107,7 @@ database!!.save(mutable_doc)</code></pre>
 <div class="tab-pane" aria-labelledby="tabset10_java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">// NOTE: No error handling, for brevity (see getting started)
-
-// Create a new mutable dictionary and populate some keys/values
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">// Create a new mutable dictionary and populate some keys/values
 MutableDictionary mutable_dict = new MutableDictionary();
 mutable_dict.setString("street", "1 Main st.");
 mutable_dict.setString("city", "San Francisco");
@@ -2193,9 +2155,7 @@ database.save(mutable_doc);</code></pre>
 <div class="tab-pane" aria-labelledby="tabset11_kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">// NOTE: No error handling, for brevity (see getting started)
-
-val document = database?.getDocument("doc1")
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">val document = database?.getDocument("doc1")
 
 // Getting a phones array from the document's properties
 val array = document?.getArray("phones")
@@ -2219,9 +2179,7 @@ val mutable_array = array.toMutable()</code></pre>
 <div class="tab-pane" aria-labelledby="tabset11_java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">// NOTE: No error handling, for brevity (see getting started)
-
-Document document = database.getDocument("doc1");
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">Document document = database.getDocument("doc1");
 
 // Getting a phones array from the document's properties
 Array array = document.getArray("phones");
@@ -2265,9 +2223,7 @@ MutableArray mutable_array = array.toMutable();</code></pre>
 <div class="tab-pane" aria-labelledby="tabset12_kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">// NOTE: No error handling, for brevity (see getting started)
-
-// Create a new mutable array and populate data into the array
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">// Create a new mutable array and populate data into the array
 val mutable_array = MutableArray()
 mutable_array.addString("650-000-0000")
 mutable_array.addString("650-000-0001")
@@ -2282,9 +2238,7 @@ database?.save(mutable_doc)</code></pre>
 <div class="tab-pane" aria-labelledby="tabset12_java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">// NOTE: No error handling, for brevity (see getting started)
-
-// Create a new mutable array and populate data into the array
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">// Create a new mutable array and populate data into the array
 MutableArray mutable_array = new MutableArray();
 mutable_array.addString("650-000-0000");
 mutable_array.addString("650-000-0001");
@@ -2304,7 +2258,7 @@ database.save(mutable_doc);</code></pre>
 <div class="sect2">
 <h3 id="using-blobs"><a class="anchor" href="#using-blobs"></a>Using Blobs</h3>
 <div class="paragraph">
-<p>For more on working with blobs&#8201;&#8212;&#8201;see <a href="blob.html" class="xref page">Blobs</a></p>
+<p>For more on working with blobs, see <a href="blob.html" class="xref page">Blobs</a></p>
 </div>
 </div>
 </div>
@@ -2313,20 +2267,20 @@ database.save(mutable_doc);</code></pre>
 <h2 id="document-initializers"><a class="anchor" href="#document-initializers"></a>Document Initializers</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following methods/initializers can be used:</p>
+<p>You can use the following methods/initializers:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-android/com/couchbase/lite/MutableDocument.html#s:18CouchbaseLiteSwift15MutableDocumentMutableDocument--">MutableDocument()</a> initializer can be used to create a new document where the document ID is randomly generated by the database.</p>
+<p>Use the <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-android/com/couchbase/lite/MutableDocument.html#s:18CouchbaseLiteSwift15MutableDocumentMutableDocument--">MutableDocument()</a> initializer to create a new document where the document ID is randomly generated by the database.</p>
 </li>
 <li>
-<p>The <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-android/com/couchbase/lite/MutableDocument.html#s:18CouchbaseLiteSwift15MutableDocument}MutableDocument-java.lang.String-">MutableDocument(String id)</a> initializer can be used to create a new document with a specific ID.</p>
+<p>Use the <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-android/com/couchbase/lite/MutableDocument.html#s:18CouchbaseLiteSwift15MutableDocument}MutableDocument-java.lang.String-">MutableDocument(String id)</a> initializer to create a new document with a specific ID.</p>
 </li>
 <li>
-<p>The <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-android/com/couchbase/lite/Database.html#getDocument-java.lang.String-">Database.getDocument()</a> method can be used to get a document.
-If it doesn&#8217;t exist in the database, it will return <code>null</code>.
-This method can be used to check if a document with a given ID already exists in the database.</p>
+<p>Use the <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-android/com/couchbase/lite/Database.html#getDocument-java.lang.String-">Database.getDocument()</a> method to get a document.
+If the document doesn&#8217;t exist in the database, the method will return <code>null</code>.
+You can use this behavior to check if a document with a given ID already exists in the database.</p>
 </li>
 </ul>
 </div>
@@ -2386,8 +2340,8 @@ try {
 <h2 id="mutability"><a class="anchor" href="#mutability"></a>Mutability</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>By default, when a document is read from the database it is immutable.
-The <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-android/com/couchbase/lite/Document.html#toMutable--">`Document.toMutable()</a> method should be used to create an instance of the document which can be updated.</p>
+<p>By default, a document is immutable when it is read from the database.
+Use the <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-android/com/couchbase/lite/Document.html#toMutable--">`Document.toMutable()</a> to create an updatable instance of the document.</p>
 </div>
 <div id="ex-update-doc" class="exampleblock">
 <div class="title">Example 7. Make a mutable document</div>
@@ -2493,7 +2447,16 @@ The following example persists a few documents in batch.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">try {
-    database.inBatch) -&gt; {         for (int i = 0; i &lt; 10; i++) {             MutableDocument doc = new MutableDocument();             doc.setValue("type", "user");             doc.setValue("name", "user " + i);             doc.setBoolean("admin", false);             try {                 database.save(doc);             } catch (CouchbaseLiteException e) {                 Log.e(TAG, e.toString(;
+    database.inBatch(() -&gt; {
+        for (int i = 0; i &lt; 10; i++) {
+            MutableDocument doc = new MutableDocument();
+            doc.setValue("type", "user");
+            doc.setValue("name", "user " + i);
+            doc.setBoolean("admin", false);
+            try {
+                database.save(doc);
+            } catch (CouchbaseLiteException e) {
+                Log.e(TAG, e.toString());
             }
             Log.i(TAG, String.format("saved user document %s", doc.getString("name")));
         }
@@ -2518,7 +2481,7 @@ But Couchbase Mobile is a distributed system, and due to the way replication wor
 <h2 id="document-change-events"><a class="anchor" href="#document-change-events"></a>Document change events</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>It is possible to register for document changes.
+<p>You can register for document changes.
 The following example registers for changes to the document with ID <code>user.john</code> and prints the <code>verified_account</code> property when a change is detected.</p>
 </div>
 <div id="ex-doc-events" class="exampleblock">
@@ -2768,7 +2731,7 @@ Use of these attributes for user-level data may result in undefined system behav
 <div class="sect2">
 <h3 id="lbl-array"><a class="anchor" href="#lbl-array"></a>Arrays</h3>
 <div class="paragraph">
-<p>Convert an <code>ArrayObject</code> to and from JSON using the <code>toJSON()</code> and <code>toArray</code> methods&#8201;&#8212;&#8201;see: <a href="#ex-array">Example 4</a>.</p>
+<p>Convert an <code>ArrayObject</code> to and from JSON using the <code>toJSON()</code> and <code>toArray</code> methods&#8201;&#8212;&#8201;see <a href="#ex-array">Example 4</a>.</p>
 </div>
 <div class="paragraph">
 <p>Additionally you can:</p>
@@ -2777,7 +2740,7 @@ Use of these attributes for user-level data may result in undefined system behav
 <ul>
 <li>
 <p>Initialize a 'MutableArrayObject' using data supplied as a JSON string.
-This is done using the <code>init(json)</code> constructor-- see: <a href="#ex-array">Example 4</a></p>
+This is done using the <code>init(json)</code> constructor&#8201;&#8212;&#8201;see: <a href="#ex-array">Example 4</a></p>
 </li>
 <li>
 <p>Convert an <code>ArrayFragment</code> object to a JSON String</p>
@@ -2805,65 +2768,54 @@ This is done using the <code>init(json)</code> constructor-- see: <a href="#ex-a
 <div class="tab-pane" aria-labelledby="tabset19_kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">// github tag=tojson-array
-val mArray = MutableArray(JSON) <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">// initialize array from JSON string
+val mArray = MutableArray(JSON)
+
+// Create and save new document using the array
 for (i in 0 until mArray.count()) {
     mArray.getDictionary(i)?.apply {
         Log.i(TAG, getString("name") ?: "unknown")
         db.save(MutableDocument(getString("id"), toMap()))
-    } <i class="conum" data-value="2"></i><b>(2)</b>
+    }
 }
 
+// Get an array from the document as a JSON string
 db.getDocument("1002")?.getArray("features")?.apply {
+    // Print its elements
     for (feature in toList()) {
         Log.i(TAG, "$feature")
-    } <i class="conum" data-value="3"></i><b>(3)</b>
+    }
     Log.i(TAG, toJSON())
-} <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+}</code></pre>
 </div>
 </div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset19_java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">// github tag=tojson-array
-final MutableArray mArray = new MutableArray(JSON); <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">// initialize array from JSON string
+final MutableArray mArray = new MutableArray(JSON);
 
-for (int i = 0; i &lt; mArray.count(); i++) { <i class="conum" data-value="2"></i><b>(2)</b>
+// Create and save new document using the array
+for (int i = 0; i &lt; mArray.count(); i++) {
   final Dictionary dict = mArray.getDictionary(i);
   Log.i(TAG, dict.getString("name"));
   db.save(new MutableDocument(dict.getString("id"), dict.toMap()));
 }
 
-final Array features = db.getDocument("1002").getArray("features"); <i class="conum" data-value="3"></i><b>(3)</b>
-for (Object feature: features.toList()) { Log.i(TAG, feature.toString()); }
-Log.i(TAG, features.toJSON()); <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+// Get an array from the document as a JSON string
+final Array features = db.getDocument("1002").getArray("features");
+// Print its elements
+for (Object feature: features.toList()) {
+    Log.i(TAG, feature.toString());
+}
+Log.i(TAG, features.toJSON());</code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Initialize array with JSON string</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Create and save new document using the array</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Get native array object from new doc and print its elements</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Get an array from the document as a JSON string</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect2">
@@ -2872,10 +2824,10 @@ Log.i(TAG, features.toJSON()); <i class="conum" data-value="4"></i><b>(4)</b></c
 <p>Convert a <code>Blob</code> to JSON using the <code>toJSON</code> method&#8201;&#8212;&#8201;see <a href="#ex-blob">Example 13</a>.</p>
 </div>
 <div class="paragraph">
-<p>You can also check whether a given dictionary object is a blob, or not, using <code>isBlob()</code>&#8201;&#8212;&#8201;again, see <a href="#ex-blob">Example 13</a>.</p>
+<p>You can use <code>isBlob()</code> to check whether a given dictionary object is a blob or not&#8201;&#8212;&#8201;see <a href="#ex-blob">Example 13</a>.</p>
 </div>
 <div class="paragraph">
-<p>Note that the blob object must first be saved to the database (generating required metadata) before you can use the <code>toJSON</code> method.</p>
+<p>Note that the blob object must first be saved to the database (generating the required metadata) before you can use the <code>toJSON</code> method.</p>
 </div>
 <div id="ex-blob" class="exampleblock">
 <div class="title">Example 13. Blobs as JSON strings</div>
@@ -2895,8 +2847,7 @@ Log.i(TAG, features.toJSON()); <i class="conum" data-value="4"></i><b>(4)</b></c
 <div class="tab-pane" aria-labelledby="tabset20_kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">// github tag=tojson-blob
-val thisBlob = db.getDocument("thisdoc-id")!!.toMap()
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">val thisBlob = db.getDocument("thisdoc-id")!!.toMap()
 if (!Blob.isBlob(thisBlob)) {
   return
 }
@@ -2908,8 +2859,7 @@ val blobLength = thisBlob["length"] as Number?</code></pre>
 <div class="tab-pane" aria-labelledby="tabset20_java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">// github tag=tojson-blob
-final Map&lt;String, ?&gt; thisBlob = db.getDocument("thisdoc-id").toMap();
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">final Map&lt;String, ?&gt; thisBlob = db.getDocument("thisdoc-id").toMap();
 if (!Blob.isBlob(thisBlob)) { return; }
 
 final String blobType = thisBlob.get("content_type").toString();
@@ -2962,8 +2912,7 @@ This is done using the <code>init(json)</code> constructor-- see: <a href="#ex-d
 <div class="tab-pane" aria-labelledby="tabset21_kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">// github tag=tojson-dictionary
-val mDict = MutableDictionary(JSON) <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">val mDict = MutableDictionary(JSON)
 Log.i(TAG, "$mDict")
 Log.i(TAG, "Details for: ${mDict.getString("name")}")
 for (key in mDict.keys) {
@@ -2975,8 +2924,7 @@ for (key in mDict.keys) {
 <div class="tab-pane" aria-labelledby="tabset21_java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">// github tag=tojson-dictionary
-final MutableDictionary mDict = new MutableDictionary(JSON); <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">final MutableDictionary mDict = new MutableDictionary(JSON);
 Log.i(TAG, mDict.toString());
 
 Log.i(TAG, "Details for: " + mDict.getString("name"));
@@ -2989,14 +2937,6 @@ for (String key: mDict.getKeys()) {
 </div>
 </div>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Set the dictionary using a JSON string</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect2">
@@ -3011,7 +2951,7 @@ for (String key: mDict.getKeys()) {
 <ul>
 <li>
 <p>Initialize a 'MutableDocument' using data supplied as a JSON string.
-This is done using the <code>init(json)</code> and-or <code>init(id: json:)</code> constructor-- see: <a href="#ex-document">Example 15</a></p>
+This is done using the <code>init(json)</code> or <code>init(id: json:)</code> constructor&#8201;&#8212;&#8201;see: <a href="#ex-document">Example 15</a></p>
 </li>
 <li>
 <p>Set data with a JSON string using <code>setJSON()</code></p>
@@ -3042,13 +2982,18 @@ This is done using the <code>init(json)</code> and-or <code>init(id: json:)</cod
 .execute()
 .forEach {
   it.getString("metaId")?.let { thisId -&gt;
-    srcDb.getDocument(thisId)?.toJSON()?.let { json -&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    // Get a document as a JSON string
+    srcDb.getDocument(thisId)?.toJSON()?.let { json -&gt;
       Log.i(TAG, "JSON String = $json")
-      val hotelFromJSON = MutableDocument(thisId, json) <i class="conum" data-value="2"></i><b>(2)</b>
+      
+      // Initialize a MutableDocument using the JSON string and save to a separate database
+      val hotelFromJSON = MutableDocument(thisId, json)
       dstDb.save(hotelFromJSON)
+      
+      // Retrieve the document created from JSON and print values
       dstDb.getDocument(thisId)?.toMap()?.forEach { e -&gt;
         Log.i(TAG, "$e.key =&gt; $e.value")
-      } <i class="conum" data-value="3"></i><b>(3)</b>
+      }
     }
   }
 }</code></pre>
@@ -3058,24 +3003,25 @@ This is done using the <code>init(json)</code> and-or <code>init(id: json:)</cod
 <div class="tab-pane" aria-labelledby="tabset22_java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">// github tag=tojson-document
-final Query listQuery = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">final Query listQuery = QueryBuilder
 .select(SelectResult.expression(Meta.id).as("metaId"))
 .from(DataSource.database(srcDb));
 
 for (Result row: listQuery.execute()) {
   final String thisId = row.getString("metaId");
 
-  final String json = srcDb.getDocument(thisId).toJSON(); <i class="conum" data-value="1"></i><b>(1)</b>
+// Get a document as a JSON string
+  final String json = srcDb.getDocument(thisId).toJSON();
   Log.i(TAG, "JSON String = " + json);
 
-  final MutableDocument hotelFromJSON = new MutableDocument(thisId, json); <i class="conum" data-value="2"></i><b>(2)</b>
-
+  // Initialize a MutableDocument using the JSON string and save to a separate database
+  final MutableDocument hotelFromJSON = new MutableDocument(thisId, json);
   dstDb.save(hotelFromJSON);
 
+  // Retrieve the document created from JSON and print values
   for (Map.Entry entry: dstDb.getDocument(thisId).toMap().entrySet()) {
     Log.i(TAG, entry.getKey() + " =&gt; " + entry.getValue());
-  } <i class="conum" data-value="3"></i><b>(3)</b>
+  }
 }</code></pre>
 </div>
 </div>
@@ -3083,22 +3029,6 @@ for (Result row: listQuery.execute()) {
 </div>
 </div>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Get a document as a JSON string</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Initialize a MutableDocument using the JSON string and save to a separate database</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Retrieve the document created from JSON and print values</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect2">
@@ -3134,10 +3064,10 @@ val hotels: ArrayList&lt;Hotel&gt; = ArrayList()
 for (result in listQuery.execute()) {
 
     // Get result as JSON string
-    val json = result.toJSON() <i class="conum" data-value="1"></i><b>(1)</b>
+    val json = result.toJSON()
 
     // Get Hashmap from JSON string
-    val dictFromJSONstring = mapper.readValue(json, HashMap::class.java) <i class="conum" data-value="2"></i><b>(2)</b>
+    val dictFromJSONstring = mapper.readValue(json, HashMap::class.java)
 
     // Use created hashmap
     val hotelId = dictFromJSONstring["id"].toString() //
@@ -3146,7 +3076,7 @@ for (result in listQuery.execute()) {
 
 
     // Get custom object from JSON string
-    val thisHotel = mapper.readValue(json, Hotel::class.java) <i class="conum" data-value="3"></i><b>(3)</b>
+    val thisHotel = mapper.readValue(json, Hotel::class.java)
     hotels.add(thisHotel)
 }</code></pre>
 </div>
@@ -3162,11 +3092,11 @@ HashMap&lt;String, Object&gt; dictFromJSONstring;
 for (Result result : listQuery.execute()) {
 
   // Get result as JSON string
-  String thisJsonString = result.toJSON(); <i class="conum" data-value="1"></i><b>(1)</b>
+  String thisJsonString = result.toJSON();
 
   // Get Java  Hashmap from JSON string
   HashMap&lt;String, Object&gt; dictFromJSONstring =
-          mapper.readValue(thisJsonString, HashMap.class); <i class="conum" data-value="2"></i><b>(2)</b>
+          mapper.readValue(thisJsonString, HashMap.class);
 
 
   // Use created hashmap
@@ -3177,7 +3107,7 @@ for (Result result : listQuery.execute()) {
 
   // Get custom object from JSON string
   Hotel thisHotel =
-          mapper.readValue(thisJsonString, Hotel.class); <i class="conum" data-value="3"></i><b>(3)</b>
+          mapper.readValue(thisJsonString, Hotel.class);
   hotels.add(thisHotel);</code></pre>
 </div>
 </div>
@@ -3185,22 +3115,6 @@ for (Result result : listQuery.execute()) {
 </div>
 </div>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Get the Query result as a JSON string&#8201;&#8212;&#8201;see <a href="#ex-json-format">JSON String Format</a></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Get a native object from the JSON string</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Populate your custom object from the dictionary created from JSON data</td>
-</tr>
-</table>
 </div>
 <div id="ex-json-format" class="paragraph">
 <div class="title">JSON String Format</div>

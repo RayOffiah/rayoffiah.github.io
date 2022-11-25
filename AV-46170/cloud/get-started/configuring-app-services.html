@@ -6,10 +6,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
-<title>Configuring App Services (Mobile sync) | Couchbase Docs</title>
+<title>Configure Your App Services Trial (Mobile sync) | Couchbase Docs</title>
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/get-started/configuring-app-services.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="Configure App Services to test out a mobile application with your trial database.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -122,23 +123,25 @@
     <a class="menu_title menu_link" href="https://cloud.couchbase.com/sign-up">Sign up</a>
   </span>
 </li>
-<li class="menu_list is-parent closed" data-depth="1">
+<li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <span class="in-toggle"></span>
-    <a class="menu_title menu_link" href="get-started.html">Start Here</a>
-  </span>
-<ul class="menu_row">
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="run-first-queries.html">Query Data with Query Workbench</a>
+    <a class="menu_title menu_link" href="create-account.html">Create a Free Account and Deploy Your Database</a>
   </span>
 </li>
-<li class="menu_list is-current-page" data-depth="2">
+<li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link is-current-page" href="configuring-app-services.html">Configuring App Services (Mobile sync)</a>
+    <a class="menu_title menu_link" href="run-first-queries.html">Explore Sample Data with Data Tools</a>
   </span>
 </li>
-</ul>
+<li class="menu_list" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="sdk-playground.html">Explore the SDK Playground</a>
+  </span>
+</li>
+<li class="menu_list is-current-page" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link is-current-page" href="configuring-app-services.html">Configure Your App Services Trial (Mobile sync)</a>
+  </span>
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
@@ -693,12 +696,22 @@
 <ul class="menu_row">
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../billing/billing.html">Overview</a>
+    <a class="menu_title menu_link" href="../billing/billing.html">Billing Overview</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../billing/manage-billing.html">Manage Billing</a>
+    <a class="menu_title menu_link" href="../billing/manage-billing.html">Manage Billing Information</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../billing/upgrade-account.html">Upgrade Your Account</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../billing/change-support-plan.html">Change a Database&#8217;s Plan and Support Timezone</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -852,16 +865,16 @@
 <ul>
 <li class="crumb"><a href="../index.html">Couchbase Capella</a></li>
 <li class="crumb">Get Started</li>
-<li class="crumb"><a href="get-started.html">Start Here</a></li>
-<li class="crumb"><a href="configuring-app-services.html">Configuring App Services (Mobile sync)</a></li>
+<li class="crumb"><a href="configuring-app-services.html">Configure Your App Services Trial (Mobile sync)</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Configuring App Services (Mobile sync)</h1>
+<h1 class="page">Configure Your App Services Trial (Mobile sync)</h1>
 <div class="labels">
-<ul></ul>
+<ul><li class="tutorial"><span><i class="fas fa-book-reader"></i> tutorial</span></li>
+</ul>
 </div>
 
 
@@ -872,19 +885,10 @@
 <span  id="otherContributor"> + </span>
 </div><div id="preamble">
 <div class="sectionbody">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p><a href="#app-services-video-tutorial">Here is a video tutorial</a> on getting started with offline-first data syncing using App Services</p>
-</div>
-</td>
-</tr>
-</table>
+<div class="quoteblock abstract">
+<blockquote>
+Configure App Services to test out a mobile application with your trial database.
+</blockquote>
 </div>
 </div>
 </div>
@@ -892,185 +896,226 @@
 <h2 id="about-capella-app-services"><a class="anchor" href="#about-capella-app-services"></a>About Capella App Services</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Capella App Services is a fully managed application backend designed for mobile and edge applications.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Use Capella App Services to sync data between Capella buckets and edge devices, as well as to authenticate and manage mobile/edge users</p>
-</li>
-<li>
-<p>App Services are accessed via the Capella Control Plane UI, making it easy to configure</p>
-</li>
-<li>
-<p>The feature enables extremely fast and reliable user experiences, even where no internet exists, maximizing business uptime</p>
-</li>
-</ul>
+<p>Capella App Services is a fully-managed application backend designed for mobile and edge applications.
+Use Capella App Services with an embedded <a href="../../couchbase-lite/current/index.html" class="xref page">Couchbase Lite</a> database in your applications.</p>
 </div>
 <div class="paragraph">
-<p>Capella App Services work with <a href="../../couchbase-lite/current/index.html" class="xref page">Couchbase Lite</a>.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Couchbase Lite is an embedded database that lets you build offline-first applications for your mobile and IoT devices</p>
-</li>
-<li>
-<p>Couchbase Lite embedded apps use App Services Endpoints for authentication and data synchronization</p>
-</li>
-<li>
-<p>Couchbase Lite powered apps can also directly sync data with each other between devices via <a href="../../couchbase-lite/current/android/p2psync-websocket.html" class="xref page">Peer-to-Peer</a> even when there is no network connectivity to Capella App Services</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
-<div class="paragraph">
-<p>You will need a Capella cluster created for connecting to your App Service. This tutorial assumes you are using the trial cluster and “travel-sample” bucket included with the Capella Free Trial. If you have not created a cluster, see <a href="../../tutorials/dbaas-self-service/signing-up-ui-overview.html" class="xref page">Creating Free Account, Cluster, and App Service</a> earlier in this tutorial series. If your cluster does not have the “travel-sample” bucket, <a href="../clusters/data-service/import-data-documents.html#import-overview" class="xref page">You can import it</a>.</p>
+<p>Capella App Services syncs data between your buckets in Capella and any mobile or edge devices.
+An app that uses Couchbase Lite can directly sync data between devices with <a href="../../couchbase-lite/current/android/p2psync-websocket.html" class="xref page">Peer-to-Peer</a>, even without a network connection to Capella App Services.</p>
 </div>
 <div class="paragraph">
-<p>This tutorial assumes you have already deployed the <a href="../../tutorials/dbaas-self-service/signing-up-ui-overview.html" class="xref page">App Services trial</a> and the following steps apply to configuring the trial App Service.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="summary-of-steps"><a class="anchor" href="#summary-of-steps"></a>Summary of steps</h3>
-<div class="paragraph">
-<p>Step 1: Create an App Endpoint for your trial App Service<br>
-Step 2: Configure App Endpoint with Access Control Policy<br>
-Step 3: Create an App User for App Endpoint via Capella UI<br>
-Step 4: Access App Endpoint via Public REST API <br>
-Step 5: Connecting Couchbase Lite apps to the Capella App Endpoint<br>
-Step 6: (Optional): Access App Endpoint via Admin REST API</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="create-an-app-endpoint-for-your-trial-app-service"><a class="anchor" href="#create-an-app-endpoint-for-your-trial-app-service"></a>Create an App Endpoint for your trial App Service</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>In the Capella UI, click on “App Services” in the left panel menu to navigate to the App Services main screen.</p>
-</li>
-<li>
-<p>On the App Services main screen, click on the trial App Service name.</p>
-</li>
-<li>
-<p>On the App Service configuration screen, click “Create App Endpoint”.</p>
-</li>
-<li>
-<p>Fill in the App Endpoint settings like so:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><em>App Endpoint Name</em>: Name your app endpoint. For this exercise enter the name: userprofileendpoint</p>
-</li>
-<li>
-<p><em>Bucket</em>: Select the “travel-sample” bucket</p>
-</li>
-<li>
-<p>Leave the remaining setting as-is</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Click the “Create App Endpoint” button.</p>
-</li>
-</ol>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/Step2.png" alt="Step2">
-</div>
-</div>
-<div class="paragraph">
-<p>The App Endpoint will take a few moments to deploy. The status will be initially set to “offline”.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/Step2a.png" alt="Step2a">
-</div>
-</div>
+<p>You can also authenticate and manage mobile and edge users through App Services Endpoints.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="configure-app-endpoint-with-access-control-policy"><a class="anchor" href="#configure-app-endpoint-with-access-control-policy"></a>Configure App Endpoint with Access Control Policy</h2>
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
 <div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You deployed a Couchbase Capella free trial database.
+For more information, see <a href="create-account.html#getting-started" class="xref page">Deploy Your Database</a>.</p>
+</li>
+<li>
+<p>Your trial database has the <code>travel-sample</code> bucket.
+For more information about how to add the <code>travel-sample</code> bucket, see <a href="../clusters/data-service/import-data-documents.html" class="xref page">Import Data</a>.</p>
+</li>
+<li>
+<p>You deployed your App Services trial.
+For more information, see <a href="create-account.html#app-services" class="xref page">Deploy Your App Services Trial</a>.</p>
+</li>
+<li>
+<p>You have a REST Client, such as <a href="https://www.postman.com/" target="_blank" rel="noopener">Postman</a> or <a href="https://httpie.io/" target="_blank" rel="noopener">HTTPie</a> installed and configured.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configure-app-services"><a class="anchor" href="#configure-app-services"></a>Configure App Services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To configure your App Services trial with your trial database:</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>On the App Endpoints screen, click on the new App Endpoint called “userprofileendpoint”. The endpoint will initially be in “offline” status.</p>
+<p><a href="#create-app-endpoint">Create an App Endpoint with your trial App Service</a></p>
 </li>
 <li>
-<p>Click the “Access Control” tab. This is where you use a JavaScript function to define read/write access and data validation policies. For this exercise, you will use the default configuration.</p>
+<p><a href="#configure-app-access">Configure the App Endpoint with an Access Control Policy</a></p>
 </li>
 <li>
-<p>Click “Restore To Default” upper right of screen</p>
+<p><a href="#create-app-role">Create an App Role for the App Endpoint with the Capella UI</a></p>
 </li>
 <li>
-<p>Click “Save” lower right of screen</p>
+<p><a href="#create-app-user">Create an App User for the App Endpoint with the Capella UI</a></p>
 </li>
 <li>
-<p>Click “Resume App Endpoint” upper right corner of the screen.</p>
+<p><a href="#access-endpoint">Access the App Endpoint through the Public REST API</a></p>
+</li>
+<li>
+<p><a href="#connect-couchbase-lite">Connect a Couchbase Lite app to the Capella App Endpoint</a></p>
+</li>
+<li>
+<p><a href="#admin-api">(Optional) Access the App Endpoint through the Admin REST API</a></p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="create-an-app-user-for-app-endpoint-via-capella-ui"><a class="anchor" href="#create-an-app-user-for-app-endpoint-via-capella-ui"></a>Create an App User for App Endpoint via Capella UI</h2>
+<h2 id="create-app-endpoint"><a class="anchor" href="#create-app-endpoint"></a>Create An App Endpoint For Your Trial App Service</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>To create an App Endpoint:</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Click the “App Users” tab, then click “Create App User”.</p>
+<p>From the <strong>Start</strong> page, click <b class="button">Linked App Service</b>.</p>
 </li>
 <li>
-<p>In the “Create App USer” flyout panel, create a new user:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Name: <a href="mailto:demo@example.com">demo@example.com</a></p>
+<p>On the <strong>App Endpoints</strong> page, click <b class="button">Create App Endpoint</b>.</p>
 </li>
 <li>
-<p>Password: password</p>
+<p>In the <strong>App Endpoint Name</strong> field, enter <code>travel-sample-appservice</code>.</p>
 </li>
 <li>
-<p>Status: Enabled</p>
+<p>In the <strong>Linked Bucket</strong> list, select <strong>travel-sample</strong>.</p>
 </li>
 <li>
-<p>Channel: Use an asterisk to indicate all documents:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Type “*”, then click “+” to add the channel.</p>
+<p>Click <b class="button">Create App Endpoint</b>.</p>
 </li>
-<li>
-<p>Leave remaining settings as-is.</p>
-</li>
-</ul>
+</ol>
 </div>
-</li>
-</ul>
+<div class="paragraph">
+<p>The App Endpoint takes a few minutes to deploy.
+Until it deploys, the App Endpoint&#8217;s status shows as <strong>Offline</strong>.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configure-app-access"><a class="anchor" href="#configure-app-access"></a>Configure The App Endpoint With An Access Control Policy</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To configure access control for your new App Endpoint:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the <strong>App Endpoints</strong> page, click your <strong>travel-sample-appservice</strong>.</p>
 </li>
 <li>
-<p>Click the “Create App User” button lower right of flyout panel.</p>
-<div class="imageblock">
+<p>Go to <span class="menuseq"><b class="menu">Security</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Access and Validation</b></span>.</p>
+</li>
+<li>
+<p>In the text editor, paste the following JavaScript code:</p>
+<div class="listingblock">
 <div class="content">
-<img src="_images/Step4.png" alt="Step4">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function (doc, oldDoc, meta) {
+  if (doc.channels) {
+      // If channels list is specified in document, assign doc to the channels
+     channel(doc.channels);
+  }
+  else {
+    // assign to public channel (which is accessible to all users)
+    channel ("!")
+  }
+}</code></pre>
 </div>
 </div>
+</li>
+<li>
+<p>Click <b class="button">Apply</b>.</p>
+</li>
+<li>
+<p>Click <b class="button">Resume app endpoint</b>.</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="access-app-endpoint-via-public-rest-api"><a class="anchor" href="#access-app-endpoint-via-public-rest-api"></a>Access App Endpoint via Public REST API</h2>
+<h2 id="create-app-role"><a class="anchor" href="#create-app-role"></a>Create An App Role For The App Endpoint</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Use a REST client to connect to the Public REST endpoint.</p>
+<p>To add an App Role for the App Endpoint:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the <strong>Security</strong> tab, go to <strong>App Roles</strong>.</p>
+</li>
+<li>
+<p>Click <b class="button">Create App Role</b>.</p>
+</li>
+<li>
+<p>Do the following:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In the <strong>App Role Name</strong> field, enter <code>admin</code>.</p>
+</li>
+<li>
+<p>In the <strong>Admin Channels</strong> field, enter an asterix (*) and press <kbd>Enter</kbd>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Create App Role</b>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="create-app-user"><a class="anchor" href="#create-app-user"></a>Create An App User For The App Endpoint</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To create a user for the App Endpoint:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the <strong>Security</strong> tab, go to <strong>App Users</strong>.</p>
+</li>
+<li>
+<p>Click <b class="button">Create App User</b>.</p>
+</li>
+<li>
+<p>Do the following:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In the <strong>App Username</strong> field, enter a username for the new app user.</p>
+</li>
+<li>
+<p>In the <strong>Password</strong> field, enter a password for the new app user.</p>
+</li>
+<li>
+<p>In the <strong>Admin Channels</strong> field, enter an asterix (*) and press <kbd>Enter</kbd>.</p>
+</li>
+<li>
+<p>In the <strong>Admin App Roles</strong> field, enter <code>admin</code> and press <kbd>Enter</kbd>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Create App User</b>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="access-endpoint"><a class="anchor" href="#access-endpoint"></a>Access The App Endpoint With The Public REST API</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can use a REST client to connect to the Public REST endpoint.</p>
 </div>
 <div class="paragraph">
 <p>To retrieve a document from the travel-sample bucket via the Public REST endpoint:</p>
@@ -1078,184 +1123,259 @@ Step 6: (Optional): Access App Endpoint via Admin REST API</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In the Capella UI, navigate to the “userprofileendpoint” App Endpoint, click the “Connect” tab, then copy the URL under “Public Connection”.</p>
+<p>Go to <b class="menuref">Connect</b>.</p>
 </li>
 <li>
-<p>Use a REST client to access the Public REST endpoint.</p>
+<p>Next to the <strong>Public Connection</strong> field, click <b class="button">Copy to Clipboard</b>.</p>
 </li>
 <li>
-<p>In the REST client, create a GET request, then paste the Public REST endpoint URL copied earlier.</p>
+<p>In your REST Client, create a GET request.</p>
 </li>
 <li>
-<p>Add “/airline_10” to the end of the URL.
-So the URL will look like this:
-<code><a href="https://adminendpointurl.apps.cloud.couchbase.com:4984/userprofileendpoint/airline_10" class="bare">https://adminendpointurl.apps.cloud.couchbase.com:4984/userprofileendpoint/airline_10</a></code></p>
+<p>Paste the Public Connection URL and change the <code>wss</code> to <code>https</code>.</p>
 </li>
 <li>
-<p>Select Basic Authentication.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Username: <a href="mailto:demo@example.com">demo@example.com</a></p>
-</li>
-<li>
-<p>Password: password</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Send the GET request.
-You should see the contents of the document id “airline_10” returned by the request.</p>
-</li>
-</ol>
-</div>
+<p>Add <code>/airline_10</code> to the end of the URL.</p>
 <div class="paragraph">
-<p><a href="#sync-gateway::rest-api.adoc" class="xref unresolved">Get more information on the Public REST API here</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="connecting-couchbase-lite-apps-to-the-capella-app-service-endpoint"><a class="anchor" href="#connecting-couchbase-lite-apps-to-the-capella-app-service-endpoint"></a>Connecting Couchbase Lite Apps to the Capella App Service Endpoint</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Couchbase Lite is an embedded database that lets you embed data processing and storage directly to applications running on mobile and IoT devices, allowing them to locally store and access data even without the Internet. Couchbase Lite embedded apps can connect to App Endpoints and sync data with each other and the Couchbase Capella backend over a websockets based data sync protocol.</p>
-</div>
-<div class="paragraph">
-<p>To connect Couchbase Lite to your App Endpoint, use the public URL corresponding to the App Endpoint in your app replicator setup</p>
-</div>
-<div class="paragraph">
-<p>To get the App Endpoint  public URL, go to the Capella UI and navigate to the “userprofileendpoint” App Endpoint, click the “Connect” tab, then copy the URL under “Public Connection”.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/Step5.png" alt="Step5">
-</div>
-</div>
-<div class="paragraph">
-<p>Use a Couchbase Lite sample application to try out connecting to your App Service. Available samples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="../../couchbase-lite/current/swift/gs-install.html" class="xref page">Swift (iOS, macOS)</a>
-Find “URLEndpoint” in the sample code, change the URL to point to your App Endpoint Public Connection</p>
-</li>
-<li>
-<p><a href="../../couchbase-lite/current/android/gs-install.html" class="xref page">Kotlin (Android)</a>
-Find “URLEndpoint” in the sample code, change the URL to point to your App Endpoint Public Connection</p>
-</li>
-<li>
-<p><a href="../../couchbase-lite/current/android/gs-install.html" class="xref page">Java (Android)</a>
-Find “URLEndpoint” in the sample code, change the URL to point to your App Endpoint Public Connection</p>
-</li>
-<li>
-<p><a href="../../couchbase-lite/current/csharp/gs-install.html" class="xref page">.Net (Desktop, Xamarin)</a>
-Find “URLEndpoint” in the sample code, change the URL to point to your App Endpoint Public Connection</p>
-</li>
-<li>
-<p><a href="../../couchbase-lite/current/java/gs-install.html" class="xref page">Java (Desktop)</a>
-Find “URLEndpoint” in the sample code, change the URL to point to your App Endpoint Public Connection</p>
-</li>
-<li>
-<p><a href="../../couchbase-lite/current/c/gs-install.html" class="xref page">C (Desktop, Mobile, Embedded)</a>
-Find “CBLEndpoint_CreateWithURL” in the sample code, change the URL to point to your App Endpoint Public Connection</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="optional-app-user-administration-via-admin-rest-api"><a class="anchor" href="#optional-app-user-administration-via-admin-rest-api"></a>(Optional) App User Administration via Admin REST API</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can programmatically administer users via Admin REST endpoint to return a list of users and add a new user.</p>
-</div>
-<div class="sect2">
-<h3 id="add-allowed-ip-and-create-admin-credential"><a class="anchor" href="#add-allowed-ip-and-create-admin-credential"></a>Add Allowed IP and create Admin Credential</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Click the “Connect” tab. The Connect screen displays a Public Connection for applications to connect and sync data over the Internet, and an Admin Connection for Admin access to the database. It also allows you to add Allowed IPs and Admin credentials.</p>
-</li>
-<li>
-<p>Under “Allowed IPs”, click “Add Allowed IP”.</p>
-</li>
-<li>
-<p>On the “Allowed IPs” screen, click “Create Allowed IP”.</p>
-</li>
-<li>
-<p>In the “App Allowed IP” flyout panel, select the “App Permanent IP” option.</p>
-</li>
-<li>
-<p>Click “Add My IP” to add your local IP address to the “IP Address/CIDR Block” setting.</p>
-</li>
-<li>
-<p>Click “Add IP”.</p>
-</li>
-<li>
-<p>On the “Connect” screen under “Admin and Metrics Credentials”, click “Manage Credentials”.</p>
-</li>
-<li>
-<p>On the Admin Credentials screen, click “Create Admin Credential”</p>
-</li>
-<li>
-<p>On the “Create Admin Credential” flyout panel, enter a username and password for your Admin user.</p>
-</li>
-<li>
-<p>Click “Create”.</p>
-</li>
-<li>
-<p>Under “Admin Connection”, copy the endpoint URL</p>
-</li>
-</ol>
-</div>
-<div class="sect3">
-<h4 id="use-a-rest-client-to-connect-to-the-admin-rest-endpoint"><a class="anchor" href="#use-a-rest-client-to-connect-to-the-admin-rest-endpoint"></a>Use a REST client to connect to the Admin REST endpoint</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Get a list of App Services users:</p>
-</li>
-<li>
-<p>In the REST client, create a GET request, then paste the Admin REST endpoint URL copied earlier.</p>
-</li>
-<li>
-<p>Add “/_user/” to the end of the URL, so the URL looks like:</p>
-<div class="paragraph">
-<p><code><a href="https://adminendpointurl.apps.cloud.couchbase.com:4985/userprofileendpoint/_user/" class="bare">https://adminendpointurl.apps.cloud.couchbase.com:4985/userprofileendpoint/_user/</a></code></p>
+<p>Your URL should look similar to https://123456789.apps.capella.com:4984/travel-sample-appservice/airline_10</p>
 </div>
 </li>
 <li>
-<p>Select Basic Authentication, enter the Admin username and password you created earlier.</p>
+<p>Choose <strong>Basic Authentication</strong>.</p>
+</li>
+<li>
+<p>Enter the username and password for the <a href="#create-app-user">App User you created</a>.</p>
 </li>
 <li>
 <p>Send the GET request.</p>
+<div class="paragraph">
+<p>You should see the contents of the document <code>airline_10</code>.</p>
+</div>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>The request will return the user “<a href="mailto:demo@example.com">demo@example.com</a>”.</p>
+<p>For more information about the Public REST API, see <a href="#sync-gateway::rest-api.adoc" class="xref unresolved">sync-gateway::rest-api.adoc</a>.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="add-an-app-services-user-named-demo2example-com"><a class="anchor" href="#add-an-app-services-user-named-demo2example-com"></a>Add an App Services user named “<a href="mailto:demo2@example.com">demo2@example.com</a>”:</h4>
+</div>
+<div class="sect1">
+<h2 id="connect-couchbase-lite"><a class="anchor" href="#connect-couchbase-lite"></a>Connect a Couchbase Lite App to the Capella App Service Endpoint</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Couchbase Lite is an embedded database.
+Use it to embed data processing and storage in applications that run on mobile and IoT devices, allowing apps to locally store and access data without an Internet connection.</p>
+</div>
+<div class="paragraph">
+<p>Couchbase Lite embedded apps can connect to App Endpoints and sync data with each other and the Couchbase Capella backend over a websockets-based data sync protocol.</p>
+</div>
+<div class="paragraph">
+<p>To connect Couchbase Lite to your App Endpoint:</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In the REST client, create a POST request, then paste the Admin REST endpoint URL copied earlier.</p>
+<p>From the <strong>Start</strong> page, click <b class="button">Linked App Service</b>.</p>
 </li>
 <li>
-<p>Add “/_user/” to the end of the URL, so the URL will look like so:</p>
+<p>On the <strong>App Endpoints</strong> page, click your <strong>travel-sample-appservice</strong>.</p>
+</li>
+<li>
+<p>Go to <b class="menuref">Connect</b>.</p>
+</li>
+<li>
+<p>Next to the <strong>Public Connection</strong> field, click <b class="button">Copy to Clipboard</b>.</p>
+</li>
+<li>
+<p>Use a Couchbase Lite sample application to connect to your App Service:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../../couchbase-lite/current/swift/gs-install.html" class="xref page">Swift (iOS, macOS)</a>:
+Replace the <code>URLEndpoint</code> in the sample code with your App Endpoint Public Connection URL.</p>
+</li>
+<li>
+<p><a href="../../couchbase-lite/current/android/gs-install.html" class="xref page">Kotlin (Android)</a>:
+Replace the <code>URLEndpoint</code> in the sample code with your App Endpoint Public Connection URL.</p>
+</li>
+<li>
+<p><a href="../../couchbase-lite/current/android/gs-install.html" class="xref page">Java (Android)</a>:
+Replace the <code>URLEndpoint</code> in the sample code with your App Endpoint Public Connection URL.</p>
+</li>
+<li>
+<p><a href="../../couchbase-lite/current/csharp/gs-install.html" class="xref page">.Net (Desktop, Xamarin)</a>:
+Replace the <code>URLEndpoint</code> in the sample code with your App Endpoint Public Connection URL.</p>
+</li>
+<li>
+<p><a href="../../couchbase-lite/current/java/gs-install.html" class="xref page">Java (Desktop)</a>:
+Replace the <code>URLEndpoint</code> in the sample code with your App Endpoint Public Connection URL.</p>
+</li>
+<li>
+<p><a href="../../couchbase-lite/current/c/gs-install.html" class="xref page">C (Desktop, Mobile, Embedded)</a>:
+Replace the <code>CBLEndpoint_CreateWithURL</code> in the sample code with your App Endpoint Public Connection URL.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="admin-api"><a class="anchor" href="#admin-api"></a>(Optional) Administer App Users With The Admin REST API</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p><code><a href="https://adminendpointurl.apps.cloud.couchbase.com:4985/userprofileendpoint/_user/" class="bare">https://adminendpointurl.apps.cloud.couchbase.com:4985/userprofileendpoint/_user/</a></code></p>
+<p>You can administer users with the Admin REST endpoint.
+You can use the REST API to return a list of users and add a new user.</p>
+</div>
+<div class="paragraph">
+<p>To use the Admin REST API, you need to <a href="#allowed-ip-admin-cred">Add An Allowed IP and Create An Admin Credential</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="allowed-ip-admin-cred"><a class="anchor" href="#allowed-ip-admin-cred"></a>Add An Allowed IP and Create An Admin Credential</h3>
+<div class="paragraph">
+<p>To add an allowed IP address and create an admin credential:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the <strong>Start</strong> page, click <b class="button">Linked App Service</b>.</p>
+</li>
+<li>
+<p>On the <strong>App Endpoints</strong> page, click your <strong>travel-sample-appservice</strong>.</p>
+</li>
+<li>
+<p>Go to <b class="menuref">Connect</b>.</p>
+</li>
+<li>
+<p>Under <strong>Allowed IP Addresses</strong>, click <b class="button">Go to Allowed IP Addresses</b>.</p>
+</li>
+<li>
+<p>Click <b class="button">Add Allowed IP Address</b>.</p>
+</li>
+<li>
+<p>Do one of the following:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Click <b class="button">Add Current IP Address</b>.</p>
+</li>
+<li>
+<p>In the <strong>IP Address/CIDR Block</strong> field, enter an IP address or IP address range in CIDR notation.</p>
+</li>
+</ol>
 </div>
 </li>
 <li>
-<p>Select Basic Authentication, enter the Admin username and password you created earlier.</p>
+<p>Click <b class="button">Add IP</b>.</p>
 </li>
 <li>
-<p>In the request BODY, add the following JSON code snippet:</p>
+<p>Go to <b class="menuref">App Endpoints</b>.</p>
+</li>
+<li>
+<p>On the <strong>App Endpoints</strong> page, click your <strong>travel-sample-appservice</strong>.</p>
+</li>
+<li>
+<p>Go to <b class="menuref">Connect</b>.</p>
+</li>
+<li>
+<p>Under <strong>Admin and Metrics Credentials</strong>, click <b class="button">Manage Credentials</b>.</p>
+</li>
+<li>
+<p>Click <b class="button">Create Admin Credential</b>.</p>
+</li>
+<li>
+<p>Do the following:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In the <strong>Username</strong> field, enter <code>admin</code>.</p>
+</li>
+<li>
+<p>In the <strong>Password</strong> field, enter a password for the admin credential.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Create Admin Credential</b>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="connect-to-the-admin-rest-endpoint"><a class="anchor" href="#connect-to-the-admin-rest-endpoint"></a>Connect to The Admin REST Endpoint</h3>
+<div class="paragraph">
+<p>You can use a REST client to connect to the Admin REST endpoint:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the <strong>Start</strong> page, click <b class="button">Linked App Service</b>.</p>
+</li>
+<li>
+<p>On the <strong>App Endpoints</strong> page, click your <strong>travel-sample-appservice</strong>.</p>
+</li>
+<li>
+<p>Go to <b class="menuref">Connect</b>.</p>
+</li>
+<li>
+<p>Next to the <strong>Admin Connection</strong> field, click <b class="button">Copy to Clipboard</b>.</p>
+</li>
+<li>
+<p>In your REST client, create a GET request.</p>
+</li>
+<li>
+<p>Paste the Admin Connection URL.</p>
+</li>
+<li>
+<p>Add <code>/_user</code> to the end of the URL.</p>
+<div class="paragraph">
+<p>Your URL should look similar to https://123456789.apps.capella.com:4985/travel-sample-appservice/_user/</p>
+</div>
+</li>
+<li>
+<p>Select Basic Authentication.</p>
+</li>
+<li>
+<p>Enter the <a href="#allowed-ip-admin-cred">Admin Credential you created</a>.</p>
+</li>
+<li>
+<p>Send the GET request.</p>
+<div class="paragraph">
+<p>The request returns the <a href="#create-app-user">App User you created</a>.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-an-app-services-user"><a class="anchor" href="#add-an-app-services-user"></a>Add An App Services User</h3>
+<div class="paragraph">
+<p>To add a new App Services User with the Admin REST endpoint:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In your REST client, create a POST request.</p>
+</li>
+<li>
+<p>Paste the Admin Connection URL.</p>
+</li>
+<li>
+<p>Add <code>/_user</code> to the end of the URL.</p>
+<div class="paragraph">
+<p>Your URL should look similar to https://123456789.apps.capella.com:4985/travel-sample-appservice/_user/</p>
+</div>
+</li>
+<li>
+<p>Select Basic Authentication.</p>
+</li>
+<li>
+<p>Enter the <a href="#allowed-ip-admin-cred">Admin Credential you created</a>.</p>
+</li>
+<li>
+<p>In the request body, add the following JSON code:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
@@ -1270,31 +1390,24 @@ Find “CBLEndpoint_CreateWithURL” in the sample code, change the URL to point
 </div>
 </li>
 <li>
-<p>Send the POST.</p>
+<p>Send the POST request.</p>
 </li>
 <li>
-<p>Go back to the Capella UI and go to the userprofileendpoint “App Users” tab.
-The “App Users” screen displays the user “<a href="mailto:demo2@example.com">demo2@example.com</a>”.</p>
+<p>In the Capella UI, return to the <strong>App Endpoints</strong> page.</p>
+</li>
+<li>
+<p>Click your <strong>travel-sample-appservice</strong>.</p>
+</li>
+<li>
+<p>Go to <span class="menuseq"><b class="menu">Security</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">App Users</b></span>.</p>
+<div class="paragraph">
+<p>The POST request adds a new user, <strong>demo2@example.com</strong>.</p>
+</div>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p><a href="#sync-gateway::rest-api-admin.adoc" class="xref unresolved">Get information on the Admin REST API here.</a></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="app-services-video-tutorial"><a class="anchor" href="#app-services-video-tutorial"></a>App Services Video Tutorial</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This video provides a walkthrough of Capella App Services capabilities by migrating an existing Couchbase Mobile app to Capella.</p>
-</div>
-<div class="videoblock">
-<div class="title">Offline first data sync using Capella App Services – Tutorial</div>
-<div class="content">
-<iframe width="800" height="480" src="https://www.youtube.com/embed/ei2UYjxoqec?rel=0" frameborder="0" allowfullscreen></iframe>
+<p>For more information about the Admin REST API, see <a href="#sync-gateway::rest-api-admin.adoc" class="xref unresolved">sync-gateway::rest-api-admin.adoc</a>.</p>
 </div>
 </div>
 </div>

@@ -1434,7 +1434,7 @@ The examples used in this topic are based on the <em>Travel Sample</em> app and 
 </div>
 <div class="paragraph">
 <p>Database queries defined with the QueryBuilder API use query statements of the form shown in <a href="#ex-query-form">Example 1</a>.
-The structure and semantics of the query format are based on that of Couchbase&#8217;s <a href="#server:learn:data/n1ql-versus-sql.adoc" class="xref unresolved">SQL++ query language</a>.</p>
+The structure and semantics of the query format are based on that of Couchbase&#8217;s <a href="../../../server/current/learn/data/n1ql-versus-sql.html" class="xref page">SQL++ query language</a>.</p>
 </div>
 <div id="ex-query-form" class="exampleblock">
 <div class="title">Example 1. Query Format</div>
@@ -2801,13 +2801,13 @@ For more on using the QueryBuilder API, see our blog: <a href="https://blog.couc
 foreach (var result in query.Execute().AsEnumerable()) {
 
     // get the result into a JSON String
-            var thisDocsJSONString = result.ToJSON();<i class="conum" data-value="1"></i><b>(1)</b>
+            var thisDocsJSONString = result.ToJSON();
 
     // Get a native dictionary object using the JSON string
     var dictFromJSONstring =
           JsonConvert.
             DeserializeObject&lt;Dictionary&lt;string, object&gt;&gt;
-              (thisDocsJSONString); <i class="conum" data-value="2"></i><b>(2)</b>
+              (thisDocsJSONString);
 
     // use the created dictionary
     if (dictFromJSONstring != null)
@@ -2820,7 +2820,7 @@ foreach (var result in query.Execute().AsEnumerable()) {
 
     //Get a custom object using the JSON string
     Hotel this_hotel =
-        JsonConvert.DeserializeObject&lt;Hotel&gt;(thisDocsJSONString); <i class="conum" data-value="3"></i><b>(3)</b>
+        JsonConvert.DeserializeObject&lt;Hotel&gt;(thisDocsJSONString);
 
     // Store this hotel object in a list of hotels
     hotels.Add(
@@ -2831,22 +2831,6 @@ foreach (var result in query.Execute().AsEnumerable()) {
 </div>
 </div>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Get the Query result as a JSON string&#8201;&#8212;&#8201;see <a href="#ex-json-format">JSON String Format</a></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Get a native object from the JSON string</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Populate your custom object from the dictionary created from JSON data</td>
-</tr>
-</table>
 </div>
 <div id="ex-json-format" class="paragraph">
 <div class="title">JSON String Format</div>

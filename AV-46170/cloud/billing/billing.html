@@ -6,11 +6,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
-<title>Billing | Couchbase Docs</title>
+<title>Billing Overview | Couchbase Docs</title>
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/cloud/billing/billing.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="In Couchbase Capella, you are billed for the size and number of clusters in your organization.">
+<meta name="description" content="In Couchbase Capella, you are billed for the size and number of databases in your organization.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -123,23 +123,25 @@
     <a class="menu_title menu_link" href="https://cloud.couchbase.com/sign-up">Sign up</a>
   </span>
 </li>
-<li class="menu_list is-parent closed" data-depth="1">
+<li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <span class="in-toggle"></span>
-    <a class="menu_title menu_link" href="../get-started/get-started.html">Start Here</a>
-  </span>
-<ul class="menu_row">
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="../get-started/run-first-queries.html">Query Data with Query Workbench</a>
+    <a class="menu_title menu_link" href="../get-started/create-account.html">Create a Free Account and Deploy Your Database</a>
   </span>
 </li>
-<li class="menu_list" data-depth="2">
+<li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="../get-started/configuring-app-services.html">Configuring App Services (Mobile sync)</a>
+    <a class="menu_title menu_link" href="../get-started/run-first-queries.html">Explore Sample Data with Data Tools</a>
   </span>
 </li>
-</ul>
+<li class="menu_list" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../get-started/sdk-playground.html">Explore the SDK Playground</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../get-started/configuring-app-services.html">Configure Your App Services Trial (Mobile sync)</a>
+  </span>
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
@@ -694,12 +696,22 @@
 <ul class="menu_row">
 <li class="menu_list is-current-page" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link is-current-page" href="billing.html">Overview</a>
+    <a class="menu_title menu_link is-current-page" href="billing.html">Billing Overview</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="manage-billing.html">Manage Billing</a>
+    <a class="menu_title menu_link" href="manage-billing.html">Manage Billing Information</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="upgrade-account.html">Upgrade Your Account</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="change-support-plan.html">Change a Database&#8217;s Plan and Support Timezone</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -853,13 +865,13 @@
 <ul>
 <li class="crumb"><a href="../index.html">Couchbase Capella</a></li>
 <li class="crumb">Billing &amp; Support</li>
-<li class="crumb"><a href="billing.html">Overview</a></li>
+<li class="crumb"><a href="billing.html">Billing Overview</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Billing</h1>
+<h1 class="page">Billing Overview</h1>
 <div class="labels">
 <ul></ul>
 </div>
@@ -874,51 +886,65 @@
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-In Couchbase Capella, you are billed for the size and number of clusters in your organization.
+In Couchbase Capella, you are billed for the size and number of databases in your organization.
 </blockquote>
 </div>
 <div class="paragraph">
-<p>Billing occurs at the organization level.
-Billing settings apply to all projects and clusters within an organization.
-Any user with the <a href="../organizations/organization-user-roles.html#organization-role-organization-owner" class="xref page"><code>Organization Owner</code></a> role can configure billing settings and view costs at both the organization level, as well as at the project and cluster levels.</p>
+<p>All billing in Couchbase Capella happens at the organization level.</p>
+</div>
+<div class="paragraph">
+<p>Your billing settings apply to all projects and databases in your organization.</p>
+</div>
+<div class="paragraph">
+<p>If you have the <a href="../organizations/organization-user-roles.html#organization-role-organization-owner" class="xref page"><code>Organization Owner</code></a> role, you can configure billing settings and view costs for your organization.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="bill-calculation"><a class="anchor" href="#bill-calculation"></a>How Your Bill is Calculated</h2>
+<h2 id="bill-calculation"><a class="anchor" href="#bill-calculation"></a>How Your Bill Is Calculated</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase Capella charges <em>by the clock hour</em> for Couchbase clusters.
-Each cluster costs an individual hourly rate based on its <em>size</em> (number of logical cores and amount of RAM) as well as its selected <em>Service Plan</em>.
-If you change a cluster&#8217;s <a href="../clusters/scale-database.html" class="xref page">size</a> or <a href="manage-billing.html#change-support-plan" class="xref page">Service Plan</a> after initial deployment, the hourly rate will increase or decrease commensurate with the changes.</p>
+<p>Couchbase charges by the clock hour for Capella databases.
+A database&#8217;s individual hourly rate is based on:</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Couchbase Capella deployed in your own cloud does not bill you for cloud infrastructure costs, such as compute, storage, and data transfer.
-In these deployments, Couchbase clusters run in your own <a href="#clouds:clouds.adoc" class="xref unresolved">connected cloud</a>, and thus infrastructure costs are billed to you by your respective cloud provider(s).
-</td>
-</tr>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Its size, which is determined by its number of logical cores and amount of RAM.</p>
+</li>
+<li>
+<p>Its selected <a href="#support-plans">Plan</a>.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>A cluster becomes billable once it is successfully deployed and enters a running state.
-You are billed for each clock hour in which the cluster runs.
-For example, if a cluster were to begin running at 10:30, and then stop running at 11:30 on the same day, the result would be two billable hours since the cluster was running during two clock hours.</p>
+<p>You can <a href="../clusters/scale-database.html" class="xref page">change a database&#8217;s size</a> or <a href="change-support-plan.html" class="xref page">change its Service Plan</a> after its deployment.
+The hourly rate for that database increases or decreases based on your changes.</p>
 </div>
 <div class="paragraph">
-<p>All hourly cluster charges are <em>tabulated daily</em>.
-This means that the hourly charges for the current day are not reflected in your organization&#8217;s balance until the next calendar day.
-All tabulated daily usage is reported into <em>monthly usage periods</em> that align with each calendar month.
-A <a href="manage-billing.html#usage-reports" class="xref page">Usage Summary</a> is provided for each monthly usage period, breaking down all of the billable cluster usage that occurred during each month.</p>
+<p>After a database is successfully deployed and enters a running state, it becomes billable.
+You&#8217;re billed for each clock hour that the database runs.</p>
 </div>
 <div class="paragraph">
-<p>Organizations that pay <a href="#on-demand-payment">on-demand</a> are billed <em>per monthly usage period</em>.
-Organizations that pay <a href="#up-front-payment">up-front</a> will see cluster charges deducted from their remaining balance after each day&#8217;s tabulation.</p>
+<p>For example, if your database ran at 10:30 and stopped at 11:30 on the same day, you would be billed for two hours, since the database ran during two clock hours.</p>
+</div>
+<div class="paragraph">
+<p>All database charges are calculated daily.
+Any hourly charges for the current day are reflected in your organization&#8217;s balance on the next calendar day.
+Daily usage is reported in monthly usage periods for each calendar month.</p>
+</div>
+<div class="paragraph">
+<p>Your usage and payment depends on your payment method for <a href="#couchbase-cloud-credits">Couchbase Capella Credits</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you choose to pay <a href="#on-demand-payment">on-demand</a>, your organization is billed for each monthly usage period.</p>
+</li>
+<li>
+<p>If you choose to pay <a href="#up-front-payment">up-front</a>, your organization sees its database charges deducted from your remaining <a href="#couchbase-cloud-credits">credit balance</a> each day.</p>
+</li>
+</ul>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -927,9 +953,10 @@ Organizations that pay <a href="#up-front-payment">up-front</a> will see cluster
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Since the organizations that pay up-front are charged after each calendar day, the monthly usage periods serve only as a reporting function for those organizations&#8201;&#8212;&#8201;not a monthly bill.
-An exception to this is when an organization runs out of pre-paid <a href="#couchbase-cloud-credits">Couchbase Capella Credits</a>.
-In that case, the organization may fall back to paying on-demand, and may receive a bill for any on-demand usage that occurred during a monthly usage period, which would then need to be paid in arrears.
+If you pay <a href="#up-front-payment">up-front</a>, you&#8217;re charged after each calendar day.
+Your monthly usage periods are used for reporting purposes only, unless you run out of pre-paid <a href="#couchbase-cloud-credits">Couchbase Capella Credits</a>.
+If you run out of Credits, you can choose to pay <a href="#on-demand-payment">on-demand</a> and receive a bill for any on-demand usage that occurred during a monthly usage period.
+You&#8217;ll need to pay this bill in arrears.
 </td>
 </tr>
 </table>
@@ -940,24 +967,27 @@ In that case, the organization may fall back to paying on-demand, and may receiv
 <h2 id="couchbase-cloud-credits"><a class="anchor" href="#couchbase-cloud-credits"></a>Couchbase Capella Credits</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>All charges in Couchbase Capella are billed in <em>Couchbase Capella Credits</em>.
-Couchbase Capella Credits are purchased from Couchbase Sales, and can be paid for <em>up-front</em> or <em>on-demand</em>.
-You will use an <a href="#activation-id">Activation ID</a> to enable Couchbase Capella Credits in your organization.</p>
+<p>Couchbase Capella bills your database usage in Couchbase Capella Credits.</p>
 </div>
-<div class="admonitionblock note">
+<div class="paragraph">
+<p>You can purchase Credits from Couchbase Sales and pay <a href="#up-front-payment">up-front</a> or <a href="#on-demand-payment">on-demand</a>.</p>
+</div>
+<div class="paragraph">
+<p>To enable credit purchases for your organization, you need an <a href="#activation-id">Activation ID</a> for your organization.</p>
+</div>
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-<div class="title">AWS Marketplace Payments</div>
 <div class="paragraph">
-<p>Couchbase Capella can be purchased and billed through <a href="https://aws.amazon.com/marketplace/pp/prodview-xrhx5zgue5c26" target="_blank" rel="noopener">AWS Marketplace</a>.
-The same payment methods described in the sections below also apply to AWS Marketplace purchases&#8201;&#8212;&#8201;the only difference being that invoices and payments are managed directly through your AWS account.</p>
+<p>Couchbase Capella can be purchased and billed through the <a href="https://aws.amazon.com/marketplace/pp/prodview-xrhx5zgue5c26" target="_blank" rel="noopener">AWS Marketplace</a>.
+You can use the same payment methods for AWS Marketplace purchases and manage invoices and payments through your AWS account.</p>
 </div>
 <div class="paragraph">
-<p>For more information about purchasing Couchbase Capella through the AWS Marketplace, please contact Couchbase Sales.</p>
+<p>For more information about how to purchase Couchbase Capella Credits through the AWS Marketplace, please contact Couchbase Sales.</p>
 </div>
 </td>
 </tr>
@@ -966,25 +996,35 @@ The same payment methods described in the sections below also apply to AWS Marke
 <div class="sect2">
 <h3 id="up-front-payment"><a class="anchor" href="#up-front-payment"></a>Up-Front Payments</h3>
 <div class="paragraph">
-<p>When purchased <em>up-front</em>, Couchbase Capella Credits are deposited in your organization&#8217;s account, giving your organization a positive balance of credits.
-These are known as <em>pre-paid credits</em>.
-This balance is drawn down over time based on usage.
-The balance is updated once per calendar day to reflect the previous calendar day&#8217;s cumulative usage across all clusters in your organization.</p>
+<p>You can purchase Couchbase Capella Credits up-front.
+Credits are deposited in your organization&#8217;s account to give you a positive credit balance.</p>
 </div>
 <div class="paragraph">
-<p>Additional credits must be purchased and deposited into your organization&#8217;s account before the balance reaches zero, or before the current credits expire, whichever happens first.
-An invoice for the purchased credits, denominated in the currency-equivalent outlined in your purchase agreement, will be sent to your organization&#8217;s billing contact for payment.</p>
+<p>These Credits are called pre-paid Credits in the Couchbase Capella UI.
+Capella draws from these Credits based on your database usage.</p>
+</div>
+<div class="paragraph">
+<p>Your credit balance is updated once per calendar day and reflects the previous day&#8217;s cumulative usage, across all databases in your organization.</p>
+</div>
+<div class="paragraph">
+<p>You must purchase and deposit additional Credits into your organization&#8217;s account before your credit balance reaches zero, or your Credits expire.</p>
+</div>
+<div class="paragraph">
+<p>Couchbase sends an invoice to your organization&#8217;s billing contact for the purchased Credits based on the currency-equivalent outlined in your purchase agreement.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="on-demand-payment"><a class="anchor" href="#on-demand-payment"></a>On-Demand Payments</h3>
 <div class="paragraph">
-<p>If paying <em>on-demand</em>, your organization is not required to keep a positive balance of Couchbase Capella Credits.
-Instead, your organization is billed in arrears for the Couchbase Capella Credits that were used in the previous calendar month.</p>
+<p>You can purchase Couchbase Capella Credits on-demand.
+If you choose to pay on-demand, your organization doesn&#8217;t need to keep a positive balance of Credits.
+Your organization is billed in arrears based on the Couchbase Capella Credits you used in the previous calendar month.</p>
 </div>
 <div class="paragraph">
-<p>Once a new calendar month begins, you can review the previous month&#8217;s Usage Summary to see all of the billable usage that occurred in your organization, denominated in Couchbase Capella Credits.
-An invoice for this usage, denominated in the currency-equivalent outlined in your purchase agreement, will then be sent to your organization&#8217;s billing contact for payment.</p>
+<p>At the start of a new calendar month, you can review your previous month&#8217;s usage, denominated in Couchbase Capella Credits.</p>
+</div>
+<div class="paragraph">
+<p>Couchbase sends an invoice for your usage to your organization&#8217;s billing contact based on the currency-equivalent outlined in your purchase agreement.</p>
 </div>
 </div>
 </div>
@@ -993,37 +1033,55 @@ An invoice for this usage, denominated in the currency-equivalent outlined in yo
 <h2 id="activation-id"><a class="anchor" href="#activation-id"></a>Activation IDs</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>An <em>Activation ID</em> is required in order to start using <a href="#couchbase-cloud-credits">Couchbase Capella Credits</a> for deploying clusters.
-An Activation ID will be emailed to your billing contact after you either complete a purchase agreement with Couchbase Sales, or you register for a Free Trial.
-Once you receive your Activation ID, you will then need to <a href="manage-billing.html#add-activation-id" class="xref page">add it to your organization</a> to enable Couchbase Capella Credits.</p>
+<p>Add an Activation ID to your organization to start using Couchbase Capella Credits.
+You can have a Free Trial Activation ID, or a Paid Activation ID.</p>
 </div>
 <div class="paragraph">
-<p>If you paid for Couchbase Capella Credits <a href="#up-front-payment">up-front</a>, adding the Activation ID to your organization will deposit your purchased Couchbase Capella Credits into your organization&#8217;s account.
-Once the credits are successfully deposited, you can immediately start spending them on deploying clusters.</p>
+<p>Couchbase Sales sends an Activation ID to your billing contact after you either:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Complete a purchase agreement.</p>
+</li>
+<li>
+<p>Register for a free trial.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can also start a free trial by following the instructions in <a href="../get-started/create-account.html" class="xref page">Create a Free Account and Deploy Your Database</a>.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>If you are paying <a href="#on-demand-payment">on-demand</a> for Couchbase Capella Credits, adding the Activation ID to your organization will enable you to immediately start spending credits on deploying clusters.
-Your organization will pay for these credits in arrears for each calendar month of usage.</p>
+<p>After you receive a Paid Activation ID, <a href="upgrade-account.html" class="xref page">Upgrade Your Account</a> to enable Couchbase Capella credit purchases.</p>
 </div>
 <div class="paragraph">
-<p>If you registered for a Free Trial, your Activation ID will deposit a set number of Couchbase Capella Credits into your organization&#8217;s account.</p>
-</div>
-<div class="paragraph">
-<p>This is the same as the up-front payment model, except that the credits will expire at the end of the trial period.</p>
+<p>If you registered for a free trial with Couchbase Sales, your Free Trial Activation ID deposits a set number of Couchbase Capella Credits into your organization&#8217;s account.
+These Credits expire at the end of your trial period.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="support-plans"><a class="anchor" href="#support-plans"></a>Service Plans</h2>
+<h2 id="support-plans"><a class="anchor" href="#support-plans"></a>Database Service Plans</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>All clusters in an organization must be on a <em>Service Plan</em>.
-When you create a cluster, you will select an available plan for that cluster.
-The plan that you choose for a cluster determines its capabilities and the level of support it can receive.
-You can change a cluster&#8217;s plan at any time.</p>
+<p>A database&#8217;s Service Plan determines its capabilities and its support level.</p>
 </div>
 <div class="paragraph">
-<p>There are two types of Service Plans:</p>
+<p>You can change a database&#8217;s plan at any time.
+For more information, see <a href="change-support-plan.html" class="xref page">Change a Database&#8217;s Plan and Support Timezone</a>.</p>
+</div>
+<div class="paragraph">
+<p>Couchbase Database Service Plans can be either a:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1031,48 +1089,64 @@ You can change a cluster&#8217;s plan at any time.</p>
 <p><a href="#free-trial-plan">Free Trial and Basic Service Plan</a></p>
 </li>
 <li>
-<p><a href="#paid-plan">Paid Service Plans</a></p>
+<p><a href="#paid-plan">Paid Service Plan</a></p>
 </li>
 </ul>
 </div>
 <div class="sect2">
 <h3 id="free-trial-plan"><a class="anchor" href="#free-trial-plan"></a>Free Trial and Basic Service Plan</h3>
 <div class="paragraph">
-<p>The <strong>Basic</strong> service plan is available with the free trial of Couchbase Capella, hosted by Couchbase.</p>
+<p>You can use the <strong>Basic</strong> Service Plan with a free trial of Couchbase Capella.
+Support for free trials is only available through the Couchbase forums, on a best effort basis.</p>
 </div>
 <div class="paragraph">
-<p>A Trial Activation ID comes with a limited number of <a href="#couchbase-cloud-credits">Couchbase Capella Credits</a> that can be spent on clusters.
-These credits are valid for a limited amount of time (typically 30 days), after which they expire.
-During the trial period, you can spend these credits on deploying any number of clusters, with no restrictions on size or functionality.</p>
+<p>Trial Activation IDs come with a limited number of <a href="#couchbase-cloud-credits">Couchbase Capella Credits</a>, which you can spend on databases.
+These Credits are valid for 30 days before they expire.
+During your free trial period, you can spend these Credits on deploying databases with no size or feature restrictions.</p>
 </div>
 <div class="paragraph">
-<p>However, it&#8217;s important to note that, similar to paid plans, clusters on the Free Trial Service Plan cost an hourly rate that varies based on the size of the cluster.
-This rate is deducted from the balance of Couchbase Capella Credits that come with the Trial Activation ID.
-Therefore, you should be judicious in the size and number of clusters that you deploy, so as not to exhaust all of your Couchbase Capella Credits before you are done trialing Couchbase Capella.
-Deploying fewer, smaller clusters will use fewer Couchbase Capella Credits than deploying a great number of large clusters.</p>
+<p>Databases that use the Basic or Free Trial Service Plan cost an hourly rate that varies based on their size.
+This hourly rate is deducted from the balance of Couchbase Capella Credits that come with your free trial.</p>
 </div>
 <div class="paragraph">
-<p>Once all of the Couchbase Capella Credits from a Trial Activation ID have been exhausted&#8201;&#8212;&#8201;or when any remaining credits expire (whichever happens first)&#8201;&#8212;&#8201;all clusters currently on the Free Trial plan will automatically be <em>suspended</em>.
-When a cluster is suspended, you will no longer be able to read or write data on it. You have the option of deleting suspended clusters, or re-enabling them by activating a Paid Activation ID.</p>
+<p>Be careful with the size and number of databases that you deploy to avoid using all of your Couchbase Capella Credits during your trial.
+Deploy fewer, smaller databases to use less Credits.</p>
 </div>
 <div class="paragraph">
-<p>Support is available via Couchbase forums only, on a best effort basis.</p>
+<p>When all Couchbase Capella Credits from a Trial Activation ID have been used or expire, Capella suspends all databases on your Free Trial plan.
+You can&#8217;t read or write data on a suspended database.
+You can choose to delete your suspended databases or re-enable them with a Paid Activation ID.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="paid-plan"><a class="anchor" href="#paid-plan"></a>Paid Service Plans</h3>
+<h3 id="paid-plan"><a class="anchor" href="#paid-plan"></a>Paid Service Plan</h3>
 <div class="paragraph">
-<p>Paid Service Plans are available for organizations that are using a <a href="#activation-id">Paid Activation ID</a>.
-If your organization is currently using a Paid Activation ID, the paid plans will be selectable when creating clusters.
-(Note that the Basic, or Free Trial, plans are not available if your organization is using a Paid Activation ID.)</p>
+<p>You can use a Paid Service Plan if your organization has a Paid Activation ID.</p>
 </div>
 <div class="paragraph">
-<p>Paid plans are required for perpetual use of Couchbase Capella, and come with traditional levels of support.
-The plan that you choose for a cluster determines its capabilities and the level of support it can receive.
-You can change a cluster&#8217;s plan at any time.</p>
+<p>With a Paid Activation ID, you can select a Paid Service Plan for databases in your organization.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you have a Paid Activation ID, the Basic and Free Trial Service Plans aren&#8217;t available.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Details of all the available Service Plans can be found on the <a href="https://couchbase.com/support-policy/cloud">Capella Support Policy page</a>.</p>
+<p>If you want to continue to use Couchbase Capella, you need a Paid Service Plan.
+The Plan you choose for a database determines its capabilities and changes the level of support you can receive.</p>
+</div>
+<div class="paragraph">
+<p>For more information about how to change a database&#8217;s plan, see <a href="change-support-plan.html" class="xref page">Change a Database&#8217;s Plan and Support Timezone</a>.</p>
+</div>
+<div class="paragraph">
+<p>For more information about the available Service Plans for Couchbase Capella, see the <a href="https://couchbase.com/support-policy/cloud" target="_blank" rel="noopener">Capella Support Policy</a>.</p>
 </div>
 </div>
 </div>

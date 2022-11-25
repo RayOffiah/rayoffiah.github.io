@@ -1495,8 +1495,8 @@ There is no limit on the number of listeners you may configure&#8201;&#8212;&#82
 <pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/swift/examples/code_snippets/SampleCodeTest.swift">
 var config = URLEndpointListenerConfiguration(database: otherDB) <i class="conum" data-value="1"></i><b>(1)</b>
 
-/* optionally <strong>/ let wsPort: UInt16 = 55991
-/</strong> optionally */ let wssPort: UInt16 = 55990
+/* optionally */ let wsPort: UInt16 = 55991
+/* optionally */ let wssPort: UInt16 = 55990
 config.port =  wssPort <i class="conum" data-value="2"></i><b>(2)</b>
 
 config.networkInterface = "10.1.1.10"  <i class="conum" data-value="3"></i><b>(3)</b>
@@ -1648,8 +1648,8 @@ The database must be opened before the listener is started.<br>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/swift/examples/code_snippets/SampleCodeTest.swift">/* optionally <strong>/ let wsPort: UInt16 = 55991
-/</strong> optionally */ let wssPort: UInt16 = 55990
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/swift/examples/code_snippets/SampleCodeTest.swift">/* optionally */ let wsPort: UInt16 = 55991
+/* optionally */ let wssPort: UInt16 = 55990
 config.port =  wssPort <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
@@ -1712,7 +1712,7 @@ Where necessary, you can identify the available interfaces at runtime, using app
 class SomeClass {
     func SomeFunction() {
         for interface in SCNetworkInterfaceCopyAll() as! [SCNetworkInterface] {
-            // do something with this <code>interface</code>
+            // do something with this `interface`
         }
     }
 
@@ -1852,11 +1852,11 @@ Typically, you will configure the listener&#8217;s TLS Identity once during init
 <pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/swift/examples/code_snippets/SampleCodeTest.swift">config.disableTLS  = false <i class="conum" data-value="1"></i><b>(1)</b>
 
 guard let path = Bundle.main.path(forResource: "cert", ofType: "p12") else {
-    /* process error <strong>/ return
+    /* process error */ return
 }
 
 guard let certData = try? NSData(contentsOfFile: path) as Data else {
-    /</strong> process error */ return
+    /* process error */ return
 } <i class="conum" data-value="2"></i><b>(2)</b>
 
 let tlsIdentity = try TLSIdentity.importIdentity(withData: certData,

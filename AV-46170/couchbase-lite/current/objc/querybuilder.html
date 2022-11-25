@@ -1434,7 +1434,7 @@ The examples used in this topic are based on the <em>Travel Sample</em> app and 
 </div>
 <div class="paragraph">
 <p>Database queries defined with the QueryBuilder API use query statements of the form shown in <a href="#ex-query-form">Example 1</a>.
-The structure and semantics of the query format are based on that of Couchbase&#8217;s <a href="#server:learn:data/n1ql-versus-sql.adoc" class="xref unresolved">SQL++ query language</a>.</p>
+The structure and semantics of the query format are based on that of Couchbase&#8217;s <a href="../../../server/current/learn/data/n1ql-versus-sql.html" class="xref page">SQL++ query language</a>.</p>
 </div>
 <div id="ex-query-form" class="exampleblock">
 <div class="title">Example 1. Query Format</div>
@@ -2795,12 +2795,12 @@ For more on using the QueryBuilder API, see our blog: <a href="https://blog.couc
 for (CBLQueryResult *result in rs) {
 
     // Get result as a JSON string
-    NSString *json = [result toJSON]; <i class="conum" data-value="1"></i><b>(1)</b>
+    NSString *json = [result toJSON];
 
     // Get an native Obj-C object from the Json String
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding]
                                                                      options:NSJSONReadingAllowFragments
-                                                                       error:&amp;error]; <i class="conum" data-value="2"></i><b>(2)</b>
+                                                                       error:&amp;error];
 
     // Log generated Json and Native objects
     // For demo/example purposes
@@ -2811,22 +2811,6 @@ for (CBLQueryResult *result in rs) {
 </div>
 </div>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Get the Query result as a JSON string&#8201;&#8212;&#8201;see <a href="#ex-json-format">JSON String Format</a></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Get a native object from the JSON string</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Populate your custom object from the dictionary created from JSON data</td>
-</tr>
-</table>
 </div>
 <div id="ex-json-format" class="paragraph">
 <div class="title">JSON String Format</div>
@@ -2914,7 +2898,7 @@ Predictive Query is an <a href="https://www.couchbase.com/products/editions">Ent
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/objc/examples/code_snippets/SampleCodeTest.m">// <code>myMLModel</code> is a fake implementation
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/objc/examples/code_snippets/SampleCodeTest.m">// `myMLModel` is a fake implementation
 // this would be the implementation of the ml model you have chosen
 @interface myMLModel :NSObject
 
@@ -2934,7 +2918,7 @@ Predictive Query is an <a href="https://www.couchbase.com/products/editions">Ent
     CBLBlob *blob = [input blobForKey:@"photo"];
 
     NSData *imageData = blob.content;
-    // <code>myMLModel</code> is a fake implementation
+    // `myMLModel` is a fake implementation
     // this would be the implementation of the ml model you have chosen
     NSDictionary *modelOutput = [myMLModel predictImage:imageData];
 

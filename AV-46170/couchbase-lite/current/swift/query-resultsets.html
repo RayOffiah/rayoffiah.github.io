@@ -1742,17 +1742,17 @@ let results = try query.execute()
 for row in  results {
 
     // get the result into a JSON String
-    let jsonString = row.toJSON() <i class="conum" data-value="1"></i><b>(1)</b>
+    let jsonString = row.toJSON()
 
     let thisJsonObj:Dictionary =
     try (JSONSerialization.jsonObject(
         with: jsonString.data(using: .utf8)!,
         options: .allowFragments)
-         as? [String: Any])! <i class="conum" data-value="2"></i><b>(2)</b>
+         as? [String: Any])!
 
     // Use Json Object to populate Native object
     // Use Codable class to unpack JSON data to native object
-    var this_hotel: Hotel = try JSONDecoder().decode(Hotel.self, from: jsonString.data(using: .utf8)!) <i class="conum" data-value="3"></i><b>(3)</b>
+    var this_hotel: Hotel = try JSONDecoder().decode(Hotel.self, from: jsonString.data(using: .utf8)!) <i class="conum" data-value="1"></i><b>(1)</b>
 
     // ALTERNATIVELY unpack in steps
     this_hotel.id = thisJsonObj["id"] as! String
@@ -1765,22 +1765,6 @@ for row in  results {
 </div>
 </div>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Get the Query result as a JSON string&#8201;&#8212;&#8201;see <a href="#ex-json-format">JSON String Format</a></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Get a native object from the JSON string</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Populate your custom object from the dictionary created from JSON data</td>
-</tr>
-</table>
 </div>
 <div id="ex-json-format" class="paragraph">
 <div class="title">JSON String Format</div>

@@ -1854,10 +1854,10 @@ val hotels: ArrayList&lt;Hotel&gt; = ArrayList()
 for (result in listQuery.execute()) {
 
     // Get result as JSON string
-    val json = result.toJSON() <i class="conum" data-value="1"></i><b>(1)</b>
+    val json = result.toJSON()
 
     // Get Hashmap from JSON string
-    val dictFromJSONstring = mapper.readValue(json, HashMap::class.java) <i class="conum" data-value="2"></i><b>(2)</b>
+    val dictFromJSONstring = mapper.readValue(json, HashMap::class.java)
 
     // Use created hashmap
     val hotelId = dictFromJSONstring["id"].toString() //
@@ -1866,7 +1866,7 @@ for (result in listQuery.execute()) {
 
 
     // Get custom object from JSON string
-    val thisHotel = mapper.readValue(json, Hotel::class.java) <i class="conum" data-value="3"></i><b>(3)</b>
+    val thisHotel = mapper.readValue(json, Hotel::class.java)
     hotels.add(thisHotel)
 }</code></pre>
 </div>
@@ -1882,11 +1882,11 @@ HashMap&lt;String, Object&gt; dictFromJSONstring;
 for (Result result : listQuery.execute()) {
 
   // Get result as JSON string
-  String thisJsonString = result.toJSON(); <i class="conum" data-value="1"></i><b>(1)</b>
+  String thisJsonString = result.toJSON();
 
   // Get Java  Hashmap from JSON string
   HashMap&lt;String, Object&gt; dictFromJSONstring =
-          mapper.readValue(thisJsonString, HashMap.class); <i class="conum" data-value="2"></i><b>(2)</b>
+          mapper.readValue(thisJsonString, HashMap.class);
 
 
   // Use created hashmap
@@ -1897,7 +1897,7 @@ for (Result result : listQuery.execute()) {
 
   // Get custom object from JSON string
   Hotel thisHotel =
-          mapper.readValue(thisJsonString, Hotel.class); <i class="conum" data-value="3"></i><b>(3)</b>
+          mapper.readValue(thisJsonString, Hotel.class);
   hotels.add(thisHotel);</code></pre>
 </div>
 </div>
@@ -1905,22 +1905,6 @@ for (Result result : listQuery.execute()) {
 </div>
 </div>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Get the Query result as a JSON string&#8201;&#8212;&#8201;see <a href="#ex-json-format">JSON String Format</a></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Get a native object from the JSON string</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Populate your custom object from the dictionary created from JSON data</td>
-</tr>
-</table>
 </div>
 <div id="ex-json-format" class="paragraph">
 <div class="title">JSON String Format</div>

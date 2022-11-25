@@ -1466,7 +1466,7 @@ The <code>MessageEndpointListener</code> acts as as a listener for incoming conn
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2216-L2219">val database = Database("mydb")
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2206-L2209">val database = Database("mydb")
 messageEndpointListener = MessageEndpointListener(
     MessageEndpointListenerConfigurationFactory.create(database, ProtocolType.MESSAGE_STREAM)
 )</code></pre>
@@ -1510,7 +1510,7 @@ This step includes inviting a peer to a session and peer authentication.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2134-L2137">val database = Database("mydb")
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2124-L2127">val database = Database("mydb")
 
 // The delegate must implement the `MessageEndpointDelegate` protocol.
 val messageEndpoint = MessageEndpoint("UID:123", "active", ProtocolType.MESSAGE_STREAM, this)</code></pre>
@@ -1556,7 +1556,7 @@ There are two options.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2141-L2145">// Create the replicator object.
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2131-L2135">// Create the replicator object.
 val repl = Replicator(ReplicatorConfigurationFactory.create(database = database, target = messageEndpoint))
 // Start the replication.
 repl.start()
@@ -1569,7 +1569,7 @@ When the application receives the callback, it must create an instance of <code>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2150-L2151">/* implementation of MessageEndpointDelegate */
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2140-L2141">/* implementation of MessageEndpointDelegate */
 override fun createConnection(endpoint: MessageEndpoint) = ActivePeerConnection()</code></pre>
 </div>
 </div>
@@ -1578,7 +1578,7 @@ override fun createConnection(endpoint: MessageEndpoint) = ActivePeerConnection(
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2171-L2176">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2161-L2166">/* implementation of MessageEndpointConnection */
 override fun open(connection: ReplicatorConnection, completion: MessagingCompletion) {
     replicatorConnection = connection
     completion.complete(true, null)
@@ -1602,7 +1602,7 @@ This tells the listener to accept incoming data from that peer.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2231-L2232">val connection = PassivePeerConnection() /* implements MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2221-L2222">val connection = PassivePeerConnection() /* implements MessageEndpointConnection */
 messageEndpointListener?.accept(connection)</code></pre>
 </div>
 </div>
@@ -1614,7 +1614,7 @@ messageEndpointListener?.accept(connection)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2243-L2247">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2233-L2237">/* implementation of MessageEndpointConnection */
 override fun open(connection: ReplicatorConnection, completion: MessagingCompletion) {
     replicatorConnection = connection
     completion.complete(true, null)
@@ -1670,7 +1670,7 @@ In the context of peer-to-peer syncing, the remote is another Couchbase Lite dat
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2188-L2195">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2178-L2185">/* implementation of MessageEndpointConnection */
 override fun send(message: Message, completion: MessagingCompletion) {
     /* send the data to the other peer */
     /* ... */
@@ -1689,7 +1689,7 @@ If it is a recoverable error, the replicator will kick off a retry process which
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2199">replicatorConnection?.receive(message)</code></pre>
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2189">replicatorConnection?.receive(message)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1703,7 +1703,7 @@ If it is a recoverable error, the replicator will kick off a retry process which
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2261-L2268">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2251-L2258">/* implementation of MessageEndpointConnection */
 override fun send(message: Message, completion: MessagingCompletion) {
     /* send the data to the other peer */
     /* ... */
@@ -1722,7 +1722,7 @@ If it is a recoverable error, the replicator will kick off a retry process which
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2272">replicatorConnection?.receive(message)</code></pre>
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2262">replicatorConnection?.receive(message)</code></pre>
 </div>
 </div>
 </div>
@@ -1751,7 +1751,7 @@ We will cover each case below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2164-L2167">fun disconnect() {
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2154-L2157">fun disconnect() {
     replicatorConnection?.close(null)
     replicatorConnection = null
 }</code></pre>
@@ -1762,7 +1762,7 @@ We will cover each case below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2179-L2185">override fun close(error: Exception?, completion: MessagingCloseCompletion) {
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2169-L2175">override fun close(error: Exception?, completion: MessagingCloseCompletion) {
     /* disconnect with communications framework */
     /* ... */
     /* call completion handler */
@@ -1778,7 +1778,7 @@ We will cover each case below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2238">replicatorConnection?.close(null)</code></pre>
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2228">replicatorConnection?.close(null)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1786,7 +1786,7 @@ We will cover each case below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2251-L2258">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2241-L2248">/* implementation of MessageEndpointConnection */
 override fun close(error: Exception?, completion: MessagingCloseCompletion) {
     /* disconnect with communications framework */
     /* ... */
@@ -1811,7 +1811,7 @@ override fun close(error: Exception?, completion: MessagingCloseCompletion) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2225">messageEndpointListener?.closeAll()</code></pre>
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2215">messageEndpointListener?.closeAll()</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1819,7 +1819,7 @@ override fun close(error: Exception?, completion: MessagingCloseCompletion) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2251-L2258">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2241-L2248">/* implementation of MessageEndpointConnection */
 override fun close(error: Exception?, completion: MessagingCloseCompletion) {
     /* disconnect with communications framework */
     /* ... */
@@ -1836,7 +1836,7 @@ override fun close(error: Exception?, completion: MessagingCloseCompletion) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2164-L2167">fun disconnect() {
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2154-L2157">fun disconnect() {
     replicatorConnection?.close(null)
     replicatorConnection = null
 }</code></pre>
@@ -1847,7 +1847,7 @@ override fun close(error: Exception?, completion: MessagingCloseCompletion) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2179-L2185">override fun close(error: Exception?, completion: MessagingCloseCompletion) {
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L2169-L2175">override fun close(error: Exception?, completion: MessagingCloseCompletion) {
     /* disconnect with communications framework */
     /* ... */
     /* call completion handler */

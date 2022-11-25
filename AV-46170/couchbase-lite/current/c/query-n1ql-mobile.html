@@ -1449,7 +1449,7 @@ The examples used in this topic are based on the <em>Travel Sample</em> app and 
 This API uses query statements of the form shown in <a href="#ex-query-form">Example 2</a>.</p>
 </div>
 <div class="paragraph">
-<p>The structure and semantics of the query format are based on that of Couchbase Server&#8217;s SQL++ query language&#8201;&#8212;&#8201;see <a href="#server:n1ql:n1ql-language-reference/index.adoc" class="xref unresolved">SQL++ Reference Guide</a> and <a href="#server:learn:data/n1ql-versus-sql.adoc" class="xref unresolved">SQL++ Data Model</a>.</p>
+<p>The structure and semantics of the query format are based on that of Couchbase Server&#8217;s SQL++ query language&#8201;&#8212;&#8201;see <a href="../../../server/current/n1ql/n1ql-language-reference/index.html" class="xref page">SQL++ Reference Guide</a> and <a href="../../../server/current/learn/data/n1ql-versus-sql.html" class="xref page">SQL++ Data Model</a>.</p>
 </div>
 </div>
 </div>
@@ -4248,13 +4248,13 @@ if(!query) {
     /* Do appropriate error handling ...
         Note that (where applicable) errorPos contains the position
         in the N1QL string that the parse failed
-    <strong>/
+    */
     FLMutableDict_Release(n1qlparams);
     CBLQuery_Release(query);
     return;
 }
 
-CBLResultSet</strong> result = CBLQuery_Execute(query, &amp;err);
+CBLResultSet* result = CBLQuery_Execute(query, &amp;err);
 if(!result) {
     // Failed to run query, do error handling ...
     return;

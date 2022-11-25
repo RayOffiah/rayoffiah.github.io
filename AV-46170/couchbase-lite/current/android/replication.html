@@ -1490,17 +1490,31 @@ Each scope can contain one or more collections.</p>
 <div class="paragraph">
 <p>You can set up a replication scheme across any of the three data levels:</p>
 </div>
-<div class="hdlist">
-<table>
-<tr>
-<td class="hdlist1">
-database
-</td>
-<td class="hdlist2">
-<p>All scopes and collections in the database are synced, including the <code>_default</code> scope and the <code>_default</code> collection.</p>
-</td>
-</tr>
-</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Database</dt>
+<dd>
+<p>All scopes and collections in the database are synced,
+including the <code>_default</code> scope and the <code>_default</code> collection.</p>
+</dd>
+<dt class="hdlist1">Scope</dt>
+<dd>
+<p>All the collections in a named scope.</p>
+</dd>
+<dt class="hdlist1">Collection</dt>
+<dd>
+<p>A specific collection in a scope.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>As part of the syncing setup, the Gateway has to map the Couchbase Lite database to the database being synced against on Capella. These mappings can be <code>implicit</code> or <code>explicit</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="implicit-mapping"><a class="anchor" href="#implicit-mapping"></a>Implicit Mapping</h3>
+<div class="paragraph">
+<p>This will sync between databases that share the same keyspace names.</p>
+</div>
 </div>
 </div>
 </div>
@@ -1855,8 +1869,8 @@ final BasicAuthenticator thisAuth
 
 thisConfig.setAuthenticator(thisAuth);
 
-/* Optionally set custom conflict resolver call back <strong>/
-thisConfig.setConflictResolver( /</strong> define resolver function */); <i class="conum" data-value="6"></i><b>(6)</b>
+/* Optionally set custom conflict resolver call back */
+thisConfig.setConflictResolver( /* define resolver function */); <i class="conum" data-value="6"></i><b>(6)</b>
 
 // Create replicator
 // Consider holding a reference somewhere
@@ -2456,7 +2470,7 @@ Any certificates that are not self-signed are rejected.</td>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L1585-L1587">
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L1575-L1577">
 // Use the pinned certificate from the byte array (cert)
 pinnedServerCertificate = caCert.encoded, <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
@@ -3750,7 +3764,7 @@ replicator = repl</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">ListenerToken token = replicator.addDocumentReplicationListener(replication -&gt; {
 
-    Log.i(TAG, "Replication type: " + replication.isPush( ? "Push" : "Pull"));
+    Log.i(TAG, "Replication type: " + ((replication.isPush()) ? "Push" : "Pull"));
     for (ReplicatedDocument document : replication.getDocuments()) {
         Log.i(TAG, "Doc ID: " + document.getID());
 

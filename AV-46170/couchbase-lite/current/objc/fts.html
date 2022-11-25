@@ -1442,7 +1442,7 @@ They create and use an FTS index built from the hotel&#8217;s <code>Overview</co
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/objc/examples/code_snippets/SampleCodeTest.m">// Insert documents
-NSArray <strong>overviews = @[@"buy groceries", @"play chess", @"book travels", @"buy museum tickets"];
+NSArray *overviews = @[@"buy groceries", @"play chess", @"book travels", @"buy museum tickets"];
 for (NSString *overview in overviews) {
     CBLMutableDocument *doc = [[CBLMutableDocument alloc] init];
     [doc setString:@"task" forKey:@"type"];
@@ -1451,7 +1451,7 @@ for (NSString *overview in overviews) {
 }
 
 // Create index
-CBLFullTextIndexConfiguration</strong> config = [[CBLFullTextIndexConfiguration alloc]
+CBLFullTextIndexConfiguration* config = [[CBLFullTextIndexConfiguration alloc]
                                          initWithExpression: @[@"overview"]
                                          ignoreAccents: NO
                                          language: nil];
@@ -1482,11 +1482,11 @@ See <a href="https://github.com/couchbasedeps/sqlite3-unicodesn/blob/HEAD/stopwo
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/objc/examples/code_snippets/SampleCodeTest.m">NSString <strong>ftsQueryString =
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/objc/examples/code_snippets/SampleCodeTest.m">NSString *ftsQueryString =
 @"SELECT META().id FROM _ WHERE MATCH(overviewFTSIndex, 'Michigan') ORDER BY RANK(overviewFTSIndex)";
 
 CBLQueryResultSet *resultSet = [ftsQuery execute:&amp;error];
-NSArray</strong> results  = [resultSet allResults];
+NSArray* results  = [resultSet allResults];
 for (CBLQueryResult *result in results) {
     NSLog(@"document id %@", [result stringAtIndex:0]);
 }</code></pre>

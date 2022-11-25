@@ -1434,7 +1434,7 @@ The examples used in this topic are based on the <em>Travel Sample</em> app and 
 </div>
 <div class="paragraph">
 <p>Database queries defined with the QueryBuilder API use query statements of the form shown in <a href="#ex-query-form">Example 1</a>.
-The structure and semantics of the query format are based on that of Couchbase&#8217;s <a href="#server:learn:data/n1ql-versus-sql.adoc" class="xref unresolved">SQL++ query language</a>.</p>
+The structure and semantics of the query format are based on that of Couchbase&#8217;s <a href="../../../server/current/learn/data/n1ql-versus-sql.html" class="xref page">SQL++ query language</a>.</p>
 </div>
 <div id="ex-query-form" class="exampleblock">
 <div class="title">Example 1. Query Format</div>
@@ -2140,7 +2140,7 @@ for (Result result : query.execute()) {
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/java/examples/codesnippet_collection.java">Query query = QueryBuilder.select(
-    SelectResult.expression(Function.count(Expression.string("<strong>"))),
+    SelectResult.expression(Function.count(Expression.string("*"))),
     SelectResult.property("country"),
     SelectResult.property("tz"))
     .from(DataSource.database(database))
@@ -2149,7 +2149,7 @@ for (Result result : query.execute()) {
     .groupBy(
         Expression.property("country"),
         Expression.property("tz"))
-    .orderBy(Ordering.expression(Function.count(Expression.string("</strong>"))).descending());
+    .orderBy(Ordering.expression(Function.count(Expression.string("*"))).descending());
 for (Result result : query.execute()) {
     Log.i(
         "Sample",
@@ -2827,11 +2827,11 @@ HashMap&lt;String, Object&gt; dictFromJSONstring;
 for (Result result : listQuery.execute()) {
 
   // Get result as JSON string
-  String thisJsonString = result.toJSON(); <i class="conum" data-value="1"></i><b>(1)</b>
+  String thisJsonString = result.toJSON();
 
-        // Get Java  Hashmap from JSON string
+  // Get Java  Hashmap from JSON string
   HashMap&lt;String, Object&gt; dictFromJSONstring =
-          mapper.readValue(thisJsonString, HashMap.class); <i class="conum" data-value="2"></i><b>(2)</b>
+    mapper.readValue(thisJsonString, HashMap.class);
 
 
   // Use created hashmap
@@ -2842,29 +2842,13 @@ for (Result result : listQuery.execute()) {
 
   // Get custom object from Native 'dictionary' object
   Hotel thisHotel =
-          mapper.readValue(thisJsonString, Hotel.class); <i class="conum" data-value="3"></i><b>(3)</b>
+          mapper.readValue(thisJsonString, Hotel.class);
   hotels.add(thisHotel);
 
 }</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Get the Query result as a JSON string&#8201;&#8212;&#8201;see <a href="#ex-json-format">JSON String Format</a></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Get a native object from the JSON string</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Populate your custom object from the dictionary created from JSON data</td>
-</tr>
-</table>
 </div>
 <div id="ex-json-format" class="paragraph">
 <div class="title">JSON String Format</div>

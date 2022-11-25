@@ -1464,17 +1464,31 @@ Each scope can contain one or more collections.</p>
 <div class="paragraph">
 <p>You can set up a replication scheme across any of the three data levels:</p>
 </div>
-<div class="hdlist">
-<table>
-<tr>
-<td class="hdlist1">
-database
-</td>
-<td class="hdlist2">
-<p>All scopes and collections in the database are synced, including the <code>_default</code> scope and the <code>_default</code> collection.</p>
-</td>
-</tr>
-</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Database</dt>
+<dd>
+<p>All scopes and collections in the database are synced,
+including the <code>_default</code> scope and the <code>_default</code> collection.</p>
+</dd>
+<dt class="hdlist1">Scope</dt>
+<dd>
+<p>All the collections in a named scope.</p>
+</dd>
+<dt class="hdlist1">Collection</dt>
+<dd>
+<p>A specific collection in a scope.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>As part of the syncing setup, the Gateway has to map the Couchbase Lite database to the database being synced against on Capella. These mappings can be <code>implicit</code> or <code>explicit</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="implicit-mapping"><a class="anchor" href="#implicit-mapping"></a>Implicit Mapping</h3>
+<div class="paragraph">
+<p>This will sync between databases that share the same keyspace names.</p>
+</div>
 </div>
 </div>
 </div>
@@ -1563,14 +1577,14 @@ thisConfig.AcceptOnlySelfSignedServerCertificate = true; <i class="conum" data-v
 // Configure basic auth using user credentials
 thisConfig.Authenticator = new BasicAuthenticator("Our Username", "Our Password");
 
-/* Optionally set a conflict resolver call back <strong>/ <i class="conum" data-value="5"></i><b>(5)</b>
+/* Optionally set a conflict resolver call back */ <i class="conum" data-value="5"></i><b>(5)</b>
 // Use built-in resolver
 thisConfig.ConflictResolver = new LocalWinConflictResolver();  //
 
 // optionally use custom resolver
 thisConfig.ConflictResolver = new ConflictResolver(
   (conflict) =&gt; {
-    /</strong> define resolver function */
+    /* define resolver function */
   }
 ); //
 
@@ -2900,7 +2914,14 @@ Stop the listener as shown in <a href="#ex-stop-doc-listener">Example 15</a>.</p
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/csharp/examples/code_snippets/Program.cs">var token = replicator.AddDocumentReplicationListenersender, args) =&gt; {     var direction = args.IsPush ? "Push" : "Pull";     Console.WriteLine($"Replication type :: {direction}");     foreach (var document in args.Documents) {         if (document.Error == null) {             Console.WriteLine($"Doc ID :: {document.Id}");             if (document.Flags.HasFlag(DocumentFlags.Deleted {
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/csharp/examples/code_snippets/Program.cs">var token = replicator.AddDocumentReplicationListener((sender, args) =&gt;
+{
+    var direction = args.IsPush ? "Push" : "Pull";
+    Console.WriteLine($"Replication type :: {direction}");
+    foreach (var document in args.Documents) {
+        if (document.Error == null) {
+            Console.WriteLine($"Doc ID :: {document.Id}");
+            if (document.Flags.HasFlag(DocumentFlags.Deleted)) {
                 Console.WriteLine("Successfully replicated a deleted document");
             }
         } else {
@@ -2985,7 +3006,10 @@ var mydocids =
 if (mydocids.Count &gt; 0)
 {
     Console.WriteLine($"There are {mydocids.Count} documents pending");
-    replicator.AddChangeListenersender, change) =&gt;     {         Console.WriteLine($"Replicator activity level is " +                           change.Status.Activity.ToString(;
+    replicator.AddChangeListener((sender, change) =&gt;
+    {
+        Console.WriteLine($"Replicator activity level is " +
+                          change.Status.Activity.ToString());
         // iterate and report-on previously
         // retrieved pending docids 'list'
         foreach (var thisId in mydocids)
@@ -3201,8 +3225,8 @@ After completing this step, Sync Gateway is reachable over <code>https</code>/<c
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/csharp/examples/code_snippets/Program.cs">// Note: <code>GetCertificate</code> is a fake method. This would be the platform-specific method
-// to find and load the certificate as an instance of <code>X509Certificate2</code>.
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/csharp/examples/code_snippets/Program.cs">// Note: `GetCertificate` is a fake method. This would be the platform-specific method
+// to find and load the certificate as an instance of `X509Certificate2`.
 // For .NET Core / .NET Framework this can be loaded from the filesystem path.
 // For UWP, from the assets directory.
 // For iOS, from the main bundle.

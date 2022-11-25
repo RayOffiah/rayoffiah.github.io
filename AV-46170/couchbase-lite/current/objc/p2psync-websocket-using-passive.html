@@ -1867,9 +1867,9 @@ config.tlsIdentity = tlsIdentity; <i class="conum" data-value="5"></i><b>(5)</b>
 <pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/objc/examples/code_snippets/SampleCodeTest.m">config.disableTLS  = false; <i class="conum" data-value="1"></i><b>(1)</b>
 
 // Use a self-signed certificate
-NSDictionary <strong>attrs = @{ kCBLCertAttrCommonName:@"Couchbase Inc" }; <i class="conum" data-value="2"></i><b>(2)</b>
+NSDictionary *attrs = @{ kCBLCertAttrCommonName:@"Couchbase Inc" }; <i class="conum" data-value="2"></i><b>(2)</b>
 
-tlsIdentity = [CBLTLSIdentity createIdentityForServer:YES /</strong> isServer */
+tlsIdentity = [CBLTLSIdentity createIdentityForServer:YES /* isServer */
                                            attributes:attrs
                                            expiration:[NSDate dateWithTimeIntervalSinceNow:86400]
                                                 label:@"couchbase-docs-cert"
@@ -2042,14 +2042,14 @@ The logic should take the form of function or block (such as, a closure expressi
 <pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/objc/examples/code_snippets/SampleCodeTest.m">
 NSURL *certURL = [[NSBundle mainBundle] URLForResource:@"cert" withExtension:@"cer"];
 NSData *data = [[NSData alloc] initWithContentsOfURL:certURL];
-SecCertificateRef rootCertRef = SecCertificateCreateWithData(NULL, (<em>bridge CFDataRef)data);
+SecCertificateRef rootCertRef = SecCertificateCreateWithData(NULL, (__bridge CFDataRef)data);
 
 config.authenticator = [[CBLListenerCertificateAuthenticator alloc]
                         initWithRootCerts:@[(id)CFBridgingRelease(rootCertRef)]];
 // Configure the client authenticator
 NSURL *certURL = [[NSBundle mainBundle] URLForResource:@"cert" withExtension:@"p12"]; <i class="conum" data-value="1"></i><b>(1)</b>
 NSData *data = [[NSData alloc] initWithContentsOfURL:certURL];
-SecCertificateRef rootCertRef = SecCertificateCreateWithData(NULL, (</em>bridge CFDataRef)data);
+SecCertificateRef rootCertRef = SecCertificateCreateWithData(NULL, (__bridge CFDataRef)data);
 
 config.authenticator = [[CBLListenerCertificateAuthenticator alloc]
                         initWithRootCerts:@[(id)CFBridgingRelease(rootCertRef)]];  <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>

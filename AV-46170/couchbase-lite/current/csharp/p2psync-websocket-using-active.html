@@ -1494,14 +1494,14 @@ thisConfig.AcceptOnlySelfSignedServerCertificate = true; <i class="conum" data-v
 // Configure basic auth using user credentials
 thisConfig.Authenticator = new BasicAuthenticator("Our Username", "Our Password");
 
-/* Optionally set a conflict resolver call back <strong>/ <i class="conum" data-value="4"></i><b>(4)</b>
+/* Optionally set a conflict resolver call back */ <i class="conum" data-value="4"></i><b>(4)</b>
 // Use built-in resolver
 thisConfig.ConflictResolver = new LocalWinConflictResolver();  //
 
 // optionally use custom resolver
 thisConfig.ConflictResolver = new ConflictResolver(
   (conflict) =&gt; {
-    /</strong> define resolver function */
+    /* define resolver function */
   }
 ); //
 
@@ -2341,7 +2341,10 @@ var mydocids =
 if (mydocids.Count &gt; 0)
 {
     Console.WriteLine($"There are {mydocids.Count} documents pending");
-    replicator.AddChangeListenersender, change) =&gt;     {         Console.WriteLine($"Replicator activity level is " +                           change.Status.Activity.ToString(;
+    replicator.AddChangeListener((sender, change) =&gt;
+    {
+        Console.WriteLine($"Replicator activity level is " +
+                          change.Status.Activity.ToString());
         // iterate and report-on previously
         // retrieved pending docids 'list'
         foreach (var thisId in mydocids)
