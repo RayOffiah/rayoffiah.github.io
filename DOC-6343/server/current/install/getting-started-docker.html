@@ -3102,8 +3102,22 @@ Couchbase Server can be installed using official Couchbase images from Docker Hu
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ docker run -d --name db -p 8091-8096:8091-8096 -p 11210-11211:11210-11211 couchbase</code></pre>
 </div>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Multiple instances with Docker</div>
 <div class="paragraph">
-<p>After running the above command, a single instance (<code>db</code>) of the latest <a href="https://hub.docker.com/_/couchbase/" target="_blank" rel="noopener">official Couchbase Server container image</a> is downloaded and installed onto the host computer.
+<p>When running multiple instances on the same machine, make use of Docker&#8217;s <code>-p</code> option to map <code>external:internal</code> ports used by the container.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="paragraph">
+<p><code>-p 9091:8091</code> instructs the container to map the external machine port <code>9091</code> to the container application&#8217;s port <code>8091</code>.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>After running the above command, a single instance (<code>db</code>) of the latest <a href="https://hub.docker.com/_/couchbase/" target="_blank" rel="noopener">official Couchbase Server container image</a> is downloaded and run on the host computer.
 If a traditional installation of Couchbase Server is running locally on the host computer, the port mappings specified using the <code>-p</code> option may fail.
 Ensure that you stop any local instance of Couchbase Server before running this command.</p>
 </div>
@@ -3226,7 +3240,7 @@ how to set up a three-node Couchbase cluster with all the containers running on 
 </div>
 </div>
 <div class="paragraph">
-<p>After running the above commands, three instances (<code>db1</code>, <code>db2</code>, <code>db3</code>) of the latest <a href="https://hub.docker.com/_/couchbase/" target="_blank" rel="noopener">official Couchbase Server container image</a> are downloaded and installed onto the host computer.
+<p>After running the above commands, three instances (<code>db1</code>, <code>db2</code>, <code>db3</code>) of the latest <a href="https://hub.docker.com/_/couchbase/" target="_blank" rel="noopener">official Couchbase Server container image</a> are downloaded and run on the host computer.
 If a traditional installation of Couchbase Server is running locally on the host computer, the port mappings specified using the <code>-p</code> option may fail.
 Ensure that you stop any local instance of Couchbase Server before running these commands.</p>
 </div>
@@ -3384,7 +3398,7 @@ Note that all physical hosts must be able to discover one another on the same ne
 </div>
 </div>
 <div class="paragraph">
-<p>After running the above command, a single instance (<code>db</code>) of the latest <a href="https://hub.docker.com/_/couchbase/" target="_blank" rel="noopener">official Couchbase Server container image</a> is downloaded and installed onto the host computer.
+<p>After running the above command, a single instance (<code>db</code>) of the latest <a href="https://hub.docker.com/_/couchbase/" target="_blank" rel="noopener">official Couchbase Server container image</a> is downloaded and run on the host computer.
 The <code class="cmd">-v</code> option is recommended for better I/O performance and persists the data stored by Couchbase on the local host.
 The <code>--net=host</code> option provides better network performance and maps the host network stack to the container.</p>
 </div>
@@ -3515,13 +3529,13 @@ refer to Docker&#8217;s <a href="https://www.docker.com/get-started" target="_bl
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ docker run -d --name db2 -p 9091-9096:8091-8096 -p 12210-12211:11210-11211 couchbase</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ docker run -d --name db2 -p 9091-9096:8091-8096 -p 21210-21211:11210-11211 couchbase</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>After running the above commands,
-three instances (<code>db1</code> and <code>db2</code>) of the latest <a href="https://hub.docker.com/_/couchbase/" target="_blank" rel="noopener">official Couchbase Server container image</a> are downloaded
-and installed onto the host computer.
+two instances (<code>db1</code> and <code>db2</code>) of the latest <a href="https://hub.docker.com/_/couchbase/" target="_blank" rel="noopener">official Couchbase Server container image</a> are downloaded
+and run on the host computer.
 If a traditional installation of Couchbase Server is running locally on the host computer,
 the port mappings specified using the <code>-p</code> option may fail.
 Ensure that you stop any local instance of Couchbase Server before running these commands.</p>
@@ -3604,62 +3618,9 @@ For details, refer to <a href="install-ports.html" class="xref page">Couchbase S
 </tr>
 </tbody>
 </table>
-</li>
-<li>
-<p>From a web browser, go to <code>http://localhost:8091</code> to access the Couchbase Web Console.</p>
-<div class="paragraph">
-<p>If <code>db1</code> is up and running, you should see the Couchbase Server setup screen:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/welcome.png" alt="The Couchbase Server setup screen." width="400">
-</div>
-</div>
-</li>
-<li>
-<p>Click <b class="button">Setup New Cluster</b> and proceed through the setup wizard as normal.</p>
 <div class="paragraph">
 <p>Refer to <a href="../manage/manage-nodes/create-cluster.html" class="xref page">Create a Cluster</a> for instructions on using the setup wizard.
 You may need to lower the RAM allocation for various services to fit within the bounds of the container&#8217;s resources.</p>
-</div>
-</li>
-<li>
-<p>From a web browser, go to <code>http://localhost:9091</code> to access the Couchbase Web Console for <code>db2</code>.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/welcome-join-existing-cluster.png" alt="The Couchbase Server setup screen." width="400">
-</div>
-</div>
-</li>
-<li>
-<p>Click <b class="button">Join Existing Cluster</b>.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/join-cluster-details.png" alt="Joining an existing cluster" width="450">
-</div>
-</div>
-</li>
-<li>
-<p>Fill in the IP address associated with container <code>db1</code>, along with the administrator password.</p>
-</li>
-<li>
-<p>Press <b class="button">Join Cluster</b></p>
-</li>
-<li>
-<p>The web bowser will take you to the admin screen for the cluster you&#8217;re joining.<br>
-From the menu on the left, select <b class="menuref">Servers</b></p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/ready-to-rebalance.png" alt="Cluster ready for rebalancing">
-</div>
-</div>
-</li>
-<li>
-<p>Now press <b class="button">Rebalance</b> to rebalance the cluster.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/cluster-rebalanced.png" alt="Cluster is now rebalanced">
-</div>
 </div>
 </li>
 </ol>
