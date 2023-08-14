@@ -3107,8 +3107,26 @@ See <a href="../data/durability.html#preserving-durable-writes" class="xref page
 </li>
 </ul>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Note that auto-failover should be configured only when the cluster contains sufficient resources to handle all possible consequences: workload-intensity on remaining nodes may increase significantly.</p>
+<p>Two server groups are required to guard against possible data loss.<br>
+Three or more server groups are required to trigger an auto-failover.</p>
+</div>
+<div class="paragraph">
+<p>The auto-failover should be configured only when the cluster contains sufficient resources to handle all possible consequences: workload-intensity on remaining nodes may increase significantly.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="groups.html#understanding-server-group-awareness" class="xref page">Server Group Awareness</a> for details.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Auto-failover is for intra-cluster use only: it does not work with <a href="xdcr-overview.html" class="xref page">Cross Data Center Replication (XDCR)</a>.</p>
@@ -3138,24 +3156,6 @@ details on configuring email alerts related to failover.</p>
 </li>
 <li>
 <p>The required minimum number of nodes is service-specific.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Two server groups are required to guard against possible data loss.<br>
-Three or more server groups are required to trigger an auto-failover.</p>
-</div>
-<div class="paragraph">
-<p>See <a href="groups.html#understanding-server-group-awareness" class="xref page">Server Group Awareness</a> for details.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 </li>
 <li>
 <p>If the Data Service is running on its required minimum number of nodes, auto-failover may be applied to any of those nodes, even when auto-failover policy is thereby violated for one or more other, co-hosted services.
