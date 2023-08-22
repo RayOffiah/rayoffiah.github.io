@@ -3044,9 +3044,33 @@ Each group is created by an appropriately authorized administrator, and specifie
 Following group-definition and rebalance, the active vBuckets for any defined bucket are located on one group, while the corresponding replicas are located on another group: indexes and <em>index replicas</em>, maintained by the Index Service, are distributed across groups in a similar way.</p>
 </div>
 <div class="paragraph">
-<p>A server group can be automatically <em>failed over</em>: thus, if the entire group goes offline, and active vBuckets and indexes are thereby inaccessible, the replica vBuckets and replica indexes that remain available on another group can be automatically promoted to active status.
-In 7.1+, this is achieved by setting the maximum count for auto-failover to a value equal to or greater than the number of nodes in the server group.
-See <a href="automatic-failover.html" class="xref page">Automatic Failover</a>.</p>
+<p>A server group can be automatically <em>failed over</em>: thus, if the entire group goes offline, and active vBuckets and indexes are thereby inaccessible, then the replica vBuckets and replica indexes that remain available on another group can be automatically promoted to active status.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For the vBuckets and replica indexes to be automatically promoted to active, the conditions specified in <a href="automatic-failover.html#auto-failover-constraints" class="xref page">Auto-failover Constraints</a> must apply.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>See <a href="automatic-failover.html" class="xref page">Automatic Failover</a>.
+In 7.1+, this is achieved by setting the maximum count for auto-failover to a value equal to or greater than the number of nodes in the server group.</p>
+</div>
+<div class="paragraph">
+<p>Note that In 7.1+, <em>automatic failover</em> can fail over more than three nodes concurrently: this has permitted the removal of pre-7.1 interfaces that were specific to triggering <em>auto-failover for server groups</em>.
+Consequently, in order to ensure successful auto-failover of a server group, the maximum count for auto-failover must be established by the administrator as a value equal to or greater than the number of nodes in the server group.</p>
+</div>
+<div class="paragraph">
+<p>Note also that in pre-7.1, interfaces for triggering auto-failover for server groups have been <em>removed</em> from 7.1: therefore, programs that attempt to use the pre-7.1 interfaces with 7.1+ will <em>fail</em>.<br></p>
+</div>
+<div class="paragraph">
+<p>See <a href="automatic-failover.html" class="xref page">Automatic Failover</a>.</p>
 </div>
 <div class="paragraph">
 <p>Groups should be defined in accordance with the physical distribution of cluster-nodes.
@@ -3063,30 +3087,6 @@ Thus, if the server rack or availability zone becomes unavailable due to a power
 </li>
 <li>
 <p>Server Group Awareness only applies to the Data and Index Services.</p>
-</li>
-<li>
-<p>Failover should be enabled for server groups only if three or more server groups have been established, and sufficient capacity exists to absorb the load of any failed-over group.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Two server groups are required to guard against possible data loss.<br>
-Three or more server groups are required to trigger an auto-failover.</p>
-</div>
-<div class="paragraph">
-<p>The auto-failover should be configured only when the cluster contains sufficient resources to handle all possible consequences: workload-intensity on remaining nodes may increase significantly.</p>
-</div>
-<div class="paragraph">
-<p>See <a href="#understanding-server-group-awareness">Server Group Awareness</a> for details.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 </li>
 <li>
 <p>When a new Couchbase Server cluster is initialized, and no server groups are explicitly defined, the first node, and all subsequently added nodes, are automatically placed in a server group named Group 1.
@@ -3382,16 +3382,6 @@ Consequently, both the index replicas of one index would be assigned to the same
 <p>With the REST API, see <a href="../../rest-api/rest-cluster-autofailover-enable.html" class="xref page">Enabling and Disabling Auto-Failover</a>.</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>Note that in 7.1+, <em>automatic failover</em> can fail over more than three nodes concurrently: this has permitted the removal of pre-7.1 interfaces that were specific to triggering <em>auto-failover for server groups</em>.
-Consequently, in order to ensure successful auto-failover of a server group, the maximum count for auto-failover must be established by the administrator as a value equal to or greater than the number of nodes in the server group.</p>
-</div>
-<div class="paragraph">
-<p>Note that the pre-7.1 interfaces for triggering auto-failover for server groups have been <em>removed</em> from 7.1: therefore, programs that attempt to use the pre-7.1 interfaces with 7.1+ will <em>fail</em>.</p>
-</div>
-<div class="paragraph">
-<p>See <a href="automatic-failover.html" class="xref page">Automatic Failover</a>.</p>
 </div>
 </div>
 </div>
