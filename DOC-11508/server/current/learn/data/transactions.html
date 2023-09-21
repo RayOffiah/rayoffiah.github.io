@@ -3346,15 +3346,27 @@ When a query is used inside a transaction, the transactional scan consistency is
 <div class="sect2">
 <h3 id="transactions-and-replication-xdcr"><a class="anchor" href="#transactions-and-replication-xdcr"></a>Transactions and Replication (XDCR)</h3>
 <div class="paragraph">
-<p><a href="../clusters-and-availability/xdcr-overview.html" class="xref page">Cross Data Center Replication</a> (XDCR) supports eventual consistency of transactional changes. No uncommitted changes will be ever sent to the target clusters.  Once committed, the transactional changes will arrive one by one at the target. If the connection is lost midway while receiving a transaction it is possible for the target to receive a partial transaction.</p>
+<p><a href="../clusters-and-availability/xdcr-overview.html" class="xref page">Cross Data Center Replication (XDCR)</a> supports eventual consistency of transactional changes.
+No uncommitted changes will be ever sent to target clusters.
+Once committed, the transactional changes arrive one by one at the target.
+If the connection is lost midway, it is possible for the target to receive a partial transaction.
+Note that when using transactions and XDCR, there are different document-counts between source and target, due to the transaction metadata documents that are never replicated.</p>
+</div>
+<div class="paragraph">
+<p>To avoid issues, using <em>active-active</em> bi-directional replication with transactions is not advised.
+For customers who do choose to use <em>active-active</em> bi-directional replication with transactions, transactions should not be executed on the same set of documents in the active-active clusters: the applications connected to each cluster should be responsible for creating and updating a specific set of mutually exclusive documents, identified by their keys.
+This also means that if a transaction fails on one cluster, the transaction should be retried on the same cluster.</p>
+</div>
+<div class="paragraph">
+<p>Finally, when transactions are being used with XDCR, the following are strongly recommended:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Transactionally modified documents should only be replicated across clusters if no transactions involving the same documents can occur on those clusters simultaneously in a bidirectional XDCR.</p>
+<p>Use <a href="../clusters-and-availability/xdcr-conflict-resolution.html#timestamp-based-conflict-resolution" class="xref page">Timestamp-Based Conflict Resolution</a>.</p>
 </li>
 <li>
-<p>Always follow the steps to <a href="../clusters-and-availability/xdcr-conflict-resolution.html#ensuring_safe_failover" class="xref page">Ensure Safe Failover</a> for information on failing a transactional application from one data center to another.</p>
+<p>Always follow the steps provided in <a href="../clusters-and-availability/xdcr-conflict-resolution.html#ensuring_safe_failover" class="xref page">Ensuring Safe Failover</a>, to fail a transactional application from one data center to another.</p>
 </li>
 </ul>
 </div>

@@ -3035,7 +3035,7 @@
 <h2 id="release-722"><a class="anchor" href="#release-722"></a>Release 7.2.2 (September 2023)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase Server 7.2.2 was released on 22<sup>nd</sup> September 2023</p>
+<p>Couchbase Server 7.2.2 was released in September 2023</p>
 </div>
 <div class="paragraph">
 <p>This release contains:</p>
@@ -3049,6 +3049,50 @@
 </div>
 <div class="sect2">
 <h3 id="fixed-issues"><a class="anchor" href="#fixed-issues"></a>Fixed issues</h3>
+<div class="sect3">
+<h4 id="analytics-service"><a class="anchor" href="#analytics-service"></a>Analytics Service</h4>
+<table id="table-fixed-issues-722-analytics-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58694" target="_blank" rel="noopener">MB-58694</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Analytics can get overwhelmed with frequent flushes combined with complicated pipelines.
+The excess flushes were caused by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>flushes forced due to incorrectly perceived uuid updates.</p>
+</li>
+<li>
+<p>introduced regression, resulting in perpetual flushes on an overloaded system.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58723" target="_blank" rel="noopener">MB-58723</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ingestion backend pipeline stalls on a moderate number of secondary indexes</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="search-service"><a class="anchor" href="#search-service"></a>Search Service</h4>
 <table id="table-fixed-issues-722-search-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -3067,10 +3111,11 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58450" target="_blank" rel="noopener">MB-58450</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If the user did not bring in a replacement node for a failed-over node before rebalancing, then
 lost active or lost replica search indexes that had partitions residing on the affected node were not rebuilt.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lost partitions will now be recreated/rebuilt during the rebalance operation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This situation can be prevented if a replacement node is brought into the cluster in place of the failed over node before starting the rebalance operation.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 </div>
@@ -3221,7 +3266,7 @@ See <a href="../manage/manage-xdcr/create-xdcr-replication.html#rebalance-inform
 <p>This release contains the following fixes.</p>
 </div>
 <div class="sect3">
-<h4 id="analytics-service"><a class="anchor" href="#analytics-service"></a>Analytics Service</h4>
+<h4 id="analytics-service-2"><a class="anchor" href="#analytics-service-2"></a>Analytics Service</h4>
 <table id="table-fixed-issues-721-analytics-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -4126,7 +4171,7 @@ After the node is initialized, a username and password must be supplied.</p></td
 </table>
 </div>
 <div class="sect3">
-<h4 id="search-service"><a class="anchor" href="#search-service"></a>Search Service</h4>
+<h4 id="search-service-2"><a class="anchor" href="#search-service-2"></a>Search Service</h4>
 <table id="table-known-issues-720-searchservice" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -4153,7 +4198,7 @@ However, there is no workaround for the intermittent crashes which Couchbase are
 </table>
 </div>
 <div class="sect3">
-<h4 id="analytics-service-2"><a class="anchor" href="#analytics-service-2"></a>Analytics Service</h4>
+<h4 id="analytics-service-3"><a class="anchor" href="#analytics-service-3"></a>Analytics Service</h4>
 <table id="table-known-issues-720-analyticsservice" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
