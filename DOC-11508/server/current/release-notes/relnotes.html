@@ -3110,8 +3110,18 @@ The excess flushes were caused by:</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58450" target="_blank" rel="noopener">MB-58450</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If the user did not bring in a replacement node for a failed-over node before rebalancing, then
-lost active or lost replica search indexes that had partitions residing on the affected node were not rebuilt.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This situation can be prevented if a replacement node is brought into the cluster in place of the failed over node before starting the rebalance operation.</p></td>
+lost active or lost replica search indexes that had partitions residing on the affected node were not rebuilt.</p>
+<p class="tableblock">This could cause search requests
+to return partial/incomplete results owing to active partitions lost,
+or it could leave existing indexes with replica(s) defined vulnerable should another node be lost.</p>
+<p class="tableblock">This situation can be prevented if a replacement node is brought into the cluster in place of the failed over node,
+before starting the rebalance operation.
+This problem should not affect on-line or off-line rebalances.</p>
+<p class="tableblock">If lost indexes are encountered, then, a manual update to the affected search index definition(s) will trigger a rebuild of the affected indexes.<br>
+(The advice here is to toggle the replica count so that unaffected index partitions are re-used, and only the lost partitions are rebuilt.)</p>
+<p class="tableblock">This issue is only pertinent to the <strong>7.2.1</strong> release, and does not affect older builds.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">During rebalancing, a check is now made for missing partitions.
+If missing partitions are found, they are rebuilt, rather than exiting the rebalance immediately.</p></td>
 </tr>
 </tbody>
 </table>
