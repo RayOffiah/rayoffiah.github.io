@@ -3068,20 +3068,12 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58694" target="_blank" rel="noopener">MB-58694</a></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Analytics can get overwhelmed with frequent flushes combined with complicated pipelines.
-The excess flushes were caused by:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>flushes forced due to incorrectly perceived uuid updates.</p>
-</li>
-<li>
-<p>introduced regression, resulting in perpetual flushes on an overloaded system.</p>
-</li>
-</ul>
+<p>Some DCP messages were unnecessarily processed multiple times.<br>
+In addition, if the Analytics Service has high CPU usage, unnecessary flushes of DCP state to storage may occur;
+this also contributes to additional high CPU usage.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DCP messages are now processed once regardless of the configured <code>dcpIdleQueueFlushThresholdMillis</code>.<br>
+High CPU usage will not trigger unnecessary flushes of DCP state.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58723" target="_blank" rel="noopener">MB-58723</a></p></td>
