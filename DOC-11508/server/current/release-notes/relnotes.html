@@ -3037,6 +3037,22 @@
 <div class="paragraph">
 <p>Couchbase Server 7.2.2 was released in September 2023</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Couchbase release 7.2.1 is no longer available for download.</strong><br>
+Customers upgrading from 7.2.0 should upgrade to 7.2.2,
+which contains all 7.2.1 fixes and several additional critical fixes.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>This release contains:</p>
 </div>
@@ -3069,16 +3085,17 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58694" target="_blank" rel="noopener">MB-58694</a></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Some DCP messages were unnecessarily processed multiple times.<br>
-In addition, if the Analytics Service has high CPU usage, unnecessary flushes of DCP state to storage may occur;
-this also contributes to additional high CPU usage.</p>
+In addition, if the Analytics Service had high CPU usage, unnecessary flushes of DCP state to storage could occur;
+this also contributed to additional high CPU usage.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DCP messages are now processed once regardless of the configured <code>dcpIdleQueueFlushThresholdMillis</code>.<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DCP messages are now processed once, regardless of the configured <code>dcpIdleQueueFlushThresholdMillis</code>.<br>
 High CPU usage will not trigger unnecessary flushes of DCP state.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58723" target="_blank" rel="noopener">MB-58723</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Frames with only DCP metadata were unnecessarily processed by the complete ingestion pipeline, resulting in performance degradation.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Frames with only DCP metadata are now only processed by the ingestion operators that require updating this metadata.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The complete ingestion pipeline will no longer process frames that only contain DCP data.<br>
+Instead, they are processed specifically by the ingestion operators that update DCP metadata.</p></td>
 </tr>
 </tbody>
 </table>
@@ -3124,6 +3141,22 @@ If missing partitions are found, they are rebuilt, rather than exiting the rebal
 <div class="sect1">
 <h2 id="release-721"><a class="anchor" href="#release-721"></a>Release 7.2.1 (September 2023)</h2>
 <div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Couchbase release 7.2.1 is no longer available for download.</strong><br>
+Customers upgrading from 7.2.0 should upgrade to 7.2.2,
+which contains all 7.2.1 fixes and several additional critical fixes.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Couchbase Server 7.2.1 was released in September 2023.</p>
 </div>
