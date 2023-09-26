@@ -3093,9 +3093,9 @@ High CPU usage will not trigger unnecessary flushes of DCP state.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58723" target="_blank" rel="noopener">MB-58723</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Frames with only DCP metadata were unnecessarily processed by the complete ingestion pipeline, resulting in performance degradation.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The complete ingestion pipeline  no longer processes frames that only contain DCP data.<br>
-Instead, they are processed specifically by the ingestion operators that update DCP metadata.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Frames that contain only DCP data were unnecessarily processed by the complete ingestion pipeline, resulting in performance degradation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The complete ingestion pipeline no longer processes frames that only contain DCP data.<br>
+Instead, they are processed specifically by the ingestion operators that update DCP metadata, resulting in better performance.</p></td>
 </tr>
 </tbody>
 </table>
@@ -3120,10 +3120,10 @@ Instead, they are processed specifically by the ingestion operators that update 
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58450" target="_blank" rel="noopener">MB-58450</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">An issue occurred with a node failover.<br>
 If a user did not bring in a replacement node before the failover occurred, then lost active or lost replica search indexes that had partitions on the replaced node were not rebuilt.
-  As a result, search requests returned partial/incomplete results. In addition, existing indexes with defined replica(s) became vulnerable to another node failure.<br></p>
+  As a result, search requests returned partial/incomplete results. In addition, existing indexes with defined replica(s) became vulnerable to potential node failures.<br></p>
 <p class="tableblock">This issue is only pertinent to the 7.2.1 release, and does not affect older builds.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">During rebalancing, a check is now made for missing partitions.
-If missing partitions are found, they are rebuilt, rather than exiting the rebalance immediately.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">During rebalancing, a check is now made for missing partitions.<br>
+If missing partitions are found, they are rebuilt before the rebalance is complete.</p></td>
 </tr>
 </tbody>
 </table>
