@@ -3094,7 +3094,7 @@ High CPU usage will not trigger unnecessary flushes of DCP state.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58723" target="_blank" rel="noopener">MB-58723</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Frames with only DCP metadata were unnecessarily processed by the complete ingestion pipeline, resulting in performance degradation.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The complete ingestion pipeline will no longer process frames that only contain DCP data.<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The complete ingestion pipeline  no longer processes frames that only contain DCP data.<br>
 Instead, they are processed specifically by the ingestion operators that update DCP metadata.</p></td>
 </tr>
 </tbody>
@@ -3118,17 +3118,10 @@ Instead, they are processed specifically by the ingestion operators that update 
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58450" target="_blank" rel="noopener">MB-58450</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If the user did not bring in a replacement node for a failed-over node before rebalancing, then
-lost active or lost replica search indexes that had partitions residing on the affected node were not rebuilt.</p>
-<p class="tableblock">This could cause search requests
-to return partial/incomplete results owing to active partitions lost,
-or it could leave existing indexes with replica(s) defined vulnerable should another node be lost.</p>
-<p class="tableblock">This situation can be prevented if a replacement node is brought into the cluster in place of the failed over node,
-before starting the rebalance operation.
-This problem should not affect on-line or off-line rebalances.</p>
-<p class="tableblock">If lost indexes are encountered, then, a manual update to the affected search index definition(s) will trigger a rebuild of the affected indexes.<br>
-(The advice here is to toggle the replica count so that unaffected index partitions are re-used, and only the lost partitions are rebuilt.)</p>
-<p class="tableblock">This issue is only pertinent to the <strong>7.2.1</strong> release, and does not affect older builds.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An issue occurred with a node failover.<br>
+If a user did not bring in a replacement node before the failover occurred, then lost active or lost replica search indexes that had partitions on the replaced node were not rebuilt.
+  As a result, search requests returned partial/incomplete results. In addition, existing indexes with defined replica(s) became vulnerable to another node failure.<br></p>
+<p class="tableblock">This issue is only pertinent to the 7.2.1 release, and does not affect older builds.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">During rebalancing, a check is now made for missing partitions.
 If missing partitions are found, they are rebuilt, rather than exiting the rebalance immediately.</p></td>
 </tr>
@@ -3718,6 +3711,41 @@ See <a href="../manage/manage-xdcr/create-xdcr-replication.html#rebalance-inform
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="known-issues-721"><a class="anchor" href="#known-issues-721"></a>Known Issues</h3>
+<div class="sect3">
+<h4 id="search-service-2"><a class="anchor" href="#search-service-2"></a>Search Service</h4>
+<table id="table-known-issues-721-search-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Workaround</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58450" target="_blank" rel="noopener">MB-58450</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An issue occurs with node failover.
+If a user does not bring in a replacement node before the failover occurs,
+then lost active or lost replica search indexes that have partitions on the replaced node are not rebuilt.<br>
+As a result, search requests return partial/incomplete results. In addition,existing indexes with defined replica(s) become vulnerable to another node failure.</p>
+<p class="tableblock">This issue is only pertinent to the <strong>7.2.1</strong> release, and does not affect older builds.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This situation can be prevented if a replacement node was brought into the cluster in place of the failed over node,
+before starting the rebalance operation.
+  This problem should not affect on-line or off-line rebalances.</p>
+<p class="tableblock">  If lost indexes are encountered, then, a manual update to the affected search index definition(s) will trigger a rebuild of the affected indexes.<br>
+  (The advice here is to toggle the replica count so that unaffected index partitions are re-used, and only the lost partitions are rebuilt.)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -4206,7 +4234,7 @@ After the node is initialized, a username and password must be supplied.</p></td
 </table>
 </div>
 <div class="sect3">
-<h4 id="search-service-2"><a class="anchor" href="#search-service-2"></a>Search Service</h4>
+<h4 id="search-service-3"><a class="anchor" href="#search-service-3"></a>Search Service</h4>
 <table id="table-known-issues-720-searchservice" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
