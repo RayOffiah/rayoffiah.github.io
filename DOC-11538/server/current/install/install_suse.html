@@ -3068,6 +3068,46 @@ However, the procedures on this page assume the following:</p>
 <p>If you&#8217;re upgrading an existing installation of Couchbase Server, refer to <a href="upgrade.html" class="xref page">Upgrading Couchbase Server</a>.</p>
 </div>
 </li>
+<li>
+<p>Your system supports the requisite number of threads to run Couchbase Server.
+You can check (and optionally change) the default thread limit using the following steps:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check the default thread limit by running the following command from the shell:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">sudo systemctl show --property DefaultTasksMax</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If the value returned is less than 65535, then edit the file:
+<code>etc/systemd/system.conf</code> and set <code>DefaultTasksMax</code> to 65535.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>system.conf</code> file may have read-only permissions set;  if this is the case, then use the <code>chmod</code> command to set the user permissions to writeable.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>From the command shell, execute the following command to load the new setting:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">sudo systemctl daemon-reload</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
 </ul>
 </div>
 <div class="paragraph">
