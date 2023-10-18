@@ -6,11 +6,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
-<title>Field Level Encryption | Couchbase Docs</title>
+<title>Untitled | Couchbase Docs</title>
 <link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/sdk-extensions/field-level-encryption.html">
 <link rel="stylesheet" href="../_/css/site.css">
 <script src="../_/js/vendor/jquery.js"></script>
-<meta name="description" content="A high-level overview of Field-Level Encryption concepts.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -145,10 +144,10 @@
       <div class="component_list-version">
         <span class="component_list_title">sdk</span>
         <select class="version_list" data-component="sdk">
-          <option value="7.0" data-url="../sdk/current/index.html" selected>7.0</option>
+          <option value="7.1.2" data-url="../sdk/current/index.html" selected>7.1.2</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="7.0">
+      <div class="version_items hide" data-version="7.1.2">
       </div>
     </li>
     <li class="components_list-items">
@@ -344,135 +343,12 @@
 </nav>
 </div>
 <article class="doc">
-<div class="page-heading-title">
-<h1 class="page">Field Level Encryption</h1>
-<div class="labels">
-<ul>
-<li class="concept"><span><i class="far fa-lightbulb"></i> concept</span></li>
-</ul>
-</div>
-<div class="labels">
-<ul>
-<li class="edition"><a href="https://www.couchbase.com/products/editions">Enterprise Edition</a></li>
-</ul>
-</div>
-
-
-</div>
 <div class="contributor-list-box">
 <span class="last-commit-date" id="commitdate">    </span>
 <ul id="contributorList"></ul>
 <span  id="otherContributor"> + </span>
-</div><div id="preamble">
-<div class="sectionbody">
-<div class="quoteblock abstract">
-<blockquote>
-A high-level overview of Field-Level Encryption concepts.
-</blockquote>
-</div>
-<div class="paragraph">
-<p>For a practical guide, see <a href="#howtos:encrypting-using-sdk.adoc" class="xref unresolved">howtos:encrypting-using-sdk.adoc</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="architecture"><a class="anchor" href="#architecture"></a>Overview</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Fields within a JSON document can be securely encrypted by the SDK to support FIPS 140-2 compliance.</p>
-</div>
-<div class="paragraph">
-<p>This is a client-side implementation, with encryption and decryption handled by the Couchbase client SDK.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/fle-concept.png" alt="FLE in app">
-</div>
-<div class="title">Figure 1. Encrypting &amp; decrypting via the FLE library</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="algorithm"><a class="anchor" href="#algorithm"></a>Algorithm and Key Store</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>SDK 3 uses the <code>AEAD_AES_256_CBC_HMAC_SHA_512</code> algorithm to provide authenticated symmetric encryption of sensitive JSON fields.
-This algorithm uses a 64-byte key (known affectionately as a "fat key", since it&#8217;s really two 32-byte keys joined together).
-The key materials for the AES and HMAC steps are distinct, but are managed as a single unit.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Previous versions of the Field-Level Encryption library used a variation of this algorithm that managed the AES and HMAC keys separately.
-This was an obstacle to key rotation, so those algorithms are deprecated in SDK 3 and are no longer used for encryption.
-Existing data encrypted with the old algorithm can still be read by SDK 3, although additional configuration is required to enable backwards compatibility.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Developers may also plug in custom encryption algorithms.</p>
-</div>
-<div class="paragraph">
-<p>A <code>Keyring</code> provides access to encryption keys.
-Implementations are provided for native key stores (including Java Key Store and Windows Certificate Store).
-Developers may provide custom implementations for integration with external key management systems, or to implement key rotation.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="format"><a class="anchor" href="#format"></a>Field Encryption Format</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Here’s a document that illustrates how an encrypted field is stored in Couchbase.
-The document has a normal field called "foo", and an encrypted field called "bar".
-Note that the name of the "bar" field is mangled to indicate it holds an encrypted value:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>{
-  "foo": "I am not a secret",
-  "encrypted$bar": {
-    "alg": "AEAD_AES_256_CBC_HMAC_SHA512",
-    "kid": "my-secret-key-name",
-    "ciphertext": "&lt;base64-encoded-ciphertext&gt;"
-  }
-}</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>See the <a href="#howtos:encrypting-using-sdk.adoc" class="xref unresolved">sample code page</a> for examples of reading &amp; writing encrypted fields.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="error"><a class="anchor" href="#error"></a>Data Safeguards</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To prevent data loss under error conditions, an error in decryption or encryption in any part of an operation will cause the whole operation to fail with an exception.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="packaging"><a class="anchor" href="#packaging"></a>Packaging</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Field Level Encryption for all SDKs is a separate package from the Couchbase SDK itself; the APIs are extensions of the SDK, but the SDK does not have a dependency on FLE.
-This means you can install the relevant SDK without being dependent upon a suite of crypto libraries.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="fips-140-2"><a class="anchor" href="#fips-140-2"></a>FIPS 140-2</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The standard <code>AEAD_AES_256_CBC_HMAC_SHA512</code> encryption algorithm is composed of FIPS 140-2 "Approved Security Functions."</p>
-</div>
-</div>
+</div><div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/field-level-encryption.adoc - include::7.0@sdk:pages:partial$encryption.adoc[]</p>
 </div>
 </article>
 </main>

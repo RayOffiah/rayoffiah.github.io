@@ -303,10 +303,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#server:n1ql:n1ql-language-reference/index.adoc" class="xref unresolved">N1QL querying</a> - the ability to easily query sessions with SQL for business insight</p>
+<p><a href="../../server/current/n1ql/n1ql-language-reference/index.html" class="xref page">N1QL querying</a> - the ability to easily query sessions with SQL for business insight</p>
 </li>
 <li>
-<p><a href="#server:learn:services-and-indexes/indexes/storage-modes.adoc" class="xref unresolved">Memory Optimized Indexes (MOI)</a> - enabling high-speed maintenance and scanning by keeping the indexes in memory</p>
+<p><a href="../../server/current/learn/services-and-indexes/indexes/storage-modes.html" class="xref page">Memory Optimized Indexes (MOI)</a> - enabling high-speed maintenance and scanning by keeping the indexes in memory</p>
 </li>
 <li>
 <p><a href="../../server/current/learn/services-and-indexes/services/services.html" class="xref page">Scaling</a> - not only does Couchbase make it easy to scale horizontally, but it makes it easy to scale individual services vertically with multi-dimensional scaling (MDS)</p>
@@ -737,7 +737,7 @@ LIMIT 10;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>First off, this N1QL query is using BASE64_DECODE to turn the base64 representations into a JSON object that can be more easily queried (see <a href="#server:n1ql:n1ql-language-reference/metafun.adoc" class="xref unresolved">more about BASE64_DECODE</a> in documentation).</p>
+<p>First off, this N1QL query is using BASE64_DECODE to turn the base64 representations into a JSON object that can be more easily queried (see <a href="../../server/current/n1ql/n1ql-language-reference/metafun.html" class="xref page">more about BASE64_DECODE</a> in documentation).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -752,7 +752,7 @@ If you are using Couchbase Server 6.5+, you can <a href="udf.html" class="xref p
 </table>
 </div>
 <div class="paragraph">
-<p>Second, to make this query work, we&#8217;ll need appropriate indexing. The <code>shoppingcart</code> field at least needs to be indexed. It&#8217;s also a good idea to add <code>BASE64_DECODE(shoppingcart)</code> to make it a <a href="#server:n1ql:n1ql-language-reference/covering-indexes.adoc" class="xref unresolved">covering index</a>. Create an index like this:</p>
+<p>Second, to make this query work, we&#8217;ll need appropriate indexing. The <code>shoppingcart</code> field at least needs to be indexed. It&#8217;s also a good idea to add <code>BASE64_DECODE(shoppingcart)</code> to make it a <a href="../../server/current/n1ql/n1ql-language-reference/covering-indexes.html" class="xref page">covering index</a>. Create an index like this:</p>
 </div>
 <div class="paragraph">
 <p><code>CREATE INDEX ix_shoppingcart ON sessionstore (shoppingcart, BASE64_DECODE(shoppingcart));</code></p>
@@ -785,7 +785,7 @@ ORDER BY SUM(i.Quantity) DESC</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Again, BASE64_DECODE needs to be used here. This query uses the <a href="#server:n1ql:n1ql-language-reference/from.adoc#unnest" class="xref unresolved"><code>UNNEST</code> keyword</a> to break down the nested objects in each shopping cart to the root level.</p>
+<p>Again, BASE64_DECODE needs to be used here. This query uses the <a href="../../server/current/n1ql/n1ql-language-reference/from.html#unnest" class="xref page"><code>UNNEST</code> keyword</a> to break down the nested objects in each shopping cart to the root level.</p>
 </div>
 <div class="paragraph">
 <p>Fortunately, the index that was created in the above example also works for this query, so no additional index is needed. Here&#8217;s an example of a report that uses the above query (also included in the sample project on GitHub):</p>
@@ -846,7 +846,7 @@ ORDER BY SUM(i.Quantity) DESC</code></pre>
 <p><a href="https://github.com/couchbaselabs/couchbase-aspnet/">Couchbase ASP.NET Integration</a> - if you haven&#8217;t switched to ASP.NET Core yet, you can still use this library to store ASP.NET session in Couchbase</p>
 </li>
 <li>
-<p><a href="#server:n1ql:n1ql-language-reference/index.adoc" class="xref unresolved">N1QL documentation</a></p>
+<p><a href="../../server/current/n1ql/n1ql-language-reference/index.html" class="xref page">N1QL documentation</a></p>
 </li>
 <li>
 <p><a href="https://docs.couchbase.com/dotnet-sdk/2.7/start-using-sdk.html">Couchbase .NET SDK documentation</a></p>

@@ -145,10 +145,10 @@
       <div class="component_list-version">
         <span class="component_list_title">sdk</span>
         <select class="version_list" data-component="sdk">
-          <option value="7.0" data-url="../sdk/current/index.html" selected>7.0</option>
+          <option value="7.1.2" data-url="../sdk/current/index.html" selected>7.1.2</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="7.0">
+      <div class="version_items hide" data-version="7.1.2">
       </div>
     </li>
     <li class="components_list-items">
@@ -367,7 +367,7 @@ A <em>transaction</em> is an atomic unit of work that contains one or more opera
 <p>Couchbase provides Distributed ACID Transactions for K-V (data) and Query operations&#8201;&#8212;&#8201;these are available through APIs in
 <a href="../cxx-txns/current/distributed-acid-transactions-from-the-sdk.html" class="xref page">C++</a>,
 <a href="../dotnet-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html" class="xref page">.NET</a>, and
-<a href="#java-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc" class="xref unresolved">Java</a>.</p>
+<a href="../java-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html" class="xref page">Java</a>.</p>
 </div>
 </div>
 </div>
@@ -538,7 +538,7 @@ Use transactions only on documents less than 10 MB in size.
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#java-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc" class="xref unresolved">Java SDK</a></p>
+<p><a href="../java-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html" class="xref page">Java SDK</a></p>
 </li>
 <li>
 <p><a href="../dotnet-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html" class="xref page">.NET SDK</a></p>
@@ -560,7 +560,7 @@ COMMIT ;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For more information on using Query statements in transactions, see <a href="#server:n1ql:n1ql-language-reference/transactions.adoc" class="xref unresolved">server:n1ql:n1ql-language-reference/transactions.adoc</a>.</p>
+<p>For more information on using Query statements in transactions, see <a href="../server/current/n1ql/n1ql-language-reference/transactions.html" class="xref page">SQL++ Support for Couchbase Transactions</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -596,7 +596,7 @@ Take a look at the <a href="https://transactions.couchbase.com">Query Transactio
 <p>A transactions is started from the SDK (<code>transactions.run((ctx)</code> in the example above)</p>
 </li>
 <li>
-<p>The <a href="#server:n1ql:n1ql-language-reference/begin-transaction.adoc" class="xref unresolved"><code>BEGIN TRANSACTION</code></a> statement is executed (for example, say from the Query Workbench).</p>
+<p>The <a href="../server/current/n1ql/n1ql-language-reference/begin-transaction.html" class="xref page"><code>BEGIN TRANSACTION</code></a> statement is executed (for example, say from the Query Workbench).</p>
 </li>
 <li>
 <p>A single query transaction which implicitly starts a transaction is executed, using <code>transactions.query(statement)</code> from the SDK, enabling "Run as TX" from the Query Workbench, or using the <code>tximplicit</code> query parameter.</p>
@@ -615,7 +615,7 @@ Take a look at the <a href="https://transactions.couchbase.com">Query Transactio
 <p>A commit operation is executed (<code>ctx.commit()</code> in the example above)</p>
 </li>
 <li>
-<p>A rollback is executed (<code>ctx.rollback()</code>) or by executing the <a href="#server:n1ql:n1ql-language-reference/rollback-transaction.adoc" class="xref unresolved"><code>ROLLBACK TRANSACTION</code></a> statement.</p>
+<p>A rollback is executed (<code>ctx.rollback()</code>) or by executing the <a href="../server/current/n1ql/n1ql-language-reference/rollback-transaction.html" class="xref page"><code>ROLLBACK TRANSACTION</code></a> statement.</p>
 </li>
 <li>
 <p>Transaction callback completes successfully, in which case the transaction is committed implicitly.</p>
@@ -739,7 +739,7 @@ In Step 1 above, a new entry is added to the ATR.</p>
 <p>Note that if an application is not running, then this cleanup is also not running.</p>
 </div>
 <div class="paragraph">
-<p>The cleanup process is detailed in <a href="#java-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc#asynchronous-cleanup" class="xref unresolved">Asynchronous Cleanup</a>.</p>
+<p>The cleanup process is detailed in <a href="../java-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html#asynchronous-cleanup" class="xref page">Asynchronous Cleanup</a>.</p>
 </div>
 <div class="paragraph">
 <p>In Steps 4 and 5 in the illustration above, the documents “userA” and “userB” are unstaged, i.e., removed from xAttrs and replaced with the document body.</p>
@@ -798,7 +798,7 @@ In Step 1 above, a new entry is added to the ATR.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>For more information, see <a href="#java-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc#custom-metadata-collections" class="xref unresolved">Custom Metadata Collections</a> in the Transactions API documentation.</p>
+<p>For more information, see <a href="../java-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html#custom-metadata-collections" class="xref page">Custom Metadata Collections</a> in the Transactions API documentation.</p>
 </div>
 </div>
 </div>
@@ -819,7 +819,7 @@ In Step 1 above, a new entry is added to the ATR.</p>
 <li>
 <p>When using Query statements in a transaction, we recommend that you limit the number of mutations within a transaction as the delta table grows with every mutation resulting in increased memory usage. Use the “memory-quota” setting in the query service to manage the amount of memory consumed by delta tables.</p>
 <div class="paragraph">
-<p>For ETL-like loads or massive updates that need ACID guarantees, consider using <a href="#java-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc#single-query-transactions" class="xref unresolved">single query transactions</a>  directly from the Query Workbench, CLI, or cbq. Single query transactions, also referred to as <em>implicit transactions</em>, do not require a delta table to be maintained.</p>
+<p>For ETL-like loads or massive updates that need ACID guarantees, consider using <a href="../java-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html#single-query-transactions" class="xref page">single query transactions</a>  directly from the Query Workbench, CLI, or cbq. Single query transactions, also referred to as <em>implicit transactions</em>, do not require a delta table to be maintained.</p>
 </div>
 </li>
 </ul>
@@ -857,7 +857,7 @@ In Step 1 above, a new entry is added to the ATR.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Durability level</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#java-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc#configuration" class="xref unresolved">java-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc#configuration</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../java-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html#configuration" class="xref page">java-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc#configuration</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Scan consistency</p></td>
@@ -865,14 +865,14 @@ In Step 1 above, a new entry is added to the ATR.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Request-level Query parameters</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Request-level parameters when using queries within transactions. See <a href="#server:n1ql:n1ql-language-reference/transactions.adoc#settings-and-parameters" class="xref unresolved">N1QL Transactions Settings</a> for details.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Request-level parameters when using queries within transactions. See <a href="../server/current/n1ql/n1ql-language-reference/transactions.html#settings-and-parameters" class="xref page">N1QL Transactions Settings</a> for details.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Transaction expiry timer</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Configures how long a transaction should last before it is rolled back.
 The transaction expiry timer (which is configurable) will begin ticking once the transaction starts.
 The default value is 15 seconds. Within this timeframe, if there are concurrency or node issues, a combination of wait and retry operations are used until the transaction reaches this time.
-For more information, see <a href="#java-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc#error-handling" class="xref unresolved">Transactions Error Handling</a>.</p></td>
+For more information, see <a href="../java-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html#error-handling" class="xref page">Transactions Error Handling</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">tximplicit</p></td>
@@ -898,7 +898,7 @@ See <a href="../server/current/settings/query-settings.html#tximplicit" class="x
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#java-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc" class="xref unresolved">java-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc</a></p>
+<p><a href="../java-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html" class="xref page">Distributed ACID Transactions from the Java SDK</a></p>
 </li>
 <li>
 <p><a href="../cxx-txns/current/distributed-acid-transactions-from-the-sdk.html" class="xref page">Distributed Transactions from the C++ SDK</a></p>
@@ -907,7 +907,7 @@ See <a href="../server/current/settings/query-settings.html#tximplicit" class="x
 <p><a href="../dotnet-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html" class="xref page">Distributed Transactions from the .NET SDK</a></p>
 </li>
 <li>
-<p><a href="#server:n1ql:n1ql-language-reference/transactions.adoc" class="xref unresolved">server:n1ql:n1ql-language-reference/transactions.adoc</a></p>
+<p><a href="../server/current/n1ql/n1ql-language-reference/transactions.html" class="xref page">SQL++ Support for Couchbase Transactions</a></p>
 </li>
 </ul>
 </div>
