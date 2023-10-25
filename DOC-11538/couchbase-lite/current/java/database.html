@@ -2035,47 +2035,11 @@ Related Content&#8201;&#8212;&#8201;<a href="blob.html" class="xref page">Blobs<
 <p>Databases created on Couchbase Lite can share the same hierarchical structure as Capella databases.
 This makes it easier to sync data between mobile applications and applications built using Capella.</p>
 </div>
-<div class="listingblock kroki-error">
-<div class="title">Couchbase Lite Database Hierarchy</div>
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-
-database "Database" as db
-
-rectangle "Scope" as scope
-
-folder "Collection" as collection
-
-
-
-file "Document" as document1
-file "Document" as document2
-file "Document" as document3
-
-db --&gt; scope
-scope --&gt; collection
-collection --&gt; document1
-collection --&gt; document2
-collection --&gt; document3
-
-
-
-
-note right of collection
-
-  Maximum of 1000 per scope
-
-end note
-
-note right of db
-
-  One database per application
-
-end note
-
-@enduml</pre>
+<img src="_images/diag-1a0c38eedbd94887fb3ffdf21f2c1828aa6c46bd.svg" alt="Couchbase Lite Database Hierarchy">
 </div>
+<div class="title">Figure 1. Couchbase Lite Database Hierarchy</div>
 </div>
 <div class="paragraph">
 <p>Although the terminology is different, the structure can be mapped to relational database terms:</p>
@@ -2111,54 +2075,11 @@ end note
 <p>This structure gives you plenty of choices when it comes to partitioning your data.
 The most basic structure is to use the single default scope with a single default collection; or you could opt for a structure that allow you to split your collections into logical scopes.</p>
 </div>
-<div id="cbl-database-structure" class="listingblock kroki-error">
-<div class="title">Couchbase Lite Examples</div>
+<div id="cbl-database-structure" class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-
-database "Couchbase Lite database" as db1 {
-
-      node "_default scope" as dfs1 {
-
-        folder "_default collection" as dfc1 {
-
-        }
-      }
-
-}
-
-database "Couchbase Lite database" as db2 {
-
-
-    node "_default scope" as dfs2 {
-
-      folder "_default collection" as dfc2 {
-
-      }
-
-        folder "Collection A" as collectionA {
-
-        }
-    }
-
-    node "Scope A" as scopeA {
-
-      folder "Collection A" as collectionA2 {
-
-      }
-
-        folder "Collection B" as collectionB {
-
-        }
-    }
-
-}
-
-collectionA2 -D[hidden]-&gt; collectionB
-collectionA -D[hidden]-&gt; dfc2
-@enduml</pre>
+<img src="_images/diag-05d56cb47943aca87bab91c36500d66d7264e1b2.svg" alt="Couchbase Lite Examples">
 </div>
+<div class="title">Figure 2. Couchbase Lite Examples</div>
 </div>
 <div class="sidebarblock">
 <div class="content">

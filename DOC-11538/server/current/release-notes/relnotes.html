@@ -5168,10 +5168,10 @@
 <ul id="contributorList"></ul>
 <span  id="otherContributor"> + </span>
 </div><div class="sect1">
-<h2 id="release-723"><a class="anchor" href="#release-723"></a>Release 7.2.3 (October 2023)</h2>
+<h2 id="release-724"><a class="anchor" href="#release-724"></a>Release 7.2.4 (November 2023)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase Server 7.2.3 was released in October 2023.
+<p>Couchbase Server 7.2.4 was released in November 2023.
 This maintenance release contains fixes to issues.</p>
 </div>
 </div>
@@ -5179,37 +5179,195 @@ This maintenance release contains fixes to issues.</p>
 <div class="sect1">
 <h2 id="fixed-issues"><a class="anchor" href="#fixed-issues"></a>Fixed Issues</h2>
 <div class="sectionbody">
-<div class="admonitionblock important">
-<table>
+<div class="sect2">
+<h3 id="cluster-manager"><a class="anchor" href="#cluster-manager"></a>Cluster Manager</h3>
+<table id="table-known-issues-724-cluster-manager" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
 <tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This release fixes a vulnerability in the gRPC library used in the search and query modules.<br>
-All users should upgrade to this release as soon as possible.<br></p>
-</div>
-<div class="paragraph">
-<p>For more information, please read <a href="#https://www.cve.org/CVERecord?id=CVE-2023-44487">CVE-2023-44487</a></p>
-</div>
-</td>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
 </tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58789/">MB-58789</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Debug log file is polluted by tls_dyn_connection_sup process reports</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extraneous process logs redirected.</p></td>
+</tr>
+</tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="query-and-search-services"><a class="anchor" href="#query-and-search-services"></a>Query and Search Services</h3>
+<h3 id="xdcr"><a class="anchor" href="#xdcr"></a>XDCR</h3>
+<table id="table-known-issues-724-xdcr" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58603/">MB-58603</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deadlock occurring in backfill handler and pipeline manager.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deadlocks in backfill handler and pipeline manager fixed and tested.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58758/">MB-58758</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observing checkpoint manager stop and pipeline stop log in goroutines in recent run, leading to a small memory leak.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Change made so that synchronization primitive is not held for a prolonged period of time.<br>
+Changes made to allow fewer pipeline restarts when the system is in an erroneous state.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-57382/">MB-57382</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rebalanced-in source node could miss raising backfills.<br>
+Because it did not successfully set the "current time," (i.e.,
+the time that the node was rebalanced in) source manifest as the baseline, the default manifest is used.
+This can potentially lead to a missed backfill.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The backfill manager is initialized to the source manifest.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59003/">MB-59003</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CheckpointSvc needs to protect checkpointDel operations from p2p.<br>
+It is possible that the metadata_svc.DelAll is a very slow process, and that CleanupMapping finishes, and as it finishes, it removes the counter/topic from the shaRefCounterService&#8217;s topicMaps while this call is still executing</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Delete checkpoints allowed during replication deletion</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58680/">MB-58680</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Every time XDCR retries pipeline restart and fails to start, it causes extraneous information to be written in KV logs.<br>
+When a system is under duress, restarting every 10 seconds without backoff can cause excessive information dumps in KV logs and lose critical information.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adding backoff functionality to prevent excessive information dump during retries.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="query-service"><a class="anchor" href="#query-service"></a>Query Service</h3>
+<table id="table-known-issues-724-query-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59063/">MB-59063</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Create new metrics</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Metrics added for:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>This release updates the gRPC used in the search and query modules.</p>
-<div class="paragraph">
-<p>The release fixes a vulnerability which could lead to an HTTP/2 denial of service attack, detailed here:<br>
-<a href="#https://www.cve.org/CVERecord?id=CVE-2023-44487">CVE-2023-44487</a></p>
-</div>
+<p>n1ql_timeouts</p>
+</li>
+<li>
+<p>n1ql_unauthorized_users</p>
+</li>
+<li>
+<p>n1ql_bulk_get_errors</p>
+</li>
+<li>
+<p>n1ql_cas_mismatch_errors</p>
+</li>
+<li>
+<p>n1ql_temp_space_errors</p>
 </li>
 </ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58437/">MB-58437</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">decode function returning wrong results.<br>
+Certain <code>CREATE INDEX</code> expressions returning null on execution.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fixed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58779/">MB-58779</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fix panic in active requests gathering</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add panic recovery to Gencache</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58648/">MB-58648</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prepared statement with udf can leak memory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fix UDF functions being reloaded.&#160;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59214/">MB-59214</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Formalization should disallow implicit aliases already in use to avoid wrong results</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">To fix this issue, we changed the way CTE variables are handled in the formalizer, i.e., we  need to only add a CTE variable as "allowed" when it first appears in a FROM clause.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-57903/">MB-57903</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deep-nested correlations are not properly detected and use cached results</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fixed</p></td>
+</tr>
+</tbody>
+</table>
 </div>
+<div class="sect2">
+<h3 id="analytics-service"><a class="anchor" href="#analytics-service"></a>Analytics Service</h3>
+<table id="table-known-issues-724-analytics-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58897/">MB-58897</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add metrics to identify user activity counts</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The following metric have been added:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>cbas_pending_requests</p>
+</li>
+<li>
+<p>cbas_queued_jobs</p>
+</li>
+<li>
+<p>cbas_running_jobs</p>
+</li>
+<li>
+<p>cbas_active_links</p>
+</li>
+<li>
+<p>cbas_requests_total</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -5248,7 +5406,7 @@ which contains all 7.2.1 fixes and several additional critical fixes.</p>
 <div class="sect2">
 <h3 id="fixed-issues-2"><a class="anchor" href="#fixed-issues-2"></a>Fixed issues</h3>
 <div class="sect3">
-<h4 id="analytics-service"><a class="anchor" href="#analytics-service"></a>Analytics Service</h4>
+<h4 id="analytics-service-2"><a class="anchor" href="#analytics-service-2"></a>Analytics Service</h4>
 <table id="table-fixed-issues-722-analytics-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -5363,7 +5521,7 @@ which contains all 7.2.1 fixes and several additional critical fixes.</p>
 <p>This release includes the following new features.</p>
 </div>
 <div class="sect3">
-<h4 id="xdcr"><a class="anchor" href="#xdcr"></a>XDCR</h4>
+<h4 id="xdcr-2"><a class="anchor" href="#xdcr-2"></a>XDCR</h4>
 <div class="paragraph">
 <p>The following XDCR features are new:</p>
 </div>
@@ -5476,7 +5634,7 @@ See <a href="../manage/manage-xdcr/create-xdcr-replication.html#rebalance-inform
 <p>This release contains the following fixes.</p>
 </div>
 <div class="sect3">
-<h4 id="analytics-service-2"><a class="anchor" href="#analytics-service-2"></a>Analytics Service</h4>
+<h4 id="analytics-service-3"><a class="anchor" href="#analytics-service-3"></a>Analytics Service</h4>
 <table id="table-fixed-issues-721-analytics-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -5613,7 +5771,7 @@ See <a href="../manage/manage-xdcr/create-xdcr-replication.html#rebalance-inform
 </table>
 </div>
 <div class="sect3">
-<h4 id="query-service"><a class="anchor" href="#query-service"></a>Query Service</h4>
+<h4 id="query-service-2"><a class="anchor" href="#query-service-2"></a>Query Service</h4>
 <table id="table-fixed-issues-721-query-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -5702,7 +5860,7 @@ See <a href="../manage/manage-xdcr/create-xdcr-replication.html#rebalance-inform
 </table>
 </div>
 <div class="sect3">
-<h4 id="cluster-manager"><a class="anchor" href="#cluster-manager"></a>Cluster Manager</h4>
+<h4 id="cluster-manager-2"><a class="anchor" href="#cluster-manager-2"></a>Cluster Manager</h4>
 <table id="table-fixed-issues-721-cluster-manager" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -6084,7 +6242,7 @@ See <a href="../learn/security/on-the-wire-security.html#min-tls-version" class=
 <p>This release contains the following fixes.</p>
 </div>
 <div class="sect3">
-<h4 id="cluster-manager-2"><a class="anchor" href="#cluster-manager-2"></a>Cluster Manager</h4>
+<h4 id="cluster-manager-3"><a class="anchor" href="#cluster-manager-3"></a>Cluster Manager</h4>
 <table id="table-fixed-issues-720-clustermanager" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
@@ -6138,7 +6296,7 @@ See <a href="../learn/security/on-the-wire-security.html#min-tls-version" class=
 </table>
 </div>
 <div class="sect3">
-<h4 id="query-service-2"><a class="anchor" href="#query-service-2"></a>Query Service</h4>
+<h4 id="query-service-3"><a class="anchor" href="#query-service-3"></a>Query Service</h4>
 <table id="table-fixed-issues-720-queryservice" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
@@ -6443,7 +6601,7 @@ However, there is no workaround for the intermittent crashes which Couchbase are
 </table>
 </div>
 <div class="sect3">
-<h4 id="analytics-service-3"><a class="anchor" href="#analytics-service-3"></a>Analytics Service</h4>
+<h4 id="analytics-service-4"><a class="anchor" href="#analytics-service-4"></a>Analytics Service</h4>
 <table id="table-known-issues-720-analyticsservice" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">

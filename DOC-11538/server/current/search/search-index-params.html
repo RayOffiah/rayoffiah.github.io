@@ -6402,21 +6402,9 @@ If the token filter finds a subword inside a compound word, it turns it into a s
 <div class="paragraph">
 <p>For example, if you had a wordlist that contained <code>play</code> and <code>jump</code>, the token filter converts <code>playful jumping</code> into two tokens: <code>play</code> and <code>jump</code>.</p>
 </div>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-(playful jumping) as Start &lt;&lt;Input Token&gt;&gt;
-(play) &lt;&lt;Output&gt;&gt;
-(jump) &lt;&lt;Output&gt;&gt;
-rectangle wordlist {
-    usecase "play" as WL1
-    usecase "jump" as WL2
-}
-
-Start --&gt; (play)
-Start --&gt; (jump)
-@enduml</pre>
+<img src="_images/diag-75b0a4f6b0195752621d269678ea43a8c1ca4502.svg" alt="dict">
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -6468,21 +6456,9 @@ You can also choose whether to create the new token from the start or backward f
 <div class="paragraph">
 <p>For example, if you had a miminum of four and a maximum of five with an input token of <code>breweries</code>, the token filter creates the tokens <code>brew</code> and <code>brewe</code>.</p>
 </div>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-(breweries) as Start &lt;&lt;Input Token&gt;&gt;
-(brew) &lt;&lt;Output&gt;&gt;
-(brewe) &lt;&lt;Output&gt;&gt;
-rectangle range {
-    usecase "min: 4" as R1
-    usecase "max: 5" as R2
-}
-
-Start --&gt; (brew)
-Start --&gt; (brewe)
-@enduml</pre>
+<img src="_images/diag-1148805638dd461a337b939c4d60689862147af8.svg" alt="edge">
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -6547,22 +6523,9 @@ Start --&gt; (brewe)
 <div class="paragraph">
 <p>For example, if you had the <code>stop_fr</code> wordlist in an elision token filter, the token <code>je m&#8217;appelle John</code> becomes the tokens <code>je</code>, <code>appelle</code>, and <code>John</code>.</p>
 </div>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-(je m'appelle John) as Start &lt;&lt;Input Token&gt;&gt;
-(je) &lt;&lt;Output&gt;&gt;
-(appelle) &lt;&lt;Output&gt;&gt;
-(John) &lt;&lt;Output&gt;&gt;
-rectangle wordlist {
-    usecase "stop_fr" as WL1
-}
-
-Start --&gt; (je)
-Start --&gt; (appelle)
-Start --&gt; (John)
-@enduml</pre>
+<img src="_images/diag-8bc5946f09f08bc9a40d84060c0c9051128dd29c.svg" alt="elision">
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -6611,18 +6574,9 @@ Start --&gt; (John)
 <div class="paragraph">
 <p>For example, if you had a wordlist that contained the keyword <code>beer</code>, the token <code>beer and breweries</code> becomes the token <code>beer</code>.</p>
 </div>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-(beer and breweries) as Start &lt;&lt;Input Token&gt;&gt;
-(beer) &lt;&lt;Output&gt;&gt;
-rectangle wordlist {
-    usecase "beer" as WL1
-}
-
-Start --&gt; (beer)
-@enduml</pre>
+<img src="_images/diag-93ef01d2103fe1ad146007deb5af4dc918b42ca0.svg" alt="keyword">
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -6672,17 +6626,9 @@ Start --&gt; (beer)
 <div class="paragraph">
 <p>For example, if you had a range with a minimum of two and a maximum of four, the token <code>beer and breweries</code> becomes the tokens <code>beer</code> and <code>and</code>.</p>
 </div>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-(beer and breweries) as Start &lt;&lt;Input Token&gt;&gt;
-(beer) &lt;&lt;Output&gt;&gt;
-(and) &lt;&lt;Output&gt;&gt;
-
-Start --&gt; (beer)
-Start --&gt; (and)
-@enduml</pre>
+<img src="_images/diag-c0a4e7fd46d357061bd3ea240c274ee798e6f3ed.svg" alt="length">
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -6733,19 +6679,9 @@ Start --&gt; (and)
 <div class="paragraph">
 <p>For example, if you had a range with a minimum of four and a maximum of five, the token <code>beers</code> becomes the tokens <code>beer</code>, <code>beers</code>, and <code>eers</code>.</p>
 </div>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-(beers) as Start &lt;&lt;Input Token&gt;&gt;
-(beer) &lt;&lt;Output&gt;&gt;
-(beers) &lt;&lt;Output&gt;&gt;
-(eers) &lt;&lt;Output&gt;&gt;
-
-Start --&gt; (beer)
-Start --&gt; (beers)
-Start --&gt; (eers)
-@enduml</pre>
+<img src="_images/diag-5612fc28803943b2a809aad2fd11849db66dfe8c.svg" alt="ngram">
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -6858,20 +6794,9 @@ Start --&gt; (eers)
 <div class="paragraph">
 <p>For example, if you use a <a href="#guides:search/default-tokenizers-reference.adoc#whitespace" class="xref unresolved">whitespace tokenizer</a>, a range with a minimum of two and a maximum of three, and a space as a separator, the token <code>abc def</code> becomes <code>abc</code>, <code>def</code>, and <code>abc def</code>.</p>
 </div>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-(abc def) as Start &lt;&lt;Input Token&gt;&gt;
-
-(abc) &lt;&lt;Output&gt;&gt;
-(def) &lt;&lt;Output&gt;&gt;
-(abc def) &lt;&lt;Output&gt;&gt;
-
-Start --&gt; (abc)
-Start --&gt; (def)
-Start --&gt; (abc def)
-@enduml</pre>
+<img src="_images/diag-e31391044ed4ad458b6fba81668b3d652a4757a6.svg" alt="shingle">
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -6944,21 +6869,9 @@ Start --&gt; (abc def)
 <div class="paragraph">
 <p>For example, if you have a wordlist that contains the word <code>and</code>, the token <code>beers and breweries</code> becomes <code>beers</code> and <code>breweries</code>.</p>
 </div>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-(beers and breweries) as Start &lt;&lt;Input Token&gt;&gt;
-(beers) &lt;&lt;Output&gt;&gt;
-(breweries) &lt;&lt;Output&gt;&gt;
-
-rectangle wordlist {
-    usecase "and" as WL1
-}
-
-Start --&gt; (beers)
-Start --&gt; (breweries)
-@enduml</pre>
+<img src="_images/diag-c37b7ec1faad7abb8eb729db13052d61aa980033.svg" alt="stop">
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -7010,23 +6923,9 @@ Start --&gt; (breweries)
 <div class="paragraph">
 <p>For example, if you had a <code>length</code> of four, the token <code>beer and breweries</code> becomes <code>beer</code>, <code>and</code>, and <code>brewe</code>.</p>
 </div>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-(beer and breweries) as Start &lt;&lt;Input Token&gt;&gt;
-(beer) &lt;&lt;Output&gt;&gt;
-(and) &lt;&lt;Output&gt;&gt;
-(brewe) &lt;&lt;Output&gt;&gt;
-
-rectangle length {
-    usecase "4" as L1
-}
-
-Start --&gt; (beer)
-Start --&gt; (and)
-Start --&gt; (brewe)
-@enduml</pre>
+<img src="_images/diag-ae0d23e144b925a100295fef1a33a41cd92cdc17.svg" alt="truncate">
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">

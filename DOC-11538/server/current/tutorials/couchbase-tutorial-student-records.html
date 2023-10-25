@@ -5253,39 +5253,9 @@ In relational database, this is usually a link record that provides a relationsh
 </div>
 <div class="sect2">
 <h3 id="relational-model"><a class="anchor" href="#relational-model"></a>Relational model</h3>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-skinparam linetype ortho
-entity student {
-  * student-id
---
-    name
-    date-of-birth
-}
-
-
-entity course {
-  * course-id
-    course-name
-    faculty
-    credit-points
-}
-
-entity enrollment {
-
-    * student-id
-    * course-id
---
-    * date-enrolled
-      date-completed
-}
-
-
-student --o{ enrollment
-course --o{ enrollment
-
-@enduml</pre>
+<img src="_images/diag-307120d2743500aed9688fdc73e8b0c0678f8819.svg" alt="student-record-erd">
 </div>
 </div>
 <div class="paragraph">
@@ -5301,44 +5271,9 @@ You cannot store, for example, the enrollment records in the same table as the s
 <div class="paragraph">
 <p>The document model gives you the same decomposition advantages as the relational model, but additionally, it also supports complex types which allows for a much more flexible design.</p>
 </div>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-left to right direction
-
-
-    database "student-bucket" {
-
-        node "art-school-scope" {
-
-                folder "student-record-collection" {
-
-                    file  "Hilary's record" as hilary {
-                        file "enrollment details" as hilary_enrollment
-                    }
-
-                    file "Ashley's record" as ashley {
-                        file "enrollment details" as ashley_enrollment
-
-                    }
-
-                }
-
-                folder "course-record-collection" {
-
-                    file "ART-HISTORY-000001" as art_history
-                    file "GRAPHIC-DESIGN-000003" as graphic_design
-                    file "FINE_ART-000002" as fine_art
-                }
-
-                hilary_enrollment --&gt; art_history
-                hilary_enrollment --&gt; graphic_design
-                ashley_enrollment --&gt;fine_art
-        }
-
-    }
-
-@enduml</pre>
+<img src="_images/diag-39e317553cc1bfa71ceb02d2ea5173ffc464b364.svg" alt="student-document-database-design">
 </div>
 </div>
 <div class="paragraph">

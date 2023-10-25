@@ -5288,74 +5288,20 @@ For details, see <a href="#section_bpf_wjf_ycb">Appendix: Query Plan Fields</a>.
 <p>Here&#8217;s how a query executes when the indexer handles the grouping and aggregation.
 Note that the query engine does not fetch any data from the data service (KV service).</p>
 </div>
-<div class="literalblock kroki-error">
-<div class="title">Query execution process, showing grouping and aggregation pushed down to the indexer</div>
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-skinparam maxMessageSize 150
-skinparam responseMessageBelowArrow true
-skinparam sequenceMessageAlign direction
-
-' title Query Execution with Grouping and Aggregation Pushdown
-
-participant Application
-
-collections "Query Engine" as Query
-collections "Indexer" as Index
-
-Application -&gt; Query: SELECT\nstatement
-activate Query #teal
-
-Query -[#transparent]&gt; Query: Analyze query; send scan, grouping and aggregation request
-Query -&gt; Index: Scan, grouping and aggregate request
-activate Index #deepskyblue
-
-Index -[#transparent]&gt; Index: Execute scan, grouping and aggregation
-Index -&gt; Query: Projection of results from scan, grouping and aggregation
-deactivate Index
-
-Query -[#transparent]&gt; Query: Perform group merge, if required; project the results
-Query -&gt; Application: Result projection
-deactivate Query
-@enduml</pre>
+<img src="../_images/diag-beb0d0e595cc22f9f4e8a561205c42e48afc19b3.svg" alt="Query execution process, showing grouping and aggregation pushed down to the indexer">
 </div>
+<div class="title">Figure 1. Query execution process, showing grouping and aggregation pushed down to the indexer</div>
 </div>
 <div class="paragraph">
 <p>For reference, this is how the same query would be executed without grouping and aggregate pushdown.</p>
 </div>
-<div class="literalblock kroki-error">
-<div class="title">Query execution process, showing grouping and aggregation performed by the query engine</div>
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-skinparam maxMessageSize 150
-skinparam responseMessageBelowArrow true
-skinparam sequenceMessageAlign direction
-
-' title Query Execution without Grouping and Aggregation Pushdown
-
-participant Application
-
-collections "Query Engine" as Query
-collections "Indexer" as Index
-
-Application -&gt; Query: SELECT\nstatement
-activate Query #teal
-
-Query -[#transparent]&gt; Query: Analyze query; send scan request
-Query -&gt; Index: Scan request
-activate Index #deepskyblue
-
-Index -[#transparent]&gt; Index: Execute scan
-Index -&gt; Query: Projection of results from scan
-deactivate Index
-
-Query -[#transparent]&gt; Query: Perform sub-group, grouping and aggregation; project the results
-Query -&gt; Application: Result projection
-deactivate Query
-@enduml</pre>
+<img src="../_images/diag-81553025216768cd0c79cf0c686c0b4d963ed6a0.svg" alt="Query execution process, showing grouping and aggregation performed by the query engine">
 </div>
+<div class="title">Figure 2. Query execution process, showing grouping and aggregation performed by the query engine</div>
 </div>
 </div>
 </div>

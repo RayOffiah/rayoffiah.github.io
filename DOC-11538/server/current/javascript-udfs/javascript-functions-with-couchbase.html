@@ -5269,55 +5269,14 @@ We can even provide parameters that can be used in the SQL++ statement.</td>
 <p>JavaScript functions are stored inside a <em>library</em>.
 A library can contain one or more functions, and can also be assigned to a scope, which allows libraries to be partitioned for logical grouping.</p>
 </div>
-<div id="javascript-scopes" class="literalblock kroki-error">
-<div class="title">Javascript UDFs Structure</div>
+<div id="javascript-scopes" class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-frame Cluster {
-
-    frame "global library" as globalLibrary #white {
-
-        component function3 #Ivory [
-
-function globalUKHoliday(... args) {
-    ...
-}
-
-        ]
-
-        component function4 #Ivory [
-
-function globalUSHoliday(... args) {
-    ...
-}
-
-        ]
-    }
-
-    database "Bucket" {
-
-        node "Scope" #White {
-
-            frame "my-library" #White {
-
-             component function1 #Ivory [
-
-function add(x, y) {
-    ...
-}
-
-            ]
-
-        }
-    }
-}
-
-@enduml</pre>
+<img src="_images/diag-d9e7dba12b711116dc9832c66abb9506a9948b43.svg" alt="Javascript UDFs Structure">
 </div>
+<div class="title">Figure 1. Javascript UDFs Structure</div>
 </div>
 <div class="paragraph">
-<p>As shown in <a href="#javascript-scopes">Javascript UDFs Structure</a>, a JavaScript function library can exist as:</p>
+<p>As shown in <a href="#javascript-scopes">Figure 1</a>, a JavaScript function library can exist as:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -5344,51 +5303,11 @@ You can find an introduction to scopes in our <a href="../tutorials/buckets-scop
 <div class="paragraph">
 <p>Furthermore, access restrictions can be applied to scopes, so that only certain groups of users will be able to access collections and libraries within that scope.</p>
 </div>
-<div id="scopes-for-udf" class="literalblock kroki-error">
-<div class="title">Scopes for JavaScript Libraries</div>
+<div id="scopes-for-udf" class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-allow_mixing
-
-left to right direction
-skinparam actorStyle Awesome
-skinparam linetype polyline
-skinparam linetype ortho
-
-component "getBusinessDays(...)" <<SQL++ User-Defined Function>> as n1qlUDFunction
-
-  frame "my-library" as MyLibrary {
-
-   file "getBusinessDays(startDate, \nendDate)" as getBusinessDays
-
-  }
-
-
-
-n1qlUDFunction ---> getBusinessDays
-actor "user" as user
-
-
-
-database "bucket" as bucket {
-  node "**scope**" as scope
-}
-
-
-scope <...r.... MyLibrary
-
-
-
-user --> n1qlUDFunction
-
-note top of user #Ivory
-  can access the getBusinessDays function
-  as long as s/he is working
-  inside the "**bucket.scope**" context
-end note
-
-@enduml</pre>
+<img src="_images/diag-67e01534238558935d885b5fbb2e3b310197c26a.svg" alt="Scopes for JavaScript Libraries">
 </div>
+<div class="title">Figure 2. Scopes for JavaScript Libraries</div>
 </div>
 <div class="paragraph">
 <p>You do not call a JavaScript function directly&#8201;&#8212;&#8201;for example, <code>getBusinessDays(startDate, endDate)</code> as shown here.

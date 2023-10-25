@@ -5338,34 +5338,9 @@ In the next example, we&#8217;re going to retrieve a list of the hotels stored i
 <p>If the inline statement/SQL++ call returns a value then it is executed <em>asynchronously</em>: execution continues before the iterator is returned.
 Each document is fetched from the bucket as it requested by the iterator.</p>
 </div>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
- skinparam actorStyle Awesome
-
- actor Dev
- participant JSEngine
- participant QueryEngine
- database Bucket
-
- Dev ->> JSEngine: JS: var q = select …
- activate JSEngine
- JSEngine ->> QueryEngine : SQL++(…) call
- activate QueryEngine
- QueryEngine ->> JSEngine  : return query
- deactivate QueryEngine
- JSEngine ->> Dev : return q
- deactivate JSEngine
-
-    loop Every document in q
-      Dev ->> JSEngine   : operate on document
-      JSEngine ->> QueryEngine ++ : get document
-      QueryEngine ->> Bucket ++ : get document
-      Bucket ->> QueryEngine -- : retrieved document
-      QueryEngine ->> JSEngine -- : retrieved document
-    end
-@enduml</pre>
+<img src="_images/diag-c3bfa57b554093d094facac4ed13e54fe4ae92b0.svg" alt="inline-call-sequence">
 </div>
 </div>
 </td>
@@ -5500,28 +5475,9 @@ Inline calls only support named parameters.</p>
 <p>A SQL++ statement and its corresponding iterator must live entirely within the scope of a transaction.
 If a transaction is started during the iteration process, then the transaction cannot be rolled back entirely.</p>
 </div>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-
-start
-
-:start transaction;
-note right: Transaction started before the initial\nSQL++ statement is called
-: var q = execute N1QL statement;
-
- while (next q?) is (yes)
-
-   : process q;
-
- endwhile (no)
-
-:commit or rollback;
-
-stop
-
-@enduml</pre>
+<img src="_images/diag-0161a3d61388cfa8a5fdd1e61a67659ed9c931f8.svg" alt="transactions-and-iterators">
 </div>
 </div>
 </td>

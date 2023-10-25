@@ -5202,103 +5202,20 @@ For more information, see <a href="../n1ql-intro/queriesandresults.html#query-co
 <div class="paragraph">
 <p>The following diagram illustrates the query execution work flow without covering indexes:</p>
 </div>
-<div class="literalblock kroki-error">
-<div class="title">Query execution workflow including fetch request from Data service</div>
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml query_execution
-
-skinparam maxMessageSize 125
-skinparam roundcorner 5
-skinparam responseMessageBelowArrow true
-skinparam sequenceMessageAlign direction
-skinparam ParticipantPadding 10
-skinparam BoxPadding 60
-skinparam box {
-BackgroundColor PaleGreen
-ArrowColor SeaGreen
-BorderColor SpringGreen
-}
-
-participant Clients
-
-box Couchbase Server Cluster #White
-collections "Query Service" as Query
-collections "Index Service" as Index
-collections "Data Service" as Data
-end box
-
-Clients -&gt; Query: Submit the\nquery
-activate Query #teal
-
-Query -[#transparent]-&gt; Query: Parse, analyze, create plan
-
-Query -&gt; Index: Scan request; index filters
-activate Index #deepskyblue
-|||
-Index -&gt; Query: Get qualified doc keys and index keys
-deactivate Index
-
-Query -&gt; Data: Fetch request, doc keys
-activate Data #midnightblue
-|||
-Data -&gt; Query: Fetch the\ndocuments
-deactivate Data
-
-Query -[#transparent]&gt; Query: Evaluate; documents to results
-
-Query -&gt; Clients: Query\nresult
-deactivate Query
-
-@enduml</pre>
+<img src="../_images/diag-ed35b2a7495ed9785c179371bd2319808ed04eda.svg" alt="Query execution workflow including fetch request from Data service">
 </div>
+<div class="title">Figure 1. Query execution workflow including fetch request from Data service</div>
 </div>
 <div class="paragraph">
 <p>The following diagram illustrates the query execution work flow with covering indexes:</p>
 </div>
-<div class="literalblock kroki-error">
-<div class="title">Query execution workflow with no fetch request from Data service</div>
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml query_execution
-
-skinparam maxMessageSize 125
-skinparam roundcorner 5
-skinparam responseMessageBelowArrow true
-skinparam sequenceMessageAlign direction
-skinparam ParticipantPadding 10
-skinparam BoxPadding 60
-skinparam box {
-BackgroundColor PaleGreen
-ArrowColor SeaGreen
-BorderColor SpringGreen
-}
-
-participant Clients
-
-box Couchbase Server Cluster #White
-collections "Query Service" as Query
-collections "Index Service" as Index
-collections "Data Service" as Data
-end box
-
-Clients -&gt; Query: Submit the\nquery
-activate Query #teal
-
-Query -[#transparent]-&gt; Query: Parse, analyze, create plan
-
-Query -&gt; Index: Scan request; index filters
-activate Index #deepskyblue
-|||
-Index -&gt; Query: Get qualified doc keys and index keys
-deactivate Index
-
-
-Query -[#transparent]&gt; Query: Evaluate; documents to results
-
-Query -&gt; Clients: Query\nresult
-deactivate Query
-
-@enduml</pre>
+<img src="../_images/diag-116831683b9f5118fdb326a4d4cb39928a23d3e1.svg" alt="Query execution workflow with no fetch request from Data service">
 </div>
+<div class="title">Figure 2. Query execution workflow with no fetch request from Data service</div>
 </div>
 <div class="paragraph">
 <p>As you can see in the second diagram, a well designed query that uses a covering index avoids the additional steps to fetch the data from the data service.

@@ -5385,73 +5385,11 @@ Follow the links for examples that demonstrate each capability.</p>
 <div class="paragraph">
 <p>The following diagram shows the query execution workflow at a high level and illustrates the interaction with the query, index, and data services.</p>
 </div>
-<div class="literalblock kroki-error">
-<div class="title">Query Execution Workflow</div>
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml query_execution
-
-skinparam maxMessageSize 125
-skinparam roundcorner 5
-skinparam responseMessageBelowArrow true
-skinparam sequenceMessageAlign direction
-skinparam ParticipantPadding 10
-skinparam BoxPadding 60
-skinparam box {
-BackgroundColor PaleGreen
-ArrowColor SeaGreen
-BorderColor SpringGreen
-}
-
-participant Clients
-
-box Couchbase Server Cluster #White
-collections "Query Service" as Query
-collections "Index Service" as Index
-collections "Data Service" as Data
-end box
-
-Clients -&gt; Query: Submit the\nquery
-activate Query #teal
-' tag::example[]
-note left
-  SELECT airportname, city
-  FROM airport
-  WHERE tz = "America/Anchorage"
-  AND geo.alt &gt;= 2100;
-end note
-' end::example[]
-
-Query -[#transparent]-&gt; Query: Parse, analyze, create plan
-
-Query -&gt; Index: Scan request; index filters
-activate Index #deepskyblue
-|||
-Index -&gt; Query: Get qualified doc keys and index keys
-deactivate Index
-
-' tag::fetch[]
-Query -&gt; Data: Fetch request, doc keys
-activate Data #midnightblue
-|||
-Data -&gt; Query: Fetch the\ndocuments
-deactivate Data
-' end::fetch[]
-
-Query -[#transparent]&gt; Query: Evaluate; documents to results
-
-Query -&gt; Clients: Query\nresult
-deactivate Query
-' tag::example[]
-note left
-  {
-    "airportname": "Analtuvuk",
-    "city": "Anaktuvuk Pass"
-  }
-end note
-' end::example[]
-
-@enduml</pre>
+<img src="../_images/diag-75da4b1c378919213dbc79a5630f429b09d1d0ea.svg" alt="Query Execution Workflow">
 </div>
+<div class="title">Figure 1. Query Execution Workflow</div>
 </div>
 <div class="paragraph">
 <p>The SELECT statement is executed as a sequence of steps.
@@ -5462,153 +5400,11 @@ For example, sort phase can be skipped when there is no ORDER BY clause in the q
 <div class="paragraph">
 <p>The following diagram shows the possible elements and operations during query execution.</p>
 </div>
-<div class="literalblock kroki-error">
-<div class="title">Query Execution Phases</div>
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml query_service
-
-skinparam defaultTextAlignment center
-
-rectangle Client
-
-rectangle "Query Service"{
-  rectangle Parse [
-    Parse
-
-
-    ▢
-
-
-
-  ]
-  rectangle Plan [
-    Plan
-
-
-    ▢
-
-
-
-  ]
-  rectangle Scan [
-    Scan
-
-
-    ▢
-
-    ▢
-
-  ]
-  rectangle Fetch [
-    Fetch
-
-
-    ▢
-    ▢
-    ▢
-    ▢
-  ]
-  rectangle Join [
-    Join
-
-
-    ▢
-    ▢
-    ▢
-    ▢
-  ]
-  rectangle Filter [
-    Filter
-
-
-    ▢
-    ▢
-    ▢
-    ▢
-  ]
-  rectangle PreAggregate [
-    Pre-
-    Aggregate
-
-    ▢
-    ▢
-    ▢
-    ▢
-  ]
-  rectangle Aggregate [
-    Aggregate
-
-
-    ▢
-
-
-
-  ]
-  rectangle Sort [
-    Sort
-
-
-    ▢
-    ▢
-    ▢
-    ▢
-  ]
-  rectangle Offset [
-    Offset
-
-
-    ▢
-
-
-
-  ]
-  rectangle Limit [
-    Limit
-
-
-    ▢
-
-
-
-  ]
-  rectangle Project [
-    Project
-
-
-    ▢
-    ▢
-    ▢
-    ▢
-  ]
-}
-
-database "Data\nService" as Data
-database "Index\nService" as Index
-database "Search\nService" as Search
-
-() " " as End
-
-Client .d.&gt; Parse
-Parse -&gt; Plan
-Plan -&gt; Scan
-Scan -&gt; Fetch
-Fetch -&gt; Join
-Join -&gt; Filter
-Filter -&gt; PreAggregate
-PreAggregate -&gt; Aggregate
-Aggregate -&gt; Sort
-Sort -&gt; Offset
-Offset -&gt; Limit
-Limit -&gt; Project
-Project .u.&gt; End
-
-Scan .. Index
-Scan .. Search
-Fetch .. Data
-Join .. Data
-
-@enduml</pre>
+<img src="../_images/diag-ff1dabc549146dbef9dcbc8259eeadc533663a76.svg" alt="Query Execution Phases">
 </div>
+<div class="title">Figure 2. Query Execution Phases</div>
 </div>
 <div class="paragraph">
 <p>Some phases are done serially while others are done in parallel, as specified by their parent operator.</p>
@@ -5802,60 +5598,11 @@ WHERE  tz = "America/Anchorage"
 <p>Before delving into examples, take a look at a simplified representation of the data model of the <code>inventory</code> scope in the <code>travel-sample</code> bucket, which is used in the following examples.
 For more details about the data model, see <a href="../../../../java-sdk/current/ref/travel-app-data-model.html" class="xref page">Travel App Data Model</a>.</p>
 </div>
-<div class="literalblock kroki-error">
-<div class="title">Data model of inventory scope, simplified</div>
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-left to right direction
-
-together {
-  package "Route documents" as route $route {
-    map "**route_5966**" as route_5966 {
-      id =&gt; 5966
-      type =&gt; route
-      airlineid =&gt; &lt;font color=red&gt;airline_24
-      sourceairport =&gt; SEA
-    }
-  }
-}
-
-together {
-  package "Airline documents" as airline $airline {
-    map "&lt;font color=red&gt;**airline_24**" as airline_24 {
-      id =&gt; 24
-      type =&gt; airline
-      callsign =&gt; AMERICAN
-      iata =&gt; AA
-    }
-  }
-
-  package "Airport documents" as airport $airport {
-    map "**airport_3577**" as airport_3577 {
-      id =&gt; 3577
-      type =&gt; airport
-      faa =&gt; SEA
-      icao =&gt; KSEA
-    }
-  }
-
-  package "Landmark documents" as landmark $landmark {
-    map "**landmark_21661**" as landmark_21661 {
-      id =&gt; 21661
-      type =&gt; landmark
-      country =&gt; France
-      email =&gt; null
-    }
-  }
-}
-
-route_5966::airlineid --&gt; airline_24  : Foreign Key ID
-airport_3577::faa .. route_5966::sourceairport
-
-remove $landmark
-
-@enduml</pre>
+<img src="../_images/diag-49621d4ddb8a06b26f2867ebf3b765f718eefbb7.svg" alt="Data model of inventory scope, simplified">
 </div>
+<div class="title">Figure 3. Data model of inventory scope, simplified</div>
 </div>
 <div class="paragraph">
 <p>The <a href="#example_1">first example</a> uses a JOIN clause to find the distinct airline details which have routes that start from SFO.

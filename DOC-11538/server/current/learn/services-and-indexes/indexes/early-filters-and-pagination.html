@@ -5202,85 +5202,21 @@ For more information, see <a href="../../../n1ql/n1ql-intro/queriesandresults.ht
 The Query service does not need to fetch data from the Data service.
 Any filters, order, or pagination (offset and limit) are performed by the Index service.</p>
 </div>
-<div id="cover" class="literalblock kroki-error">
-<div class="title">Covering index</div>
+<div id="cover" class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-skinparam defaultTextAlignment center
-skinparam linetype ortho
-
-() " " as start
-() " " as end
-
-rectangle "Index\nService"{
-  rectangle "Index Scan" as IndexScan
-  rectangle Filter
-  rectangle Order
-  rectangle Offset
-  rectangle Limit
-}
-
-note bottom of Filter
-  Filters, order, and pagination
-  performed by the Index Service
-end note
-
-start ..r..&gt; IndexScan
-IndexScan -&gt; Filter
-Filter -&gt; Order
-Order -&gt; Offset
-Offset -&gt; Limit
-Limit ..r..&gt; end
-
-@enduml</pre>
+<img src="../../_images/diag-3c4137083bf02b3bad284ce4c9a1a8dd95b43f61.svg" alt="Covering index">
 </div>
+<div class="title">Figure 1. Covering index</div>
 </div>
 <div class="paragraph">
 <p>If a query is <em>not</em> covered by an index, then the query needs to fetch data from the Data service after performing the index scan, in order to return the requested results.
 By default, any filters, order, or pagination are performed by the Query service after the fetch.</p>
 </div>
-<div id="fig-uncovered" class="literalblock kroki-error">
-<div class="title">Default filters, order, and pagination</div>
+<div id="fig-uncovered" class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-skinparam defaultTextAlignment center
-
-() " " as start
-() " " as end
-
-rectangle "Index\nService"{
-  rectangle "Index Scan" as IndexScan
-}
-
-rectangle "Query\nService"{
-  rectangle Fetch
-  rectangle Filter
-  rectangle Order
-  rectangle Offset
-  rectangle Limit
-}
-
-note bottom of Filter
-  Filters, order, and pagination
-  performed after fetch
-end note
-
-database "Data\nService" as Data
-
-start ..r..&gt; IndexScan
-IndexScan -&gt; Fetch
-Fetch -&gt; Filter
-Filter -&gt; Order
-Order -&gt; Offset
-Offset -&gt; Limit
-Fetch --&gt; Data
-Fetch &lt;-- Data
-Limit ..r..&gt; end
-
-@enduml</pre>
+<img src="../../_images/diag-dfe6efa6ebb2fb92db7f2ba8eaa27fead3d77e69.svg" alt="Default filters, order, and pagination">
 </div>
+<div class="title">Figure 2. Default filters, order, and pagination</div>
 </div>
 <div class="paragraph">
 <p>Fetching data from the Data service can be expensive.
@@ -5294,48 +5230,11 @@ Some filters, ordering, and pagination may be pushed down to the Index service, 
 The Index service applies these operations to the result of the index scan.
 The Query service then only needs to fetch the remaining data.</p>
 </div>
-<div id="fig-pushdown" class="literalblock kroki-error">
-<div class="title">Filter, order, and pagination pushdown</div>
+<div id="fig-pushdown" class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-skinparam defaultTextAlignment center
-skinparam linetype ortho
-
-() " " as start
-() " " as end
-
-rectangle "Index\nService"{
-  rectangle "Index Scan" as IndexScan
-  rectangle Filter
-  rectangle Order
-  rectangle Offset
-  rectangle Limit
-}
-
-note bottom of Filter
-  Filters, order, and pagination
-  pushed down to the Index Service
-end note
-
-rectangle "Query\nService"{
-  rectangle Fetch
-}
-
-database "Data\nService" as Data
-
-start ..r..&gt; IndexScan
-IndexScan -&gt; Filter
-Filter -&gt; Order
-Order -&gt; Offset
-Offset -&gt; Limit
-Limit -r-&gt; Fetch
-Fetch --&gt; Data
-Fetch &lt;-- Data
-Fetch ..r..&gt; end
-
-@enduml</pre>
+<img src="../../_images/diag-13a056fc4136be0b8d04e9567b1c0e6cadf224a1.svg" alt="Filter, order, and pagination pushdown">
 </div>
+<div class="title">Figure 3. Filter, order, and pagination pushdown</div>
 </div>
 <div class="paragraph">
 <p>However, there are some operations that cannot be pushed down to the Index service: for example, a filter that uses a function or a LIKE operator on top of an index term.
@@ -5346,50 +5245,14 @@ If the Query Service has to perform a fetch from the Data service, and then appl
 <p>In Couchbase Server, <em class="def">early filtering</em>, <em class="def">early ordering</em>, and <em class="def">early pagination</em> provide another line of defense, in cases where covering indexes and index pushdowns are not available.
 With this feature, the Query service may apply filtering, ordering, and pagination directly to the results returned by the Index service, before performing the fetch.</p>
 </div>
-<div id="fig-early" class="literalblock kroki-error">
-<div class="title">Early filters, order, and pagination</div>
+<div id="fig-early" class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-skinparam defaultTextAlignment center
-
-() " " as start
-() " " as end
-
-rectangle "Index\nService"{
-  rectangle "Index Scan" as IndexScan
-}
-
-rectangle "Query\nService"{
-  rectangle Fetch
-  rectangle Filter
-  rectangle Order
-  rectangle Offset
-  rectangle Limit
-}
-
-note bottom of Filter
-  Early filters, order, and pagination
-  performed by Query service
-end note
-
-database "Data\nService" as Data
-
-start ..r..&gt; IndexScan
-IndexScan -&gt; Filter
-Filter -&gt; Order
-Order -&gt; Offset
-Offset -&gt; Limit
-Limit -&gt; Fetch
-Fetch --&gt; Data
-Fetch &lt;-- Data
-Fetch ..r..&gt; end
-
-@enduml</pre>
+<img src="../../_images/diag-e4588b1240d680aa8f734009ec6e43e1c1e7ba52.svg" alt="Early filters, order, and pagination">
 </div>
+<div class="title">Figure 4. Early filters, order, and pagination</div>
 </div>
 <div class="paragraph">
-<p>Note that in practice, an uncovered query may use a mixture of the methods illustrated by <a href="#fig-uncovered">Default filters, order, and pagination</a>, <a href="#fig-pushdown">Filter, order, and pagination pushdown</a>, and <a href="#fig-early">Early filters, order, and pagination</a>.
+<p>Note that in practice, an uncovered query may use a mixture of the methods illustrated by <a href="#fig-uncovered">Figure 2</a>, <a href="#fig-pushdown">Figure 3</a>, and <a href="#fig-early">Figure 4</a>.
 In addition, early filtering may be performed independently of early ordering and pagination, and vice versa.</p>
 </div>
 </div>

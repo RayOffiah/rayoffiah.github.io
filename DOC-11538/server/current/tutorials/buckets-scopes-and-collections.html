@@ -5216,50 +5216,9 @@ In this section, you&#8217;ll learn how to logically partition your data in Couc
 <p>In all but the simplest cases, it&#8217;s better to provide some kind of separation between documents of different types.
 Couchbase has a simple hierarchy model which allows for such separation:</p>
 </div>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-node "Couchbase cluster" as cluster
-
-database "Bucket" as bucket
-
-rectangle "Scope" as scope
-
-folder "Collection" as collection
-
-
-
-file "Document 1" as document1
-file "Document 2" as document2
-file "Document 3" as document3
-
-cluster --&gt; bucket
-bucket --&gt; scope
-scope --&gt; collection
-collection --&gt; document1
-collection --&gt; document2
-collection --&gt; document3
-
-note right of bucket
-
- Maximum of  30 per cluster
-
-end note
-
-note left of scope
-
-  Maximum of 1000 per cluster
-
-end note
-
-note right of collection
-
-  Maximum of 1000 per cluster
-
-end note
-
-@enduml</pre>
+<img src="_images/diag-5db57385957d37801fbb6465b04bcbd11494bf13.svg" alt="couchbase-hierarchy">
 </div>
 </div>
 <div class="paragraph">
@@ -5298,82 +5257,17 @@ A default collection (<code>_default</code>) is provided, but it is recommended 
 <div class="paragraph">
 <p>Now looking again at the relational design of our student database:</p>
 </div>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-skinparam linetype ortho
-entity student {
-  * student-id
---
-    name
-    date-of-birth
-}
-
-
-entity course {
-  * course-id
-    course-name
-    faculty
-    credit-points
-}
-
-entity enrollment {
-
-    * student-id
-    * course-id
---
-    * date-enrolled
-      date-completed
-}
-
-
-student --o{ enrollment
-course --o{ enrollment
-
-@enduml</pre>
+<img src="_images/diag-307120d2743500aed9688fdc73e8b0c0678f8819.svg" alt="student-record-erd">
 </div>
 </div>
 <div class="paragraph">
 <p>We can see that our equivalent document-based system could do with a little decomposition:</p>
 </div>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-left to right direction
-
-
-    database "student-bucket" {
-
-        node "art-school-scope" {
-
-                folder "student-record-collection" {
-
-                    file  "Hilary's record" as hilary {
-                        file "enrollment details" as hilary_enrollment
-                    }
-
-                    file "Ashley's record" as ashley {
-                        file "enrollment details" as ashley_enrollment
-
-                    }
-
-                }
-
-                folder "course-record-collection" {
-
-                    file "ART-HISTORY-000001" as art_history
-                    file "GRAPHIC-DESIGN-000003" as graphic_design
-                    file "FINE_ART-000002" as fine_art
-                }
-
-                hilary_enrollment --&gt; art_history
-                hilary_enrollment --&gt; graphic_design
-                ashley_enrollment --&gt;fine_art
-        }
-
-    }
-
-@enduml</pre>
+<img src="_images/diag-39e317553cc1bfa71ceb02d2ea5173ffc464b364.svg" alt="student-document-database-design">
 </div>
 </div>
 <div class="paragraph">

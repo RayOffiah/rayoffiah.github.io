@@ -976,29 +976,9 @@ XDCR is copying the data from the on-prem bucket into Capella.</p>
 <div class="paragraph">
 <p>During this period, clients are still connected to the original Sync Gateway, and their updates will be captured by the XDCR replication.</p>
 </div>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-!theme materia
-
-together {
-    database "Couchbase Server" as CB
-    node "Sync Gateway" as SGW
-}
-
-agent "Couchbase Lite clients" as Clients
-
-cloud Capella {
-    database "Capella Bucket" as Cap
-}
-
-@enduml
-
-CB &lt;--&gt; SGW
-SGW -- Clients
-' extra TAB to give enough space for labeel
-CB -right-&gt; Cap  #red : "XDCR\t"</pre>
+<img src="../_images/diag-657bf25e0bf6aaa8859cd1a35e4355893656ffb6.svg" alt="Diagram">
 </div>
 </div>
 </div>
@@ -1068,32 +1048,9 @@ There will be downtime as the new app is rolled out.</p>
 <div class="paragraph">
 <p>The following figure shows the setup of the components now that the migration is complete.</p>
 </div>
-<div class="literalblock kroki-error">
+<div class="imageblock kroki">
 <div class="content">
-<pre>@startuml
-
-!theme materia
-
-
-together {
-    database "Couchbase Server" as CB
-}
-
-cloud Capella {
-    database "Capella Bucket" as Cap
-    node "App Services" as AS
-    node "App Endpoint" as AE
-}
-
-agent "Couchbase Lite clients" as Clients
-
-@enduml
-
-Cap &lt;--&gt; AS
-AS -- AE
-AE -- Clients
-' same XDCR line, but hidden, to get consistent positioning
-CB -[hidden]&gt; Cap   : "XDCR\t"</pre>
+<img src="../_images/diag-afc1a44f93d0fdd164272e9ef4eb2e46e9cb889a.svg" alt="Diagram">
 </div>
 </div>
 </div>
