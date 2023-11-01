@@ -5246,9 +5246,12 @@ and have issues when values fall outside that range.</p></td>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58603/">MB-58603</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Deadlock occurring in backfill handler and pipeline manager.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Deadlocks in backfill handler and pipeline manager fixed and tested.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-57382/">MB-57382</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rebalanced-in source node could miss raising backfills.<br>
+Because it didn’t successfully set the "current time," (i.e.,
+the time that the node was rebalanced in) source manifest as the baseline, the default manifest is used.
+This can potentially lead to a missed backfill.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The backfill manager is initialized to the source manifest.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58758/">MB-58758</a></p></td>
@@ -5257,12 +5260,15 @@ and have issues when values fall outside that range.</p></td>
 Changes made to allow fewer pipeline restarts when the system is in an erroneous state.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-57382/">MB-57382</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Rebalanced-in source node could miss raising backfills.<br>
-Because it did not successfully set the "current time," (i.e.,
-the time that the node was rebalanced in) source manifest as the baseline, the default manifest is used.
-This can potentially lead to a missed backfill.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The backfill manager is initialized to the source manifest.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58603/">MB-58603</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deadlock occurring in backfill handler and pipeline manager.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deadlocks in backfill handler and pipeline manager fixed and tested.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58680/">MB-58680</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Every time XDCR retries pipeline restart and fails to start, it causes extraneous information to be written in KV logs.<br>
+When a system is under duress, restarting every 10 seconds without backoff can cause excessive information dumps in KV logs and lose critical information.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adding backoff functionality to prevent excessive information dump during retries.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59003/">MB-59003</a></p></td>
@@ -5271,10 +5277,15 @@ It is possible that the metadata_svc.DelAll is a very slow process, and that Cle
 <td class="tableblock halign-left valign-top"><p class="tableblock">Delete checkpoints allowed during replication deletion</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58680/">MB-58680</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Every time XDCR retries pipeline restart and fails to start, it causes extraneous information to be written in KV logs.<br>
-When a system is under duress, restarting every 10 seconds without backoff can cause excessive information dumps in KV logs and lose critical information.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adding backoff functionality to prevent excessive information dump during retries.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59072/">MB-59072</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Race condition occurs when a spec is to be deleted at the same time backfillMgr or backfill handler is handling a spec change for committing a backfill request:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Race conditions fixed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59268/">MB-59268</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Skip rollback to 0 if purge <code>seqno</code> moved.<br>
+In the specific case where DCP expects the client to roll back to zero so that the client can have a consistent view of the database, documents that’ve been purged will still remain on the target bucket (as XDCR doesn&#8217;t flush the target bucket).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DCP clients can resume streaming from a <code>seqno</code> that is behind the <code>purge-seqno</code>. without a rollback to zero</p></td>
 </tr>
 </tbody>
 </table>
@@ -5295,6 +5306,27 @@ When a system is under duress, restarting every 10 seconds without backoff can c
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-57903/">MB-57903</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deep-nested correlations aren’t properly detected and use cached results</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fixed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58437/">MB-58437</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">decode function returning wrong results.<br>
+Certain <code>CREATE INDEX</code> expressions returning null on execution.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fixed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58648/">MB-58648</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prepared statement with udf can leak memory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fix UDF functions being reloaded.&#160;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58779/">MB-58779</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fix panic in active requests gathering</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add panic recovery to Gencache</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59063/">MB-59063</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Create new metrics</p></td>
@@ -5322,30 +5354,14 @@ When a system is under duress, restarting every 10 seconds without backoff can c
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58437/">MB-58437</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">decode function returning wrong results.<br>
-Certain <code>CREATE INDEX</code> expressions returning null on execution.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fixed</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58779/">MB-58779</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fix panic in active requests gathering</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Add panic recovery to Gencache</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58648/">MB-58648</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Prepared statement with udf can leak memory</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fix UDF functions being reloaded.&#160;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59065/">MB-59065</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add sub-elements for index scan profile operators/timings/counts by index type.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Added additional profile counts/operators/timings sub-elements by Index type for index scans and primary scans.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59214/">MB-59214</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Formalization should disallow implicit aliases already in use to avoid wrong results</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">To fix this issue, we changed the way CTE variables are handled in the formalizer, i.e., we  need to only add a CTE variable as "allowed" when it first appears in a FROM clause.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-57903/">MB-57903</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Deep-nested correlations are not properly detected and use cached results</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fixed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Changed the way CTE variables are handled in the formalizer, i.e., we only add a CTE variable as "allowed" when it first appears in a FROM clause.</p></td>
 </tr>
 </tbody>
 </table>
