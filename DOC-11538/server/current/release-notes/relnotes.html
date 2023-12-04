@@ -5184,7 +5184,70 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="sectionbody">
 <div class="paragraph">
 <p>Couchbase Server 7.2.4 was released in November 2023.
-This maintenance release contains fixes to issues.</p>
+This maintenance release contains new features and fixes to issues.</p>
+</div>
+<div class="sect2">
+<h3 id="new-features"><a class="anchor" href="#new-features"></a>New Features and Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>REST interface added to set the retention period of audit files</p>
+</li>
+<li>
+<p>Erlang upgraded to version&#160;25.</p>
+</li>
+<li>
+<p>Added <code>Memcached</code> alert.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cluster-manager"><a class="anchor" href="#cluster-manager"></a>Cluster Manager</h3>
+<table id="table-new-features-724-cluster-manager" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Feature</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59503/">MB-59503</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The request is for <code>ns_server</code> to provide a REST interface to enter the minimum duration (in minutes) that previously rotated audit files will be retained. This value will be converted to seconds and passed through to memcached. The audit daemon, run during the log rotation task, will remove any files created more than X seconds ago.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="data-service"><a class="anchor" href="#data-service"></a>Data Service</h3>
+<table id="table-new-features-724-data-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Feature</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-8925/">MB-58925</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Couchbase Server 7.2.2 currently uses Erlang&#160;24. As Couchbase Server 7.2 will be maintained until 2026, Erlang has been upgraded to version&#160;25 to ensure we receive future code fixes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59261/">MB-59261</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Memcached</code> alert added.<br>
+Add an alert when the number of memcached connections has exceeded 90% of the limit.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -5192,7 +5255,7 @@ This maintenance release contains fixes to issues.</p>
 <h2 id="fixed-issues"><a class="anchor" href="#fixed-issues"></a>Fixed Issues</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="cluster-manager"><a class="anchor" href="#cluster-manager"></a>Cluster Manager</h3>
+<h3 id="cluster-manager-2"><a class="anchor" href="#cluster-manager-2"></a>Cluster Manager</h3>
 <table id="table-known-issues-724-cluster-manager" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5207,11 +5270,6 @@ This maintenance release contains fixes to issues.</p>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-8925/">MB-58925</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Couchbase Server 7.2.2 currently uses Erlang&#160;24, as Couchbase Server 7.2 will be maintained until 2026, we need to update the version of Erlang to ensure we receive future code fixes.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Couchbase 7.2.4 has been upgraded to version 24 of Erlang.</p></td>
-</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59237/">MB-59237</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Record OS disk I/O metrics into Prometheus. Currently, there is not enough information recorded in the logs to diagnose slowdowns in the system related to Disk I/O</p></td>
@@ -5238,11 +5296,6 @@ This maintenance release contains fixes to issues.</p>
 </ul>
 </div></div></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59503/">MB-59503</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The request is for <code>ns_server</code> to provide a REST interface to enter the minimum duration (in minutes) that previously rotated audit files will be retained. This value will be converted to seconds and passed through to memcached. The audit daemon, run during the log rotation task, will remove any files created more than X seconds ago.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">New REST interface added.</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -5263,35 +5316,11 @@ This maintenance release contains fixes to issues.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59261/">MB-59261</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Index has 0 entries when running <code>NESTED ARRAY FLATTEN_KEYS()</code>. Should show at least one entry.<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59646/">MB-59646</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Index has zero entries when running <code>NESTED ARRAY FLATTEN_KEYS()</code>.
+Should show at least one entry.<br>
 When there is a nested array entry, the projector is not expanding the missing/null entries.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Null or missing entries are now expanded for nested arrays</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="data-service"><a class="anchor" href="#data-service"></a>Data Service</h3>
-<table id="table-known-issues-724-data-service" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 44.4444%;">
-<col style="width: 44.4445%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Issue</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Resolution</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59261/">MB-59261</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Add an alert when the number of memcached connections has exceeded 90% of the limit.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Memcached alert added.<br>
-Exposing <code>max_connections</code> as a metric.</p></td>
 </tr>
 </tbody>
 </table>
@@ -5533,7 +5562,7 @@ which contains all 7.2.1 fixes and several additional critical fixes.</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="new-features"><a class="anchor" href="#new-features"></a>New Features</h3>
+<h3 id="new-features-2"><a class="anchor" href="#new-features-2"></a>New Features</h3>
 <div class="paragraph">
 <p>This release includes the following new features.</p>
 </div>
@@ -5877,7 +5906,7 @@ See <a href="../manage/manage-xdcr/create-xdcr-replication.html#rebalance-inform
 </table>
 </div>
 <div class="sect3">
-<h4 id="cluster-manager-2"><a class="anchor" href="#cluster-manager-2"></a>Cluster Manager</h4>
+<h4 id="cluster-manager-3"><a class="anchor" href="#cluster-manager-3"></a>Cluster Manager</h4>
 <table id="table-fixed-issues-721-cluster-manager" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -6259,7 +6288,7 @@ See <a href="../learn/security/on-the-wire-security.html#min-tls-version" class=
 <p>This release contains the following fixes.</p>
 </div>
 <div class="sect3">
-<h4 id="cluster-manager-3"><a class="anchor" href="#cluster-manager-3"></a>Cluster Manager</h4>
+<h4 id="cluster-manager-4"><a class="anchor" href="#cluster-manager-4"></a>Cluster Manager</h4>
 <table id="table-fixed-issues-720-clustermanager" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
