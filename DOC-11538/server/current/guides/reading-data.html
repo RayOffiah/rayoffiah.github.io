@@ -4,10 +4,16 @@
 <meta charset="utf-8">
 <meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
 <title>Reading Data | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/server/current/guides/reading-data.html">
+<link rel="canonical" href="https://rayoffiah.github.io/server/current/guides/reading-data.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="How to read documents in Couchbase.">
@@ -26,8 +32,9 @@
 <meta name="dcterms.subject" content="server">
 <meta name="dcterms.identifier" content="7.2">
 <meta name="page-url" content="/server/current/guides/reading-data.html">
-<meta name="generator" content="Antora 3.0.1">
-<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
+<meta name="generator" content="Antora 3.0.3">
+<link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
 </head>
 <body class="article">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -42,7 +49,7 @@
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/DOC-9195/home/index.html">
+                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -64,7 +71,7 @@
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
                   <li class="nav-item">
-                    <a href="https://rayoffiah.github.io/DOC-9195/home/index.html" class="nav-link">
+                    <a href="https://rayoffiah.github.io/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
@@ -659,6 +666,11 @@
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../getting-started/starter-kits.html">Starter Kits</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../sdk/sdk-doctor.html">Troubleshooting Connections with SDK Doctor</a>
   </span>
 </li>
 </ul>
@@ -3526,7 +3538,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="#tableau-connector::index.adoc">Tableau Connector</a>
+    <a class="menu_title menu_link" href="../../../tableau-connector/current/index.html">Tableau Connector</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -5237,28 +5249,14 @@ Refer to <a href="../manage/manage-settings/install-sample-buckets.html" class="
 <div class="paragraph">
 <p>To read a single document in Couchbase, perform a get operation.</p>
 </div>
-<div id="tabs-1" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-1-cbc" class="tab">
-<p>cbc</p>
-</li>
-<li id="tabs-1-net" class="tab">
-<p>.NET</p>
-</li>
-<li id="tabs-1-java" class="tab">
-<p>Java</p>
-</li>
-<li id="tabs-1-node-js" class="tab">
-<p>Node.js</p>
-</li>
-<li id="tabs-1-python" class="tab">
-<p>Python</p>
-</li>
-</ul>
-</div>
-<div id="tabs-1-cbc--panel" class="tabpanel" aria-labelledby="tabs-1-cbc">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">cbc</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Use the <code>cbc cat</code> command to retrieve a document by ID and output its data.</p>
 </div>
@@ -5322,7 +5320,12 @@ If the document cannot be found, <code class="cmd">cbc</code> will return a <cod
 <p>For further details, refer to <a href="https://docs.couchbase.com/sdk-api/couchbase-c-client/md_doc_cbc.html" target="_blank" rel="noopener">cbc(1)</a>.</p>
 </div>
 </div>
-<div id="tabs-1-net--panel" class="tabpanel" aria-labelledby="tabs-1-net">
+</div>
+</dd>
+<dt class="hdlist1">.NET</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Use the <code>GetAsync()</code> method to retrieve a document by ID.</p>
 </div>
@@ -5335,7 +5338,7 @@ If the document cannot be found, <code class="cmd">cbc</code> will return a <cod
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/e841453a02d807bee390783e9fcd4a5eba45e50b/modules/hello-world/examples/KvHelloWorldScoped.csx#L95-L99">var getResult = await hotelCollection.GetAsync("hotel-123");
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/22b4ee58993d49b238cbc35a187b265436d0ea30/modules/hello-world/examples/KvHelloWorldScoped.csx#L95-L99">var getResult = await hotelCollection.GetAsync("hotel-123");
 
 // Print some result metadata to the console.
 Console.WriteLine($"CAS: {getResult.Cas}");
@@ -5361,7 +5364,12 @@ If the document doesn&#8217;t exist, the SDK will return a <code>DocumentNotFoun
 <p>For further details, refer to <a href="https://docs.couchbase.com/sdk-api/couchbase-net-client/api/Couchbase.KeyValue.CollectionExtensions.html" target="_blank" rel="noopener">CollectionExtensions</a>.</p>
 </div>
 </div>
-<div id="tabs-1-java--panel" class="tabpanel" aria-labelledby="tabs-1-java">
+</div>
+</dd>
+<dt class="hdlist1">Java</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Use the <code>get()</code> method to retrieve a document by ID.</p>
 </div>
@@ -5399,7 +5407,12 @@ If the document doesn&#8217;t exist, the SDK will return a <code>DocumentNotFoun
 <p>For further details, refer to <a href="https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/Collection.html" target="_blank" rel="noopener">Collection</a>.</p>
 </div>
 </div>
-<div id="tabs-1-node-js--panel" class="tabpanel" aria-labelledby="tabs-1-node-js">
+</div>
+</dd>
+<dt class="hdlist1">Node.js</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Use the <code>get()</code> function to retrieve a document by ID.</p>
 </div>
@@ -5412,7 +5425,7 @@ If the document doesn&#8217;t exist, the SDK will return a <code>DocumentNotFoun
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/78995a94f5752423a74beeefd57db59ae98833a9/modules/hello-world/examples/kv-hello-world-scoped.js#L77-L81">const getResult = await hotelCollection.get('hotel-123')
+<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/4d1f829452a60231f9014909715c63ca4b886803/modules/hello-world/examples/kv-hello-world-scoped.js#L77-L81">const getResult = await hotelCollection.get('hotel-123')
 
 // Print some result metadata to the console.
 console.log('CAS:', getResult.cas)
@@ -5438,7 +5451,12 @@ If the document doesn&#8217;t exist, the SDK will return a <code>DocumentNotFoun
 <p>For further details, refer to <a href="https://docs.couchbase.com/sdk-api/couchbase-node-client/classes/Collection.html" target="_blank" rel="noopener">Collection</a>.</p>
 </div>
 </div>
-<div id="tabs-1-python--panel" class="tabpanel" aria-labelledby="tabs-1-python">
+</div>
+</dd>
+<dt class="hdlist1">Python</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Use the <code>get()</code> function to retrieve a document by ID.</p>
 </div>
@@ -5451,7 +5469,7 @@ If the document doesn&#8217;t exist, the SDK will return a <code>DocumentNotFoun
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/c0613e86c65a4e3ee74ac4212e208a7c62ed14c6/modules/hello-world/examples/kv_hello_world_scoped.py#L77-L81">get_result = hotel_collection.get("hotel-123")
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/12268c9b323c181ead12ee4856e58fcb53c4bbf7/modules/hello-world/examples/kv_hello_world_scoped.py#L77-L81">get_result = hotel_collection.get("hotel-123")
 
 # Print some result metadata to the console.
 print("CAS:", get_result.cas)
@@ -5478,34 +5496,24 @@ If the document doesn&#8217;t exist, the SDK will return a <code>DocumentNotFoun
 </div>
 </div>
 </div>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="reading-with-options"><a class="anchor" href="#reading-with-options"></a>Reading with Options</h3>
 <div class="paragraph">
 <p>To specify further parameters, such as expiry, add options to the get operation.</p>
 </div>
-<div id="tabs-2" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-2-cbc" class="tab">
-<p>cbc</p>
-</li>
-<li id="tabs-2-net" class="tab">
-<p>.NET</p>
-</li>
-<li id="tabs-2-java" class="tab">
-<p>Java</p>
-</li>
-<li id="tabs-2-node-js" class="tab">
-<p>Node.js</p>
-</li>
-<li id="tabs-2-python" class="tab">
-<p>Python</p>
-</li>
-</ul>
-</div>
-<div id="tabs-2-cbc--panel" class="tabpanel" aria-labelledby="tabs-2-cbc">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">cbc</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Use the <code>cbc cat</code> command to retrieve a document by ID and pass options as required.</p>
 </div>
@@ -5558,7 +5566,12 @@ If the document doesn&#8217;t exist, the SDK will return a <code>DocumentNotFoun
 <p>For further details, refer to <a href="https://docs.couchbase.com/sdk-api/couchbase-c-client/md_doc_cbc.html" target="_blank" rel="noopener">cbc(1)</a>.</p>
 </div>
 </div>
-<div id="tabs-2-net--panel" class="tabpanel" aria-labelledby="tabs-2-net">
+</div>
+</dd>
+<dt class="hdlist1">.NET</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Pass any required options to the <code>GetAsync()</code> method when retrieving a document.</p>
 </div>
@@ -5571,7 +5584,7 @@ If the document doesn&#8217;t exist, the SDK will return a <code>DocumentNotFoun
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/e841453a02d807bee390783e9fcd4a5eba45e50b/modules/hello-world/examples/KvHelloWorldScoped.csx#L106-L114">var getResult = await hotelCollection.GetAsync("hotel-456", options =&gt;
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/22b4ee58993d49b238cbc35a187b265436d0ea30/modules/hello-world/examples/KvHelloWorldScoped.csx#L106-L114">var getResult = await hotelCollection.GetAsync("hotel-456", options =&gt;
 {
 	options.Expiry();
 });
@@ -5589,7 +5602,12 @@ Console.WriteLine($"Expiry: {getResult.ExpiryTime}");</code></pre>
 <p>For further details, refer to <a href="https://docs.couchbase.com/sdk-api/couchbase-net-client/api/Couchbase.KeyValue.CollectionExtensions.html" target="_blank" rel="noopener">CollectionExtensions</a>.</p>
 </div>
 </div>
-<div id="tabs-2-java--panel" class="tabpanel" aria-labelledby="tabs-2-java">
+</div>
+</dd>
+<dt class="hdlist1">Java</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Pass any required options to the <code>get()</code> method when retrieving a document.</p>
 </div>
@@ -5619,7 +5637,12 @@ System.out.println("Expiry:" + getResult.expiryTime());</code></pre>
 <p>For further details, refer to <a href="https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/Collection.html" target="_blank" rel="noopener">Collection</a>.</p>
 </div>
 </div>
-<div id="tabs-2-node-js--panel" class="tabpanel" aria-labelledby="tabs-2-node-js">
+</div>
+</dd>
+<dt class="hdlist1">Node.js</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Pass any required options to the <code>get()</code> method when retrieving a document.</p>
 </div>
@@ -5632,7 +5655,7 @@ System.out.println("Expiry:" + getResult.expiryTime());</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/78995a94f5752423a74beeefd57db59ae98833a9/modules/hello-world/examples/kv-hello-world-scoped.js#L88-L95">const getResult = await hotelCollection.get('hotel-456', {
+<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/4d1f829452a60231f9014909715c63ca4b886803/modules/hello-world/examples/kv-hello-world-scoped.js#L88-L95">const getResult = await hotelCollection.get('hotel-456', {
   withExpiry: true,
 })
 
@@ -5649,7 +5672,12 @@ console.log('Expiry time:', getResult.expiryTime)</code></pre>
 <p>For further details, refer to <a href="https://docs.couchbase.com/sdk-api/couchbase-node-client/classes/Collection.html" target="_blank" rel="noopener">Collection</a>.</p>
 </div>
 </div>
-<div id="tabs-2-python--panel" class="tabpanel" aria-labelledby="tabs-2-python">
+</div>
+</dd>
+<dt class="hdlist1">Python</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Pass any required options to the <code>get()</code> method when retrieving a document.</p>
 </div>
@@ -5662,7 +5690,7 @@ console.log('Expiry time:', getResult.expiryTime)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/c0613e86c65a4e3ee74ac4212e208a7c62ed14c6/modules/hello-world/examples/kv_hello_world_scoped.py#L88-L95">get_result = hotel_collection.get(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/12268c9b323c181ead12ee4856e58fcb53c4bbf7/modules/hello-world/examples/kv_hello_world_scoped.py#L88-L95">get_result = hotel_collection.get(
     "hotel-456", GetOptions(with_expiry=True)
 )
 
@@ -5680,6 +5708,10 @@ print("Expiry time: {}".format(get_result.expiryTime))</code></pre>
 </div>
 </div>
 </div>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -5695,28 +5727,14 @@ Instead, a better practice would be to access specific paths, or <em>sub-documen
 <div class="paragraph">
 <p>To fetch a specific field inside a document, you can perform a sub-document get operation.</p>
 </div>
-<div id="tabs-3" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-3-cbc-subdoc" class="tab">
-<p>cbc-subdoc</p>
-</li>
-<li id="tabs-3-net" class="tab">
-<p>.NET</p>
-</li>
-<li id="tabs-3-java" class="tab">
-<p>Java</p>
-</li>
-<li id="tabs-3-node-js" class="tab">
-<p>Node.js</p>
-</li>
-<li id="tabs-3-python" class="tab">
-<p>Python</p>
-</li>
-</ul>
-</div>
-<div id="tabs-3-cbc-subdoc--panel" class="tabpanel" aria-labelledby="tabs-3-cbc-subdoc">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">cbc-subdoc</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -5775,7 +5793,12 @@ If the path cannot be found, <code>cbc-subdoc</code> will return a <code>LCB_ERR
 <p>For further details, refer to <a href="https://docs.couchbase.com/sdk-api/couchbase-c-client/md_doc_cbc_subdoc.html" target="_blank" rel="noopener">cbc-subdoc(1)</a>.</p>
 </div>
 </div>
-<div id="tabs-3-net--panel" class="tabpanel" aria-labelledby="tabs-3-net">
+</div>
+</dd>
+<dt class="hdlist1">.NET</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -5795,7 +5818,7 @@ If the path cannot be found, <code>cbc-subdoc</code> will return a <code>LCB_ERR
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/e841453a02d807bee390783e9fcd4a5eba45e50b/modules/hello-world/examples/KvHelloWorldScoped.csx#L121-L126">var lookupInResult = await hotelCollection.LookupInAsync("hotel-123",
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/22b4ee58993d49b238cbc35a187b265436d0ea30/modules/hello-world/examples/KvHelloWorldScoped.csx#L121-L126">var lookupInResult = await hotelCollection.LookupInAsync("hotel-123",
 		specs =&gt; specs.Get("geo")
 );
 
@@ -5810,7 +5833,12 @@ Console.WriteLine($"Geo: {lookupInResult.ContentAs&lt;JObject&gt;(0)}");</code><
 <p>For further details, refer to <a href="https://docs.couchbase.com/sdk-api/couchbase-net-client/api/Couchbase.KeyValue.CollectionExtensions.html" target="_blank" rel="noopener">CollectionExtensions</a>.</p>
 </div>
 </div>
-<div id="tabs-3-java--panel" class="tabpanel" aria-labelledby="tabs-3-java">
+</div>
+</dd>
+<dt class="hdlist1">Java</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -5856,7 +5884,12 @@ If the document path can&#8217;t be found, the SDK will return a <code>PathNotFo
 <p>For further details, refer to <a href="https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/Collection.html" target="_blank" rel="noopener">Collection</a>.</p>
 </div>
 </div>
-<div id="tabs-3-node-js--panel" class="tabpanel" aria-labelledby="tabs-3-node-js">
+</div>
+</dd>
+<dt class="hdlist1">Node.js</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -5876,7 +5909,7 @@ If the document path can&#8217;t be found, the SDK will return a <code>PathNotFo
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/78995a94f5752423a74beeefd57db59ae98833a9/modules/hello-world/examples/kv-hello-world-scoped.js#L102-L106">const lookupInResult = await hotelCollection.lookupIn('hotel-123', [
+<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/4d1f829452a60231f9014909715c63ca4b886803/modules/hello-world/examples/kv-hello-world-scoped.js#L102-L106">const lookupInResult = await hotelCollection.lookupIn('hotel-123', [
   couchbase.LookupInSpec.get('geo'),
 ])
 console.log('CAS:', lookupInResult.cas)
@@ -5890,7 +5923,12 @@ console.log('Geo:', lookupInResult.content[0].value)</code></pre>
 <p>For further details, refer to <a href="https://docs.couchbase.com/sdk-api/couchbase-node-client/classes/Collection.html" target="_blank" rel="noopener">Collection</a>.</p>
 </div>
 </div>
-<div id="tabs-3-python--panel" class="tabpanel" aria-labelledby="tabs-3-python">
+</div>
+</dd>
+<dt class="hdlist1">Python</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -5910,7 +5948,7 @@ console.log('Geo:', lookupInResult.content[0].value)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/c0613e86c65a4e3ee74ac4212e208a7c62ed14c6/modules/hello-world/examples/kv_hello_world_scoped.py#L102-L106">lookup_in_result = hotel_collection.lookup_in(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/12268c9b323c181ead12ee4856e58fcb53c4bbf7/modules/hello-world/examples/kv_hello_world_scoped.py#L102-L106">lookup_in_result = hotel_collection.lookup_in(
     "hotel-123", [subdocument.get("geo")]
 )
 print("CAS:", lookup_in_result.cas)
@@ -5935,6 +5973,10 @@ If the document path can&#8217;t be found, the SDK will return a <code>PathNotFo
 <div class="paragraph">
 <p>For further details, refer to <a href="https://docs.couchbase.com/sdk-api/couchbase-python-client/api/couchbase.html#collection-object" target="_blank" rel="noopener">Collection</a>.</p>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -6076,8 +6118,9 @@ If the document path can&#8217;t be found, the SDK will return a <code>PathNotFo
 </div>
 </template>
 <script id="site-script" src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
 <script defer src="../../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
-<script async src="../../../_/js/vendor/tabs.js"></script></body>
+</body>
 </html>

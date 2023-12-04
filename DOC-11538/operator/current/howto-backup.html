@@ -4,8 +4,14 @@
 <meta charset="utf-8">
 <meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
 <title>Configure Automated Backup and Restore | Couchbase Docs</title>
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
@@ -15,8 +21,9 @@
 <meta name="dcterms.subject" content="operator">
 <meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/operator/current/howto-backup.html">
-<meta name="generator" content="Antora 3.0.1">
-<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<meta name="generator" content="Antora 3.0.3">
+<link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
 </head>
 <body class="article">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -31,7 +38,7 @@
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/DOC-9195/home/index.html">
+                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/home/index.html">
                     <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -53,7 +60,7 @@
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
                   <li class="nav-item">
-                    <a href="https://rayoffiah.github.io/DOC-9195/home/index.html" class="nav-link">
+                    <a href="https://rayoffiah.github.io/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
@@ -1264,31 +1271,35 @@ This would also happen if for some reason the PVC was deleted.</td>
 <div class="paragraph">
 <p>Once you have created a <code>CouchbaseBackup</code>, we can check that for the expected behavior by viewing the Operator logs.</p>
 </div>
-<div id="tabs-1" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-1-kubernetes" class="tab">
-<p>Kubernetes</p>
-</li>
-<li id="tabs-1-openshift" class="tab">
-<p>OpenShift</p>
-</li>
-</ul>
-</div>
-<div id="tabs-1-kubernetes--panel" class="tabpanel" aria-labelledby="tabs-1-kubernetes">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Kubernetes</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ kubectl logs -f deployments/couchbase-operator</code></pre>
 </div>
 </div>
 </div>
-<div id="tabs-1-openshift--panel" class="tabpanel" aria-labelledby="tabs-1-openshift">
+</div>
+</dd>
+<dt class="hdlist1">OpenShift</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ oc logs deployments/couchbase-operator</code></pre>
 </div>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -1306,19 +1317,14 @@ This would also happen if for some reason the PVC was deleted.</td>
 <div class="paragraph">
 <p>You can then validate for yourself that these resources exist and check that their details match up with what was defined in the <code>CouchbaseBackup</code> configuration.</p>
 </div>
-<div id="tabs-2" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-2-kubernetes" class="tab">
-<p>Kubernetes</p>
-</li>
-<li id="tabs-2-openshift" class="tab">
-<p>OpenShift</p>
-</li>
-</ul>
-</div>
-<div id="tabs-2-kubernetes--panel" class="tabpanel" aria-labelledby="tabs-2-kubernetes">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Kubernetes</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ kubectl get cronjob
@@ -1326,13 +1332,22 @@ $ kubectl get pvc</code></pre>
 </div>
 </div>
 </div>
-<div id="tabs-2-openshift--panel" class="tabpanel" aria-labelledby="tabs-2-openshift">
+</div>
+</dd>
+<dt class="hdlist1">OpenShift</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ oc get cronjob
 $ oc get pvc</code></pre>
 </div>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -1633,31 +1648,35 @@ Refer to the <a href="#server:backup-restore:cbbackupmgr-restore.adoc#options" c
 <div class="paragraph">
 <p>For the simplest overview, run <code>get</code> commands on the <code>CouchbaseBackup</code> resources.</p>
 </div>
-<div id="tabs-3" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-3-kubernetes" class="tab">
-<p>Kubernetes</p>
-</li>
-<li id="tabs-3-openshift" class="tab">
-<p>OpenShift</p>
-</li>
-</ul>
-</div>
-<div id="tabs-3-kubernetes--panel" class="tabpanel" aria-labelledby="tabs-3-kubernetes">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Kubernetes</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ kubectl get couchbasebackup my-backup -o yaml</code></pre>
 </div>
 </div>
 </div>
-<div id="tabs-3-openshift--panel" class="tabpanel" aria-labelledby="tabs-3-openshift">
+</div>
+</dd>
+<dt class="hdlist1">OpenShift</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ oc get couchbasebackup my-backup -o yaml</code></pre>
 </div>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -1709,31 +1728,35 @@ To find out if any other of your current Kubernetes resources support a short na
 <div class="paragraph">
 <p>Furthermore you can check that the cron jobs have updated and their status fields look correct.</p>
 </div>
-<div id="tabs-4" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-4-kubernetes" class="tab">
-<p>Kubernetes</p>
-</li>
-<li id="tabs-4-openshift" class="tab">
-<p>OpenShift</p>
-</li>
-</ul>
-</div>
-<div id="tabs-4-kubernetes--panel" class="tabpanel" aria-labelledby="tabs-4-kubernetes">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Kubernetes</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ kubectl get cronjob</code></pre>
 </div>
 </div>
 </div>
-<div id="tabs-4-openshift--panel" class="tabpanel" aria-labelledby="tabs-4-openshift">
+</div>
+</dd>
+<dt class="hdlist1">OpenShift</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ oc get cronjob</code></pre>
 </div>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -1744,26 +1767,26 @@ my-backup-full              0 3 * * 0     False     0        2d              2d
 my-backup-incremental       0 3 * * 1-6   False     0        16h             2d</code></pre>
 </div>
 </div>
-<div id="tabs-5" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-5-kubernetes" class="tab">
-<p>Kubernetes</p>
-</li>
-<li id="tabs-5-openshift" class="tab">
-<p>OpenShift</p>
-</li>
-</ul>
-</div>
-<div id="tabs-5-kubernetes--panel" class="tabpanel" aria-labelledby="tabs-5-kubernetes">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Kubernetes</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ kubectl get cronjob my-backup-full -o yaml</code></pre>
 </div>
 </div>
 </div>
-<div id="tabs-5-openshift--panel" class="tabpanel" aria-labelledby="tabs-5-openshift">
+</div>
+</dd>
+<dt class="hdlist1">OpenShift</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ oc get cronjob my-backup-full -o yaml</code></pre>
@@ -1771,36 +1794,44 @@ my-backup-incremental       0 3 * * 1-6   False     0        16h             2d<
 </div>
 </div>
 </div>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>And finally we can check that the backup Jobs and their respective pods are there, and there is no more than the set limit specified in <a href="resource/couchbasebackup.html#couchbasebackups-spec-failedjobshistorylimit" class="xref page"><code>couchbasebackups.spec.failedJobsHistoryLimit</code></a> and <a href="resource/couchbasebackup.html#couchbasebackups-spec-successfuljobshistorylimit" class="xref page"><code>couchbasebackups.spec.successfulJobsHistoryLimit</code></a>.
 These default to 5 and 3 respectively.</p>
 </div>
-<div id="tabs-6" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-6-kubernetes" class="tab">
-<p>Kubernetes</p>
-</li>
-<li id="tabs-6-openshift" class="tab">
-<p>OpenShift</p>
-</li>
-</ul>
-</div>
-<div id="tabs-6-kubernetes--panel" class="tabpanel" aria-labelledby="tabs-6-kubernetes">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Kubernetes</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ kubectl get jobs</code></pre>
 </div>
 </div>
 </div>
-<div id="tabs-6-openshift--panel" class="tabpanel" aria-labelledby="tabs-6-openshift">
+</div>
+</dd>
+<dt class="hdlist1">OpenShift</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ oc get jobs</code></pre>
 </div>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -1811,31 +1842,35 @@ cbbackup-full-incr-full-1587138300          1/1           33s        11m
 cbbackup-full-incr-incremental-1587138600   1/1           43s        6m8s</code></pre>
 </div>
 </div>
-<div id="tabs-7" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-7-kubernetes" class="tab">
-<p>Kubernetes</p>
-</li>
-<li id="tabs-7-openshift" class="tab">
-<p>OpenShift</p>
-</li>
-</ul>
-</div>
-<div id="tabs-7-kubernetes--panel" class="tabpanel" aria-labelledby="tabs-7-kubernetes">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Kubernetes</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ kubectl get pods</code></pre>
 </div>
 </div>
 </div>
-<div id="tabs-7-openshift--panel" class="tabpanel" aria-labelledby="tabs-7-openshift">
+</div>
+</dd>
+<dt class="hdlist1">OpenShift</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ oc get pods</code></pre>
 </div>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -2529,8 +2564,9 @@ spec:
 </div>
 </template>
 <script id="site-script" src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
 <script defer src="../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
 <script async src="../../_/js/vendor/highlight.js"></script>
-<script async src="../../_/js/vendor/tabs.js"></script></body>
+</body>
 </html>

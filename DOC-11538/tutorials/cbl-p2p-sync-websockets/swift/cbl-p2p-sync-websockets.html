@@ -4,10 +4,16 @@
 <meta charset="utf-8">
 <meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
 <title>Getting Started with Peer-to-Peer Sync on iOS | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/tutorials/cbl-p2p-sync-websockets/swift/cbl-p2p-sync-websockets.html">
+<link rel="canonical" href="https://rayoffiah.github.io/tutorials/cbl-p2p-sync-websockets/swift/cbl-p2p-sync-websockets.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
@@ -16,8 +22,9 @@
 <meta name="dcterms.subject" content="tutorials">
 <meta name="dcterms.identifier" content="master">
 <meta name="page-url" content="/tutorials/cbl-p2p-sync-websockets/swift/cbl-p2p-sync-websockets.html">
-<meta name="generator" content="Antora 3.0.1">
-<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
+<meta name="generator" content="Antora 3.0.3">
+<link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
 </head>
 <body class="article">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -32,7 +39,7 @@
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/DOC-9195/home/index.html">
+                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -54,7 +61,7 @@
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
                   <li class="nav-item">
-                    <a href="https://rayoffiah.github.io/DOC-9195/home/index.html" class="nav-link">
+                    <a href="https://rayoffiah.github.io/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
@@ -372,7 +379,7 @@ Run the script to pull down the framework</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd /path/to/cloned/repo/couchbase-lite-peer-to-peer-sync-examples/ios/list-sync
-sh install_11.sh</code></pre>
+sh install_12.sh</code></pre>
 </div>
 </div>
 </li>
@@ -512,7 +519,7 @@ This method creates an instance of Couchbase Lite database for the user if one d
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/808f6a4fd6ac98928b5b54788a0c61371641ecfd/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">        var exists = false
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/11bd0f8d8b5ed4fd209e4add8e1b3c170ccb557a/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">        var exists = false
         if Database.exists(withName: kUserDBName, inDirectory: userFolderPath) == true {
               _userDb = try? Database(name: kUserDBName, config: options)
             exists = true
@@ -541,7 +548,7 @@ Again, this is only done if there is no preexisting database for the user</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/808f6a4fd6ac98928b5b54788a0c61371641ecfd/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">        for (key,value) in data {
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/11bd0f8d8b5ed4fd209e4add8e1b3c170ccb557a/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">        for (key,value) in data {
             let docId = "\(kDocPrefix)\(key)"
             print("DocId is \(docId)")
             let doc = MutableDocument(id:docId, data:value as! Dictionary&lt;String, Any&gt;)
@@ -570,7 +577,7 @@ This is where the websockets listener for peer-to-peer sync is initialized</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/808f6a4fd6ac98928b5b54788a0c61371641ecfd/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">        // Include websockets listener initializer code
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/11bd0f8d8b5ed4fd209e4add8e1b3c170ccb557a/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">        // Include websockets listener initializer code
         var listenerConfig = URLEndpointListenerConfiguration(database: db) <i class="conum" data-value="1"></i><b>(1)</b>
         
         // Configure the appropriate auth test mode
@@ -656,7 +663,7 @@ Recommended combinations are shown in <a href="#tbl_mode_combos">Table 2</a>.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/808f6a4fd6ac98928b5b54788a0c61371641ecfd/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">         fileprivate let listenerCertValidationMode:ListenerCertValidationTestMode = .TLSSkipValidation</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/11bd0f8d8b5ed4fd209e4add8e1b3c170ccb557a/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">         fileprivate let listenerCertValidationMode:ListenerCertValidationTestMode = .TLSSkipValidation</code></pre>
 </div>
 </div>
 <table id="tbl_tls_modes" class="tableblock frame-all grid-all stretch">
@@ -734,7 +741,7 @@ Recommended combinations are shown in <a href="#tbl_mode_combos">Table 2</a>.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/808f6a4fd6ac98928b5b54788a0c61371641ecfd/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">        DispatchQueue.global().sync {
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/11bd0f8d8b5ed4fd209e4add8e1b3c170ccb557a/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">        DispatchQueue.global().sync {
             do {
                 try websocketListener.start()
                 handler(websocketListener.urls,nil)
@@ -764,7 +771,7 @@ Here, we advertise a <a href="https://developer.apple.com/bonjour/">Bonjour</a> 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/808f6a4fd6ac98928b5b54788a0c61371641ecfd/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">  /// The Bonjour service name. Setting it to an empty String will be
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/11bd0f8d8b5ed4fd209e4add8e1b3c170ccb557a/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">  /// The Bonjour service name. Setting it to an empty String will be
   /// mapped to the device's name.
   public var serviceName: String = ""
   
@@ -784,7 +791,7 @@ Here, we advertise a <a href="https://developer.apple.com/bonjour/">Bonjour</a> 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/808f6a4fd6ac98928b5b54788a0c61371641ecfd/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">    private func doStart(database:String, _ port:UInt16) {
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/11bd0f8d8b5ed4fd209e4add8e1b3c170ccb557a/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">    private func doStart(database:String, _ port:UInt16) {
         let service = NetService(domain: serviceDomain, type: serviceType,
                                  name: serviceName, port:Int32(port))
 
@@ -815,7 +822,7 @@ If you choose to stop listener, all connected clients will be disconnected</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/808f6a4fd6ac98928b5b54788a0c61371641ecfd/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">    func stopWebsocketsListenerForUserDb() throws{
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/11bd0f8d8b5ed4fd209e4add8e1b3c170ccb557a/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">    func stopWebsocketsListenerForUserDb() throws{
         print(#function)
         guard let websocketListener = _websocketListener else {
             throw ListDocError.WebsocketsListenerNotInitialized
@@ -882,7 +889,7 @@ Here, we browse for a service with service type of <em>`_cblistservicesync._tcp`
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/808f6a4fd6ac98928b5b54788a0c61371641ecfd/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">    public func startSearch(withDelegate delegate:ServiceBrowserDelegate? ){
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/11bd0f8d8b5ed4fd209e4add8e1b3c170ccb557a/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">    public func startSearch(withDelegate delegate:ServiceBrowserDelegate? ){
          peerBrowserDelegate = delegate
         self.browser = NetServiceBrowser()
         self.browser?.delegate = self
@@ -914,7 +921,7 @@ We also register a Replication Listener to be notified of status to the replicat
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/808f6a4fd6ac98928b5b54788a0c61371641ecfd/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">        if replicatorForUserDb == nil {
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/11bd0f8d8b5ed4fd209e4add8e1b3c170ccb557a/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">        if replicatorForUserDb == nil {
             // Start replicator to connect to the URLListenerEndpoint
             var target = URL(string: "wss://\(peer)/\(kUserDBName)")
             switch listenerTLSSupportMode {
@@ -1031,7 +1038,7 @@ Recommended combinations are shown in <a href="#tbl_mode_combos">Table 2</a>.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/808f6a4fd6ac98928b5b54788a0c61371641ecfd/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">         fileprivate let listenerCertValidationMode:ListenerCertValidationTestMode = .TLSSkipValidation</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/11bd0f8d8b5ed4fd209e4add8e1b3c170ccb557a/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">         fileprivate let listenerCertValidationMode:ListenerCertValidationTestMode = .TLSSkipValidation</code></pre>
 </div>
 </div>
 <table id="tbl_cert_auth_modes" class="tableblock frame-all grid-all stretch">
@@ -1086,7 +1093,7 @@ You can restart the replicator again in <code>startP2PReplicationWithUserDatabas
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/808f6a4fd6ac98928b5b54788a0c61371641ecfd/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">        if let listener = _replicatorListenersToPeers[peer] {
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/blob/11bd0f8d8b5ed4fd209e4add8e1b3c170ccb557a/content/modules/cbl-p2p-sync-websockets/examples/code-samples.swift">        if let listener = _replicatorListenersToPeers[peer] {
             replicator.removeChangeListener(withToken: listener)
             _replicatorListenersToPeers.removeValue(forKey: peer)
         }
@@ -1306,8 +1313,9 @@ While the tutorial is for iOS, the concepts apply equally to other Couchbase Lit
 </div>
 </template>
 <script id="site-script" src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
 <script defer src="../../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
-<script async src="../../../_/js/vendor/tabs.js"></script></body>
+</body>
 </html>

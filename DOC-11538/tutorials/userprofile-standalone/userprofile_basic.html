@@ -4,10 +4,16 @@
 <meta charset="utf-8">
 <meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
 <title>User Profile Sample: Couchbase Lite Fundamentals | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/tutorials/userprofile-standalone/userprofile_basic.html">
+<link rel="canonical" href="https://rayoffiah.github.io/tutorials/userprofile-standalone/userprofile_basic.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
@@ -16,8 +22,9 @@
 <meta name="dcterms.subject" content="tutorials">
 <meta name="dcterms.identifier" content="master">
 <meta name="page-url" content="/tutorials/userprofile-standalone/userprofile_basic.html">
-<meta name="generator" content="Antora 3.0.1">
-<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<meta name="generator" content="Antora 3.0.3">
+<link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
 </head>
 <body class="article">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -32,7 +39,7 @@
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/DOC-9195/home/index.html">
+                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/home/index.html">
                     <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -54,7 +61,7 @@
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
                   <li class="nav-item">
-                    <a href="https://rayoffiah.github.io/DOC-9195/home/index.html" class="nav-link">
+                    <a href="https://rayoffiah.github.io/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
@@ -361,8 +368,16 @@ To do this, type the following in a command terminal:</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd /path/to/UserProfileDemo/content/modules/userprofile/examples
 
-sh install_tutorial.sh</code></pre>
+sh install_tutorial.sh 3.0.0 <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Where 3.0.0 is the required Couchbase Lite release number.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Next, let&#8217;s verify the installation.</p>
@@ -451,7 +466,7 @@ The document ID is of the form <em>"user::demo@example.com"</em>.</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/cb414b6579173908c09603afc30ba4cb693384fc/content/modules/userprofile-standalone/examples/UserProfileDemo/model/UserRecord.swift">let kUserRecordDocumentType = "user"
+<pre data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/c6d1c912deb10f8aa68f8d0ef30d3879cd5c1da0/content/modules/userprofile-standalone/examples/UserProfileDemo/model/UserRecord.swift">let kUserRecordDocumentType = "user"
 typealias ExtendedData = [[String:Any]]
 struct UserRecord : CustomStringConvertible{
     let type = kUserRecordDocumentType
@@ -491,7 +506,7 @@ struct UserRecord : CustomStringConvertible{
 <p>Open the <strong>DatabaseManager.swift</strong> file and locate the <code>openOrCreateDatabaseForUser()</code> function.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/cb414b6579173908c09603afc30ba4cb693384fc/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">    func openOrCreateDatabaseForUser(_ user:String, password:String, handler:(_ error:Error?)-&gt;Void) {</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/c6d1c912deb10f8aa68f8d0ef30d3879cd5c1da0/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">    func openOrCreateDatabaseForUser(_ user:String, password:String, handler:(_ error:Error?)-&gt;Void) {</code></pre>
 </div>
 </div>
 </li>
@@ -502,7 +517,7 @@ In our case, we would like to override the default path of the Database.
 Every user has their own instance of the Database that is located in a folder corresponding to the user.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/cb414b6579173908c09603afc30ba4cb693384fc/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">var options = DatabaseConfiguration()
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/c6d1c912deb10f8aa68f8d0ef30d3879cd5c1da0/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">var options = DatabaseConfiguration()
 guard let defaultDBPath = _applicationSupportDirectory else {
     fatalError("Could not open Application Support Directory for app!")
     return
@@ -527,7 +542,7 @@ options.directory = userFolderPath</code></pre>
 If a database already exists for the user, the existing version is returned.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/cb414b6579173908c09603afc30ba4cb693384fc/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">// Create a new DB or get handle to existing DB at specified path
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/c6d1c912deb10f8aa68f8d0ef30d3879cd5c1da0/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">// Create a new DB or get handle to existing DB at specified path
 _db = try Database(name: kDBName, config: options)</code></pre>
 </div>
 </div>
@@ -548,7 +563,7 @@ In a real world app, you would use this notification for instance, to update the
 <p>Open the <strong>DatabaseManager.swift</strong> file and locate the <code>registerForDatabaseChanges()</code> function.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/cb414b6579173908c09603afc30ba4cb693384fc/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">fileprivate func registerForDatabaseChanges() {</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/c6d1c912deb10f8aa68f8d0ef30d3879cd5c1da0/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">fileprivate func registerForDatabaseChanges() {</code></pre>
 </div>
 </div>
 </li>
@@ -557,7 +572,7 @@ In a real world app, you would use this notification for instance, to update the
 This is an optional step. We track the <code>ListenerToken</code> as it is needed for removing the listener.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/cb414b6579173908c09603afc30ba4cb693384fc/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">// Add database change listener
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/c6d1c912deb10f8aa68f8d0ef30d3879cd5c1da0/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">// Add database change listener
 dbChangeListenerToken = db?.addChangeListener({ [weak self](change) in
     guard let `self` = self else {
         return
@@ -591,7 +606,7 @@ dbChangeListenerToken = db?.addChangeListener({ [weak self](change) in
 <p>Open the <strong>DatabaseManager.swift</strong> file and locate the <code>closeDatabaseForCurrentUser()</code> function.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/cb414b6579173908c09603afc30ba4cb693384fc/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">func closeDatabaseForCurrentUser() -&gt; Bool {</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/c6d1c912deb10f8aa68f8d0ef30d3879cd5c1da0/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">func closeDatabaseForCurrentUser() -&gt; Bool {</code></pre>
 </div>
 </div>
 </li>
@@ -599,7 +614,7 @@ dbChangeListenerToken = db?.addChangeListener({ [weak self](change) in
 <p>Closing the database is pretty straightforward</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/cb414b6579173908c09603afc30ba4cb693384fc/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">try db.close()</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/c6d1c912deb10f8aa68f8d0ef30d3879cd5c1da0/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">try db.close()</code></pre>
 </div>
 </div>
 </li>
@@ -614,7 +629,7 @@ dbChangeListenerToken = db?.addChangeListener({ [weak self](change) in
 <p>Open the <strong>DatabaseManager.swift</strong> file and locate the <code>deregisterForDatabaseChanges()</code> function.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/cb414b6579173908c09603afc30ba4cb693384fc/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">fileprivate func deregisterForDatabaseChanges() {</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/c6d1c912deb10f8aa68f8d0ef30d3879cd5c1da0/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">fileprivate func deregisterForDatabaseChanges() {</code></pre>
 </div>
 </div>
 </li>
@@ -622,7 +637,7 @@ dbChangeListenerToken = db?.addChangeListener({ [weak self](change) in
 <p>We stop listening to database changes by passing in the <code>ListenerToken</code> associated with the listener.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/cb414b6579173908c09603afc30ba4cb693384fc/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">     // Add database change listener
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/c6d1c912deb10f8aa68f8d0ef30d3879cd5c1da0/content/modules/userprofile-standalone/examples/UserProfileDemo/model/DatabaseManager.swift">     // Add database change listener
      if let dbChangeListenerToken = self.dbChangeListenerToken {
          db?.removeChangeListener(withToken: dbChangeListenerToken)
      }</code></pre>
@@ -690,7 +705,7 @@ When the user logs in the very first time, there would be no <em>user profile</e
 This document Id is constructed by prefixing the term "user::" to the email Id of the user.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/cb414b6579173908c09603afc30ba4cb693384fc/content/modules/userprofile-standalone/examples/UserProfileDemo/presenter/UserPresenter.swift">    lazy var userProfileDocId: String = {
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/c6d1c912deb10f8aa68f8d0ef30d3879cd5c1da0/content/modules/userprofile-standalone/examples/UserProfileDemo/presenter/UserPresenter.swift">    lazy var userProfileDocId: String = {
         let userId = dbMgr.currentUserCredentials?.user
         return "user::\(userId ?? "")"
     }()</code></pre>
@@ -701,7 +716,7 @@ This document Id is constructed by prefixing the term "user::" to the email Id o
 <p>In the <strong>UserPresenter.swift</strong> file, locate the <code>fetchRecordForCurrentUser()</code> function.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/cb414b6579173908c09603afc30ba4cb693384fc/content/modules/userprofile-standalone/examples/UserProfileDemo/presenter/UserPresenter.swift">    func fetchRecordForCurrentUser( handler:@escaping(_ records:UserRecord?, _ error:Error?)-&gt;Void) {</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/c6d1c912deb10f8aa68f8d0ef30d3879cd5c1da0/content/modules/userprofile-standalone/examples/UserProfileDemo/presenter/UserPresenter.swift">    func fetchRecordForCurrentUser( handler:@escaping(_ records:UserRecord?, _ error:Error?)-&gt;Void) {</code></pre>
 </div>
 </div>
 </li>
@@ -709,7 +724,7 @@ This document Id is constructed by prefixing the term "user::" to the email Id o
 <p>We try to fetch the document with specified <code>userProfileDocId</code> from the database.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/cb414b6579173908c09603afc30ba4cb693384fc/content/modules/userprofile-standalone/examples/UserProfileDemo/presenter/UserPresenter.swift">        guard let db = dbMgr.db else {
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/c6d1c912deb10f8aa68f8d0ef30d3879cd5c1da0/content/modules/userprofile-standalone/examples/UserProfileDemo/presenter/UserPresenter.swift">        guard let db = dbMgr.db else {
             fatalError("db is not initialized at this point!")
         }
         
@@ -764,7 +779,7 @@ The function below applies whether you are creating a document or updating an ex
 <p>Open the <strong>UserPresenter.swift</strong> file and locate the <code>setRecordForCurrentUser()</code> method.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/cb414b6579173908c09603afc30ba4cb693384fc/content/modules/userprofile-standalone/examples/UserProfileDemo/presenter/UserPresenter.swift">    func setRecordForCurrentUser( _ record:UserRecord?, handler:@escaping(_ error:Error?)-&gt;Void) {</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/c6d1c912deb10f8aa68f8d0ef30d3879cd5c1da0/content/modules/userprofile-standalone/examples/UserProfileDemo/presenter/UserPresenter.swift">    func setRecordForCurrentUser( _ record:UserRecord?, handler:@escaping(_ error:Error?)-&gt;Void) {</code></pre>
 </div>
 </div>
 </li>
@@ -773,7 +788,7 @@ The function below applies whether you are creating a document or updating an ex
 Use appropriate type-setters to set the various properties of the Document</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/cb414b6579173908c09603afc30ba4cb693384fc/content/modules/userprofile-standalone/examples/UserProfileDemo/presenter/UserPresenter.swift">        mutableDoc.setString(record?.type, forKey: UserRecordDocumentKeys.type.rawValue)
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/c6d1c912deb10f8aa68f8d0ef30d3879cd5c1da0/content/modules/userprofile-standalone/examples/UserProfileDemo/presenter/UserPresenter.swift">        mutableDoc.setString(record?.type, forKey: UserRecordDocumentKeys.type.rawValue)
         
         if let email = record?.email {
             mutableDoc.setString(email, forKey: UserRecordDocumentKeys.email.rawValue)
@@ -805,7 +820,7 @@ Use appropriate type-setters to set the various properties of the Document</p>
 <p>Save the document</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/cb414b6579173908c09603afc30ba4cb693384fc/content/modules/userprofile-standalone/examples/UserProfileDemo/presenter/UserPresenter.swift">        do {
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/userprofile-couchbase-mobile/blob/c6d1c912deb10f8aa68f8d0ef30d3879cd5c1da0/content/modules/userprofile-standalone/examples/UserProfileDemo/presenter/UserPresenter.swift">        do {
             // This will create a document if it does not exist and overrite it if it exists
             // Using default concurrency control policy of "writes always win"
             try? db.saveDocument(mutableDoc)
@@ -995,8 +1010,9 @@ If you want to learn more about Couchbase Mobile, check out the following links.
 </div>
 </template>
 <script id="site-script" src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
 <script defer src="../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
 <script async src="../../_/js/vendor/highlight.js"></script>
-<script async src="../../_/js/vendor/tabs.js"></script></body>
+</body>
 </html>

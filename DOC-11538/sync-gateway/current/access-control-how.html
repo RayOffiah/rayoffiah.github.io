@@ -4,10 +4,16 @@
 <meta charset="utf-8">
 <meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
 <title>Access Control How-To | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/sync-gateway/current/access-control-how.html">
+<link rel="canonical" href="https://rayoffiah.github.io/sync-gateway/current/access-control-how.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="How to implement Sync Gateway access controls using Configuration File, Admin REST API and-or the Sync Function to manage documents, users, roles and channels">
@@ -15,10 +21,11 @@
 
 
 <meta name="dcterms.subject" content="sync-gateway">
-<meta name="dcterms.identifier" content="3.0">
+<meta name="dcterms.identifier" content="3.1">
 <meta name="page-url" content="/sync-gateway/current/access-control-how.html">
-<meta name="generator" content="Antora 3.0.1">
-<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<meta name="generator" content="Antora 3.0.3">
+<link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
 </head>
 <body class="article">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -33,7 +40,7 @@
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/DOC-9195/home/index.html">
+                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/home/index.html">
                     <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -55,7 +62,7 @@
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
                   <li class="nav-item">
-                    <a href="https://rayoffiah.github.io/DOC-9195/home/index.html" class="nav-link">
+                    <a href="https://rayoffiah.github.io/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
@@ -1347,10 +1354,10 @@
       <div class="component_list-version">
         <span class="component_list_title">Sync Gateway</span>
         <select class="version_list" data-component="sync-gateway">
-          <option value="3.0" data-url="index.html" selected>3.0</option>
+          <option value="3.1" data-url="index.html" selected>3.1</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="3.0">
+      <div class="version_items hide" data-version="3.1">
 <ul class="menu_row">
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
@@ -1359,7 +1366,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="whatsnew.html"><strong><em>New in 3.0</em></strong></a>
+    <a class="menu_title menu_link" href="whatsnew.html"><strong><em>New in 3.1</em></strong></a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="0">
@@ -1411,10 +1418,18 @@
     <a class="menu_title menu_link" href="configuration-schema-bootstrap.html">Bootstrap</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
+    <span class="in-toggle"></span>
     <a class="menu_title menu_link" href="configuration-schema-database.html">Database</a>
   </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="scopes-and-collections-config.html">Scopes and Collections Configuration for Sync Gateway</a>
+  </span>
+</li>
+</ul>
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
@@ -1516,11 +1531,6 @@
     <a class="menu_title menu_link" href="sync-function.html">Sync Function</a>
   </span>
 <ul class="menu_row">
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="sync-function-overview.html">Overview</a>
-  </span>
-</li>
 <li class="menu_list is-parent closed" data-depth="2">
   <span class="menu_line">
     <span class="in-toggle"></span>
@@ -1733,7 +1743,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="import-filter.html">Import Filter</a>
+    <a class="menu_title menu_link" href="import-processing.html">Import Processing</a>
   </span>
 </li>
 </ul>
@@ -2029,7 +2039,7 @@ The sync function API provides several methods that you can use to validate and 
 <div class="paragraph">
 <p><em>Related  Topics</em>:  <a href="access-control-concepts.html" class="xref page">Concepts</a>  |
 How-to  |
-<a href="sync-function-overview.html" class="xref page">Sync Function</a>  |
+<a href="#sync-function-overview.adoc" class="xref unresolved">Sync Function</a>  |
 <a href="access-control-how-use-xattrs-for-access-grants.html" class="xref page">Use XATTRs for Access Grants</a></p>
 </div>
 </div>
@@ -2307,19 +2317,14 @@ Roles are created via the Sync Gateway Admin REST API&#8201;&#8212;&#8201;see: <
 <div class="exampleblock">
 <div class="title">Example 3. How to Create a Role</div>
 <div class="content">
-<div id="tabs-1" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-1-admin-rest-api" class="tab">
-<p>Admin REST API</p>
-</li>
-<li id="tabs-1-file-based-configuration-properties" class="tab">
-<p>File-based Configuration Properties</p>
-</li>
-</ul>
-</div>
-<div id="tabs-1-admin-rest-api--panel" class="tabpanel" aria-labelledby="tabs-1-admin-rest-api">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Admin REST API</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -2351,7 +2356,12 @@ This is the default recommended option starting 3.0..
 </table>
 </div>
 </div>
-<div id="tabs-1-file-based-configuration-properties--panel" class="tabpanel" aria-labelledby="tabs-1-file-based-configuration-properties">
+</div>
+</dd>
+<dt class="hdlist1">File-based Configuration Properties</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Create roles by hardcoding them in the <a href="configuration-properties-legacy.html" class="xref page">Legacy Pre-3.0 Configuration</a>.
 This method is convenient for testing and to get started.
@@ -2384,6 +2394,10 @@ It is recommended to use the <strong>REST API</strong> for production systems.</
 </tr>
 </table>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -2640,22 +2654,14 @@ Using the appropriate <code>admin_channels</code> property in the <a href="confi
 <div id="ex-read-access" class="exampleblock">
 <div class="title">Example 5. Allow Access</div>
 <div class="content">
-<div id="tabs-3" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-3-admin-rest-api" class="tab">
-<p>Admin REST API</p>
-</li>
-<li id="tabs-3-sync-function" class="tab">
-<p>Sync Function</p>
-</li>
-<li id="tabs-3-file-base-configuration-properties" class="tab">
-<p>File-base Configuration Properties</p>
-</li>
-</ul>
-</div>
-<div id="tabs-3-admin-rest-api--panel" class="tabpanel" aria-labelledby="tabs-3-admin-rest-api">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Admin REST API</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Add a channel to an existing user by sending a PUT request to the Admin REST API <code>_role</code> endpoint (<a href="rest-api-admin.html#/role/put__db___role__name_" class="xref page">/{tkn-db}/_role/{name}</a> ).</p>
 </div>
@@ -2682,7 +2688,12 @@ Using the appropriate <code>admin_channels</code> property in the <a href="confi
 </table>
 </div>
 </div>
-<div id="tabs-3-sync-function--panel" class="tabpanel" aria-labelledby="tabs-3-sync-function">
+</div>
+</dd>
+<dt class="hdlist1">Sync Function</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>You can also use the Sync Function&#8217;s <a href="sync-function-api-access-cmd.html" class="xref page">access()</a> function to allow channel access to roles and-or users programmatically.</p>
 </div>
@@ -2700,19 +2711,12 @@ In this case, the document content itself is used to govern access and routing</
 </li>
 </ul>
 </div>
-<div id="tabs-2" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-2-version-3-x" class="tab">
-<p>Version 3.x</p>
-</li>
-<li id="tabs-2-all-versions" class="tab">
-<p>All Versions</p>
-</li>
-</ul>
-</div>
-<div id="tabs-2-version-3-x--panel" class="tabpanel" aria-labelledby="tabs-2-version-3-x">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Version 3.x</dt>
+<dd>
 <div class="paragraph">
 <p>Here we are using a specific XATTR to determine which users need access to the document&#8217;s contents&#8201;&#8212;&#8201;for more on how to configure ths see <a href="access-control-how-use-xattrs-for-access-grants.html" class="xref page">Use XATTRs for Access Grants</a>.</p>
 </div>
@@ -2750,8 +2754,9 @@ In this case, the document content itself is used to govern access and routing</
 </tr>
 </table>
 </div>
-</div>
-<div id="tabs-2-all-versions--panel" class="tabpanel" aria-labelledby="tabs-2-all-versions">
+</dd>
+<dt class="hdlist1">All Versions</dt>
+<dd>
 <div class="paragraph">
 <p>Here we are using the document content (<code>type</code>) to determine which users need access to the document&#8217;s contents.</p>
 </div>
@@ -2791,11 +2796,18 @@ If a user name string begins with <code>role:</code> then the remainder of the s
 </tr>
 </table>
 </div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
 </div>
-<div id="tabs-3-file-base-configuration-properties--panel" class="tabpanel" aria-labelledby="tabs-3-file-base-configuration-properties">
+</div>
+</dd>
+<dt class="hdlist1">File-base Configuration Properties</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Add a channel to a user in the configuration file.
 This method is convenient for testing and to get started.
@@ -2834,6 +2846,10 @@ Use the <strong>Admin REST API</strong> for production systems.</p>
 </div>
 </div>
 </div>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -2864,19 +2880,14 @@ Calls to <code>requireUser</code>, <code>requireAccess</code> and <code>requireR
 <p>This example shows Sync Function logic that allows only the document owner to make changes.
 It does so by requiring that the current user is the one recorded as an owner on the old document.</p>
 </div>
-<div id="tabs-4" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-4-version-3-x" class="tab">
-<p>Version 3.x</p>
-</li>
-<li id="tabs-4-all-versions" class="tab">
-<p>All Versions</p>
-</li>
-</ul>
-</div>
-<div id="tabs-4-version-3-x--panel" class="tabpanel" aria-labelledby="tabs-4-version-3-x">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Version 3.x</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>This example makes use of channel data stored in XATTRS, an option introduced in 3.0&#8201;&#8212;&#8201;see <a href="access-control-how-use-xattrs-for-access-grants.html" class="xref page">Use XATTRs for Access Grants</a> for more on this topic.</p>
 </div>
@@ -2916,7 +2927,12 @@ It does so by requiring that the current user is the one recorded as an owner on
 </table>
 </div>
 </div>
-<div id="tabs-4-all-versions--panel" class="tabpanel" aria-labelledby="tabs-4-all-versions">
+</div>
+</dd>
+<dt class="hdlist1">All Versions</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>This example makes use of document contents to store channel data.</p>
 </div>
@@ -2951,6 +2967,10 @@ It does so by requiring that the current user is the one recorded as an owner on
 </tr>
 </table>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -3063,22 +3083,14 @@ These are themselves computed using the above rules.</p>
 </div>
 <div class="sect2">
 <h3 id="process-3"><a class="anchor" href="#process-3"></a>Process</h3>
-<div id="tabs-5" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-5-users" class="tab">
-<p>Users</p>
-</li>
-<li id="tabs-5-roles" class="tab">
-<p>Roles</p>
-</li>
-<li id="tabs-5-document" class="tab">
-<p>Document</p>
-</li>
-</ul>
-</div>
-<div id="tabs-5-users--panel" class="tabpanel" aria-labelledby="tabs-5-users">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Users</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Send a get request to the <a href="rest-api-admin.html#/user/post\__db___user_name_" class="xref page">/{tkn-db}/_user/{name}</a> endpoint</p>
 </div>
@@ -3123,7 +3135,12 @@ These are themselves computed using the above rules.</p>
 </div>
 </div>
 </div>
-<div id="tabs-5-roles--panel" class="tabpanel" aria-labelledby="tabs-5-roles">
+</div>
+</dd>
+<dt class="hdlist1">Roles</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Send a get request to the <a href="rest-api-admin.html#/role/get__db___role__name_" class="xref page">/{tkn-db}/_role/</a> endpoint</p>
 </div>
@@ -3160,7 +3177,12 @@ These are themselves computed using the above rules.</p>
 </div>
 </div>
 </div>
-<div id="tabs-5-document--panel" class="tabpanel" aria-labelledby="tabs-5-document">
+</div>
+</dd>
+<dt class="hdlist1">Document</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Send a get request to the <a href="rest-api-admin.html#/database/get__db___all_docs" class="xref page">/{tkn-db}/_alldocs</a> endpoint</p>
 </div>
@@ -3193,6 +3215,10 @@ That assignment to <code>hoopy</code> is what makes it available to our <code>fr
 }</code></pre>
 </div>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -3243,19 +3269,14 @@ Its data type can be string, array, object&#8201;&#8212;&#8201;any valid JSON th
 <div class="paragraph">
 <p>This example uses the Admin REST API to specify the required XATTR name as <code>channelXattr</code> on the database <code>hotels</code>.</p>
 </div>
-<div id="tabs-6" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-6-curl" class="tab">
-<p>CURL</p>
-</li>
-<li id="tabs-6-http" class="tab">
-<p>HTTP</p>
-</li>
-</ul>
-</div>
-<div id="tabs-6-curl--panel" class="tabpanel" aria-labelledby="tabs-6-curl">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">CURL</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">curl -X PUT 'http://localhost:4985/hotels/_config' \
@@ -3268,7 +3289,12 @@ Its data type can be string, array, object&#8201;&#8212;&#8201;any valid JSON th
 </div>
 </div>
 </div>
-<div id="tabs-6-http--panel" class="tabpanel" aria-labelledby="tabs-6-http">
+</div>
+</dd>
+<dt class="hdlist1">HTTP</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-http hljs" data-lang="http">PUT /hotels/_config HTTP/1.1
@@ -3282,6 +3308,10 @@ Content-Length: 999
 }</code></pre>
 </div>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -3577,10 +3607,10 @@ You will set the value of the xattr using the SDK API when the document is creat
 <div class="title">Learn more &#8230;&#8203;</div>
 <ul>
 <li>
-<p><a href="sync-function-overview.html" class="xref page">Sync Function</a></p>
+<p><a href="#sync-function-overview.adoc" class="xref unresolved">Sync Function</a></p>
 </li>
 <li>
-<p><a href="import-filter.html" class="xref page">Import filter</a></p>
+<p><a href="import-processing.html" class="xref page">Import filter</a></p>
 </li>
 <li>
 <p><a href="configuration-schema-access-control.html" class="xref page">Access Control</a></p>
@@ -3589,7 +3619,7 @@ You will set the value of the xattr using the SDK API when the document is creat
 <p><a href="#rest-api-admin.html#/Access_Control/update_sync_function" class="xref unresolved">Add/Update Sync Function</a></p>
 </li>
 <li>
-<p><a href="sync-function-overview.html" class="xref page">Sync Function Overview</a></p>
+<p><a href="#sync-function-overview.adoc" class="xref unresolved">Sync Function Overview</a></p>
 </li>
 </ul>
 </div>
@@ -3733,8 +3763,9 @@ You will set the value of the xattr using the SDK API when the document is creat
 </div>
 </template>
 <script id="site-script" src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
 <script defer src="../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
 <script async src="../../_/js/vendor/highlight.js"></script>
-<script async src="../../_/js/vendor/tabs.js"></script></body>
+</body>
 </html>

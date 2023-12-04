@@ -4,10 +4,16 @@
 <meta charset="utf-8">
 <meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
 <title>Date Functions | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/server/current/n1ql/n1ql-language-reference/datefun.html">
+<link rel="canonical" href="https://rayoffiah.github.io/server/current/n1ql/n1ql-language-reference/datefun.html">
 <link rel="stylesheet" href="../../../../_/css/site.css">
 <script src="../../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="SQL++ date functions return the system clock value or manipulate the datetime values, which are represented as a string or an integer.">
@@ -17,8 +23,9 @@
 <meta name="dcterms.subject" content="server">
 <meta name="dcterms.identifier" content="7.2">
 <meta name="page-url" content="/server/current/n1ql/n1ql-language-reference/datefun.html">
-<meta name="generator" content="Antora 3.0.1">
-<link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
+<meta name="generator" content="Antora 3.0.3">
+<link rel="icon" href="../../../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
 </head>
 <body class="article">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -33,7 +40,7 @@
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/DOC-9195/home/index.html">
+                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/home/index.html">
                     <img src="../../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -55,7 +62,7 @@
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
                   <li class="nav-item">
-                    <a href="https://rayoffiah.github.io/DOC-9195/home/index.html" class="nav-link">
+                    <a href="https://rayoffiah.github.io/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
@@ -650,6 +657,11 @@
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../../getting-started/starter-kits.html">Starter Kits</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../sdk/sdk-doctor.html">Troubleshooting Connections with SDK Doctor</a>
   </span>
 </li>
 </ul>
@@ -3517,7 +3529,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="#tableau-connector::index.adoc">Tableau Connector</a>
+    <a class="menu_title menu_link" href="../../../../tableau-connector/current/index.html">Tableau Connector</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -5327,25 +5339,14 @@ Therefore, SQL++ also provides convenience methods to allow you to manipulate an
 <div class="paragraph">
 <p>Only a single style can be used at a time in a specified format string.</p>
 </div>
-<div id="tabs-1" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-1-iso-8601-dates" class="tab">
-<p>ISO-8601 Dates</p>
-</li>
-<li id="tabs-1-date-string-codes" class="tab">
-<p>Date String Codes</p>
-</li>
-<li id="tabs-1-go-reference-dates" class="tab">
-<p>Go Reference Dates</p>
-</li>
-<li id="tabs-1-percent-style-dates" class="tab">
-<p>Percent-Style Dates</p>
-</li>
-</ul>
-</div>
-<div id="tabs-1-iso-8601-dates--panel" class="tabpanel" aria-labelledby="tabs-1-iso-8601-dates">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">ISO-8601 Dates</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p><a href="https://www.w3.org/TR/NOTE-datetime" target="_blank" rel="noopener">ISO-8601</a> example dates are composed of the following date components.</p>
 </div>
@@ -5525,7 +5526,12 @@ This may cause some date formats to be interpreted differently to what you expec
 For example, the date format <code>2006-02-01</code> is interpreted as a Go reference date, where <code>02</code> is the day and <code>01</code> is the month.</p>
 </div>
 </div>
-<div id="tabs-1-date-string-codes--panel" class="tabpanel" aria-labelledby="tabs-1-date-string-codes">
+</div>
+</dd>
+<dt class="hdlist1">Date String Codes</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>For greater flexibility, you can specify a date format using date string codes.
 These are based on the alphabetic format codes from the <a href="https://www.w3.org/TR/NOTE-datetime" target="_blank" rel="noopener">ISO-8601</a> standard, with some extensions.
@@ -5597,7 +5603,12 @@ The date string codes are given below.</p>
 For example, <code>YYYY MM DD</code> parses <code>2021-06-28</code>, <code>2021/06/28</code>, <code>2021.06.28</code>, etc.</p>
 </div>
 </div>
-<div id="tabs-1-go-reference-dates--panel" class="tabpanel" aria-labelledby="tabs-1-go-reference-dates">
+</div>
+</dd>
+<dt class="hdlist1">Go Reference Dates</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>You can specify a date format using <a href="https://golang.org/pkg/time/#pkg-constants" target="_blank" rel="noopener">Go language date components</a>.
 The available reference date components are given below.</p>
@@ -5746,7 +5757,12 @@ a UTC offset of 0 (+00:00) is output as <code>Z</code></p></td>
 For example, <code>2006 01 02</code> parses <code>2021-06-28</code>, <code>2021/06/28</code>, <code>2021.06.28</code>, etc.</p>
 </div>
 </div>
-<div id="tabs-1-percent-style-dates--panel" class="tabpanel" aria-labelledby="tabs-1-percent-style-dates">
+</div>
+</dd>
+<dt class="hdlist1">Percent-Style Dates</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Date and time functions also accept <code>printf</code>-style format specifiers for date formats, based on the Unix <a href="https://man7.org/linux/man-pages/man1/date.1.html" target="_blank" rel="noopener">date</a> command.
 Format specifiers begin with a percent character <code>%</code> and take the following form:</p>
@@ -5963,6 +5979,10 @@ If you need to include a literal percent symbol in the date format, use the spec
 <p>Characters which are not part of the format specification are matched literally and produced unaltered, with the exception of Unicode U+0020, i.e. space <code>" "</code>, which matches any single character when parsing, and is produced unaltered on output.
 For example, <code>%Y %m %d</code> parses <code>2021-06-28</code>, <code>2021/06/28</code>, <code>2021.06.28</code>, and so on.</p>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -9017,8 +9037,9 @@ This is the date to convert to UTC.</p>
 </div>
 </template>
 <script id="site-script" src="../../../../_/js/site.js"></script>
+<script async src="../../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../../_/js/vendor/fontawesome-icon-defs.js"></script>
 <script defer src="../../../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
 <script async src="../../../../_/js/vendor/highlight.js"></script>
-<script async src="../../../../_/js/vendor/tabs.js"></script></body>
+</body>
 </html>

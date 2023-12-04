@@ -4,8 +4,14 @@
 <meta charset="utf-8">
 <meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
 <title>Couchbase Cluster Auto-scaling Best Practices | Couchbase Docs</title>
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
@@ -15,8 +21,9 @@
 <meta name="dcterms.subject" content="operator">
 <meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/operator/current/concept-couchbase-autoscaling-best-practices.html">
-<meta name="generator" content="Antora 3.0.1">
-<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<meta name="generator" content="Antora 3.0.3">
+<link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
 </head>
 <body class="article">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -31,7 +38,7 @@
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/DOC-9195/home/index.html">
+                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/home/index.html">
                     <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -53,7 +60,7 @@
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
                   <li class="nav-item">
-                    <a href="https://rayoffiah.github.io/DOC-9195/home/index.html" class="nav-link">
+                    <a href="https://rayoffiah.github.io/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
@@ -1155,19 +1162,14 @@ Additional clarifying notes about the recommended settings, if any, are listed b
 </li>
 </ul>
 </div>
-<div id="tabs-1" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-1-recommended-settings" class="tab">
-<p>Recommended Settings</p>
-</li>
-<li id="tabs-1-example-configs" class="tab">
-<p>Example Configs</p>
-</li>
-</ul>
-</div>
-<div id="tabs-1-recommended-settings--panel" class="tabpanel" aria-labelledby="tabs-1-recommended-settings">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Recommended Settings</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <table id="table-autoscale-recommendations-example" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1197,7 +1199,12 @@ Additional clarifying notes about the recommended settings, if any, are listed b
 </tbody>
 </table>
 </div>
-<div id="tabs-1-example-configs--panel" class="tabpanel" aria-labelledby="tabs-1-example-configs">
+</div>
+</dd>
+<dt class="hdlist1">Example Configs</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="title">Example <code>CouchbaseCluster</code> Recommended Settings</div>
 <div class="content">
@@ -1269,6 +1276,10 @@ spec:
 </tr>
 </table>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -1408,19 +1419,14 @@ This makes the second solution&#8201;&#8212;&#8201;scaling out the number of Dat
 </li>
 </ul>
 </div>
-<div id="tabs-2" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-2-recommended-settings" class="tab">
-<p>Recommended Settings</p>
-</li>
-<li id="tabs-2-example-configs" class="tab">
-<p>Example Configs</p>
-</li>
-</ul>
-</div>
-<div id="tabs-2-recommended-settings--panel" class="tabpanel" aria-labelledby="tabs-2-recommended-settings">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Recommended Settings</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Based on internal benchmark testing, we believe the following settings provide a good starting point for scaling the Data Service based on <em>bucket memory utilization</em>:</p>
 </div>
@@ -1506,7 +1512,12 @@ Therefore, the memory quota threshold may need to be adjusted down for workloads
 </ul>
 </div>
 </div>
-<div id="tabs-2-example-configs--panel" class="tabpanel" aria-labelledby="tabs-2-example-configs">
+</div>
+</dd>
+<dt class="hdlist1">Example Configs</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1595,6 +1606,10 @@ spec:
 </div>
 </div>
 </div>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1650,19 +1665,14 @@ Therefore, this metric also includes the CPU usage of other containers such as t
 </li>
 </ul>
 </div>
-<div id="tabs-3" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-3-recommended-settings" class="tab">
-<p>Recommended Settings</p>
-</li>
-<li id="tabs-3-example-configs" class="tab">
-<p>Example Configs</p>
-</li>
-</ul>
-</div>
-<div id="tabs-3-recommended-settings--panel" class="tabpanel" aria-labelledby="tabs-3-recommended-settings">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Recommended Settings</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Based on internal benchmark testing, we believe the following settings provide a good starting point for scaling the Query Service based on <em>CPU utilization</em>:</p>
 </div>
@@ -1727,7 +1737,12 @@ Note that the deviation becomes smaller as CPU threshold lowers, with the deviat
 </ul>
 </div>
 </div>
-<div id="tabs-3-example-configs--panel" class="tabpanel" aria-labelledby="tabs-3-example-configs">
+</div>
+</dd>
+<dt class="hdlist1">Example Configs</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1806,6 +1821,10 @@ spec:
 </tr>
 </table>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -1899,19 +1918,14 @@ To configure the Index Service to use the standard index storage mode, set this 
 </li>
 </ul>
 </div>
-<div id="tabs-4" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-4-recommended-settings" class="tab">
-<p>Recommended Settings</p>
-</li>
-<li id="tabs-4-example-configs" class="tab">
-<p>Example Configs</p>
-</li>
-</ul>
-</div>
-<div id="tabs-4-recommended-settings--panel" class="tabpanel" aria-labelledby="tabs-4-recommended-settings">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Recommended Settings</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Based on internal benchmark testing, we believe the following settings provide a good starting point for scaling the Index Service based on <em>memory utilization</em>:</p>
 </div>
@@ -1956,7 +1970,12 @@ Higher write rates or larger document sizes should use a threshold lower than 60
 </ul>
 </div>
 </div>
-<div id="tabs-4-example-configs--panel" class="tabpanel" aria-labelledby="tabs-4-example-configs">
+</div>
+</dd>
+<dt class="hdlist1">Example Configs</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -2036,6 +2055,10 @@ spec:
 </tr>
 </table>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -2130,8 +2153,9 @@ spec:
 </div>
 </template>
 <script id="site-script" src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
 <script defer src="../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
 <script async src="../../_/js/vendor/highlight.js"></script>
-<script async src="../../_/js/vendor/tabs.js"></script></body>
+</body>
 </html>

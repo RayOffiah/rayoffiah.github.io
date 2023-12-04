@@ -4,10 +4,16 @@
 <meta charset="utf-8">
 <meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
 <title>Data Modelling | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/sync-gateway/current/data-modeling.html">
+<link rel="canonical" href="https://rayoffiah.github.io/sync-gateway/current/data-modeling.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="&lt;em&gt;Couchbase Sync Gateway&#x27;s&lt;/em&gt; data model; for secure cloud-to-edge synchronization of enterprise data.">
@@ -15,10 +21,11 @@
 
 
 <meta name="dcterms.subject" content="sync-gateway">
-<meta name="dcterms.identifier" content="3.0">
+<meta name="dcterms.identifier" content="3.1">
 <meta name="page-url" content="/sync-gateway/current/data-modeling.html">
-<meta name="generator" content="Antora 3.0.1">
-<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<meta name="generator" content="Antora 3.0.3">
+<link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
 </head>
 <body class="article">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -33,7 +40,7 @@
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/DOC-9195/home/index.html">
+                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/home/index.html">
                     <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -55,7 +62,7 @@
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
                   <li class="nav-item">
-                    <a href="https://rayoffiah.github.io/DOC-9195/home/index.html" class="nav-link">
+                    <a href="https://rayoffiah.github.io/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
@@ -1347,10 +1354,10 @@
       <div class="component_list-version">
         <span class="component_list_title">Sync Gateway</span>
         <select class="version_list" data-component="sync-gateway">
-          <option value="3.0" data-url="index.html" selected>3.0</option>
+          <option value="3.1" data-url="index.html" selected>3.1</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="3.0">
+      <div class="version_items hide" data-version="3.1">
 <ul class="menu_row">
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
@@ -1359,7 +1366,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="whatsnew.html"><strong><em>New in 3.0</em></strong></a>
+    <a class="menu_title menu_link" href="whatsnew.html"><strong><em>New in 3.1</em></strong></a>
   </span>
 </li>
 <li class="menu_list is-parent closed" data-depth="0">
@@ -1411,10 +1418,18 @@
     <a class="menu_title menu_link" href="configuration-schema-bootstrap.html">Bootstrap</a>
   </span>
 </li>
-<li class="menu_list" data-depth="1">
+<li class="menu_list is-parent closed" data-depth="1">
   <span class="menu_line">
+    <span class="in-toggle"></span>
     <a class="menu_title menu_link" href="configuration-schema-database.html">Database</a>
   </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="scopes-and-collections-config.html">Scopes and Collections Configuration for Sync Gateway</a>
+  </span>
+</li>
+</ul>
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
@@ -1516,11 +1531,6 @@
     <a class="menu_title menu_link" href="sync-function.html">Sync Function</a>
   </span>
 <ul class="menu_row">
-<li class="menu_list" data-depth="2">
-  <span class="menu_line">
-    <a class="menu_title menu_link" href="sync-function-overview.html">Overview</a>
-  </span>
-</li>
 <li class="menu_list is-parent closed" data-depth="2">
   <span class="menu_line">
     <span class="in-toggle"></span>
@@ -1733,7 +1743,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="import-filter.html">Import Filter</a>
+    <a class="menu_title menu_link" href="import-processing.html">Import Processing</a>
   </span>
 </li>
 </ul>
@@ -2030,7 +2040,7 @@
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The guidance and constraints documented here relate to the design of data buckets and documents that you require, or may potentially require, to replicate using sync gateway functionality.
+<p>The guidance and constraints documented here relate to the design of data buckets and documents that you require, or may potentially require, to replicate using Sync Gateway functionality.
 They do not necessarily align with constraints on the local storage and use of such documents.</p>
 </div>
 </div>
@@ -2038,17 +2048,42 @@ They do not necessarily align with constraints on the local storage and use of s
 <div class="sect1">
 <h2 id="property-naming"><a class="anchor" href="#property-naming"></a>Property Naming</h2>
 <div class="sectionbody">
-<div class="dlist">
-<dl>
-<dt class="hdlist1">What to avoid</dt>
-<dd>
-<p>You should avoid designing user property names prefixed with an underscore character (<code>_</code>, ASCII <code>&amp;#095</code>).</p>
-</dd>
-<dt class="hdlist1">Why it&#8217;s an issue</dt>
-<dd>
-<p>The underscore character (<code>_</code>) is a <strong>reserved prefix</strong> for <em>Document</em> system properties, for example: the document&#8217;s identifier (<code>_id</code>) and revision property (<code>_rev</code>).</p>
 <div class="paragraph">
-<p>Any document which does contain user properties with a leading underscore will be rejected by Sync Gateway&#8201;&#8212;&#8201;see <a href="#error-code">Example 1</a> for the error details.</p>
+<p>You can use an underscore prefix (<code>_</code>, ASCII <code>&amp;#095</code>) for property naming, but your name cannot match any of the <em>Document</em> system properties reserved by Sync Gateway:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>_sync</code></p>
+</li>
+<li>
+<p><code>_id</code></p>
+</li>
+<li>
+<p><code>_rev</code></p>
+</li>
+<li>
+<p><code>_deleted</code></p>
+</li>
+<li>
+<p><code>_attachments</code></p>
+</li>
+<li>
+<p><code>_revisions</code></p>
+</li>
+<li>
+<p><code>_exp</code></p>
+</li>
+<li>
+<p><code>_purged</code></p>
+</li>
+<li>
+<p><code>_removed</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Any document that matches the reserved property names listed will be rejected by Sync Gateway&#8201;&#8212;&#8201;see <a href="#error-code">Example 1</a> for the error details.</p>
 </div>
 <div id="error-code" class="exampleblock">
 <div class="title">Example 1. Property prefix error message</div>
@@ -2060,7 +2095,8 @@ They do not necessarily align with constraints on the local storage and use of s
 </div>
 </div>
 </div>
-</dd>
+<div class="dlist">
+<dl>
 <dt class="hdlist1">Where it applies</dt>
 <dd>
 <p>This rule applies to writes performed through:</p>
@@ -2080,7 +2116,7 @@ They do not necessarily align with constraints on the local storage and use of s
 </dd>
 <dt class="hdlist1">When you might encounter the error</dt>
 <dd>
-<p>You are especially likely to encounter the error in the following deployment situations:</p>
+<p>You may encounter the error in the following deployment situations:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -2157,15 +2193,15 @@ They do not necessarily align with constraints on the local storage and use of s
 <li>
 <p>A JSON value, termed a <em>Document</em>.</p>
 <div class="paragraph">
-<p>This JSON object is itself collection of key/value pairs, where the values may be numbers, strings, arrays or even nested objects themselves.
-As a result documents can represent highly-complex data structures in a readily parsable and self-organizing manner.</p>
+<p>This JSON object is a collection of key/value pairs. The values may be numbers, strings, arrays, or even nested objects.
+As a result, documents can represent complex data structures in a readily parsable and self-organizing manner.</p>
 </div>
 </li>
 <li>
 <p>a binary object (also known as a <em>blob</em> or <em>attachment</em>)</p>
 <div class="paragraph">
 <p>These attachments provide a means to store large media files or any other non-textual data.
-Couchbase Lite supports attachments of unlimited size, although the Sync Gateway currently imposes a 20MB limit for attachments synced to it.</p>
+Couchbase Lite supports attachments of unlimited size, although the Sync Gateway imposes a 20MB limit for attachments synced to it.</p>
 </div>
 </li>
 </ul>
@@ -2185,13 +2221,13 @@ Couchbase Lite supports attachments of unlimited size, although the Sync Gateway
 <p>A document ID</p>
 </li>
 <li>
-<p>A current revision ID (which changes every time the document is updated)</p>
+<p>A current revision ID (which changes when the document is updated)</p>
 </li>
 <li>
 <p>A history of past revision IDs (usually linear, but will form a branching tree if the document has or has had conflicts)</p>
 </li>
 <li>
-<p>A body in the form of a JSON object, i.e. a set of key/value pairs</p>
+<p>A body in the form of a JSON object (a set of key/value pairs)</p>
 </li>
 <li>
 <p>Zero or more named binary attachments</p>
@@ -2205,7 +2241,7 @@ Couchbase Lite supports attachments of unlimited size, although the Sync Gateway
 <div class="sectionbody">
 <div class="paragraph">
 <p>Couchbase&#160;Lite tracks the change history of every document as a series of revisions, like version control systems such as Git or Subversion.
-Its main purpose being to enable the replicator to determine the data to sync and any conflicts arising.</p>
+Its main purpose is to enable the replicator to determine which data to sync and any conflicts arising.</p>
 </div>
 <div class="paragraph">
 <p>Each document change is assigned a unique revision ID. The IDs of past revisions are available. The content of past revisions may be available if the revision was created locally and the database has not yet been compacted.</p>
@@ -2224,10 +2260,10 @@ Its main purpose being to enable the replicator to determine the data to sync an
 <div class="title">Learn more &#8230;&#8203;</div>
 <ul>
 <li>
-<p><a href="sync-function-overview.html" class="xref page">Sync Function</a></p>
+<p><a href="#sync-function-overview.adoc" class="xref unresolved">Sync Function</a></p>
 </li>
 <li>
-<p><a href="import-filter.html" class="xref page">Import filter</a></p>
+<p><a href="import-processing.html" class="xref page">Import filter</a></p>
 </li>
 </ul>
 </div>
@@ -2348,8 +2384,9 @@ Its main purpose being to enable the replicator to determine the data to sync an
 </div>
 </template>
 <script id="site-script" src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
 <script defer src="../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
 <script async src="../../_/js/vendor/highlight.js"></script>
-<script async src="../../_/js/vendor/tabs.js"></script></body>
+</body>
 </html>

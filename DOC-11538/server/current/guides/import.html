@@ -4,10 +4,16 @@
 <meta charset="utf-8">
 <meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
 <title>Importing Data | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/server/current/guides/import.html">
+<link rel="canonical" href="https://rayoffiah.github.io/server/current/guides/import.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="How to import documents into Couchbase.">
@@ -17,8 +23,9 @@
 <meta name="dcterms.subject" content="server">
 <meta name="dcterms.identifier" content="7.2">
 <meta name="page-url" content="/server/current/guides/import.html">
-<meta name="generator" content="Antora 3.0.1">
-<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
+<meta name="generator" content="Antora 3.0.3">
+<link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
 </head>
 <body class="article">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -33,7 +40,7 @@
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/DOC-9195/home/index.html">
+                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -55,7 +62,7 @@
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
                   <li class="nav-item">
-                    <a href="https://rayoffiah.github.io/DOC-9195/home/index.html" class="nav-link">
+                    <a href="https://rayoffiah.github.io/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
@@ -650,6 +657,11 @@
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../getting-started/starter-kits.html">Starter Kits</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../sdk/sdk-doctor.html">Troubleshooting Connections with SDK Doctor</a>
   </span>
 </li>
 </ul>
@@ -3517,7 +3529,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="#tableau-connector::index.adoc">Tableau Connector</a>
+    <a class="menu_title menu_link" href="../../../tableau-connector/current/index.html">Tableau Connector</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -5305,25 +5317,14 @@ macOS
 <div class="paragraph">
 <p>The following are well supported for export as well as by <code>cbimport</code> and the module ecosystems of all Couchbase SDKs.</p>
 </div>
-<div id="tabs-1" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-1-csv" class="tab">
-<p>CSV</p>
-</li>
-<li id="tabs-1-tsv" class="tab">
-<p>TSV</p>
-</li>
-<li id="tabs-1-json" class="tab">
-<p>JSON</p>
-</li>
-<li id="tabs-1-jsonl" class="tab">
-<p>JSONL</p>
-</li>
-</ul>
-</div>
-<div id="tabs-1-csv--panel" class="tabpanel" aria-labelledby="tabs-1-csv">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">CSV</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Comma Separated Values (.csv) are easily exported from many spreadsheet and database applications.</p>
 </div>
@@ -5332,25 +5333,35 @@ macOS
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/78995a94f5752423a74beeefd57db59ae98833a9/modules/howtos/examples/import.csv">id,type,name
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/4d1f829452a60231f9014909715c63ca4b886803/modules/howtos/examples/import.csv">id,type,name
 20001,airline,CSV-air-1
 20002,airline,CSV-air-2</code></pre>
 </div>
 </div>
 </div>
-<div id="tabs-1-tsv--panel" class="tabpanel" aria-labelledby="tabs-1-tsv">
+</div>
+</dd>
+<dt class="hdlist1">TSV</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Tab Separated Values (.tsv) are a common variant of CSV files.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-tsv hljs" data-lang="tsv" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/78995a94f5752423a74beeefd57db59ae98833a9/modules/howtos/examples/import.tsv">id	type	name
+<pre class="highlightjs highlight"><code class="language-tsv hljs" data-lang="tsv" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/4d1f829452a60231f9014909715c63ca4b886803/modules/howtos/examples/import.tsv">id	type	name
 20011	airline	TSV-air-1
 20012	airline	TSV-air-2</code></pre>
 </div>
 </div>
 </div>
-<div id="tabs-1-json--panel" class="tabpanel" aria-labelledby="tabs-1-json">
+</div>
+</dd>
+<dt class="hdlist1">JSON</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>JSON (.json) files are especially well suited to import into Couchbase, as it is the default native datatype.</p>
 </div>
@@ -5359,7 +5370,7 @@ macOS
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/78995a94f5752423a74beeefd57db59ae98833a9/modules/howtos/examples/import.json">[
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/4d1f829452a60231f9014909715c63ca4b886803/modules/howtos/examples/import.json">[
 	{"id":20021, "type":"airline", "name":"JSON-air-1"},
 	{"id":20022, "type":"airline", "name":"JSON-air-2"},
 	{"id":20023, "type":"airline", "name":"JSON-air-3"}
@@ -5367,17 +5378,26 @@ macOS
 </div>
 </div>
 </div>
-<div id="tabs-1-jsonl--panel" class="tabpanel" aria-labelledby="tabs-1-jsonl">
+</div>
+</dd>
+<dt class="hdlist1">JSONL</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>JSON Lines (.json) also known as NDJSON is a common format for streaming JSON, with one JSON object per line of text.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/78995a94f5752423a74beeefd57db59ae98833a9/modules/howtos/examples/import.jsonl">{"id":20031, "type":"airline", "name":"JSONL-air-1"}
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/4d1f829452a60231f9014909715c63ca4b886803/modules/howtos/examples/import.jsonl">{"id":20031, "type":"airline", "name":"JSONL-air-1"}
 {"id":20032, "type":"airline", "name":"JSONL-air-2"}
 {"id":20033, "type":"airline", "name":"JSONL-air-3"}</code></pre>
 </div>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -5393,25 +5413,14 @@ Ensure you have the path to the command line clients in Couchbase Server in your
 <div class="paragraph">
 <p>You can import all of the data formats described above.</p>
 </div>
-<div id="tabs-2" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-2-csv" class="tab">
-<p>CSV</p>
-</li>
-<li id="tabs-2-tsv" class="tab">
-<p>TSV</p>
-</li>
-<li id="tabs-2-json" class="tab">
-<p>JSON</p>
-</li>
-<li id="tabs-2-jsonl" class="tab">
-<p>JSONL</p>
-</li>
-</ul>
-</div>
-<div id="tabs-2-csv--panel" class="tabpanel" aria-labelledby="tabs-2-csv">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">CSV</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>To import a CSV file using <code>cbimport csv</code>:</p>
 </div>
@@ -5445,7 +5454,12 @@ Ensure you have the path to the command line clients in Couchbase Server in your
 </div>
 </div>
 </div>
-<div id="tabs-2-tsv--panel" class="tabpanel" aria-labelledby="tabs-2-tsv">
+</div>
+</dd>
+<dt class="hdlist1">TSV</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>To import a TSV file using <code>cbimport csv</code>:</p>
 </div>
@@ -5482,7 +5496,12 @@ Ensure you have the path to the command line clients in Couchbase Server in your
 </div>
 </div>
 </div>
-<div id="tabs-2-json--panel" class="tabpanel" aria-labelledby="tabs-2-json">
+</div>
+</dd>
+<dt class="hdlist1">JSON</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>To import a JSON file using <code>cbimport json</code>:</p>
 </div>
@@ -5519,7 +5538,12 @@ Ensure you have the path to the command line clients in Couchbase Server in your
 </div>
 </div>
 </div>
-<div id="tabs-2-jsonl--panel" class="tabpanel" aria-labelledby="tabs-2-jsonl">
+</div>
+</dd>
+<dt class="hdlist1">JSONL</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>To import a CSV file using <code>cbimport json</code>:</p>
 </div>
@@ -5557,6 +5581,10 @@ Ensure you have the path to the command line clients in Couchbase Server in your
 </div>
 </div>
 </div>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -5575,38 +5603,27 @@ However all the same considerations apply, so let us look at those in turn.</p>
 </div>
 <div class="sect3">
 <h4 id="parsing-csv-and-tsv-data"><a class="anchor" href="#parsing-csv-and-tsv-data"></a>Parsing CSV and TSV Data</h4>
-<div id="tabs-3" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-3-net" class="tab">
-<p>.NET</p>
-</li>
-<li id="tabs-3-java" class="tab">
-<p>Java</p>
-</li>
-<li id="tabs-3-node-js" class="tab">
-<p>Node.js</p>
-</li>
-<li id="tabs-3-python" class="tab">
-<p>Python</p>
-</li>
-</ul>
-</div>
-<div id="tabs-3-net--panel" class="tabpanel" aria-labelledby="tabs-3-net">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">.NET</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>To parse CSV and TSV data, use the <a href="https://joshclose.github.io/CsvHelper/" target="_blank" rel="noopener">CsvHelper</a> library.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/e841453a02d807bee390783e9fcd4a5eba45e50b/modules/howtos/examples/Import.csx">using CsvHelper;
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/22b4ee58993d49b238cbc35a187b265436d0ea30/modules/howtos/examples/Import.csx">using CsvHelper;
 using CsvHelper.Configuration;
 using System.Globalization;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/e841453a02d807bee390783e9fcd4a5eba45e50b/modules/howtos/examples/Import.csx">public async Task importCSV(string filename)
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/22b4ee58993d49b238cbc35a187b265436d0ea30/modules/howtos/examples/Import.csx">public async Task importCSV(string filename)
 {
     using (var reader = new StreamReader(filename))
     using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
@@ -5621,7 +5638,7 @@ using System.Globalization;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/e841453a02d807bee390783e9fcd4a5eba45e50b/modules/howtos/examples/Import.csx">public async Task importTSV(string filename)
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/22b4ee58993d49b238cbc35a187b265436d0ea30/modules/howtos/examples/Import.csx">public async Task importTSV(string filename)
 {
     using (var reader = new StreamReader("import.tsv"))
     using (var tsv = new CsvReader(reader,
@@ -5640,7 +5657,12 @@ using System.Globalization;</code></pre>
 <p>Click the <span class="icon"><i class="fa fa-github"></i></span> View button to see any code sample in context.</p>
 </div>
 </div>
-<div id="tabs-3-java--panel" class="tabpanel" aria-labelledby="tabs-3-java">
+</div>
+</dd>
+<dt class="hdlist1">Java</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>To parse CSV and TSV data, use the <a href="http://opencsv.sourceforge.net/" target="_blank" rel="noopener">opencsv</a> library.</p>
 </div>
@@ -5761,18 +5783,23 @@ use the <a href="https://projectreactor.io/docs/core/release/api/reactor/core/pu
 <p>Click the <span class="icon"><i class="fa fa-github"></i></span> View button to see any code sample in context.</p>
 </div>
 </div>
-<div id="tabs-3-node-js--panel" class="tabpanel" aria-labelledby="tabs-3-node-js">
+</div>
+</dd>
+<dt class="hdlist1">Node.js</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>To parse CSV and TSV data, use the <a href="https://csv.js.org/parse/" target="_blank" rel="noopener">csv-parse</a> library.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/78995a94f5752423a74beeefd57db59ae98833a9/modules/howtos/examples/import.js">const { parse: csvParser } = require('csv-parse');</code></pre>
+<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/4d1f829452a60231f9014909715c63ca4b886803/modules/howtos/examples/import.js">const { parse: csvParser } = require('csv-parse');</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/78995a94f5752423a74beeefd57db59ae98833a9/modules/howtos/examples/import.js">const csvStream = (filename) =&gt;
+<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/4d1f829452a60231f9014909715c63ca4b886803/modules/howtos/examples/import.js">const csvStream = (filename) =&gt;
   fs.createReadStream(filename)
   .pipe(
       csvParser({columns: true}))</code></pre>
@@ -5780,7 +5807,7 @@ use the <a href="https://projectreactor.io/docs/core/release/api/reactor/core/pu
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/78995a94f5752423a74beeefd57db59ae98833a9/modules/howtos/examples/import.js">const tsvStream = (filename) =&gt;
+<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/4d1f829452a60231f9014909715c63ca4b886803/modules/howtos/examples/import.js">const tsvStream = (filename) =&gt;
   fs.createReadStream(filename)
     .pipe(
       csvParser({
@@ -5792,18 +5819,23 @@ use the <a href="https://projectreactor.io/docs/core/release/api/reactor/core/pu
 <p>Click the <span class="icon"><i class="fa fa-github"></i></span> View button to see any code sample in context.</p>
 </div>
 </div>
-<div id="tabs-3-python--panel" class="tabpanel" aria-labelledby="tabs-3-python">
+</div>
+</dd>
+<dt class="hdlist1">Python</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>To parse CSV and TSV data, use the <a href="https://docs.python.org/3/library/csv.html" target="_blank" rel="noopener">csv</a> library.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/c0613e86c65a4e3ee74ac4212e208a7c62ed14c6/modules/howtos/examples/import.py">import csv</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/12268c9b323c181ead12ee4856e58fcb53c4bbf7/modules/howtos/examples/import.py">import csv</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/c0613e86c65a4e3ee74ac4212e208a7c62ed14c6/modules/howtos/examples/import.py">def csv_import(filename):
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/12268c9b323c181ead12ee4856e58fcb53c4bbf7/modules/howtos/examples/import.py">def csv_import(filename):
     with open(filename, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
@@ -5812,7 +5844,7 @@ use the <a href="https://projectreactor.io/docs/core/release/api/reactor/core/pu
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/c0613e86c65a4e3ee74ac4212e208a7c62ed14c6/modules/howtos/examples/import.py">def tsv_import(filename):
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/12268c9b323c181ead12ee4856e58fcb53c4bbf7/modules/howtos/examples/import.py">def tsv_import(filename):
     with open(filename, newline='') as tsvfile:
         reader = csv.DictReader(tsvfile, delimiter='\t')
         for row in reader:
@@ -5824,41 +5856,34 @@ use the <a href="https://projectreactor.io/docs/core/release/api/reactor/core/pu
 </div>
 </div>
 </div>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="parsing-json-and-jsonl-data"><a class="anchor" href="#parsing-json-and-jsonl-data"></a>Parsing JSON and JSONL Data</h4>
-<div id="tabs-4" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-4-net" class="tab">
-<p>.NET</p>
-</li>
-<li id="tabs-4-java" class="tab">
-<p>Java</p>
-</li>
-<li id="tabs-4-node-js" class="tab">
-<p>Node.js</p>
-</li>
-<li id="tabs-4-python" class="tab">
-<p>Python</p>
-</li>
-</ul>
-</div>
-<div id="tabs-4-net--panel" class="tabpanel" aria-labelledby="tabs-4-net">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">.NET</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>To parse JSON and JSONL data, use <a href="https://www.newtonsoft.com/json" target="_blank" rel="noopener">Newtonsoft</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/e841453a02d807bee390783e9fcd4a5eba45e50b/modules/howtos/examples/Import.csx">using Newtonsoft.Json;
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/22b4ee58993d49b238cbc35a187b265436d0ea30/modules/howtos/examples/Import.csx">using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/e841453a02d807bee390783e9fcd4a5eba45e50b/modules/howtos/examples/Import.csx">public async Task importJSON(string filename)
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/22b4ee58993d49b238cbc35a187b265436d0ea30/modules/howtos/examples/Import.csx">public async Task importJSON(string filename)
 {
     using (var reader = new StreamReader("import.json"))
     {
@@ -5875,7 +5900,7 @@ using Newtonsoft.Json.Linq;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/e841453a02d807bee390783e9fcd4a5eba45e50b/modules/howtos/examples/Import.csx">public async Task importJSONL(string filename)
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/22b4ee58993d49b238cbc35a187b265436d0ea30/modules/howtos/examples/Import.csx">public async Task importJSONL(string filename)
 {
     using (var reader = new StreamReader("import.jsonl"))
     {
@@ -5896,7 +5921,12 @@ using Newtonsoft.Json.Linq;</code></pre>
 <p>Click the <span class="icon"><i class="fa fa-github"></i></span> View button to see any code sample in context.</p>
 </div>
 </div>
-<div id="tabs-4-java--panel" class="tabpanel" aria-labelledby="tabs-4-java">
+</div>
+</dd>
+<dt class="hdlist1">Java</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>To parse <strong>JSON</strong> data, read the file as a string, then use the built-in Couchbase <a href="../../../java-sdk/current/howtos/json.html" class="xref page">JSON</a> handling to parse the result into an array of JSON objects.</p>
 </div>
@@ -6003,7 +6033,12 @@ using Newtonsoft.Json.Linq;</code></pre>
 <p>Click the <span class="icon"><i class="fa fa-github"></i></span> View button to see any code sample in context.</p>
 </div>
 </div>
-<div id="tabs-4-node-js--panel" class="tabpanel" aria-labelledby="tabs-4-node-js">
+</div>
+</dd>
+<dt class="hdlist1">Node.js</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Use the <a href="https://github.com/uhop/stream-json" target="_blank" rel="noopener">stream-json</a> library.</p>
 </div>
@@ -6021,7 +6056,7 @@ stream-json formats its output with a <code>{ key: &#8230;&#8203;, value: &#8230
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/78995a94f5752423a74beeefd57db59ae98833a9/modules/howtos/examples/import.js">const stream = require('stream'); 
+<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/4d1f829452a60231f9014909715c63ca4b886803/modules/howtos/examples/import.js">const stream = require('stream'); 
 
 // for JSON
 const StreamArray = require('stream-json/streamers/StreamArray')
@@ -6032,7 +6067,7 @@ const {parser: jsonlParser} = require('stream-json/jsonl/Parser');</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/78995a94f5752423a74beeefd57db59ae98833a9/modules/howtos/examples/import.js">const map = (f) =&gt;
+<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/4d1f829452a60231f9014909715c63ca4b886803/modules/howtos/examples/import.js">const map = (f) =&gt;
   new stream.Transform({
     objectMode: true,
     transform: (obj, _, next) =&gt; next(null, f(obj))
@@ -6046,7 +6081,7 @@ const jsonStream = (filename) =&gt;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/78995a94f5752423a74beeefd57db59ae98833a9/modules/howtos/examples/import.js">const jsonlStream = (filename) =&gt;
+<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/4d1f829452a60231f9014909715c63ca4b886803/modules/howtos/examples/import.js">const jsonlStream = (filename) =&gt;
   fs.createReadStream(filename)
     .pipe(jsonlParser())
     .pipe(map(obj =&gt; obj.value))</code></pre>
@@ -6056,18 +6091,23 @@ const jsonStream = (filename) =&gt;
 <p>Click the <span class="icon"><i class="fa fa-github"></i></span> View button to see any code sample in context.</p>
 </div>
 </div>
-<div id="tabs-4-python--panel" class="tabpanel" aria-labelledby="tabs-4-python">
+</div>
+</dd>
+<dt class="hdlist1">Python</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>Use the <a href="https://docs.python.org/3/library/json.html" target="_blank" rel="noopener">json</a> library:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/c0613e86c65a4e3ee74ac4212e208a7c62ed14c6/modules/howtos/examples/import.py">import json</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/12268c9b323c181ead12ee4856e58fcb53c4bbf7/modules/howtos/examples/import.py">import json</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/c0613e86c65a4e3ee74ac4212e208a7c62ed14c6/modules/howtos/examples/import.py">def json_import(filename):
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/12268c9b323c181ead12ee4856e58fcb53c4bbf7/modules/howtos/examples/import.py">def json_import(filename):
     with open(filename) as jsonfile:
         data = json.load(jsonfile)
         for row in data:
@@ -6076,7 +6116,7 @@ const jsonStream = (filename) =&gt;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/c0613e86c65a4e3ee74ac4212e208a7c62ed14c6/modules/howtos/examples/import.py">def jsonl_import(filename):
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/12268c9b323c181ead12ee4856e58fcb53c4bbf7/modules/howtos/examples/import.py">def jsonl_import(filename):
     with open(filename) as jsonlfile:
         for line in jsonlfile:
             row = json.loads(line)
@@ -6086,6 +6126,10 @@ const jsonStream = (filename) =&gt;
 <div class="paragraph">
 <p>Click the <span class="icon"><i class="fa fa-github"></i></span> View button to see any code sample in context.</p>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -6099,28 +6143,17 @@ const jsonStream = (filename) =&gt;
 <div class="paragraph">
 <p>Now decide which bucket and <a href="../tutorials/buckets-scopes-and-collections.html" class="xref page">scope and collection</a> you want to import to, and create them if they don&#8217;t already exist.</p>
 </div>
-<div id="tabs-5" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-5-net" class="tab">
-<p>.NET</p>
-</li>
-<li id="tabs-5-java" class="tab">
-<p>Java</p>
-</li>
-<li id="tabs-5-node-js" class="tab">
-<p>Node.js</p>
-</li>
-<li id="tabs-5-python" class="tab">
-<p>Python</p>
-</li>
-</ul>
-</div>
-<div id="tabs-5-net--panel" class="tabpanel" aria-labelledby="tabs-5-net">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">.NET</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/e841453a02d807bee390783e9fcd4a5eba45e50b/modules/howtos/examples/Import.csx">var cluster = await Cluster.ConnectAsync(
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/22b4ee58993d49b238cbc35a187b265436d0ea30/modules/howtos/examples/Import.csx">var cluster = await Cluster.ConnectAsync(
     "couchbase://localhost",
     "Administrator", "password");
 var bucket =  await cluster.BucketAsync("travel-sample");
@@ -6135,7 +6168,12 @@ var _collection = await scope.CollectionAsync("airline");</code></pre>
 <p>For more information, refer to <a href="../../../dotnet-sdk/current/howtos/managing-connections.html" class="xref page">Managing Connections using the .NET SDK with Couchbase Server</a>.</p>
 </div>
 </div>
-<div id="tabs-5-java--panel" class="tabpanel" aria-labelledby="tabs-5-java">
+</div>
+</dd>
+<dt class="hdlist1">Java</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Import.java">Cluster cluster = Cluster.connect(
@@ -6164,10 +6202,15 @@ collection = scope.collection("airline");</code></pre>
 <p>For more information, refer to <a href="../../../java-sdk/current/howtos/managing-connections.html" class="xref page">Managing Connections using the Java SDK with Couchbase Server</a>.</p>
 </div>
 </div>
-<div id="tabs-5-node-js--panel" class="tabpanel" aria-labelledby="tabs-5-node-js">
+</div>
+</dd>
+<dt class="hdlist1">Node.js</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/78995a94f5752423a74beeefd57db59ae98833a9/modules/howtos/examples/import.js">const cluster = await couchbase.connect('couchbase://localhost', {
+<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/4d1f829452a60231f9014909715c63ca4b886803/modules/howtos/examples/import.js">const cluster = await couchbase.connect('couchbase://localhost', {
   username: 'Administrator',
   password: 'password',
 })
@@ -6183,10 +6226,15 @@ const collection = bucket.scope('inventory').collection('airline')</code></pre>
 <p>For more information, refer to <a href="../../../nodejs-sdk/current/howtos/managing-connections.html" class="xref page">Managing Connections using the Node.js SDK with Couchbase Server</a>.</p>
 </div>
 </div>
-<div id="tabs-5-python--panel" class="tabpanel" aria-labelledby="tabs-5-python">
+</div>
+</dd>
+<dt class="hdlist1">Python</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/c0613e86c65a4e3ee74ac4212e208a7c62ed14c6/modules/howtos/examples/import.py">cluster = Cluster(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/12268c9b323c181ead12ee4856e58fcb53c4bbf7/modules/howtos/examples/import.py">cluster = Cluster(
     "couchbase://localhost",
     authenticator=PasswordAuthenticator(
         "Administrator", "password"))
@@ -6202,6 +6250,10 @@ collection = bucket.scope("inventory").collection("airline")</code></pre>
 <div class="paragraph">
 <p>For more information, refer to <a href="../../../python-sdk/current/howtos/managing-connections.html" class="xref page">Managing Connections using the Python SDK with Couchbase Server</a>.</p>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -6241,25 +6293,14 @@ This means that in the case of any error, it is easy to make any required tweaks
 </tr>
 </table>
 </div>
-<div id="tabs-6" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-6-net" class="tab">
-<p>.NET</p>
-</li>
-<li id="tabs-6-java" class="tab">
-<p>Java</p>
-</li>
-<li id="tabs-6-node-js" class="tab">
-<p>Node.js</p>
-</li>
-<li id="tabs-6-python" class="tab">
-<p>Python</p>
-</li>
-</ul>
-</div>
-<div id="tabs-6-net--panel" class="tabpanel" aria-labelledby="tabs-6-net">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">.NET</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>To store the data, hook the prepared data into an <code>upsert</code> routine.</p>
 </div>
@@ -6277,7 +6318,7 @@ As CsvHelper and Newtonsoft generate different outputs, we&#8217;ve provided som
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/e841453a02d807bee390783e9fcd4a5eba45e50b/modules/howtos/examples/Import.csx">// CsvHelper emits `dynamic` records
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/22b4ee58993d49b238cbc35a187b265436d0ea30/modules/howtos/examples/Import.csx">// CsvHelper emits `dynamic` records
 public async Task upsertDocument(dynamic record) {
     // define the key
     string key = record.type + "_" + record.id;
@@ -6315,7 +6356,12 @@ public async Task upsertDocument(JObject record) {
 <p>For more information, refer to <a href="../../../dotnet-sdk/current/howtos/kv-operations.html" class="xref page">Key Value Operations</a>.</p>
 </div>
 </div>
-<div id="tabs-6-java--panel" class="tabpanel" aria-labelledby="tabs-6-java">
+</div>
+</dd>
+<dt class="hdlist1">Java</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>To store the data, hook the prepared data into an <code>upsert</code> routine.
 For the blocking API, use the method below.</p>
@@ -6392,13 +6438,18 @@ For the blocking API, use the method below.</p>
 <p>For more information, refer to <a href="../../../java-sdk/current/howtos/kv-operations.html" class="xref page">Key Value Operations</a>.</p>
 </div>
 </div>
-<div id="tabs-6-node-js--panel" class="tabpanel" aria-labelledby="tabs-6-node-js">
+</div>
+</dd>
+<dt class="hdlist1">Node.js</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>To iterate the prepared data stream, use a simple <code>for</code> loop in the same way as an array.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/78995a94f5752423a74beeefd57db59ae98833a9/modules/howtos/examples/import.js">const importStream = async (stream) =&gt; {
+<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/4d1f829452a60231f9014909715c63ca4b886803/modules/howtos/examples/import.js">const importStream = async (stream) =&gt; {
   for await (const doc of stream) {
     upsertDocument(doc)
   }
@@ -6410,7 +6461,7 @@ For the blocking API, use the method below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/78995a94f5752423a74beeefd57db59ae98833a9/modules/howtos/examples/import.js">const upsertDocument = async (doc) =&gt; {
+<pre class="highlightjs highlight"><code class="language-nodejs hljs" data-lang="nodejs" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/4d1f829452a60231f9014909715c63ca4b886803/modules/howtos/examples/import.js">const upsertDocument = async (doc) =&gt; {
   try {
     // Build the key
     const key = `${doc.type}_${doc.id}`
@@ -6436,19 +6487,24 @@ For the blocking API, use the method below.</p>
 <p>For more information, refer to <a href="../../../nodejs-sdk/current/howtos/kv-operations.html" class="xref page">Key Value Operations</a>.</p>
 </div>
 </div>
-<div id="tabs-6-python--panel" class="tabpanel" aria-labelledby="tabs-6-python">
+</div>
+</dd>
+<dt class="hdlist1">Python</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>To store the data, define functions to determine the key, and process the value.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/c0613e86c65a4e3ee74ac4212e208a7c62ed14c6/modules/howtos/examples/import.py">def key(row):
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/12268c9b323c181ead12ee4856e58fcb53c4bbf7/modules/howtos/examples/import.py">def key(row):
     return "{type}_{id}".format(**row)</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/c0613e86c65a4e3ee74ac4212e208a7c62ed14c6/modules/howtos/examples/import.py">def process(row):
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/12268c9b323c181ead12ee4856e58fcb53c4bbf7/modules/howtos/examples/import.py">def process(row):
     row["importer"] = "Python SDK"
     return row</code></pre>
 </div>
@@ -6458,7 +6514,7 @@ For the blocking API, use the method below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/c0613e86c65a4e3ee74ac4212e208a7c62ed14c6/modules/howtos/examples/import.py">def upsert(row):
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/12268c9b323c181ead12ee4856e58fcb53c4bbf7/modules/howtos/examples/import.py">def upsert(row):
     k = key(row)
     v = process(row)
     print(k, v)
@@ -6473,7 +6529,7 @@ For the blocking API, use the method below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/c0613e86c65a4e3ee74ac4212e208a7c62ed14c6/modules/howtos/examples/import.py"># multi operations volatile as of SDK 3.2.3
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/12268c9b323c181ead12ee4856e58fcb53c4bbf7/modules/howtos/examples/import.py"># multi operations volatile as of SDK 3.2.3
 def csv_import_multi(filename):
     with open(filename, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -6485,6 +6541,10 @@ def csv_import_multi(filename):
 <div class="paragraph">
 <p>Click the <span class="icon"><i class="fa fa-github"></i></span> View button to see any code sample in context.</p>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -6621,8 +6681,9 @@ def csv_import_multi(filename):
 </div>
 </template>
 <script id="site-script" src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
 <script defer src="../../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
-<script async src="../../../_/js/vendor/tabs.js"></script></body>
+</body>
 </html>

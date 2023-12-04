@@ -4,10 +4,16 @@
 <meta charset="utf-8">
 <meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<script>(window.dataLayer=window.dataLayer||[]).push({event:'gtm.js','gtm.start':+new Date()})</script>
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MVPNN2"></script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
 <title>Add Autocomplete to Your Application | Couchbase Docs</title>
-<link rel="canonical" href="https://rayoffiah.github.io/DOC-9195/server/current/search/search-query-auto-complete-code.html">
+<link rel="canonical" href="https://rayoffiah.github.io/server/current/search/search-query-auto-complete-code.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="Use autocomplete to add suggestions for a user&#x27;s Search query as they type in your application.">
@@ -17,8 +23,9 @@
 <meta name="dcterms.subject" content="server">
 <meta name="dcterms.identifier" content="7.2">
 <meta name="page-url" content="/server/current/search/search-query-auto-complete-code.html">
-<meta name="generator" content="Antora 3.0.1">
-<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
+<meta name="generator" content="Antora 3.0.3">
+<link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
 </head>
 <body class="article">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -33,7 +40,7 @@
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/DOC-9195/home/index.html">
+                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -55,7 +62,7 @@
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
                   <li class="nav-item">
-                    <a href="https://rayoffiah.github.io/DOC-9195/home/index.html" class="nav-link">
+                    <a href="https://rayoffiah.github.io/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
@@ -650,6 +657,11 @@
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../getting-started/starter-kits.html">Starter Kits</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../sdk/sdk-doctor.html">Troubleshooting Connections with SDK Doctor</a>
   </span>
 </li>
 </ul>
@@ -3517,7 +3529,7 @@
 </li>
 <li class="menu_list" data-depth="1">
   <span class="menu_line">
-    <a class="menu_title menu_link" href="#tableau-connector::index.adoc">Tableau Connector</a>
+    <a class="menu_title menu_link" href="../../../tableau-connector/current/index.html">Tableau Connector</a>
   </span>
 </li>
 <li class="menu_list" data-depth="1">
@@ -5234,28 +5246,14 @@ Use autocomplete to add suggestions for a user&#8217;s Search query as they type
 <div class="paragraph">
 <p>The following examples simulate a user typing an input string and return search results for each partial string:</p>
 </div>
-<div id="tabs-1" class="openblock tabs is-loading">
+<div class="exampleblock">
 <div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-1-c" class="tab">
-<p>C#</p>
-</li>
-<li id="tabs-1-go" class="tab">
-<p>Go</p>
-</li>
-<li id="tabs-1-java" class="tab">
-<p>Java</p>
-</li>
-<li id="tabs-1-javascript" class="tab">
-<p>JavaScript</p>
-</li>
-<li id="tabs-1-python" class="tab">
-<p>Python</p>
-</li>
-</ul>
-</div>
-<div id="tabs-1-c--panel" class="tabpanel" aria-labelledby="tabs-1-c">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">C#</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-devex/modules/search/examples/autocomplete-sample.cs">using Couchbase;
@@ -5299,7 +5297,12 @@ async Task FtsMatchPrefix(string letters)
 </div>
 </div>
 </div>
-<div id="tabs-1-go--panel" class="tabpanel" aria-labelledby="tabs-1-go">
+</div>
+</dd>
+<dt class="hdlist1">Go</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-devex/modules/search/examples/autocomplete-sample.go">package main
@@ -5360,7 +5363,12 @@ func main() {
 </div>
 </div>
 </div>
-<div id="tabs-1-java--panel" class="tabpanel" aria-labelledby="tabs-1-java">
+</div>
+</dd>
+<dt class="hdlist1">Java</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-devex/modules/search/examples/autocomplete-sample.java">import com.couchbase.client.java.Cluster;
@@ -5395,7 +5403,12 @@ public class MockTypeAheadEnGram {
 </div>
 </div>
 </div>
-<div id="tabs-1-javascript--panel" class="tabpanel" aria-labelledby="tabs-1-javascript">
+</div>
+</dd>
+<dt class="hdlist1">JavaScript</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-devex/modules/search/examples/autocomplete-sample.js">const couchbase = require('couchbase')
@@ -5432,7 +5445,12 @@ main()</code></pre>
 </div>
 </div>
 </div>
-<div id="tabs-1-python--panel" class="tabpanel" aria-labelledby="tabs-1-python">
+</div>
+</dd>
+<dt class="hdlist1">Python</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-devex/modules/search/examples/autocomplete-sample.py">from couchbase.cluster import Cluster, ClusterOptions
@@ -5468,6 +5486,10 @@ except CouchbaseException as ex:
     traceback.print_exc()</code></pre>
 </div>
 </div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -5581,8 +5603,9 @@ except CouchbaseException as ex:
 </div>
 </template>
 <script id="site-script" src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
 <script defer src="../../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
-<script async src="../../../_/js/vendor/tabs.js"></script></body>
+</body>
 </html>
