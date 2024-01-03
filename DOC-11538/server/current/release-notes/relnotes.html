@@ -117,6 +117,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span class="component_list_title">Couchbase Server</span>
         <select class="version_list" data-component="server">
           <option value="7.2" data-url="../introduction/intro.html" selected>7.2</option>
+          <option value="7.1" data-url="../../7.1/index.html">7.1</option>
           <option value="7.0" data-url="../../7.0/index.html">7.0</option>
         </select>
       </div>
@@ -5089,6 +5090,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 </ul>
       </div>
+      <div class="version_items hide" data-version="7.1">
+      </div>
       <div class="version_items hide" data-version="7.0">
       </div>
     </li>
@@ -5183,8 +5186,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 id="release-724"><a class="anchor" href="#release-724"></a>Release 7.2.4 (January 2024)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase Server 7.2.4 was released in November 2023.
-This maintenance release contains new features and fixes to issues.</p>
+<p>Couchbase Server 7.2.4 was released in November 2023.<br>
+This maintenance release contains new features and fixes.</p>
 </div>
 <div class="sect2">
 <h3 id="new-features"><a class="anchor" href="#new-features"></a>New Features and Enhancements</h3>
@@ -5239,12 +5242,11 @@ This maintenance release contains new features and fixes to issues.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-8925/">MB-58925</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Couchbase Server 7.2.2 currently uses Erlang&#160;24. As Couchbase Server 7.2 will be maintained until 2026, Erlang has been upgraded to version&#160;25 to ensure we receive future code fixes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Erlang has been upgraded to version 25 in Couchbase Server 7.2.4.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59261/">MB-59261</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Memcached</code> alert added.<br>
-Add an alert when the number of memcached connections has exceeded 90% of the limit.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Couchbase Server now issues an alert when the number of memcached connections exceeds 90% of the limit.</p></td>
 </tr>
 </tbody>
 </table>
@@ -5317,10 +5319,8 @@ Add an alert when the number of memcached connections has exceeded 90% of the li
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59646/">MB-59646</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Index has zero entries when running <code>NESTED ARRAY FLATTEN_KEYS()</code>.
-Should show at least one entry.<br>
-When there is a nested array entry, the projector is not expanding the missing/null entries.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Null or missing entries are now expanded for nested arrays</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indexes were not correctly created on nested arrays using the FLATTEN_KEYs function because null or missing entries were not expanded.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issue resolved. Null or missing entries are now expanded for nested arrays</p></td>
 </tr>
 </tbody>
 </table>
@@ -5343,8 +5343,14 @@ When there is a nested array entry, the projector is not expanding the missing/n
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-57903/">MB-57903</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Deep-nested correlations aren’t properly detected and use cached results</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fixed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deeply nested correlations were not properly detected and used cached results.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This issue has been fixed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58648">MB-58648</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prepared statement with user-defined function can lead to a memory leak.
+Caused by the UDF being reloaded.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fix applied. UDFs no longer being reloaded.</p></td>
 </tr>
 </tbody>
 </table>
@@ -6120,7 +6126,7 @@ See <a href="../manage/manage-xdcr/create-xdcr-replication.html#rebalance-inform
 <td class="tableblock halign-left valign-top"><p class="tableblock">An issue occurs with node failover.
 If a user does not bring in a replacement node before the failover occurs,
 then lost active or lost replica search indexes that have partitions on the replaced node are not rebuilt.<br>
-As a result, search requests return partial/incomplete results. In addition,existing indexes with defined replica(s) become vulnerable to another node failure.</p>
+As a result, search requests return partial/incomplete results. In addition, existing indexes with defined replica(s) become vulnerable to another node failure.</p>
 <p class="tableblock">This issue is only pertinent to the <strong>7.2.1</strong> release, and does not affect older builds.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This situation can be prevented if a replacement node was brought into the cluster in place of the failed over node,
 before starting the rebalance operation.
@@ -6735,7 +6741,7 @@ Such queries will still have valid plans and will execute correctly, but their p
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2023 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
