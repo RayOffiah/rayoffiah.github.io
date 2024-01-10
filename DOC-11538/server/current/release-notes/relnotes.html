@@ -5194,6 +5194,9 @@ This maintenance release contains new features and fixes.</p>
 <div class="ulist">
 <ul>
 <li>
+<p>Prometheus now records information related to disk usage over time:</p>
+</li>
+<li>
 <p>REST interface added to set the retention period of audit files</p>
 </li>
 <li>
@@ -5220,8 +5223,65 @@ This maintenance release contains new features and fixes.</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59237/">MB-59237</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Prometheus now records information related to disk usage over time:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cumulative number of bytes read from CB Data volume over time.</p>
+</li>
+<li>
+<p>Cumulative number of bytes written to CB Data volume over time.</p>
+</li>
+<li>
+<p>Metrics tracked in Prometheus, similar to existing system metrics.</p>
+</li>
+<li>
+<p>Disk queue size over time (instantaneous sample of current size)</p>
+</li>
+<li>
+<p>Disk read latency.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59503/">MB-59503</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The request is for <code>ns_server</code> to provide a REST interface to enter the minimum duration (in minutes) that previously rotated audit files will be retained. This value will be converted to seconds and passed through to memcached. The audit daemon, run during the log rotation task, will remove any files created more than X seconds ago.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The request is for <code>ns_server</code> to provide a REST interface to enter the minimum duration (in minutes) that previously rotated audit files will be retained. This value will be converted to seconds and passed through to memcached. The audit daemon, run during the log rotation task, will remove any files created more than X seconds ago.<br>
+The following REST command is used to change the settings:<br>
+<code>$ curl -u Administrator:password -X POST localhost:8091/settings/audit -d pruneAge=1001 -d rotateInterval=900 -d rotateSize=1003</code></p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+rotateInterval
+</td>
+<td class="hdlist2">
+<p>Specifies the maximum time-period that is to elapse between log-rotations. Its value must be a number of seconds, in the range of 900 (15 minutes) to 604800 (7 days), inclusive, and must be specified as a non-fractional unit of a minute.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+rotateSize
+</td>
+<td class="hdlist2">
+<p>Specifes the maximum size to which the <code>audit.log</code> file is permitted to grow, before being rotated. Its value must be a number of bytes, in the range of 0 to 524288000 (500 MB), inclusive.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+pruneAge
+</td>
+<td class="hdlist2">
+<p>The maximum age that the <code>audit.log</code> is permitted to reach before being rotated. The value is given in minutes and  must be in range from 0 to 35791394</p>
+</td>
+</tr>
+</table>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -5254,51 +5314,6 @@ This maintenance release contains new features and fixes.</p>
 <div class="sect2">
 <h3 id="fixed-issues"><a class="anchor" href="#fixed-issues"></a>Fixed Issues</h3>
 
-</div>
-<div class="sect2">
-<h3 id="cluster-manager-2"><a class="anchor" href="#cluster-manager-2"></a>Cluster Manager</h3>
-<table id="table-known-issues-724-cluster-manager" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 44.4444%;">
-<col style="width: 44.4445%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Issue</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Resolution</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59237/">MB-59237</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Record OS disk I/O metrics into Prometheus. Currently, there is not enough information recorded in the logs to diagnose slowdowns in the system related to Disk I/O</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Record information related to disk usage over time to Prometheus:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Cumulative number of bytes read from CB Data volume over time, in Prometheus</p>
-</li>
-<li>
-<p>Cumulative number of bytes written to CB Data volume over time.</p>
-</li>
-<li>
-<p>Metrics tracked in Prometheus, similar to existing system metrics.</p>
-</li>
-<li>
-<p>Disk queue size over time (instantaneous sample of current size)</p>
-</li>
-<li>
-<p>Disk read latency.</p>
-</li>
-</ul>
-</div></div></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect2">
 <h3 id="index-service"><a class="anchor" href="#index-service"></a>Index Service</h3>
@@ -5976,7 +5991,7 @@ See <a href="../manage/manage-xdcr/create-xdcr-replication.html#rebalance-inform
 </table>
 </div>
 <div class="sect3">
-<h4 id="cluster-manager-3"><a class="anchor" href="#cluster-manager-3"></a>Cluster Manager</h4>
+<h4 id="cluster-manager-2"><a class="anchor" href="#cluster-manager-2"></a>Cluster Manager</h4>
 <table id="table-fixed-issues-721-cluster-manager" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -6358,7 +6373,7 @@ See <a href="../learn/security/on-the-wire-security.html#min-tls-version" class=
 <p>This release contains the following fixes.</p>
 </div>
 <div class="sect3">
-<h4 id="cluster-manager-4"><a class="anchor" href="#cluster-manager-4"></a>Cluster Manager</h4>
+<h4 id="cluster-manager-3"><a class="anchor" href="#cluster-manager-3"></a>Cluster Manager</h4>
 <table id="table-fixed-issues-720-clustermanager" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
