@@ -13,13 +13,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
 <title>CouchbaseBackup Resource | Couchbase Docs</title>
+<link rel="canonical" href="https://rayoffiah.github.io/operator/current/resource/couchbasebackup.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.5">
+<meta name="dcterms.identifier" content="2.6">
 <meta name="page-url" content="/operator/current/resource/couchbasebackup.html">
 <meta name="generator" content="Antora 3.0.3">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
@@ -115,10 +116,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.5" data-url="../overview.html" selected>2.5</option>
+          <option value="2.6" data-url="../overview.html" selected>2.6</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.5">
+      <div class="version_items hide" data-version="2.6">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -790,6 +791,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a class="menu_title menu_link" href="../reference-operator-logging.html">Operator Logging</a>
   </span>
 </li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../reference-prometheus-metrics.html">Operator Prometheus Metrics</a>
+  </span>
+</li>
 </ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
@@ -1143,7 +1149,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     - ""
     <a href="#couchbasebackups-spec-data-include">include</a>:
     - ""
-  <a href="#couchbasebackups-spec-defaultrecoverytype">defaultRecoveryType</a>: none
+  <a href="#couchbasebackups-spec-defaultrecoverymethod">defaultRecoveryMethod</a>: none
   <a href="#couchbasebackups-spec-ephemeralvolume">ephemeralVolume</a>: false
   <a href="#couchbasebackups-spec-failedjobshistorylimit">failedJobsHistoryLimit</a>: 3
   <a href="#couchbasebackups-spec-full">full</a>:
@@ -1563,12 +1569,9 @@ This field cannot be used at the same time as excluded items.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbasebackups-spec-defaultrecoverytype"><a class="anchor" href="#couchbasebackups-spec-defaultrecoverytype"></a>couchbasebackups.spec.defaultRecoveryType</h3>
+<h3 id="couchbasebackups-spec-defaultrecoverymethod"><a class="anchor" href="#couchbasebackups-spec-defaultrecoverymethod"></a>couchbasebackups.spec.defaultRecoveryMethod</h3>
 <div class="sect3">
 <h4 id="constraints-18"><a class="anchor" href="#constraints-18"></a>Constraints</h4>
-<div class="paragraph">
-<p><strong>Required</strong></p>
-</div>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
@@ -2140,7 +2143,7 @@ More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-res
 <p><strong>Default</strong>: <code>full_incremental</code></p>
 </div>
 <div class="paragraph">
-<p><strong>Enumerations</strong>: <code>full_incremental, full_only</code></p>
+<p><strong>Enumerations</strong>: <code>full_incremental, full_only, immediate_incremental, immediate_full</code></p>
 </div>
 </div>
 <div class="sect3">
@@ -2151,6 +2154,7 @@ More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-res
 <code>full_incremental</code> will perform periodic full backups, and incremental backups in between.
 You must define full and incremental schedules in the <code>spec.full</code> and <code>spec.incremental</code> fields respectively.
 Care should be taken to ensure full and incremental schedules do not overlap, taking into account the backup time, as this will cause failures as the jobs attempt to mount the same backup volume.
+To cause a backup to occur immediately use <code>immediate_incremental</code> or <code>immediate_full</code> for incremental or full backups respectively.
 This field default to <code>full_incremental</code>.
 Info: <a href="https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-strategies.html" class="bare">https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-strategies.html</a>.</p>
 </div>
@@ -2576,7 +2580,7 @@ More info: <a href="https://golang.org/pkg/time/#ParseDuration" class="bare">htt
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2023 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

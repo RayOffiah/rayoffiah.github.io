@@ -16,6 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="canonical" href="https://rayoffiah.github.io/tableau-connector/current/setup-tableau-server.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="The Couchbase Analytics Connector can be installed on Tableau Server.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -420,9 +421,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span  id="otherContributor"> + </span>
 </div><div id="preamble">
 <div class="sectionbody">
+<div class="quoteblock abstract">
+<blockquote>
+The Couchbase Analytics Connector can be installed on Tableau Server.
+</blockquote>
+</div>
 <div class="paragraph">
-<p>The Couchbase Analytics Connector can also be installed on Tableau Server.
-This enables publishing of reports and workbooks that are created on Tableau Desktop to a Tableau Server project.
+<p>This enables publishing of reports and workbooks that are created on Tableau Desktop to a Tableau Server project.
 The connector also allows users to publish the data sources they created on Tableau Desktop with the Couchbase Analytics Connector to Tableau Server.
 Other users with access to the project can build their own reports and workbooks using the same data sources.</p>
 </div>
@@ -441,15 +446,15 @@ Other users with access to the project can build their own reports and workbooks
 </li>
 <li>
 <p>To apply the changes and install the connector run the following commands.</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">tsm configuration set -frc -k native_api.connect_plugins_path -v "C:\ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Connectors"
 tsm configuration set -k JdbcDriverCustomLoad -v false --force-keys
 tsm pending-changes apply</code></pre>
 </div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -465,16 +470,16 @@ tsm pending-changes apply</code></pre>
 <p>Next, copy the <strong>couchbase-jdbc-driver-&lt;version&gt;.jar</strong> to the <code>/opt/tableau/tableau_driver/jdbc</code> folder.</p>
 </li>
 <li>
-<p>To apply the changes and install the connector run the following commands.</p>
-</li>
-</ol>
-</div>
+<p>To apply the changes and install the connector, run the following commands.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">tsm configuration set -frc -k native_api.connect_plugins_path -v /var/opt/tableau/tableau_server/data/tabsvc/vizqlserver/Connectors
 tsm configuration set -k JdbcDriverCustomLoad -v false --force-keys
 tsm pending-changes apply</code></pre>
 </div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -490,46 +495,82 @@ Here, you should now see the option to select Couchbase Analytics by Couchbase.<
 <img src="_images/verify-tableau-server-connector.png" alt="Verify Tableau Server Connector">
 </div>
 </div>
-<div class="paragraph">
-<p>If you need SSL support, then you will also need to provide a configuration properties file.
-The steps for this are provided in the following section.</p>
 </div>
-<div class="sect2">
-<h3 id="setting-up-ssl-support"><a class="anchor" href="#setting-up-ssl-support"></a>Setting up SSL Support</h3>
-<div class="paragraph">
-<p>You will need to provide a file path for the certificate or keystore.
-Create a file called <em>couchbase-analytics.properties</em> and save it in the directory, depending on whether you are running on MacOS or Windows:</p>
 </div>
+<div class="sect1">
+<h2 id="ssl"><a class="anchor" href="#ssl"></a>Set Up SSL Support&#8201;&#8212;&#8201;Tableau Connector 1.1.x</h2>
+<div class="sectionbody">
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><span class="status">Tableau Connector 1.1.x</span></p>
+</div>
+<div class="paragraph">
+<p>This section only applies to Tableau Connector 1.1.0 and later.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Usually, you won&#8217;t need to follow this section.
+There is no need to provide a certificate if you are connecting to Couchbase Capella, or using a certificate from a public certificate authority.
+Certificates of well-known public certification authorities as well as Couchbase Capella are trusted by default.</p>
+</div>
+<div class="paragraph">
+<p>To configure SSL support for Tableau 1.1.0 and later:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure you know the absolute paths to the certificate or keystore.
+You should only supply one of the certificate path or the keystore path, not both.</p>
+</li>
+<li>
+<p>Create a file called <code>couchbase-analytics.properties</code> and save it in the following directory, depending on whether you are running MacOS or Windows:</p>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Windows</dt>
 <dd>
-<p>Save the file to <code>ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Datasources</code>
-`</p>
+<p>Save the file to <code>ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Datasources</code></p>
 </dd>
-<dt class="hdlist1">Linux</dt>
+<dt class="hdlist1">MacOS</dt>
 <dd>
-<p>Save the file to  <code>/var/opt/tableau/tableau_server/data/tabsvc/vizqlserver/Datasources/</code></p>
+<p>Save the file to <code>/var/opt/tableau/tableau_server/data/tabsvc/vizqlserver/Datasources/</code></p>
 </dd>
 </dl>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>To provide the Certificate file path, add the following line in the properties file.</p>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">sslCertPath=[path to your certificate file]</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">sslCertPath=&lt;path to your certificate file&gt;</code></pre>
 </div>
 </div>
+</li>
+<li>
+<p>To provide the keystore path, add the following lines in the properties file.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">sslKeystorePath=&lt;path to your keystore&gt;
+sslKeystorePassword=&lt;your keystore password&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>To provide the keystore path add the following lines in the properties file</p>
+<p>To configure SSL support for Tableau Connector 1.0.x, see <a href="using-couchbase-tableau-connector.html#ssl" class="xref page">Set Up SSL Support&#8201;&#8212;&#8201;Tableau Connector 1.0.x</a>.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">sslKeystorePath=[path to your keystore]
-sslKeystorePassword=[your keystore password]</code></pre>
-</div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -592,7 +633,7 @@ sslKeystorePassword=[your keystore password]</code></pre>
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2023 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

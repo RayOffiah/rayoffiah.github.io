@@ -13,13 +13,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
 <title>Couchbase Upgrades | Couchbase Docs</title>
+<link rel="canonical" href="https://rayoffiah.github.io/operator/current/concept-upgrade.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.5">
+<meta name="dcterms.identifier" content="2.6">
 <meta name="page-url" content="/operator/current/concept-upgrade.html">
 <meta name="generator" content="Antora 3.0.3">
 <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
@@ -115,10 +116,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.5" data-url="overview.html" selected>2.5</option>
+          <option value="2.6" data-url="overview.html" selected>2.6</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.5">
+      <div class="version_items hide" data-version="2.6">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -790,6 +791,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a class="menu_title menu_link" href="reference-operator-logging.html">Operator Logging</a>
   </span>
 </li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="reference-prometheus-metrics.html">Operator Prometheus Metrics</a>
+  </span>
+</li>
 </ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
@@ -1140,6 +1146,9 @@ This includes upgrading the Couchbase Server version and also related Kubernetes
 <div class="ulist">
 <ul>
 <li>
+<p>DeltaRecovery performs an in-place upgrade on one, or more, pods at a time</p>
+</li>
+<li>
 <p>Rolling upgrades upgrade one, or more, pods at a time</p>
 </li>
 <li>
@@ -1148,7 +1157,7 @@ This includes upgrading the Couchbase Server version and also related Kubernetes
 </ul>
 </div>
 <div class="paragraph">
-<p>This process is as follows:</p>
+<p>For rolling and immediate upgrades, the process is as follows:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1167,33 +1176,40 @@ This includes upgrading the Couchbase Server version and also related Kubernetes
 </ul>
 </div>
 <div class="paragraph">
+<p>For delta recovery, the process is as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>One or more candidate pods are selected</p>
+</li>
+<li>
+<p>Each candidate is failed over and updated with the new version</p>
+</li>
+<li>
+<p>Each PVC associated with the candidate is updated with the new version</p>
+</li>
+<li>
+<p>Operator performs a delta recovery on the candidate</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
 <p>When using rolling upgrades, performing the operation one pod at a time, risk is limited in the event of an issue, and can be rolled back.
 A rolling upgrade requires the least network and compute overhead, so will affect client operation less.</p>
 </div>
 <div class="paragraph">
 <p>When using immediate upgrades, there is a greater risk, and requires greater resource during the upgrade, however the operation itself is significantly faster.
-Immediate upgrades may have an undesired affect on client performance as all pods in the cluster are undergoing upgrade at the same time.</p>
+Immediate upgrades may have an undesired effect on client performance as all pods in the cluster are undergoing upgrade at the same time.</p>
 </div>
 <div class="paragraph">
-<p>You can balance time against risk by tailoring rolling upgrades with the <a href="resource/couchbasecluster.html#couchbaseclusters-spec-rollingupgrade" class="xref page"><code>couchbaseclusters.spec.rollingUpgrade</code></a> configuration parameter.
+<p>When using delta recovery, the pods and PVCs are updated to use the new version. This is quicker than a rolling upgrade and will retain the same PVCs (data retained).
+Delta recovery cannot be used in conjunction with immediate upgrades. The validator will fail the request if immediate upgrade strategy and delta recovery upgrade process are both specified.
+The same pod names and networking settings will be retained when the pod is restarted by the operator.</p>
+</div>
+<div class="paragraph">
+<p>You can balance time against risk by tailoring rolling updates with the <a href="resource/couchbasecluster.html#couchbaseclusters-spec-rollingupgrade" class="xref page"><code>couchbaseclusters.spec.rollingUpgrade</code></a> configuration parameter.
 This allows rolling upgrades to upgrade 2 pods at a time, or 20% of the cluster at a time, for example.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Ideally, the Operator should replace an old pod for a new one, retaining any existing persistent storage, then performing a delta-node recovery to perform a fast upgrade.
-Couchbase Server requires an offline upgrade task to migrate old data structures to new ones before starting the service.
-The Operator is unable&#8201;&#8212;&#8201;at present&#8201;&#8212;&#8201;to perform this upgrade action, therefore it must create new storage for new pods and copy data to the new storage.
-Any time required for an upgrade must be considered when planning an upgrade.</p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 <div class="sect2">
 <h3 id="couchbase-server-upgrade-constraints"><a class="anchor" href="#couchbase-server-upgrade-constraints"></a>Couchbase Server Upgrade Constraints</h3>
@@ -1298,6 +1314,9 @@ The Operator therefore can perform the following tasks:</p>
 As a result the Operator supports <a href="howto-persistent-volumes.html" class="xref page">persistent volume resizing</a> using a similar mechanism to <a href="#upgrading-pods">Upgrading Pods</a>.
 The Operator will detect a modification to the specification of a persistent volume template and schedule a pod upgrade in order to satisfy the request.</p>
 </div>
+<div class="paragraph">
+<p>During delta recovery, the PVC will be updated to include the updated image and couchbase server versions. The size of the PVC and data within it will not be edited.</p>
+</div>
 </div>
 </div>
 </article>
@@ -1359,7 +1378,7 @@ The Operator will detect a modification to the specification of a persistent vol
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2023 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

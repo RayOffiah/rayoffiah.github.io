@@ -13,13 +13,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
 <title>Configure Automated Backup and Restore | Couchbase Docs</title>
+<link rel="canonical" href="https://rayoffiah.github.io/operator/current/howto-backup.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.5">
+<meta name="dcterms.identifier" content="2.6">
 <meta name="page-url" content="/operator/current/howto-backup.html">
 <meta name="generator" content="Antora 3.0.3">
 <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
@@ -115,10 +116,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.5" data-url="overview.html" selected>2.5</option>
+          <option value="2.6" data-url="overview.html" selected>2.6</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.5">
+      <div class="version_items hide" data-version="2.6">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -790,6 +791,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a class="menu_title menu_link" href="reference-operator-logging.html">Operator Logging</a>
   </span>
 </li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="reference-prometheus-metrics.html">Operator Prometheus Metrics</a>
+  </span>
+</li>
 </ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
@@ -1122,7 +1128,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-You can configure the Autonomous Operator to take periodic, automated backups of your Couchbase cluster with the existing functionality provided by <code>cbbackupmgr</code>.
+You can configure the Autonomous Operator to take periodic, automated backups of your Couchbase cluster with the existing functionality provided by <code>cbbackupmgr</code>, as well as being able to trigger automated immediate backups.
 </blockquote>
 </div>
 </div>
@@ -1148,7 +1154,7 @@ The examples on this page assume a backup schedule based on the <em>Full/Increme
 <td class="content">
 <div class="paragraph">
 <p>Backup and restore jobs rely on a shared persistent volume claim (PVC) when in use.
-On Kubernetes platforms you must specify a value for <a href="resource/couchbasecluster.html#couchbaseclusters-spec-securitycontext" class="xref page"><code>couchbaseclusters.spec.securityContext.fsGroup</code></a> in order for volume permissions to be the same across all jobs.
+On Kubernetes platforms you must specify a value for <a href="resource/couchbasecluster.html#couchbaseclusters-spec-security-podsecuritycontext-fsgroup" class="xref page"><code>couchbaseclusters.spec.security.podSecurityContext.fsGroup</code></a> in order for volume permissions to be the same across all jobs.
 Red Hat OpenShift is not affected by this constraint.</p>
 </div>
 <div class="paragraph">
@@ -1245,26 +1251,52 @@ kind: CouchbaseBackup
 metadata:
   name: my-backup
 spec:
-  strategy: full_incremental
+  strategy: full_incremental <i class="conum" data-value="1"></i><b>(1)</b>
   full:
-    schedule: "0 3 * * 0" <i class="conum" data-value="1"></i><b>(1)</b>
+    schedule: "0 3 * * 0" <i class="conum" data-value="2"></i><b>(2)</b>
   incremental:
-    schedule: "0 3 * * 1-6" <i class="conum" data-value="1"></i><b>(1)</b>
-  size: 20Gi <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+    schedule: "0 3 * * 1-6" <i class="conum" data-value="2"></i><b>(2)</b>
+  size: 20Gi <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Periodic backups require <code>spec.strategy</code> to be either <code>full_only</code> or <code>full_incremental</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>On detection of the <code>CouchbaseBackup</code> resource, the Autonomous Operator creates the correct cron jobs for the <code>spec.full.schedule</code> and the <code>spec.incremental.schedule</code>.
 In this example a full backup would be performed at 3:00AM on a Sunday and then an incremental backup on every other day of the week at 3:00AM.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
 <td>The Autonomous Operator will also create a PersistentVolumeClaim (PVC) to store the backups and logs with the same name that is specified in <code>metadata.name</code>.
 So if a PVC called "my-backup" does not yet exist in this case, one will be created.
 This would also happen if for some reason the PVC was deleted.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>An immediate backup can also be triggered immediately using <code>CouchbaseBackup</code> resources with the <code>immediate_full</code> or <code>immediate_incremental</code> strategies. When the Autonomous Operator detects <code>CouchbaseBackup</code> resource with either of these strategies it will attempt to trigger a backup Job immediately. The following is a simple configuration with the minimum required fields set to take an immediate backup.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: couchbase.com/v2
+kind: CouchbaseBackup
+metadata:
+  name: my-backup
+spec:
+  strategy: immediate_full <i class="conum" data-value="1"></i><b>(1)</b>
+  size: 20Gi</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Immediate backups require <code>spec.strategy</code> to be either <code>immediate_full</code> or <code>immediate_incremental</code></td>
 </tr>
 </table>
 </div>
@@ -1328,6 +1360,7 @@ This would also happen if for some reason the PVC was deleted.</td>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ kubectl get cronjob
+$ kubectl get job
 $ kubectl get pvc</code></pre>
 </div>
 </div>
@@ -1341,6 +1374,7 @@ $ kubectl get pvc</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ oc get cronjob
+$ oc get job
 $ oc get pvc</code></pre>
 </div>
 </div>
@@ -1352,7 +1386,7 @@ $ oc get pvc</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For example, the output should look like:</p>
+<p>For example, for periodic backups the output of the <code>cronjobs</code> should look like:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1360,6 +1394,18 @@ $ oc get pvc</code></pre>
 my-backup-full              0 3 * * 0     False     0        &lt;none&gt;          18s
 my-backup-incremental       0 3 * * 1-6   False     0        &lt;none&gt;          18s</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>And for immediate backups the jobs should like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">NAME                        COMPLETIONS   DURATION   AGE
+my-immediate-backup-full    1/1           20s        17h</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Any backups that have been triggered should have PVCs with the backup data:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2536,7 +2582,7 @@ spec:
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2023 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

@@ -13,13 +13,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
 <title>cao | Couchbase Docs</title>
+<link rel="canonical" href="https://rayoffiah.github.io/operator/current/tools/cao.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.5">
+<meta name="dcterms.identifier" content="2.6">
 <meta name="page-url" content="/operator/current/tools/cao.html">
 <meta name="generator" content="Antora 3.0.3">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
@@ -115,10 +116,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.5" data-url="../overview.html" selected>2.5</option>
+          <option value="2.6" data-url="../overview.html" selected>2.6</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.5">
+      <div class="version_items hide" data-version="2.6">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -788,6 +789,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="menu_list" data-depth="2">
   <span class="menu_line">
     <a class="menu_title menu_link" href="../reference-operator-logging.html">Operator Logging</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../reference-prometheus-metrics.html">Operator Prometheus Metrics</a>
   </span>
 </li>
 </ul>
@@ -1513,6 +1519,16 @@ cao certify --namespace istio-enabled-namespace -- -istio</code></pre>
 <p>The name of the kubeconfig context to use</p>
 </div>
 </dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
 <dt class="hdlist1">--insecure-skip-tls-verify</dt>
 <dd>
 <p><strong>Type</strong>: bool</p>
@@ -2015,6 +2031,16 @@ cao collect-logs --log-level 0</code></pre>
 <p>Collect only resource for the named CouchbaseCluster, may be used multiple times</p>
 </div>
 </dd>
+<dt class="hdlist1">--customer</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: default</p>
+</div>
+<div class="paragraph">
+<p>Specifies the customer name for log uploading. This value must be a string whose maximum length is 50 characters. Only the following characters can be used: [A-Za-z0-9_.-].</p>
+</div>
+</dd>
 <dt class="hdlist1">--directory</dt>
 <dd>
 <p><strong>Type</strong>: string</p>
@@ -2080,6 +2106,40 @@ cao collect-logs --log-level 0</code></pre>
 </div>
 <div class="paragraph">
 <p>Collect kube-system resources and logs</p>
+</div>
+</dd>
+<dt class="hdlist1">--ticket</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Specifies the Couchbase Support ticket-number. The value must be a string with a maximum length of 7 characters, containing only digits in the range of 0-9.</p>
+</div>
+</dd>
+<dt class="hdlist1">--upload-host</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: <a href="https://uploads.couchbase.com" class="bare">https://uploads.couchbase.com</a></p>
+</div>
+<div class="paragraph">
+<p>Specifies the fully-qualified domain name of the host you want the logs uploaded to. The protocol prefix of the domain name</p>
+</div>
+</dd>
+<dt class="hdlist1">--upload-logs</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>Upload logs to support portal</p>
+</div>
+</dd>
+<dt class="hdlist1">--upload-proxy</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Specifies a proxy for log uploading</p>
 </div>
 </dd>
 </dl>
@@ -2156,6 +2216,16 @@ cao collect-logs --log-level 0</code></pre>
 <p><strong>Type</strong>: string</p>
 <div class="paragraph">
 <p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
 </div>
 </dd>
 <dt class="hdlist1">--insecure-skip-tls-verify</dt>
@@ -2487,6 +2557,16 @@ cao create admission --log-level debug</code></pre>
 <p>The name of the kubeconfig context to use</p>
 </div>
 </dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
 <dt class="hdlist1">--insecure-skip-tls-verify</dt>
 <dd>
 <p><strong>Type</strong>: bool</p>
@@ -2645,6 +2725,16 @@ cao create admission --log-level debug</code></pre>
 <p><strong>Type</strong>: string</p>
 <div class="paragraph">
 <p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
 </div>
 </dd>
 <dt class="hdlist1">--insecure-skip-tls-verify</dt>
@@ -2848,6 +2938,26 @@ cao create operator --pod-creation-timeout 1h</code></pre>
 <p>How long to wait before performing a delete on a failed pod.</p>
 </div>
 </dd>
+<dt class="hdlist1">--pod-readiness-delay</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 10s</p>
+</div>
+<div class="paragraph">
+<p>How long to wait before starting readiness probes on server pods.</p>
+</div>
+</dd>
+<dt class="hdlist1">--pod-readiness-period</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 20s</p>
+</div>
+<div class="paragraph">
+<p>How long to wait between readiness probes on server pods.</p>
+</div>
+</dd>
 <dt class="hdlist1">--scope</dt>
 <dd>
 <p><strong>Type</strong>: string</p>
@@ -2942,6 +3052,16 @@ cao create operator --pod-creation-timeout 1h</code></pre>
 <p><strong>Type</strong>: string</p>
 <div class="paragraph">
 <p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
 </div>
 </dd>
 <dt class="hdlist1">--insecure-skip-tls-verify</dt>
@@ -3127,6 +3247,16 @@ cao delete admission --scope namespace</code></pre>
 <p>The name of the kubeconfig context to use</p>
 </div>
 </dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
 <dt class="hdlist1">--insecure-skip-tls-verify</dt>
 <dd>
 <p><strong>Type</strong>: bool</p>
@@ -3271,6 +3401,16 @@ cao delete admission --scope namespace</code></pre>
 <p><strong>Type</strong>: string</p>
 <div class="paragraph">
 <p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
 </div>
 </dd>
 <dt class="hdlist1">--insecure-skip-tls-verify</dt>
@@ -3446,6 +3586,16 @@ cao delete operator --scope cluster</code></pre>
 <p><strong>Type</strong>: string</p>
 <div class="paragraph">
 <p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
 </div>
 </dd>
 <dt class="hdlist1">--insecure-skip-tls-verify</dt>
@@ -3777,6 +3927,16 @@ cao generate admission --log-level debug</code></pre>
 <p>The name of the kubeconfig context to use</p>
 </div>
 </dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
 <dt class="hdlist1">--insecure-skip-tls-verify</dt>
 <dd>
 <p><strong>Type</strong>: bool</p>
@@ -3935,6 +4095,16 @@ cao generate admission --log-level debug</code></pre>
 <p><strong>Type</strong>: string</p>
 <div class="paragraph">
 <p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
 </div>
 </dd>
 <dt class="hdlist1">--insecure-skip-tls-verify</dt>
@@ -4138,6 +4308,26 @@ cao generate operator --pod-creation-timeout 1h</code></pre>
 <p>How long to wait before performing a delete on a failed pod.</p>
 </div>
 </dd>
+<dt class="hdlist1">--pod-readiness-delay</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 10s</p>
+</div>
+<div class="paragraph">
+<p>How long to wait before starting readiness probes on server pods.</p>
+</div>
+</dd>
+<dt class="hdlist1">--pod-readiness-period</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 20s</p>
+</div>
+<div class="paragraph">
+<p>How long to wait between readiness probes on server pods.</p>
+</div>
+</dd>
 <dt class="hdlist1">--scope</dt>
 <dd>
 <p><strong>Type</strong>: string</p>
@@ -4232,6 +4422,16 @@ cao generate operator --pod-creation-timeout 1h</code></pre>
 <p><strong>Type</strong>: string</p>
 <div class="paragraph">
 <p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
 </div>
 </dd>
 <dt class="hdlist1">--insecure-skip-tls-verify</dt>
@@ -4488,6 +4688,16 @@ cao restore --path /bucket/scope -f save-data.yaml</code></pre>
 <p>The name of the kubeconfig context to use</p>
 </div>
 </dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
 <dt class="hdlist1">--insecure-skip-tls-verify</dt>
 <dd>
 <p><strong>Type</strong>: bool</p>
@@ -4704,6 +4914,16 @@ cao save --path /bucket/scope --filename save.yaml</code></pre>
 <p>The name of the kubeconfig context to use</p>
 </div>
 </dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
 <dt class="hdlist1">--insecure-skip-tls-verify</dt>
 <dd>
 <p><strong>Type</strong>: bool</p>
@@ -4875,6 +5095,16 @@ cao save --path /bucket/scope --filename save.yaml</code></pre>
 <p>The name of the kubeconfig context to use</p>
 </div>
 </dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
 <dt class="hdlist1">--insecure-skip-tls-verify</dt>
 <dd>
 <p><strong>Type</strong>: bool</p>
@@ -5021,6 +5251,16 @@ cao save --path /bucket/scope --filename save.yaml</code></pre>
 <p>The name of the kubeconfig context to use</p>
 </div>
 </dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
 <dt class="hdlist1">--insecure-skip-tls-verify</dt>
 <dd>
 <p><strong>Type</strong>: bool</p>
@@ -5147,7 +5387,7 @@ cao save --path /bucket/scope --filename save.yaml</code></pre>
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2023 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

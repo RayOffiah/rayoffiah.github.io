@@ -13,13 +13,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
 <title>CouchbaseCluster Resource | Couchbase Docs</title>
+<link rel="canonical" href="https://rayoffiah.github.io/operator/current/resource/couchbasecluster.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.5">
+<meta name="dcterms.identifier" content="2.6">
 <meta name="page-url" content="/operator/current/resource/couchbasecluster.html">
 <meta name="generator" content="Antora 3.0.3">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
@@ -115,10 +116,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.5" data-url="../overview.html" selected>2.5</option>
+          <option value="2.6" data-url="../overview.html" selected>2.6</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.5">
+      <div class="version_items hide" data-version="2.6">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -790,6 +791,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a class="menu_title menu_link" href="../reference-operator-logging.html">Operator Logging</a>
   </span>
 </li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../reference-prometheus-metrics.html">Operator Prometheus Metrics</a>
+  </span>
+</li>
 </ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
@@ -1308,6 +1314,7 @@ It allows configuration of cluster topology, networking, storage and security op
       <a href="#couchbaseclusters-spec-networking-tls-tlsminimumversion">tlsMinimumVersion</a>: TLS1.2
     <a href="#couchbaseclusters-spec-networking-waitforaddressreachable">waitForAddressReachable</a>: 10m
     <a href="#couchbaseclusters-spec-networking-waitforaddressreachabledelay">waitForAddressReachableDelay</a>: 2m
+  <a href="#couchbaseclusters-spec-onlinevolumeexpansiontimeoutinmins">onlineVolumeExpansionTimeoutInMins</a>: 0
   <a href="#couchbaseclusters-spec-paused">paused</a>: false
   <a href="#couchbaseclusters-spec-platform">platform</a>: ""
   <a href="#couchbaseclusters-spec-recoverypolicy">recoveryPolicy</a>: ""
@@ -1412,6 +1419,7 @@ It allows configuration of cluster topology, networking, storage and security op
       <a href="#couchbaseclusters-spec-servers-volumemounts-index">index</a>: ""
       <a href="#couchbaseclusters-spec-servers-volumemounts-logs">logs</a>: ""
   <a href="#couchbaseclusters-spec-softwareupdatenotifications">softwareUpdateNotifications</a>: false
+  <a href="#couchbaseclusters-spec-upgradeprocess">upgradeProcess</a>: ""
   <a href="#couchbaseclusters-spec-upgradestrategy">upgradeStrategy</a>: ""
   <a href="#couchbaseclusters-spec-volumeclaimtemplates">volumeClaimTemplates</a>: []
   <a href="#couchbaseclusters-spec-xdcr">xdcr</a>:
@@ -2748,7 +2756,8 @@ By default, the cluster name is that specified in the CouchbaseCluster resource&
 <div class="paragraph">
 <p>AuxIOThreads allows the number of threads used by the data service, per pod, to be altered.
 This indicates the number of threads that are to be used in the AuxIO thread pool to run auxiliary I/O tasks.
-This value must be between 4 and 64 threads, and should only be increased where there are sufficient CPU resources allocated for their use.
+This value must be between 1 and 64 threads and is only supported on CB versions 7.1.0+.
+and should only be increased where there are sufficient CPU resources allocated for their use.
 If not specified, this defaults to the default value set by Couchbase Server.</p>
 </div>
 </div>
@@ -2772,7 +2781,8 @@ If not specified, this defaults to the default value set by Couchbase Server.</p
 <div class="paragraph">
 <p>NonIOThreads allows the number of threads used by the data service, per pod, to be altered.
 This indicates the number of threads that are to be used in the NonIO thread pool to run in memory tasks.
-This value must be between 4 and 64 threads, and should only be increased where there are sufficient CPU resources allocated for their use.
+This value must be between 1 and 64 threads and is only supported on CB versions 7.1.0+.
+and should only be increased where there are sufficient CPU resources allocated for their use.
 If not specified, this defaults to the default value set by Couchbase Server.</p>
 </div>
 </div>
@@ -2795,7 +2805,8 @@ If not specified, this defaults to the default value set by Couchbase Server.</p
 <h4 id="description-72"><a class="anchor" href="#description-72"></a>Description</h4>
 <div class="paragraph">
 <p>ReaderThreads allows the number of threads used by the data service, per pod, to be altered.
-This value must be between 4 and 64 threads, and should only be increased where there are sufficient CPU resources allocated for their use.
+This value must be between 4 and 64 threads for CB versions below 7.1.0 and, or 1 and 64 for CB versions 7.1.0+.
+and should only be increased where there are sufficient CPU resources allocated for their use.
 If not specified, this defaults to the default value set by Couchbase Server.</p>
 </div>
 </div>
@@ -2819,7 +2830,8 @@ If not specified, this defaults to the default value set by Couchbase Server.</p
 <div class="paragraph">
 <p>WriterThreads allows the number of threads used by the data service, per pod, to be altered.
 This setting is especially relevant when using "durable writes", increasing this field will have a large impact on performance.
-This value must be between 4 and 64 threads, and should only be increased where there are sufficient CPU resources allocated for their use.
+This value must be between 4 and 64 threads for CB versions below 7.1.0 and, // or 1 and 64 for CB versions 7.1.0+.
+and should only be increased where there are sufficient CPU resources allocated for their use.
 If not specified, this defaults to the default value set by Couchbase Server.</p>
 </div>
 </div>
@@ -3950,7 +3962,7 @@ Disabling of address families is only supported in Couchbase Server 7.0.2+.</p>
 This allows services to be annotated, the service type defined and any other options that Kubernetes provides.
 When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled.
 The Operator reserves the right to modify or replace any field.
-More info: <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#service-v1-core" class="bare">https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#service-v1-core</a>.</p>
+More info: <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#service-v1-core" class="bare">https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#service-v1-core</a>.</p>
 </div>
 </div>
 </div>
@@ -4098,7 +4110,7 @@ The service is configured by the adminConsoleServiceTemplate field.</p>
 This allows services to be annotated, the service type defined and any other options that Kubernetes provides.
 When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled.
 The Operator reserves the right to modify or replace any field.
-More info: <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#service-v1-core" class="bare">https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#service-v1-core</a>.</p>
+More info: <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#service-v1-core" class="bare">https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#service-v1-core</a>.</p>
 </div>
 </div>
 </div>
@@ -4755,15 +4767,39 @@ This prevents negative DNS caching while waiting for external-DDNS controllers t
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-spec-paused"><a class="anchor" href="#couchbaseclusters-spec-paused"></a>couchbaseclusters.spec.paused</h3>
+<h3 id="couchbaseclusters-spec-onlinevolumeexpansiontimeoutinmins"><a class="anchor" href="#couchbaseclusters-spec-onlinevolumeexpansiontimeoutinmins"></a>couchbaseclusters.spec.onlineVolumeExpansionTimeoutInMins</h3>
 <div class="sect3">
 <h4 id="constraints-176"><a class="anchor" href="#constraints-176"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>integer</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Minimum</strong>: <code>0</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Maximum</strong>: <code>30</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-176"><a class="anchor" href="#description-176"></a>Description</h4>
+<div class="paragraph">
+<p>OnlineVolumeExpansionTimeoutInMins must be provided as a retry mechanism with a timeout in minutes for expanding volumes.
+This must only be provided, if EnableOnlineVolumeExpansion is set to true.
+Value must be between 0 and 30.
+If no value is provided, then it defaults to 10 minutes.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbaseclusters-spec-paused"><a class="anchor" href="#couchbaseclusters-spec-paused"></a>couchbaseclusters.spec.paused</h3>
+<div class="sect3">
+<h4 id="constraints-177"><a class="anchor" href="#constraints-177"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-176"><a class="anchor" href="#description-176"></a>Description</h4>
+<h4 id="description-177"><a class="anchor" href="#description-177"></a>Description</h4>
 <div class="paragraph">
 <p>Paused is to pause the control of the operator for the Couchbase cluster.
 This does not pause the cluster itself, instead stopping the operator from taking any action.</p>
@@ -4773,7 +4809,7 @@ This does not pause the cluster itself, instead stopping the operator from takin
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-platform"><a class="anchor" href="#couchbaseclusters-spec-platform"></a>couchbaseclusters.spec.platform</h3>
 <div class="sect3">
-<h4 id="constraints-177"><a class="anchor" href="#constraints-177"></a>Constraints</h4>
+<h4 id="constraints-178"><a class="anchor" href="#constraints-178"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
@@ -4782,7 +4818,7 @@ This does not pause the cluster itself, instead stopping the operator from takin
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-177"><a class="anchor" href="#description-177"></a>Description</h4>
+<h4 id="description-178"><a class="anchor" href="#description-178"></a>Description</h4>
 <div class="paragraph">
 <p>Platform gives a hint as to what platform we are running on and how to configure services.
 This field must be one of "aws", "gke" or "azure".</p>
@@ -4792,7 +4828,7 @@ This field must be one of "aws", "gke" or "azure".</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-recoverypolicy"><a class="anchor" href="#couchbaseclusters-spec-recoverypolicy"></a>couchbaseclusters.spec.recoveryPolicy</h3>
 <div class="sect3">
-<h4 id="constraints-178"><a class="anchor" href="#constraints-178"></a>Constraints</h4>
+<h4 id="constraints-179"><a class="anchor" href="#constraints-179"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
@@ -4801,7 +4837,7 @@ This field must be one of "aws", "gke" or "azure".</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-178"><a class="anchor" href="#description-178"></a>Description</h4>
+<h4 id="description-179"><a class="anchor" href="#description-179"></a>Description</h4>
 <div class="paragraph">
 <p>RecoveryPolicy controls how aggressive the Operator is when recovering cluster topology.
 When PrioritizeDataIntegrity, the Operator will delegate failover exclusively to Couchbase server, relying on it to only allow recovery when safe to do so.
@@ -4814,13 +4850,13 @@ This field must be either "PrioritizeDataIntegrity" or "PrioritizeUptime", defau
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-rollingupgrade"><a class="anchor" href="#couchbaseclusters-spec-rollingupgrade"></a>couchbaseclusters.spec.rollingUpgrade</h3>
 <div class="sect3">
-<h4 id="constraints-179"><a class="anchor" href="#constraints-179"></a>Constraints</h4>
+<h4 id="constraints-180"><a class="anchor" href="#constraints-180"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-179"><a class="anchor" href="#description-179"></a>Description</h4>
+<h4 id="description-180"><a class="anchor" href="#description-180"></a>Description</h4>
 <div class="paragraph">
 <p>When <code>spec.upgradeStrategy</code> is set to <code>RollingUpgrade</code> it will, by default, upgrade one pod at a time.
 If this field is specified then that number can be increased.</p>
@@ -4830,7 +4866,7 @@ If this field is specified then that number can be increased.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-rollingupgrade-maxupgradable"><a class="anchor" href="#couchbaseclusters-spec-rollingupgrade-maxupgradable"></a>couchbaseclusters.spec.rollingUpgrade.maxUpgradable</h3>
 <div class="sect3">
-<h4 id="constraints-180"><a class="anchor" href="#constraints-180"></a>Constraints</h4>
+<h4 id="constraints-181"><a class="anchor" href="#constraints-181"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>integer</code></p>
 </div>
@@ -4839,7 +4875,7 @@ If this field is specified then that number can be increased.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-180"><a class="anchor" href="#description-180"></a>Description</h4>
+<h4 id="description-181"><a class="anchor" href="#description-181"></a>Description</h4>
 <div class="paragraph">
 <p>MaxUpgradable allows the number of pods affected by an upgrade at any one time to be increased.
 By default a rolling upgrade will upgrade one pod at a time.
@@ -4852,7 +4888,7 @@ The smallest of <code>maxUpgradable</code> and <code>maxUpgradablePercent</code>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-rollingupgrade-maxupgradablepercent"><a class="anchor" href="#couchbaseclusters-spec-rollingupgrade-maxupgradablepercent"></a>couchbaseclusters.spec.rollingUpgrade.maxUpgradablePercent</h3>
 <div class="sect3">
-<h4 id="constraints-181"><a class="anchor" href="#constraints-181"></a>Constraints</h4>
+<h4 id="constraints-182"><a class="anchor" href="#constraints-182"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
@@ -4861,7 +4897,7 @@ The smallest of <code>maxUpgradable</code> and <code>maxUpgradablePercent</code>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-181"><a class="anchor" href="#description-181"></a>Description</h4>
+<h4 id="description-182"><a class="anchor" href="#description-182"></a>Description</h4>
 <div class="paragraph">
 <p>MaxUpgradablePercent allows the number of pods affected by an upgrade at any one time to be increased.
 By default a rolling upgrade will upgrade one pod at a time.
@@ -4877,7 +4913,7 @@ The smallest of <code>maxUpgradable</code> and <code>maxUpgradablePercent</code>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security"><a class="anchor" href="#couchbaseclusters-spec-security"></a>couchbaseclusters.spec.security</h3>
 <div class="sect3">
-<h4 id="constraints-182"><a class="anchor" href="#constraints-182"></a>Constraints</h4>
+<h4 id="constraints-183"><a class="anchor" href="#constraints-183"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -4886,7 +4922,7 @@ The smallest of <code>maxUpgradable</code> and <code>maxUpgradablePercent</code>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-182"><a class="anchor" href="#description-182"></a>Description</h4>
+<h4 id="description-183"><a class="anchor" href="#description-183"></a>Description</h4>
 <div class="paragraph">
 <p>Security defines Couchbase cluster security options such as the administrator account username and password, and user RBAC settings.</p>
 </div>
@@ -4895,7 +4931,7 @@ The smallest of <code>maxUpgradable</code> and <code>maxUpgradablePercent</code>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-adminsecret"><a class="anchor" href="#couchbaseclusters-spec-security-adminsecret"></a>couchbaseclusters.spec.security.adminSecret</h3>
 <div class="sect3">
-<h4 id="constraints-183"><a class="anchor" href="#constraints-183"></a>Constraints</h4>
+<h4 id="constraints-184"><a class="anchor" href="#constraints-184"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -4904,7 +4940,7 @@ The smallest of <code>maxUpgradable</code> and <code>maxUpgradablePercent</code>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-183"><a class="anchor" href="#description-183"></a>Description</h4>
+<h4 id="description-184"><a class="anchor" href="#description-184"></a>Description</h4>
 <div class="paragraph">
 <p>AdminSecret is the name of a Kubernetes secret to use for administrator authentication.
 The admin secret must contain the keys "username" and "password".
@@ -4915,13 +4951,13 @@ The password data must be at least 6 characters in length, and not contain the a
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap"><a class="anchor" href="#couchbaseclusters-spec-security-ldap"></a>couchbaseclusters.spec.security.ldap</h3>
 <div class="sect3">
-<h4 id="constraints-184"><a class="anchor" href="#constraints-184"></a>Constraints</h4>
+<h4 id="constraints-185"><a class="anchor" href="#constraints-185"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-184"><a class="anchor" href="#description-184"></a>Description</h4>
+<h4 id="description-185"><a class="anchor" href="#description-185"></a>Description</h4>
 <div class="paragraph">
 <p>LDAP provides settings to authenticate and authorize LDAP users with Couchbase Server.
 When specified, the Operator keeps these settings in sync with Cocuhbase Server&#8217;s LDAP configuration.
@@ -4932,7 +4968,7 @@ Leave empty to manually manage LDAP configuration.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap-authenticationenabled"><a class="anchor" href="#couchbaseclusters-spec-security-ldap-authenticationenabled"></a>couchbaseclusters.spec.security.ldap.authenticationEnabled</h3>
 <div class="sect3">
-<h4 id="constraints-185"><a class="anchor" href="#constraints-185"></a>Constraints</h4>
+<h4 id="constraints-186"><a class="anchor" href="#constraints-186"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
@@ -4941,7 +4977,7 @@ Leave empty to manually manage LDAP configuration.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-185"><a class="anchor" href="#description-185"></a>Description</h4>
+<h4 id="description-186"><a class="anchor" href="#description-186"></a>Description</h4>
 <div class="paragraph">
 <p>AuthenticationEnabled allows users who attempt to access Couchbase Server without having been added as local users to be authenticated against the specified LDAP Host(s).</p>
 </div>
@@ -4950,13 +4986,13 @@ Leave empty to manually manage LDAP configuration.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap-authorizationenabled"><a class="anchor" href="#couchbaseclusters-spec-security-ldap-authorizationenabled"></a>couchbaseclusters.spec.security.ldap.authorizationEnabled</h3>
 <div class="sect3">
-<h4 id="constraints-186"><a class="anchor" href="#constraints-186"></a>Constraints</h4>
+<h4 id="constraints-187"><a class="anchor" href="#constraints-187"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-186"><a class="anchor" href="#description-186"></a>Description</h4>
+<h4 id="description-187"><a class="anchor" href="#description-187"></a>Description</h4>
 <div class="paragraph">
 <p>AuthorizationEnabled allows authenticated LDAP users to be authorized with RBAC roles granted to any Couchbase Server group associated with the user.</p>
 </div>
@@ -4965,13 +5001,13 @@ Leave empty to manually manage LDAP configuration.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap-binddn"><a class="anchor" href="#couchbaseclusters-spec-security-ldap-binddn"></a>couchbaseclusters.spec.security.ldap.bindDN</h3>
 <div class="sect3">
-<h4 id="constraints-187"><a class="anchor" href="#constraints-187"></a>Constraints</h4>
+<h4 id="constraints-188"><a class="anchor" href="#constraints-188"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-187"><a class="anchor" href="#description-187"></a>Description</h4>
+<h4 id="description-188"><a class="anchor" href="#description-188"></a>Description</h4>
 <div class="paragraph">
 <p>DN to use for searching users and groups synchronization.
 More info: <a href="https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html" class="bare">https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html</a>.</p>
@@ -4981,7 +5017,7 @@ More info: <a href="https://docs.couchbase.com/server/current/manage/manage-secu
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap-bindsecret"><a class="anchor" href="#couchbaseclusters-spec-security-ldap-bindsecret"></a>couchbaseclusters.spec.security.ldap.bindSecret</h3>
 <div class="sect3">
-<h4 id="constraints-188"><a class="anchor" href="#constraints-188"></a>Constraints</h4>
+<h4 id="constraints-189"><a class="anchor" href="#constraints-189"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -4990,7 +5026,7 @@ More info: <a href="https://docs.couchbase.com/server/current/manage/manage-secu
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-188"><a class="anchor" href="#description-188"></a>Description</h4>
+<h4 id="description-189"><a class="anchor" href="#description-189"></a>Description</h4>
 <div class="paragraph">
 <p>BindSecret is the name of a Kubernetes secret to use containing password for LDAP user binding.
 The bindSecret must have a key with the name "password" and a value which corresponds to the password of the binding LDAP user.</p>
@@ -5000,13 +5036,13 @@ The bindSecret must have a key with the name "password" and a value which corres
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap-cacert"><a class="anchor" href="#couchbaseclusters-spec-security-ldap-cacert"></a>couchbaseclusters.spec.security.ldap.cacert</h3>
 <div class="sect3">
-<h4 id="constraints-189"><a class="anchor" href="#constraints-189"></a>Constraints</h4>
+<h4 id="constraints-190"><a class="anchor" href="#constraints-190"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-189"><a class="anchor" href="#description-189"></a>Description</h4>
+<h4 id="description-190"><a class="anchor" href="#description-190"></a>Description</h4>
 <div class="paragraph">
 <p><strong>DEPRECATED</strong> - Field is ignored, use tlsSecret.</p>
 </div>
@@ -5019,7 +5055,7 @@ This cert is the string form of the secret provided to <code>spec.tls.tlsSecret<
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap-cachevaluelifetime"><a class="anchor" href="#couchbaseclusters-spec-security-ldap-cachevaluelifetime"></a>couchbaseclusters.spec.security.ldap.cacheValueLifetime</h3>
 <div class="sect3">
-<h4 id="constraints-190"><a class="anchor" href="#constraints-190"></a>Constraints</h4>
+<h4 id="constraints-191"><a class="anchor" href="#constraints-191"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>integer</code></p>
 </div>
@@ -5028,7 +5064,7 @@ This cert is the string form of the secret provided to <code>spec.tls.tlsSecret<
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-190"><a class="anchor" href="#description-190"></a>Description</h4>
+<h4 id="description-191"><a class="anchor" href="#description-191"></a>Description</h4>
 <div class="paragraph">
 <p>Lifetime of values in cache in milliseconds.
 Default 300000 ms.
@@ -5039,7 +5075,7 @@ More info: <a href="https://docs.couchbase.com/server/current/manage/manage-secu
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap-encryption"><a class="anchor" href="#couchbaseclusters-spec-security-ldap-encryption"></a>couchbaseclusters.spec.security.ldap.encryption</h3>
 <div class="sect3">
-<h4 id="constraints-191"><a class="anchor" href="#constraints-191"></a>Constraints</h4>
+<h4 id="constraints-192"><a class="anchor" href="#constraints-192"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
@@ -5048,7 +5084,7 @@ More info: <a href="https://docs.couchbase.com/server/current/manage/manage-secu
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-191"><a class="anchor" href="#description-191"></a>Description</h4>
+<h4 id="description-192"><a class="anchor" href="#description-192"></a>Description</h4>
 <div class="paragraph">
 <p>Encryption determines how the connection with the LDAP server should be encrypted.
 Encryption may set as either StartTLSExtension, TLS, or false.
@@ -5060,13 +5096,13 @@ When Encryption is StartTLSExtension, or TLS is set then the default behavior is
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap-groupsquery"><a class="anchor" href="#couchbaseclusters-spec-security-ldap-groupsquery"></a>couchbaseclusters.spec.security.ldap.groupsQuery</h3>
 <div class="sect3">
-<h4 id="constraints-192"><a class="anchor" href="#constraints-192"></a>Constraints</h4>
+<h4 id="constraints-193"><a class="anchor" href="#constraints-193"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-192"><a class="anchor" href="#description-192"></a>Description</h4>
+<h4 id="description-193"><a class="anchor" href="#description-193"></a>Description</h4>
 <div class="paragraph">
 <p>LDAP query, to get the users' groups by username in RFC4516 format.
 More info: <a href="https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html" class="bare">https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html</a>.</p>
@@ -5076,7 +5112,7 @@ More info: <a href="https://docs.couchbase.com/server/current/manage/manage-secu
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap-hosts"><a class="anchor" href="#couchbaseclusters-spec-security-ldap-hosts"></a>couchbaseclusters.spec.security.ldap.hosts</h3>
 <div class="sect3">
-<h4 id="constraints-193"><a class="anchor" href="#constraints-193"></a>Constraints</h4>
+<h4 id="constraints-194"><a class="anchor" href="#constraints-194"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -5088,7 +5124,7 @@ More info: <a href="https://docs.couchbase.com/server/current/manage/manage-secu
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-193"><a class="anchor" href="#description-193"></a>Description</h4>
+<h4 id="description-194"><a class="anchor" href="#description-194"></a>Description</h4>
 <div class="paragraph">
 <p>List of LDAP hosts to provide authentication-support for Couchbase Server.
 Host name must be a valid IP address or DNS Name e.g openldap.default.svc, 10.0.92.147.</p>
@@ -5098,13 +5134,13 @@ Host name must be a valid IP address or DNS Name e.g openldap.default.svc, 10.0.
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap-nestedgroupsenabled"><a class="anchor" href="#couchbaseclusters-spec-security-ldap-nestedgroupsenabled"></a>couchbaseclusters.spec.security.ldap.nestedGroupsEnabled</h3>
 <div class="sect3">
-<h4 id="constraints-194"><a class="anchor" href="#constraints-194"></a>Constraints</h4>
+<h4 id="constraints-195"><a class="anchor" href="#constraints-195"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-194"><a class="anchor" href="#description-194"></a>Description</h4>
+<h4 id="description-195"><a class="anchor" href="#description-195"></a>Description</h4>
 <div class="paragraph">
 <p>If enabled Couchbase server will try to recursively search for groups for every discovered ldap group.
 groups_query will be user for the search.
@@ -5115,7 +5151,7 @@ More info: <a href="https://docs.couchbase.com/server/current/manage/manage-secu
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap-nestedgroupsmaxdepth"><a class="anchor" href="#couchbaseclusters-spec-security-ldap-nestedgroupsmaxdepth"></a>couchbaseclusters.spec.security.ldap.nestedGroupsMaxDepth</h3>
 <div class="sect3">
-<h4 id="constraints-195"><a class="anchor" href="#constraints-195"></a>Constraints</h4>
+<h4 id="constraints-196"><a class="anchor" href="#constraints-196"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>integer</code></p>
 </div>
@@ -5130,7 +5166,7 @@ More info: <a href="https://docs.couchbase.com/server/current/manage/manage-secu
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-195"><a class="anchor" href="#description-195"></a>Description</h4>
+<h4 id="description-196"><a class="anchor" href="#description-196"></a>Description</h4>
 <div class="paragraph">
 <p>Maximum number of recursive groups requests the server is allowed to perform.
 Requires NestedGroupsEnabled.
@@ -5142,7 +5178,7 @@ More info: <a href="https://docs.couchbase.com/server/current/manage/manage-secu
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap-port"><a class="anchor" href="#couchbaseclusters-spec-security-ldap-port"></a>couchbaseclusters.spec.security.ldap.port</h3>
 <div class="sect3">
-<h4 id="constraints-196"><a class="anchor" href="#constraints-196"></a>Constraints</h4>
+<h4 id="constraints-197"><a class="anchor" href="#constraints-197"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -5154,7 +5190,7 @@ More info: <a href="https://docs.couchbase.com/server/current/manage/manage-secu
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-196"><a class="anchor" href="#description-196"></a>Description</h4>
+<h4 id="description-197"><a class="anchor" href="#description-197"></a>Description</h4>
 <div class="paragraph">
 <p>LDAP port.
 This is typically 389 for LDAP, and 636 for LDAPS.</p>
@@ -5164,13 +5200,13 @@ This is typically 389 for LDAP, and 636 for LDAPS.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap-servercertvalidation"><a class="anchor" href="#couchbaseclusters-spec-security-ldap-servercertvalidation"></a>couchbaseclusters.spec.security.ldap.serverCertValidation</h3>
 <div class="sect3">
-<h4 id="constraints-197"><a class="anchor" href="#constraints-197"></a>Constraints</h4>
+<h4 id="constraints-198"><a class="anchor" href="#constraints-198"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-197"><a class="anchor" href="#description-197"></a>Description</h4>
+<h4 id="description-198"><a class="anchor" href="#description-198"></a>Description</h4>
 <div class="paragraph">
 <p>Whether server certificate validation be enabled.</p>
 </div>
@@ -5179,13 +5215,13 @@ This is typically 389 for LDAP, and 636 for LDAPS.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap-tlssecret"><a class="anchor" href="#couchbaseclusters-spec-security-ldap-tlssecret"></a>couchbaseclusters.spec.security.ldap.tlsSecret</h3>
 <div class="sect3">
-<h4 id="constraints-198"><a class="anchor" href="#constraints-198"></a>Constraints</h4>
+<h4 id="constraints-199"><a class="anchor" href="#constraints-199"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-198"><a class="anchor" href="#description-198"></a>Description</h4>
+<h4 id="description-199"><a class="anchor" href="#description-199"></a>Description</h4>
 <div class="paragraph">
 <p>TLSSecret is the name of a Kubernetes secret to use explcitly for LDAP ca cert.
 If TLSSecret is not provided, certificates found in <code>couchbaseclusters.spec.networking.tls.rootCAs</code> will be used instead.
@@ -5196,13 +5232,13 @@ If provided, the secret must contain the ca to be used under the name "ca.crt".<
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap-userdnmapping"><a class="anchor" href="#couchbaseclusters-spec-security-ldap-userdnmapping"></a>couchbaseclusters.spec.security.ldap.userDNMapping</h3>
 <div class="sect3">
-<h4 id="constraints-199"><a class="anchor" href="#constraints-199"></a>Constraints</h4>
+<h4 id="constraints-200"><a class="anchor" href="#constraints-200"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-199"><a class="anchor" href="#description-199"></a>Description</h4>
+<h4 id="description-200"><a class="anchor" href="#description-200"></a>Description</h4>
 <div class="paragraph">
 <p>User to distinguished name (DN) mapping.
 If none is specified, the username is used as the user’s distinguished name.
@@ -5213,13 +5249,13 @@ More info: <a href="https://docs.couchbase.com/server/current/manage/manage-secu
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap-userdnmapping-query"><a class="anchor" href="#couchbaseclusters-spec-security-ldap-userdnmapping-query"></a>couchbaseclusters.spec.security.ldap.userDNMapping.query</h3>
 <div class="sect3">
-<h4 id="constraints-200"><a class="anchor" href="#constraints-200"></a>Constraints</h4>
+<h4 id="constraints-201"><a class="anchor" href="#constraints-201"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-200"><a class="anchor" href="#description-200"></a>Description</h4>
+<h4 id="description-201"><a class="anchor" href="#description-201"></a>Description</h4>
 <div class="paragraph">
 <p>Query is the LDAP query to run to map from Couchbase user to LDAP distinguished name.</p>
 </div>
@@ -5228,13 +5264,13 @@ More info: <a href="https://docs.couchbase.com/server/current/manage/manage-secu
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-ldap-userdnmapping-template"><a class="anchor" href="#couchbaseclusters-spec-security-ldap-userdnmapping-template"></a>couchbaseclusters.spec.security.ldap.userDNMapping.template</h3>
 <div class="sect3">
-<h4 id="constraints-201"><a class="anchor" href="#constraints-201"></a>Constraints</h4>
+<h4 id="constraints-202"><a class="anchor" href="#constraints-202"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-201"><a class="anchor" href="#description-201"></a>Description</h4>
+<h4 id="description-202"><a class="anchor" href="#description-202"></a>Description</h4>
 <div class="paragraph">
 <p>This field specifies list of templates to use for providing username to DN mapping.
 The template may contain a placeholder specified as <code>%u</code> to represent the Couchbase user who is attempting to gain access.</p>
@@ -5244,13 +5280,13 @@ The template may contain a placeholder specified as <code>%u</code> to represent
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext"></a>couchbaseclusters.spec.security.podSecurityContext</h3>
 <div class="sect3">
-<h4 id="constraints-202"><a class="anchor" href="#constraints-202"></a>Constraints</h4>
+<h4 id="constraints-203"><a class="anchor" href="#constraints-203"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-202"><a class="anchor" href="#description-202"></a>Description</h4>
+<h4 id="description-203"><a class="anchor" href="#description-203"></a>Description</h4>
 <div class="paragraph">
 <p>PodSecurityContext allows the configuration of the security context for all Couchbase server pods.
 When using persistent volumes you may need to set the fsGroup field in order to write to the volume.
@@ -5262,13 +5298,13 @@ More info: <a href="https://kubernetes.io/docs/tasks/configure-pod-container/sec
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext-fsgroup"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-fsgroup"></a>couchbaseclusters.spec.security.podSecurityContext.fsGroup</h3>
 <div class="sect3">
-<h4 id="constraints-203"><a class="anchor" href="#constraints-203"></a>Constraints</h4>
+<h4 id="constraints-204"><a class="anchor" href="#constraints-204"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>integer</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-203"><a class="anchor" href="#description-203"></a>Description</h4>
+<h4 id="description-204"><a class="anchor" href="#description-204"></a>Description</h4>
 <div class="paragraph">
 <p>A special supplemental group that applies to all containers in a pod.
 Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:
@@ -5284,13 +5320,13 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext-fsgroupchangepolicy"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-fsgroupchangepolicy"></a>couchbaseclusters.spec.security.podSecurityContext.fsGroupChangePolicy</h3>
 <div class="sect3">
-<h4 id="constraints-204"><a class="anchor" href="#constraints-204"></a>Constraints</h4>
+<h4 id="constraints-205"><a class="anchor" href="#constraints-205"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-204"><a class="anchor" href="#description-204"></a>Description</h4>
+<h4 id="description-205"><a class="anchor" href="#description-205"></a>Description</h4>
 <div class="paragraph">
 <p>fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod.
 This field will only apply to volume types which support fsGroup based ownership(and permissions).
@@ -5304,13 +5340,13 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext-runasgroup"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-runasgroup"></a>couchbaseclusters.spec.security.podSecurityContext.runAsGroup</h3>
 <div class="sect3">
-<h4 id="constraints-205"><a class="anchor" href="#constraints-205"></a>Constraints</h4>
+<h4 id="constraints-206"><a class="anchor" href="#constraints-206"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>integer</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-205"><a class="anchor" href="#description-205"></a>Description</h4>
+<h4 id="description-206"><a class="anchor" href="#description-206"></a>Description</h4>
 <div class="paragraph">
 <p>The GID to run the entrypoint of the container process.
 Uses runtime default if unset.
@@ -5323,13 +5359,13 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext-runasnonroot"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-runasnonroot"></a>couchbaseclusters.spec.security.podSecurityContext.runAsNonRoot</h3>
 <div class="sect3">
-<h4 id="constraints-206"><a class="anchor" href="#constraints-206"></a>Constraints</h4>
+<h4 id="constraints-207"><a class="anchor" href="#constraints-207"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-206"><a class="anchor" href="#description-206"></a>Description</h4>
+<h4 id="description-207"><a class="anchor" href="#description-207"></a>Description</h4>
 <div class="paragraph">
 <p>Indicates that the container must run as a non-root user.
 If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does.
@@ -5342,13 +5378,13 @@ If set in both SecurityContext and PodSecurityContext, the value specified in Se
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext-runasuser"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-runasuser"></a>couchbaseclusters.spec.security.podSecurityContext.runAsUser</h3>
 <div class="sect3">
-<h4 id="constraints-207"><a class="anchor" href="#constraints-207"></a>Constraints</h4>
+<h4 id="constraints-208"><a class="anchor" href="#constraints-208"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>integer</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-207"><a class="anchor" href="#description-207"></a>Description</h4>
+<h4 id="description-208"><a class="anchor" href="#description-208"></a>Description</h4>
 <div class="paragraph">
 <p>The UID to run the entrypoint of the container process.
 Defaults to user specified in image metadata if unspecified.
@@ -5361,13 +5397,13 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext-selinuxoptions"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-selinuxoptions"></a>couchbaseclusters.spec.security.podSecurityContext.seLinuxOptions</h3>
 <div class="sect3">
-<h4 id="constraints-208"><a class="anchor" href="#constraints-208"></a>Constraints</h4>
+<h4 id="constraints-209"><a class="anchor" href="#constraints-209"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-208"><a class="anchor" href="#description-208"></a>Description</h4>
+<h4 id="description-209"><a class="anchor" href="#description-209"></a>Description</h4>
 <div class="paragraph">
 <p>The SELinux context to be applied to all containers.
 If unspecified, the container runtime will allocate a random SELinux context for each container.
@@ -5380,21 +5416,6 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext-selinuxoptions-level"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-selinuxoptions-level"></a>couchbaseclusters.spec.security.podSecurityContext.seLinuxOptions.level</h3>
 <div class="sect3">
-<h4 id="constraints-209"><a class="anchor" href="#constraints-209"></a>Constraints</h4>
-<div class="paragraph">
-<p><strong>Type</strong>: <code>string</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="description-209"><a class="anchor" href="#description-209"></a>Description</h4>
-<div class="paragraph">
-<p>Level is SELinux level label that applies to the container.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="couchbaseclusters-spec-security-podsecuritycontext-selinuxoptions-role"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-selinuxoptions-role"></a>couchbaseclusters.spec.security.podSecurityContext.seLinuxOptions.role</h3>
-<div class="sect3">
 <h4 id="constraints-210"><a class="anchor" href="#constraints-210"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
@@ -5403,12 +5424,12 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect3">
 <h4 id="description-210"><a class="anchor" href="#description-210"></a>Description</h4>
 <div class="paragraph">
-<p>Role is a SELinux role label that applies to the container.</p>
+<p>Level is SELinux level label that applies to the container.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-spec-security-podsecuritycontext-selinuxoptions-type"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-selinuxoptions-type"></a>couchbaseclusters.spec.security.podSecurityContext.seLinuxOptions.type</h3>
+<h3 id="couchbaseclusters-spec-security-podsecuritycontext-selinuxoptions-role"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-selinuxoptions-role"></a>couchbaseclusters.spec.security.podSecurityContext.seLinuxOptions.role</h3>
 <div class="sect3">
 <h4 id="constraints-211"><a class="anchor" href="#constraints-211"></a>Constraints</h4>
 <div class="paragraph">
@@ -5418,12 +5439,12 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect3">
 <h4 id="description-211"><a class="anchor" href="#description-211"></a>Description</h4>
 <div class="paragraph">
-<p>Type is a SELinux type label that applies to the container.</p>
+<p>Role is a SELinux role label that applies to the container.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-spec-security-podsecuritycontext-selinuxoptions-user"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-selinuxoptions-user"></a>couchbaseclusters.spec.security.podSecurityContext.seLinuxOptions.user</h3>
+<h3 id="couchbaseclusters-spec-security-podsecuritycontext-selinuxoptions-type"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-selinuxoptions-type"></a>couchbaseclusters.spec.security.podSecurityContext.seLinuxOptions.type</h3>
 <div class="sect3">
 <h4 id="constraints-212"><a class="anchor" href="#constraints-212"></a>Constraints</h4>
 <div class="paragraph">
@@ -5433,6 +5454,21 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect3">
 <h4 id="description-212"><a class="anchor" href="#description-212"></a>Description</h4>
 <div class="paragraph">
+<p>Type is a SELinux type label that applies to the container.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbaseclusters-spec-security-podsecuritycontext-selinuxoptions-user"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-selinuxoptions-user"></a>couchbaseclusters.spec.security.podSecurityContext.seLinuxOptions.user</h3>
+<div class="sect3">
+<h4 id="constraints-213"><a class="anchor" href="#constraints-213"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>string</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-213"><a class="anchor" href="#description-213"></a>Description</h4>
+<div class="paragraph">
 <p>User is a SELinux user label that applies to the container.</p>
 </div>
 </div>
@@ -5440,13 +5476,13 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext-seccompprofile"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-seccompprofile"></a>couchbaseclusters.spec.security.podSecurityContext.seccompProfile</h3>
 <div class="sect3">
-<h4 id="constraints-213"><a class="anchor" href="#constraints-213"></a>Constraints</h4>
+<h4 id="constraints-214"><a class="anchor" href="#constraints-214"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-213"><a class="anchor" href="#description-213"></a>Description</h4>
+<h4 id="description-214"><a class="anchor" href="#description-214"></a>Description</h4>
 <div class="paragraph">
 <p>The seccomp options to use by the containers in this pod.
 Note that this field cannot be set when spec.os.name is windows.</p>
@@ -5456,25 +5492,26 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext-seccompprofile-localhostprofile"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-seccompprofile-localhostprofile"></a>couchbaseclusters.spec.security.podSecurityContext.seccompProfile.localhostProfile</h3>
 <div class="sect3">
-<h4 id="constraints-214"><a class="anchor" href="#constraints-214"></a>Constraints</h4>
+<h4 id="constraints-215"><a class="anchor" href="#constraints-215"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-214"><a class="anchor" href="#description-214"></a>Description</h4>
+<h4 id="description-215"><a class="anchor" href="#description-215"></a>Description</h4>
 <div class="paragraph">
 <p>localhostProfile indicates a profile defined in a file on the node should be used.
 The profile must be preconfigured on the node to work.
 Must be a descending path, relative to the kubelet&#8217;s configured seccomp profile location.
-Must only be set if type is "Localhost".</p>
+Must be set if type is "Localhost".
+Must NOT be set for any other type.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext-seccompprofile-type"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-seccompprofile-type"></a>couchbaseclusters.spec.security.podSecurityContext.seccompProfile.type</h3>
 <div class="sect3">
-<h4 id="constraints-215"><a class="anchor" href="#constraints-215"></a>Constraints</h4>
+<h4 id="constraints-216"><a class="anchor" href="#constraints-216"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -5483,7 +5520,7 @@ Must only be set if type is "Localhost".</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-215"><a class="anchor" href="#description-215"></a>Description</h4>
+<h4 id="description-216"><a class="anchor" href="#description-216"></a>Description</h4>
 <div class="paragraph">
 <p>type indicates which kind of seccomp profile will be applied.
 Valid options are:
@@ -5496,16 +5533,17 @@ Unconfined - no profile should be applied.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext-supplementalgroups"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-supplementalgroups"></a>couchbaseclusters.spec.security.podSecurityContext.supplementalGroups</h3>
 <div class="sect3">
-<h4 id="constraints-216"><a class="anchor" href="#constraints-216"></a>Constraints</h4>
+<h4 id="constraints-217"><a class="anchor" href="#constraints-217"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]integer</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-216"><a class="anchor" href="#description-216"></a>Description</h4>
+<h4 id="description-217"><a class="anchor" href="#description-217"></a>Description</h4>
 <div class="paragraph">
-<p>A list of groups applied to the first process run in each container, in addition to the container&#8217;s primary GID.
-If unspecified, no groups will be added to any container.
+<p>A list of groups applied to the first process run in each container, in addition to the container&#8217;s primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process.
+If unspecified, no additional groups are added to any container.
+Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list.
 Note that this field cannot be set when spec.os.name is windows.</p>
 </div>
 </div>
@@ -5513,13 +5551,13 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext-sysctls"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-sysctls"></a>couchbaseclusters.spec.security.podSecurityContext.sysctls</h3>
 <div class="sect3">
-<h4 id="constraints-217"><a class="anchor" href="#constraints-217"></a>Constraints</h4>
+<h4 id="constraints-218"><a class="anchor" href="#constraints-218"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-217"><a class="anchor" href="#description-217"></a>Description</h4>
+<h4 id="description-218"><a class="anchor" href="#description-218"></a>Description</h4>
 <div class="paragraph">
 <p>Sysctls hold a list of namespaced sysctls used for the pod.
 Pods with unsupported sysctls (by the container runtime) might fail to launch.
@@ -5529,24 +5567,6 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 </div>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext-sysctls-name"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-sysctls-name"></a>couchbaseclusters.spec.security.podSecurityContext.sysctls.name</h3>
-<div class="sect3">
-<h4 id="constraints-218"><a class="anchor" href="#constraints-218"></a>Constraints</h4>
-<div class="paragraph">
-<p><strong>Required</strong></p>
-</div>
-<div class="paragraph">
-<p><strong>Type</strong>: <code>string</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="description-218"><a class="anchor" href="#description-218"></a>Description</h4>
-<div class="paragraph">
-<p>Name of a property to set.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="couchbaseclusters-spec-security-podsecuritycontext-sysctls-value"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-sysctls-value"></a>couchbaseclusters.spec.security.podSecurityContext.sysctls.value</h3>
 <div class="sect3">
 <h4 id="constraints-219"><a class="anchor" href="#constraints-219"></a>Constraints</h4>
 <div class="paragraph">
@@ -5559,6 +5579,24 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect3">
 <h4 id="description-219"><a class="anchor" href="#description-219"></a>Description</h4>
 <div class="paragraph">
+<p>Name of a property to set.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbaseclusters-spec-security-podsecuritycontext-sysctls-value"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-sysctls-value"></a>couchbaseclusters.spec.security.podSecurityContext.sysctls.value</h3>
+<div class="sect3">
+<h4 id="constraints-220"><a class="anchor" href="#constraints-220"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Required</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>string</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-220"><a class="anchor" href="#description-220"></a>Description</h4>
+<div class="paragraph">
 <p>Value of a property to set.</p>
 </div>
 </div>
@@ -5566,13 +5604,13 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext-windowsoptions"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-windowsoptions"></a>couchbaseclusters.spec.security.podSecurityContext.windowsOptions</h3>
 <div class="sect3">
-<h4 id="constraints-220"><a class="anchor" href="#constraints-220"></a>Constraints</h4>
+<h4 id="constraints-221"><a class="anchor" href="#constraints-221"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-220"><a class="anchor" href="#description-220"></a>Description</h4>
+<h4 id="description-221"><a class="anchor" href="#description-221"></a>Description</h4>
 <div class="paragraph">
 <p>The Windows specific settings applied to all containers.
 If unspecified, the options within a container&#8217;s SecurityContext will be used.
@@ -5584,21 +5622,6 @@ Note that this field cannot be set when spec.os.name is linux.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext-windowsoptions-gmsacredentialspec"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-windowsoptions-gmsacredentialspec"></a>couchbaseclusters.spec.security.podSecurityContext.windowsOptions.gmsaCredentialSpec</h3>
 <div class="sect3">
-<h4 id="constraints-221"><a class="anchor" href="#constraints-221"></a>Constraints</h4>
-<div class="paragraph">
-<p><strong>Type</strong>: <code>string</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="description-221"><a class="anchor" href="#description-221"></a>Description</h4>
-<div class="paragraph">
-<p>GMSACredentialSpec is where the GMSA admission webhook (<a href="https://github.com/kubernetes-sigs/windows-gmsa" class="bare">https://github.com/kubernetes-sigs/windows-gmsa</a>) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="couchbaseclusters-spec-security-podsecuritycontext-windowsoptions-gmsacredentialspecname"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-windowsoptions-gmsacredentialspecname"></a>couchbaseclusters.spec.security.podSecurityContext.windowsOptions.gmsaCredentialSpecName</h3>
-<div class="sect3">
 <h4 id="constraints-222"><a class="anchor" href="#constraints-222"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
@@ -5607,6 +5630,21 @@ Note that this field cannot be set when spec.os.name is linux.</p>
 <div class="sect3">
 <h4 id="description-222"><a class="anchor" href="#description-222"></a>Description</h4>
 <div class="paragraph">
+<p>GMSACredentialSpec is where the GMSA admission webhook (<a href="https://github.com/kubernetes-sigs/windows-gmsa" class="bare">https://github.com/kubernetes-sigs/windows-gmsa</a>) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbaseclusters-spec-security-podsecuritycontext-windowsoptions-gmsacredentialspecname"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-windowsoptions-gmsacredentialspecname"></a>couchbaseclusters.spec.security.podSecurityContext.windowsOptions.gmsaCredentialSpecName</h3>
+<div class="sect3">
+<h4 id="constraints-223"><a class="anchor" href="#constraints-223"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>string</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-223"><a class="anchor" href="#description-223"></a>Description</h4>
+<div class="paragraph">
 <p>GMSACredentialSpecName is the name of the GMSA credential spec to use.</p>
 </div>
 </div>
@@ -5614,17 +5652,15 @@ Note that this field cannot be set when spec.os.name is linux.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext-windowsoptions-hostprocess"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-windowsoptions-hostprocess"></a>couchbaseclusters.spec.security.podSecurityContext.windowsOptions.hostProcess</h3>
 <div class="sect3">
-<h4 id="constraints-223"><a class="anchor" href="#constraints-223"></a>Constraints</h4>
+<h4 id="constraints-224"><a class="anchor" href="#constraints-224"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-223"><a class="anchor" href="#description-223"></a>Description</h4>
+<h4 id="description-224"><a class="anchor" href="#description-224"></a>Description</h4>
 <div class="paragraph">
 <p>HostProcess determines if a container should be run as a 'Host Process' container.
-This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag.
-Setting this field without the feature flag will result in errors when validating the Pod.
 All of a Pod&#8217;s containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).
 In addition, if HostProcess is true then HostNetwork must also be set to true.</p>
 </div>
@@ -5633,13 +5669,13 @@ In addition, if HostProcess is true then HostNetwork must also be set to true.</
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-podsecuritycontext-windowsoptions-runasusername"><a class="anchor" href="#couchbaseclusters-spec-security-podsecuritycontext-windowsoptions-runasusername"></a>couchbaseclusters.spec.security.podSecurityContext.windowsOptions.runAsUserName</h3>
 <div class="sect3">
-<h4 id="constraints-224"><a class="anchor" href="#constraints-224"></a>Constraints</h4>
+<h4 id="constraints-225"><a class="anchor" href="#constraints-225"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-224"><a class="anchor" href="#description-224"></a>Description</h4>
+<h4 id="description-225"><a class="anchor" href="#description-225"></a>Description</h4>
 <div class="paragraph">
 <p>The UserName in Windows to run the entrypoint of the container process.
 Defaults to the user specified in image metadata if unspecified.
@@ -5651,13 +5687,13 @@ If set in both SecurityContext and PodSecurityContext, the value specified in Se
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-rbac"><a class="anchor" href="#couchbaseclusters-spec-security-rbac"></a>couchbaseclusters.spec.security.rbac</h3>
 <div class="sect3">
-<h4 id="constraints-225"><a class="anchor" href="#constraints-225"></a>Constraints</h4>
+<h4 id="constraints-226"><a class="anchor" href="#constraints-226"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-225"><a class="anchor" href="#description-225"></a>Description</h4>
+<h4 id="description-226"><a class="anchor" href="#description-226"></a>Description</h4>
 <div class="paragraph">
 <p>RBAC is the options provided for enabling and selecting RBAC User resources to manage.</p>
 </div>
@@ -5666,13 +5702,13 @@ If set in both SecurityContext and PodSecurityContext, the value specified in Se
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-rbac-managed"><a class="anchor" href="#couchbaseclusters-spec-security-rbac-managed"></a>couchbaseclusters.spec.security.rbac.managed</h3>
 <div class="sect3">
-<h4 id="constraints-226"><a class="anchor" href="#constraints-226"></a>Constraints</h4>
+<h4 id="constraints-227"><a class="anchor" href="#constraints-227"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-226"><a class="anchor" href="#description-226"></a>Description</h4>
+<h4 id="description-227"><a class="anchor" href="#description-227"></a>Description</h4>
 <div class="paragraph">
 <p>Managed defines whether RBAC is managed by us or the clients.</p>
 </div>
@@ -5681,13 +5717,13 @@ If set in both SecurityContext and PodSecurityContext, the value specified in Se
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-rbac-selector"><a class="anchor" href="#couchbaseclusters-spec-security-rbac-selector"></a>couchbaseclusters.spec.security.rbac.selector</h3>
 <div class="sect3">
-<h4 id="constraints-227"><a class="anchor" href="#constraints-227"></a>Constraints</h4>
+<h4 id="constraints-228"><a class="anchor" href="#constraints-228"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-227"><a class="anchor" href="#description-227"></a>Description</h4>
+<h4 id="description-228"><a class="anchor" href="#description-228"></a>Description</h4>
 <div class="paragraph">
 <p>Selector is a label selector used to list RBAC resources in the namespace that are managed by the Operator.</p>
 </div>
@@ -5696,13 +5732,13 @@ If set in both SecurityContext and PodSecurityContext, the value specified in Se
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext"></a>couchbaseclusters.spec.security.securityContext</h3>
 <div class="sect3">
-<h4 id="constraints-228"><a class="anchor" href="#constraints-228"></a>Constraints</h4>
+<h4 id="constraints-229"><a class="anchor" href="#constraints-229"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-228"><a class="anchor" href="#description-228"></a>Description</h4>
+<h4 id="description-229"><a class="anchor" href="#description-229"></a>Description</h4>
 <div class="paragraph">
 <p>SecurityContext defines the security options the container should be run with.
 If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.
@@ -5714,13 +5750,13 @@ More info: <a href="https://kubernetes.io/docs/tasks/configure-pod-container/sec
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-allowprivilegeescalation"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-allowprivilegeescalation"></a>couchbaseclusters.spec.security.securityContext.allowPrivilegeEscalation</h3>
 <div class="sect3">
-<h4 id="constraints-229"><a class="anchor" href="#constraints-229"></a>Constraints</h4>
+<h4 id="constraints-230"><a class="anchor" href="#constraints-230"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-229"><a class="anchor" href="#description-229"></a>Description</h4>
+<h4 id="description-230"><a class="anchor" href="#description-230"></a>Description</h4>
 <div class="paragraph">
 <p>AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process.
 This bool directly controls if the no_new_privs flag will be set on the container process.
@@ -5731,13 +5767,13 @@ AllowPrivilegeEscalation is true always when the container is: 1) run as Privile
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-capabilities"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-capabilities"></a>couchbaseclusters.spec.security.securityContext.capabilities</h3>
 <div class="sect3">
-<h4 id="constraints-230"><a class="anchor" href="#constraints-230"></a>Constraints</h4>
+<h4 id="constraints-231"><a class="anchor" href="#constraints-231"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-230"><a class="anchor" href="#description-230"></a>Description</h4>
+<h4 id="description-231"><a class="anchor" href="#description-231"></a>Description</h4>
 <div class="paragraph">
 <p>The capabilities to add/drop when running containers.
 Defaults to the default set of capabilities granted by the container runtime.
@@ -5748,21 +5784,6 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-capabilities-add"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-capabilities-add"></a>couchbaseclusters.spec.security.securityContext.capabilities.add</h3>
 <div class="sect3">
-<h4 id="constraints-231"><a class="anchor" href="#constraints-231"></a>Constraints</h4>
-<div class="paragraph">
-<p><strong>Type</strong>: <code>[]string</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="description-231"><a class="anchor" href="#description-231"></a>Description</h4>
-<div class="paragraph">
-<p>Added capabilities.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="couchbaseclusters-spec-security-securitycontext-capabilities-drop"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-capabilities-drop"></a>couchbaseclusters.spec.security.securityContext.capabilities.drop</h3>
-<div class="sect3">
 <h4 id="constraints-232"><a class="anchor" href="#constraints-232"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]string</code></p>
@@ -5771,6 +5792,21 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect3">
 <h4 id="description-232"><a class="anchor" href="#description-232"></a>Description</h4>
 <div class="paragraph">
+<p>Added capabilities.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbaseclusters-spec-security-securitycontext-capabilities-drop"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-capabilities-drop"></a>couchbaseclusters.spec.security.securityContext.capabilities.drop</h3>
+<div class="sect3">
+<h4 id="constraints-233"><a class="anchor" href="#constraints-233"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>[]string</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-233"><a class="anchor" href="#description-233"></a>Description</h4>
+<div class="paragraph">
 <p>Removed capabilities.</p>
 </div>
 </div>
@@ -5778,13 +5814,13 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-privileged"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-privileged"></a>couchbaseclusters.spec.security.securityContext.privileged</h3>
 <div class="sect3">
-<h4 id="constraints-233"><a class="anchor" href="#constraints-233"></a>Constraints</h4>
+<h4 id="constraints-234"><a class="anchor" href="#constraints-234"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-233"><a class="anchor" href="#description-233"></a>Description</h4>
+<h4 id="description-234"><a class="anchor" href="#description-234"></a>Description</h4>
 <div class="paragraph">
 <p>Run container in privileged mode.
 Processes in privileged containers are essentially equivalent to root on the host.
@@ -5796,13 +5832,13 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-procmount"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-procmount"></a>couchbaseclusters.spec.security.securityContext.procMount</h3>
 <div class="sect3">
-<h4 id="constraints-234"><a class="anchor" href="#constraints-234"></a>Constraints</h4>
+<h4 id="constraints-235"><a class="anchor" href="#constraints-235"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-234"><a class="anchor" href="#description-234"></a>Description</h4>
+<h4 id="description-235"><a class="anchor" href="#description-235"></a>Description</h4>
 <div class="paragraph">
 <p>procMount denotes the type of proc mount to use for the containers.
 The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths.
@@ -5814,13 +5850,13 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-readonlyrootfilesystem"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-readonlyrootfilesystem"></a>couchbaseclusters.spec.security.securityContext.readOnlyRootFilesystem</h3>
 <div class="sect3">
-<h4 id="constraints-235"><a class="anchor" href="#constraints-235"></a>Constraints</h4>
+<h4 id="constraints-236"><a class="anchor" href="#constraints-236"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-235"><a class="anchor" href="#description-235"></a>Description</h4>
+<h4 id="description-236"><a class="anchor" href="#description-236"></a>Description</h4>
 <div class="paragraph">
 <p>Whether this container has a read-only root filesystem.
 Default is false.
@@ -5831,13 +5867,13 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-runasgroup"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-runasgroup"></a>couchbaseclusters.spec.security.securityContext.runAsGroup</h3>
 <div class="sect3">
-<h4 id="constraints-236"><a class="anchor" href="#constraints-236"></a>Constraints</h4>
+<h4 id="constraints-237"><a class="anchor" href="#constraints-237"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>integer</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-236"><a class="anchor" href="#description-236"></a>Description</h4>
+<h4 id="description-237"><a class="anchor" href="#description-237"></a>Description</h4>
 <div class="paragraph">
 <p>The GID to run the entrypoint of the container process.
 Uses runtime default if unset.
@@ -5850,13 +5886,13 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-runasnonroot"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-runasnonroot"></a>couchbaseclusters.spec.security.securityContext.runAsNonRoot</h3>
 <div class="sect3">
-<h4 id="constraints-237"><a class="anchor" href="#constraints-237"></a>Constraints</h4>
+<h4 id="constraints-238"><a class="anchor" href="#constraints-238"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-237"><a class="anchor" href="#description-237"></a>Description</h4>
+<h4 id="description-238"><a class="anchor" href="#description-238"></a>Description</h4>
 <div class="paragraph">
 <p>Indicates that the container must run as a non-root user.
 If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does.
@@ -5869,13 +5905,13 @@ If set in both SecurityContext and PodSecurityContext, the value specified in Se
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-runasuser"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-runasuser"></a>couchbaseclusters.spec.security.securityContext.runAsUser</h3>
 <div class="sect3">
-<h4 id="constraints-238"><a class="anchor" href="#constraints-238"></a>Constraints</h4>
+<h4 id="constraints-239"><a class="anchor" href="#constraints-239"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>integer</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-238"><a class="anchor" href="#description-238"></a>Description</h4>
+<h4 id="description-239"><a class="anchor" href="#description-239"></a>Description</h4>
 <div class="paragraph">
 <p>The UID to run the entrypoint of the container process.
 Defaults to user specified in image metadata if unspecified.
@@ -5888,13 +5924,13 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-selinuxoptions"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-selinuxoptions"></a>couchbaseclusters.spec.security.securityContext.seLinuxOptions</h3>
 <div class="sect3">
-<h4 id="constraints-239"><a class="anchor" href="#constraints-239"></a>Constraints</h4>
+<h4 id="constraints-240"><a class="anchor" href="#constraints-240"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-239"><a class="anchor" href="#description-239"></a>Description</h4>
+<h4 id="description-240"><a class="anchor" href="#description-240"></a>Description</h4>
 <div class="paragraph">
 <p>The SELinux context to be applied to the container.
 If unspecified, the container runtime will allocate a random SELinux context for each container.
@@ -5907,21 +5943,6 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-selinuxoptions-level"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-selinuxoptions-level"></a>couchbaseclusters.spec.security.securityContext.seLinuxOptions.level</h3>
 <div class="sect3">
-<h4 id="constraints-240"><a class="anchor" href="#constraints-240"></a>Constraints</h4>
-<div class="paragraph">
-<p><strong>Type</strong>: <code>string</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="description-240"><a class="anchor" href="#description-240"></a>Description</h4>
-<div class="paragraph">
-<p>Level is SELinux level label that applies to the container.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="couchbaseclusters-spec-security-securitycontext-selinuxoptions-role"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-selinuxoptions-role"></a>couchbaseclusters.spec.security.securityContext.seLinuxOptions.role</h3>
-<div class="sect3">
 <h4 id="constraints-241"><a class="anchor" href="#constraints-241"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
@@ -5930,12 +5951,12 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect3">
 <h4 id="description-241"><a class="anchor" href="#description-241"></a>Description</h4>
 <div class="paragraph">
-<p>Role is a SELinux role label that applies to the container.</p>
+<p>Level is SELinux level label that applies to the container.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-spec-security-securitycontext-selinuxoptions-type"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-selinuxoptions-type"></a>couchbaseclusters.spec.security.securityContext.seLinuxOptions.type</h3>
+<h3 id="couchbaseclusters-spec-security-securitycontext-selinuxoptions-role"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-selinuxoptions-role"></a>couchbaseclusters.spec.security.securityContext.seLinuxOptions.role</h3>
 <div class="sect3">
 <h4 id="constraints-242"><a class="anchor" href="#constraints-242"></a>Constraints</h4>
 <div class="paragraph">
@@ -5945,12 +5966,12 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect3">
 <h4 id="description-242"><a class="anchor" href="#description-242"></a>Description</h4>
 <div class="paragraph">
-<p>Type is a SELinux type label that applies to the container.</p>
+<p>Role is a SELinux role label that applies to the container.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-spec-security-securitycontext-selinuxoptions-user"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-selinuxoptions-user"></a>couchbaseclusters.spec.security.securityContext.seLinuxOptions.user</h3>
+<h3 id="couchbaseclusters-spec-security-securitycontext-selinuxoptions-type"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-selinuxoptions-type"></a>couchbaseclusters.spec.security.securityContext.seLinuxOptions.type</h3>
 <div class="sect3">
 <h4 id="constraints-243"><a class="anchor" href="#constraints-243"></a>Constraints</h4>
 <div class="paragraph">
@@ -5960,6 +5981,21 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect3">
 <h4 id="description-243"><a class="anchor" href="#description-243"></a>Description</h4>
 <div class="paragraph">
+<p>Type is a SELinux type label that applies to the container.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbaseclusters-spec-security-securitycontext-selinuxoptions-user"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-selinuxoptions-user"></a>couchbaseclusters.spec.security.securityContext.seLinuxOptions.user</h3>
+<div class="sect3">
+<h4 id="constraints-244"><a class="anchor" href="#constraints-244"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>string</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-244"><a class="anchor" href="#description-244"></a>Description</h4>
+<div class="paragraph">
 <p>User is a SELinux user label that applies to the container.</p>
 </div>
 </div>
@@ -5967,13 +6003,13 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-seccompprofile"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-seccompprofile"></a>couchbaseclusters.spec.security.securityContext.seccompProfile</h3>
 <div class="sect3">
-<h4 id="constraints-244"><a class="anchor" href="#constraints-244"></a>Constraints</h4>
+<h4 id="constraints-245"><a class="anchor" href="#constraints-245"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-244"><a class="anchor" href="#description-244"></a>Description</h4>
+<h4 id="description-245"><a class="anchor" href="#description-245"></a>Description</h4>
 <div class="paragraph">
 <p>The seccomp options to use by this container.
 If seccomp options are provided at both the pod &amp; container level, the container options override the pod options.
@@ -5984,25 +6020,26 @@ Note that this field cannot be set when spec.os.name is windows.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-seccompprofile-localhostprofile"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-seccompprofile-localhostprofile"></a>couchbaseclusters.spec.security.securityContext.seccompProfile.localhostProfile</h3>
 <div class="sect3">
-<h4 id="constraints-245"><a class="anchor" href="#constraints-245"></a>Constraints</h4>
+<h4 id="constraints-246"><a class="anchor" href="#constraints-246"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-245"><a class="anchor" href="#description-245"></a>Description</h4>
+<h4 id="description-246"><a class="anchor" href="#description-246"></a>Description</h4>
 <div class="paragraph">
 <p>localhostProfile indicates a profile defined in a file on the node should be used.
 The profile must be preconfigured on the node to work.
 Must be a descending path, relative to the kubelet&#8217;s configured seccomp profile location.
-Must only be set if type is "Localhost".</p>
+Must be set if type is "Localhost".
+Must NOT be set for any other type.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-seccompprofile-type"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-seccompprofile-type"></a>couchbaseclusters.spec.security.securityContext.seccompProfile.type</h3>
 <div class="sect3">
-<h4 id="constraints-246"><a class="anchor" href="#constraints-246"></a>Constraints</h4>
+<h4 id="constraints-247"><a class="anchor" href="#constraints-247"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -6011,7 +6048,7 @@ Must only be set if type is "Localhost".</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-246"><a class="anchor" href="#description-246"></a>Description</h4>
+<h4 id="description-247"><a class="anchor" href="#description-247"></a>Description</h4>
 <div class="paragraph">
 <p>type indicates which kind of seccomp profile will be applied.
 Valid options are:
@@ -6024,13 +6061,13 @@ Unconfined - no profile should be applied.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-windowsoptions"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-windowsoptions"></a>couchbaseclusters.spec.security.securityContext.windowsOptions</h3>
 <div class="sect3">
-<h4 id="constraints-247"><a class="anchor" href="#constraints-247"></a>Constraints</h4>
+<h4 id="constraints-248"><a class="anchor" href="#constraints-248"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-247"><a class="anchor" href="#description-247"></a>Description</h4>
+<h4 id="description-248"><a class="anchor" href="#description-248"></a>Description</h4>
 <div class="paragraph">
 <p>The Windows specific settings applied to all containers.
 If unspecified, the options from the PodSecurityContext will be used.
@@ -6042,21 +6079,6 @@ Note that this field cannot be set when spec.os.name is linux.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-windowsoptions-gmsacredentialspec"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-windowsoptions-gmsacredentialspec"></a>couchbaseclusters.spec.security.securityContext.windowsOptions.gmsaCredentialSpec</h3>
 <div class="sect3">
-<h4 id="constraints-248"><a class="anchor" href="#constraints-248"></a>Constraints</h4>
-<div class="paragraph">
-<p><strong>Type</strong>: <code>string</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="description-248"><a class="anchor" href="#description-248"></a>Description</h4>
-<div class="paragraph">
-<p>GMSACredentialSpec is where the GMSA admission webhook (<a href="https://github.com/kubernetes-sigs/windows-gmsa" class="bare">https://github.com/kubernetes-sigs/windows-gmsa</a>) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="couchbaseclusters-spec-security-securitycontext-windowsoptions-gmsacredentialspecname"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-windowsoptions-gmsacredentialspecname"></a>couchbaseclusters.spec.security.securityContext.windowsOptions.gmsaCredentialSpecName</h3>
-<div class="sect3">
 <h4 id="constraints-249"><a class="anchor" href="#constraints-249"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
@@ -6065,6 +6087,21 @@ Note that this field cannot be set when spec.os.name is linux.</p>
 <div class="sect3">
 <h4 id="description-249"><a class="anchor" href="#description-249"></a>Description</h4>
 <div class="paragraph">
+<p>GMSACredentialSpec is where the GMSA admission webhook (<a href="https://github.com/kubernetes-sigs/windows-gmsa" class="bare">https://github.com/kubernetes-sigs/windows-gmsa</a>) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbaseclusters-spec-security-securitycontext-windowsoptions-gmsacredentialspecname"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-windowsoptions-gmsacredentialspecname"></a>couchbaseclusters.spec.security.securityContext.windowsOptions.gmsaCredentialSpecName</h3>
+<div class="sect3">
+<h4 id="constraints-250"><a class="anchor" href="#constraints-250"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>string</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-250"><a class="anchor" href="#description-250"></a>Description</h4>
+<div class="paragraph">
 <p>GMSACredentialSpecName is the name of the GMSA credential spec to use.</p>
 </div>
 </div>
@@ -6072,17 +6109,15 @@ Note that this field cannot be set when spec.os.name is linux.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-windowsoptions-hostprocess"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-windowsoptions-hostprocess"></a>couchbaseclusters.spec.security.securityContext.windowsOptions.hostProcess</h3>
 <div class="sect3">
-<h4 id="constraints-250"><a class="anchor" href="#constraints-250"></a>Constraints</h4>
+<h4 id="constraints-251"><a class="anchor" href="#constraints-251"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-250"><a class="anchor" href="#description-250"></a>Description</h4>
+<h4 id="description-251"><a class="anchor" href="#description-251"></a>Description</h4>
 <div class="paragraph">
 <p>HostProcess determines if a container should be run as a 'Host Process' container.
-This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag.
-Setting this field without the feature flag will result in errors when validating the Pod.
 All of a Pod&#8217;s containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).
 In addition, if HostProcess is true then HostNetwork must also be set to true.</p>
 </div>
@@ -6091,13 +6126,13 @@ In addition, if HostProcess is true then HostNetwork must also be set to true.</
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-securitycontext-windowsoptions-runasusername"><a class="anchor" href="#couchbaseclusters-spec-security-securitycontext-windowsoptions-runasusername"></a>couchbaseclusters.spec.security.securityContext.windowsOptions.runAsUserName</h3>
 <div class="sect3">
-<h4 id="constraints-251"><a class="anchor" href="#constraints-251"></a>Constraints</h4>
+<h4 id="constraints-252"><a class="anchor" href="#constraints-252"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-251"><a class="anchor" href="#description-251"></a>Description</h4>
+<h4 id="description-252"><a class="anchor" href="#description-252"></a>Description</h4>
 <div class="paragraph">
 <p>The UserName in Windows to run the entrypoint of the container process.
 Defaults to the user specified in image metadata if unspecified.
@@ -6109,7 +6144,7 @@ If set in both SecurityContext and PodSecurityContext, the value specified in Se
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-security-uisessiontimeout"><a class="anchor" href="#couchbaseclusters-spec-security-uisessiontimeout"></a>couchbaseclusters.spec.security.uiSessionTimeout</h3>
 <div class="sect3">
-<h4 id="constraints-252"><a class="anchor" href="#constraints-252"></a>Constraints</h4>
+<h4 id="constraints-253"><a class="anchor" href="#constraints-253"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>integer</code></p>
 </div>
@@ -6124,7 +6159,7 @@ If set in both SecurityContext and PodSecurityContext, the value specified in Se
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-252"><a class="anchor" href="#description-252"></a>Description</h4>
+<h4 id="description-253"><a class="anchor" href="#description-253"></a>Description</h4>
 <div class="paragraph">
 <p>UISessionTimeout sets how long, in minutes, before a user is declared inactive and signed out from the Couchbase Server UI.
 0 represents no time out.</p>
@@ -6134,13 +6169,13 @@ If set in both SecurityContext and PodSecurityContext, the value specified in Se
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-securitycontext"><a class="anchor" href="#couchbaseclusters-spec-securitycontext"></a>couchbaseclusters.spec.securityContext</h3>
 <div class="sect3">
-<h4 id="constraints-253"><a class="anchor" href="#constraints-253"></a>Constraints</h4>
+<h4 id="constraints-254"><a class="anchor" href="#constraints-254"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-253"><a class="anchor" href="#description-253"></a>Description</h4>
+<h4 id="description-254"><a class="anchor" href="#description-254"></a>Description</h4>
 <div class="paragraph">
 <p><strong>DEPRECATED</strong> - by spec.security.securityContext SecurityContext allows the configuration of the security context for all Couchbase server pods.</p>
 </div>
@@ -6154,13 +6189,13 @@ More info: <a href="https://kubernetes.io/docs/tasks/configure-pod-container/sec
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-servergroups"><a class="anchor" href="#couchbaseclusters-spec-servergroups"></a>couchbaseclusters.spec.serverGroups</h3>
 <div class="sect3">
-<h4 id="constraints-254"><a class="anchor" href="#constraints-254"></a>Constraints</h4>
+<h4 id="constraints-255"><a class="anchor" href="#constraints-255"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-254"><a class="anchor" href="#description-254"></a>Description</h4>
+<h4 id="description-255"><a class="anchor" href="#description-255"></a>Description</h4>
 <div class="paragraph">
 <p>ServerGroups define the set of availability zones you want to distribute pods over, and construct Couchbase server groups for.
 By default, most cloud providers will label nodes with the key "topology.kubernetes.io/zone", the values associated with that key are used here to provide explicit scheduling by the Operator.
@@ -6172,7 +6207,7 @@ Global server groups are applied to all server classes, and may be overridden on
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-servers"><a class="anchor" href="#couchbaseclusters-spec-servers"></a>couchbaseclusters.spec.servers</h3>
 <div class="sect3">
-<h4 id="constraints-255"><a class="anchor" href="#constraints-255"></a>Constraints</h4>
+<h4 id="constraints-256"><a class="anchor" href="#constraints-256"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -6184,7 +6219,7 @@ Global server groups are applied to all server classes, and may be overridden on
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-255"><a class="anchor" href="#description-255"></a>Description</h4>
+<h4 id="description-256"><a class="anchor" href="#description-256"></a>Description</h4>
 <div class="paragraph">
 <p>Servers defines server classes for the Operator to provision and manage.
 A server class defines what services are running and how many members make up that class.
@@ -6196,13 +6231,13 @@ At least one server class must be defined, and at least one server class must be
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-servers-autoscaleenabled"><a class="anchor" href="#couchbaseclusters-spec-servers-autoscaleenabled"></a>couchbaseclusters.spec.servers.autoscaleEnabled</h3>
 <div class="sect3">
-<h4 id="constraints-256"><a class="anchor" href="#constraints-256"></a>Constraints</h4>
+<h4 id="constraints-257"><a class="anchor" href="#constraints-257"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-256"><a class="anchor" href="#description-256"></a>Description</h4>
+<h4 id="description-257"><a class="anchor" href="#description-257"></a>Description</h4>
 <div class="paragraph">
 <p>AutoscaledEnabled defines whether the autoscaling feature is enabled for this class.
 When true, the Operator will create a CouchbaseAutoscaler resource for this server class.
@@ -6213,21 +6248,6 @@ The CouchbaseAutoscaler implements the Kubernetes scale API and can be controlle
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-servers-env"><a class="anchor" href="#couchbaseclusters-spec-servers-env"></a>couchbaseclusters.spec.servers.env</h3>
 <div class="sect3">
-<h4 id="constraints-257"><a class="anchor" href="#constraints-257"></a>Constraints</h4>
-<div class="paragraph">
-<p><strong>Type</strong>: <code>[]object</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="description-257"><a class="anchor" href="#description-257"></a>Description</h4>
-<div class="paragraph">
-<p>Env allows the setting of environment variables in the Couchbase server container.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="couchbaseclusters-spec-servers-envfrom"><a class="anchor" href="#couchbaseclusters-spec-servers-envfrom"></a>couchbaseclusters.spec.servers.envFrom</h3>
-<div class="sect3">
 <h4 id="constraints-258"><a class="anchor" href="#constraints-258"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]object</code></p>
@@ -6236,6 +6256,21 @@ The CouchbaseAutoscaler implements the Kubernetes scale API and can be controlle
 <div class="sect3">
 <h4 id="description-258"><a class="anchor" href="#description-258"></a>Description</h4>
 <div class="paragraph">
+<p>Env allows the setting of environment variables in the Couchbase server container.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbaseclusters-spec-servers-envfrom"><a class="anchor" href="#couchbaseclusters-spec-servers-envfrom"></a>couchbaseclusters.spec.servers.envFrom</h3>
+<div class="sect3">
+<h4 id="constraints-259"><a class="anchor" href="#constraints-259"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>[]object</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-259"><a class="anchor" href="#description-259"></a>Description</h4>
+<div class="paragraph">
 <p>EnvFrom allows the setting of environment variables in the Couchbase server container.</p>
 </div>
 </div>
@@ -6243,7 +6278,7 @@ The CouchbaseAutoscaler implements the Kubernetes scale API and can be controlle
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-servers-name"><a class="anchor" href="#couchbaseclusters-spec-servers-name"></a>couchbaseclusters.spec.servers.name</h3>
 <div class="sect3">
-<h4 id="constraints-259"><a class="anchor" href="#constraints-259"></a>Constraints</h4>
+<h4 id="constraints-260"><a class="anchor" href="#constraints-260"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -6252,7 +6287,7 @@ The CouchbaseAutoscaler implements the Kubernetes scale API and can be controlle
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-259"><a class="anchor" href="#description-259"></a>Description</h4>
+<h4 id="description-260"><a class="anchor" href="#description-260"></a>Description</h4>
 <div class="paragraph">
 <p>Name is a textual name for the server configuration and must be unique.
 The name is used by the operator to uniquely identify a server class, and map pods back to an intended configuration.</p>
@@ -6262,25 +6297,6 @@ The name is used by the operator to uniquely identify a server class, and map po
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-servers-pod"><a class="anchor" href="#couchbaseclusters-spec-servers-pod"></a>couchbaseclusters.spec.servers.pod</h3>
 <div class="sect3">
-<h4 id="constraints-260"><a class="anchor" href="#constraints-260"></a>Constraints</h4>
-<div class="paragraph">
-<p><strong>Type</strong>: <code>object</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="description-260"><a class="anchor" href="#description-260"></a>Description</h4>
-<div class="paragraph">
-<p>Pod defines a template used to create pod for each Couchbase server instance.
-Modifying pod metadata such as labels and annotations will update the pod in-place.
-Any other modification will result in a cluster upgrade in order to fulfill the request.
-The Operator reserves the right to modify or replace any field.
-More info: <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#pod-v1-core" class="bare">https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#pod-v1-core</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="couchbaseclusters-spec-servers-resources"><a class="anchor" href="#couchbaseclusters-spec-servers-resources"></a>couchbaseclusters.spec.servers.resources</h3>
-<div class="sect3">
 <h4 id="constraints-261"><a class="anchor" href="#constraints-261"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
@@ -6288,6 +6304,25 @@ More info: <a href="https://kubernetes.io/docs/reference/generated/kubernetes-ap
 </div>
 <div class="sect3">
 <h4 id="description-261"><a class="anchor" href="#description-261"></a>Description</h4>
+<div class="paragraph">
+<p>Pod defines a template used to create pod for each Couchbase server instance.
+Modifying pod metadata such as labels and annotations will update the pod in-place.
+Any other modification will result in a cluster upgrade in order to fulfill the request.
+The Operator reserves the right to modify or replace any field.
+More info: <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#pod-v1-core" class="bare">https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#pod-v1-core</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbaseclusters-spec-servers-resources"><a class="anchor" href="#couchbaseclusters-spec-servers-resources"></a>couchbaseclusters.spec.servers.resources</h3>
+<div class="sect3">
+<h4 id="constraints-262"><a class="anchor" href="#constraints-262"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>object</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-262"><a class="anchor" href="#description-262"></a>Description</h4>
 <div class="paragraph">
 <p>Resources are the resource requirements for the Couchbase server container.
 This field overrides any automatic allocation as defined by <code>spec.autoResourceAllocation</code>.</p>
@@ -6297,13 +6332,13 @@ This field overrides any automatic allocation as defined by <code>spec.autoResou
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-servers-servergroups"><a class="anchor" href="#couchbaseclusters-spec-servers-servergroups"></a>couchbaseclusters.spec.servers.serverGroups</h3>
 <div class="sect3">
-<h4 id="constraints-262"><a class="anchor" href="#constraints-262"></a>Constraints</h4>
+<h4 id="constraints-263"><a class="anchor" href="#constraints-263"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-262"><a class="anchor" href="#description-262"></a>Description</h4>
+<h4 id="description-263"><a class="anchor" href="#description-263"></a>Description</h4>
 <div class="paragraph">
 <p>ServerGroups define the set of availability zones you want to distribute pods over, and construct Couchbase server groups for.
 By default, most cloud providers will label nodes with the key "topology.kubernetes.io/zone", the values associated with that key are used here to provide explicit scheduling by the Operator.
@@ -6315,7 +6350,7 @@ Global server groups are applied to all server classes, and may be overridden on
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-servers-services"><a class="anchor" href="#couchbaseclusters-spec-servers-services"></a>couchbaseclusters.spec.servers.services</h3>
 <div class="sect3">
-<h4 id="constraints-263"><a class="anchor" href="#constraints-263"></a>Constraints</h4>
+<h4 id="constraints-264"><a class="anchor" href="#constraints-264"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -6327,7 +6362,7 @@ Global server groups are applied to all server classes, and may be overridden on
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-263"><a class="anchor" href="#description-263"></a>Description</h4>
+<h4 id="description-264"><a class="anchor" href="#description-264"></a>Description</h4>
 <div class="paragraph">
 <p>Services is the set of Couchbase services to run on this server class.
 At least one class must contain the data service.
@@ -6339,7 +6374,7 @@ Each service may only be specified once.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-servers-size"><a class="anchor" href="#couchbaseclusters-spec-servers-size"></a>couchbaseclusters.spec.servers.size</h3>
 <div class="sect3">
-<h4 id="constraints-264"><a class="anchor" href="#constraints-264"></a>Constraints</h4>
+<h4 id="constraints-265"><a class="anchor" href="#constraints-265"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -6351,7 +6386,7 @@ Each service may only be specified once.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-264"><a class="anchor" href="#description-264"></a>Description</h4>
+<h4 id="description-265"><a class="anchor" href="#description-265"></a>Description</h4>
 <div class="paragraph">
 <p>Size is the expected requested of the server class.
 This field must be greater than or equal to 1.</p>
@@ -6361,13 +6396,13 @@ This field must be greater than or equal to 1.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-servers-volumemounts"><a class="anchor" href="#couchbaseclusters-spec-servers-volumemounts"></a>couchbaseclusters.spec.servers.volumeMounts</h3>
 <div class="sect3">
-<h4 id="constraints-265"><a class="anchor" href="#constraints-265"></a>Constraints</h4>
+<h4 id="constraints-266"><a class="anchor" href="#constraints-266"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-265"><a class="anchor" href="#description-265"></a>Description</h4>
+<h4 id="description-266"><a class="anchor" href="#description-266"></a>Description</h4>
 <div class="paragraph">
 <p>VolumeMounts define persistent volume claims to attach to pod.</p>
 </div>
@@ -6376,13 +6411,13 @@ This field must be greater than or equal to 1.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-servers-volumemounts-analytics"><a class="anchor" href="#couchbaseclusters-spec-servers-volumemounts-analytics"></a>couchbaseclusters.spec.servers.volumeMounts.analytics</h3>
 <div class="sect3">
-<h4 id="constraints-266"><a class="anchor" href="#constraints-266"></a>Constraints</h4>
+<h4 id="constraints-267"><a class="anchor" href="#constraints-267"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-266"><a class="anchor" href="#description-266"></a>Description</h4>
+<h4 id="description-267"><a class="anchor" href="#description-267"></a>Description</h4>
 <div class="paragraph">
 <p>AnalyticsClaims are persistent volumes that encompass analytics storage associated with the analytics service.
 Analytics claims can only be used on server classes running the analytics service, and must be used in conjunction with the default claim.
@@ -6395,13 +6430,13 @@ This field references a volume claim template name as defined in "spec.volumeCla
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-servers-volumemounts-data"><a class="anchor" href="#couchbaseclusters-spec-servers-volumemounts-data"></a>couchbaseclusters.spec.servers.volumeMounts.data</h3>
 <div class="sect3">
-<h4 id="constraints-267"><a class="anchor" href="#constraints-267"></a>Constraints</h4>
+<h4 id="constraints-268"><a class="anchor" href="#constraints-268"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-267"><a class="anchor" href="#description-267"></a>Description</h4>
+<h4 id="description-268"><a class="anchor" href="#description-268"></a>Description</h4>
 <div class="paragraph">
 <p>DataClaim is a persistent volume that encompasses key/value storage associated with the data service.
 The data claim can only be used on server classes running the data service, and must be used in conjunction with the default claim.
@@ -6414,13 +6449,13 @@ This field references a volume claim template name as defined in "spec.volumeCla
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-servers-volumemounts-default"><a class="anchor" href="#couchbaseclusters-spec-servers-volumemounts-default"></a>couchbaseclusters.spec.servers.volumeMounts.default</h3>
 <div class="sect3">
-<h4 id="constraints-268"><a class="anchor" href="#constraints-268"></a>Constraints</h4>
+<h4 id="constraints-269"><a class="anchor" href="#constraints-269"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-268"><a class="anchor" href="#description-268"></a>Description</h4>
+<h4 id="description-269"><a class="anchor" href="#description-269"></a>Description</h4>
 <div class="paragraph">
 <p>DefaultClaim is a persistent volume that encompasses all Couchbase persistent data, including document storage, indexes and logs.
 The default volume can be used with any server class.
@@ -6433,13 +6468,13 @@ This field references a volume claim template name as defined in "spec.volumeCla
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-servers-volumemounts-index"><a class="anchor" href="#couchbaseclusters-spec-servers-volumemounts-index"></a>couchbaseclusters.spec.servers.volumeMounts.index</h3>
 <div class="sect3">
-<h4 id="constraints-269"><a class="anchor" href="#constraints-269"></a>Constraints</h4>
+<h4 id="constraints-270"><a class="anchor" href="#constraints-270"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-269"><a class="anchor" href="#description-269"></a>Description</h4>
+<h4 id="description-270"><a class="anchor" href="#description-270"></a>Description</h4>
 <div class="paragraph">
 <p>IndexClaim s a persistent volume that encompasses index storage associated with the index and search services.
 The index claim can only be used on server classes running the index or search services, and must be used in conjunction with the default claim.
@@ -6453,13 +6488,13 @@ Whilst this references index primarily, note that the full text search (FTS) ser
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-servers-volumemounts-logs"><a class="anchor" href="#couchbaseclusters-spec-servers-volumemounts-logs"></a>couchbaseclusters.spec.servers.volumeMounts.logs</h3>
 <div class="sect3">
-<h4 id="constraints-270"><a class="anchor" href="#constraints-270"></a>Constraints</h4>
+<h4 id="constraints-271"><a class="anchor" href="#constraints-271"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-270"><a class="anchor" href="#description-270"></a>Description</h4>
+<h4 id="description-271"><a class="anchor" href="#description-271"></a>Description</h4>
 <div class="paragraph">
 <p>LogsClaim is a persistent volume that encompasses only Couchbase server logs to aid with supporting the product.
 The logs claim can only be used on server classes running the following services: query, search &amp; eventing.
@@ -6473,13 +6508,13 @@ The reason for this is that a failure of these nodes will require indexes to be 
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-softwareupdatenotifications"><a class="anchor" href="#couchbaseclusters-spec-softwareupdatenotifications"></a>couchbaseclusters.spec.softwareUpdateNotifications</h3>
 <div class="sect3">
-<h4 id="constraints-271"><a class="anchor" href="#constraints-271"></a>Constraints</h4>
+<h4 id="constraints-272"><a class="anchor" href="#constraints-272"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-271"><a class="anchor" href="#description-271"></a>Description</h4>
+<h4 id="description-272"><a class="anchor" href="#description-272"></a>Description</h4>
 <div class="paragraph">
 <p>SoftwareUpdateNotifications enables software update notifications in the UI.
 When enabled, the UI will alert when a Couchbase server upgrade is available.</p>
@@ -6487,9 +6522,30 @@ When enabled, the UI will alert when a Couchbase server upgrade is available.</p
 </div>
 </div>
 <div class="sect2">
+<h3 id="couchbaseclusters-spec-upgradeprocess"><a class="anchor" href="#couchbaseclusters-spec-upgradeprocess"></a>couchbaseclusters.spec.upgradeProcess</h3>
+<div class="sect3">
+<h4 id="constraints-273"><a class="anchor" href="#constraints-273"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>string</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Enumerations</strong>: <code>SwapRebalance, DeltaRecovery</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-273"><a class="anchor" href="#description-273"></a>Description</h4>
+<div class="paragraph">
+<p>UpgradeProcess defines the process that will be used when performing a couchbase cluster upgrade.
+When SwapRebalance is requested (default), pods will be upgraded using either a RollingUpgrade or ImmediateUpgrade (determined by UpgradeStrategy).
+When DeltaRecovery is requested, the operator will perform an in-place upgrade on a best effort basis.
+DeltaRecovery cannot be used if the UpgradeStrategy is set to ImmediateUpgrade.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="couchbaseclusters-spec-upgradestrategy"><a class="anchor" href="#couchbaseclusters-spec-upgradestrategy"></a>couchbaseclusters.spec.upgradeStrategy</h3>
 <div class="sect3">
-<h4 id="constraints-272"><a class="anchor" href="#constraints-272"></a>Constraints</h4>
+<h4 id="constraints-274"><a class="anchor" href="#constraints-274"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
@@ -6498,7 +6554,7 @@ When enabled, the UI will alert when a Couchbase server upgrade is available.</p
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-272"><a class="anchor" href="#description-272"></a>Description</h4>
+<h4 id="description-274"><a class="anchor" href="#description-274"></a>Description</h4>
 <div class="paragraph">
 <p>UpgradeStrategy controls how aggressive the Operator is when performing a cluster upgrade.
 When a rolling upgrade is requested, pods are upgraded one at a time.
@@ -6512,13 +6568,13 @@ This field must be either "RollingUpgrade" or "ImmediateUpgrade", defaulting to 
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-volumeclaimtemplates"><a class="anchor" href="#couchbaseclusters-spec-volumeclaimtemplates"></a>couchbaseclusters.spec.volumeClaimTemplates</h3>
 <div class="sect3">
-<h4 id="constraints-273"><a class="anchor" href="#constraints-273"></a>Constraints</h4>
+<h4 id="constraints-275"><a class="anchor" href="#constraints-275"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-273"><a class="anchor" href="#description-273"></a>Description</h4>
+<h4 id="description-275"><a class="anchor" href="#description-275"></a>Description</h4>
 <div class="paragraph">
 <p>VolumeClaimTemplates define the desired characteristics of a volume that can be requested/claimed by a pod, for example the storage class to use and the volume size.
 Volume claim templates are referred to by name by server class volume mount configuration.</p>
@@ -6528,13 +6584,13 @@ Volume claim templates are referred to by name by server class volume mount conf
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-xdcr"><a class="anchor" href="#couchbaseclusters-spec-xdcr"></a>couchbaseclusters.spec.xdcr</h3>
 <div class="sect3">
-<h4 id="constraints-274"><a class="anchor" href="#constraints-274"></a>Constraints</h4>
+<h4 id="constraints-276"><a class="anchor" href="#constraints-276"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-274"><a class="anchor" href="#description-274"></a>Description</h4>
+<h4 id="description-276"><a class="anchor" href="#description-276"></a>Description</h4>
 <div class="paragraph">
 <p>XDCR defines whether the Operator should manage XDCR, remote clusters and how to lookup replication resources.</p>
 </div>
@@ -6543,13 +6599,13 @@ Volume claim templates are referred to by name by server class volume mount conf
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-xdcr-managed"><a class="anchor" href="#couchbaseclusters-spec-xdcr-managed"></a>couchbaseclusters.spec.xdcr.managed</h3>
 <div class="sect3">
-<h4 id="constraints-275"><a class="anchor" href="#constraints-275"></a>Constraints</h4>
+<h4 id="constraints-277"><a class="anchor" href="#constraints-277"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-275"><a class="anchor" href="#description-275"></a>Description</h4>
+<h4 id="description-277"><a class="anchor" href="#description-277"></a>Description</h4>
 <div class="paragraph">
 <p>Managed defines whether XDCR is managed by the operator or not.</p>
 </div>
@@ -6558,13 +6614,13 @@ Volume claim templates are referred to by name by server class volume mount conf
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-xdcr-remoteclusters"><a class="anchor" href="#couchbaseclusters-spec-xdcr-remoteclusters"></a>couchbaseclusters.spec.xdcr.remoteClusters</h3>
 <div class="sect3">
-<h4 id="constraints-276"><a class="anchor" href="#constraints-276"></a>Constraints</h4>
+<h4 id="constraints-278"><a class="anchor" href="#constraints-278"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-276"><a class="anchor" href="#description-276"></a>Description</h4>
+<h4 id="description-278"><a class="anchor" href="#description-278"></a>Description</h4>
 <div class="paragraph">
 <p>RemoteClusters is a set of named remote clusters to establish replications to.</p>
 </div>
@@ -6573,13 +6629,13 @@ Volume claim templates are referred to by name by server class volume mount conf
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-xdcr-remoteclusters-authenticationsecret"><a class="anchor" href="#couchbaseclusters-spec-xdcr-remoteclusters-authenticationsecret"></a>couchbaseclusters.spec.xdcr.remoteClusters.authenticationSecret</h3>
 <div class="sect3">
-<h4 id="constraints-277"><a class="anchor" href="#constraints-277"></a>Constraints</h4>
+<h4 id="constraints-279"><a class="anchor" href="#constraints-279"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-277"><a class="anchor" href="#description-277"></a>Description</h4>
+<h4 id="description-279"><a class="anchor" href="#description-279"></a>Description</h4>
 <div class="paragraph">
 <p>AuthenticationSecret is a secret used to authenticate when establishing a remote connection.
 It is only required when not using mTLS.
@@ -6590,7 +6646,7 @@ The secret must contain a username (secret key "username") and password (secret 
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-xdcr-remoteclusters-hostname"><a class="anchor" href="#couchbaseclusters-spec-xdcr-remoteclusters-hostname"></a>couchbaseclusters.spec.xdcr.remoteClusters.hostname</h3>
 <div class="sect3">
-<h4 id="constraints-278"><a class="anchor" href="#constraints-278"></a>Constraints</h4>
+<h4 id="constraints-280"><a class="anchor" href="#constraints-280"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -6602,7 +6658,7 @@ The secret must contain a username (secret key "username") and password (secret 
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-278"><a class="anchor" href="#description-278"></a>Description</h4>
+<h4 id="description-280"><a class="anchor" href="#description-280"></a>Description</h4>
 <div class="paragraph">
 <p>Hostname is the connection string to use to connect the remote cluster.
 To use IPv6, place brackets (<code>[</code>, <code>]</code>) around the IPv6 value.</p>
@@ -6612,7 +6668,7 @@ To use IPv6, place brackets (<code>[</code>, <code>]</code>) around the IPv6 val
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-xdcr-remoteclusters-name"><a class="anchor" href="#couchbaseclusters-spec-xdcr-remoteclusters-name"></a>couchbaseclusters.spec.xdcr.remoteClusters.name</h3>
 <div class="sect3">
-<h4 id="constraints-279"><a class="anchor" href="#constraints-279"></a>Constraints</h4>
+<h4 id="constraints-281"><a class="anchor" href="#constraints-281"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -6621,7 +6677,7 @@ To use IPv6, place brackets (<code>[</code>, <code>]</code>) around the IPv6 val
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-279"><a class="anchor" href="#description-279"></a>Description</h4>
+<h4 id="description-281"><a class="anchor" href="#description-281"></a>Description</h4>
 <div class="paragraph">
 <p>Name of the remote cluster.
 Note that, -operator-managed is added as suffix by operator automatically to the name in order to diffrentiate from non operator managed remote clusters.</p>
@@ -6631,13 +6687,13 @@ Note that, -operator-managed is added as suffix by operator automatically to the
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-xdcr-remoteclusters-replications"><a class="anchor" href="#couchbaseclusters-spec-xdcr-remoteclusters-replications"></a>couchbaseclusters.spec.xdcr.remoteClusters.replications</h3>
 <div class="sect3">
-<h4 id="constraints-280"><a class="anchor" href="#constraints-280"></a>Constraints</h4>
+<h4 id="constraints-282"><a class="anchor" href="#constraints-282"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-280"><a class="anchor" href="#description-280"></a>Description</h4>
+<h4 id="description-282"><a class="anchor" href="#description-282"></a>Description</h4>
 <div class="paragraph">
 <p>Replications are replication streams from this cluster to the remote one.
 This field defines how to look up CouchbaseReplication resources.
@@ -6648,13 +6704,13 @@ By default any CouchbaseReplication resources in the namespace will be considere
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-xdcr-remoteclusters-replications-selector"><a class="anchor" href="#couchbaseclusters-spec-xdcr-remoteclusters-replications-selector"></a>couchbaseclusters.spec.xdcr.remoteClusters.replications.selector</h3>
 <div class="sect3">
-<h4 id="constraints-281"><a class="anchor" href="#constraints-281"></a>Constraints</h4>
+<h4 id="constraints-283"><a class="anchor" href="#constraints-283"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-281"><a class="anchor" href="#description-281"></a>Description</h4>
+<h4 id="description-283"><a class="anchor" href="#description-283"></a>Description</h4>
 <div class="paragraph">
 <p>Selector allows CouchbaseReplication resources to be filtered based on labels.</p>
 </div>
@@ -6663,13 +6719,13 @@ By default any CouchbaseReplication resources in the namespace will be considere
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-xdcr-remoteclusters-tls"><a class="anchor" href="#couchbaseclusters-spec-xdcr-remoteclusters-tls"></a>couchbaseclusters.spec.xdcr.remoteClusters.tls</h3>
 <div class="sect3">
-<h4 id="constraints-282"><a class="anchor" href="#constraints-282"></a>Constraints</h4>
+<h4 id="constraints-284"><a class="anchor" href="#constraints-284"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-282"><a class="anchor" href="#description-282"></a>Description</h4>
+<h4 id="description-284"><a class="anchor" href="#description-284"></a>Description</h4>
 <div class="paragraph">
 <p>TLS if specified references a resource containing the necessary certificate data for an encrypted connection.</p>
 </div>
@@ -6678,7 +6734,7 @@ By default any CouchbaseReplication resources in the namespace will be considere
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-xdcr-remoteclusters-tls-secret"><a class="anchor" href="#couchbaseclusters-spec-xdcr-remoteclusters-tls-secret"></a>couchbaseclusters.spec.xdcr.remoteClusters.tls.secret</h3>
 <div class="sect3">
-<h4 id="constraints-283"><a class="anchor" href="#constraints-283"></a>Constraints</h4>
+<h4 id="constraints-285"><a class="anchor" href="#constraints-285"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -6687,7 +6743,7 @@ By default any CouchbaseReplication resources in the namespace will be considere
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-283"><a class="anchor" href="#description-283"></a>Description</h4>
+<h4 id="description-285"><a class="anchor" href="#description-285"></a>Description</h4>
 <div class="paragraph">
 <p>Secret references a secret containing the CA certificate (data key "ca"), and optionally a client certificate (data key "certificate") and key (data key "key").</p>
 </div>
@@ -6696,7 +6752,7 @@ By default any CouchbaseReplication resources in the namespace will be considere
 <div class="sect2">
 <h3 id="couchbaseclusters-spec-xdcr-remoteclusters-uuid"><a class="anchor" href="#couchbaseclusters-spec-xdcr-remoteclusters-uuid"></a>couchbaseclusters.spec.xdcr.remoteClusters.uuid</h3>
 <div class="sect3">
-<h4 id="constraints-284"><a class="anchor" href="#constraints-284"></a>Constraints</h4>
+<h4 id="constraints-286"><a class="anchor" href="#constraints-286"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -6708,7 +6764,7 @@ By default any CouchbaseReplication resources in the namespace will be considere
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-284"><a class="anchor" href="#description-284"></a>Description</h4>
+<h4 id="description-286"><a class="anchor" href="#description-286"></a>Description</h4>
 <div class="paragraph">
 <p>UUID of the remote cluster.
 The UUID of a CouchbaseCluster resource is advertised in the status.clusterId field of the resource.</p>
@@ -6721,13 +6777,13 @@ The UUID of a CouchbaseCluster resource is advertised in the status.clusterId fi
 <h2 id="couchbaseclusters-status"><a class="anchor" href="#couchbaseclusters-status"></a>couchbaseclusters.status</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="constraints-285"><a class="anchor" href="#constraints-285"></a>Constraints</h3>
+<h3 id="constraints-287"><a class="anchor" href="#constraints-287"></a>Constraints</h3>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="description-285"><a class="anchor" href="#description-285"></a>Description</h3>
+<h3 id="description-287"><a class="anchor" href="#description-287"></a>Description</h3>
 <div class="paragraph">
 <p>ClusterStatus defines any read-only status fields for the Couchbase server cluster.</p>
 </div>
@@ -6735,13 +6791,13 @@ The UUID of a CouchbaseCluster resource is advertised in the status.clusterId fi
 <div class="sect2">
 <h3 id="couchbaseclusters-status-allocations"><a class="anchor" href="#couchbaseclusters-status-allocations"></a>couchbaseclusters.status.allocations</h3>
 <div class="sect3">
-<h4 id="constraints-286"><a class="anchor" href="#constraints-286"></a>Constraints</h4>
+<h4 id="constraints-288"><a class="anchor" href="#constraints-288"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-286"><a class="anchor" href="#description-286"></a>Description</h4>
+<h4 id="description-288"><a class="anchor" href="#description-288"></a>Description</h4>
 <div class="paragraph">
 <p>Allocations shows memory allocations within server classes.</p>
 </div>
@@ -6749,40 +6805,6 @@ The UUID of a CouchbaseCluster resource is advertised in the status.clusterId fi
 </div>
 <div class="sect2">
 <h3 id="couchbaseclusters-status-allocations-allocatedmemory"><a class="anchor" href="#couchbaseclusters-status-allocations-allocatedmemory"></a>couchbaseclusters.status.allocations.allocatedMemory</h3>
-<div class="sect3">
-<h4 id="constraints-287"><a class="anchor" href="#constraints-287"></a>Constraints</h4>
-<div class="paragraph">
-<p><strong>Type</strong>: <code>string</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Pattern (Regular Expression)</strong>: <code>^(\+|-)?[0-9]+(\.[0-9]*)?)|(\.[0-9]+[KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]\*)?)|(\.[0-9]+))?$</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="description-287"><a class="anchor" href="#description-287"></a>Description</h4>
-<div class="paragraph">
-<p>AllocatedMemory defines the total memory allocated for constrained Couchbase services.
-More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="couchbaseclusters-status-allocations-allocatedmemorypercent"><a class="anchor" href="#couchbaseclusters-status-allocations-allocatedmemorypercent"></a>couchbaseclusters.status.allocations.allocatedMemoryPercent</h3>
-<div class="sect3">
-<h4 id="constraints-288"><a class="anchor" href="#constraints-288"></a>Constraints</h4>
-<div class="paragraph">
-<p><strong>Type</strong>: <code>integer</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="description-288"><a class="anchor" href="#description-288"></a>Description</h4>
-<div class="paragraph">
-<p>AllocatedMemoryPercent is set when memory resources are requested and define how much of the requested memory is allocated to constrained Couchbase services.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="couchbaseclusters-status-allocations-analyticsserviceallocation"><a class="anchor" href="#couchbaseclusters-status-allocations-analyticsserviceallocation"></a>couchbaseclusters.status.allocations.analyticsServiceAllocation</h3>
 <div class="sect3">
 <h4 id="constraints-289"><a class="anchor" href="#constraints-289"></a>Constraints</h4>
 <div class="paragraph">
@@ -6795,32 +6817,28 @@ More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-res
 <div class="sect3">
 <h4 id="description-289"><a class="anchor" href="#description-289"></a>Description</h4>
 <div class="paragraph">
-<p>AnalyticsServiceAllocation is set when the analytics service is enabled for this class and defines how much memory this service consumes per pod.
+<p>AllocatedMemory defines the total memory allocated for constrained Couchbase services.
 More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-status-allocations-dataserviceallocation"><a class="anchor" href="#couchbaseclusters-status-allocations-dataserviceallocation"></a>couchbaseclusters.status.allocations.dataServiceAllocation</h3>
+<h3 id="couchbaseclusters-status-allocations-allocatedmemorypercent"><a class="anchor" href="#couchbaseclusters-status-allocations-allocatedmemorypercent"></a>couchbaseclusters.status.allocations.allocatedMemoryPercent</h3>
 <div class="sect3">
 <h4 id="constraints-290"><a class="anchor" href="#constraints-290"></a>Constraints</h4>
 <div class="paragraph">
-<p><strong>Type</strong>: <code>string</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Pattern (Regular Expression)</strong>: <code>^(\+|-)?[0-9]+(\.[0-9]*)?)|(\.[0-9]+[KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]\*)?)|(\.[0-9]+))?$</code></p>
+<p><strong>Type</strong>: <code>integer</code></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="description-290"><a class="anchor" href="#description-290"></a>Description</h4>
 <div class="paragraph">
-<p>DataServiceAllocation is set when the data service is enabled for this class and defines how much memory this service consumes per pod.
-More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
+<p>AllocatedMemoryPercent is set when memory resources are requested and define how much of the requested memory is allocated to constrained Couchbase services.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-status-allocations-eventingserviceallocation"><a class="anchor" href="#couchbaseclusters-status-allocations-eventingserviceallocation"></a>couchbaseclusters.status.allocations.eventingServiceAllocation</h3>
+<h3 id="couchbaseclusters-status-allocations-analyticsserviceallocation"><a class="anchor" href="#couchbaseclusters-status-allocations-analyticsserviceallocation"></a>couchbaseclusters.status.allocations.analyticsServiceAllocation</h3>
 <div class="sect3">
 <h4 id="constraints-291"><a class="anchor" href="#constraints-291"></a>Constraints</h4>
 <div class="paragraph">
@@ -6833,13 +6851,13 @@ More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-res
 <div class="sect3">
 <h4 id="description-291"><a class="anchor" href="#description-291"></a>Description</h4>
 <div class="paragraph">
-<p>EventingServiceAllocation is set when the eventing service is enabled for this class and defines how much memory this service consumes per pod.
+<p>AnalyticsServiceAllocation is set when the analytics service is enabled for this class and defines how much memory this service consumes per pod.
 More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-status-allocations-indexserviceallocation"><a class="anchor" href="#couchbaseclusters-status-allocations-indexserviceallocation"></a>couchbaseclusters.status.allocations.indexServiceAllocation</h3>
+<h3 id="couchbaseclusters-status-allocations-dataserviceallocation"><a class="anchor" href="#couchbaseclusters-status-allocations-dataserviceallocation"></a>couchbaseclusters.status.allocations.dataServiceAllocation</h3>
 <div class="sect3">
 <h4 id="constraints-292"><a class="anchor" href="#constraints-292"></a>Constraints</h4>
 <div class="paragraph">
@@ -6852,31 +6870,32 @@ More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-res
 <div class="sect3">
 <h4 id="description-292"><a class="anchor" href="#description-292"></a>Description</h4>
 <div class="paragraph">
-<p>IndexServiceAllocation is set when the index service is enabled for this class and defines how much memory this service consumes per pod.
+<p>DataServiceAllocation is set when the data service is enabled for this class and defines how much memory this service consumes per pod.
 More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-status-allocations-name"><a class="anchor" href="#couchbaseclusters-status-allocations-name"></a>couchbaseclusters.status.allocations.name</h3>
+<h3 id="couchbaseclusters-status-allocations-eventingserviceallocation"><a class="anchor" href="#couchbaseclusters-status-allocations-eventingserviceallocation"></a>couchbaseclusters.status.allocations.eventingServiceAllocation</h3>
 <div class="sect3">
 <h4 id="constraints-293"><a class="anchor" href="#constraints-293"></a>Constraints</h4>
 <div class="paragraph">
-<p><strong>Required</strong></p>
+<p><strong>Type</strong>: <code>string</code></p>
 </div>
 <div class="paragraph">
-<p><strong>Type</strong>: <code>string</code></p>
+<p><strong>Pattern (Regular Expression)</strong>: <code>^(\+|-)?[0-9]+(\.[0-9]*)?)|(\.[0-9]+[KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]\*)?)|(\.[0-9]+))?$</code></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="description-293"><a class="anchor" href="#description-293"></a>Description</h4>
 <div class="paragraph">
-<p>Name is the name of the server class defined in spec.servers.</p>
+<p>EventingServiceAllocation is set when the eventing service is enabled for this class and defines how much memory this service consumes per pod.
+More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-status-allocations-requestedmemory"><a class="anchor" href="#couchbaseclusters-status-allocations-requestedmemory"></a>couchbaseclusters.status.allocations.requestedMemory</h3>
+<h3 id="couchbaseclusters-status-allocations-indexserviceallocation"><a class="anchor" href="#couchbaseclusters-status-allocations-indexserviceallocation"></a>couchbaseclusters.status.allocations.indexServiceAllocation</h3>
 <div class="sect3">
 <h4 id="constraints-294"><a class="anchor" href="#constraints-294"></a>Constraints</h4>
 <div class="paragraph">
@@ -6889,32 +6908,31 @@ More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-res
 <div class="sect3">
 <h4 id="description-294"><a class="anchor" href="#description-294"></a>Description</h4>
 <div class="paragraph">
-<p>RequestedMemory, if set, defines the Kubernetes resource request for the server class.
+<p>IndexServiceAllocation is set when the index service is enabled for this class and defines how much memory this service consumes per pod.
 More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-status-allocations-searchserviceallocation"><a class="anchor" href="#couchbaseclusters-status-allocations-searchserviceallocation"></a>couchbaseclusters.status.allocations.searchServiceAllocation</h3>
+<h3 id="couchbaseclusters-status-allocations-name"><a class="anchor" href="#couchbaseclusters-status-allocations-name"></a>couchbaseclusters.status.allocations.name</h3>
 <div class="sect3">
 <h4 id="constraints-295"><a class="anchor" href="#constraints-295"></a>Constraints</h4>
 <div class="paragraph">
-<p><strong>Type</strong>: <code>string</code></p>
+<p><strong>Required</strong></p>
 </div>
 <div class="paragraph">
-<p><strong>Pattern (Regular Expression)</strong>: <code>^(\+|-)?[0-9]+(\.[0-9]*)?)|(\.[0-9]+[KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]\*)?)|(\.[0-9]+))?$</code></p>
+<p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="description-295"><a class="anchor" href="#description-295"></a>Description</h4>
 <div class="paragraph">
-<p>SearchServiceAllocation is set when the search service is enabled for this class and defines how much memory this service consumes per pod.
-More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
+<p>Name is the name of the server class defined in spec.servers.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-status-allocations-unusedmemory"><a class="anchor" href="#couchbaseclusters-status-allocations-unusedmemory"></a>couchbaseclusters.status.allocations.unusedMemory</h3>
+<h3 id="couchbaseclusters-status-allocations-requestedmemory"><a class="anchor" href="#couchbaseclusters-status-allocations-requestedmemory"></a>couchbaseclusters.status.allocations.requestedMemory</h3>
 <div class="sect3">
 <h4 id="constraints-296"><a class="anchor" href="#constraints-296"></a>Constraints</h4>
 <div class="paragraph">
@@ -6927,6 +6945,44 @@ More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-res
 <div class="sect3">
 <h4 id="description-296"><a class="anchor" href="#description-296"></a>Description</h4>
 <div class="paragraph">
+<p>RequestedMemory, if set, defines the Kubernetes resource request for the server class.
+More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbaseclusters-status-allocations-searchserviceallocation"><a class="anchor" href="#couchbaseclusters-status-allocations-searchserviceallocation"></a>couchbaseclusters.status.allocations.searchServiceAllocation</h3>
+<div class="sect3">
+<h4 id="constraints-297"><a class="anchor" href="#constraints-297"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>string</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Pattern (Regular Expression)</strong>: <code>^(\+|-)?[0-9]+(\.[0-9]*)?)|(\.[0-9]+[KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]\*)?)|(\.[0-9]+))?$</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-297"><a class="anchor" href="#description-297"></a>Description</h4>
+<div class="paragraph">
+<p>SearchServiceAllocation is set when the search service is enabled for this class and defines how much memory this service consumes per pod.
+More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbaseclusters-status-allocations-unusedmemory"><a class="anchor" href="#couchbaseclusters-status-allocations-unusedmemory"></a>couchbaseclusters.status.allocations.unusedMemory</h3>
+<div class="sect3">
+<h4 id="constraints-298"><a class="anchor" href="#constraints-298"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>string</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Pattern (Regular Expression)</strong>: <code>^(\+|-)?[0-9]+(\.[0-9]*)?)|(\.[0-9]+[KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]\*)?)|(\.[0-9]+))?$</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-298"><a class="anchor" href="#description-298"></a>Description</h4>
+<div class="paragraph">
 <p>UnusedMemory is set when memory resources are requested and is the difference between the requestedMemory and allocatedMemory.
 More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
 </div>
@@ -6935,13 +6991,13 @@ More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-res
 <div class="sect2">
 <h3 id="couchbaseclusters-status-allocations-unusedmemorypercent"><a class="anchor" href="#couchbaseclusters-status-allocations-unusedmemorypercent"></a>couchbaseclusters.status.allocations.unusedMemoryPercent</h3>
 <div class="sect3">
-<h4 id="constraints-297"><a class="anchor" href="#constraints-297"></a>Constraints</h4>
+<h4 id="constraints-299"><a class="anchor" href="#constraints-299"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>integer</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-297"><a class="anchor" href="#description-297"></a>Description</h4>
+<h4 id="description-299"><a class="anchor" href="#description-299"></a>Description</h4>
 <div class="paragraph">
 <p>UnusedMemoryPercent is set when memory resources are requested and defines how much requested memory is not allocated.
 Couchbase server expects at least a 20% overhead.</p>
@@ -6951,13 +7007,13 @@ Couchbase server expects at least a 20% overhead.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-status-autoscalers"><a class="anchor" href="#couchbaseclusters-status-autoscalers"></a>couchbaseclusters.status.autoscalers</h3>
 <div class="sect3">
-<h4 id="constraints-298"><a class="anchor" href="#constraints-298"></a>Constraints</h4>
+<h4 id="constraints-300"><a class="anchor" href="#constraints-300"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-298"><a class="anchor" href="#description-298"></a>Description</h4>
+<h4 id="description-300"><a class="anchor" href="#description-300"></a>Description</h4>
 <div class="paragraph">
 <p>Autscalers describes all the autoscalers managed by the cluster.</p>
 </div>
@@ -6966,13 +7022,13 @@ Couchbase server expects at least a 20% overhead.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-status-buckets"><a class="anchor" href="#couchbaseclusters-status-buckets"></a>couchbaseclusters.status.buckets</h3>
 <div class="sect3">
-<h4 id="constraints-299"><a class="anchor" href="#constraints-299"></a>Constraints</h4>
+<h4 id="constraints-301"><a class="anchor" href="#constraints-301"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-299"><a class="anchor" href="#description-299"></a>Description</h4>
+<h4 id="description-301"><a class="anchor" href="#description-301"></a>Description</h4>
 <div class="paragraph">
 <p>Buckets describes all the buckets managed by the cluster.</p>
 </div>
@@ -6981,7 +7037,7 @@ Couchbase server expects at least a 20% overhead.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-status-buckets-compressionmode"><a class="anchor" href="#couchbaseclusters-status-buckets-compressionmode"></a>couchbaseclusters.status.buckets.compressionMode</h3>
 <div class="sect3">
-<h4 id="constraints-300"><a class="anchor" href="#constraints-300"></a>Constraints</h4>
+<h4 id="constraints-302"><a class="anchor" href="#constraints-302"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -6990,7 +7046,7 @@ Couchbase server expects at least a 20% overhead.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-300"><a class="anchor" href="#description-300"></a>Description</h4>
+<h4 id="description-302"><a class="anchor" href="#description-302"></a>Description</h4>
 <div class="paragraph">
 <p>CompressionMode defines how documents are compressed.</p>
 </div>
@@ -6999,7 +7055,7 @@ Couchbase server expects at least a 20% overhead.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-status-buckets-conflictresolution"><a class="anchor" href="#couchbaseclusters-status-buckets-conflictresolution"></a>couchbaseclusters.status.buckets.conflictResolution</h3>
 <div class="sect3">
-<h4 id="constraints-301"><a class="anchor" href="#constraints-301"></a>Constraints</h4>
+<h4 id="constraints-303"><a class="anchor" href="#constraints-303"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -7008,7 +7064,7 @@ Couchbase server expects at least a 20% overhead.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-301"><a class="anchor" href="#description-301"></a>Description</h4>
+<h4 id="description-303"><a class="anchor" href="#description-303"></a>Description</h4>
 <div class="paragraph">
 <p>ConflictResolution is relevant for <code>couchbase</code> and <code>ephemeral</code> bucket types and indicates how to resolve conflicts when using multi-master XDCR.</p>
 </div>
@@ -7017,7 +7073,7 @@ Couchbase server expects at least a 20% overhead.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-status-buckets-enableflush"><a class="anchor" href="#couchbaseclusters-status-buckets-enableflush"></a>couchbaseclusters.status.buckets.enableFlush</h3>
 <div class="sect3">
-<h4 id="constraints-302"><a class="anchor" href="#constraints-302"></a>Constraints</h4>
+<h4 id="constraints-304"><a class="anchor" href="#constraints-304"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -7026,7 +7082,7 @@ Couchbase server expects at least a 20% overhead.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-302"><a class="anchor" href="#description-302"></a>Description</h4>
+<h4 id="description-304"><a class="anchor" href="#description-304"></a>Description</h4>
 <div class="paragraph">
 <p>EnableFlush is whether a client can delete all documents in a bucket.</p>
 </div>
@@ -7035,7 +7091,7 @@ Couchbase server expects at least a 20% overhead.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-status-buckets-enableindexreplica"><a class="anchor" href="#couchbaseclusters-status-buckets-enableindexreplica"></a>couchbaseclusters.status.buckets.enableIndexReplica</h3>
 <div class="sect3">
-<h4 id="constraints-303"><a class="anchor" href="#constraints-303"></a>Constraints</h4>
+<h4 id="constraints-305"><a class="anchor" href="#constraints-305"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -7044,7 +7100,7 @@ Couchbase server expects at least a 20% overhead.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-303"><a class="anchor" href="#description-303"></a>Description</h4>
+<h4 id="description-305"><a class="anchor" href="#description-305"></a>Description</h4>
 <div class="paragraph">
 <p>EnableIndexReplica is whether indexes against bucket documents are replicated.</p>
 </div>
@@ -7053,7 +7109,7 @@ Couchbase server expects at least a 20% overhead.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-status-buckets-evictionpolicy"><a class="anchor" href="#couchbaseclusters-status-buckets-evictionpolicy"></a>couchbaseclusters.status.buckets.evictionPolicy</h3>
 <div class="sect3">
-<h4 id="constraints-304"><a class="anchor" href="#constraints-304"></a>Constraints</h4>
+<h4 id="constraints-306"><a class="anchor" href="#constraints-306"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -7062,7 +7118,7 @@ Couchbase server expects at least a 20% overhead.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-304"><a class="anchor" href="#description-304"></a>Description</h4>
+<h4 id="description-306"><a class="anchor" href="#description-306"></a>Description</h4>
 <div class="paragraph">
 <p>EvictionPolicy is relevant for <code>couchbase</code> and <code>ephemeral</code> bucket types and indicates how documents are evicted from memory when it is exhausted.</p>
 </div>
@@ -7070,42 +7126,6 @@ Couchbase server expects at least a 20% overhead.</p>
 </div>
 <div class="sect2">
 <h3 id="couchbaseclusters-status-buckets-iopriority"><a class="anchor" href="#couchbaseclusters-status-buckets-iopriority"></a>couchbaseclusters.status.buckets.ioPriority</h3>
-<div class="sect3">
-<h4 id="constraints-305"><a class="anchor" href="#constraints-305"></a>Constraints</h4>
-<div class="paragraph">
-<p><strong>Required</strong></p>
-</div>
-<div class="paragraph">
-<p><strong>Type</strong>: <code>string</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="description-305"><a class="anchor" href="#description-305"></a>Description</h4>
-<div class="paragraph">
-<p>IoPriority is <code>low</code> or <code>high</code> depending on the number of threads spawned for data processing.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="couchbaseclusters-status-buckets-memoryquota"><a class="anchor" href="#couchbaseclusters-status-buckets-memoryquota"></a>couchbaseclusters.status.buckets.memoryQuota</h3>
-<div class="sect3">
-<h4 id="constraints-306"><a class="anchor" href="#constraints-306"></a>Constraints</h4>
-<div class="paragraph">
-<p><strong>Required</strong></p>
-</div>
-<div class="paragraph">
-<p><strong>Type</strong>: <code>integer</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="description-306"><a class="anchor" href="#description-306"></a>Description</h4>
-<div class="paragraph">
-<p>BucketMemoryQuota is the bucket memory quota in megabytes.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="couchbaseclusters-status-buckets-name"><a class="anchor" href="#couchbaseclusters-status-buckets-name"></a>couchbaseclusters.status.buckets.name</h3>
 <div class="sect3">
 <h4 id="constraints-307"><a class="anchor" href="#constraints-307"></a>Constraints</h4>
 <div class="paragraph">
@@ -7118,32 +7138,14 @@ Couchbase server expects at least a 20% overhead.</p>
 <div class="sect3">
 <h4 id="description-307"><a class="anchor" href="#description-307"></a>Description</h4>
 <div class="paragraph">
-<p>BucketName is the full name of the bucket.</p>
+<p>IoPriority is <code>low</code> or <code>high</code> depending on the number of threads spawned for data processing.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-status-buckets-password"><a class="anchor" href="#couchbaseclusters-status-buckets-password"></a>couchbaseclusters.status.buckets.password</h3>
+<h3 id="couchbaseclusters-status-buckets-memoryquota"><a class="anchor" href="#couchbaseclusters-status-buckets-memoryquota"></a>couchbaseclusters.status.buckets.memoryQuota</h3>
 <div class="sect3">
 <h4 id="constraints-308"><a class="anchor" href="#constraints-308"></a>Constraints</h4>
-<div class="paragraph">
-<p><strong>Required</strong></p>
-</div>
-<div class="paragraph">
-<p><strong>Type</strong>: <code>string</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="description-308"><a class="anchor" href="#description-308"></a>Description</h4>
-<div class="paragraph">
-<p>BucketPassword will never be populated.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="couchbaseclusters-status-buckets-replicas"><a class="anchor" href="#couchbaseclusters-status-buckets-replicas"></a>couchbaseclusters.status.buckets.replicas</h3>
-<div class="sect3">
-<h4 id="constraints-309"><a class="anchor" href="#constraints-309"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -7152,31 +7154,16 @@ Couchbase server expects at least a 20% overhead.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-309"><a class="anchor" href="#description-309"></a>Description</h4>
+<h4 id="description-308"><a class="anchor" href="#description-308"></a>Description</h4>
 <div class="paragraph">
-<p>BucketReplicas is the number of data replicas.</p>
+<p>BucketMemoryQuota is the bucket memory quota in megabytes.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-status-buckets-storagebackend"><a class="anchor" href="#couchbaseclusters-status-buckets-storagebackend"></a>couchbaseclusters.status.buckets.storageBackend</h3>
+<h3 id="couchbaseclusters-status-buckets-name"><a class="anchor" href="#couchbaseclusters-status-buckets-name"></a>couchbaseclusters.status.buckets.name</h3>
 <div class="sect3">
-<h4 id="constraints-310"><a class="anchor" href="#constraints-310"></a>Constraints</h4>
-<div class="paragraph">
-<p><strong>Type</strong>: <code>string</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="description-310"><a class="anchor" href="#description-310"></a>Description</h4>
-<div class="paragraph">
-<p>BucketStorageBackend is the storage backend of the bucket.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="couchbaseclusters-status-buckets-type"><a class="anchor" href="#couchbaseclusters-status-buckets-type"></a>couchbaseclusters.status.buckets.type</h3>
-<div class="sect3">
-<h4 id="constraints-311"><a class="anchor" href="#constraints-311"></a>Constraints</h4>
+<h4 id="constraints-309"><a class="anchor" href="#constraints-309"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -7185,14 +7172,50 @@ Couchbase server expects at least a 20% overhead.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-311"><a class="anchor" href="#description-311"></a>Description</h4>
+<h4 id="description-309"><a class="anchor" href="#description-309"></a>Description</h4>
 <div class="paragraph">
-<p>BucketType is the type of the bucket.</p>
+<p>BucketName is the full name of the bucket.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-status-clusterid"><a class="anchor" href="#couchbaseclusters-status-clusterid"></a>couchbaseclusters.status.clusterId</h3>
+<h3 id="couchbaseclusters-status-buckets-password"><a class="anchor" href="#couchbaseclusters-status-buckets-password"></a>couchbaseclusters.status.buckets.password</h3>
+<div class="sect3">
+<h4 id="constraints-310"><a class="anchor" href="#constraints-310"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Required</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>string</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-310"><a class="anchor" href="#description-310"></a>Description</h4>
+<div class="paragraph">
+<p>BucketPassword will never be populated.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbaseclusters-status-buckets-replicas"><a class="anchor" href="#couchbaseclusters-status-buckets-replicas"></a>couchbaseclusters.status.buckets.replicas</h3>
+<div class="sect3">
+<h4 id="constraints-311"><a class="anchor" href="#constraints-311"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Required</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>integer</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-311"><a class="anchor" href="#description-311"></a>Description</h4>
+<div class="paragraph">
+<p>BucketReplicas is the number of data replicas.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbaseclusters-status-buckets-storagebackend"><a class="anchor" href="#couchbaseclusters-status-buckets-storagebackend"></a>couchbaseclusters.status.buckets.storageBackend</h3>
 <div class="sect3">
 <h4 id="constraints-312"><a class="anchor" href="#constraints-312"></a>Constraints</h4>
 <div class="paragraph">
@@ -7202,28 +7225,30 @@ Couchbase server expects at least a 20% overhead.</p>
 <div class="sect3">
 <h4 id="description-312"><a class="anchor" href="#description-312"></a>Description</h4>
 <div class="paragraph">
-<p>ClusterID is the unique cluster UUID.
-This is generated every time a new cluster is created, so may vary over the lifetime of a cluster if it is recreated by disaster recovery mechanisms.</p>
+<p>BucketStorageBackend is the storage backend of the bucket.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-status-conditions"><a class="anchor" href="#couchbaseclusters-status-conditions"></a>couchbaseclusters.status.conditions</h3>
+<h3 id="couchbaseclusters-status-buckets-type"><a class="anchor" href="#couchbaseclusters-status-buckets-type"></a>couchbaseclusters.status.buckets.type</h3>
 <div class="sect3">
 <h4 id="constraints-313"><a class="anchor" href="#constraints-313"></a>Constraints</h4>
 <div class="paragraph">
-<p><strong>Type</strong>: <code>[]object</code></p>
+<p><strong>Required</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="description-313"><a class="anchor" href="#description-313"></a>Description</h4>
 <div class="paragraph">
-<p>Current service state of the Couchbase cluster.</p>
+<p>BucketType is the type of the bucket.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-status-conditions-lasttransitiontime"><a class="anchor" href="#couchbaseclusters-status-conditions-lasttransitiontime"></a>couchbaseclusters.status.conditions.lastTransitionTime</h3>
+<h3 id="couchbaseclusters-status-clusterid"><a class="anchor" href="#couchbaseclusters-status-clusterid"></a>couchbaseclusters.status.clusterId</h3>
 <div class="sect3">
 <h4 id="constraints-314"><a class="anchor" href="#constraints-314"></a>Constraints</h4>
 <div class="paragraph">
@@ -7233,27 +7258,28 @@ This is generated every time a new cluster is created, so may vary over the life
 <div class="sect3">
 <h4 id="description-314"><a class="anchor" href="#description-314"></a>Description</h4>
 <div class="paragraph">
-<p>Last time the condition transitioned from one status to another.</p>
+<p>ClusterID is the unique cluster UUID.
+This is generated every time a new cluster is created, so may vary over the lifetime of a cluster if it is recreated by disaster recovery mechanisms.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-status-conditions-lastupdatetime"><a class="anchor" href="#couchbaseclusters-status-conditions-lastupdatetime"></a>couchbaseclusters.status.conditions.lastUpdateTime</h3>
+<h3 id="couchbaseclusters-status-conditions"><a class="anchor" href="#couchbaseclusters-status-conditions"></a>couchbaseclusters.status.conditions</h3>
 <div class="sect3">
 <h4 id="constraints-315"><a class="anchor" href="#constraints-315"></a>Constraints</h4>
 <div class="paragraph">
-<p><strong>Type</strong>: <code>string</code></p>
+<p><strong>Type</strong>: <code>[]object</code></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="description-315"><a class="anchor" href="#description-315"></a>Description</h4>
 <div class="paragraph">
-<p>Last time the condition status message updated.</p>
+<p>Current service state of the Couchbase cluster.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-status-conditions-message"><a class="anchor" href="#couchbaseclusters-status-conditions-message"></a>couchbaseclusters.status.conditions.message</h3>
+<h3 id="couchbaseclusters-status-conditions-lasttransitiontime"><a class="anchor" href="#couchbaseclusters-status-conditions-lasttransitiontime"></a>couchbaseclusters.status.conditions.lastTransitionTime</h3>
 <div class="sect3">
 <h4 id="constraints-316"><a class="anchor" href="#constraints-316"></a>Constraints</h4>
 <div class="paragraph">
@@ -7263,12 +7289,12 @@ This is generated every time a new cluster is created, so may vary over the life
 <div class="sect3">
 <h4 id="description-316"><a class="anchor" href="#description-316"></a>Description</h4>
 <div class="paragraph">
-<p>A human readable message indicating details about the transition.</p>
+<p>Last time the condition transitioned from one status to another.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbaseclusters-status-conditions-reason"><a class="anchor" href="#couchbaseclusters-status-conditions-reason"></a>couchbaseclusters.status.conditions.reason</h3>
+<h3 id="couchbaseclusters-status-conditions-lastupdatetime"><a class="anchor" href="#couchbaseclusters-status-conditions-lastupdatetime"></a>couchbaseclusters.status.conditions.lastUpdateTime</h3>
 <div class="sect3">
 <h4 id="constraints-317"><a class="anchor" href="#constraints-317"></a>Constraints</h4>
 <div class="paragraph">
@@ -7278,6 +7304,36 @@ This is generated every time a new cluster is created, so may vary over the life
 <div class="sect3">
 <h4 id="description-317"><a class="anchor" href="#description-317"></a>Description</h4>
 <div class="paragraph">
+<p>Last time the condition status message updated.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbaseclusters-status-conditions-message"><a class="anchor" href="#couchbaseclusters-status-conditions-message"></a>couchbaseclusters.status.conditions.message</h3>
+<div class="sect3">
+<h4 id="constraints-318"><a class="anchor" href="#constraints-318"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>string</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-318"><a class="anchor" href="#description-318"></a>Description</h4>
+<div class="paragraph">
+<p>A human readable message indicating details about the transition.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbaseclusters-status-conditions-reason"><a class="anchor" href="#couchbaseclusters-status-conditions-reason"></a>couchbaseclusters.status.conditions.reason</h3>
+<div class="sect3">
+<h4 id="constraints-319"><a class="anchor" href="#constraints-319"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>string</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-319"><a class="anchor" href="#description-319"></a>Description</h4>
+<div class="paragraph">
 <p>Unique, one-word, CamelCase reason for the condition&#8217;s last transition.</p>
 </div>
 </div>
@@ -7285,7 +7341,7 @@ This is generated every time a new cluster is created, so may vary over the life
 <div class="sect2">
 <h3 id="couchbaseclusters-status-conditions-status"><a class="anchor" href="#couchbaseclusters-status-conditions-status"></a>couchbaseclusters.status.conditions.status</h3>
 <div class="sect3">
-<h4 id="constraints-318"><a class="anchor" href="#constraints-318"></a>Constraints</h4>
+<h4 id="constraints-320"><a class="anchor" href="#constraints-320"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -7294,7 +7350,7 @@ This is generated every time a new cluster is created, so may vary over the life
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-318"><a class="anchor" href="#description-318"></a>Description</h4>
+<h4 id="description-320"><a class="anchor" href="#description-320"></a>Description</h4>
 <div class="paragraph">
 <p>Status is the status of the condition.
 Can be one of True, False, Unknown.</p>
@@ -7304,7 +7360,7 @@ Can be one of True, False, Unknown.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-status-conditions-type"><a class="anchor" href="#couchbaseclusters-status-conditions-type"></a>couchbaseclusters.status.conditions.type</h3>
 <div class="sect3">
-<h4 id="constraints-319"><a class="anchor" href="#constraints-319"></a>Constraints</h4>
+<h4 id="constraints-321"><a class="anchor" href="#constraints-321"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -7316,7 +7372,7 @@ Can be one of True, False, Unknown.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-319"><a class="anchor" href="#description-319"></a>Description</h4>
+<h4 id="description-321"><a class="anchor" href="#description-321"></a>Description</h4>
 <div class="paragraph">
 <p>Type is the type of condition.</p>
 </div>
@@ -7325,13 +7381,13 @@ Can be one of True, False, Unknown.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-status-controlpaused"><a class="anchor" href="#couchbaseclusters-status-controlpaused"></a>couchbaseclusters.status.controlPaused</h3>
 <div class="sect3">
-<h4 id="constraints-320"><a class="anchor" href="#constraints-320"></a>Constraints</h4>
+<h4 id="constraints-322"><a class="anchor" href="#constraints-322"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-320"><a class="anchor" href="#description-320"></a>Description</h4>
+<h4 id="description-322"><a class="anchor" href="#description-322"></a>Description</h4>
 <div class="paragraph">
 <p>ControlPaused indicates if the Operator has acknowledged and paused the control of the cluster.</p>
 </div>
@@ -7340,13 +7396,13 @@ Can be one of True, False, Unknown.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-status-currentversion"><a class="anchor" href="#couchbaseclusters-status-currentversion"></a>couchbaseclusters.status.currentVersion</h3>
 <div class="sect3">
-<h4 id="constraints-321"><a class="anchor" href="#constraints-321"></a>Constraints</h4>
+<h4 id="constraints-323"><a class="anchor" href="#constraints-323"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-321"><a class="anchor" href="#description-321"></a>Description</h4>
+<h4 id="description-323"><a class="anchor" href="#description-323"></a>Description</h4>
 <div class="paragraph">
 <p>CurrentVersion is the current Couchbase version.
 This reflects the version of the whole cluster, therefore during upgrade, it is only updated when the upgrade has completed.</p>
@@ -7356,13 +7412,13 @@ This reflects the version of the whole cluster, therefore during upgrade, it is 
 <div class="sect2">
 <h3 id="couchbaseclusters-status-groups"><a class="anchor" href="#couchbaseclusters-status-groups"></a>couchbaseclusters.status.groups</h3>
 <div class="sect3">
-<h4 id="constraints-322"><a class="anchor" href="#constraints-322"></a>Constraints</h4>
+<h4 id="constraints-324"><a class="anchor" href="#constraints-324"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-322"><a class="anchor" href="#description-322"></a>Description</h4>
+<h4 id="description-324"><a class="anchor" href="#description-324"></a>Description</h4>
 <div class="paragraph">
 <p>Groups describes all the groups managed by the cluster.</p>
 </div>
@@ -7371,13 +7427,13 @@ This reflects the version of the whole cluster, therefore during upgrade, it is 
 <div class="sect2">
 <h3 id="couchbaseclusters-status-members"><a class="anchor" href="#couchbaseclusters-status-members"></a>couchbaseclusters.status.members</h3>
 <div class="sect3">
-<h4 id="constraints-323"><a class="anchor" href="#constraints-323"></a>Constraints</h4>
+<h4 id="constraints-325"><a class="anchor" href="#constraints-325"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-323"><a class="anchor" href="#description-323"></a>Description</h4>
+<h4 id="description-325"><a class="anchor" href="#description-325"></a>Description</h4>
 <div class="paragraph">
 <p>Members are the Couchbase members in the cluster.</p>
 </div>
@@ -7386,13 +7442,13 @@ This reflects the version of the whole cluster, therefore during upgrade, it is 
 <div class="sect2">
 <h3 id="couchbaseclusters-status-members-ready"><a class="anchor" href="#couchbaseclusters-status-members-ready"></a>couchbaseclusters.status.members.ready</h3>
 <div class="sect3">
-<h4 id="constraints-324"><a class="anchor" href="#constraints-324"></a>Constraints</h4>
+<h4 id="constraints-326"><a class="anchor" href="#constraints-326"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-324"><a class="anchor" href="#description-324"></a>Description</h4>
+<h4 id="description-326"><a class="anchor" href="#description-326"></a>Description</h4>
 <div class="paragraph">
 <p>Ready are the Couchbase members that are clustered and ready to serve client requests.
 The member names are the same as the Couchbase pod names.</p>
@@ -7402,13 +7458,13 @@ The member names are the same as the Couchbase pod names.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-status-members-unready"><a class="anchor" href="#couchbaseclusters-status-members-unready"></a>couchbaseclusters.status.members.unready</h3>
 <div class="sect3">
-<h4 id="constraints-325"><a class="anchor" href="#constraints-325"></a>Constraints</h4>
+<h4 id="constraints-327"><a class="anchor" href="#constraints-327"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-325"><a class="anchor" href="#description-325"></a>Description</h4>
+<h4 id="description-327"><a class="anchor" href="#description-327"></a>Description</h4>
 <div class="paragraph">
 <p>Unready are the Couchbase members not clustered or unready to serve client requests.
 The member names are the same as the Couchbase pod names.</p>
@@ -7418,7 +7474,7 @@ The member names are the same as the Couchbase pod names.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-status-size"><a class="anchor" href="#couchbaseclusters-status-size"></a>couchbaseclusters.status.size</h3>
 <div class="sect3">
-<h4 id="constraints-326"><a class="anchor" href="#constraints-326"></a>Constraints</h4>
+<h4 id="constraints-328"><a class="anchor" href="#constraints-328"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -7427,7 +7483,7 @@ The member names are the same as the Couchbase pod names.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-326"><a class="anchor" href="#description-326"></a>Description</h4>
+<h4 id="description-328"><a class="anchor" href="#description-328"></a>Description</h4>
 <div class="paragraph">
 <p>Size is the current size of the cluster in terms of pods.
 Individual pod status conditions are listed in the members status.</p>
@@ -7437,13 +7493,13 @@ Individual pod status conditions are listed in the members status.</p>
 <div class="sect2">
 <h3 id="couchbaseclusters-status-users"><a class="anchor" href="#couchbaseclusters-status-users"></a>couchbaseclusters.status.users</h3>
 <div class="sect3">
-<h4 id="constraints-327"><a class="anchor" href="#constraints-327"></a>Constraints</h4>
+<h4 id="constraints-329"><a class="anchor" href="#constraints-329"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-327"><a class="anchor" href="#description-327"></a>Description</h4>
+<h4 id="description-329"><a class="anchor" href="#description-329"></a>Description</h4>
 <div class="paragraph">
 <p>Users describes all the users managed by the cluster.</p>
 </div>
@@ -7510,7 +7566,7 @@ Individual pod status conditions are listed in the members status.</p>
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2023 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

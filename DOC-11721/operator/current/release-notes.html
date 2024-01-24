@@ -12,14 +12,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Release Notes for Couchbase Autonomous Operator 2.5 | Couchbase Docs</title>
+<title>Release Notes for Couchbase Autonomous Operator 2.6 | Couchbase Docs</title>
+<link rel="canonical" href="https://rayoffiah.github.io/operator/current/release-notes.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.5">
+<meta name="dcterms.identifier" content="2.6">
 <meta name="page-url" content="/operator/current/release-notes.html">
 <meta name="generator" content="Antora 3.0.3">
 <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
@@ -115,10 +116,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.5" data-url="overview.html" selected>2.5</option>
+          <option value="2.6" data-url="overview.html" selected>2.6</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.5">
+      <div class="version_items hide" data-version="2.6">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -790,6 +791,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a class="menu_title menu_link" href="reference-operator-logging.html">Operator Logging</a>
   </span>
 </li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="reference-prometheus-metrics.html">Operator Prometheus Metrics</a>
+  </span>
+</li>
 </ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
@@ -1105,7 +1111,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Release Notes for Couchbase Autonomous Operator 2.5</h1>
+<h1 class="page">Release Notes for Couchbase Autonomous Operator 2.6</h1>
 <div class="labels">
 <ul></ul>
 </div>
@@ -1119,7 +1125,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase Autonomous Operator 2.5 release is primarily focused on adding some key features introduced in Couchbase Server 7.1 to Autonomous Operator such as support for ARM platforms and Encrypted Certificates, as well as other improvements related to TLS Certificate Management, cloud backups, index configuration, and the Prometheus Exporter</p>
+<p>Autonomous Operator 2.6 release is primarily focused on platform updates, feature parity with Couchbase Server, improvements to Pod Management and Security, as well as a number of minor fixes.</p>
 </div>
 <div class="paragraph">
 <p>Take a look at the <a href="whats-new.html" class="xref page">What&#8217;s New</a> page for a list of new features and improvements that are available in this release.</p>
@@ -1145,111 +1151,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="sect1">
-<h2 id="upgrading-to-autonomous-operator-2-5"><a class="anchor" href="#upgrading-to-autonomous-operator-2-5"></a>Upgrading to Autonomous Operator 2.5</h2>
+<h2 id="upgrading-to-autonomous-operator-2-6"><a class="anchor" href="#upgrading-to-autonomous-operator-2-6"></a>Upgrading to Autonomous Operator 2.6</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The necessary steps needed to upgrade to this release depend on which version of the Autonomous Operator you are upgrading from.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Version 1.x.x</p>
-<div class="ulist">
-<ul>
-<li>
-<p>There is no direct upgrade path from versions prior to 2.0.x.
-To upgrade from a 1.x.x release, you must first upgrade to 2.0.x, paying particular attention to supported Kubernetes platforms and Couchbase Server versions.
-Refer to the <a href="#2.0@operator::howto-operator-upgrade.adoc" class="xref unresolved">2.0.x upgrade steps</a> if upgrading from a 1.x.x release.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Version 2.0.x</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Additional steps and considerations are required when upgrading from version 2.0.x.
-Please refer to <a href="#upgrade-v20x">Upgrading from Version 2.0.x</a>.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Version 2.1.x</p>
-<div class="ulist">
-<ul>
-<li>
-<p>There are no additional upgrade steps or considerations when upgrading from this version.
-You may follow <a href="howto-operator-upgrade.html" class="xref page">standard upgrade process</a>.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Version 2.2.x</p>
-<div class="ulist">
-<ul>
-<li>
-<p>There are no additional upgrade steps or considerations when upgrading from this version.
-You may follow <a href="howto-operator-upgrade.html" class="xref page">standard upgrade process</a>.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Version 2.3.x</p>
-<div class="ulist">
-<ul>
-<li>
-<p>There are no additional upgrade steps or considerations when upgrading from this version.
-You may follow <a href="howto-operator-upgrade.html" class="xref page">standard upgrade process</a>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
 <div class="sect2">
-<h3 id="upgrade-v20x"><a class="anchor" href="#upgrade-v20x"></a>Upgrading from Version 2.0.x</h3>
+<h3 id="upgrading-from-1-x-2-0-or-2-1"><a class="anchor" href="#upgrading-from-1-x-2-0-or-2-1"></a>Upgrading from 1.x, 2.0, or 2.1</h3>
 <div class="paragraph">
-<p>First, ensure that you are running <a href="prerequisite-and-setup.html" class="xref page">compatible versions</a> of Kubernetes and Couchbase Server before upgrading.</p>
-</div>
-<div class="sect3">
-<h4 id="tls-requirements"><a class="anchor" href="#tls-requirements"></a>TLS Requirements</h4>
-<div class="paragraph">
-<p>If you are <strong>not</strong> utilizing TLS, you can skip this section.</p>
-</div>
-<div class="paragraph">
-<p>The TLS requirements have been modified as of Autonomous Operator 2.1.
-In order to ease the migration from legacy client bootstrap (CCCP) to the newest version (GCCCP), the Autonomous Operator requires Couchbase cluster subject alternative names (SANs) to be updated.
-Consult the <a href="tutorial-tls.html" class="xref page">TLS tutorial</a> for a full list of all the required SANs, and the <a href="howto-tls-rotation.html" class="xref page">TLS rotation guide</a> in order to prepare for upgrade.
-Failure to perform this step will result in errors from the dynamic admission controller (DAC) once upgraded.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="mandatory-couchbase-upgrade-cycle"><a class="anchor" href="#mandatory-couchbase-upgrade-cycle"></a>Mandatory Couchbase Upgrade Cycle</h4>
-<div class="paragraph">
-<p>When upgrading from version 2.0.x, Couchbase clusters will undergo a mandatory upgrade cycle.</p>
-</div>
-<div class="paragraph">
-<p>Pod readiness checks were previously driven by an <code>exec</code> based readiness probe.
-This was a security concern because it granted the Autonomous Operator <code>pods/exec</code> privileges, which may not be acceptable in highly regulated environments.
-As of Autonomous Operator 2.1, readiness checks are performed using readiness gates that use the Kubernetes API exclusively.</p>
-</div>
-<div class="paragraph">
-<p>You can use the <a href="resource/couchbasecluster.html#couchbaseclusters-spec-rollingupgrade" class="xref page"><code>couchbaseclusters.spec.rollingUpgrade</code></a> configuration parameter to speed up this upgrade.
-To enable this feature while upgrading the Autonomous Operator, stop the old Operator, replace the CRDs, edit the <a href="resource/couchbasecluster.html#couchbaseclusters-spec-rollingupgrade" class="xref page"><code>couchbaseclusters.spec.rollingUpgrade</code></a> field to enable bulk upgrades, then start the new Operator.
-Refer to <a href="howto-operator-upgrade.html" class="xref page">Upgrade the Operator</a> for further details.</p>
-</div>
+<p>There is no direct upgrade path from versions prior to 2.2.0.
+To upgrade from a 1.x, 2.0.x, or 2.1.x release, you must first upgrade to 2.4.x, paying particular attention to supported Kubernetes platforms and Couchbase Server versions.
+Refer to the <a href="#2.4@operator::howto-operator-upgrade.adoc" class="xref unresolved">Operator 2.4 upgrade steps</a> if upgrading from a pre-2.2 release.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="upgrading-from-2-0-2-1-2-2-and-2-3"><a class="anchor" href="#upgrading-from-2-0-2-1-2-2-and-2-3"></a>Upgrading from 2.0, 2.1, 2.2, and 2.3</h3>
-<div class="sect3">
-<h4 id="mandatory-couchbase-upgrade-cycle-2"><a class="anchor" href="#mandatory-couchbase-upgrade-cycle-2"></a>Mandatory Couchbase Upgrade Cycle</h4>
+<h3 id="upgrading-from-2-2-2-3-2-4-or-2-5"><a class="anchor" href="#upgrading-from-2-2-2-3-2-4-or-2-5"></a>Upgrading from 2.2, 2.3, 2.4, or 2.5</h3>
 <div class="paragraph">
-<p>Some users will encounter a mandatory upgrade cycle when upgrading to this release.</p>
+<p>There are no additional upgrade steps when upgrading from these versions, and you may follow the <a href="howto-operator-upgrade.html" class="xref page">standard upgrade process</a>.
+However, due to <a href="https://issues.couchbase.com/browse/K8S-3097" target="_blank" rel="noopener">K8S-3097</a>, all users will encounter a mandatory upgrade cycle when upgrading from releases older than 2.5.0, to expose the missing Indexer HTTPS Port (see <a href="../../server/current/install/install-ports.html#detailed-port-description" class="xref page">Detailed Port Description</a> for network port requirements).</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1270,73 +1189,65 @@ For large, production databases, ensure an adequate maintenance window is schedu
 </tr>
 </table>
 </div>
-<div class="sect4">
-<h5 id="tls-users"><a class="anchor" href="#tls-users"></a>TLS Users</h5>
-<div class="paragraph">
-<p>In prior versions, Couchbase Server pod readiness checks were done over plain text port 8091.
-With the introduction of strict mode TLS in this release, port 8091 can be disabled to inhibit all non TLS ports.
-The Operator has been updated to use port 18091&#8201;&#8212;&#8201;Couchbase Server&#8217;s TLS admin port&#8201;&#8212;&#8201;when TLS management is enabled.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="server-groups-users"><a class="anchor" href="#server-groups-users"></a>Server Groups Users</h5>
-<div class="paragraph">
-<p>A pod upgrade is also required for users of the server groups feature.</p>
-</div>
-<div class="paragraph">
-<p>When the Operator was first released, the only available Node label that was available across all platforms to allow explicit pod scheduling was <code>failure-domain.beta.kubernetes.io/zone</code>.
-This label has been deprecated since Kubernetes 1.17, in favor of <code>topology.kubernetes.io/zone</code>.</p>
-</div>
-<div class="paragraph">
-<p>To ensure correct operation of the Operator in the future, the decision has been taken to start using the new label as of Operator 2.3.
-This ensures that the Operator is compatible with all future Kubernetes releases in the event of the deprecated label being removed.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="logging-users"><a class="anchor" href="#logging-users"></a>Logging Users</h5>
-<div class="paragraph">
-<p>To control memory usage, memory buffer limits have been implemented for the logging sidecar.
-This change will affect all users of logging, and will require a cluster upgrade.</p>
-</div>
-<div class="paragraph">
-<p>Additionally a bug in the audit clean up script caused old logs to be deleted only if their age matched the specified time period exactly.
-This has been fixed so that logs older than or equal to the time period are cleaned.</p>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="release-v242"><a class="anchor" href="#release-v242"></a>Release 2.4.2</h2>
+<h2 id="release-v260"><a class="anchor" href="#release-v260"></a>Release 2.6.0</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase Autonomous Operator 2.4.2 was released in June 2023.</p>
+<p>Couchbase Autonomous Operator 2.6.0 was released in December 2023.</p>
 </div>
 <div class="sect2">
-<h3 id="changes-in-behavior-v242"><a class="anchor" href="#changes-in-behavior-v242"></a>New Features and Behavioral Changes</h3>
+<h3 id="changes-in-behavior-v260"><a class="anchor" href="#changes-in-behavior-v260"></a>New Features and Behavioral Changes</h3>
 <div class="sect3">
-<h4 id="support-for-new-features-in-couchbase-server-7-2-0"><a class="anchor" href="#support-for-new-features-in-couchbase-server-7-2-0"></a>Support for New Features in Couchbase Server 7.2.0</h4>
+<h4 id="immediate-backups"><a class="anchor" href="#immediate-backups"></a>Immediate Backups</h4>
 <div class="paragraph">
-<p>With the addition of the Change History feature in Couchbase Server 7.2.0, Collections can now be modified (to enable/disable History Retention).</p>
-</div>
-<div class="paragraph">
-<p>Operator 2.4.2 now allows Collection objects to be mutated.</p>
+<p>The CouchbaseBackup resource now has the backup strategies of immediate_full and immediate_incremental to run a backup immediately.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="arm-platform-support"><a class="anchor" href="#arm-platform-support"></a>ARM Platform Support</h4>
+<h4 id="pod-management"><a class="anchor" href="#pod-management"></a>Pod Management</h4>
 <div class="paragraph">
-<p>Operator 2.4.0 added support for deploying on ARM platforms where available on AWS, Azure, and GCP managed Kubernetes services, as well as on open source Kubernetes distributions.</p>
+<p>The operator now takes into consideration index placement, data placement, and server version to identify pods to remove on scaling events.
+The operator now will perform in place upgrades using Delta Recovery rebalances on Couchbase Server version upgrades.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="pod-and-container-changes"><a class="anchor" href="#pod-and-container-changes"></a>Pod and Container Changes</h4>
 <div class="paragraph">
-<p>With Operator 2.4.2 this now includes deploying on OpenShift on ARM platforms.</p>
+<p>The operator now adds the prometheus.io/scheme annotation to pods.
+The operator now adds platform specific zone labels for EKS, GKE and AKS to Couchbase Server persistent volume claims.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="crd-changes"><a class="anchor" href="#crd-changes"></a>CRD Changes</h4>
+<div class="paragraph">
+<p>The field <code>couchbasebackuprestore.spec.backup</code> is no longer mandatory when using ephemeral volumes.
+The field <code>couchbasecluster.spec.onlineExpansionTimeout</code> has been added as an int that specifies the number of minutes between 0-30 that the operator should wait before failing over to swap rebalance for volume expansions.
+The field <code>couchbasecluster.spec.upgradeProcess</code> has been added as an enum of "DeltaRecovery" or "SwapRebalance".  Default is "SwapRebalance".</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cli-changes"><a class="anchor" href="#cli-changes"></a>CLI Changes</h4>
+<div class="paragraph">
+<p>Logs can now be uploaded directly to the Couchbase support portal via the <code>--upload-host</code>, <code>--customer</code>, <code>--upload-proxy</code> and <code>--ticket</code> parameters
+Pod Readiness Delay and Pod Readiness period can be set via the <code>cao create operator</code> command.  These settings will be applied to all pods created by the operator.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changes-to-couchbase-jdbc-driver"><a class="anchor" href="#changes-to-couchbase-jdbc-driver"></a>Changes to Couchbase JDBC Driver</h4>
+<div class="paragraph">
+<p>The JDBC driver has been upgraded to version&#160;1.1.1.<br>
+Updated <code>ADBMetadataStatement</code> so that the Metadata queries
+generated in database entity are compatible with the server metadata.<br>
+The new driver can be downloaded <a href="https://packages.couchbase.com/releases/couchbase-tableau-connector/1.1.1/couchbase-tableau-connector-1.1.1.zip">here</a>.<br></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="fixed-issues-v242"><a class="anchor" href="#fixed-issues-v242"></a>Fixed Issues</h3>
-<table id="table-fixed-issues-v242" class="tableblock frame-all grid-all stretch">
+<h3 id="fixed-issues-v260"><a class="anchor" href="#fixed-issues-v260"></a>Fixed Issues</h3>
+<table id="table-fixed-issues-v260" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
 <col style="width: 72.5275%;">
@@ -1350,385 +1261,50 @@ This has been fixed so that logs older than or equal to the time period are clea
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-2997">K8S-2997</a></p>
+<p><a href="https://issues.couchbase.com/browse/K8S-3216" target="_blank" rel="noopener">K8S-3216</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong> Fixed issue where <code>TestUpgradeSupportableKillStatefulPodOnCreate</code> results were inconsistent.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-3061">K8S-3061</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong> Fixed issue where <code>TestPersistentVolumeRzaNodesKilledUnbalanced</code> results were inconsistent.</p>
+<p><strong>Summary:</strong> Previously the operator would loop on buckets with specific settings, continuously updating and spamming logs.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-3062">K8S-3062</a></p>
+<p><a href="https://issues.couchbase.com/browse/K8S-3189" target="_blank" rel="noopener">K8S-3189</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong> Fixed issues where <code>TestMandatoryMutualTLSRotateCAExpiring</code> results were inconsistent.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="known-issues-v242"><a class="anchor" href="#known-issues-v242"></a>Known Issues</h3>
-<table id="table-known-issues-v242" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 27.4725%;">
-<col style="width: 72.5275%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Issue</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-3063">K8S-3063</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong> <code>TestClusterUpdateUsingRest</code> and <code>TestTLSScriptCreateRestRotate</code> may cause "schema overflowed" messages.</p>
-</div>
-<div class="paragraph">
-<p>This may cause issues while attempting the <a href="concept-platform-certification.html" class="xref page">Self-Certification</a> process.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="release-v241"><a class="anchor" href="#release-v241"></a>Release 2.4.1</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Couchbase Autonomous Operator 2.4.1 was released in May 2023.</p>
-</div>
-<div class="sect2">
-<h3 id="changes-in-behavior-v241"><a class="anchor" href="#changes-in-behavior-v241"></a>New Features and Behavioral Changes</h3>
-<div class="sect3">
-<h4 id="support-for-new-features-in-couchbase-server-7-2-0-2"><a class="anchor" href="#support-for-new-features-in-couchbase-server-7-2-0-2"></a>Support for New Features in Couchbase Server 7.2.0</h4>
-<div class="paragraph">
-<p>Per Collection Change-History. Maintain a change history for all collections in a bucket.
-Changes to documents in collections are included in the change history for the bucket.
-A maximum size for the change history can be specified in bytes or seconds.
-See <a href="#server:learn:data:change-history.adoc" class="xref unresolved">Change History</a>.</p>
-</div>
-<div class="paragraph">
-<p>You can now configure block size for Magma storage when you create a bucket.
-See <a href="../../server/current/rest-api/rest-bucket-create.html#magmaseqtreedatablocksize" class="xref page">Creating and Editing Buckets</a>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="local-persistent-volumes"><a class="anchor" href="#local-persistent-volumes"></a>Local Persistent Volumes</h4>
-<div class="paragraph">
-<p>The ability to use a local storage device (such as a disk, partition, or directory) as a Persistent Volume when deploying Couchbase Server resources.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="fixed-issues-v241"><a class="anchor" href="#fixed-issues-v241"></a>Fixed Issues</h3>
-<table id="table-fixed-issues-v241" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 27.4725%;">
-<col style="width: 72.5275%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Issue</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-2843" target="_blank" rel="noopener">K8S-2843</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong> Previously the Operator was not able to rotate an expired, self-signed Admission Controller certificate on the Mutating/Validating Webhook.</p>
+<p><strong>Summary:</strong> Previously the operator identified the eventing_admin role as a bucket role and not a cluster role</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-2885" target="_blank" rel="noopener">K8S-2885</a></p>
+<p><a href="https://issues.couchbase.com/browse/K8S-3179" target="_blank" rel="noopener">K8S-3179</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong> Fixed extraneous Rebalance messages under certain Couchbase Server upgrade conditions.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-2934" target="_blank" rel="noopener">K8S-2934</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong> Check for existence of old persistence secret before creating a new one, and avoid reusing an existing one.</p>
+<p><strong>Summary:</strong> Previously the operator would log a large json structure to the logs when it failed to create a pod.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-2944" target="_blank" rel="noopener">K8S-2944</a></p>
+<p><a href="https://issues.couchbase.com/browse/K8S-3095" target="_blank" rel="noopener">K8S-3095</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong> Fixed issue where URL Encoding breaks string lists with <code>cipherSuites</code>.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-2971" target="_blank" rel="noopener">K8S-2971</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong> Fixed issue where <code>storageBackend</code> warnings occur after Operator upgrade.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="known-issues-v241"><a class="anchor" href="#known-issues-v241"></a>Known Issues</h3>
-<table id="table-known-issues-v241" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 27.4725%;">
-<col style="width: 72.5275%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Issue</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-2997">K8S-2997</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong>
-<code>TestUpgradeSupportableKillStatefulPodOnCreate</code> results are inconsistent.</p>
-</div>
-<div class="paragraph">
-<p>This may cause issues while attempting the <a href="concept-platform-certification.html" class="xref page">Self-Certification</a> process.</p>
+<p><strong>Summary:</strong> Previously the Operator would not allow you remove the setting for readerThreads</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-3061">K8S-3061</a></p>
+<p><a href="https://issues.couchbase.com/browse/K8S-3283" target="_blank" rel="noopener">K8S-3283</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong>
-<code>TestPersistentVolumeRzaNodesKilledUnbalanced</code> results are inconsistent.</p>
-</div>
-<div class="paragraph">
-<p>This may cause issues while attempting the <a href="concept-platform-certification.html" class="xref page">Self-Certification</a> process.</p>
+<p><strong>Summary:</strong> Previously the Operator would not use the new <code>couchbasecluster.spec.security.podSecurityContext</code> when creating backup jobs</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-3062">K8S-3062</a></p>
+<p><a href="https://issues.couchbase.com/browse/K8S-3167" target="_blank" rel="noopener">K8S-3167</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong>
-<code>TestMandatoryMutualTLSRotateCAExpiring</code> results are inconsistent.</p>
-</div>
-<div class="paragraph">
-<p>This may cause issues while attempting the <a href="concept-platform-certification.html" class="xref page">Self-Certification</a> process.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-2891">K8S-2891</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong>
-<code>cao certify</code> is not supported on Openshift ARM clusters.</p>
-</div>
-<div class="paragraph">
-<p>Full support for OpenShift on ARM will be available in a future release.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-3033">K8S-3033</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong>
-<code>autoFailoverMaxCount</code> defaults to 3, which is inconsistent with the Couchbase Server default of 1.</p>
-</div>
-<div class="paragraph">
-<p>The workaround is to set the appropriate value for the cluster.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-3066">K8S-3066</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong>
-It is not yet possible to mutate an existing Collection using the Operator.</p>
-</div>
-<div class="paragraph">
-<p>See the linked issue for details of a workaround.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="release-v240"><a class="anchor" href="#release-v240"></a>Release 2.4.0</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Couchbase Autonomous Operator 2.4.0 was released in January 2023.</p>
-</div>
-<div class="sect2">
-<h3 id="changes-in-behavior-v240"><a class="anchor" href="#changes-in-behavior-v240"></a>New Features and Behavioral Changes</h3>
-<div class="sect3">
-<h4 id="arm-platform-support-2"><a class="anchor" href="#arm-platform-support-2"></a>ARM Platform Support</h4>
-<div class="paragraph">
-<p>The Couchbase Autonomous Operator, and all related container images, can now be deployed on ARM platforms where available on AWS, Azure, and GCP managed Kubernetes services, as well as on open source Kubernetes distributions.
-Support for OpenShift on ARM will be available in a future release.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="tls-certificate-management"><a class="anchor" href="#tls-certificate-management"></a>TLS Certificate Management</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>Added support for Encrypted Private Keys</p>
-</li>
-<li>
-<p>LDAP Server configuration can now make use of the main Root CA&#8217;s array</p>
-</li>
-<li>
-<p>Allow multi-PEM CAs in the Server <code>secretSource</code></p>
-</li>
-<li>
-<p>Allow insecure reload of expired certificates as a last resort</p>
-</li>
-<li>
-<p>Raise events on TLS expiration</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="fixed-issues-v240"><a class="anchor" href="#fixed-issues-v240"></a>Fixed Issues</h3>
-<table id="table-fixed-issues-v240" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 27.4725%;">
-<col style="width: 72.5275%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Issue</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-2825" target="_blank" rel="noopener">K8S-2825</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong> Previously the Operator did not correctly propagate the changes when the client certificates were updated.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-2838" target="_blank" rel="noopener">K8S-2838</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong> Previously the CRD was not correctly inheriting the entirety of <code>v1.PodSpec</code>, meaning that attributes such as <code>affinity</code> were not available.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="known-issues-v240"><a class="anchor" href="#known-issues-v240"></a>Known Issues</h3>
-<table id="table-known-issues-v240" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 27.4725%;">
-<col style="width: 72.5275%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Issue</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-2944">K8S-2944</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong>
-URL Encoding breaks string lists with <code>cipherSuites</code>.</p>
-</div>
-<div class="paragraph">
-<p>The following fails with "Invalid format. Expecting a list of ciphers.":</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  tls:
-    cipherSuites:
-    - TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
-    - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-    - TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
-    - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-    tlsMinimumVersion: TLS1.2</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>As a workaround, escape the ciphers with quotation marks as shown below (the single quotes allow the double quotes to be passed through for further parsing):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  tls:
-      cipherSuites:
-      - '"TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256"'
-      - '"TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"'
-      - '"TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384"'
-      - '"TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"'
-      tlsMinimumVersion: TLS1.2</code></pre>
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://issues.couchbase.com/browse/K8S-2971">K8S-2971</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>Summary:</strong>
-<code>storageBackend</code> warnings occur after Operator upgrade</p>
-</div>
-<div class="paragraph">
-<p>By default before Operator 2.4.0, Bucket resources do not have <code>storageBackend</code> set.
-When Upgrading to 2.4 the Operator will send warnings if server is also &lt; 7.1.0:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">{"level":"info","ts":1674524426.697536,"logger":"cluster","msg":"[WARN] spec.storageBackend cannot be empty for server version below 7.1.0 - default to couchstore"}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Under normal upgrade scenarios the workaround for this is to:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Edit <code>couchbaseBucket</code> with <code>storageBackend</code> = <code>couchstore</code></p>
-</li>
-</ul>
+<p><strong>Summary:</strong> Previously the operator would continually update Magma Bucket settings if History Retention Annotations were missing</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1825,7 +1401,7 @@ Couchbase is thankful to all of the individuals that have created these third-pa
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2023 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

@@ -13,13 +13,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
 <title>Couchbase Operator Architecture | Couchbase Docs</title>
+<link rel="canonical" href="https://rayoffiah.github.io/operator/current/concept-operator.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.5">
+<meta name="dcterms.identifier" content="2.6">
 <meta name="page-url" content="/operator/current/concept-operator.html">
 <meta name="generator" content="Antora 3.0.3">
 <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
@@ -115,10 +116,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.5" data-url="overview.html" selected>2.5</option>
+          <option value="2.6" data-url="overview.html" selected>2.6</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.5">
+      <div class="version_items hide" data-version="2.6">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -790,6 +791,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a class="menu_title menu_link" href="reference-operator-logging.html">Operator Logging</a>
   </span>
 </li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="reference-prometheus-metrics.html">Operator Prometheus Metrics</a>
+  </span>
+</li>
 </ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
@@ -1352,6 +1358,130 @@ Detailed role requirements are documented in the <a href="reference-operator-rba
 <p>A <code>Service</code> is provided to allow access to Operator Prometheus metrics, if desired.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="reconciliation-order"><a class="anchor" href="#reconciliation-order"></a>Reconciliation Order</h3>
+<div class="paragraph">
+<p>The Operator takes a wide range of actions on the Couchbase cluster based on the <code>CouchbaseCluster</code> resource, this can sometimes result in unexpected behavior on the cluster if multiple changes are made to the <code>CouchbaseCluster</code> resource at once.
+The order of reconciliation operations that the Operator performs is as follows:</p>
+</div>
+<div class="sect3">
+<h4 id="hibernation"><a class="anchor" href="#hibernation"></a>Hibernation</h4>
+<div class="paragraph">
+<p>Hibernating the cluster takes priority over everything else, if <code>spec.hibernate</code> is <code>true</code> then the Operator will hibernate the cluster without taking any further action.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pre-requisite-resources"><a class="anchor" href="#pre-requisite-resources"></a>Pre-requisite resources</h4>
+<div class="paragraph">
+<p>The operator reconciles the requisite resources that are needed for the cluster to operate, this includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Kubernetes services to enable communication between Couchbase Pods</p>
+</li>
+<li>
+<p>Kubernetes service to access the admin console (<a href="resource/couchbasecluster.html#couchbaseclusters-spec-networking-exposeadminconsole" class="xref page"><code>couchbaseclusters.spec.networking.exposeAdminConsole</code></a>)</p>
+</li>
+<li>
+<p>TLS Secrets</p>
+</li>
+<li>
+<p>Logging Configuration Secret (<a href="resource/couchbasecluster.html#couchbaseclusters-spec-logging-server" class="xref page"><code>couchbaseclusters.spec.logging.server</code></a>)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cluster-creation"><a class="anchor" href="#cluster-creation"></a>Cluster Creation</h4>
+<div class="paragraph">
+<p>The Operator focuses on ensuring that a Couchbase Cluster is available by either recovering down pods or creating an initial Couchbase pod to start the cluster.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="node-reconciliation"><a class="anchor" href="#node-reconciliation"></a>Node Reconciliation</h4>
+<div class="paragraph">
+<p>The Operator makes topology changes to the cluster in the following order:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Waiting for nodes to warm-up</p>
+</li>
+<li>
+<p>Handling down and failed nodes</p>
+</li>
+<li>
+<p>Removing nodes from deleted server configurations</p>
+</li>
+<li>
+<p>Volume expansions for persistent volumes</p>
+</li>
+<li>
+<p>Upgrading Couchbase Server pods based on spec changes</p>
+</li>
+<li>
+<p>Scaling down</p>
+</li>
+<li>
+<p>Scaling up</p>
+</li>
+<li>
+<p>Kubernetes services for Couchbase exposed features (<a href="resource/couchbasecluster.html#couchbaseclusters-spec-networking-exposedfeatures" class="xref page"><code>couchbaseclusters.spec.networking.exposedFeatures</code></a>)</p>
+</li>
+<li>
+<p>Triggering Node Rebalancing</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="post-topology-reconciliation"><a class="anchor" href="#post-topology-reconciliation"></a>Post Topology Reconciliation</h4>
+<div class="paragraph">
+<p>The Operator makes reconciles other cluster properties in the following order:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cluster Networking</p>
+</li>
+<li>
+<p>Mutable Pod Metadata (no topology changes)</p>
+</li>
+<li>
+<p>Couchbase Server cluster settings</p>
+</li>
+<li>
+<p>Buckets</p>
+</li>
+<li>
+<p>Scopes and Collections</p>
+</li>
+<li>
+<p>Bucket synchronization (<a href="resource/couchbasecluster.html#couchbaseclusters-spec-buckets-synchronize" class="xref page"><code>couchbaseclusters.spec.buckets.synchronize</code></a>)</p>
+</li>
+<li>
+<p>XDCR connections (<a href="resource/couchbasecluster.html#couchbaseclusters-spec-xdcr" class="xref page"><code>couchbaseclusters.spec.xdcr</code></a>)</p>
+</li>
+<li>
+<p>Kubernetes services for Couchbase exposed features (<a href="resource/couchbasecluster.html#couchbaseclusters-spec-networking-exposedfeatures" class="xref page"><code>couchbaseclusters.spec.networking.exposedFeatures</code></a>)</p>
+</li>
+<li>
+<p>RBAC</p>
+</li>
+<li>
+<p>Backups</p>
+</li>
+<li>
+<p>Backup Restores</p>
+</li>
+<li>
+<p>Cloud Native Gateway service</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1453,7 +1583,7 @@ They are used as backing storage for Couchbase backups.
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2023 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

@@ -13,13 +13,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
 <title>Configure Persistent Volumes | Couchbase Docs</title>
+<link rel="canonical" href="https://rayoffiah.github.io/operator/current/howto-persistent-volumes.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.5">
+<meta name="dcterms.identifier" content="2.6">
 <meta name="page-url" content="/operator/current/howto-persistent-volumes.html">
 <meta name="generator" content="Antora 3.0.3">
 <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
@@ -115,10 +116,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.5" data-url="overview.html" selected>2.5</option>
+          <option value="2.6" data-url="overview.html" selected>2.6</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.5">
+      <div class="version_items hide" data-version="2.6">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -790,6 +791,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a class="menu_title menu_link" href="reference-operator-logging.html">Operator Logging</a>
   </span>
 </li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="reference-prometheus-metrics.html">Operator Prometheus Metrics</a>
+  </span>
+</li>
 </ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
@@ -1274,6 +1280,7 @@ metadata:
   name: cb-example
 spec:
   enableOnlineVolumeExpansion: true <i class="conum" data-value="1"></i><b>(1)</b>
+  onlineVolumeExpansionTimeoutInMins: 10 <i class="conum" data-value="2"></i><b>(2)</b>
   volumeClaimTemplates:
   - metadata:
       name: couchbase
@@ -1281,7 +1288,7 @@ spec:
       storageClassName: standard
       resources:
         requests:
-          storage: 2Gi <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+          storage: 2Gi <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1292,6 +1299,10 @@ spec:
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><a href="resource/couchbasecluster.html#couchbaseclusters-spec-onlinevolumeexpansiontimeoutinmins" class="xref page"><code>couchbaseclusters.spec.onlineVolumeExpansionTimeoutInMins</code></a>: This field must be provided as a retry mechanism with a timeout in minutes. It could be in between 0 to 30 minutes, defaulting to 10 minutes. No unit is needed to be provided.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
 <td>Modifying the storage size will trigger the Autonomous Operator to detect that existing persistent volume claims do not match the intended size (as it normally would).
 However, if the new value is larger than the previous value, the Autonomous Operator will attempt an online expansion of the volume.</td>
 </tr>
@@ -1335,8 +1346,7 @@ Normal  ExpandVolumeSucceeded  6s           Successfully expanded volume cb-exam
 </td>
 <td class="content">
 <div class="paragraph">
-<p>There is no timeout for volume expansion tasks.
-Volumes will remain at their current size until the underlying infrastructure provides larger volumes or reports a failure.
+<p>Once the provided timeout in <a href="resource/couchbasecluster.html#couchbaseclusters-spec-onlinevolumeexpansiontimeoutinmins" class="xref page"><code>couchbaseclusters.spec.onlineVolumeExpansionTimeoutInMins</code></a> is reached for retries and the volume resize is not successful, as the underlying infrastructure could not provide larger volumes, it would report a failure.
 Unfortunately, the request cannot be rolled back since the request can only be increased.
 Therefore, the only way to abort a suspended expansion task is to set <a href="resource/couchbasecluster.html#couchbaseclusters-spec-enableonlinevolumeexpansion" class="xref page"><code>couchbaseclusters.spec.enableOnlineVolumeExpansion</code></a> back to <code>false</code> so that a rolling upgrade may occur.</p>
 </div>
@@ -1454,7 +1464,7 @@ Note that persistent volumes are fully managed by the Autonomous Operator, there
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2023 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

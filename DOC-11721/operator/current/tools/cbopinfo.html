@@ -13,13 +13,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
 <title>cbopinfo | Couchbase Docs</title>
+<link rel="canonical" href="https://rayoffiah.github.io/operator/current/tools/cbopinfo.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.5">
+<meta name="dcterms.identifier" content="2.6">
 <meta name="page-url" content="/operator/current/tools/cbopinfo.html">
 <meta name="generator" content="Antora 3.0.3">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
@@ -115,10 +116,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.5" data-url="../overview.html" selected>2.5</option>
+          <option value="2.6" data-url="../overview.html" selected>2.6</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.5">
+      <div class="version_items hide" data-version="2.6">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -790,6 +791,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a class="menu_title menu_link" href="../reference-operator-logging.html">Operator Logging</a>
   </span>
 </li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../reference-prometheus-metrics.html">Operator Prometheus Metrics</a>
+  </span>
+</li>
 </ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
@@ -1434,11 +1440,31 @@ cbopinfo --all</code></pre>
 <p>Collect only resource for the named CouchbaseCluster, may be used multiple times</p>
 </div>
 </dd>
+<dt class="hdlist1">--customer</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: default</p>
+</div>
+<div class="paragraph">
+<p>Specifies the customer name for log uploading. This value must be a string whose maximum length is 50 characters. Only the following characters can be used: [A-Za-z0-9_.-].</p>
+</div>
+</dd>
 <dt class="hdlist1">--directory</dt>
 <dd>
 <p><strong>Type</strong>: string</p>
 <div class="paragraph">
 <p>Collect logs in a specific directory</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
 </div>
 </dd>
 <dt class="hdlist1">--insecure-skip-tls-verify</dt>
@@ -1542,6 +1568,13 @@ cbopinfo --all</code></pre>
 <p>Collect kube-system resources and logs</p>
 </div>
 </dd>
+<dt class="hdlist1">--ticket</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Specifies the Couchbase Support ticket-number. The value must be a string with a maximum length of 7 characters, containing only digits in the range of 0-9.</p>
+</div>
+</dd>
 <dt class="hdlist1">--tls-server-name</dt>
 <dd>
 <p><strong>Type</strong>: string</p>
@@ -1554,6 +1587,33 @@ cbopinfo --all</code></pre>
 <p><strong>Type</strong>: string</p>
 <div class="paragraph">
 <p>Bearer token for authentication to the API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--upload-host</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: <a href="https://uploads.couchbase.com" class="bare">https://uploads.couchbase.com</a></p>
+</div>
+<div class="paragraph">
+<p>Specifies the fully-qualified domain name of the host you want the logs uploaded to. The protocol prefix of the domain name</p>
+</div>
+</dd>
+<dt class="hdlist1">--upload-logs</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>Upload logs to support portal</p>
+</div>
+</dd>
+<dt class="hdlist1">--upload-proxy</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Specifies a proxy for log uploading</p>
 </div>
 </dd>
 <dt class="hdlist1">--user</dt>
@@ -1635,7 +1695,7 @@ cbopinfo --all</code></pre>
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2023 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

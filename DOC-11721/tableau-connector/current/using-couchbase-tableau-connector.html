@@ -407,8 +407,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="page-heading-title">
 <h1 class="page">Using the Couchbase Tableau Connector</h1>
 <div class="labels">
-<ul>
-<li class="concept"><span><i class="far fa-lightbulb"></i> concept</span></li>
+<ul><li class="guide"><span><i class="far fa-check-square"></i> how-to</span></li>
 </ul>
 </div>
 
@@ -434,48 +433,95 @@ The Couchbase Analytics Connector for Tableau is compatible with Couchbase Serve
 <p>Configure the Tableau connector based on the type of Couchbase Server instances you are using.</p>
 </div>
 <div class="sect2">
-<h3 id="configuring-couchbase-analytics-connector-for-couchbase-server-instances"><a class="anchor" href="#configuring-couchbase-analytics-connector-for-couchbase-server-instances"></a>Configuring Couchbase Analytics Connector for Couchbase Server Instances</h3>
+<h3 id="configure-couchbase-analytics-connector-for-couchbase-server-instances"><a class="anchor" href="#configure-couchbase-analytics-connector-for-couchbase-server-instances"></a>Configure Couchbase Analytics Connector for Couchbase Server Instances</h3>
 <div class="paragraph">
-<p>To connect to your Couchbase Server running on your local machine, set the <strong>Server</strong> field to <code>localhost</code>, enter the <strong>Username</strong> and <strong>Password</strong> configured for your cluster, and click <b class="button">Sign In</b>.</p>
+<p>To connect to your Couchbase instance:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set the <strong>Server</strong> field to the address of the Couchbase instance&#8201;&#8212;&#8201;for example, <code>localhost</code>.</p>
+</li>
+<li>
+<p>Enter your <strong>Username</strong> and <strong>Password</strong>, and click <b class="button">Sign In</b>.</p>
+</li>
+<li>
+<p>(Optional) To securely connect to Couchbase with certificates enabled, select the <strong>Require SSL</strong> option.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/tableau-connection-without-ssl.png" alt="Tableau Connection Without SSL">
+<img src="_images/tableau-connection-without-ssl.png" alt="Tableau Connection Without SSL" width="497">
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuring-couchbase-analytics-connector-for-couchbase-server-instances-with-ssl"><a class="anchor" href="#configuring-couchbase-analytics-connector-for-couchbase-server-instances-with-ssl"></a>Configuring Couchbase Analytics Connector for Couchbase Server Instances with SSL</h3>
+<h3 id="ssl"><a class="anchor" href="#ssl"></a>Set Up SSL Support&#8201;&#8212;&#8201;Tableau Connector 1.0.x</h3>
+<div class="sidebarblock">
+<div class="content">
 <div class="paragraph">
-<p>To securely connect to your Couchbase Server with certificates enabled, select the <strong>Require SSL</strong> option when configuring the Tableau Connector.</p>
+<p><span class="status">Tableau Connector 1.0.x</span></p>
+</div>
+<div class="paragraph">
+<p>This section only applies to Tableau Connector 1.0.x.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>To configure SSL support for Tableau Connector 1.0.x, go to the <strong>Advanced</strong> tab and add the absolute paths where your TLS certificate and keystore are located.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/tableau-connector-config-ssl.png" alt="Tableau Connection SSL">
-</div>
-</div>
-<div class="paragraph">
-<p>Next, go to the <strong>Advanced</strong> tab and add the absolute paths to where your TLS certificate and keystore are located.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/tableau-connector-config-advanced.png" alt="Tableau Connection Advanced">
+<img src="_images/tableau-connector-config-advanced.png" alt="Tableau Connection Advanced" width="493">
 </div>
 </div>
 <div class="paragraph">
 <p>For more information on managing certificates for Couchbase Server, check out the <a href="../../server/current/manage/manage-security/manage-certificates.html" class="xref page">Manage Certificates</a> page.</p>
 </div>
-<div class="paragraph">
-<p>You can also set the Connection timeout as well as the scan consistency mode in the <strong>Advanced</strong> tab. Choosing the <strong>Request plus</strong> scan consistency mode will then give you a dropdown to select the scan wait time.</p>
 </div>
-<div class="imageblock">
+<div class="sect2">
+<h3 id="set-up-ssl-supporttableau-connector-1-1-x"><a class="anchor" href="#set-up-ssl-supporttableau-connector-1-1-x"></a>Set Up SSL Support&#8201;&#8212;&#8201;Tableau Connector 1.1.x</h3>
+<div class="sidebarblock">
 <div class="content">
-<img src="_images/tableau-connector-config-advanced-scan-consistency.png" alt="Tableau Connection Advanced Scan Consistency">
+<div class="paragraph">
+<p><span class="status">Tableau Connector 1.1.x</span></p>
 </div>
+<div class="paragraph">
+<p>This section only applies to Tableau Connector 1.1.x.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>To set up SSL support for Tableau Connector 1.1.0 and later, see the following sections:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="setup-tableau-desktop.html#ssl" class="xref page">Set Up SSL Support&#8201;&#8212;&#8201;Tableau Connector 1.1.x</a> for Tableau Desktop.</p>
+</li>
+<li>
+<p><a href="setup-tableau-server.html#ssl" class="xref page">Set Up SSL Support&#8201;&#8212;&#8201;Tableau Connector 1.1.x</a> for Tableau Server.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuring-tableau-server-connection-on-tableau-desktop"><a class="anchor" href="#configuring-tableau-server-connection-on-tableau-desktop"></a>Configuring Tableau Server Connection on Tableau Desktop</h3>
+<h3 id="configure-advanced-settings"><a class="anchor" href="#configure-advanced-settings"></a>Configure Advanced Settings</h3>
+<div class="paragraph">
+<p>To set up the connection timeout and the scan consistency mode, go to the <strong>Advanced</strong> tab.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/tableau-connector-config-advanced-110.png" alt="Tableau Connection Advanced Scan Consistency" width="493">
+</div>
+</div>
+<div class="paragraph">
+<p>Setting the scan consistency to <code>Request plus</code> displays a dropdown to select the scan wait time.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configure-tableau-server-connection-on-tableau-desktop"><a class="anchor" href="#configure-tableau-server-connection-on-tableau-desktop"></a>Configure Tableau Server Connection on Tableau Desktop</h3>
 <div class="paragraph">
 <p>Reports and dashboards created on Tableau Desktop can be published and viewed on Tableau Server. To configure your Tableau Server connection, go to <span class="menuseq"><b class="menu">Server</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Tableau Online</b></span>.</p>
 </div>
@@ -499,8 +545,8 @@ The Couchbase Analytics Connector for Tableau is compatible with Couchbase Serve
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If you’re using an on-premise instance of Tableau Server, you will need to configure SSL. This can be done by logging into the Tableau Services Manager UI and  going to
-<span class="menuseq"><b class="menu">Configuration</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">Security</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">External SSL</b></span>.
+If you&#8217;re using an on-premise instance of Tableau Server, you will need to configure SSL.
+This can be done by logging into the Tableau Services Manager UI and going to <span class="menuseq"><b class="menu">Configuration</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">Security</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">External SSL</b></span>.
 </td>
 </tr>
 </table>
@@ -517,7 +563,7 @@ If you’re using an on-premise instance of Tableau Server, you will need to con
 </div>
 </div>
 <div class="sect1">
-<h2 id="viewing-data-from-analytic-views-on-tableau"><a class="anchor" href="#viewing-data-from-analytic-views-on-tableau"></a>Viewing Data From Analytic Views on Tableau</h2>
+<h2 id="view-data-from-analytic-views-on-tableau"><a class="anchor" href="#view-data-from-analytic-views-on-tableau"></a>View Data from Analytic Views on Tableau</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Once Tableau has successfully established a connection with your Couchbase Server, you should see it in the Connections section. You should also see the Analytics scopes set up in the previous steps.</p>
@@ -538,7 +584,7 @@ If you’re using an on-premise instance of Tableau Server, you will need to con
 </div>
 </div>
 <div class="sect1">
-<h2 id="using-couchbase-analytics-views-to-build-tableau-worksheets"><a class="anchor" href="#using-couchbase-analytics-views-to-build-tableau-worksheets"></a>Using Couchbase Analytics Views to Build Tableau Worksheets</h2>
+<h2 id="use-couchbase-analytics-views-to-build-tableau-worksheets"><a class="anchor" href="#use-couchbase-analytics-views-to-build-tableau-worksheets"></a>Use Couchbase Analytics Views to Build Tableau Worksheets</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Now that you have your Couchbase Analytics Tabular views set up on Tableau, you can now use these views as the data source to build your Tableau worksheets.</p>
@@ -602,7 +648,7 @@ If you’re using an on-premise instance of Tableau Server, you will need to con
 </div>
 </div>
 <div class="sect1">
-<h2 id="using-couchbase-analytics-queries-to-build-tableau-worksheets"><a class="anchor" href="#using-couchbase-analytics-queries-to-build-tableau-worksheets"></a>Using Couchbase Analytics Queries to Build Tableau Worksheets</h2>
+<h2 id="use-couchbase-analytics-queries-to-build-tableau-worksheets"><a class="anchor" href="#use-couchbase-analytics-queries-to-build-tableau-worksheets"></a>Use Couchbase Analytics Queries to Build Tableau Worksheets</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Apart from the predefined views or any other custom views you create, the Couchbase Tableau connector also supports the use of Analytics queries as the data source.</p>
@@ -622,13 +668,13 @@ If you’re using an on-premise instance of Tableau Server, you will need to con
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The default scope is set based on the scope if specified in the connection dialog. If no scope is explicitly mentioned, it is set to ‘Default’, however users can provide any other scope when setting up the connection. To run Analytics queries, you may specify the Analytics scope along with the collection in your queries. If no scope is specified in a query, the scope set in the connection dialog will be used. For example, to use the airline Analytics collection, use <strong>`travel-sample`.inventory.airline</strong>.
+The default scope is set based on the scope if specified in the connection dialog. If no scope is explicitly mentioned, it is set to <code>Default</code>, however users can provide any other scope when setting up the connection. To run Analytics queries, you may specify the Analytics scope along with the collection in your queries. If no scope is specified in a query, the scope set in the connection dialog will be used. For example, to use the airline Analytics collection, use <code>`travel-sample`.inventory.airline</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="sect2">
-<h3 id="running-analytics-queries-on-tableau"><a class="anchor" href="#running-analytics-queries-on-tableau"></a>Running Analytics Queries on Tableau</h3>
+<h3 id="run-analytics-queries-on-tableau"><a class="anchor" href="#run-analytics-queries-on-tableau"></a>Run Analytics Queries on Tableau</h3>
 <div class="paragraph">
 <p>A simple Analytics query you can execute is to get the counts of the hotels per city. In the Edit Custom SQL window, add the following query and select Preview Results.</p>
 </div>
@@ -697,7 +743,7 @@ limit 100</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="using-analytics-queries-as-the-data-source-to-build-tableau-reports"><a class="anchor" href="#using-analytics-queries-as-the-data-source-to-build-tableau-reports"></a>Using Analytics Queries as the Data Source to Build Tableau Reports</h3>
+<h3 id="use-analytics-queries-as-the-data-source-to-build-tableau-reports"><a class="anchor" href="#use-analytics-queries-as-the-data-source-to-build-tableau-reports"></a>Use Analytics Queries as the Data Source to Build Tableau Reports</h3>
 <div class="paragraph">
 <p>Once you have executed your query, you should be able to see the data from the query in a tabular form.</p>
 </div>
@@ -718,7 +764,7 @@ limit 100</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="publishing-workbook-to-tableau-server"><a class="anchor" href="#publishing-workbook-to-tableau-server"></a>Publishing Workbook to Tableau Server</h2>
+<h2 id="publish-workbook-to-tableau-server"><a class="anchor" href="#publish-workbook-to-tableau-server"></a>Publish Workbook to Tableau Server</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Once you have created your reports, you can then publish them onto Tableau Server. From the menu, select <span class="menuseq"><b class="menu">Server</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Publish Workbook</b></span>.</p>
@@ -733,7 +779,7 @@ limit 100</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/publish-workbook-dialog.png" alt="Publish Workbook Dialog">
+<img src="_images/publish-workbook-dialog.png" alt="Publish Workbook Dialog" width="420">
 </div>
 </div>
 <div class="paragraph">
@@ -741,7 +787,7 @@ limit 100</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/tableau-server-login.png" alt="Tableau Server Login">
+<img src="_images/tableau-server-login.png" alt="Tableau Server Login" width="536">
 </div>
 </div>
 <div class="paragraph">
@@ -763,7 +809,7 @@ limit 100</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="publishing-data-sources-to-tableau-server"><a class="anchor" href="#publishing-data-sources-to-tableau-server"></a>Publishing Data Sources to Tableau Server</h2>
+<h2 id="publish-data-sources-to-tableau-server"><a class="anchor" href="#publish-data-sources-to-tableau-server"></a>Publish Data Sources to Tableau Server</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can also publish you data source directly to Tableau Server from Tableau Desktop. This will allow users with access to your Tableau Server project to view and build their own workbooks and reports using the Couchbase Analytics data source you have set up on Tableau Desktop. From the menu, select <span class="menuseq"><b class="menu">Server</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Publish Data Source</b></span>.</p>
@@ -778,7 +824,7 @@ limit 100</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/publish-data-source-dialog.png" alt="Publish Data Source Dialog">
+<img src="_images/publish-data-source-dialog.png" alt="Publish Data Source Dialog" width="321">
 </div>
 </div>
 <div class="paragraph">
@@ -858,7 +904,7 @@ limit 100</code></pre>
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2023 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

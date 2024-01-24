@@ -13,13 +13,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
 <title>Forwarding Couchbase Logs with Fluent Bit | Couchbase Docs</title>
+<link rel="canonical" href="https://rayoffiah.github.io/operator/current/tutorial-couchbase-log-forwarding.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.5">
+<meta name="dcterms.identifier" content="2.6">
 <meta name="page-url" content="/operator/current/tutorial-couchbase-log-forwarding.html">
 <meta name="generator" content="Antora 3.0.3">
 <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
@@ -115,10 +116,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.5" data-url="overview.html" selected>2.5</option>
+          <option value="2.6" data-url="overview.html" selected>2.6</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.5">
+      <div class="version_items hide" data-version="2.6">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -790,6 +791,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a class="menu_title menu_link" href="reference-operator-logging.html">Operator Logging</a>
   </span>
 </li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="reference-prometheus-metrics.html">Operator Prometheus Metrics</a>
+  </span>
+</li>
 </ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
@@ -1227,6 +1233,8 @@ spec:
           enabled: true <i class="conum" data-value="3"></i><b>(3)</b>
   image: couchbase/server:7.1.3
   security:
+    podSecurityContext:
+      fsGroup: 1000
     adminSecret: cb-example-auth
   buckets:
     managed: true
@@ -1334,7 +1342,7 @@ couchbase-operator-1917615544-pd4q6   1/1       Running   0          8m</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>[1615311121.859344000, {"filename":"/fluent-bit/test/logs/memcached.log.000000.txt","timestamp":"2021-03-09T17:32:01.859344+00:00","level":"INFO","message":"Couchbase version 6.6.0-7909 starting."}]</pre>
+<pre>[1615311121.859344000, {"filename":"/fluent-bit/test/logs/memcached.log.000000.txt","timestamp":"2021-03-09T17:32:01.859344+00:00","level":"INFO","message":"Couchbase version 7.2.3-7909 starting."}]</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1349,7 +1357,7 @@ couchbase-operator-1917615544-pd4q6   1/1       Running   0          8m</pre>
 <p><code>"level":"INFO"</code></p>
 </li>
 <li>
-<p><code>"message":"Couchbase version 6.6.0-7909 starting."</code></p>
+<p><code>"message":"Couchbase version 7.2.3-7909 starting."</code></p>
 </li>
 </ul>
 </div>
@@ -2092,7 +2100,7 @@ The salt is defaulted to the cluster name by the operator and is provided in the
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2023 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>

@@ -13,13 +13,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
 <title>What&#8217;s New? | Couchbase Docs</title>
+<link rel="canonical" href="https://rayoffiah.github.io/operator/current/whats-new.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.5">
+<meta name="dcterms.identifier" content="2.6">
 <meta name="page-url" content="/operator/current/whats-new.html">
 <meta name="generator" content="Antora 3.0.3">
 <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
@@ -115,10 +116,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="component_list-version">
         <span class="component_list_title">Autonomous Operator</span>
         <select class="version_list" data-component="operator">
-          <option value="2.5" data-url="overview.html" selected>2.5</option>
+          <option value="2.6" data-url="overview.html" selected>2.6</option>
         </select>
       </div>
-      <div class="version_items hide" data-version="2.5">
+      <div class="version_items hide" data-version="2.6">
 <ul class="menu_row">
 <li class="menu_list is-parent closed" data-depth="0">
   <span class="menu_line">
@@ -790,6 +791,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a class="menu_title menu_link" href="reference-operator-logging.html">Operator Logging</a>
   </span>
 </li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="reference-prometheus-metrics.html">Operator Prometheus Metrics</a>
+  </span>
+</li>
 </ul>
 </li>
 <li class="menu_list is-parent closed" data-depth="1">
@@ -1119,129 +1125,69 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Autonomous Operator 2.5 release is primarily focused on adding some key features introduced in Couchbase Server 7.1 to Autonomous Operator such as support for ARM platforms and Encrypted Certificates, as well as other improvements related to TLS Certificate Management, cloud backups, index configuration, and the Prometheus Exporter.</p>
+<p>Autonomous Operator 2.6 release is primarily focused on platform updates, feature parity with Couchbase Server, improvements to Pod Management and Security, as well as a number of minor fixes.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="arm-platform-support"><a class="anchor" href="#arm-platform-support"></a>ARM Platform Support</h2>
+<h2 id="immediate-backups"><a class="anchor" href="#immediate-backups"></a>Immediate Backups</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Over the last few years, the ARM v8 processors which have generally been found in mobile devices, have gained popularity with both desktop hardware vendors and major Cloud Service providers.
-In Couchbase Server 7.1.0 we added support for AWS Graviton-based instances, and since Couchbase Server 7.1.1 we have published multi-arch Docker container images supporting both <code>amd64</code> and <code>arm64</code> architectures.</p>
+<p>It is now possible to run a CouchbaseBackup resource immediately via the new immediate_full and immediate_incremental backup strategies.</p>
 </div>
 <div class="paragraph">
-<p>Now, with Autonomous Operator 2.5, all tools and container images for Open Source Kubernetes platforms are available for both architectures, allowing deployments on either <code>amd64</code> or <code>arm64</code> as well as migrations between the two.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Support for ARM on the OpenShift Container Platform was added in Operator 2.4.2.
-</td>
-</tr>
-</table>
+<p>See <a href="howto-backup.html#configure-backups" class="xref page">Configure Backups</a> for futher details.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="encrypted-certificates"><a class="anchor" href="#encrypted-certificates"></a>Encrypted Certificates</h2>
+<h2 id="improved-pod-management"><a class="anchor" href="#improved-pod-management"></a>Improved Pod Management</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase Server 7.1 introduced support for <a href="#7.1@server:introduction:whats-new.adoc#encrypted-private-keys" class="xref unresolved">Encrypted Private Keys</a>, allowing administrators to use an encrypted private key using PKCS #5 v2 algorithms like AES 256.</p>
-</div>
-<div class="paragraph">
-<p>Autonomous Operator 2.5 now exposes this feature, which prevents storing the TLS private key unencrypted anywhere on the system.</p>
-</div>
-<div class="paragraph">
-<p>See <a href="concept-tls.html#tls-passphrase-protection" class="xref page">TLS Passphrase Protection</a> for further details.</p>
+<p>Couchbase Operator now takes into consideration data topography and Couchbase Server version when determining which pods to scale down.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="tls-certificate-management"><a class="anchor" href="#tls-certificate-management"></a>TLS Certificate Management</h2>
+<h2 id="log-uploads"><a class="anchor" href="#log-uploads"></a>Log Uploads</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This release adds several other improvements in the area of TLS Certificate Management.</p>
+<p>There are new parameters that can be passed to the <code>cao collect-logs</code> command that will automatically upload the logs to Couchbase Support.</p>
 </div>
 <div class="paragraph">
-<p>With support for multiple Root CA&#8217;s in Server 7.1, certificates no longer need to be explicitly supplied for LDAP and instead can be placed inside the <code>RootCAs</code> array.  See <a href="resource/couchbasecluster.html#couchbaseclusters-spec-security-ldap-tlssecret" class="xref page">tlsSecret</a></p>
-</div>
-<div class="paragraph">
-<p>It is now possible to include multi-PEM CAs in the Server <code>secretSource</code>.
-See <a href="resource/couchbasecluster.html#couchbaseclusters-spec-networking-tls-secretsource-serversecretname" class="xref page">serverSecretName</a></p>
-</div>
-<div class="paragraph">
-<p>Certificate Rotation has been expanded to allow plain text reload as a last resort in case of already-expired certificates.
-See <a href="howto-tls-rotation.html#replacing-expired-certificates" class="xref page">Replacing expired Certificates</a></p>
-</div>
-<div class="paragraph">
-<p>Relatedly, the Operator now raises Kubernetes Events when it detects TLS expiration.</p>
+<p>See <a href="tools/cao.html#cao-collect-logs" class="xref page">Cao Collect Logs</a> for further details.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="cloud-backup-improvements"><a class="anchor" href="#cloud-backup-improvements"></a>Cloud Backup Improvements</h2>
+<h2 id="delta-recovery-upgrades"><a class="anchor" href="#delta-recovery-upgrades"></a>Delta Recovery Upgrades</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Cloud Backup and Restore in Couchbase Server 7.1 now supports the use of Azure and GCP blob storage, and also adds the option to use an ephemeral volume for the staging directory.
-See <a href="howto-backup.html#backup-and-restore-to-a-cloud-store" class="xref page">Backup and Restore to a Cloud Store</a></p>
+<p>Couchbase Clusters can now be configured to perform a Delta-Recovery upgrades.  This upgrade is considerably faster than the current SwapRebalance method.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="#resources/couchbasecluster.adoc#couchbaseclusters-spec-upgradeProcess" class="xref unresolved">Upgrade Process</a> for further details</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="storage-engines"><a class="anchor" href="#storage-engines"></a>Storage Engines</h2>
+<h2 id="quality-of-life-improvements"><a class="anchor" href="#quality-of-life-improvements"></a>Quality of Life Improvements</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase Server 7.1 introduced a new Storage Engine, <a href="#7.1@server:learn:buckets-memory-and-storage/storage-engines.adoc#storage-engine-magma" class="xref unresolved">Magma</a>, alongside the default of Couchstore.</p>
-</div>
-<div class="paragraph">
-<p>With Operator 2.4, the per-bucket Storage Engine setting is now exposed via <a href="resource/couchbasebucket.html#couchbasebuckets-spec-storagebackend
-" class="xref page">storageBackend</a>.</p>
+<p>Added an onlineExpansionTimeout to Couchbase Cluster to specify the number of minutes operator should wait before falling back to a rolling upgrade when volume expansion fails.
+Added annotations to better help integrations with Prometheus.
+Added platform specific zone labels to persistent volume claims for EKS, GKE and AKS.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="global-indexer-configuration"><a class="anchor" href="#global-indexer-configuration"></a>Global Indexer Configuration</h2>
+<h2 id="pod-readiness-delay-and-pod-readiness-period"><a class="anchor" href="#pod-readiness-delay-and-pod-readiness-period"></a>Pod Readiness Delay and Pod Readiness Period</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To improve Secondary Index management on an Operator-managed cluster, two additional Couchbase Server features are now exposed:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#7.1@server:learn:services-and-indexes/services/index-service.adoc#index-replication" class="xref unresolved">Default Index Replicas</a> via <a href="resource/couchbasecluster.html#couchbaseclusters-spec-cluster-indexer-numreplica" class="xref page">numReplica</a></p>
-</li>
-<li>
-<p><a href="#7.1@server:learn:clusters-and-availability/rebalance.adoc#rebalancing-the-index-service" class="xref unresolved">Index Redistribution on Rebalance</a> via <a href="resource/couchbasecluster.html#couchbaseclusters-spec-cluster-indexer-redistributeindexes" class="xref page">redistributeIndexes</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="prometheus-exporter-improvements"><a class="anchor" href="#prometheus-exporter-improvements"></a>Prometheus Exporter Improvements</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Although the Exporter is no longer required when using Couchbase Server 7.x, which contains a native Prometheus endpoint, it may still be desirable to use the Couchbase Prometheus Exporter.</p>
+<p>Added pod readiness delay and pod readiness period parameters to the <code>cao create operator</code> command.  These will be applied to all Couchbase Server pods created by the operator.</p>
 </div>
 <div class="paragraph">
-<p>This release adds performance improvements and tuning options, see <a href="howto-prometheus.html" class="xref page">Configure Prometheus Metrics Collection</a> for details.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="local-persistent-volumes-from-couchbase-autonomous-operator-2-4-1"><a class="anchor" href="#local-persistent-volumes-from-couchbase-autonomous-operator-2-4-1"></a>Local Persistent Volumes (from Couchbase Autonomous Operator 2.4.1)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In Kubernetes it is possible to use a local storage device (such as a disk, partition, or directory) as a Persistent Volume (see <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local">local</a>).</p>
-</div>
-<div class="paragraph">
-<p>From Couchbase Autonomous Operator 2.4.1, it is now possible to use these Local Volumes when deploying Couchbase Server resources.
-See <a href="concept-persistent-volumes.html#local-persistent-volumes" class="xref page">Local Persistent Volumes</a> for full details.</p>
+<p>See <a href="tools/cao.html#cao-create-operator" class="xref page">Cao Create Operator</a> for further details.</p>
 </div>
 </div>
 </div>
@@ -1304,7 +1250,7 @@ See <a href="concept-persistent-volumes.html#local-persistent-volumes" class="xr
     </div>
     <div class="footer-terms">
       <div class="footer-terms-copyright">
-          <span>© 2023 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
       </div>
       <div class="footer-terms-links">
         <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
