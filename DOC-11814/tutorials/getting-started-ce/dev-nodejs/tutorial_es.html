@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
+<title>Untitled | Couchbase Docs</title>
+<link rel="canonical" href="https://rayoffiah.github.io/tutorials/getting-started-ce/dev-nodejs/tutorial_es.html">
+<link rel="stylesheet" href="../../../_/css/site.css">
+<script src="../../../_/js/vendor/jquery.js"></script>
+<link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+
+
+<meta name="dcterms.subject" content="tutorials">
+<meta name="dcterms.identifier" content="master">
+<meta name="page-url" content="/tutorials/getting-started-ce/dev-nodejs/tutorial_es.html">
+<meta name="generator" content="Antora 3.0.3">
+<link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
+</head>
+<body class="article">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="header fixed-top">
+  <div class="header-top-row">
+      <div class="container">
+          <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
+              <ul class="navbar-brand-list">
+                <li class="brand-logo">
+                  <a class="navbar-brand" href="https://www.couchbase.com">
+                    <img src="../../../_/img/couchbase-logo.svg" alt="Couchbase" />
+                  </a>
+                </li>
+                <li>
+                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/home/index.html">
+                    <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
+                    <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  </a>
+                </li>
+              </ul>
+              <button class="navbar-burger" data-target="topbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+          </nav>
+      </div>
+  </div>
+  <div class="header-bottom-row" id="topbar-menu">
+    <div class="container">
+        <nav  class="navbar navbar-new-bottom">
+
+              <div class="navbar-collapse collapse" id="navbar2">
+                <ul class="navbar-nav w-100 justify-content-start">
+                  <li class="nav-item">
+                    <a href="https://rayoffiah.github.io/home/index.html" class="nav-link">
+                      <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../../home/server.html">
+                      Server
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../../home/mobile.html">
+                      Mobile
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Cloud
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="primary-action">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                  Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
+                </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+
+              </div>
+
+        </nav>
+    </div>
+   </div>
+</header>
+<div class="body container">
+<aside class="nav left-sidebar">
+  <div class="nav-container">
+    <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+<div class="components">
+  <div class="components_group-title">
+    Tutorials
+  </div>
+  <ul class="components_list">
+    <li class="components_list-items">
+      <div class="component_list-version">
+        <span class="component_list_title">tutorials</span>
+      </div>
+      <div class="version_items hide" data-version="master">
+      </div>
+    </li>
+  </ul>
+</div>
+  </div>
+</aside>
+<aside class="toc sidebar"
+      data-title="Contents"
+      data-levels="1">
+  <div class="sidebar-box">
+    <div class="tools" role="navigation">
+<ul>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/tutorials-contrib/modules/getting-started-ce/pages/dev-nodejs/tutorial_es.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+</ul>
+</div>
+    <div class="toc-menu"></div>
+    <div class="is-this-helpful-box">
+      <h4> Is this page helpful?</h4>
+      <div class="btn-row">
+        <a href="#" class="like-btn helpful-btn" id="yesBtn" data-page-rating="like" >
+                <i class="far fa-thumbs-up"></i>
+            Yes
+
+            </a>
+        <a href="#" class="dislike-btn helpful-btn" id="noBtn"  data-page-rating="dislike"> <i class="far fa-thumbs-down"></i> No</a>
+      </div>
+      <div class="any-feedback">
+        <a href="#" class="btn any-feedback-btn" id="myCustomTrigger">Leave Additional Feedback? </a>
+      </div>
+      <div class="dialog-box" id="dialogBox">
+        <form>
+            <div class="form-group " id="additionalFeedbackBox">
+              <textarea class="input-control feed-back-msg" rows="8" placeholder="Any Additonal Feedback?"></textarea>
+
+              <div class="action-btn-row ">
+                <a href="#" class="skip-btn" id="skipBtnMsg">Skip</a>
+                  <button class="submit-btn btn blue-btn disabled" > Submit  </button>
+                  <a href="#" class="info-btn"><i class="fas fa-info-circle"></i></a>
+              </div>
+
+
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="feedback-modal modal-popup">
+  <div class="modal-popup-dialogue">
+    <div class="popup-header">
+      <a href="#" class="close-popup"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="popup-content">
+      <p>
+        Please use the form below to provide your feedback. Because your feedback is valuable to us,
+         the information you submit in this form is recorded in our issue tracking system (JIRA), which is publicly available.
+        You can track the status of your feedback using the ticket number displayed in the dialog once you submit the form.
+      </p>
+    </div>
+  </div>
+</div>
+
+<main class="article" data-ceiling="topbar">
+<div class="article-header">
+<nav class="crumbs" aria-label="breadcrumbs">
+<ul>
+<li class="crumb"><a href="../../index.html">tutorials</a></li>
+</ul>
+</nav>
+</div>
+<article class="doc">
+<div class="contributor-list-box">
+<span class="last-commit-date" id="commitdate">    </span>
+<ul id="contributorList"></ul>
+<span  id="otherContributor"> + </span>
+</div><div class="paragraph">
+<p><a href="tutorial_en.html">English</a> | Español</p>
+</div>
+<div class="sect1">
+<h2 id="desarrollando-en-couchbase-ce-con-node-js"><a class="anchor" href="#desarrollando-en-couchbase-ce-con-node-js"></a>Desarrollando en Couchbase CE con Node.js</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En este tutorial aprenderá como instalar y utilizar <code>Couchbase Node SDK</code>. Este tutorial ha sido realizado utilizando <code>Couchbase Server CE</code> por lo que usted puede emplear esa distribución para seguir esta guía de forma gratuita.</p>
+</div>
+</div>
+</div>
+<h1 id="instalación-de-node-sdk" class="sect0"><a class="anchor" href="#instalación-de-node-sdk"></a>Instalación de Node SDK</h1>
+<div class="paragraph">
+<p>Ahora, que usted ya tiene un servidor de <code>Couchbase</code> en funcionamiento, deberá permitir que sus aplicaciones interactúen con él. Los <code>SDK</code> de Couchbase proporcionan una <code>API</code> para ese propósito. Siga los pasos que se le indican a continuación para instalar el SDK en su proyecto.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Probado para <code>nvm 0.34.0</code>, <code>npm 6.13.4</code> y <code>Node 12.14.1</code></p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>Si aún no ha instalado <code>Node</code>, le recomendamos que lo haga utilizando  <code>Node Version Manager</code> (<code>nvm</code>). Para instalarlo, usted debe descargar el código fuente de <code>Github</code> de la siguiente forma.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Una vez finalizada la instalación, usted debe volver a abrir su sesión de shell actual para utilizar el comando <code>nvm</code> desde la consola. Puede verificar que todo salió bien escribiendo este comando.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">node --version</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ahora, instale <code>Node</code> junto con su administrador de paquetes estándar <code>npm</code> como se muestra en la siguiente línea.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">nvm install --lts</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Esta línea instalará la versión de <code>Long Term Support</code> (<code>lts</code>) de <code>Node</code>. Para verificar la versión actual instalada, escriba este comando.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">nvm ls</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Es posible que sea necesario compilar algunos paquetes <code>Node</code> antes de la instalación, por lo que se deben instalar las herramientas de desarrollo de la siguiente manera.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo apt install build-essential</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Con estos pasos, <code>Node</code> debería estar listo para su uso. Usted podrá comenzar nuevos proyectos de la siguiente manera.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir new_project
+cd new_project
+npm init</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>Node</code> le pedirá algunos metadatos del proyecto, complételos como usted desee. Una vez terminado, usted podrá pasar al último paso, que sería instalar <code>Couchbase SDK</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install couchbase</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Su proyecto <code>Node</code> ahora está listo para interactuar con cualquier servidor de <code>Couchbase</code>.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Para obtener una guía de instalación más detallada, puede seguir la documentación oficial de Couchbase para <a href="https://docs.couchbase.com/nodejs-sdk/current/start-using-sdk.html">Node SDK</a></p>
+</div>
+</blockquote>
+</div>
+<h1 id="proyecto-ejemplo" class="sect0"><a class="anchor" href="#proyecto-ejemplo"></a>Proyecto ejemplo</h1>
+<div class="paragraph">
+<p>La mayoría de las aplicaciones en las que trabajamos, por lo general, requieren cierto nivel de abstracción para interactuar con los datos, especialmente para operaciones <code>CRUD</code>. En este proyecto ejemplo, implementaremos una colección de funciones capaces de administrar clasificaciones, usuarios y películas. Algo que necesitará si trabaja en un sitio de clasificación de películas, como <code>IMDb</code>, por ejemplo:</p>
+</div>
+<div class="sect1">
+<h2 id="poblar-su-servidor"><a class="anchor" href="#poblar-su-servidor"></a>Poblar su servidor</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="buckets"><a class="anchor" href="#buckets"></a>Buckets</h3>
+<div class="paragraph">
+<p><code>Couchbase Server</code> usa <a href="https://docs.couchbase.com/server/6.5/learn/buckets-memory-and-storage/buckets-memory-and-storage.html">Buckets</a> y <a href="https://docs.couchbase.com/server/6.5/developer-preview/collections/collections-overview.html">Collections</a> para almacenar y guardar documentos respectivamente.</p>
+</div>
+<div class="paragraph">
+<p>Existen tres <a href="https://docs.couchbase.com/server/6.5/learn/buckets-memory-and-storage/buckets.html">tipos de buckets</a> según la persistencia, y tres <a href="https://docs.couchbase.com/server/6.5/clustersetup/create-bucket.html">formas de crearlos</a> (<code>CLI</code>, <code>REST API</code> y <code>Web UI</code>). Puedes tener múltiples <code>buckets</code>, y para cada uno, definir reglas de autenticación y autorización.</p>
+</div>
+<div class="paragraph">
+<p>Los buckets pueden contener hasta 1000 <code>collections</code> (grupos) de documentos y hasta 100 <code>scopes</code> para agrupar dichas colecciones. Cada bucket contiene una colección y un scope denominados <code>default</code>, que será utilizado por defecto si no se selecciona algún otro.</p>
+</div>
+<div class="paragraph">
+<p>Para este tutorial, crearemos un <code>Couchbase Bucket</code>, que se almacenará tanto en la memoria como en el disco, y tres colecciones, una para cada tipo de documentos (<code>movies</code>, <code>users</code> y <code>ratings</code>), agrupados bajo el scope <code>default</code>.  Las colecciones y scopes se encuentran todavía en fase de desarrollo, por tanto solo pueden ser usadas mediante el <code>SDK</code>. Sin embargo, los buckets se pueden crear utilizando la <code>Web UI</code> en el puerto <code>8091</code>.</p>
+</div>
+<div class="paragraph">
+<p>Seleccione la pestaña <code>Buckets</code>, haga click en <code>Add Bucket</code> y cree un <code>bucket</code> llamado <code>rate-these-movies</code> con 100 <code>Mb</code>, utilizando la configuración predeterminada.</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="./media/create_bucket.gif" alt="create bucket" width="750">
+</div>
+</div>
+<div class="paragraph">
+<p>Ya hemos creado un <code>bucket</code> de muestra con los datos del proyecto y lo hemos guardado en el disco utilizando la herramienta <a href="https://docs.couchbase.com/server/6.5/cli/cbtransfer-tool.html">cbtransfer</a>. Para importar el <code>bucket</code> de muestra a su servidor, debe utilizar la herramienta <a href="https://docs.couchbase.com/server/6.5/cli/cbrestore-tool.html">cbrestore</a>. Estas herramientas, como podrá observar, son útiles para crear y restaurar copias de seguridad de sus <code>buckets</code> o de todo su servidor en cualquier momento.</p>
+</div>
+<div class="paragraph">
+<p>Para importar los datos, abra una consola y escriba los siguientes comandos, asegúrese de sustituir los parámetros correctamente.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd /opt/couchbase
+cbrestore /path/to/cbb couchbase://hostname:8091 -u username -p password</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Si todo salió bien, debería ver el siguiente mensaje en la consola:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[####################] 100.0% (138/estimated 138 msgs)
+bucket: b'rate-these-movies', msgs transferred...
+       :                total |       last |    per sec
+ byte  :               198972 |     198972 |  3161194.6
+done</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="índices"><a class="anchor" href="#índices"></a>Índices</h3>
+<div class="paragraph">
+<p>Los <a href="https://docs.couchbase.com/server/6.5/learn/services-and-indexes/indexes/indexes.html">indexes</a> mejoran el rendimiento de las operaciones de búsqueda, especialmente a medida que los <code>buckets</code> crecen en tamaño. La creación de índices secundarios (<code>GSI</code>) también le permitirá realizar operaciones <code>JOIN</code>.</p>
+</div>
+<div class="paragraph">
+<p>Los <code>indexes</code> pueden gestionarse a través del <code>SDK</code>, esta vez sin embargo, lo haremos desde la <code>Web UI</code>. Haga clic en la pestaña <code>Query</code> y ejecute la siguiente línea.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">CREATE PRIMARY INDEX `movies_primary` ON `rate-these-movies`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Luego, para crear el índice primario de nuestro <code>bucket</code>.</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="./media/execute_query.gif" alt="execute query" width="750">
+</div>
+</div>
+<div class="paragraph">
+<p>Luego, ejecute el siguiente comando para crear los índices secundarios necesarios para realizar <code>JOIN</code>'s entre <code>movies</code>, <code>users</code> y <code>ratings</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">CREATE INDEX `movies_secondary_movie` ON `rate-these-movies`(`id_movie`)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">CREATE INDEX `movies_secondary_user` ON `rate-these-movies`(`id_user`)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Usted acaba de ejecutar consultas <code>N1QL</code> en su servidor. Más adelante, aprenderá cómo ejecutar otras consultas utilizando el <code>SDK</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="visualizar"><a class="anchor" href="#visualizar"></a>Visualizar</h3>
+<div class="paragraph">
+<p>La forma más sencilla de verificar el estado de sus datos y acceder rápidamente a algún documento en particular, es utilizar la <code>Web UI</code>. Vaya a la pestaña <code>Buckets</code> y haga click en el botón <code>Documents</code>.</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="./media/view_bucket.gif" alt="view bucket" width="750">
+</div>
+</div>
+<div class="paragraph">
+<p>Se puede hacer click en cada documento para obtener una vista más detallada. También puede establecer filtros para realizar una búsqueda más detallada.</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="./media/filter_documents.gif" alt="filter documents" width="750">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usando-el-sdk"><a class="anchor" href="#usando-el-sdk"></a>Usando el SDK</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>Couchbase SDK</code> le proporciona múltiples formas de manipular datos, como son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.couchbase.com/nodejs-sdk/current/core-operations.html#crud-overview">Core operations</a> u operaciones llave-valor, son bastante básicas y le permitirán trabajar con sus datos de manera similar a como lo harías con un diccionario. Pero, si usted desea realizar operaciones más complejas como filtros o uniones, deberá implementar esos comportamientos en el lado del cliente. Además, estas funcionan con el documento completo.</p>
+</li>
+<li>
+<p><a href="https://docs.couchbase.com/nodejs-sdk/current/subdocument-operations.html">Sub-document operations</a> puede apuntar a valores específicos en un documento. Usted puede utilizar estas operaciones para ahorrar ancho de banda y que sea más eficiente al consultar datos parciales.</p>
+</li>
+<li>
+<p><a href="https://docs.couchbase.com/nodejs-sdk/current/n1ql-queries-with-sdk.html">N1QL</a> es un dialecto <code>SQL</code> expresivo, potente y completo para consultar, transformar y manipular datos<code> JSON</code>. Estas consultas serán interpretadas por el servidor y transformadas en operaciones llave-valor. La mayoría de las consultas requerirán la creación de índices para unir otros depósitos o disminuir la latencia de las consultas.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="conectar"><a class="anchor" href="#conectar"></a>Conectar</h3>
+<div class="paragraph">
+<p>Ahora veremos cómo establecer una conexión con el servidor usando el <code>SDK</code> para abrir nuestro <code>bucket</code> previamente creado <code>rate-these-movies</code>.</p>
+</div>
+<div class="paragraph">
+<p>Este paso requiere credenciales, usted podrá utilizar las que se usaron para configurar el clúster. Aunque no recomendamos esto para una implementación en producción, se ajusta al propósito de este tutorial. Si desea crear nuevas credenciales con permisos específicos, puede aprender cómo hacerlo en el siguiente <a href="https://docs.couchbase.com/server/6.5/manage/manage-security/manage-users-and-roles.html#creating-y-gestionando-usuarios-con-la-UI">enlace</a>.</p>
+</div>
+<div class="paragraph">
+<p>Para acceder al servidor, puede usar la clase <code>Cluster</code>. Una instancia de esta clase le perimitirá ejecutar consultas y otras operaciones sobre los datos.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">var cluster = new couchbase.Cluster('couchbase://' + hostname,
+                {
+                    username: username,
+                    password: password
+                })
+var bucket = cluster.bucket(bucket_name)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>No es necesario desconectarse del <code>bucket</code>, esto se realizará automáticamente cuando se considere apropiado.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="operaciones-llave-valor"><a class="anchor" href="#operaciones-llave-valor"></a>Operaciones llave-valor</h3>
+<div class="paragraph">
+<p>Cuando necesite insertar, eliminar o recuperar un documento en particular, del cual conoce su <code>ID</code>, el enfoque recomendado sería utilizar operaciones llave-valor.</p>
+</div>
+<div class="paragraph">
+<p>Para insertar, puede usar cualquiera de las siguientes operaciones, la única diferencia entre ellas es como reaccionan a los documentos previamente existentes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>insert</code> solo creará el documento si la <code>ID</code> dada no se encuentra dentro de la base de datos.</p>
+</li>
+<li>
+<p><code>replace</code> solo reemplazará el documento si la <code>ID</code> dada ya existe dentro de la base de datos.</p>
+</li>
+<li>
+<p><code>upsert</code> siempre reemplazará el documento, ignorando si la <code>ID</code> ya ha existido o no.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La mayoría de las veces, <code>upsert</code> es la opción más segura, usémosla para agregar un <code>rating</code>, una operación estándar en cualquier sitio con valoraciones.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">var rating_json = { movie_id: movie_id, user_id: user_id, value: value }
+
+var answer = await bucket
+                    .collection('ratings')
+                    .upsert(rating_id, rating_json)
+                    .catch((reason) =&gt; console.log(reason));
+if (answer) {
+    console.log('OK')
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note el uso de colecciones para seleccionar una grupo específico de documentos. En todos los ejemplos de este tutorial se utilizará <code>console.log</code> para imprimir los resultados de las consultas. Si trabaja en un sitio web, ahí es donde generaría una vista con los datos devueltos por <code>Couchbase Server</code>.</p>
+</div>
+<div class="paragraph">
+<p>Operaciones como <code>replace</code> o <code>upsert</code> pueden usarse para actualizar un documento existente. Sin embargo, recuerde que esto enviará el documento completo al clúster, por lo que, como regla general, haga esto solo cuando haya cambiado más de la mitad de los valores. Más adelante, explicaremos cómo actualizar los datos de manera más eficiente cuando los cambios son mínimos.</p>
+</div>
+<div class="paragraph">
+<p>Para recuperar documentos previamente insertados en un <code>bucket</code> use las operaciones <code>get</code>. Puede usarlo ahora para verificar que el <code>rating</code> de prueba recién insertado se encuentra en el servidor.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">var answer = await bucket
+                    .collection('ratings')
+                    .get(rating_id)
+                    .catch((reason) =&gt; console.log(reason));
+if (answer) {
+    console.log(answer.value)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Si un usuario desea eliminar su valoración de nuestro servidor, utilice la operación <code>remove</code>. Intente eliminar el <code>rating</code> que ha estado utilizando hasta ahora.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">var answer = await bucket
+                    .collection('ratings')
+                    .remove(rating_id)
+                    .catch((reason) =&gt; console.log(reason));
+if (answer) {
+    console.log('OK')
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="operaciones-de-subdocumento"><a class="anchor" href="#operaciones-de-subdocumento"></a>Operaciones de subdocumento</h3>
+<div class="paragraph">
+<p>Las aplicaciones comúnmente necesitarán cambiar datos: clasificaciones, por ejemplo, o algún nombre mal escrito. La mayoría de las veces esto significa cambiar un valor en específico, no un documento completo. Por ejemplo, un documento de usuario puede contener el nombre, el país y la edad, pero solo se desea actualizar el país en el que vive actualmente el usuario. Cuando nos encontramos en presencia de esta situación, es hora de usar operaciones de subdocumentos, apuntar esos valores específicos y reducir el tráfico de red.</p>
+</div>
+<div class="paragraph">
+<p>El siguiente código le muestra cómo recuperar un valor en particular de algún usuario.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">var answer = await bucket
+                    .collection('users')
+                    .lookupIn(user_id, [couchbase.LookupInSpec.get('country')])
+                    .catch((reason) =&gt; console.log(reason));
+if (answer) {
+    answer.results.forEach((result) =&gt; {
+        console.log(result.value)
+    })
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Observe cómo seleccionamos un documento en particular con <code>lookupIn</code> y luego usamos <code>get</code> para recuperar el valor que queramos, en este caso, el país.</p>
+</div>
+<div class="paragraph">
+<p>Por otro lado, si un usuario se muda a otro país y desea actualizar su perfil, puede hacer algo como esto:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">var answer = await bucket
+                    .collection('users')
+                    .mutateIn(user_id, [couchbase.MutateInSpec.upsert('country', country)])
+                    .catch((reason) =&gt; console.log(reason));
+if (answer) {
+    console.log('OK')
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ahora usamos <code>mutateIn</code> para apuntar al documento que queramos cambiar, y luego <code>upsert</code> para modificar su valor <code>country</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="consultas-n1ql"><a class="anchor" href="#consultas-n1ql"></a>Consultas N1QL</h3>
+<div class="paragraph">
+<p>Estas consultas nos permitirán encontrar y trabajar mejor con los documentos asociados, como generalmente requiere la mayoría de las aplicaciones. Por ejemplo, eliminar una película, que tenga valoraciones referenciándola.</p>
+</div>
+<div class="paragraph">
+<p>Los parámetros para la consulta pueden pasarse en un <code>object</code>, agrupados en un <code>array</code>. Para usarlos en las consultas, utilice <code>$</code> y la posición del arreglo deseada más 1.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">var answer_single = await cluster
+                            .query('DELETE FROM `rate-these-movies` USE KEYS $1', { parameters: [movie_id] })
+                            .catch((reason) =&gt; console.log(reason));
+var answer_linked = await cluster
+                            .query('DELETE FROM `rate-these-movies` WHERE id_movie=$1', { parameters: [movie_id] })
+                            .catch((reason) =&gt; console.log(reason));
+if (answer_single &amp;&amp; answer_linked) console.log('OK')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Aprecie la simplicidad y el parecido con una consulta <code>SQL</code>, simplemente refiera el bucket como lo haría con una tabla.</p>
+</div>
+<div class="paragraph">
+<p>Otro ejemplo, la mayoría de las operaciones de lectura apuntan a un subconjunto de datos o requieren alguna agregación o aumento. Entonces, una vez más, dependemos de las consultas <code>N1QL</code>, en este caso, para obtener las 5 películas mejor calificadas junto con su calificación promedio.</p>
+</div>
+<div class="paragraph">
+<p>Dado que estamos uniendo los datos de un bucket consigo mismo, usaremos alias.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">var answer = await cluster
+                    .query('SELECT a.name AS name, AVG(b.`value`) AS avg FROM `rate-these-movies` AS a JOIN `rate-these-movies` AS b ON META(a).id=b.id_movie GROUP BY a.name ORDER BY avg DESC LIMIT 5')
+                    .catch((reason) =&gt; console.log(reason));
+if (answer) {
+    answer.rows.forEach((row) =&gt; {
+        console.log(row.name + ' -&gt; ' + row.avg.toFixed(2))
+    })
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h1 id="próximos-pasos" class="sect0"><a class="anchor" href="#próximos-pasos"></a>Próximos pasos</h1>
+<div class="paragraph">
+<p>Le recomendamos que siga nuestros próximos tutoriales, para encontrar la lista completa diríjase a <a href="../index_es.html">Home</a>.</p>
+</div>
+<div class="paragraph">
+<p>Además, puede revisar <a href="https://docs.couchbase.com/home/index.html">Couchbase Documentation</a> para obtener más información sobre otros temas.</p>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <div class="col">
+        <div class="footer-logo">
+          <a href="https://www.couchbase.com" class="icon">
+            <img src="../../../_/img/couchbase-logo.svg" alt="Couchbase">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://docs.couchbase.com" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://forums.couchbase.com" target="_blank" rel="noopener">Forums</a></li>
+          <li><a href="https://support.couchbase.com" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://developer.couchbase.com" target="_blank" rel="noopener">Developer Portal</a></li>
+          <li><a href="https://blog.couchbase.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://www.couchbase.com/resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://www.couchbase.com/get-started-developing-nosql">Get Started</a></li>
+          <li><a href="https://www.couchbase.com/downloads">Downloads</a></li>
+          <li><a href="https://learn.couchbase.com/store?utf8=%E2%9C%93&ss=1&ct=78327&commit=Filter" target="_blank" rel="noopener">Training</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="social-icons">
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32.1 26.1"> <path id="twitter" class="cls-1" d="M32,7.1a11.836,11.836,0,0,1-3.8,1,6.462,6.462,0,0,0,2.9-3.6,12.606,12.606,0,0,1-4.2,1.6A6.492,6.492,0,0,0,22.1,4a6.594,6.594,0,0,0-6.6,6.6,7.719,7.719,0,0,0,.2,1.5A18.458,18.458,0,0,1,2.2,5.2a6.294,6.294,0,0,0-.9,3.3A6.765,6.765,0,0,0,4.2,14a6.109,6.109,0,0,1-3-.8v.1a6.543,6.543,0,0,0,5.3,6.4,4.678,4.678,0,0,1-1.7.2,4.869,4.869,0,0,1-1.2-.1,6.679,6.679,0,0,0,6.1,4.6,12.917,12.917,0,0,1-8.2,2.8,9.151,9.151,0,0,1-1.6-.1,18.438,18.438,0,0,0,10.1,3c12.1,0,18.7-10,18.7-18.7v-.8A13.336,13.336,0,0,0,32,7.2Z" transform="translate(0.1 -4)"/></svg>
+            <a href="https://twitter.com/couchbase" class="icon">
+              Twitter
+            </a>
+          </li>
+          <li>
+          <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="linkedin" class="cls-1" d="M29,0H3A3.076,3.076,0,0,0,0,3V29a3.009,3.009,0,0,0,3,3H29a2.946,2.946,0,0,0,3-3V3A3.009,3.009,0,0,0,29,0ZM12,26H8V12h4ZM10,10a2,2,0,1,1,2-2A2.006,2.006,0,0,1,10,10ZM26,26H22V18a2,2,0,0,0-4,0v8H14V12h4v2.5c.8-1.1,2.1-2.5,3.5-2.5A4.736,4.736,0,0,1,26,17Z"/></svg>
+              <a href="https://www.linkedin.com/company/couchbase" class="icon">
+             Linkedin
+            </a>
+          </li>
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="facebook" class="cls-1" d="M29,0H3A2.652,2.652,0,0,0,0,3V29a2.652,2.652,0,0,0,3,3H16V18H12V14h4V12a6.452,6.452,0,0,1,6-6h4v4H22a2.151,2.151,0,0,0-2,2v2h6l-1,4H20V32h9a2.652,2.652,0,0,0,3-3V3A2.652,2.652,0,0,0,29,0Z"/></svg>
+            <a href="https://www.facebook.com/Couchbase" class="icon">
+            Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-terms">
+      <div class="footer-terms-copyright">
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+      </div>
+      <div class="footer-terms-links">
+        <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
+        <a href="https://www.couchbase.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.couchbase.com/cookie-policy">Cookie Policy</a>
+        <a href="https://www.couchbase.com/support-policy">Support Policy</a>
+        <a href="https://info.couchbase.com/unsubscribe-or-manage-preferences.html" target="_blank" rel="noopener">Marketing Preference Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<template id="run-code-panel">
+<div class="action-panel">
+  <form class="action-panel-control" method="POST" action="https://couchbase.live/run" target="run-code-output">
+    <input type="hidden" name="lang">
+    <input type="hidden" name="code">
+    <input type="hidden" name="from" value="docs">
+    <div class="controls">
+      <button class="control-button rerun" type="submit"><i class="fas fa-redo"></i></button>
+      <span class="shell-name control-label">Output</span>
+      <button class="control-button close"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </form>
+  <iframe class="run-code-output" name="run-code-output"></iframe>
+</div>
+</template>
+<script id="site-script" src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
+<script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+</body>
+</html>

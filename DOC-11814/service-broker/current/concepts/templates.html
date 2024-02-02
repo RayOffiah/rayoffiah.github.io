@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
+<title>Configuration Templates | Couchbase Docs</title>
+<link rel="canonical" href="https://rayoffiah.github.io/service-broker/current/concepts/templates.html">
+<link rel="stylesheet" href="../../../_/css/site.css">
+<script src="../../../_/js/vendor/jquery.js"></script>
+<link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+
+
+<meta name="dcterms.subject" content="service-broker">
+<meta name="dcterms.identifier" content="1.1">
+<meta name="page-url" content="/service-broker/current/concepts/templates.html">
+<meta name="generator" content="Antora 3.0.3">
+<link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
+</head>
+<body class="article">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="header fixed-top">
+  <div class="header-top-row">
+      <div class="container">
+          <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
+              <ul class="navbar-brand-list">
+                <li class="brand-logo">
+                  <a class="navbar-brand" href="https://www.couchbase.com">
+                    <img src="../../../_/img/couchbase-logo.svg" alt="Couchbase" />
+                  </a>
+                </li>
+                <li>
+                  <a class="navbar-brand cb-documentation" href="https://rayoffiah.github.io/home/index.html">
+                    <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
+                    <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  </a>
+                </li>
+              </ul>
+              <button class="navbar-burger" data-target="topbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+          </nav>
+      </div>
+  </div>
+  <div class="header-bottom-row" id="topbar-menu">
+    <div class="container">
+        <nav  class="navbar navbar-new-bottom">
+
+              <div class="navbar-collapse collapse" id="navbar2">
+                <ul class="navbar-nav w-100 justify-content-start">
+                  <li class="nav-item">
+                    <a href="https://rayoffiah.github.io/home/index.html" class="nav-link">
+                      <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../../home/server.html">
+                      Server
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../../home/mobile.html">
+                      Mobile
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Cloud
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="primary-action">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                  Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
+                </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+
+              </div>
+
+        </nav>
+    </div>
+   </div>
+</header>
+<div class="body container">
+<aside class="nav left-sidebar">
+  <div class="nav-container">
+    <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+<div class="components">
+  <div class="components_group-title">
+    Service Broker
+  </div>
+  <ul class="components_list">
+    <li class="components_list-items">
+      <div class="component_list-version">
+        <span class="component_list_title">Service Broker</span>
+        <select class="version_list" data-component="service-broker">
+          <option value="1.1" data-url="../index.html" selected>1.1</option>
+          <option value="1.0" data-url="../../1.0/index.html">1.0</option>
+        </select>
+      </div>
+      <div class="version_items hide" data-version="1.1">
+<ul class="menu_row">
+<li class="menu_list is-parent closed" data-depth="0">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <a class="menu_title menu_link" href="../index.html">Service Broker Home</a>
+  </span>
+<ul class="menu_row">
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <a class="menu_title menu_link" href="../install/get-started.html">Getting Started</a>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../install/service-broker-example.html">Deploy Service Broker on Minikube</a>
+  </span>
+</li>
+</ul>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <a class="menu_title menu_link" href="index.html">Concepts</a>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="architecture.html">Architecture</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="catalog.html">Service Catalog</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="bindings.html">Configuration Bindings</a>
+  </span>
+</li>
+<li class="menu_list is-current-page" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link is-current-page" href="templates.html">Configuration Templates</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="dynamic-attributes.html">Dynamic Attributes</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="registry.html">Service Instance and Binding Registries</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="security.html">Security Models</a>
+  </span>
+</li>
+</ul>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <a class="menu_title menu_link" href="../tasks/index.html">Tasks</a>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tasks/service-instance-url.html">Configure a Service Instance Dashboard URL</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tasks/service-binding-credentials.html">Configure Service Binding Credentials</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../tasks/tls.html">Configure Service Instance TLS</a>
+  </span>
+</li>
+</ul>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <a class="menu_title menu_link" href="../reference/index.html">Reference</a>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../reference/servicebrokerconfigs.html">ServiceBrokerConfig Resource Reference</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../reference/template-functions.html">Dynamic Attribute Function Reference</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../reference/container.html">Service Broker Container Reference</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../reference/osb-api.html">Open Service Broker API Reference</a>
+  </span>
+</li>
+<li class="menu_list is-parent closed" data-depth="2">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <span class="menu_title menu_text">Tools</span>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="3">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../reference/tools/cbsbctl.html">cbsbctl</a>
+  </span>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="menu_list" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../release-notes.html">Release Notes</a>
+  </span>
+</li>
+</ul>
+</li>
+</ul>
+      </div>
+      <div class="version_items hide" data-version="1.0">
+<ul class="menu_row">
+<li class="menu_list is-parent closed" data-depth="0">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <a class="menu_title menu_link" href="../../1.0/index.html">Service Broker Home</a>
+  </span>
+<ul class="menu_row">
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <a class="menu_title menu_link" href="../../1.0/install/get-started.html">Getting Started</a>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../1.0/install/service-broker-example.html">Deploy Service Broker on Minikube</a>
+  </span>
+</li>
+</ul>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <a class="menu_title menu_link" href="../../1.0/concepts/index.html">Concepts</a>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../1.0/concepts/architecture.html">Architecture</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../1.0/concepts/catalog.html">Service Catalog</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../1.0/concepts/bindings.html">Configuration Bindings</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../1.0/concepts/templates.html">Configuration Templates</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../1.0/concepts/dynamic-attributes.html">Dynamic Attributes</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../1.0/concepts/registry.html">Service Instance and Binding Registries</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../1.0/concepts/security.html">Security Models</a>
+  </span>
+</li>
+</ul>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <a class="menu_title menu_link" href="../../1.0/tasks/index.html">Tasks</a>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../1.0/tasks/service-instance-url.html">Configure a Service Instance Dashboard URL</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../1.0/tasks/service-binding-credentials.html">Configure Service Binding Credentials</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../1.0/tasks/tls.html">Configure Service Instance TLS</a>
+  </span>
+</li>
+</ul>
+</li>
+<li class="menu_list is-parent closed" data-depth="1">
+  <span class="menu_line">
+    <span class="in-toggle"></span>
+    <a class="menu_title menu_link" href="../../1.0/reference/index.html">Reference</a>
+  </span>
+<ul class="menu_row">
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../1.0/reference/servicebrokerconfigs.html">ServiceBrokerConfig Resource Reference</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../1.0/reference/template-functions.html">Dynamic Attribute Function Reference</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../1.0/reference/container.html">Service Broker Container Reference</a>
+  </span>
+</li>
+<li class="menu_list" data-depth="2">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../1.0/reference/osb-api.html">Open Service Broker API Reference</a>
+  </span>
+</li>
+</ul>
+</li>
+<li class="menu_list" data-depth="1">
+  <span class="menu_line">
+    <a class="menu_title menu_link" href="../../1.0/release-notes.html">Release Notes</a>
+  </span>
+</li>
+</ul>
+</li>
+</ul>
+      </div>
+    </li>
+  </ul>
+</div>
+  </div>
+</aside>
+<aside class="toc sidebar"
+      data-title="Contents"
+      data-levels="1">
+  <div class="sidebar-box">
+    <div class="tools" role="navigation">
+<ul>
+<li class="tool edit"><a href="https://github.com/couchbase/docs-service-broker/edit/1.1.x/modules/ROOT/pages/concepts/templates.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+</ul>
+</div>
+    <div class="toc-menu"></div>
+    <div class="is-this-helpful-box">
+      <h4> Is this page helpful?</h4>
+      <div class="btn-row">
+        <a href="#" class="like-btn helpful-btn" id="yesBtn" data-page-rating="like" >
+                <i class="far fa-thumbs-up"></i>
+            Yes
+
+            </a>
+        <a href="#" class="dislike-btn helpful-btn" id="noBtn"  data-page-rating="dislike"> <i class="far fa-thumbs-down"></i> No</a>
+      </div>
+      <div class="any-feedback">
+        <a href="#" class="btn any-feedback-btn" id="myCustomTrigger">Leave Additional Feedback? </a>
+      </div>
+      <div class="dialog-box" id="dialogBox">
+        <form>
+            <div class="form-group " id="additionalFeedbackBox">
+              <textarea class="input-control feed-back-msg" rows="8" placeholder="Any Additonal Feedback?"></textarea>
+
+              <div class="action-btn-row ">
+                <a href="#" class="skip-btn" id="skipBtnMsg">Skip</a>
+                  <button class="submit-btn btn blue-btn disabled" > Submit  </button>
+                  <a href="#" class="info-btn"><i class="fas fa-info-circle"></i></a>
+              </div>
+
+
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="feedback-modal modal-popup">
+  <div class="modal-popup-dialogue">
+    <div class="popup-header">
+      <a href="#" class="close-popup"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="popup-content">
+      <p>
+        Please use the form below to provide your feedback. Because your feedback is valuable to us,
+         the information you submit in this form is recorded in our issue tracking system (JIRA), which is publicly available.
+        You can track the status of your feedback using the ticket number displayed in the dialog once you submit the form.
+      </p>
+    </div>
+  </div>
+</div>
+
+<main class="article" data-ceiling="topbar">
+<div class="article-header">
+<nav class="crumbs" aria-label="breadcrumbs">
+<ul>
+<li class="crumb"><a href="../index.html">Service Broker</a></li>
+<li class="crumb"><a href="../index.html">Service Broker Home</a></li>
+<li class="crumb"><a href="index.html">Concepts</a></li>
+<li class="crumb"><a href="templates.html">Configuration Templates</a></li>
+</ul>
+</nav>
+</div>
+<article class="doc">
+<div class="page-heading-title">
+<h1 class="page">Configuration Templates</h1>
+<div class="labels">
+<ul></ul>
+</div>
+
+
+</div>
+<div class="contributor-list-box">
+<span class="last-commit-date" id="commitdate">    </span>
+<ul id="contributorList"></ul>
+<span  id="otherContributor"> + </span>
+</div><div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock abstract">
+<blockquote>
+This page describes how configuration templates are used in the Service Broker.
+</blockquote>
+</div>
+<div class="paragraph">
+<p>In the <a href="bindings.html" class="xref page">previous section</a> we looked at how configuration bindings map service instances and service bindings for a service plan to a set of resource templates.
+This section examines how templates are defined and are processed to result in Kubernetes resources that can be created.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration-templates"><a class="anchor" href="#configuration-templates"></a>Configuration Templates</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Templates are conceptually very simple.
+They are a resource template&#8212;&#8203;that provides scaffolding to build your resource with, with optional dynamic attributes&#8212;&#8203;that allow the resource template to be customized.</p>
+</div>
+<div class="paragraph">
+<p>The Service Broker operates on abstract templates rather than concrete Kubernetes resources because of namespace conflicts.
+If, for example, your service instance created a Kubernetes <code>Secret</code> called <code>my-secret</code>, then only one service instance could ever be created in a single namespace.
+Any subsequent attempts to create another service instance would create a <code>Secret</code> with the same name and Kubernetes would reject it.</p>
+</div>
+<div class="paragraph">
+<p>By allowing templating, the Service Broker allows resource names to be dynamically generated, and you can guaranteed resources will never conflict.
+This is best explained by example:</p>
+</div>
+<div id="template-example" class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: my-secret
+template: <i class="conum" data-value="1"></i><b>(1)</b>
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: '{{ registry "instance-id" }}' <i class="conum" data-value="2"></i><b>(2)</b>
+  stringData:
+    mySecretName: TopSecret!</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Lets look in more detail at the configuration:</p>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>template</code> attribute is just that, a template, it may not be able to be created by Kubernetes without more attributes being populated.
+In this case we want to create a <code>Secret</code>, but cannot as the <code>metadata.name</code> is not explicitly specified.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>metadata.name</code> attribute is an example of using dynamic attributes
+Dynamic attributes are defined as strings&#8212;&#8203;Go language templating operates on strings.
+This particular template references a value from the registry&#8212;&#8203;a simple key/value store.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If, for example, our instance ID was <code>camelot</code>, the resulting resource would be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: camelot
+stringData:
+  mySecretName: TopSecret!</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is now a valid Kubernetes resource and can be created by the Service Broker.
+The key observation to make is that service IDs are unique, therefore if another service instance rendered this template, it would result in a different name and can be created without conflict.</p>
+</div>
+<div class="sect2">
+<h3 id="optional-attributes"><a class="anchor" href="#optional-attributes"></a>Optional Attributes</h3>
+<div class="paragraph">
+<p>Consider a template with a dynamic attribute based on an optional parameter.
+That parameter may be supplied by a service instance creation request, or it may not:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">template:
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: my-secret
+    namespace: '{{ parameter "my-namespace" }}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the parameter did not exist, the resulting resource would look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: my-secret
+  namespace: null</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There is a danger that&#8212;&#8203;although the parameter itself was optional&#8212;&#8203;the generated resource would not be valid with the additional <code>null</code> attribute.
+For this reason, if the Service Broker resolves a dynamic attribute to <code>null</code>, then the corresponding attribute will be removed.
+The resulting resource will now look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: my-secret</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="resource-template-constraints"><a class="anchor" href="#resource-template-constraints"></a>Resource Template Constraints</h3>
+<div class="paragraph">
+<p>Resource templates must be specified and must be objects.
+They cannot be scalar values or arrays.
+Templates <em>referenced by configuration bindings</em> must generate a valid Kubernetes object.</p>
+</div>
+<div class="paragraph">
+<p>As we will see in the next section, dynamic attributes can reference shared template snippets, that are themselves rendered as per the template processing rules.
+As a result there is no restriction that all templates must be Kubernetes resources.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="namespaces"><a class="anchor" href="#namespaces"></a>Namespaces</h3>
+<div class="paragraph">
+<p>One thing that we have not mentioned when creating Kubernetes resources is namespaces.
+By default, if not specified in the template the Service Broker will derive the namespace from the request context.
+The Kubernetes service catalog watches for <code>ServiceInstance</code> resources being created and then calls the Service Broker API in order to create the service instance.
+The namespace in which the <code>ServiceInstance</code> resource was created is passed to the Service Broker API with a request context.
+By using implicit namespace determination, the resources associated with a service plan will be created in the same namespace as the <code>ServiceInstance</code> resource.</p>
+</div>
+<div class="paragraph">
+<p>The namespace to use for provisioning is determined by the Service Broker using the following methods, in order of precedence:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Explicitly defined in the resource template.</p>
+</li>
+<li>
+<p>Implicitly defined in the request context.</p>
+</li>
+<li>
+<p>If not specified in the request context, use the namespace the Service Broker is running in.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="singletons"><a class="anchor" href="#singletons"></a>Singletons</h3>
+<div class="paragraph">
+<p>In our <a href="#template-example">earlier example</a>, we made the resource name dynamic in order to prevent Kubernetes namespace conflicts.
+There are, however, times where you actually want to allow this behavior.
+Take cluster wide resources such as the <code>ClusterRole</code>, for example.
+If your service instance wanted to create a <code>ClusterRole</code>, and share it among all service instances, then we&#8217;d want to allow conflicts.</p>
+</div>
+<div class="paragraph">
+<p>You can specify the template is a singleton in the configuration to enable this behavior.
+When enabled the errors when creating a resource are looked at more closely.
+If a conflict is reported by Kubernetes and the resource is marked as a singleton, then the error is ignored and normal processing continues.
+Any other error will cause the operation to fail.</p>
+</div>
+<div class="paragraph">
+<p>Singletons can not be updated by service instance updates.
+The singleton configuration is considered fixed after creation.
+If singletons were allowed to be updated during service instance updates, then there is a risk of split-brain problems leading to undefined or unexpected behavior.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="processing-rules"><a class="anchor" href="#processing-rules"></a>Processing Rules</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Templates are&#8212;&#8203;under the hood&#8212;&#8203;JSON objects.
+When the Service Broker decodes JSON objects these are stored as the Go language <code>map</code> type.
+Go language <code>map</code> types, are based on hash tables, therefore iteration order is arbitrary.
+It follows that processing of dynamic attributes is also in an arbitrary order.</p>
+</div>
+<div class="paragraph">
+<p>If ordering of dynamic attribute processing matters, consider pre-computing values in the configuration binding.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next Steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We have seen how service instance and bindings are mapped to a set of configuration templates.
+Configuration templates map a resource template to final object by processing dynamic attributes in the configuration template.
+Next we will look at dynamic attributes, where they can source data from, and what processing can be performed on the source data.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="dynamic-attributes.html" class="xref page">Dynamic Attributes</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <div class="col">
+        <div class="footer-logo">
+          <a href="https://www.couchbase.com" class="icon">
+            <img src="../../../_/img/couchbase-logo.svg" alt="Couchbase">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://docs.couchbase.com" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://forums.couchbase.com" target="_blank" rel="noopener">Forums</a></li>
+          <li><a href="https://support.couchbase.com" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://developer.couchbase.com" target="_blank" rel="noopener">Developer Portal</a></li>
+          <li><a href="https://blog.couchbase.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://www.couchbase.com/resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://www.couchbase.com/get-started-developing-nosql">Get Started</a></li>
+          <li><a href="https://www.couchbase.com/downloads">Downloads</a></li>
+          <li><a href="https://learn.couchbase.com/store?utf8=%E2%9C%93&ss=1&ct=78327&commit=Filter" target="_blank" rel="noopener">Training</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="social-icons">
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32.1 26.1"> <path id="twitter" class="cls-1" d="M32,7.1a11.836,11.836,0,0,1-3.8,1,6.462,6.462,0,0,0,2.9-3.6,12.606,12.606,0,0,1-4.2,1.6A6.492,6.492,0,0,0,22.1,4a6.594,6.594,0,0,0-6.6,6.6,7.719,7.719,0,0,0,.2,1.5A18.458,18.458,0,0,1,2.2,5.2a6.294,6.294,0,0,0-.9,3.3A6.765,6.765,0,0,0,4.2,14a6.109,6.109,0,0,1-3-.8v.1a6.543,6.543,0,0,0,5.3,6.4,4.678,4.678,0,0,1-1.7.2,4.869,4.869,0,0,1-1.2-.1,6.679,6.679,0,0,0,6.1,4.6,12.917,12.917,0,0,1-8.2,2.8,9.151,9.151,0,0,1-1.6-.1,18.438,18.438,0,0,0,10.1,3c12.1,0,18.7-10,18.7-18.7v-.8A13.336,13.336,0,0,0,32,7.2Z" transform="translate(0.1 -4)"/></svg>
+            <a href="https://twitter.com/couchbase" class="icon">
+              Twitter
+            </a>
+          </li>
+          <li>
+          <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="linkedin" class="cls-1" d="M29,0H3A3.076,3.076,0,0,0,0,3V29a3.009,3.009,0,0,0,3,3H29a2.946,2.946,0,0,0,3-3V3A3.009,3.009,0,0,0,29,0ZM12,26H8V12h4ZM10,10a2,2,0,1,1,2-2A2.006,2.006,0,0,1,10,10ZM26,26H22V18a2,2,0,0,0-4,0v8H14V12h4v2.5c.8-1.1,2.1-2.5,3.5-2.5A4.736,4.736,0,0,1,26,17Z"/></svg>
+              <a href="https://www.linkedin.com/company/couchbase" class="icon">
+             Linkedin
+            </a>
+          </li>
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="facebook" class="cls-1" d="M29,0H3A2.652,2.652,0,0,0,0,3V29a2.652,2.652,0,0,0,3,3H16V18H12V14h4V12a6.452,6.452,0,0,1,6-6h4v4H22a2.151,2.151,0,0,0-2,2v2h6l-1,4H20V32h9a2.652,2.652,0,0,0,3-3V3A2.652,2.652,0,0,0,29,0Z"/></svg>
+            <a href="https://www.facebook.com/Couchbase" class="icon">
+            Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-terms">
+      <div class="footer-terms-copyright">
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+      </div>
+      <div class="footer-terms-links">
+        <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
+        <a href="https://www.couchbase.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.couchbase.com/cookie-policy">Cookie Policy</a>
+        <a href="https://www.couchbase.com/support-policy">Support Policy</a>
+        <a href="https://info.couchbase.com/unsubscribe-or-manage-preferences.html" target="_blank" rel="noopener">Marketing Preference Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<template id="run-code-panel">
+<div class="action-panel">
+  <form class="action-panel-control" method="POST" action="https://couchbase.live/run" target="run-code-output">
+    <input type="hidden" name="lang">
+    <input type="hidden" name="code">
+    <input type="hidden" name="from" value="docs">
+    <div class="controls">
+      <button class="control-button rerun" type="submit"><i class="fas fa-redo"></i></button>
+      <span class="shell-name control-label">Output</span>
+      <button class="control-button close"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </form>
+  <iframe class="run-code-output" name="run-code-output"></iframe>
+</div>
+</template>
+<script id="site-script" src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
+<script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+</body>
+</html>
