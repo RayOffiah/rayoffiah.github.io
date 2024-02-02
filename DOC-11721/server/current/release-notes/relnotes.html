@@ -5215,8 +5215,33 @@ This maintenance release contains new features and fixes to issues.</p>
 <li>
 <p>Add capability for <code>kv subdoc</code> replica reads in buckets.</p>
 </li>
+<li>
+<p>Improve accuracy of total disk usage statistics</p>
+</li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="storage-engine"><a class="anchor" href="#storage-engine"></a>Storage Engine</h3>
+<table id="table-new-features-724-storage-egine" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Feature</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-52270">MB-52270</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prior to the upgrade,  total disk usage stats only tracke the live completed <code>sstable</code> files.<br>
+The stats now also include the transient files in progress, state files, and configuration files.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -5274,6 +5299,30 @@ This maintenance release contains new features and fixes to issues.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59745">MB-59745</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">When a target document is locked, and a non-optimistic LWW replication is taking place, XDCR will retrieve a "locked CAS" of maxUint. This will cause the source mutation to lose, and lead to scenarios where the mutation is not replicated, even if it should have won conflict resolution.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">XDCR will retry conflict resolution for the duration that the document is locked in pessimistic replication. This will ensure that a valid CAS is used for source-side conflict resolution.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="query-service"><a class="anchor" href="#query-service"></a>Query Service</h3>
+<table id="table-known-issues-76-query-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-39484">MB-39484</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Remove N1QL support for password-less buckets.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password-less bucket support removed.</p></td>
 </tr>
 </tbody>
 </table>
@@ -5451,7 +5500,7 @@ When there is a nested array entry, the projector is not expanding the missing/n
 </table>
 </div>
 <div class="sect2">
-<h3 id="query-service"><a class="anchor" href="#query-service"></a>Query Service</h3>
+<h3 id="query-service-2"><a class="anchor" href="#query-service-2"></a>Query Service</h3>
 <table id="table-known-issues-724-query-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5942,7 +5991,7 @@ See <a href="../manage/manage-xdcr/create-xdcr-replication.html#rebalance-inform
 </table>
 </div>
 <div class="sect3">
-<h4 id="query-service-2"><a class="anchor" href="#query-service-2"></a>Query Service</h4>
+<h4 id="query-service-3"><a class="anchor" href="#query-service-3"></a>Query Service</h4>
 <table id="table-fixed-issues-721-query-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -6467,7 +6516,7 @@ See <a href="../learn/security/on-the-wire-security.html#min-tls-version" class=
 </table>
 </div>
 <div class="sect3">
-<h4 id="query-service-3"><a class="anchor" href="#query-service-3"></a>Query Service</h4>
+<h4 id="query-service-4"><a class="anchor" href="#query-service-4"></a>Query Service</h4>
 <table id="table-fixed-issues-720-queryservice" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">

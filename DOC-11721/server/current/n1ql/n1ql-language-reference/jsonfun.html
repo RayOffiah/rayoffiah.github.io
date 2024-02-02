@@ -5215,6 +5215,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 The empty string is MISSING.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="example"><a class="anchor" href="#example"></a>Example</h3>
+<div class="exampleblock">
+<div class="title">Example 1. Encode a returned result set as a JSON string.</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sqlpp hljs" data-lang="sqlpp">select ENCODE_JSON(airline) as airline
+from `travel-sample`.`inventory`.`airline` airline
+where `id` = 10</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json5 hljs" data-lang="json5">[
+  {
+    "airline": "{\"callsign\":\"MILE-AIR\",\"country\":\"United States\",\"iata\":\"Q5\",\"icao\":\"MLA\",\"id\":10,\"name\":\"40-Mile Air\",\"type\":\"airline\"}"
+  }
+]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -5225,6 +5251,39 @@ The empty string is MISSING.</p>
 <div class="paragraph">
 <p>Marshals the SQL++ value into a JSON-encoded string.
 MISSING becomes the empty string.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="example-2"><a class="anchor" href="#example-2"></a>Example</h3>
+<div class="exampleblock">
+<div class="title">Example 2. Unmarshal a JSON string into an SQL++ value.</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sqlpp hljs" data-lang="sqlpp">select DECODE_JSON("{\"airline\":{\"callsign\": \"Mile-Air\", \"country\": \"United States\", \"iata\": \"Q5\", \"id\": 10, \"name\": \"40-mile Air\", \"type\": \"airline\"}}") as jsonObj</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json5 hljs" data-lang="json5">[
+  {
+    "jsonObj": {
+      "airline": {
+        "callsign": "Mile-Air",
+        "country": "United States",
+        "iata": "Q5",
+        "id": 10,
+        "name": "40-mile Air",
+        "type": "airline"
+      }
+    }
+  }
+]</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -5241,6 +5300,32 @@ Always returns an integer, and never MISSING or NULL.
 Returns 0 for MISSING.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="example-3"><a class="anchor" href="#example-3"></a>Example</h3>
+<div class="exampleblock">
+<div class="title">Example 3. Return the size of the returned object.</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sqlpp hljs" data-lang="sqlpp">select ENCODED_SIZE(airline) as airline_size
+from `travel-sample`.`inventory`.`airline` airline
+where `id` = 10</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sqlpp hljs" data-lang="sqlpp">[
+  {
+    "airline_size": 120
+  }
+]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -5251,6 +5336,32 @@ Returns 0 for MISSING.</p>
 <div class="paragraph">
 <p>Returns length of the value after evaluating the expression.
 The exact meaning of length depends on the type of the value:</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="example-4"><a class="anchor" href="#example-4"></a>Example</h3>
+<div class="exampleblock">
+<div class="title">Example 4. Return the length of the retrieved object.</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sqlpp hljs" data-lang="sqlpp">select POLY_LENGTH(airline) as airline_length
+from `travel-sample`.`inventory`.`airline` airline
+where `id` = 10</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json5 hljs" data-lang="json5">[
+  {
+    "airline_length": 7
+  }
+]</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="ulist">
 <ul>

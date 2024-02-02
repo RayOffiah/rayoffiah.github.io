@@ -5277,6 +5277,51 @@ Returns MISSING or NULL if either input is MISSING or NULL.</p>
 Returns MISSING or NULL if either input is MISSING or NULL.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<div class="exampleblock">
+<div class="title">Example 1. Return null if infinite value is encountered.</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sqlpp hljs" data-lang="sqlpp">select IFINF(0 / 0, 25, 23) as INF</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre>[
+  {
+    "INF": null
+  }
+]</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 2. Return first non-infinite value encountered.</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre>select IFINF(35, 0 / 0, 25, 23) as NONINF</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre>[
+  {
+    "NONINF": 35
+  }
+]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
