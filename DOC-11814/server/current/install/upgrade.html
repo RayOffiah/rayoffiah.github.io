@@ -5245,25 +5245,20 @@ A review of the factors that determine the appropriateness of an upgrade-procedu
 The tables in the following subsections list upgrade paths for Enterprise Edition and for Community Edition, respectively.
 Each instance of the&#160;`&#8594;`&#160;sign declares support for the upgrade of the server-version on the left of the sign to the server-version on the right.</p>
 </div>
-<div class="admonitionblock note">
+<div class="paragraph">
+<p>All supported upgrades can be performed with the cluster either <em>offline</em> or <em>online</em>.</p>
+</div>
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-<div class="title">Upgrading between non-adjacent version numbers is usually <em>not</em> supported.</div>
-<div class="paragraph">
-<p>For example, to upgrade from <strong>5.5.0+</strong> to <strong>7.2</strong>, then <em>two</em> upgrades must be performed:
-first, from<strong> 5.5.0+</strong> to<strong> 6.6</strong>,
-and then secondly, from <strong>6.6</strong> to <strong>7.2</strong>.</p>
-</div>
+As far as is possible, you should aim to keep your cluster up to date with the latest version of Couchbase Server.
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>All supported upgrades can be performed with the cluster either <em>offline</em> or <em>online</em>.</p>
 </div>
 </div>
 </div>
@@ -5272,9 +5267,9 @@ and then secondly, from <strong>6.6</strong> to <strong>7.2</strong>.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>If you are upgrading several nodes at once, then the version of the software on each node must be kept in step throughout the upgrade process.<br>
-For example, if you are upgrading three enterprise nodes (<code><strong>Node&#160;1</strong></code>, <code><strong>Node&#160;2</strong></code> and <code><strong>Node&#160;3</strong></code>) from version 5.0x to 7.2, then you would use the following sequence:</p>
+For example, if you are upgrading three enterprise nodes (<code><strong>Node&#160;1</strong></code>, <code><strong>Node&#160;2</strong></code> and <code><strong>Node&#160;3</strong></code>) from version 5.1x to 7.2.4, then you would use the following sequence:</p>
 </div>
-<div class="exampleblock">
+<div id="upgrade-example" class="exampleblock">
 <div class="title">Example 1. Upgrading from version <code>5.1x</code> to <code>7.2.4</code></div>
 <div class="content">
 <table class="tableblock frame-all grid-all stretch">
@@ -5294,36 +5289,42 @@ For example, if you are upgrading three enterprise nodes (<code><strong>Node&#16
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Upgrade all nodes from 5.1x to 6.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>Node&#160;1</strong></code> &#8658; 5.1x &#8594; 6.0<br>
-<code><strong>Node&#160;2</strong></code> &#8658; 5.1x &#8594; 6.0<br>
-<code><strong>Node&#160;3</strong></code> &#8658; 5.1x &#8594; 6.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>Node&#160;1</strong></code> &#8658; 5.1x &#8594; 6.6<br>
+<code><strong>Node&#160;2</strong></code> &#8658; 5.1x &#8594; 6.6<br>
+<code><strong>Node&#160;3</strong></code> &#8658; 5.1x &#8594; 6.6</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Upgrade all nodes from 6.0 to 6.6</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>Node&#160;1</strong></code> &#8658; 6.0 &#8594; 6.6<br>
-<code><strong>Node&#160;2</strong></code> &#8658; 6.0 &#8594; 6.6<br>
-<code><strong>Node&#160;3</strong></code> &#8658; 6.0 &#8594; 6.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Upgrade all nodes from 6.6 to 7.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>Node&#160;1</strong></code> &#8658; 6.6 &#8594; 7.2.3<br>
+<code><strong>Node&#160;2</strong></code> &#8658;  6.6 &#8594; 7.2.3<br>
+<code><strong>Node&#160;3</strong></code> &#8658; 6.6 &#8594; 7.2.3</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Upgrade all nodes from 6.6 to 7.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>Node&#160;1</strong></code> &#8658; 6.6 &#8594; 7.2.3 &#8594; 7.2.4<br>
-<code><strong>Node&#160;2</strong></code> &#8658;  6.6 &#8594; 7.2.3 &#8594; 7.2.4<br>
-<code><strong>Node&#160;3</strong></code> &#8658; 6.6 &#8594; 7.2.3 &#8594; 7.2.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Upgrade all nodes from 7.2.3 to 7.2.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>Node&#160;1</strong></code> &#8658; 7.2.3 &#8594; 7.2.4<br>
+<code><strong>Node&#160;2</strong></code> &#8658;  7.2.3 &#8594; 7.2.4<br>
+<code><strong>Node&#160;3</strong></code> &#8658; 7.2.3 &#8594; 7.2.4</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-As far as is possible, you should aim to keep your cluster up to date with the latest version of Couchbase Server.
+<div class="title">Upgrading between non-adjacent version numbers is usually <em>not</em> supported.</div>
+<div class="paragraph">
+<p>For example, to upgrade from <strong>5.1.x</strong> to <strong>7.2.4</strong>, then <em>three</em> upgrades must be performed (as shown in <a href="#upgrade-example">Example 1</a>):<br>
+first, from <strong>5.1.x</strong> to<strong> 6.6</strong>,<br>
+then, from <strong>6.6</strong> to <strong>7.2.3</strong><br>
+and finally, from <strong>7.2.3</strong> to <strong>7.2.4</strong>.</p>
+</div>
 </td>
 </tr>
 </table>
@@ -5344,11 +5345,11 @@ As far as is possible, you should aim to keep your cluster up to date with the l
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5.0.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.x and 5.1.x &#8594; 6.0.4+ &#8594; 6.6 &#8594; 7.2.3 &#8594; 7.2.4<a href="#erlang-7-2-4-footnote1"><sup>[1]</sup></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.0.x and 5.1.x &#8594; 6.6 &#8594; 7.2.3 &#8594; 7.2.4<a href="#erlang-7-2-4-footnote1"><sup>[1]</sup></a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5.5x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.5.0+ &#8594; 6.0 &#8594; 6.6 &#8594; 7.2.3 &#8594; 7.2.4<a href="#erlang-7-2-4-footnote1"><sup>[1]</sup></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.5.0+ &#8594; 6.6 &#8594; 7.2.3 &#8594; 7.2.4<a href="#erlang-7-2-4-footnote1"><sup>[1]</sup></a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6.x</p></td>
@@ -5356,8 +5357,7 @@ As far as is possible, you should aim to keep your cluster up to date with the l
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">7.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">7.0 &#8594; 7.1 &#8594; 7.2.4<a href="#erlang-7-2-4-footnote1"><sup>[1]</sup></a></p>
-<p class="tableblock">7.0 &#8594; 7.2.3 &#8594; 7.2.4<a href="#erlang-7-2-4-footnote1"><sup>[1]</sup></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.0 &#8594; 7.1 &#8594; 7.2.4<a href="#erlang-7-2-4-footnote1"><sup>[1]</sup></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -5381,7 +5381,7 @@ As far as is possible, you should aim to keep your cluster up to date with the l
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.x &#8594; 6.0 &#8594; 6.6 &#8594; 7.2.3 &#8594; 7.2.4<a href="#erlang-7-2-4-footnote2"><sup>[1]</sup></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.x  &#8594; 6.6 &#8594; 7.2.3 &#8594; 7.2.4<a href="#erlang-7-2-4-footnote2"><sup>[1]</sup></a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6.x</p></td>
@@ -5389,8 +5389,7 @@ As far as is possible, you should aim to keep your cluster up to date with the l
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">7.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">7.0 &#8594; 7.1 &#8594; 7.2.4<a href="#erlang-7-2-4-footnote2"><sup>[1]</sup></a></p>
-<p class="tableblock">7.0 &#8594; 7.2.3 &#8594; 7.2.4<a href="#erlang-7-2-4-footnote2"><sup>[1]</sup></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.0 &#8594; 7.1 &#8594; 7.2.4<a href="#erlang-7-2-4-footnote2"><sup>[1]</sup></a></p></td>
 </tr>
 </tbody>
 </table>
