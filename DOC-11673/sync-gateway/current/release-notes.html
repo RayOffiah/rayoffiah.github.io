@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
+<title>Release Notes | Couchbase Docs</title>
+<link rel="canonical" href="https://docs.couchbase.com/sync-gateway/current/release-notes.html">
+<link rel="stylesheet" href="../../_/css/site.css">
+<script src="../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="Couchbase Sync Gateway">
+<meta name="keywords" content="edge nosql api synchronization replication">
+<link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+
+
+<meta name="dcterms.subject" content="sync-gateway">
+<meta name="dcterms.identifier" content="3.0">
+<meta name="page-url" content="/sync-gateway/current/release-notes.html">
+<meta name="page-nav-header-levels" content="0">
+<meta name="generator" content="Antora 3.1.7">
+<link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
+</head>
+<body class="article">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="header fixed-top">
+  <div class="header-top-row">
+      <div class="container">
+          <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
+              <ul class="navbar-brand-list">
+                <li class="brand-logo">
+                  <a class="navbar-brand" href="https://www.couchbase.com">
+                    <img src="../../_/img/couchbase-logo.svg" alt="Couchbase" />
+                  </a>
+                </li>
+                <li>
+                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                    <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
+                    <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  </a>
+                </li>
+              </ul>
+              <button class="navbar-burger" data-target="topbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+          </nav>
+      </div>
+  </div>
+  <div class="header-bottom-row" id="topbar-menu">
+    <div class="container">
+        <nav  class="navbar navbar-new-bottom">
+
+              <div class="navbar-collapse collapse" id="navbar2">
+                <ul class="navbar-nav w-100 justify-content-start">
+                  <li class="nav-item">
+                    <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
+                      <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../home/server.html">
+                      Server
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../home/mobile.html">
+                      Mobile
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="primary-action">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                  Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
+                </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+
+              </div>
+
+        </nav>
+    </div>
+   </div>
+</header>
+<div class="body container">
+<aside class="nav left-sidebar">
+  <div class="nav-container">
+    <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+    <template id="page-versions" style="display: none">
+      <select class="version_list" data-component="sync-gateway">
+        <option value="3.0" data-url="release-notes.html" selected>3.0</option>
+        <option value="2.8" data-url="../2.8/release-notes.html">2.8</option>
+        <option value="2.7" data-url="../2.7/release-notes.html">2.7</option>
+        <option value="2.6" data-url="../2.6/release-notes.html">2.6</option>
+        <option value="2.5" data-url="../2.5/release-notes.html">2.5</option>
+        <option value="2.1" data-url="../2.1/release-notes.html">2.1</option>
+        <option value="2.0" data-url="../2.0/release-notes.html">2.0</option>
+        <option value="1.5" data-url="../1.5/release-notes.html">1.5</option>
+      </select>
+    </template>
+  </div>
+</aside>
+<aside class="toc sidebar"
+      data-title="Contents"
+      data-levels="2">
+  <div class="sidebar-box">
+    <div class="tools" role="navigation">
+<ul>
+<li class="tool edit"><a href="https://github.com/couchbaselabs/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/release-notes.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+</ul>
+</div>
+    <div class="toc-menu"></div>
+    <div class="is-this-helpful-box">
+      <h4> Is this page helpful?</h4>
+      <div class="btn-row">
+        <a href="#" class="like-btn helpful-btn" id="yesBtn" data-page-rating="like" >
+                <i class="far fa-thumbs-up"></i>
+            Yes
+
+            </a>
+        <a href="#" class="dislike-btn helpful-btn" id="noBtn"  data-page-rating="dislike"> <i class="far fa-thumbs-down"></i> No</a>
+      </div>
+      <div class="any-feedback">
+        <a href="#" class="btn any-feedback-btn" id="myCustomTrigger">Leave Additional Feedback? </a>
+      </div>
+      <div class="dialog-box" id="dialogBox">
+        <form>
+            <div class="form-group " id="additionalFeedbackBox">
+              <textarea class="input-control feed-back-msg" rows="8" placeholder="Any Additonal Feedback?"></textarea>
+
+              <div class="action-btn-row ">
+                <a href="#" class="skip-btn" id="skipBtnMsg">Skip</a>
+                  <button class="submit-btn btn blue-btn disabled" > Submit  </button>
+                  <a href="#" class="info-btn"><i class="fas fa-info-circle"></i></a>
+              </div>
+
+
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="feedback-modal modal-popup">
+  <div class="modal-popup-dialogue">
+    <div class="popup-header">
+      <a href="#" class="close-popup"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="popup-content">
+      <p>
+        Please use the form below to provide your feedback. Because your feedback is valuable to us,
+         the information you submit in this form is recorded in our issue tracking system (JIRA), which is publicly available.
+        You can track the status of your feedback using the ticket number displayed in the dialog once you submit the form.
+      </p>
+    </div>
+  </div>
+</div>
+
+<main class="article" data-ceiling="topbar">
+<div class="article-header">
+<nav class="crumbs" aria-label="breadcrumbs">
+<ul>
+<li class="crumb"><a href="index.html">Sync Gateway</a></li>
+<li class="crumb">Product Notes</li>
+<li class="crumb"><a href="release-notes.html">Release Notes</a></li>
+</ul>
+</nav>
+</div>
+<article class="doc">
+<div class="page-heading-title">
+<h1 class="page">Release Notes</h1>
+<div class="labels">
+<ul></ul>
+</div>
+
+
+</div>
+<div class="contributor-list-box">
+<span class="last-commit-date" id="commitdate">    </span>
+<ul id="contributorList"></ul>
+<span  id="otherContributor"> + </span>
+</div><div id="preamble">
+<div class="sectionbody">
+<div class="dlist Replication Admin">
+<dl>
+<dt>Quicklinks</dt>
+<dd>
+<p><a href="../2.8/release-notes.html" class="xref page">Release 2.8</a> |
+<a href="../2.7/release-notes.html" class="xref page">Release 2.7</a> |
+<a href="../2.6/release-notes.html" class="xref page">Release 2.6</a> |
+<a href="../2.5/release-notes.html" class="xref page">Release 2.5</a> |
+<a href="../2.1/release-notes.html" class="xref page">Release 2.1</a> |
+<a href="../2.0/release-notes.html" class="xref page">Release 2.0</a></p>
+</dd>
+</dl>
+</div>
+<div class="quoteblock abstract">
+<blockquote>
+<div class="paragraph">
+<p>Couchbase Sync Gateway<br>
+This content describes the key features and changes implemented by release 3.0.0 of Couchbase Sync&#160;Gateway</p>
+</div>
+</blockquote>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="title">One Way Upgrade</div>
+<div class="paragraph">
+<p>The migration to 3.0 configuration is a ONE WAY process&#8201;&#8212;&#8201;see: <a href="upgrading.html" class="xref page">Upgrading</a> for more.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="maint-3-0-9"><a class="anchor" href="#maint-3-0-9"></a>3.0.9&#8201;&#8212;&#8201;Oct 2023</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="enhancements"><a class="anchor" href="#enhancements"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3431">CBG-3431 -- Deterministic database/bucket bootstrapping </a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3428">CBG-3428 -- Enforce "bucket" field match in DbConfig</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3409">CBG-3409 -- Add basic ping/healthcheck endpoint </a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3407">CBG-3407 -- Tune console log collation buffer size when writing to a file</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="issues-and-resolutions"><a class="anchor" href="#issues-and-resolutions"></a>Issues and Resolutions</h3>
+<div class="sect3">
+<h4 id="fixed-issues"><a class="anchor" href="#fixed-issues"></a>Fixed Issues</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3477">CBG-3477 -- warning when client's maxHistory for a rev is exceeded on push</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3415">CBG-3415 -- Replicator will not reconnect when max_back_off != 0</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3412">CBG-3412 -- Panic inside Mutable1xBody for nil shallow copy</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3406">CBG-3406 -- Hook up the reset resync code to a parameter that is passed into the resync endpoint</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3240">CBG-3240 -- Explicit check on xattr length to avoid panics</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3239">CBG-3239 -- Revocation feed errors cause MultiChangesFeed to close </a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="known-issues"><a class="anchor" href="#known-issues"></a>Known Issues</h4>
+<div class="paragraph">
+<p>None for this release</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deprecations"><a class="anchor" href="#deprecations"></a>Deprecations</h4>
+<div class="paragraph">
+<p>None for this release</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="maint-3-0-8"><a class="anchor" href="#maint-3-0-8"></a>3.0.8&#8201;&#8212;&#8201;June 2023</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="enhancements-2"><a class="anchor" href="#enhancements-2"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2855">CBG-2855 -- 3.0.8 Oneshot replications should wait for DCP to catch up on changes feed</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="issues-and-resolutions-2"><a class="anchor" href="#issues-and-resolutions-2"></a>Issues and Resolutions</h3>
+<div class="sect3">
+<h4 id="fixed-issues-2"><a class="anchor" href="#fixed-issues-2"></a>Fixed Issues</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2968">CBG-2968 -- 3.0.8 proveAttachment incompatibility between 3.0.x and 2.8.x</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="known-issues-2"><a class="anchor" href="#known-issues-2"></a>Known Issues</h4>
+<div class="paragraph">
+<p>None for this release</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="maint-3-0-5"><a class="anchor" href="#maint-3-0-5"></a>3.0.5&#8201;&#8212;&#8201;February 2023</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="enhancements-3"><a class="anchor" href="#enhancements-3"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2673"> CBG-2673 -- Upgrade Go to 1.19 </a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2674"> CBG-2674 -- Upgrade golang.org/x/text to latest version	</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2700"> CBG-2700 -- Use MaxInt64 for high sequence queries </a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2608"> CBG-2608 -- Update websocket implementation	</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2610"> CBG-2610 -- Lower log level for expected BLIP websocket close errors </a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="issues-and-resolutions-3"><a class="anchor" href="#issues-and-resolutions-3"></a>Issues and Resolutions</h3>
+<div class="sect3">
+<h4 id="fixed-issues-3"><a class="anchor" href="#fixed-issues-3"></a>Fixed Issues</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2705">  CBG-2705 -- ISGR Sequence checkpointing maintains unnessesary entries </a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2707">  CBG-2707 -- Compact expected/processed when safe seq unchanged	</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2612">  CBG-2612 -- Performance decrease in Replicate and SGReplicate tests	</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2614">  CBG-2614 -- E2E Push: websocket reset by peer	</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2591">  CBG-2591 -- Inefficient sequence parsing during ISGR checkpointing	</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2601">  CBG-2601 -- ISGR processedSeqs/expectedSeq mismatch based on JSON string	</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2602">  CBG-2602 -- Anonymous read-only access should support pull replications	</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2708">  CBG-2708 -- GetAttachment rev processing race </a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="known-issues-3"><a class="anchor" href="#known-issues-3"></a>Known Issues</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-798"> CBG-798 -- Sync Gateway requires Couchbase Server nodes to use the same SSL memcached port</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="3-0-4october-2022"><a class="anchor" href="#3-0-4october-2022"></a>3.0.4&#8201;&#8212;&#8201;October 2022</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="maint-3-0-4"><a class="anchor" href="#maint-3-0-4"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2468">CBG-2468 [3.0.4 Backport] Maintain long-lived bucket connections for persistent config</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2467">CBG-2467 [3.0.4 Backport] Update UserHasDocAccess to check most recent rather than rev</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2225">CBG-2225 [Backport 3.0.4] Add cluster aware functionality to resync operation</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="issues-and-resolutions-4"><a class="anchor" href="#issues-and-resolutions-4"></a>Issues and Resolutions</h3>
+<div class="sect3">
+<h4 id="fixed-issues-4"><a class="anchor" href="#fixed-issues-4"></a>Fixed Issues</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2448">CBG-2448 [3.0.4 Backport] Background manager cluster aware terminator race condition</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2419">CBG-2419 [3.0.4 Backport] Reloading the database while it has a replicator defined on it causes a panic</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2231">CBG-2231 [3.0.4 Backport] SGW panics on startup with mutual TLS enabled and invalid bootstrap config</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2209">CBG-2209 [3.0.4 backport] Index compaction failing due to not found handling</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2202">CBG-2202 Backport - Create User: Key length exceeds 251</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2186">CBG-2186 [3.0.4 Backport] Revocation of non-existent role causes replication panic</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2179">CBG-2179 [3.0.4 Backport] Periodic high response times on REST API due to persistent config polling</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="known-issues-4"><a class="anchor" href="#known-issues-4"></a>Known Issues</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-798">CBG-798 Sync Gateway requires Couchbase Server nodes to use the same SSL memcached port</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="maint-3-0-3"><a class="anchor" href="#maint-3-0-3"></a>3.0.3&#8201;&#8212;&#8201;June 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 3.0.3 of sync&#160;gateway delivers a number of fixes and enhancements.
+.Version 3.0.3 replaces v3.0.0</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This version of sync&#160;gateway includes fixes for several critical issues from v3.0.0. Therefore
+v3.0.0 is replaced by v3.0.3.
+If you are using v3.0.0 we strongly recommend upgrading to v3.0.3.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="enhancements-4"><a class="anchor" href="#enhancements-4"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2032">CBG-2032 Prevent use of internal underscore properties</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2035">CBG-2035 Handle removed buckets in background persistent config update polling</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2069">CBG-2069 Support CBL clients that don&#8217;t increment revpos when attachment body changes</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2078">CBG-2078 Option to make GUEST access read-only</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="issues-and-resolutions-3-0-3"><a class="anchor" href="#issues-and-resolutions-3-0-3"></a>Issues and Resolutions</h3>
+<div class="sect3">
+<h4 id="fixed-issues-5"><a class="anchor" href="#fixed-issues-5"></a>Fixed Issues</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-1953">CBG-1953 Console logging not being enabled when only a log key set</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-1996">CBG-1996 Implementation for supporting top-level properties with an underscore prefix</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-1998">CBG-1998 Fix race condition caused when getting user roles</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-1999">CBG-1999 Unable to upsert replication config username or password independently</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2000">CBG-2000 One shot sub changes request does not decrement NumPullReplActiveOneShot stat when completed</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2011">CBG-2011 CBL revpos handling causes attachment fetch per write for docs with attachments</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2031">CBG-2011 _user endpoint pagination causes query error</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2055">CBG-2055 Mutating a document with an attachment on over CBL causes the attachment to be deleted from the bucket</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2072">CBG-2072 crc32c values with leading zeros trigger unnecessary import</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="lbl-rel300"><a class="anchor" href="#lbl-rel300"></a>Release 3.0.0&#8201;&#8212;&#8201;February 2022</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Quicklinks</dt>
+<dd>
+<p><a href="#new-features-300">New Features</a> <strong>|</strong>
+<a href="#improvements-300">Enhancements</a> <strong>|</strong>
+<a href="#issues-and-resolutions-300">Issues and Resolutions</a> <strong>|</strong>
+<a href="#support-notices-300">Support Notices</a></p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">Replaced by v3.0.3</div>
+<div class="paragraph">
+<p>Version 3.0.3 includes fixes for several critical issues found in 3.0.0.
+Therefore v3.0.0 is replaced by v3.0.3. We strongly encourage upgrading to
+v3.0.3.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="new-features-300"><a class="anchor" href="#new-features-300"></a>New Features</h3>
+<div class="sect3">
+<h4 id="centralized-persistent-modular-configuration"><a class="anchor" href="#centralized-persistent-modular-configuration"></a>Centralized Persistent Modular Configuration</h4>
+<div class="paragraph">
+<p><em>Centralized Persistent Modular Configuration is a core enhancement that makes it simpler for administrators to configure and manage the Sync Gateway.</em></p>
+</div>
+<div class="paragraph">
+<p>This enhancement removes reliance on monolithic JSON configuration files whilst providing a modular and <em>cluster-aware</em> approach to Sync Gateway node configuration.</p>
+</div>
+<div class="paragraph">
+<p>Basic startup configuration settings bootstrap your Sync Gateway nodes and securely connect them to a Couchbase Server.
+Configuration of cluster-wide Sync Gateway databases, access control policies and inter-Sync Gateway replications is then provided using the Admin REST API.</p>
+</div>
+<div class="paragraph">
+<p><a href="whatsnew.html#centralized-persistent-modular-configuration" class="xref page">Read More &#8230;&#8203;</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="secure-administration"><a class="anchor" href="#secure-administration"></a>Secure Administration</h4>
+<div class="paragraph">
+<p><em>This major enhancement complements the introduction of the centralized persistent configuration by introducing secure administration of a cluster through the Admin REST API.</em></p>
+</div>
+<div class="paragraph">
+<p>The Admin REST API now enforces authentication and role-based access control by default.</p>
+</div>
+<div class="paragraph">
+<p><a href="whatsnew.html#secure-administration" class="xref page">Read More &#8230;&#8203;</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="tls-encryption-enabled-by-default"><a class="anchor" href="#tls-encryption-enabled-by-default"></a>TLS Encryption Enabled by Default</h4>
+<div class="paragraph">
+<p><em>The default enabling of secure TLS connections for all Couchbase Server,side communication ensures that all such communication is encrypted; enforcing and encouraging security best practices.</em></p>
+</div>
+<div class="paragraph">
+<p><a href="whatsnew.html#tls-encryption-enabled-by-default" class="xref page">Read More &#8230;&#8203;</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="user-defined-extended-attributesxattrs-for-access-control"><a class="anchor" href="#user-defined-extended-attributesxattrs-for-access-control"></a>User Defined Extended Attributes(XAttrs) for Access Control</h4>
+<div class="paragraph">
+<p><em>Use extended attributes (metadata) to avoid the need to embed sensitive access grant information such as channels and roles within document bodies.</em></p>
+</div>
+<div class="paragraph">
+<p>This key architectural enhancement enforces separation of concerns by providing you the option to use Extended Attributes (XATTRs) to specify channel access grants outside of your document bodies.</p>
+</div>
+<div class="paragraph">
+<p><a href="whatsnew.html#user-defined-extended-attributesxattrs-for-access-control" class="xref page">Read More &#8230;&#8203;</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="auto-purge-on-channel-access-revocation-in-inter-sync-gateway-replication"><a class="anchor" href="#auto-purge-on-channel-access-revocation-in-inter-sync-gateway-replication"></a>Auto-Purge on Channel Access Revocation in Inter-Sync Gateway Replication</h4>
+<div class="paragraph">
+<p><em>This enhancement to inter-Sync Gateway replication technology helps with the enforcement of data privacy and governance in complex workflows.</em></p>
+</div>
+<div class="paragraph">
+<p><a href="whatsnew.html#auto-purge-on-channel-access-revocation-in-inter-sync-gateway-replication" class="xref page">Read More &#8230;&#8203;</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="use-environment-variables-in-configuration-file"><a class="anchor" href="#use-environment-variables-in-configuration-file"></a>Use Environment Variables in Configuration File</h4>
+<div class="paragraph">
+<p>Sync Gateway configuration is extended to allow the use of defined <em>environment variables</em> as substitution values inside the configuration file.
+This allows users to determine, pick-up and substitute appropriate values during Sync Gateway start-up.</p>
+</div>
+<div class="paragraph">
+<p><a href="whatsnew.html#use-environment-variables-in-configuration-file" class="xref page">Read More &#8230;&#8203;</a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="improvements-300"><a class="anchor" href="#improvements-300"></a>Enhancements</h3>
+<div class="sect3">
+<h4 id="compacting"><a class="anchor" href="#compacting"></a>Compacting</h4>
+<div class="paragraph">
+<p>Attachments added post 3.0 are automatically removed from the bucket upon reference removal, document delete or document purge.<br>
+The <a href="rest-api-admin.html#/Database_Management/post__db___compact" class="xref page">{db}/_compact</a> API includes an option to remove any redundant pre-3.0 attachments&#8201;&#8212;&#8201;see:
+<a href="revisions.html#compacting" class="xref page">Revisions&#8201;&#8212;&#8201;Compacting</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="resync"><a class="anchor" href="#resync"></a>Resync</h4>
+<div class="paragraph">
+<p>The <code>_resync</code> process has been enhanced to better handle large datasets, minimizing timeout and out-of-memory issues.
+The process now runs asynchronously, uses query pagination and supports sequence regeneration.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="other-enhancements"><a class="anchor" href="#other-enhancements"></a>Other Enhancements</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1760">CBG-1760</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1760">Error upfront when the configured logFilePath is not writable</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1705">CBG-1705</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1705">Release 'view op' on results close</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1672">CBG-1672</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1672">Return 422 status for unprocessible deltas instead of 404 to use non-delta retry handling</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1664">CBG-1664</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1664">Validate javascript syntax in DbConfig.validate()</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1643">CBG-1643</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1643">Add additional context for gocb errors when using self-signed cert</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1590">CBG-1590</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1590">Retrieve existing doc metadata prior to calling downloadOrVerifyAttachments</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1558">CBG-1558</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1558">panic after failed unmarshal in GetDeepMutableBody</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1473">CBG-1473</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1473">Enable log redaction by default</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1424">CBG-1424</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1424">discoverInterfaceName should resolve hostnames before trying to find network interface stats using IP addresses</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1391">CBG-1391</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1391">Treat existing cbgt index as recoverable error</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1390">CBG-1390</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1390">Add warning threshold for excessively large number of channels per user</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1359">CBG-1359</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1359">Increase default minimum TLS version TLS1.2</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1343">CBG-1343</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1343">Increase initial wait time for index creation retry</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1342">CBG-1342</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1342">Avoid retry on 'duplicate index name' index creation error</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1326">CBG-1326</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1326">Log if channels expand to a smaller set than requested</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1301">CBG-1301</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1301">Persistent Config</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1284">CBG-1284</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1284">Mobile Attachment Cleanup</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1282">CBG-1282</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1282">XATTRS Access Grants</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1280">CBG-1280</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1280">Channel Access Revocation</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1273">CBG-1273</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1273">Add Prometheus alert examples</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1253">CBG-1253</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1253">Add USE INDEX to index readiness queries</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1251">CBG-1251</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1251">Support Apple (M1) Silicon</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1245">CBG-1245</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1245">Include channel name in validfrom logging</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1217">CBG-1217</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1217">Ensure change listener goroutines terminates (both Tap and DCP feeds) before the server is stopped</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1170">CBG-1170</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1170">Upgrade to go 1.15</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1127">CBG-1127</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1127">Treat resurrected tombstones as non-conflict when no shared history</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-949">CBG-949</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-949">Improve error when non-upgradable HTTP request is sent to _blipsync endpoint</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-841">CBG-841</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-841">Force users to opt in to accepting unsigned tokens from providers in SG&#8217;s provider config.</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-715">CBG-715</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-715">High CPU usage in high volume basic auth scenarios</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-641">CBG-641</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-641">Admin API Auth</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-551">CBG-551</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-551">Avoid storing _removed:true revision bodies in the revision cache</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="issues-and-resolutions-300"><a class="anchor" href="#issues-and-resolutions-300"></a>Issues and Resolutions</h3>
+<div class="sect3">
+<h4 id="known-issues-5"><a class="anchor" href="#known-issues-5"></a>Known Issues</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-798">CBG-798</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-798">Sync Gateway requires Couchbase Server nodes to use the same SSL memcached port</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="fixed-issues-6"><a class="anchor" href="#fixed-issues-6"></a>Fixed Issues</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1439">CBG-1439</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1439">database.abandoned_seqs stat is unused</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1438">CBG-1438</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1438">SgwIntStat.SetIfMax incorrectly sums old and new values</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1428">CBG-1428</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1428">ISGR should ignore _removed:true bodies when purgeOnRemoval is disabled</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1427">CBG-1427</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1427">ISGR should not try sending a delta when deltaSrc is a tombstone</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1412">CBG-1412</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1412">JSON strings in some responses not being correctly escaped</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1388">CBG-1388</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1388">sg_collect does not package archived log files (*.log.gz)</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1376">CBG-1376</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1376">Some Delta Sync errors logged at WARN level should be DEBUG</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1339">CBG-1339</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1339">Creating mobile tombstone for existing CBS tombstone causes loop</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1335">CBG-1335</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1335">Mutating _rev on localDocument in conflict resolver results in merge error</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1325">CBG-1325</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1325">Incorrect email validation (too strict)</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1304">CBG-1304</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1304">ISGR: Pull replications incompatible with active-side allow_conflicts=false</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1246">CBG-1246</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1246">Changes limit incorrectly applied in case of CBG-946</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1231">CBG-1231</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1231">Prevent import cfg startup races</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1200">CBG-1200</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1200">Calling DELETE on a non-existent document creates a tombstone with empty body</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1172">CBG-1172</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1172">ISGR credentials with characters requiring URL encoding cause blipsync to fail</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1161">CBG-1161</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1161">DefaultPurgeInterval specified in days and used as though in hours</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-1113">CBG-1113</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-1113">CBL1.x/Websocket based changes feeds leak goroutine on disconnect</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com//browse/CBG-789">CBG-789</a>&#8201;&#8212;&#8201;<a href="https://issues.couchbase.com//browse/CBG-789">Updating a blob with new data does not update SG&#8217;s metadata on sync</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="api-and-configuration-changes"><a class="anchor" href="#api-and-configuration-changes"></a>API and Configuration Changes</h3>
+<div class="paragraph">
+<p>This release introduces significant configuration and persistent API changes; some of which may be breaking changes if they impact a feature you rely on&#8201;&#8212;&#8201;see the items identified in:attribute: value <a href="#tbl-breaking">Table 1</a> |
+<a href="#tbl-deprecated">Table 2</a> |
+<a href="#tbl-dropped">Table 3</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="breaks-compatibility"><a class="anchor" href="#breaks-compatibility"></a>Breaks compatibility</h4>
+<table id="tbl-breaking" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Breaks compatibility</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-bottom">Feature</th>
+<th class="tableblock halign-left valign-bottom">Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>enable_shared_bucket_access&#8201;&#8212;&#8201;enabled by default</p>
+</div>
+<div class="paragraph">
+<p>The change <em>ought to be</em> transparent to the user, <strong>if</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Doc metadata is smaller than 1MB</p>
+</li>
+<li>
+<p>There is no reliance on inspecting doc metadata using the <code>_sync</code> property in a document on the server side</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Old documents are automatically migrated to the <code>xattr</code> metadata format.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="configuration-properties-legacy.html#databases-this_db-enable_shared_bucket_access" class="xref page">enable_shared_bucket_access</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Enforce TLS by default</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="#secure-sgw-access.html#lbl-cbs-comms" class="xref unresolved">Couchbase Server Connection</a></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="deprecated"><a class="anchor" href="#deprecated"></a>Deprecated</h4>
+<table id="tbl-deprecated" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Deprecated</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-bottom">Feature</th>
+<th class="tableblock halign-left valign-bottom">Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>allow_conflicts confg</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="configuration-properties-legacy.html#databases-this_db-allow_conflicts" class="xref page">allow_conflicts</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>enable_shared_bucket_access&#8201;&#8212;&#8201;disabled option</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Facebook User Auth Config</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="configuration-properties-legacy.html#facebook" class="xref page">facebook</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Google User Auth Config</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="configuration-properties-legacy.html#facebook" class="xref page">Google</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Logging API</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="dropped-or-removed"><a class="anchor" href="#dropped-or-removed"></a>Dropped or removed</h4>
+<table id="tbl-dropped" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Dropped or removed</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-bottom">Feature</th>
+<th class="tableblock halign-left valign-bottom">Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>admin UI</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>configServer property</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="configuration-properties-legacy.html#configServer" class="xref page">configserver</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>databases.this_db.cache.channel_cache_expiry</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="configuration-properties-legacy.html#databases-this_db-cache-channel_cache_expiry" class="xref page">channel_cache_expiry</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>databases.this_db.feed_type</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="configuration-properties-legacy.html#databases-this_db-feed_type" class="xref page">feed_type</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>logging.default config section</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>databases.this_db.cache.channel_cache_max_length</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="configuration-properties-legacy.html#databases-this_db-cache-channel_cache_max_length" class="xref page">channel_cache_max_length</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>databases.this_db.cache.channel_cache_min_length</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="configuration-properties-legacy.html#databases-this_db-cache-channel_cache_min_length" class="xref page">channel_cache_min_length</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>databases.this_db.cache.enable_star_channel</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="configuration-properties-legacy.html#databases-this_db-cache-enable_star_channel" class="xref page">enable_star_channel</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>databases.this_db.cache.max_num_pending</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="configuration-properties-legacy.html#databases-this_db-cache-max_num_pending" class="xref page">max_num_pending</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>databases.this_db.cache.max_wait_pending</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="configuration-properties-legacy.html#databases-this_db-cache-max_wait_pending" class="xref page">db-cache-max_wait_pending</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>databases.this_db.cache.max_wait_skipped</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="configuration-properties-legacy.html#databases-this_db-cache-max_wait_skipped" class="xref page">max_num_skipped</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>old cache config values: databases.this_db.rev_cache_size</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="configuration-properties-legacy.html#databases-this_db-rev_cache_size" class="xref page">rev_cache_size</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>SG-Replicate</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>walrus mode</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="configuration-properties-legacy.html#databases-this_db-server" class="xref page">server</a></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-notices-300"><a class="anchor" href="#support-notices-300"></a>Support Notices</h3>
+<div class="paragraph">
+<p>This section documents any support-related notes, constraints and changes</p>
+</div>
+<div class="sect3">
+<h4 id="deprecation-notices"><a class="anchor" href="#deprecation-notices"></a>Deprecation Notices</h4>
+<div class="paragraph">
+<p>Items (features and-or functionality) are marked as deprecated when a more current, and usually enhanced, alternative is available.</p>
+</div>
+<div class="paragraph">
+<p>Whilst the deprecated item will remain usable, it is no longer supported, and will be removed in a future release.
+You should plan to move to an alternative, supported, solution as soon as practical.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="upgrading"><a class="anchor" href="#upgrading"></a>Upgrading</h4>
+<div class="paragraph">
+<p>For more on upgrading&#8201;&#8212;&#8201;see: <a href="upgrading.html" class="xref page">Upgrading</a></p>
+</div>
+<hr>
+<h5 id="" class="discrete"></h5>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="related-content"><a class="anchor" href="#related-content"></a>Related Content</h2>
+<div class="sectionbody">
+<div class="card-row three-column-row">
+<div class="sect5 column">
+<h6 id="-2"><a class="anchor" href="#-2"></a></h6>
+<div class="ulist">
+<div class="title">API Topics</div>
+<ul>
+<li>
+<p><a href="rest-api.html" class="xref page">Public REST API</a></p>
+</li>
+<li>
+<p><a href="rest-api-admin.html" class="xref page">Admin REST API</a></p>
+</li>
+<li>
+<p><a href="rest-api-metrics.html" class="xref page">Metrics REST API</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect5 column">
+<h6 id="-3"><a class="anchor" href="#-3"></a></h6>
+<div class="ulist">
+<div class="title">Reference</div>
+<ul>
+<li>
+<p><a href="configuration-schema-bootstrap.html" class="xref page">Bootstrap</a></p>
+</li>
+<li>
+<p><a href="configuration-schema-database.html" class="xref page">Database</a></p>
+</li>
+<li>
+<p><a href="configuration-schema-db-security.html" class="xref page">Database Security</a></p>
+</li>
+<li>
+<p><a href="configuration-schema-access-control.html" class="xref page">Access Control</a></p>
+</li>
+<li>
+<p><a href="configuration-schema-import-filter.html" class="xref page">Import Filter</a></p>
+</li>
+<li>
+<p><a href="configuration-schema-isgr.html" class="xref page">Inter-Sync&#160;Gateway Replication</a></p>
+</li>
+<li>
+<p><a href="configuration-properties-legacy.html" class="xref page">Legacy Pre-3.0 Configuration</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect5 column">
+<h6 id="-4"><a class="anchor" href="#-4"></a></h6>
+<div class="paragraph">
+<div class="title">Community</div>
+<p><a href="https://forums.couchbase.com/c/mobile/14">Mobile Forum</a> |
+<a href="https://blog.couchbase.com/">Blog</a> |
+<a href="https://blog.couchbase.com/category/couchbase-mobile/?ref=blog-menu">Blog (Mobile)</a> |
+<a href="https://docs.couchbase.com/tutorials/">Tutorials</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <div class="col">
+        <div class="footer-logo">
+          <a href="https://www.couchbase.com" class="icon">
+            <img src="../../_/img/couchbase-logo.svg" alt="Couchbase">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://docs.couchbase.com" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://forums.couchbase.com" target="_blank" rel="noopener">Forums</a></li>
+          <li><a href="https://support.couchbase.com" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://developer.couchbase.com" target="_blank" rel="noopener">Developer Portal</a></li>
+          <li><a href="https://blog.couchbase.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://www.couchbase.com/resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://www.couchbase.com/get-started-developing-nosql">Get Started</a></li>
+          <li><a href="https://www.couchbase.com/downloads">Downloads</a></li>
+          <li><a href="https://learn.couchbase.com/store?utf8=%E2%9C%93&ss=1&ct=78327&commit=Filter" target="_blank" rel="noopener">Training</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="social-icons">
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32.1 26.1"> <path id="twitter" class="cls-1" d="M32,7.1a11.836,11.836,0,0,1-3.8,1,6.462,6.462,0,0,0,2.9-3.6,12.606,12.606,0,0,1-4.2,1.6A6.492,6.492,0,0,0,22.1,4a6.594,6.594,0,0,0-6.6,6.6,7.719,7.719,0,0,0,.2,1.5A18.458,18.458,0,0,1,2.2,5.2a6.294,6.294,0,0,0-.9,3.3A6.765,6.765,0,0,0,4.2,14a6.109,6.109,0,0,1-3-.8v.1a6.543,6.543,0,0,0,5.3,6.4,4.678,4.678,0,0,1-1.7.2,4.869,4.869,0,0,1-1.2-.1,6.679,6.679,0,0,0,6.1,4.6,12.917,12.917,0,0,1-8.2,2.8,9.151,9.151,0,0,1-1.6-.1,18.438,18.438,0,0,0,10.1,3c12.1,0,18.7-10,18.7-18.7v-.8A13.336,13.336,0,0,0,32,7.2Z" transform="translate(0.1 -4)"/></svg>
+            <a href="https://twitter.com/couchbase" class="icon">
+              Twitter
+            </a>
+          </li>
+          <li>
+          <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="linkedin" class="cls-1" d="M29,0H3A3.076,3.076,0,0,0,0,3V29a3.009,3.009,0,0,0,3,3H29a2.946,2.946,0,0,0,3-3V3A3.009,3.009,0,0,0,29,0ZM12,26H8V12h4ZM10,10a2,2,0,1,1,2-2A2.006,2.006,0,0,1,10,10ZM26,26H22V18a2,2,0,0,0-4,0v8H14V12h4v2.5c.8-1.1,2.1-2.5,3.5-2.5A4.736,4.736,0,0,1,26,17Z"/></svg>
+              <a href="https://www.linkedin.com/company/couchbase" class="icon">
+             Linkedin
+            </a>
+          </li>
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="facebook" class="cls-1" d="M29,0H3A2.652,2.652,0,0,0,0,3V29a2.652,2.652,0,0,0,3,3H16V18H12V14h4V12a6.452,6.452,0,0,1,6-6h4v4H22a2.151,2.151,0,0,0-2,2v2h6l-1,4H20V32h9a2.652,2.652,0,0,0,3-3V3A2.652,2.652,0,0,0,29,0Z"/></svg>
+            <a href="https://www.facebook.com/Couchbase" class="icon">
+            Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-terms">
+      <div class="footer-terms-copyright">
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+      </div>
+      <div class="footer-terms-links">
+        <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
+        <a href="https://www.couchbase.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.couchbase.com/cookie-policy">Cookie Policy</a>
+        <a href="https://www.couchbase.com/support-policy">Support Policy</a>
+        <a href="https://info.couchbase.com/unsubscribe-or-manage-preferences.html" target="_blank" rel="noopener">Marketing Preference Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../../_/js/site-navigation-data.js"></script>
+<script id="page-navigation-group" type="application/json">
+{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.0","sync-gateway":"3.0"}}
+</script>
+<template id="run-code-panel">
+<div class="action-panel">
+  <form class="action-panel-control" method="POST" action="https://couchbase.live/run" target="run-code-output">
+    <input type="hidden" name="lang">
+    <input type="hidden" name="code">
+    <input type="hidden" name="from" value="docs">
+    <div class="controls">
+      <button class="control-button rerun" type="submit"><i class="fas fa-redo"></i></button>
+      <span class="shell-name control-label">Output</span>
+      <button class="control-button close"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </form>
+  <iframe class="run-code-output" name="run-code-output"></iframe>
+</div>
+</template>
+<script id="site-script" src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
+<script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+</body>
+</html>

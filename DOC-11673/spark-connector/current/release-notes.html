@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
+<title>Release Notes | Couchbase Docs</title>
+<link rel="canonical" href="https://docs.couchbase.com/spark-connector/current/release-notes.html">
+<link rel="stylesheet" href="../../_/css/site.css">
+<script src="../../_/js/vendor/jquery.js"></script>
+<link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+
+
+<meta name="dcterms.subject" content="spark-connector">
+<meta name="dcterms.identifier" content="3.3">
+<meta name="page-url" content="/spark-connector/current/release-notes.html">
+<meta name="page-nav-header-levels" content="0">
+<meta name="generator" content="Antora 3.1.7">
+<link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
+</head>
+<body class="article">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="header fixed-top">
+  <div class="header-top-row">
+      <div class="container">
+          <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
+              <ul class="navbar-brand-list">
+                <li class="brand-logo">
+                  <a class="navbar-brand" href="https://www.couchbase.com">
+                    <img src="../../_/img/couchbase-logo.svg" alt="Couchbase" />
+                  </a>
+                </li>
+                <li>
+                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                    <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
+                    <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  </a>
+                </li>
+              </ul>
+              <button class="navbar-burger" data-target="topbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+          </nav>
+      </div>
+  </div>
+  <div class="header-bottom-row" id="topbar-menu">
+    <div class="container">
+        <nav  class="navbar navbar-new-bottom">
+
+              <div class="navbar-collapse collapse" id="navbar2">
+                <ul class="navbar-nav w-100 justify-content-start">
+                  <li class="nav-item">
+                    <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
+                      <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../home/server.html">
+                      Server
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../home/mobile.html">
+                      Mobile
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="primary-action">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                  Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
+                </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+
+              </div>
+
+        </nav>
+    </div>
+   </div>
+</header>
+<div class="body container">
+<aside class="nav left-sidebar">
+  <div class="nav-container">
+    <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+    <template id="page-versions" style="display: none">
+      <select class="version_list" data-component="spark-connector">
+        <option value="3.3" data-url="release-notes.html" selected>3.3</option>
+        <option value="3.1" data-url="../3.1/release-notes.html">3.1</option>
+        <option value="3.0" data-url="../3.0/release-notes.html">3.0</option>
+        <option value="2.4" data-url="../2.4/release-notes.html">2.4</option>
+      </select>
+    </template>
+  </div>
+</aside>
+<aside class="toc sidebar"
+      data-title="Contents"
+      data-levels="1">
+  <div class="sidebar-box">
+    <div class="tools" role="navigation">
+<ul>
+<li class="tool edit"><a href="https://github.com/couchbase/couchbase-spark-connector/edit/master/docs/modules/ROOT/pages/release-notes.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+</ul>
+</div>
+    <div class="toc-menu"></div>
+    <div class="is-this-helpful-box">
+      <h4> Is this page helpful?</h4>
+      <div class="btn-row">
+        <a href="#" class="like-btn helpful-btn" id="yesBtn" data-page-rating="like" >
+                <i class="far fa-thumbs-up"></i>
+            Yes
+
+            </a>
+        <a href="#" class="dislike-btn helpful-btn" id="noBtn"  data-page-rating="dislike"> <i class="far fa-thumbs-down"></i> No</a>
+      </div>
+      <div class="any-feedback">
+        <a href="#" class="btn any-feedback-btn" id="myCustomTrigger">Leave Additional Feedback? </a>
+      </div>
+      <div class="dialog-box" id="dialogBox">
+        <form>
+            <div class="form-group " id="additionalFeedbackBox">
+              <textarea class="input-control feed-back-msg" rows="8" placeholder="Any Additonal Feedback?"></textarea>
+
+              <div class="action-btn-row ">
+                <a href="#" class="skip-btn" id="skipBtnMsg">Skip</a>
+                  <button class="submit-btn btn blue-btn disabled" > Submit  </button>
+                  <a href="#" class="info-btn"><i class="fas fa-info-circle"></i></a>
+              </div>
+
+
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="feedback-modal modal-popup">
+  <div class="modal-popup-dialogue">
+    <div class="popup-header">
+      <a href="#" class="close-popup"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="popup-content">
+      <p>
+        Please use the form below to provide your feedback. Because your feedback is valuable to us,
+         the information you submit in this form is recorded in our issue tracking system (JIRA), which is publicly available.
+        You can track the status of your feedback using the ticket number displayed in the dialog once you submit the form.
+      </p>
+    </div>
+  </div>
+</div>
+
+<main class="article" data-ceiling="topbar">
+<div class="article-header">
+<nav class="crumbs" aria-label="breadcrumbs">
+<ul>
+<li class="crumb"><a href="index.html">Spark Connector</a></li>
+<li class="crumb"><a href="release-notes.html">Release Notes</a></li>
+</ul>
+</nav>
+</div>
+<article class="doc">
+<div class="page-heading-title">
+<h1 class="page">Release Notes</h1>
+<div class="labels">
+<ul>
+<li class="concept"><span><i class="far fa-lightbulb"></i> concept</span></li>
+</ul>
+</div>
+
+
+</div>
+<div class="contributor-list-box">
+<span class="last-commit-date" id="commitdate">    </span>
+<ul id="contributorList"></ul>
+<span  id="otherContributor"> + </span>
+</div><div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock abstract">
+<blockquote>
+Release notes for the Spark Connector.
+</blockquote>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="couchbase-spark-connector-3-3-2-ga-10-october-2023"><a class="anchor" href="#couchbase-spark-connector-3-3-2-ga-10-october-2023"></a>Couchbase Spark Connector 3.3.2 GA (10 October 2023)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 3.3.2 is built and tested against Spark 3.3.0.</p>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes-and-stability"><a class="anchor" href="#bug-fixes-and-stability"></a>Bug fixes and stability</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-178">SPARKC-178</a>:
+Fix issues with <code>connectionIdentifier</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="couchbase-spark-connector-3-3-1-ga-22-february-2023"><a class="anchor" href="#couchbase-spark-connector-3-3-1-ga-22-february-2023"></a>Couchbase Spark Connector 3.3.1 GA (22 February 2023)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 3.3.1 is built and tested against Spark 3.3.0.</p>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes-and-stability-2"><a class="anchor" href="#bug-fixes-and-stability-2"></a>Bug fixes and stability</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-177">SPARKC-177</a>:
+If alternate addresses are configured on the cluster (for instance, for Kubernetes deployments), these will now be used automatically when doing structured streaming.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="couchbase-spark-connector-3-3-0-ga-january-2023"><a class="anchor" href="#couchbase-spark-connector-3-3-0-ga-january-2023"></a>Couchbase Spark Connector 3.3.0 GA (January 2023)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 3.3.0 is the first version to support Spark 3.3.0.</p>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes-and-stability-3"><a class="anchor" href="#bug-fixes-and-stability-3"></a>Bug fixes and stability</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-166">SPARKC-166</a>:
+Improved handling of aggregate result datatypes.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-176">SPARKC-176</a>:
+Bump DCP client version.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-174">SPARKC-174</a>:
+Adjust default DCP bootstrap timeout to improve connection capability in high-latency environments.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="features"><a class="anchor" href="#features"></a>Features</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-167">SPARKC-167</a>,
+<a href="https://issues.couchbase.com/browse/SPARKC-168">SPARKC-168</a>:
+Support connecting to multiple Clusters.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-175">SPARKC-175</a>,
+<a href="https://issues.couchbase.com/browse/SPARKC-165">SPARKC-165</a>:
+Support Spark 3.3.0.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-160">SPARKC-160</a>:
+Shade Reactor dependency into 'fatjar' build to better support the Databricks environment.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="couchbase-spark-connector-3-2-2-ga-july-2022"><a class="anchor" href="#couchbase-spark-connector-3-2-2-ga-july-2022"></a>Couchbase Spark Connector 3.2.2 GA (July 2022)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 3.2.2 is the third version to support Spark 3.2.x and is built on top of the Couchbase Scala SDK 1.3.x as well
+as the Java DCP Client.</p>
+</div>
+<div class="sect2">
+<h3 id="features-2"><a class="anchor" href="#features-2"></a>Features</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-157" target="_blank" rel="noopener">SPARKC-157</a>: Add support for "ignore" variants for KeyValue insert, replace and remove operations. This has been available in the Spark Connector 2.x series and has not been ported forward until this point.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-159" target="_blank" rel="noopener">SPARKC-159</a>: TLS configuration is now more flexible. TLS can be enabled trough couchbases:// in the connection string, as well as being more robust in accepting certail security config parameters.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-160" target="_blank" rel="noopener">SPARKC-160</a>: To avoid classpath issues in the Databricks notebook environment, the
+Reactor library is now shaded in the assembly jar that is available for download. The regular jar still has the unshaded version of Reactor.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes-and-stability-4"><a class="anchor" href="#bug-fixes-and-stability-4"></a>Bug fixes and stability</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-158" target="_blank" rel="noopener">SPARKC-158</a>: Open the implicitBucket if set for cluster-level operations. This
+makes sure that cluster-level operations like N1QL queries can be performed against Couchbase Server clusters pre 6.5.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="couchbase-spark-connector-3-2-1-ga-may-2022"><a class="anchor" href="#couchbase-spark-connector-3-2-1-ga-may-2022"></a>Couchbase Spark Connector 3.2.1 GA (May 2022)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 3.2.1 is the second version to support Spark 3.2.x and is built on top of the Couchbase Scala SDK 1.3.x as well
+as the Java DCP Client.</p>
+</div>
+<div class="sect2">
+<h3 id="features-3"><a class="anchor" href="#features-3"></a>Features</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the underlying SDK to 1.3.0, which (along with general enhancements and fixes) bundles the Capella certificate, so it doesn&#8217;t have to be added manually.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-133" target="_blank" rel="noopener">SPARKC-133</a>: Added support for spark structured streaming. For more details, see the documentation section for streaming.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="couchbase-spark-connector-3-2-0-ga-january-2022"><a class="anchor" href="#couchbase-spark-connector-3-2-0-ga-january-2022"></a>Couchbase Spark Connector 3.2.0 GA (January 2022)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 3.1.0 is the first version to support Spark 3.2.x and is built on top of the Couchbase Scala SDK 1.2.x.</p>
+</div>
+<div class="sect2">
+<h3 id="features-4"><a class="anchor" href="#features-4"></a>Features</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Support for Apache Spark 3.2.x</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-146" target="_blank" rel="noopener">SPARKC-146</a>: Added support for scope-level Query and Analytics RDDs (through <code>Keyspace</code>)</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-148" target="_blank" rel="noopener">SPARKC-148</a>: Added support for aggregate pushdown for Query DataFrames.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-148" target="_blank" rel="noopener">SPARKC-149</a>: Added support for aggregate pushdown for Analytics DataFrames.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes-and-stability-5"><a class="anchor" href="#bug-fixes-and-stability-5"></a>Bug fixes and stability</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-143" target="_blank" rel="noopener">SPARKC-143</a>: Allow passing timeouts to KV, Query and Analytics DataFrame as option.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-151" target="_blank" rel="noopener">SPARKC-151</a>: Fix ScanConsistency not being applied for Analytics and Query DataFrames.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-144" target="_blank" rel="noopener">SPARKC-144</a>, <a href="https://issues.couchbase.com/browse/SPARKC-145" target="_blank" rel="noopener">SPARKC-145</a>: Move Jackson JSON handling into the connector. This solves issues in the databricks notebook environment.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-153" target="_blank" rel="noopener">SPARKC-153</a>: Properly escape fields for Analytics and Query DataFrames.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="couchbase-spark-connector-3-1-0-ga-september-2021"><a class="anchor" href="#couchbase-spark-connector-3-1-0-ga-september-2021"></a>Couchbase Spark Connector 3.1.0 GA (September 2021)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 3.1.0 is the first version to support Spark 3.1.x and is built on top of the Couchbase Scala SDK 1.1.x.</p>
+</div>
+<div class="paragraph">
+<p>This release contains identical features to the Spark 3.0.0 connector, the only difference being compiled against Spark 3.1.x. Please refer to the 3.0 migration guide for changes and new features over 2.4.x.</p>
+</div>
+<div class="sect2">
+<h3 id="highlights"><a class="anchor" href="#highlights"></a>Highlights</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Support for Apache Spark 3.1.x</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="couchbase-spark-connector-3-0-0-ga-september-2021"><a class="anchor" href="#couchbase-spark-connector-3-0-0-ga-september-2021"></a>Couchbase Spark Connector 3.0.0 GA (September 2021)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 3.0.0 is the first version to support Spark 3.0.x and is built on top of the Couchbase Scala SDK 1.1.x.</p>
+</div>
+<div class="paragraph">
+<p>Please note that this release does not have separate release notes, rather refer to the migration guide page for more information.</p>
+</div>
+<div class="sect2">
+<h3 id="highlights-2"><a class="anchor" href="#highlights-2"></a>Highlights</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Support for Apache Spark 3.0.x</p>
+</li>
+<li>
+<p>Built on top of the new Scala SDK 1.2.x</p>
+</li>
+<li>
+<p>Support for Couchbase Server 7.0 and later</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="couchbase-spark-connector-2-4-1-ga-november-2020"><a class="anchor" href="#couchbase-spark-connector-2-4-1-ga-november-2020"></a>Couchbase Spark Connector 2.4.1 GA (November 2020)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 2.4.1 brings support for Couchbase Cloud as well as:</p>
+</div>
+<div class="sect2">
+<h3 id="features-5"><a class="anchor" href="#features-5"></a>Features</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-110" target="_blank" rel="noopener">SPARKC-110</a>: Allow passthrough of timestampFormat and dateFormat for inferring schema</p>
+</li>
+<li>
+<p>Updated the Java SDK to 2.7.18</p>
+</li>
+<li>
+<p>Allows enabling DNS SRV via a configuration property</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes-and-stability-6"><a class="anchor" href="#bug-fixes-and-stability-6"></a>Bug fixes and stability</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-104" target="_blank" rel="noopener">SPARKC-104</a>: Stopping and restarting of Spark-Couchbase-Streaming-job throws ClassCastException</p>
+</li>
+<li>
+<p>Properly propagate the expiry into the <code>DefaultSource</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="couchbase-spark-connector-2-4-0-ga-july-2019"><a class="anchor" href="#couchbase-spark-connector-2-4-0-ga-july-2019"></a>Couchbase Spark Connector 2.4.0 GA (July 2019)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 2.4.0 brings support for Spark 2.4.0, and is compiled exclusively with Scala 2.12.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="couchbase-spark-connector-2-3-0-ga-may-2019"><a class="anchor" href="#couchbase-spark-connector-2-3-0-ga-may-2019"></a>Couchbase Spark Connector 2.3.0 GA (May 2019)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 2.3.0 brings support for Spark 2.3.0 along with:</p>
+</div>
+<div class="sect2">
+<h3 id="features-6"><a class="anchor" href="#features-6"></a>Features</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-93" target="_blank" rel="noopener">SPARKC-93</a>: Support for Apache Spark 2.3.0</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-89" target="_blank" rel="noopener">SPARKC-89</a>: Support Analytics</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-88" target="_blank" rel="noopener">SPARKC-88</a>: Allow N1QL queries to run on Spark node(s) co-located with query service</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-96" target="_blank" rel="noopener">SPARKC-96</a>:
+Provide more fault-tolerant batch mutations.
+<code>saveToCouchbase</code> now takes a <code>maxConcurrent</code> parameter, giving the application control over the size of batches that will be written, from each executor.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes-and-stability-7"><a class="anchor" href="#bug-fixes-and-stability-7"></a>Bug fixes and stability</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-85" target="_blank" rel="noopener">SPARCK-85</a>: Raise N1QL errors as exceptions rather than logging them.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-82" target="_blank" rel="noopener">SPARKC-82</a>:
+When running a N1QLQuery, if multiple buckets have been specified, then the bucket to use must now be explicitly chosen.
+E.g. <code>sc.couchbaseQuery(query, bucketName = "default")</code>.  This is safer than choosing an arbitrary bucket.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-95" target="_blank" rel="noopener">SPARKC-95</a>: Fix to get streaming source working with Spark 2.3</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="couchbase-spark-connector-2-2-0-ga-september-2017"><a class="anchor" href="#couchbase-spark-connector-2-2-0-ga-september-2017"></a>Couchbase Spark Connector 2.2.0 GA (September 2017)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 2.2.0 is the first stable release of the 2.2.x series.
+It brings support for Spark 2.2 and the following enhancements and bugfixes:</p>
+</div>
+<div class="sect2">
+<h3 id="spark-core"><a class="anchor" href="#spark-core"></a>Spark Core</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Support for Apache Spark 2.2.0</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-80" target="_blank" rel="noopener">SPARKC-80</a>: Support for Couchbase Server 5.0 and Role-Based Access Control</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-77" target="_blank" rel="noopener">SPARKC-77</a>: Global and per-operation timeout configuration is now possible</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-44" target="_blank" rel="noopener">SPARKC-44</a>: Support for Subdocument Mutations has been added.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-79" target="_blank" rel="noopener">SPARKC-79</a>: Support for easier SSL/TLS configuration via spark config.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="spark-sql"><a class="anchor" href="#spark-sql"></a>Spark SQL</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/SPARKC-77" target="_blank" rel="noopener">SPARKC-77</a>: per-operation timeout configuration is now possible</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="spark-streaming"><a class="anchor" href="#spark-streaming"></a>Spark Streaming</h3>
+<div class="paragraph">
+<p>No changes for Spark Streaming have been made in this release.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="older-releases"><a class="anchor" href="#older-releases"></a>Older Releases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Although <a href="https://www.couchbase.com/support-policy/enterprise-software">no longer supported</a>, documentation for older releases continues to be available in our <a href="https://docs-archive.couchbase.com/home/index.html">docs archive</a>.</p>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <div class="col">
+        <div class="footer-logo">
+          <a href="https://www.couchbase.com" class="icon">
+            <img src="../../_/img/couchbase-logo.svg" alt="Couchbase">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://docs.couchbase.com" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://forums.couchbase.com" target="_blank" rel="noopener">Forums</a></li>
+          <li><a href="https://support.couchbase.com" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://developer.couchbase.com" target="_blank" rel="noopener">Developer Portal</a></li>
+          <li><a href="https://blog.couchbase.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://www.couchbase.com/resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://www.couchbase.com/get-started-developing-nosql">Get Started</a></li>
+          <li><a href="https://www.couchbase.com/downloads">Downloads</a></li>
+          <li><a href="https://learn.couchbase.com/store?utf8=%E2%9C%93&ss=1&ct=78327&commit=Filter" target="_blank" rel="noopener">Training</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="social-icons">
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32.1 26.1"> <path id="twitter" class="cls-1" d="M32,7.1a11.836,11.836,0,0,1-3.8,1,6.462,6.462,0,0,0,2.9-3.6,12.606,12.606,0,0,1-4.2,1.6A6.492,6.492,0,0,0,22.1,4a6.594,6.594,0,0,0-6.6,6.6,7.719,7.719,0,0,0,.2,1.5A18.458,18.458,0,0,1,2.2,5.2a6.294,6.294,0,0,0-.9,3.3A6.765,6.765,0,0,0,4.2,14a6.109,6.109,0,0,1-3-.8v.1a6.543,6.543,0,0,0,5.3,6.4,4.678,4.678,0,0,1-1.7.2,4.869,4.869,0,0,1-1.2-.1,6.679,6.679,0,0,0,6.1,4.6,12.917,12.917,0,0,1-8.2,2.8,9.151,9.151,0,0,1-1.6-.1,18.438,18.438,0,0,0,10.1,3c12.1,0,18.7-10,18.7-18.7v-.8A13.336,13.336,0,0,0,32,7.2Z" transform="translate(0.1 -4)"/></svg>
+            <a href="https://twitter.com/couchbase" class="icon">
+              Twitter
+            </a>
+          </li>
+          <li>
+          <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="linkedin" class="cls-1" d="M29,0H3A3.076,3.076,0,0,0,0,3V29a3.009,3.009,0,0,0,3,3H29a2.946,2.946,0,0,0,3-3V3A3.009,3.009,0,0,0,29,0ZM12,26H8V12h4ZM10,10a2,2,0,1,1,2-2A2.006,2.006,0,0,1,10,10ZM26,26H22V18a2,2,0,0,0-4,0v8H14V12h4v2.5c.8-1.1,2.1-2.5,3.5-2.5A4.736,4.736,0,0,1,26,17Z"/></svg>
+              <a href="https://www.linkedin.com/company/couchbase" class="icon">
+             Linkedin
+            </a>
+          </li>
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="facebook" class="cls-1" d="M29,0H3A2.652,2.652,0,0,0,0,3V29a2.652,2.652,0,0,0,3,3H16V18H12V14h4V12a6.452,6.452,0,0,1,6-6h4v4H22a2.151,2.151,0,0,0-2,2v2h6l-1,4H20V32h9a2.652,2.652,0,0,0,3-3V3A2.652,2.652,0,0,0,29,0Z"/></svg>
+            <a href="https://www.facebook.com/Couchbase" class="icon">
+            Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-terms">
+      <div class="footer-terms-copyright">
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+      </div>
+      <div class="footer-terms-links">
+        <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
+        <a href="https://www.couchbase.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.couchbase.com/cookie-policy">Cookie Policy</a>
+        <a href="https://www.couchbase.com/support-policy">Support Policy</a>
+        <a href="https://info.couchbase.com/unsubscribe-or-manage-preferences.html" target="_blank" rel="noopener">Marketing Preference Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../../_/js/site-navigation-data.js"></script>
+<script id="page-navigation-group" type="application/json">
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+</script>
+<template id="run-code-panel">
+<div class="action-panel">
+  <form class="action-panel-control" method="POST" action="https://couchbase.live/run" target="run-code-output">
+    <input type="hidden" name="lang">
+    <input type="hidden" name="code">
+    <input type="hidden" name="from" value="docs">
+    <div class="controls">
+      <button class="control-button rerun" type="submit"><i class="fas fa-redo"></i></button>
+      <span class="shell-name control-label">Output</span>
+      <button class="control-button close"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </form>
+  <iframe class="run-code-output" name="run-code-output"></iframe>
+</div>
+</template>
+<script id="site-script" src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
+<script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+</body>
+</html>
