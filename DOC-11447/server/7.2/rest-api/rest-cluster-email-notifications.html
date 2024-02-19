@@ -294,6 +294,9 @@ curl -X POST http://&lt;ip-address-or-domain-name:8091&gt;/settings/alerts/limit
   -d memoryNoticeThreshold=&lt;integer&gt;
   -d memoryWarningThreshold=&lt;integer&gt;
   -d memoryCriticalThreshold=&lt;integer&gt;
+  -d memcachedSystemConnectionWarningThreshold=&lt;integer&gt;
+  -d memcachedUserConnectionWarningThreshold=&lt;integer&gt;
+
 
 curl -X POST http://&lt;ip-address-or-domain-name&gt;:8091/settings/alert/sendTestEmail
   -u &lt;username&gt;:&lt;password&gt;</pre>
@@ -393,6 +396,16 @@ Thresholds are enabled, disabled, and configured by means of <code>POST /setting
 <p>The thresholds are intended to be assigned values in ascending order; with <code>memoryNoticeThreshold</code> the lowest, and <code>memoryCriticalThreshold</code> the highest.
 The default values are, for <code>memoryNoticeThreshold</code> <code>-1</code> (meaning disabled), for <code>memoryWarningThreshold</code> <code>90</code>, and for <code>memoryCriticalThreshold</code> <code>95</code>.</p>
 </div>
+</li>
+</ul>
+</div>
+<div id="setting-memcache-alert-threshold" class="ulist">
+<ul>
+<li>
+<p><code>memcachedSystemConnectionWarningThreshold</code>. Trigger the <code><a href="../manage/manage-settings/configure-alerts.html#memcached-alert " class="xref page">memcached_connections</a></code> alert if the number of <code>system</code> connections in use exceeds the given percentage of connections available. (E.g., set this value to <code>90</code> to trigger an alert if the system connections used by the data service exceed 90% of the connections available.)</p>
+</li>
+<li>
+<p><code>memcachedUserConnectionWarningThreshold</code>. Trigger the <code><a href="../manage/manage-settings/configure-alerts.html#memcached-alert" class="xref page">memcached_connections</a></code> alert if the number of <code>user</code> connections in use exceeds the given percentage of connections available. (E.g., if this value is set to <code>90</code>, the system will trigger an alert if the number of user connections  used by the data service exceeds 90% of the available connections.)</p>
 </li>
 </ul>
 </div>
@@ -504,7 +517,8 @@ Note that the call is piped to the <a href="http://stedolan.github.io/jq" target
     "ep_clock_cas_drift_threshold_exceeded",
     "communication_issue",
     "time_out_of_sync",
-    "disk_usage_analyzer_stuck"
+    "disk_usage_analyzer_stuck",
+    "memcached_connections"
   ]
 }</pre>
 </div>
