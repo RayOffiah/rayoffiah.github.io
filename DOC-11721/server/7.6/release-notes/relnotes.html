@@ -437,6 +437,39 @@ stats were computed using the number of processors configured for the entire sys
 </table>
 </div>
 <div class="sect2">
+<h3 id="storage"><a class="anchor" href="#storage"></a>Storage</h3>
+<table id="table-fixed-issues-76-storage" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-58088">MB-58088</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">KV returns <code>temporary failure</code> for invalid unlock request.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Introduced the <code>NOT_LOCKED</code> <code>(0x0e)</code> MCBP status code.<br>
+When issuing a second Unlock with the same CAS, the server should return <code>NOT_LOCKED</code>, not <code>TEMPFAIL</code>.
+Clients with <code>XERROR</code> support will receive the new status code, and will
+use the JSON error map to interpret it.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59060">MB-59060</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">KV returns "temp fail" in full eviction for unlock request for a not cached document.
+The server should return <code>KEYENOENT</code> (key/doc does not exist), not <code>ETMPFAIL</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The server now correctly returns <code>KEYENOENT</code>. Moreover, when the server issues <code>unlock</code> requests for existing documents, such that some of them have been evicted, then the server will return <code>NOT_LOCKED</code> for all the requests.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
 <h3 id="xdcr"><a class="anchor" href="#xdcr"></a>XDCR</h3>
 <table id="table-fixed-issues-76-xdcr" class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -527,6 +560,30 @@ stats were computed using the number of processors configured for the entire sys
 </table>
 </div>
 <div class="sect2">
+<h3 id="index-service"><a class="anchor" href="#index-service"></a>Index Service</h3>
+<table id="table-fixed-issues-76-index-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59138">MB-59138</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Index has 0 entries when <code>NESTED ARRAY FLATTEN_KEYS()</code>, and one of them has missing entries.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Null or missing entries are now correctly expanded for nested arrays.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
 <h3 id="search-service"><a class="anchor" href="#search-service"></a>Search Service</h3>
 <table id="table-fixed-issues-76-search-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -546,6 +603,35 @@ stats were computed using the number of processors configured for the entire sys
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-59858">MB-59858</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">When a Search index name is too long, the index silently fails to ingest documents.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The UI will now flag instances where the chosen index name is too long.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-60718">MB-60718</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Index alias queries not returning cumulative (duplicate) results from its targets.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[TBA]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="tools"><a class="anchor" href="#tools"></a>Tools</h3>
+<table id="table-fixed-issues-76-tools" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-57988">MB-57988</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cli</code> should allow modifying existing collection&#8217;s maxTTL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[TBA]</p></td>
 </tr>
 </tbody>
 </table>
