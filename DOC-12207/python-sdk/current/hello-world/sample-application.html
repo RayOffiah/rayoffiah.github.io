@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
+<title>Sample Application | Couchbase Docs</title>
+<link rel="canonical" href="https://docs.couchbase.com/python-sdk/current/hello-world/sample-application.html">
+<link rel="stylesheet" href="../../../_/css/site.css">
+<script src="../../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="Discover how to program interactions with the Couchbase Server via the data, query, and search services -- using the Travel Sample Application with the built-in Travel Sample data Bucket.">
+<link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+        <link rel="prev" href="../howtos/full-text-searching-with-sdk.html">
+        <link rel="next" href="../howtos/distributed-acid-transactions-from-the-sdk.html">
+
+
+
+                    <link rel="prev" href="../howtos/full-text-searching-with-sdk.html">
+
+        
+
+<meta name="dcterms.subject" content="python-sdk">
+<meta name="dcterms.identifier" content="4.1">
+<meta name="page-url" content="/python-sdk/current/hello-world/sample-application.html">
+<meta name="page-nav-header-levels" content="0">
+<meta name="generator" content="Antora 3.1.7">
+<link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
+</head>
+<body class="article">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="header fixed-top">
+  <div class="header-top-row">
+      <div class="container">
+          <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
+              <ul class="navbar-brand-list">
+                <li class="brand-logo">
+                  <a class="navbar-brand" href="https://www.couchbase.com">
+                    <img src="../../../_/img/couchbase-logo.svg" alt="Couchbase" />
+                  </a>
+                </li>
+                <li>
+                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                    <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
+                    <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  </a>
+                </li>
+              </ul>
+              <button class="navbar-burger" data-target="topbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+          </nav>
+      </div>
+  </div>
+  <div class="header-bottom-row" id="topbar-menu">
+    <div class="container">
+        <nav  class="navbar navbar-new-bottom">
+
+              <div class="navbar-collapse collapse" id="navbar2">
+                <ul class="navbar-nav w-100 justify-content-start">
+                  <li class="nav-item">
+                    <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
+                      <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../../home/server.html">
+                      Server
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../../home/mobile.html">
+                      Mobile
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="primary-action">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                  Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
+                </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+
+              </div>
+
+        </nav>
+    </div>
+   </div>
+</header>
+<div class="body container">
+<aside class="nav left-sidebar">
+  <div class="nav-container">
+    <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+    <template id="page-versions" style="display: none">
+      <select class="version_list" data-component="python-sdk">
+        <option value="4.1" data-url="sample-application.html" selected>4.1</option>
+        <option value="4.0" data-url="../../4.0/hello-world/sample-application.html">4.0</option>
+        <option value="3.2" data-url="../../3.2/hello-world/sample-application.html">3.2</option>
+        <option value="3.1" data-url="../../3.1/hello-world/sample-application.html">3.1</option>
+        <option value="3.0" data-url="../../3.0/hello-world/sample-application.html">3.0</option>
+      </select>
+    </template>
+  </div>
+</aside>
+<aside class="toc sidebar"
+      data-title="Contents"
+      data-levels="2">
+  <div class="sidebar-box">
+    <div class="tools" role="navigation">
+<ul>
+<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-python/edit/release/4.1/modules/hello-world/pages/sample-application.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+</ul>
+</div>
+    <div class="toc-menu"></div>
+    <div class="is-this-helpful-box">
+      <h4> Is this page helpful?</h4>
+      <div class="btn-row">
+        <a href="#" class="like-btn helpful-btn" id="yesBtn" data-page-rating="like" >
+                <i class="far fa-thumbs-up"></i>
+            Yes
+
+            </a>
+        <a href="#" class="dislike-btn helpful-btn" id="noBtn"  data-page-rating="dislike"> <i class="far fa-thumbs-down"></i> No</a>
+      </div>
+      <div class="any-feedback">
+        <a href="#" class="btn any-feedback-btn" id="myCustomTrigger">Leave Additional Feedback? </a>
+      </div>
+      <div class="dialog-box" id="dialogBox">
+        <form>
+            <div class="form-group " id="additionalFeedbackBox">
+              <textarea class="input-control feed-back-msg" rows="8" placeholder="Any Additonal Feedback?"></textarea>
+
+              <div class="action-btn-row ">
+                <a href="#" class="skip-btn" id="skipBtnMsg">Skip</a>
+                  <button class="submit-btn btn blue-btn disabled" > Submit  </button>
+                  <a href="#" class="info-btn"><i class="fas fa-info-circle"></i></a>
+              </div>
+
+
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="feedback-modal modal-popup">
+  <div class="modal-popup-dialogue">
+    <div class="popup-header">
+      <a href="#" class="close-popup"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="popup-content">
+      <p>
+        Please use the form below to provide your feedback. Because your feedback is valuable to us,
+         the information you submit in this form is recorded in our issue tracking system (JIRA), which is publicly available.
+        You can track the status of your feedback using the ticket number displayed in the dialog once you submit the form.
+      </p>
+    </div>
+  </div>
+</div>
+
+<main class="article" data-ceiling="topbar">
+<div class="article-header">
+<nav class="crumbs" aria-label="breadcrumbs">
+<ul>
+<li class="crumb"><a href="overview.html">Python SDK</a></li>
+<li class="crumb">Getting Started</li>
+<li class="crumb"><a href="sample-application.html">Sample Application</a></li>
+</ul>
+</nav>
+</div>
+<article class="doc">
+<div class="page-heading-title">
+<h1 class="page">Sample Application</h1>
+<div class="labels">
+<ul><li class="tutorial"><span><i class="fas fa-book-reader"></i> tutorial</span></li>
+</ul>
+</div>
+
+
+</div>
+<div class="contributor-list-box">
+<span class="last-commit-date" id="commitdate">    </span>
+<ul id="contributorList"></ul>
+<span  id="otherContributor"> + </span>
+</div><div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock abstract">
+<blockquote>
+Discover how to program interactions with the Couchbase Server via the data, query, and search services&#8201;&#8212;&#8201;using the Travel Sample Application with the built-in Travel Sample data Bucket.
+Discover how to program interactions with Couchbase Server 7.X via the Data, Query, and Search services&#8201;&#8212;&#8201;using the Travel Sample Application with the built-in Travel Sample data Bucket.
+</blockquote>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quick-start"><a class="anchor" href="#quick-start"></a>Quick Start</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Fetch the <a href="https://github.com/couchbaselabs/try-cb-python">Couchbase Python SDK travel-sample Application REST Backend</a> from github:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">git clone https://github.com/couchbaselabs/try-cb-python.git
+cd try-cb-python</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With <a href="https://docs.docker.com/get-docker/">Docker</a> installed, you should now be able to run a bare-bones copy of Couchbase Server, load the travel-sample, add indexes, install the sample-application and its frontend, all by running a single command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">docker-compose --profile local up</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="using-the-sample-app"><a class="anchor" href="#using-the-sample-app"></a>Using the Sample App</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="../../../sdk/current/shared/_images/Travel-Sample-Register.png" alt="Travel Sample Register">
+</div>
+</div>
+<div class="paragraph">
+<p>Give yourself a username and password and click <strong>Register</strong>.</p>
+</div>
+<div class="paragraph">
+<p>You can now try out searching for flights, booking flights, and searching for hotels.
+You can see which Couchbase SDK operations are being executed by clicking the red bar at the bottom of the screen:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../sdk/current/shared/_images/Couchbase-Query-Bar.png" alt="Couchbase Query Bar">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sample-app-overview"><a class="anchor" href="#sample-app-overview"></a>Sample App Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The sample application runs 3 docker containers which contain the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The frontend&#8201;&#8212;&#8201;a Vue web app which communicates with the backend via an API.</p>
+</li>
+<li>
+<p>The backend&#8201;&#8212;&#8201;a Python web app which contains the SDK code to communicate with Couchbase Server.</p>
+</li>
+<li>
+<p>The database&#8201;&#8212;&#8201;a one node cluster containing the travel sample Bucket and reqisite indexes.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../sdk/current/shared/_images/travel-sample-app-overview.png" alt="travel sample app overview">
+</div>
+</div>
+<div class="paragraph">
+<p>The API implements a different endpoint for each of the app&#8217;s features. You can explore the API here in read-only mode, or once you are running the application, at the <code>localhost:8080/apidocs</code> endpoint.</p>
+</div>
+<div id="swagger-ui"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="data-model"><a class="anchor" href="#data-model"></a>Data Model</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>See the <a href="../ref/travel-app-data-model.html" class="xref page">Travel App Data Model</a> reference page for more information about the sample data set used.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="application-backend"><a class="anchor" href="#application-backend"></a>Application Backend</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The backend code shows the Couchbase Python SDK in action with Data(K/V), Query, and Search services.
+These elements are each plugged together with Couchbase Server to implement the API needed by the frontend of the application.</p>
+</div>
+<div class="paragraph">
+<p>For line by line explanations of the backend code, refer to the <code>travel.py</code> file in the <code>try-cb-python</code> repository.</p>
+</div>
+<div class="sect2">
+<h3 id="api-structural-overview"><a class="anchor" href="#api-structural-overview"></a>API Structural Overview</h3>
+<div class="paragraph">
+<p>Flask and Swagger implement the API endpoints. When starting the backend, the following code:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Initializes the Flask web application.</p>
+</li>
+<li>
+<p>Updates the API configuration.</p>
+</li>
+<li>
+<p>Sets the template to define the security schemes and result schemas.</p>
+</li>
+<li>
+<p>Creates the API component to tie the endpoints to.</p>
+</li>
+<li>
+<p>Restricts the API to only accept requests with content types and authorization headers.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py#L57-L82">app = Flask(__name__)
+app.config.from_object(__name__)
+app.config['SWAGGER'] = {
+    'openapi': '3.0.3',
+    'title': 'Travel Sample API',
+    'version': '1.0',
+    'description': 'A sample API for getting started with Couchbase Server and the SDK.',
+    'termsOfService': ''
+}
+
+swagger_template = {
+    "components": {
+        "securitySchemes": {
+            "bearer": {
+            ...
+            }
+        },
+        "schemas": {
+        ...
+        }
+    }
+}
+
+api = Blueprint("api", __name__)
+
+CORS(app, headers=['Content-Type', 'Authorization'])</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A function defines each endpoint.
+The Flask <code>route</code> wrapper defines which URL triggers the function.
+For instance, the URL <code>localhost:8080/</code> triggers the following function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py#L86-L88">@app.route('/')
+def index():
+    ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Besides the default endpoint, each of the endpoint functions are inside a <code>SwaggerView</code> class.
+This class is purely to group related endpoints together inside the Swagger API docs page, and has no direct effect on the endpoints:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py#L108-L109">class AirportView(SwaggerView):
+    """Airport class for airport objects in the database"""</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Each endpoint begins with a docstring that Swagger uses to generate the documentation for that endpoint.
+The code samples on this page omit the body of these docstrings for brevity.</p>
+</div>
+<div class="paragraph">
+<p>For more information regarding the web app and API definition, see the <a href="https://flask.palletsprojects.com/en/2.3.x/">Flask</a> and <a href="https://github.com/flasgger/flasgger">Flasgger</a> documentation.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="connecting-to-couchbase"><a class="anchor" href="#connecting-to-couchbase"></a>Connecting to Couchbase</h3>
+<div class="paragraph">
+<p>The backend expects several parameters when invoked:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The database connection string&#8201;&#8212;&#8201;this is either a Capella endpoint, or a node IP address.</p>
+</li>
+<li>
+<p>The URI scheme&#8201;&#8212;&#8201;<code>couchbases</code> for Capella, and <code>couchbase</code> for a local server.</p>
+</li>
+<li>
+<p>The username&#8201;&#8212;&#8201;<code>cbdemo</code> for Capella, and <code>Administrator</code> for a local server.</p>
+</li>
+<li>
+<p>The password&#8201;&#8212;&#8201;<code>Password123!</code> for Capella, and <code>password</code> for a local server.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py">parser = argparse.ArgumentParser()
+parser.add_argument('-c', '--cluster', help='Connection String i.e. localhost', default='db')
+parser.add_argument('-s', '--scheme', help='couchbase or couchbases', default='couchbase')
+parser.add_argument('-a', '--connectargs', help="?any_additional_args", default="")
+parser.add_argument('-u', '--user', help='User with access to bucket')
+parser.add_argument('-p', '--password', help='Password of user with access to bucket')
+
+args = parser.parse_args()
+
+if not args.cluster:
+  raise ConnectionError("No value for CB_HOST set!")
+
+if ("couchbases://" in args.cluster) or ("couchbase://" in args.cluster):
+    CONNSTR = f"{args.cluster}{args.connectargs}"
+else:
+    CONNSTR = f"{args.scheme}://{args.cluster}{args.connectargs}"
+        
+authenticator = PasswordAuthenticator(args.user, args.password)
+print("Connecting to: " + CONNSTR)
+
+# ...
+# API endpoints
+# ...
+
+def connect_db():
+    print(CONNSTR, authenticator)
+    cluster = Cluster(CONNSTR, ClusterOptions(authenticator))
+    bucket = cluster.bucket('travel-sample')
+    return cluster, bucket
+
+if __name__ == "__main__":
+    cluster, bucket = connect_db()
+    app.register_blueprint(api, url_prefix="/api")
+    swagger = Swagger(app, template=swagger_template)
+    app.run(debug=True, host='0.0.0.0', port=8080, threaded=False)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See <a href="../howtos/managing-connections.html#connection-strings" class="xref page">Managing Connections</a> for more information about connecting the Python SDK to Couchbase.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="user-login"><a class="anchor" href="#user-login"></a>User Login</h3>
+<div class="paragraph">
+<p>The first thing the user needs to do when using the application is to either log in, or register an account.
+Multiple endpoints implement this capability, so a SwaggerView class organizes these endpoints together:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py#L203-L204">class TenantUserView(SwaggerView):
+    """Class for storing user related information for a given tenant"""</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The application has two different tenants that store data in two different tenant scopes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>CB Travel uses <code>tenant_agent_00</code></p>
+</li>
+<li>
+<p>Behind the Sofa Bookings uses <code>tenant_agent_01</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To avoid having two nearly identical sets of endpoints for each tenant, the application uses a variable section <code>&lt;tenant&gt;</code> in the URL to specify the tenant.
+The signup code for both tenants is therefore defined at the single endpoint <code>/tenants/&lt;tenant&gt;/user/signup</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py#L245-L250">@api.route('/tenants/&lt;tenant&gt;/user/signup', methods=['POST', 'OPTIONS'])
+@cross_origin(supports_credentials=True)
+def signup(tenant):
+    """Signup a new user
+    ...
+    """</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The request body consists of a JSON object with two fields: <code>username</code> and <code>password</code>.
+The application tries a K/V insert into the users collection within the scope provided by the frontend.
+The document key is the username, and the value is a JSON object of the form:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  'username':&lt;username&gt;,
+  'password':&lt;password&gt;
+}</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The document key is a lowercase version of the provided username&#8201;&#8212;&#8201;this means that different usernames can refer to the same document.
+For example, if a user signs up with the username <code>Douglas Reynholm</code>, a different user can&#8217;t sign up with the username <code>douglas reynholm</code>, as both resolve to the same document key.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>See <a href="../howtos/kv-operations.html" class="xref page">Data Operations</a> for more information about K/V operations.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py#L253-L277">requestBody = request.get_json()
+user = requestBody['user']
+password = requestBody['password']
+
+userDocumentKey = lowercase(user)
+
+agent = lowercase(tenant)
+scope = bucket.scope(agent)
+users = scope.collection('users')
+
+queryType = f"KV insert - scoped to {scope.name}.users: document "
+
+try:
+    users.insert(userDocumentKey, {'username': user, 'password': password})
+    responseJSON = jsonify(
+        {'data': {'token': genToken(user)}, 'context': [queryType + user]})
+    response = make_response(responseJSON)
+    return response, 201
+
+except DocumentExistsException:
+    print(f"User {user} item already exists", flush=True)
+    return abortmsg(409, "User already exists")
+except Exception as e:
+    print(e)
+    return abortmsg(500, "Failed to save user", flush=True)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To perform a login, the frontend provides the username and password given by the user in the same JSON format as the <code>signup</code> endpoint.
+As the username is the document key, the application doesn&#8217;t need to retrieve the entire document, only the password field.
+The application uses a <a href="../howtos/subdocument-operations.html" class="xref page">Sub-Document</a> operation to perform a <code>GET</code> on this one field.
+This password is then compared against the given username.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py">@api.route('/tenants/&lt;tenant&gt;/user/login', methods=['POST', 'OPTIONS'])
+@cross_origin(supports_credentials=True)
+def login(tenant):
+    """Login an existing user for a given tenant agent
+    ...
+    """
+    requestBody = request.get_json()
+    user = requestBody['user']
+    providedPassword = requestBody['password']
+
+    userDocumentKey = lowercase(user)
+
+    agent = lowercase(tenant)
+    scope = bucket.scope(agent)
+    users = scope.collection('users')
+
+    queryType = f"KV get - scoped to {scope.name}.users: for password field in document "
+
+    try:
+        documentPassword = users.lookup_in(userDocumentKey, (
+            SD.get('password'),
+        )).content_as[str](0)
+
+        if documentPassword != providedPassword:
+            return abortmsg(401, "Password does not match")
+
+    except DocumentNotFoundException:
+        print(f"User {user} item does not exist", flush=True)
+    except AmbiguousTimeoutException or UnAmbiguousTimeoutException:
+        print("Request timed out - has Couchbase stopped running?", flush=True)
+    else:
+        return jsonify({'data': {'token': genToken(user)}, 'context': [queryType + user]})
+
+    return abortmsg(401, "Failed to get user data")</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="querying-flight-information"><a class="anchor" href="#querying-flight-information"></a>Querying Flight Information</h3>
+<div class="paragraph">
+<p>The <code>flightPaths</code> endpoint takes a source and destination airport name, and a departure date.
+It returns a list of matching flight routes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py#L144-L153">class FlightPathsView(SwaggerView):
+    """ FlightPath class for computed flights between two airports FAA codes"""
+
+    @api.route('/flightPaths/&lt;fromLoc&gt;/&lt;toLoc&gt;', methods=['GET', 'OPTIONS'])
+    @cross_origin(supports_credentials=True)
+    def flightPaths(fromLoc, toLoc):
+        """
+        Return flights information, cost and more for a given flight time and date
+        ...
+        """</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Key/value operations aren&#8217;t sufficient to service a complex request like searching for flight information.
+The Query Service provides this capability with minimal complexity.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You may recall that the web application provides both outbound and return flights.
+The frontend provides this information by making two separate requests to the backend, with the <code>&lt;fromLoc&gt;</code> and <code>&lt;toLoc&gt;</code> variable sections of the URL switched.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A single query can&#8217;t provide this information without significant complexity, as the route document schema doesn&#8217;t include the airport names:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "id": 10000,
+  "type": "route",
+  "airline": "AF",
+  "airlineid": "airline_137",
+  "sourceairport": "TLV",
+  "destinationairport": "MRS",
+  "stops": 0,
+  "equipment": "320",
+  "schedule": [{
+    "day": 0,
+    "utc": "10:13:00",
+    "flight": "AF198"
+  },
+  ...
+  {
+    "day": 6,
+    "utc": "07:00:00",
+    "flight": "AF496"
+  }],
+  "distance": 2881.617376098415
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Therefore an initial query fetches the <code>faa</code> field from the corresponding documents in the airport collection:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py#L156-L174">queryType = "SQL++ query - scoped to inventory: "
+context = []
+
+faaQueryPrep = "SELECT faa as fromAirport FROM `travel-sample`.inventory.airport \
+                WHERE airportname = $1 \
+                UNION SELECT faa as toAirport FROM `travel-sample`.inventory.airport \
+                WHERE airportname = $2"
+
+faaResults = cluster.query(faaQueryPrep, fromLoc, toLoc)
+
+flightPathDict = {}
+for result in faaResults:
+    flightPathDict.update(result)
+
+queryFrom = flightPathDict['fromAirport']
+queryTo = flightPathDict['toAirport']
+
+context.append(queryType + faaQueryPrep)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The routes are now queried.
+<a href="#7.1@server:n1ql:n1ql-language-reference/unnest.adoc" class="xref unresolved">UNNEST</a> flattens the schedule list, and a <a href="#7.1@server:n1ql:n1ql-language-reference/join.adoc" class="xref unresolved">JOIN</a> on the airline collection gets the airline name from the airline id:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py#L177-L199">routeQueryPrep = "SELECT a.name, s.flight, s.utc, r.sourceairport, r.destinationairport, r.equipment \
+                FROM `travel-sample`.inventory.route AS r \
+                UNNEST r.schedule AS s \
+                JOIN `travel-sample`.inventory.airline AS a ON KEYS r.airlineid \
+                WHERE r.sourceairport = $fromfaa AND r.destinationairport = $tofaa AND s.day = $dayofweek \
+                ORDER BY a.name ASC;"
+
+flightDay = convdate(request.args['leave'])
+routeResults = cluster.query(routeQueryPrep, 
+                             fromfaa=queryFrom, 
+                             tofaa=queryTo, 
+                             dayofweek=flightDay)
+
+routesList = []
+for route in routeResults:
+    route['price'] = math.ceil(random() * 500) + 250
+    routesList.append(route)
+
+context.append(queryType + routeQueryPrep)
+
+response = make_response(jsonify({"data": routesList, "context": context}))
+return response</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="auto-completing-airport-names"><a class="anchor" href="#auto-completing-airport-names"></a>Auto-Completing Airport Names</h3>
+<div class="paragraph">
+<p>Users may not recognize an airport by the name stored in the database.
+For example, Los Angles Intl is commonly known by its FAA code, LAX.
+To avoid this mismatch, the frontend auto-completes potential airport names as the user is typing.</p>
+</div>
+<div class="paragraph">
+<p>The airports endpoint takes a string, and returns potential airport names.
+The application modifies the query based on whether it thinks the provided string is a partial airport name, or FAA code:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The endpoint presumes an FAA code if the string is 3 characters long.
+In this case, the query searches for a document with a matching FAA code, returning the corresponding airport name.</p>
+</li>
+<li>
+<p>Otherwise, it presumes the string is a partial airport name. The query uses the <a href="#7.1@server:n1ql:n1ql-language-reference/stringfun.adoc#fn-str-position" class="xref unresolved">POSITION</a> function to match the partial airport name to the start of the <code>airportname</code> field.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py">class AirportView(SwaggerView):
+    """Airport class for airport objects in the database"""
+    @api.route('/airports', methods=['GET', 'OPTIONS'])
+    @cross_origin(supports_credentials=True)
+    def airports():
+        """Returns list of matching airports and the source query
+        ...
+        """
+
+        queryType = "SQL++ query - scoped to inventory: "
+        partialAirportName = request.args['search']
+
+        queryPrep = "SELECT airportname FROM `travel-sample`.inventory.airport WHERE "
+        sameCase = partialAirportName == partialAirportName.lower() or partialAirportName == partialAirportName.upper() #bool
+
+        if sameCase and len(partialAirportName) == 3:
+            queryPrep += "faa=$1"
+            queryArgs = [partialAirportName.upper()]
+        elif sameCase and len(partialAirportName) == 4:
+            queryPrep += "icao=$1"
+            queryArgs = [partialAirportName.upper()]
+        else:
+            queryPrep += "POSITION(LOWER(airportname), $1) = 0"
+            queryArgs = [partialAirportName.lower()]
+
+        results = cluster.query(queryPrep, *queryArgs)
+        airports = [x for x in results]
+
+        context = [queryType + queryPrep]
+
+        response = make_response(jsonify({"data": airports, "context": context}))
+        return response</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="booking-flights"><a class="anchor" href="#booking-flights"></a>Booking Flights</h3>
+<div class="paragraph">
+<p>The frontend handles the cart, so adding flights doesn&#8217;t affect the database.
+Only when the user clicks <b class="button">Buy</b> are flights booked.</p>
+</div>
+<div class="paragraph">
+<p>The <code>updateflights</code> endpoint adds a flight booking to the database.
+The frontend provides the flight details in the request body, and the user and tenant in the URL.
+The endpoint first creates a booking document in the bookings collection of the corresponding tenant.
+This document contains the flight details provided to the frontend by the <code>flightPaths</code> endpoint:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "destinationairport": "JFK",
+  "equipment": "76W 764",
+  "flight": "AF453",
+  "name": "Air France",
+  "price": 371,
+  "sourceairport": "LHR",
+  "utc": "08:00:00",
+  "date": "05/17/2023"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The document key for this booking is a random 36 character string.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py#L325-L352">@api.route('/tenants/&lt;tenant&gt;/user/&lt;username&gt;/flights', methods=['PUT', 'OPTIONS'])
+@cross_origin(supports_credentials=True)
+def updateflights(tenant, username):
+    """Book a new flight for a user
+    ...
+    """
+    agent = lowercase(tenant)
+    user = lowercase(username)
+
+    scope = bucket.scope(agent)
+    users = scope.collection('users')
+    bookings = scope.collection('bookings')
+
+    queryType = f"KV update - scoped to {scope.name}.users: for bookings field in document "
+
+    # HTTP token authentication
+    bearer = request.headers['Authorization']
+    if not auth(bearer, username):
+        return abortmsg(401, 'Username does not match token username: ' + username)
+
+    try:
+        flightData = request.get_json()['flights'][0]
+        flightID = str(uuid.uuid4())
+        bookings.upsert(flightID, flightData)
+
+    except Exception as e:
+        print(e, flush=True)
+        return abortmsg(500, "Failed to add flight data")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However, this booking document isn&#8217;t associated with the user who booked it.
+Therefore the endpoint performs a <a href="../howtos/subdocument-operations.html" class="xref page">Sub-Document</a> operation on the <code>bookings</code> field in the given user&#8217;s document to add the booking document&#8217;s key:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py#L355-L364">try:
+    users.mutate_in(user, (SD.array_append('bookings', flightID, create_parents=True),))
+    resultJSON = {'data': {'added': [flightData]},
+                  'context': [queryType + user]}
+    return make_response(jsonify(resultJSON))
+
+except DocumentNotFoundException:
+    return abortmsg(401, "User does not exist")
+except Exception:
+    return abortmsg(500, "Couldn't update flights")</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the booking document insert succeeds, but the update to the user document fails, the endpoint returns an internal server error to the frontend.
+However, the stray booking document remains the database.
+In a production environment it is good practice to add handling code to remove this stray document.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-booked-flights"><a class="anchor" href="#viewing-booked-flights"></a>Viewing Booked Flights</h3>
+<div class="paragraph">
+<p>The user can also view their flights after they have booked them.
+The <code>getflights</code> endpoint takes a user, and returns details on each flight they have booked.</p>
+</div>
+<div class="paragraph">
+<p>First, the endpoint performs a <a href="../howtos/subdocument-operations.html" class="xref page">Sub-Document</a> operation to retrieve the <code>bookings</code> field.</p>
+</div>
+<div class="paragraph">
+<p>If the user hasn&#8217;t booked any flights, there is no <code>bookings</code> field.
+However, if the application tries a lookup on this non-existent field, the operation still succeeds, but reading these results causes a <code>PathNotFoundException</code>.
+To avoid handling this exception, the lookup contains both a <code>get</code> and an <code>exists</code> operation.
+The endpoint can then verify the path exists before attempting to read the results:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py#L280-L309">@api.route('/tenants/&lt;tenant&gt;/user/&lt;username&gt;/flights', methods=['GET', 'OPTIONS'])
+@cross_origin(supports_credentials=True)
+def getflights(tenant, username):
+    """List the flights that have been reserved by a user
+    ...
+    """
+    agent = lowercase(tenant)
+
+    scope = bucket.scope(agent)
+    users = scope.collection('users')
+    flights = scope.collection('bookings')
+
+    # HTTP token authentication
+    bearer = request.headers['Authorization']
+    if not auth(bearer, username):
+        return abortmsg(401, 'Username does not match token username: ' + username)
+    
+    try:
+        userDocumentKey = lowercase(username)
+
+        lookupResult = users.lookup_in(
+          userDocumentKey,
+          [
+            SD.get('bookings'),
+            SD.exists('bookings')
+          ])
+        
+        bookedFlightKeys = []
+        if lookupResult.exists(1):
+            bookedFlightKeys = lookupResult.content_as[list](0)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The endpoint can now iterate over the booking keys, performing <code>GET</code> requests for the flight details:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py#L312-L321">    rows = []
+    for key in bookedFlightKeys:
+        rows.append(flights.get(key).content_as[dict])
+
+    queryType = f"KV get - scoped to {scope.name}.users: for {len(bookedFlightKeys)} bookings in document "
+    response = make_response(jsonify({"data": rows, "context": [queryType + userDocumentKey]}))
+    return response
+
+except DocumentNotFoundException:
+    return abortmsg(401, "User does not exist")</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="searching-for-hotels"><a class="anchor" href="#searching-for-hotels"></a>Searching for Hotels</h3>
+<div class="paragraph">
+<p>The user can also search for hotels.
+The <code>hotels</code> endpoint uses the <a href="../howtos/full-text-searching-with-sdk.html" class="xref page">Search queries</a> to find the details of hotels that match given search terms.
+The frontend provides two search terms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Location-this could refer to a country, city, or even an exact address.</p>
+</li>
+<li>
+<p>Description-this could be anything from a name to a keyword.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Since multiple fields could match these terms, the endpoint uses a conjunction query containing multiple match queries:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py#L370-L404">@api.route('/hotels/&lt;description&gt;/&lt;location&gt;/', methods=['GET'])
+@cross_origin(supports_credentials=True)
+def hotels(description, location):
+    # Requires FTS index called 'hotels-index'
+    """Find hotels using full text search
+    ...
+    """
+    queryPrep = FT.ConjunctionQuery()
+    if location != '*' and location != "":
+        queryPrep.conjuncts.append(
+            FT.DisjunctionQuery(
+                FT.MatchPhraseQuery(location, field='country'),
+                FT.MatchPhraseQuery(location, field='city'),
+                FT.MatchPhraseQuery(location, field='state'),
+                FT.MatchPhraseQuery(location, field='address')
+            ))
+
+    if description != '*' and description != "":
+        queryPrep.conjuncts.append(
+            FT.DisjunctionQuery(
+                FT.MatchPhraseQuery(description, field='description'),
+                FT.MatchPhraseQuery(description, field='name')
+            ))
+
+    # Attempting to run a compound query with no sub-queries will result in
+    # a 'NoChildrenException'.
+
+    if len(queryPrep.conjuncts) == 0:
+        queryType = "FTS search rejected - no search terms were provided"
+        response = {'data': [], 'context': [queryType]}
+        return jsonify(response)
+
+    searchRows = cluster.search_query('hotels-index', 
+                                      queryPrep, 
+                                      SearchOptions(limit=100))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The result of a search query is an iterable containing <code>SearchRow</code> objects.
+Each row represents a match in one document.
+It doesn&#8217;t contain the document data, instead just the matching string and metadata.
+This metadata includes the document key, so a sub-document operation retrieves the fields needed by the frontend.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/hello-world/examples/sample-app.py#L407-L440">allResults = []
+addressFields = ['address', 'city', 'state', 'country']
+dataFields = ['name', 'description']
+
+scope = bucket.scope('inventory')
+hotel_collection = scope.collection('hotel')
+
+for hotel in searchRows:
+
+    hotelFields = hotel_collection.lookup_in(
+        hotel.id, [SD.get(x) for x in [*addressFields, *dataFields]])
+
+    # Concatenates the first 4 fields to form the address. 
+    hotelAddress = []
+    for x in range(len(addressFields)):
+        try:
+            hotelAddress.append(hotelFields.content_as[str](x))
+        except DocumentNotFoundException:
+            pass
+    hotelAddress = ', '.join(hotelAddress)
+
+    hotelData = {}
+    for x, field in enumerate(dataFields):
+        try:    
+            hotelData[field] = hotelFields.content_as[str](x+len(addressFields))
+        except DocumentNotFoundException:
+            pass
+        
+    hotelData['address'] = hotelAddress
+    allResults.append(hotelData)
+
+queryType = f"FTS search - scoped to: {scope.name}.hotel within fields {','.join([*addressFields, *dataFields])}"
+response = {'data': allResults, 'context': [queryType]}
+return jsonify(response)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next Steps</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Sign up for your free <a href="#cloud:ROOT:index.adoc" class="xref unresolved">Capella trial acocunt</a>, to get started with Couchbase the easy way.</p>
+</li>
+<li>
+<p>Read more about interacting with the Couchbase services used in this example&#8201;&#8212;&#8201;<a href="../howtos/kv-operations.html" class="xref page">Data (K/V)</a>, <a href="../howtos/subdocument-operations.html" class="xref page">Sub-Document</a>, <a href="../howtos/n1ql-queries-with-sdk.html" class="xref page">Query</a>, and <a href="../howtos/full-text-searching-with-sdk.html" class="xref page">Search</a>.</p>
+</li>
+<li>
+<p>Discover <a href="../howtos/distributed-acid-transactions-from-the-sdk.html" class="xref page">Distributed ACID Transactions</a> from the Python SDK, for cases where several documentations (such as combined flight and hotel bookings) must succeed together.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+        <nav class="pagination">
+
+                    <span class="prev"><a href="../howtos/full-text-searching-with-sdk.html">Search</a></span>
+
+
+                <span>&nbsp;</span>
+            </nav>
+        </article>
+</main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <div class="col">
+        <div class="footer-logo">
+          <a href="https://www.couchbase.com" class="icon">
+            <img src="../../../_/img/couchbase-logo.svg" alt="Couchbase">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://docs.couchbase.com" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://forums.couchbase.com" target="_blank" rel="noopener">Forums</a></li>
+          <li><a href="https://support.couchbase.com" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://developer.couchbase.com" target="_blank" rel="noopener">Developer Portal</a></li>
+          <li><a href="https://blog.couchbase.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://www.couchbase.com/resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://www.couchbase.com/get-started-developing-nosql">Get Started</a></li>
+          <li><a href="https://www.couchbase.com/downloads">Downloads</a></li>
+          <li><a href="https://learn.couchbase.com/store?utf8=%E2%9C%93&ss=1&ct=78327&commit=Filter" target="_blank" rel="noopener">Training</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="social-icons">
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32.1 26.1"> <path id="twitter" class="cls-1" d="M32,7.1a11.836,11.836,0,0,1-3.8,1,6.462,6.462,0,0,0,2.9-3.6,12.606,12.606,0,0,1-4.2,1.6A6.492,6.492,0,0,0,22.1,4a6.594,6.594,0,0,0-6.6,6.6,7.719,7.719,0,0,0,.2,1.5A18.458,18.458,0,0,1,2.2,5.2a6.294,6.294,0,0,0-.9,3.3A6.765,6.765,0,0,0,4.2,14a6.109,6.109,0,0,1-3-.8v.1a6.543,6.543,0,0,0,5.3,6.4,4.678,4.678,0,0,1-1.7.2,4.869,4.869,0,0,1-1.2-.1,6.679,6.679,0,0,0,6.1,4.6,12.917,12.917,0,0,1-8.2,2.8,9.151,9.151,0,0,1-1.6-.1,18.438,18.438,0,0,0,10.1,3c12.1,0,18.7-10,18.7-18.7v-.8A13.336,13.336,0,0,0,32,7.2Z" transform="translate(0.1 -4)"/></svg>
+            <a href="https://twitter.com/couchbase" class="icon">
+              Twitter
+            </a>
+          </li>
+          <li>
+          <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="linkedin" class="cls-1" d="M29,0H3A3.076,3.076,0,0,0,0,3V29a3.009,3.009,0,0,0,3,3H29a2.946,2.946,0,0,0,3-3V3A3.009,3.009,0,0,0,29,0ZM12,26H8V12h4ZM10,10a2,2,0,1,1,2-2A2.006,2.006,0,0,1,10,10ZM26,26H22V18a2,2,0,0,0-4,0v8H14V12h4v2.5c.8-1.1,2.1-2.5,3.5-2.5A4.736,4.736,0,0,1,26,17Z"/></svg>
+              <a href="https://www.linkedin.com/company/couchbase" class="icon">
+             Linkedin
+            </a>
+          </li>
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="facebook" class="cls-1" d="M29,0H3A2.652,2.652,0,0,0,0,3V29a2.652,2.652,0,0,0,3,3H16V18H12V14h4V12a6.452,6.452,0,0,1,6-6h4v4H22a2.151,2.151,0,0,0-2,2v2h6l-1,4H20V32h9a2.652,2.652,0,0,0,3-3V3A2.652,2.652,0,0,0,29,0Z"/></svg>
+            <a href="https://www.facebook.com/Couchbase" class="icon">
+            Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-terms">
+      <div class="footer-terms-copyright">
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+      </div>
+      <div class="footer-terms-links">
+        <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
+        <a href="https://www.couchbase.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.couchbase.com/cookie-policy">Cookie Policy</a>
+        <a href="https://www.couchbase.com/support-policy">Support Policy</a>
+        <a href="https://info.couchbase.com/unsubscribe-or-manage-preferences.html" target="_blank" rel="noopener">Marketing Preference Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../../../_/js/site-navigation-data.js"></script>
+<script id="page-navigation-group" type="application/json">
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+</script>
+<template id="run-code-panel">
+<div class="action-panel">
+  <form class="action-panel-control" method="POST" action="https://couchbase.live/run" target="run-code-output">
+    <input type="hidden" name="lang">
+    <input type="hidden" name="code">
+    <input type="hidden" name="from" value="docs">
+    <div class="controls">
+      <button class="control-button rerun" type="submit"><i class="fas fa-redo"></i></button>
+      <span class="shell-name control-label">Output</span>
+      <button class="control-button close"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </form>
+  <iframe class="run-code-output" name="run-code-output"></iframe>
+</div>
+</template>
+<script id="site-script" src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
+<link rel="stylesheet" href="https://couchbase-docs.s3.amazonaws.com/assets/swagger-ui-3.7/swagger-ui.css">
+<script src="https://couchbase-docs.s3.amazonaws.com/assets/swagger-ui-3.7/swagger-ui-bundle.js"></script>
+<script src="https://couchbase-docs.s3.amazonaws.com/assets/swagger-ui-3.7/swagger-ui-standalone-preset.js"></script>
+<script id="swagger-ui-script" data-url="https://raw.githubusercontent.com/couchbaselabs/try-cb-python/HEAD/swagger.json">
+;(function (config) {
+  var initialHash = window.location.hash
+  var jumpToAnchorOnLoad = function () {
+    if (this.querySelector('.swagger-ui .swagger-ui')) {
+      var targetHash, targetId
+      if (initialHash.charAt(1) === '/') {
+        targetId = 'operations' + (initialHash.lastIndexOf('/') === 1 ? '-tag' : '') + initialHash.slice(1).replace(/[/]/g, '-')
+      } else {
+        targetHash = initialHash
+      }
+      Array.prototype.slice.call(this.querySelectorAll('.opblock-tag[id], .opblock[id]')).forEach(function (el) {
+        var id = el.id
+        el.removeAttribute('id')
+        if (targetId === id) targetHash = '#' + targetId
+        if (el.tagName === 'H4') {
+          el.parentNode.id = id
+        } else {
+          var wrapper = document.createElement('div')
+          wrapper.id = id
+          el.parentNode.insertBefore(wrapper, el)
+          wrapper.appendChild(el)
+        }
+      })
+      if (targetHash) {
+        setTimeout(function () {
+          window.location.hash = targetHash
+          if (targetId) window.history.pushState(null, null, initialHash)
+        }, 1250)
+      }
+    } else {
+      requestAnimationFrame(jumpToAnchorOnLoad)
+    }
+  }.bind(document.getElementById('swagger-ui'))
+  SwaggerUIBundle({
+    url: config.url,
+    dom_id: '#swagger-ui',
+    deepLinking: true,
+    presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
+    plugins: [SwaggerUIBundle.plugins.DownloadUrl],
+    layout: 'StandaloneLayout',
+    tagsSorter: 'alpha',
+    operationsSorter: 'alpha',
+    docExpansion: 'none',
+  })
+  if (initialHash && (initialHash.charAt(1) !== '/' || initialHash.length > 2)) {
+    if (initialHash.charAt(1) !== '/') window.location.hash = ''
+    jumpToAnchorOnLoad()
+  }
+})(document.getElementById('swagger-ui-script').dataset)
+</script>
+<script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+</body>
+</html>
