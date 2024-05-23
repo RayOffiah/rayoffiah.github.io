@@ -275,6 +275,33 @@ However, the implementation meant that:</p>
 </table>
 </div>
 <div class="sect3">
+<h4 id="backup-service"><a class="anchor" href="#backup-service"></a>Backup Service</h4>
+<table id="table-fixed-issues-762-backup-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-54433">MB-54433</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In the Backup Service, the users cannot control the number of threads <code>cbbackupmgr</code> runs with.
+  There have been cases where the automatically chosen number of threads for <code>cbbackupmgr</code> have not been optimal, and users would like to be able to choose the number of threads for the backup jobs.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users can assign the number of threads per node in the backup service using the REST API.<br>
+The user can set a map with nodeUUID key and a thread value, which will allow the backup service to use the thread value for the scheduled job.<br>
+Users can also assign zero threads to a node which will correspond to <code>cbbackupmgr</code> dynamically choosing the number of threads based on node configuration.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
 <h4 id="search-service"><a class="anchor" href="#search-service"></a>Search Service</h4>
 <table id="table-fixed-issues-762-search-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -320,6 +347,16 @@ However, the implementation meant that:</p>
 The restore didn&#8217;t fail, which would be the expected behavior; instead, the restore hangs.</p>
 <p class="tableblock">The problem occurs because <code>cbbackupmgr</code> always retries on 403s responses when using a GCP client, since it considered them intermittent.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Regardless of the returned error code, <code>cbbackupmgr</code> does not constantly retry; it will time out instead.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61630">MB-61630</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Previously it was not possible to import an encrypted backup repository into the backup service as we did not accept the KMS parameters.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Both the UI and REST API now allow users to specify the KMS and its authentication parameters so an encrypted repository can successfully be imported.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61631">MB-61631</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Previously, passing a relative path to <code>cbbackupmgr</code> as <code>--obj-staging-dir</code>, the backup or restore would fail with an empty object name.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fixed: passing a relative path no longer fails.</p></td>
 </tr>
 </tbody>
 </table>
