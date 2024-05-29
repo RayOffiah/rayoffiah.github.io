@@ -114,7 +114,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </aside>
 <aside class="toc sidebar"
       data-title="Contents"
-      data-levels="1">
+      data-levels="2">
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
@@ -199,10 +199,88 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 id="release-7-6-2-june-2024"><a class="anchor" href="#release-7-6-2-june-2024"></a>Release 7.6.2 (June 2024)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase Server 7.6.2 was released in June 2024. This maintenance release fixes several known issues.</p>
+<p>Couchbase Server 7.6.2 was released in June 2024. This maintenance release contains new features and fixes several known issues.</p>
 </div>
 <div class="paragraph">
 <p>For detailed information on new features and enhancements, please see <a href="../introduction/whats-new.html" class="xref page">What&#8217;s New in Version 7.6</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="new-features"><a class="anchor" href="#new-features"></a>New Features and Enhancements</h3>
+<div class="sect3">
+<h4 id="cluster-manager"><a class="anchor" href="#cluster-manager"></a>Cluster Manager</h4>
+<table id="table-new-features-762-cluster-manager" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Feature</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-57610">MB-57610</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Added metrics to allow exposing the rebalance progress via the Stats and Prometheus endpoints.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="backup-service"><a class="anchor" href="#backup-service"></a>Backup Service</h4>
+<table id="table-new-features-762-backup-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Feature</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-54433">MB-54433</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In the Backup Service, the users cannot control the number of threads <code>cbbackupmgr</code> runs with.
+  There have been cases where the automatically chosen number of threads for <code>cbbackupmgr</code> have not been optimal, and users would like to be able to choose the number of threads for the backup jobs.</p>
+<p class="tableblock">Users can now assign the number of threads per node in the backup service using the REST API.<br>
+The is done by setting a map with nodeUUID key and a thread value, which will allow the backup service to use the thread value for the scheduled job.<br>
+Users can also assign zero threads to a node which will correspond to <code>cbbackupmgr</code> dynamically choosing the number of threads based on node configuration.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61072">MB-61072</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read-only admins cannot see any part of the Backup Service in the UI or run any of the Backup Service APIs.
+ This was not acceptable to many customers, as read-only administrative users often monitor clusters and check that backups have been completed.</p>
+<p class="tableblock">Now, Users with the read-only admin role can now access the backup service. They can now view tasks that have run, their statuses, what repositories and plans there are, but cannot inspect data or run backups, restores, or merges.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="search-service"><a class="anchor" href="#search-service"></a>Search Service</h4>
+<table id="table-new-features-762-search-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Feature</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61216">MB-61216</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A user had to set the <code>query</code> attribute to <code>match_none</code> alongside the <code>knn</code> attribute within the search request when the user wanted to do a pure kNN search. This behavior will still work.</p>
+<p class="tableblock">A user can now  optionally choose to drop the <code>query</code> attribute entirely when coupling with <code>knn</code> and this will automatically resolve to "match_none" behind the scenes.</p>
+<p class="tableblock">In a mixed cluster, the user will see a search request free of the <code>query</code> attribute complain on a 7.6 node, while a 7.6.2 node will allow the request.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="fixed-issues-762"><a class="anchor" href="#fixed-issues-762"></a>Fixed Issues</h3>
@@ -210,7 +288,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>This release contains the following fixes:</p>
 </div>
 <div class="sect3">
-<h4 id="cluster-manager"><a class="anchor" href="#cluster-manager"></a>Cluster Manager</h4>
+<h4 id="cluster-manager-2"><a class="anchor" href="#cluster-manager-2"></a>Cluster Manager</h4>
 <table id="table-fixed-issues-762-cluster-manager" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -275,7 +353,7 @@ However, the implementation meant that:</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="backup-service"><a class="anchor" href="#backup-service"></a>Backup Service</h4>
+<h4 id="backup-service-2"><a class="anchor" href="#backup-service-2"></a>Backup Service</h4>
 <table id="table-fixed-issues-762-backup-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -289,40 +367,6 @@ However, the implementation meant that:</p>
 <th class="tableblock halign-left valign-top">Resolution</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-54433">MB-54433</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">In the Backup Service, the users cannot control the number of threads <code>cbbackupmgr</code> runs with.
-  There have been cases where the automatically chosen number of threads for <code>cbbackupmgr</code> have not been optimal, and users would like to be able to choose the number of threads for the backup jobs.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Users can assign the number of threads per node in the backup service using the REST API.<br>
-The user can set a map with nodeUUID key and a thread value, which will allow the backup service to use the thread value for the scheduled job.<br>
-Users can also assign zero threads to a node which will correspond to <code>cbbackupmgr</code> dynamically choosing the number of threads based on node configuration.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="search-service"><a class="anchor" href="#search-service"></a>Search Service</h4>
-<table id="table-fixed-issues-762-search-service" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 44.4444%;">
-<col style="width: 44.4445%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Issue</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Resolution</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61216">MB-61216</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A user had to set the <code>query</code> attribute to <code>match_none</code> alongside the <code>knn</code> attribute within the search request when the user wanted to do a pure kNN search. This behavior will still work.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A user can optionally choose to drop the <code>query</code> attribute entirely when coupling with <code>knn</code> and this will automatically resolve to "match_none" behind the scenes. In a mixed cluster, the user will see a search request free of the <code>query</code> attribute complain on a 7.6 node, while a 7.6.2 node will allow the request.</p></td>
-</tr>
-</tbody>
 </table>
 </div>
 <div class="sect3">
@@ -359,29 +403,6 @@ The restore didn&#8217;t fail, which would be the expected behavior; instead, th
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fixed: passing a relative path no longer fails.</p></td>
 </tr>
 </tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="known-issues-762"><a class="anchor" href="#known-issues-762"></a>Known Issues</h3>
-<div class="paragraph">
-<p>This release contains the following known issue:</p>
-</div>
-<div class="sect3">
-<h4 id="search-service-2"><a class="anchor" href="#search-service-2"></a>Search Service</h4>
-<table id="table-known-issues-762-search-service" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 44.4444%;">
-<col style="width: 44.4445%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Issue</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Workaround</th>
-</tr>
-</thead>
 </table>
 </div>
 </div>
@@ -456,7 +477,7 @@ The restore didn&#8217;t fail, which would be the expected behavior; instead, th
 <p>This release contains the following known issue:</p>
 </div>
 <div class="sect3">
-<h4 id="search-service-3"><a class="anchor" href="#search-service-3"></a>Search Service</h4>
+<h4 id="search-service-2"><a class="anchor" href="#search-service-2"></a>Search Service</h4>
 <table id="table-known-issues-761-search-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -570,7 +591,7 @@ or <a href="../install/ubuntu-debian-install.html#install-using-apt" class="xref
 <p>This release contains the following fixes.</p>
 </div>
 <div class="sect3">
-<h4 id="cluster-manager-2"><a class="anchor" href="#cluster-manager-2"></a>Cluster Manager</h4>
+<h4 id="cluster-manager-3"><a class="anchor" href="#cluster-manager-3"></a>Cluster Manager</h4>
 <table id="table-fixed-issues-76-cluster-manager" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -753,7 +774,7 @@ stats were computed using the number of processors configured for the entire sys
 </table>
 </div>
 <div class="sect3">
-<h4 id="search-service-4"><a class="anchor" href="#search-service-4"></a>Search Service</h4>
+<h4 id="search-service-3"><a class="anchor" href="#search-service-3"></a>Search Service</h4>
 <table id="table-fixed-issues-76-search-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -847,6 +868,30 @@ The user will now be able to run queries via SQL++ without having to run the key
 <h3 id="known-issues-760"><a class="anchor" href="#known-issues-760"></a>Known Issues</h3>
 <div class="paragraph">
 <p>This release contains the following known issues:</p>
+</div>
+<div class="sect3">
+<h4 id="net-sdk-compatibility"><a class="anchor" href="#net-sdk-compatibility"></a>.NET SDK Compatibility</h4>
+<table id="table-known-issues-760-dotnet-sdk" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Workaround</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/NCBC-3724">NCBC-3724</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Versions of the .NET SDK earlier than 3.5.1 have compatibility issues with Couchbase Server 7.6.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use version 3.5.1 or later of the .NET SDK with Couchbase Server 7.6.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
 <h4 id="user-interface"><a class="anchor" href="#user-interface"></a>User Interface</h4>
@@ -946,7 +991,7 @@ For more information on the auto-failover settings, see the documentation.</p></
 </table>
 </div>
 <div class="sect3">
-<h4 id="search-service-5"><a class="anchor" href="#search-service-5"></a>Search Service</h4>
+<h4 id="search-service-4"><a class="anchor" href="#search-service-4"></a>Search Service</h4>
 <table id="table-known-issues-760-search-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1068,22 +1113,5 @@ This is a breaking change due to a change in the response payload.</p></td>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
 <script defer src="../../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\\]"]], ignoreClass: "nostem|nolatexmath" },
-  asciimath2jax: { delimiters: [["\\$", "\\$"]], ignoreClass: "nostem|noasciimath" },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-})
-MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
-  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
-      data.math.root.display = "block"
-    }
-    return data
-  })
-})
-</script>
-<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>
