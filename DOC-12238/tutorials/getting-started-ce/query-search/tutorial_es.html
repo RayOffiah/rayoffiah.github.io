@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
+<title>Untitled | Couchbase Docs</title>
+<link rel="canonical" href="https://docs.couchbase.com/tutorials/getting-started-ce/query-search/tutorial_es.html">
+<link rel="stylesheet" href="../../../_/css/site.css">
+<script src="../../../_/js/vendor/jquery.js"></script>
+<link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+
+
+<meta name="dcterms.subject" content="tutorials">
+<meta name="dcterms.identifier" content="master">
+<meta name="page-url" content="/tutorials/getting-started-ce/query-search/tutorial_es.html">
+<meta name="page-nav-header-levels" content="0">
+<meta name="generator" content="Antora 3.1.7">
+<link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
+</head>
+<body class="article">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="header fixed-top">
+  <div class="header-top-row">
+      <div class="container">
+          <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
+              <ul class="navbar-brand-list">
+                <li class="brand-logo">
+                  <a class="navbar-brand" href="https://www.couchbase.com">
+                    <img src="../../../_/img/couchbase-logo.svg" alt="Couchbase" />
+                  </a>
+                </li>
+                <li>
+                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                    <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
+                    <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  </a>
+                </li>
+              </ul>
+              <button class="navbar-burger" data-target="topbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+          </nav>
+      </div>
+  </div>
+  <div class="header-bottom-row" id="topbar-menu">
+    <div class="container">
+        <nav  class="navbar navbar-new-bottom">
+
+              <div class="navbar-collapse collapse" id="navbar2">
+                <ul class="navbar-nav w-100 justify-content-start">
+                  <li class="nav-item">
+                    <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
+                      <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../../home/server.html">
+                      Server
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../../home/mobile.html">
+                      Mobile
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="primary-action">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                  Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
+                </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+
+              </div>
+
+        </nav>
+    </div>
+   </div>
+</header>
+<div class="body container">
+<aside class="nav left-sidebar">
+  <div class="nav-container">
+    <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+  </div>
+</aside>
+<aside class="toc sidebar"
+      data-title="Contents"
+      data-levels="1">
+  <div class="sidebar-box">
+    <div class="tools" role="navigation">
+<ul>
+<li class="tool edit"><a href="https://github.com/couchbaselabs/tutorials-contrib/edit/master/modules/getting-started-ce/pages/query-search/tutorial_es.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+</ul>
+</div>
+    <div class="toc-menu"></div>
+    <div class="is-this-helpful-box">
+      <h4> Is this page helpful?</h4>
+      <div class="btn-row">
+        <a href="#" class="like-btn helpful-btn" id="yesBtn" data-page-rating="like" >
+                <i class="far fa-thumbs-up"></i>
+            Yes
+
+            </a>
+        <a href="#" class="dislike-btn helpful-btn" id="noBtn"  data-page-rating="dislike"> <i class="far fa-thumbs-down"></i> No</a>
+      </div>
+      <div class="any-feedback">
+        <a href="#" class="btn any-feedback-btn" id="myCustomTrigger">Leave Additional Feedback? </a>
+      </div>
+      <div class="dialog-box" id="dialogBox">
+        <form>
+            <div class="form-group " id="additionalFeedbackBox">
+              <textarea class="input-control feed-back-msg" rows="8" placeholder="Any Additonal Feedback?"></textarea>
+
+              <div class="action-btn-row ">
+                <a href="#" class="skip-btn" id="skipBtnMsg">Skip</a>
+                  <button class="submit-btn btn blue-btn disabled" > Submit  </button>
+                  <a href="#" class="info-btn"><i class="fas fa-info-circle"></i></a>
+              </div>
+
+
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="feedback-modal modal-popup">
+  <div class="modal-popup-dialogue">
+    <div class="popup-header">
+      <a href="#" class="close-popup"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="popup-content">
+      <p>
+        Please use the form below to provide your feedback. Because your feedback is valuable to us,
+         the information you submit in this form is recorded in our issue tracking system (JIRA), which is publicly available.
+        You can track the status of your feedback using the ticket number displayed in the dialog once you submit the form.
+      </p>
+    </div>
+  </div>
+</div>
+
+<main class="article" data-ceiling="topbar">
+<div class="article-header">
+<nav class="crumbs" aria-label="breadcrumbs">
+<ul>
+<li class="crumb"><a href="../../index.html">Tutorials</a></li>
+</ul>
+</nav>
+</div>
+<article class="doc">
+<div class="contributor-list-box">
+<span class="last-commit-date" id="commitdate">    </span>
+<ul id="contributorList"></ul>
+<span  id="otherContributor"> + </span>
+</div><div class="paragraph">
+<p><a href="tutorial_en.html">English</a> | Español</p>
+</div>
+<h1 id="consulta-y-búsqueda-de-couchbase-ce" class="sect0"><a class="anchor" href="#consulta-y-búsqueda-de-couchbase-ce"></a>Consulta y búsqueda de Couchbase CE</h1>
+<div class="paragraph">
+<p>Este tutorial le enseñará las diferentes formas de realizar consultas utilizando <code>N1QL</code> y el procedimiento para realizar <code>Full Text Search</code>. Este tutorial ha sido realizado utilizando <code>Couchbase Server CE</code>, por lo que puede usar esa distribución para seguir esta guía de forma gratuita.</p>
+</div>
+<h1 id="conceptos-básicos-de-n1ql" class="sect0"><a class="anchor" href="#conceptos-básicos-de-n1ql"></a>Conceptos básicos de N1QL</h1>
+<div class="paragraph">
+<p><code>N1QL</code> es un lenguaje de consulta que usa una sintaxis similar a <code>SQL</code>, pero opera en documentos <code>JSON</code> estructurados y flexibles, devolviendo otros documentos <code>JSON</code> como respuesta.</p>
+</div>
+<div class="paragraph">
+<p>Una consulta básica <code>N1QL</code> tiene la siguiente estructura:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>SELECT : Los campos de cada documento a devolver</p>
+</li>
+<li>
+<p>FROM : El <code>bucket</code> de datos que se va a buscar</p>
+</li>
+<li>
+<p>WHERE : Las condiciones que debe cumplir el documento</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Se puede ejecutar una consulta <code>N1QL</code> desde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Consola, usando la herramienta <code>cbq</code></p>
+</li>
+<li>
+<p>Una consulta <code>Workbench</code> en <code>Couchbase Server Web UI</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>N1QL</code> usa índices para hacer su trabajo. Para hacer que se pueda consultar un bucket, se debe tener al menos un índice definido. Hay dos tipos de índices: un <code>primary index</code> que puede emitir consultas no cubiertas en el bucket y un <code>secondary index</code> que contiene un conjunto filtrado o completo de llaves de un bucket dado, estos son opcionales, pero aumentan la eficiencia de la consulta en un bucket. En este caso, crearemos un <code>secondary index</code> sobre el <code>bucket movies</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>bash
+CREATE INDEX ix_movies_genre ON `movies`(genre);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Para crear este índice y realizar las consultas, vamos a utilizar, por ahora, la pestaña <code>Query</code>, como se explica en la siguiente sección.</p>
+</div>
+<div class="sect1">
+<h2 id="consulta-utilizando-query-workbench"><a class="anchor" href="#consulta-utilizando-query-workbench"></a>Consulta utilizando Query Workbench</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>Query Workbench</code> es una herramienta interactiva que le permite crear y ejecutar consultas <code>N1QL</code>, y que se encuentra incluida en <code>Couchbase Server Web UI</code>.</p>
+</div>
+<div class="paragraph">
+<p>Para los ejemplos posteriores, usted deberá haber cargado el <code>bucket movies</code> como se muestra en la siguiente línea:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cbtransfer /home/couchbase/movies.csv http://localhost:8091 -B movies -u Administrator -p password</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Luego, con sus credenciales, acceda a <code>Couchbase Server Web UI</code> escribiendo <a href="http://localhost:8091" class="bare">http://localhost:8091</a> en el campo de dirección en la parte superior de su navegador, la pantalla de inicio de sesión se verá como se le muestra a continuación:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/login.png" alt="login" width="25%">
+</div>
+</div>
+<div class="paragraph">
+<p>Una vez en la página de inicio de sesión, escriba sus credenciales y acceda. La página de inicio le mostrará el panel de control de su clúster, en el lado izquierdo debe seleccionar la pestaña <code>Query</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/queryworkbench.png" alt="queryworkbench" width="66%">
+</div>
+</div>
+<div class="paragraph">
+<p>Como se puede observar en la imagen, <code>Query Workbench</code> tiene tres áreas principales:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Query Editor: donde escribirá su consulta N1QL</p>
+</li>
+<li>
+<p>Data Insights: proporciona información sobre los <code>buckets</code> que actualmente mantiene su sistema</p>
+</li>
+<li>
+<p>Query Results: muestra los resultados de la consulta y proporciona algunas opciones para su visualización</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Para crear el índice visto anteriormente, debe ejecutar esa línea en <code>Query</code> como puede observar a continuación:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/createindexquery.png" alt="createindexquery" width="66%">
+</div>
+</div>
+<div class="paragraph">
+<p>Esto le permitirá consultar el <code>bucket movies</code> sobre un género concreto, por ejemplo, la siguiente línea de código devuelve <code>name</code> y <code>year</code> de las películas, cuyo género es <code>Crime&amp;Drama</code>, como se muestra a continuación :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">SELECT name, year FROM `movies` WHERE genre="Crime&amp;Drama";</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/executingqueryonworkbench.png" alt="executingqueryonworkbench" width="66%">
+</div>
+</div>
+<div class="paragraph">
+<p>Como puede ver, se encontraron tres películas en el <code>bucket</code>, con el género especificado.</p>
+</div>
+<div class="paragraph">
+<p>Para obtener más información al respecto, consulte en la documentación oficial de Couchbase parahttps://docs.couchbase.com/server/current/tools/query-workbench.html[Query Workbench].</p>
+</div>
+<div class="paragraph">
+<p>Este tipo de consulta también puede realizarse desde la consola como se muestra en el siguiente apartado.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="consultas-utilizando-el-shell-de-consulta-interactiva"><a class="anchor" href="#consultas-utilizando-el-shell-de-consulta-interactiva"></a>Consultas utilizando el Shell de consulta interactiva</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Para ejecutar el shell de consulta interactiva, <code>cbq</code>, escriba en la ventana de su consola la siguiente línea, para navegar al directorio <code>bin</code> de Couchbase e iniciar <code>cbq</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd /opt/couchbase/bin
+./cbq -u Administrator -p password -engine=http://127.0.0.1:8091/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Una vez que termine, usted se encontrará en el indicador de shell <code>cbq</code>, que le permitirá comenzar a ejecutar comandos <code>N1QL</code> en su consola. Por ejemplo, si desea saber cuántas películas que se almacenan en el <code>bucket movies</code>, con el género <code>Drama</code> se hicieron en <code>1994</code>, usted deberá escribir lo siguiente:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cbq&gt; SELECT * FROM `movies` WHERE genre="Drama" AND year=1994;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La consola deberá mostrarle el siguiente resultado:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
+    "requestID": "e01ae981-cb0d-48ac-8cd2-59224ece52d2",
+    "signature": {
+        "*": "*"
+    },
+    "results": [
+        {
+            "movies": {
+                "genre": "Drama",
+                "id": "movie_1",
+                "name": "The Shawshank Redemption",
+                "year": 1994
+            }
+        }
+    ],
+    "status": "success",
+    "metrics": {
+        "elapsedTime": "2.388205ms",
+        "executionTime": "2.265674ms",
+        "resultCount": 1,
+        "resultSize": 197
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Como usted podrá observar solo existe una película con esos requisitos.
+Si necesita información más detallada al respecto, consulte la documentación de Couchbase para <a href="https://docs.couchbase.com/server/current/tools/cbq-shell.html">The Command Line Shell for N1QL</a>.</p>
+</div>
+</div>
+</div>
+<h1 id="full-text-search" class="sect0"><a class="anchor" href="#full-text-search"></a>Full Text Search</h1>
+<div class="paragraph">
+<p>Este apartado le mostrará cómo con <code>Full Text Search</code> (FTS) usted puede crear, administrar y consultar índices especialmente diseñados, almacenados en documentos <code>JSON</code> dentro de un <code>bucket</code> de Couchbase.</p>
+</div>
+<div class="sect1">
+<h2 id="características-de-full-text-search"><a class="anchor" href="#características-de-full-text-search"></a>Características de Full Text Search</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>FTS</code> tiene varias opciones para realizar consultas en lenguaje natural como:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Búsqueda del idioma; permite a los usuarios buscar, por ejemplo, la palabra <code>técnico</code>, y también obtener resultados para <code>tecnología</code> y <code>tecnica</code></p>
+</li>
+<li>
+<p>Puntuación de resultados, según relevancia; permite a los usuarios obtener conjuntos de resultados con solo documentos que han tenido los puntajes más altos, esto logra disminuir los conjuntos de resultados</p>
+</li>
+<li>
+<p>Índices rápidos, los cuales admiten una amplia gama de posibles búsquedas de texto</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>FTS</code> utiliza Bleve para la indexación de documentos, y también permite utilizar la amplia gama de tipos de consultas de Bleve, que contienen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Match, Match Phrase, Doc ID, and Prefix queries</p>
+</li>
+<li>
+<p>Conjunction, Disjunction, and Boolean field queries</p>
+</li>
+<li>
+<p>Numeric Range and Date Range queries</p>
+</li>
+<li>
+<p>Geospatial queries</p>
+</li>
+<li>
+<p>Query String queries, que emplean una sintaxis especial para expresar los detalles de cada consulta. Consulte <a href="qsq">Query String Query</a> para obtener más información.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="preparación-para-realizar-full-text-search"><a class="anchor" href="#preparación-para-realizar-full-text-search"></a>Preparación para realizar Full Text Search</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Antes de intentar hacer una <code>FTS</code> debe garantizar lo siguiente:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Que <code>Couchbase Server</code> tenga el servicio de búsqueda habilitado correctamente, el servicio debe estar habilitado para un nodo determinado. Consulte el siguiente enlace <a href="https://docs.couchbase.com/server/current/manage/manage-nodes/create-cluster.html">Create a cluster</a> para obtener más información.</p>
+</li>
+<li>
+<p>Cree un índice apropiadamente, empleando <code>web UI</code>. Para obtener la información básica al respecto, consulte la sección <a href="#sfui">Búsqueda desde la interfaz de usuario</a> y para obtener una información más detallada, consulte <a href="https://docs.couchbase.com/server/current/fts/fts-creating-indexes.html">Creating Indexes</a>.</p>
+</li>
+</ul>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Durante la creación del índice, puede seleccionar, crear o utilizar un analizador. En caso de que no lo haya hecho, se le asignará un analizador predeterminado. Consulte para más información sobre la creación de analizadores el siguiente enlace <a href="https://docs.couchbase.com/server/current/fts/fts-creating-indexes.html">Creating Indexes</a> y su funcionalidad y componentes <a href="https://docs.couchbase.com/server/current/fts/fts-using-analyzers.html">Understanding Analyzers</a>.</p>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="realizar-fts"><a class="anchor" href="#realizar-fts"></a>Realizar FTS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>FTS</code> se puede lograr usando lo siguiente:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La <code>Web UI</code>. Consulte la sección <a href="#sfui">Buscando desde la UI</a></p>
+</li>
+<li>
+<p>La API REST de Couchbase. Consulte la sección <a href="#sfra">Buscando con la REST API</a> y la página: <a href="https://docs.couchbase.com/server/current/rest-api/rest-fts.html">Full Text Search API</a></p>
+</li>
+<li>
+<p>El SDK de Couchbase. Consulte nuestro tutorial <a href="../dev-python-java/tutorial_es.html">Desarrollando en Couchbase CE con Python/Java</a></p>
+</li>
+<li>
+<p>Las funciones de búsqueda N1QL. Estos le permiten realizar un <code>FTS</code> como parte de una consulta <code>N1QL</code>. Consulte la página: <a href="https://docs.couchbase.com/server/6.5/n1ql/n1ql-language-reference/searchfun.html">Search Function</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="buscando-desde-la-ui"><a class="anchor" href="#buscando-desde-la-ui"></a><a name="sfui"></a>Buscando desde la UI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En esta parte, usted podrá ver un ejemplo de una búsqueda desde  <code>Couchbase Web UI</code> teniendo en cuenta todo lo anterior.</p>
+</div>
+<div class="paragraph">
+<p>En el lado izquierdo de la <code>Web UI</code> de <code>Couchbase Server</code>, debe seleccionar la pestaña <code>Search</code>, como se muestra próximamente:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/fulltextsearch.png" alt="fulltextsearch" width="66%">
+</div>
+</div>
+<div class="sect2">
+<h3 id="crear-un-índice"><a class="anchor" href="#crear-un-índice"></a>Crear un índice</h3>
+<div class="paragraph">
+<p>Para crear un índice, presione el botón <code>Add Index</code> como se muestra a continuación:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/createanindex.png" alt="createanindex" width="30%">
+</div>
+</div>
+<div class="paragraph">
+<p>Para crear un índice básico, usted necesita definir un nombre para el índice (tenga en cuenta que solo se permiten caracteres alfanuméricos, guiones y guiones bajos para los nombres de los índices, y el primer carácter del nombre debe ser alfabético). Después de eso, debe seleccionar el bucket y presionar el botón <code>Create Index</code>. Esto es todo lo que necesita especificar para crear un índice básico para las pruebas y el desarrollo. Sin embargo, dicha indexación predeterminada no se recomienda para entornos de producción, para revisar la amplia gama de opciones para crear índices, consulte <a href="https://docs.couchbase.com/server/current/fts/fts-creating-indexes.html">Creating Indexes</a>.</p>
+</div>
+<div class="paragraph">
+<p>Ahora vuelve a la pantalla <code>FTS</code>, una vez allí, debe esperar a que la compilación alcance el 100%. Después de eso, puede comenzar a realizar búsquedas por todos los medios disponibles: la interfaz de usuario de la consola, la <code>API REST de Couchbase</code> y el <code>SDK de Couchbase</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="realizar-una-consulta"><a class="anchor" href="#realizar-una-consulta"></a>Realizar una consulta</h3>
+<div class="paragraph">
+<p>Para realizar una consulta, escriba una palabra en el campo de texto del índice seleccionado, por ejemplo, <code>adventure</code>, luego haga click en el botón <code>Search</code>, donde se mostrarán los resultados de la búsqueda, como se muestra a continuación:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/searching.png" alt="searching" width="66%">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="buscando-con-la-rest-api"><a class="anchor" href="#buscando-con-la-rest-api"></a><a name="sfra"></a>Buscando con la REST API</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En la página <code>Search Result</code>, a la derecha del botón <code>Search</code>, aparece la casilla de verificación <code>show advanced query settings</code>. Marque esto para mostrar la configuración avanzada:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/advancedquerysettings.png" alt="advancedquerysettings" width="66%">
+</div>
+</div>
+<div class="paragraph">
+<p>Además, en el panel <code>JSON for Query Request</code> se muestra la consulta enviada en formato <code>JSON</code> y junto a ella, se encuentra una casilla de verificación con la posibilidad de completar un comando <code>curl</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/curlcommand.png" alt="curlcommand" width="66%">
+</div>
+</div>
+<div class="paragraph">
+<p>Este comando <code>curl</code> le permite ejecutar esta consulta fuera de la sesión actual de la <code>Web UI</code> de <code>Couchbase</code>, teniendo en cuenta que las credenciales para la autenticación son requeridas.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="crear-consultas"><a class="anchor" href="#crear-consultas"></a><a name="ua"></a>Crear consultas</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En este apartado usted aprenderá a usar, a través de ejemplos, algunos de los tipos de consultas más relevantes que forman parte de la amplia gama de consultas disponibles, utilizando la sintaxis de consulta de la <code>API REST de Couchbase</code>. Continuaremos usando, para los próximos ejemplos, algunos datos del <code>bucket movies</code> con sus respectivos índices.</p>
+</div>
+<div class="sect2">
+<h3 id="consulta-de-string"><a class="anchor" href="#consulta-de-string"></a><a name="qsq"></a>Consulta de String</h3>
+<div class="paragraph">
+<p>Se puede usar una <code>Consulta de String</code> para expresar una consulta dada utilizando una sintaxis especial. Este tipo de consulta combina caracteres alfanuméricos estándar con elementos sintácticos, para especificar consultas complejas en forma ASCII.
+Además, el enlace <code>full text query syntax help</code> debajo del campo de texto <code>Search</code> en la página <code>Search Results</code> muestra información detallada sobre las consultas de <code>Query String FTS</code>.
+Si desea realizar este tipo de consulta en un comando curl, debe ejecutarlo de la siguiente manera:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -u Administrator:password -XPOST -H "Content-Type: application/json" \
+http://localhost:8094/api/index/movies-index/query \
+-d '{
+  "explain": true,
+  "fields": [
+    "*"
+  ],
+  "highlight": {},
+  "query": {
+     "query": "+drama +pulp"
+   }
+}'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="consulta-de-coincidencia"><a class="anchor" href="#consulta-de-coincidencia"></a>Consulta de coincidencia</h3>
+<div class="paragraph">
+<p>La consulta de coincidencia pertenece al grupo de <code>Simple Queries</code>, esta analiza el texto de entrada y utiliza los resultados para consultar el índice. Las opciones incluyen: especificar un analizador, realizar una coincidencia difusa y realizar una coincidencia de prefijo. Cuando se utiliza la coincidencia difusa, si el parámetro único se establece en un número entero distinto de cero, el texto analizado se corresponde con un nivel correspondiente de difuminación. La confusión máxima admitida es 2. Cuando se utiliza una coincidencia de prefijo, el parámetro prefix_length especifica que para que se produzca una coincidencia, el input-term y el text-element deben compartir un prefijo de longitud especificada.</p>
+</div>
+<div class="paragraph">
+<p>Aquí se puede observar un ejemplo del uso de consultas de coincidencia en un comando <code>curl</code>, listo para ser ejecutado:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -u Administrator:password -XPOST -H "Content-Type: application/json" \
+http://localhost:8094/api/index/movies-index/query \
+-d '{
+  "explain": true,
+  "fields": [
+    "*"
+  ],
+  "highlight": {},
+  "query": {
+       "match": "drama",
+      "field": "genre",
+      "analyzer": "standard",
+      "fuzziness": 2,
+      "prefix_length": 3
+    }
+}'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="consulta-conjunta-y"><a class="anchor" href="#consulta-conjunta-y"></a>Consulta Conjunta (Y)</h3>
+<div class="paragraph">
+<p>La consulta conjunta es un tipo de <code>Compound Queries</code> que contiene múltiples consultas secundarias. Los documentos que muestran los resultados deben satisfacer todas las consultas secundarias, es decir, lo contrario a la Disjunction Query (OR).
+A continuación se muestra un ejemplo de este tipo de consulta en un comando curl, listo para ser ejecutado:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -u Administrator:password -XPOST -H "Content-Type: application/json" \
+http://localhost:8094/api/index/movies-index/query \
+-d '{
+  "explain": true,
+  "fields": [
+    "*"
+  ],
+  "highlight": {},Query String Query
+   }
+}'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="consulta-de-rango-numérico"><a class="anchor" href="#consulta-de-rango-numérico"></a>Consulta de rango numérico</h3>
+<div class="paragraph">
+<p>La consulta de rango numérico es un tipo de <code>Range Queries</code> que encuentra los documentos que contienen un valor numérico en el campo especificado, dentro del rango especificado. Esta consulta define los puntos finales utilizando los campos min y max.
+A continuación se muestra un ejemplo del uso de esta consulta en un comando <code>curl</code>, usando sus opciones específicas:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -u Administrator:password -XPOST -H "Content-Type: application/json" \
+http://localhost:8094/api/index/movies-index/query \
+-d '{
+  "explain": true,
+  "fields": [
+    "*"
+  ],
+  "highlight": {},
+   "query": {
+      "min": 1966, "max": 2000,
+      "inclusive_min": false,
+      "inclusive_max": false,
+      "field": "year"
+      }
+}'</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Como usted puede observar, algunos tipos de consulta se han explicado a grandes rasgos, para obtener más especificidad, diríjase al siguiente enlace, donde encontrara información más detallada al respecto <a href="https://docs.couchbase.com/server/current/fts/fts-query-types.html">Query Types</a></p>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="resultado-de-fts"><a class="anchor" href="#resultado-de-fts"></a>Resultado de FTS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Una vez ejecutadas estas consultas, la confirmación debería verse de la siguiente manera, esto indica que ha realizado una <code>FTS</code> correctamente:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">"status": {
+     "total": 6,
+     "failed": 0,
+     "successful": 6
+},</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h1 id="próximos-pasos" class="sect0"><a class="anchor" href="#próximos-pasos"></a>Próximos pasos</h1>
+<div class="paragraph">
+<p>Le recomendamos que siga nuestros próximos tutoriales, para encontrar la lista completa diríjase a <a href="../index_es.html">Home</a>.</p>
+</div>
+<div class="paragraph">
+<p>Además, puede revisar <a href="https://docs.couchbase.com/home/index.html">Couchbase Documentation</a> para obtener más información sobre otros temas.el mensaje de exitoso</p>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <div class="col">
+        <div class="footer-logo">
+          <a href="https://www.couchbase.com" class="icon">
+            <img src="../../../_/img/couchbase-logo.svg" alt="Couchbase">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://docs.couchbase.com" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://forums.couchbase.com" target="_blank" rel="noopener">Forums</a></li>
+          <li><a href="https://support.couchbase.com" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://developer.couchbase.com" target="_blank" rel="noopener">Developer Portal</a></li>
+          <li><a href="https://blog.couchbase.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://www.couchbase.com/resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://www.couchbase.com/get-started-developing-nosql">Get Started</a></li>
+          <li><a href="https://www.couchbase.com/downloads">Downloads</a></li>
+          <li><a href="https://learn.couchbase.com/store?utf8=%E2%9C%93&ss=1&ct=78327&commit=Filter" target="_blank" rel="noopener">Training</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="social-icons">
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32.1 26.1"> <path id="twitter" class="cls-1" d="M32,7.1a11.836,11.836,0,0,1-3.8,1,6.462,6.462,0,0,0,2.9-3.6,12.606,12.606,0,0,1-4.2,1.6A6.492,6.492,0,0,0,22.1,4a6.594,6.594,0,0,0-6.6,6.6,7.719,7.719,0,0,0,.2,1.5A18.458,18.458,0,0,1,2.2,5.2a6.294,6.294,0,0,0-.9,3.3A6.765,6.765,0,0,0,4.2,14a6.109,6.109,0,0,1-3-.8v.1a6.543,6.543,0,0,0,5.3,6.4,4.678,4.678,0,0,1-1.7.2,4.869,4.869,0,0,1-1.2-.1,6.679,6.679,0,0,0,6.1,4.6,12.917,12.917,0,0,1-8.2,2.8,9.151,9.151,0,0,1-1.6-.1,18.438,18.438,0,0,0,10.1,3c12.1,0,18.7-10,18.7-18.7v-.8A13.336,13.336,0,0,0,32,7.2Z" transform="translate(0.1 -4)"/></svg>
+            <a href="https://twitter.com/couchbase" class="icon">
+              Twitter
+            </a>
+          </li>
+          <li>
+          <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="linkedin" class="cls-1" d="M29,0H3A3.076,3.076,0,0,0,0,3V29a3.009,3.009,0,0,0,3,3H29a2.946,2.946,0,0,0,3-3V3A3.009,3.009,0,0,0,29,0ZM12,26H8V12h4ZM10,10a2,2,0,1,1,2-2A2.006,2.006,0,0,1,10,10ZM26,26H22V18a2,2,0,0,0-4,0v8H14V12h4v2.5c.8-1.1,2.1-2.5,3.5-2.5A4.736,4.736,0,0,1,26,17Z"/></svg>
+              <a href="https://www.linkedin.com/company/couchbase" class="icon">
+             Linkedin
+            </a>
+          </li>
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="facebook" class="cls-1" d="M29,0H3A2.652,2.652,0,0,0,0,3V29a2.652,2.652,0,0,0,3,3H16V18H12V14h4V12a6.452,6.452,0,0,1,6-6h4v4H22a2.151,2.151,0,0,0-2,2v2h6l-1,4H20V32h9a2.652,2.652,0,0,0,3-3V3A2.652,2.652,0,0,0,29,0Z"/></svg>
+            <a href="https://www.facebook.com/Couchbase" class="icon">
+            Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-terms">
+      <div class="footer-terms-copyright">
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+      </div>
+      <div class="footer-terms-links">
+        <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
+        <a href="https://www.couchbase.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.couchbase.com/cookie-policy">Cookie Policy</a>
+        <a href="https://www.couchbase.com/support-policy">Support Policy</a>
+        <a href="https://info.couchbase.com/unsubscribe-or-manage-preferences.html" target="_blank" rel="noopener">Marketing Preference Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../../../_/js/site-navigation-data.js"></script>
+<script id="page-navigation-group" type="application/json">
+{"title":"General","components":["shared-mobile","sdk","tutorials","userprofile-couchbase-mobile"],"latestVersions":{"shared-mobile":"2.8","sdk":"7.1.2","tutorials":"master","userprofile-couchbase-mobile":"backgroundfetch"}}
+</script>
+<template id="run-code-panel">
+<div class="action-panel">
+  <form class="action-panel-control" method="POST" action="https://couchbase.live/run" target="run-code-output">
+    <input type="hidden" name="lang">
+    <input type="hidden" name="code">
+    <input type="hidden" name="from" value="docs">
+    <div class="controls">
+      <button class="control-button rerun" type="submit"><i class="fas fa-redo"></i></button>
+      <span class="shell-name control-label">Output</span>
+      <button class="control-button close"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </form>
+  <iframe class="run-code-output" name="run-code-output"></iframe>
+</div>
+</template>
+<script id="site-script" src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
+<script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+</body>
+</html>

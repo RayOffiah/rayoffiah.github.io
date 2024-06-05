@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
+<title>Using Couchbase Server as a Session Store | Couchbase Docs</title>
+<link rel="canonical" href="https://docs.couchbase.com/tutorials/session-storage/java.html">
+<link rel="stylesheet" href="../../_/css/site.css">
+<script src="../../_/js/vendor/jquery.js"></script>
+<link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+
+
+<meta name="dcterms.subject" content="tutorials">
+<meta name="dcterms.identifier" content="master">
+<meta name="page-url" content="/tutorials/session-storage/java.html">
+<meta name="page-nav-header-levels" content="0">
+<meta name="generator" content="Antora 3.1.7">
+<link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
+</head>
+<body class="article">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="header fixed-top">
+  <div class="header-top-row">
+      <div class="container">
+          <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
+              <ul class="navbar-brand-list">
+                <li class="brand-logo">
+                  <a class="navbar-brand" href="https://www.couchbase.com">
+                    <img src="../../_/img/couchbase-logo.svg" alt="Couchbase" />
+                  </a>
+                </li>
+                <li>
+                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                    <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
+                    <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  </a>
+                </li>
+              </ul>
+              <button class="navbar-burger" data-target="topbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+          </nav>
+      </div>
+  </div>
+  <div class="header-bottom-row" id="topbar-menu">
+    <div class="container">
+        <nav  class="navbar navbar-new-bottom">
+
+              <div class="navbar-collapse collapse" id="navbar2">
+                <ul class="navbar-nav w-100 justify-content-start">
+                  <li class="nav-item">
+                    <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
+                      <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../home/server.html">
+                      Server
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../home/mobile.html">
+                      Mobile
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="primary-action">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                  Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
+                </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+
+              </div>
+
+        </nav>
+    </div>
+   </div>
+</header>
+<div class="body container">
+<aside class="nav left-sidebar">
+  <div class="nav-container">
+    <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+  </div>
+</aside>
+<aside class="toc sidebar"
+      data-title="Contents"
+      data-levels="1">
+  <div class="sidebar-box">
+    <div class="tools" role="navigation">
+<ul>
+<li class="tool edit"><a href="https://github.com/couchbaselabs/tutorials-contrib/edit/master/modules/session-storage/pages/java.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+</ul>
+</div>
+    <div class="toc-menu"></div>
+    <div class="is-this-helpful-box">
+      <h4> Is this page helpful?</h4>
+      <div class="btn-row">
+        <a href="#" class="like-btn helpful-btn" id="yesBtn" data-page-rating="like" >
+                <i class="far fa-thumbs-up"></i>
+            Yes
+
+            </a>
+        <a href="#" class="dislike-btn helpful-btn" id="noBtn"  data-page-rating="dislike"> <i class="far fa-thumbs-down"></i> No</a>
+      </div>
+      <div class="any-feedback">
+        <a href="#" class="btn any-feedback-btn" id="myCustomTrigger">Leave Additional Feedback? </a>
+      </div>
+      <div class="dialog-box" id="dialogBox">
+        <form>
+            <div class="form-group " id="additionalFeedbackBox">
+              <textarea class="input-control feed-back-msg" rows="8" placeholder="Any Additonal Feedback?"></textarea>
+
+              <div class="action-btn-row ">
+                <a href="#" class="skip-btn" id="skipBtnMsg">Skip</a>
+                  <button class="submit-btn btn blue-btn disabled" > Submit  </button>
+                  <a href="#" class="info-btn"><i class="fas fa-info-circle"></i></a>
+              </div>
+
+
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="feedback-modal modal-popup">
+  <div class="modal-popup-dialogue">
+    <div class="popup-header">
+      <a href="#" class="close-popup"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="popup-content">
+      <p>
+        Please use the form below to provide your feedback. Because your feedback is valuable to us,
+         the information you submit in this form is recorded in our issue tracking system (JIRA), which is publicly available.
+        You can track the status of your feedback using the ticket number displayed in the dialog once you submit the form.
+      </p>
+    </div>
+  </div>
+</div>
+
+<main class="article" data-ceiling="topbar">
+<div class="article-header">
+<nav class="crumbs" aria-label="breadcrumbs">
+<ul>
+<li class="crumb"><a href="../index.html">Tutorials</a></li>
+<li class="crumb">Couchbase Server</li>
+<li class="crumb">Session Storage</li>
+<li class="crumb"><a href="java.html">Java</a></li>
+</ul>
+</nav>
+</div>
+<article class="doc">
+<div class="page-heading-title">
+<h1 class="page">Using Couchbase Server as a Session Store</h1>
+<div class="labels">
+<ul></ul>
+</div>
+
+
+</div>
+<div class="contributor-list-box">
+<span class="last-commit-date" id="commitdate">    </span>
+<ul id="contributorList"></ul>
+<span  id="otherContributor"> + </span>
+</div><div class="sect1">
+<h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This tutorial contains four main sections:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#what-is-a-session-store">What is a session store?</a> If you&#8217;re new to session stores, this section discusses the how/why of sessions.</p>
+</li>
+<li>
+<p><a href="#installing-couchbase">Installing Couchbase</a> Start here if you&#8217;ve never setup Couchbase before.</p>
+</li>
+<li>
+<p><a href="#web-server-integration">Web server integration</a>. Once you have a Couchbase Cluster set up, this tutorial will show how to integrate it with Java.</p>
+</li>
+<li>
+<p><a href="#exploring-session-data">Exploring Session Data</a>. In contrast to many other session storage options, Couchbase has unique capabilities for exploring session data and gaining insights into your users and customers.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="what-is-a-session-store"><a class="anchor" href="#what-is-a-session-store"></a>What is a session store?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Web applications are session-oriented. When a user logs in to a site, for example, they start a "session". When the user logs out (or the session times out, more commonly), the session ends. The session and the user are correlated by giving a cookie to the user&#8217;s web browser with a lookup  value that directly corresponds to session storage on the server side. (These details are generally behind the scenes when using a session storage framework). Sessions may be stored temporarily or indefinitely, depending on your use case.</p>
+</div>
+<div class="sect2">
+<h3 id="what-is-stored-in-session"><a class="anchor" href="#what-is-stored-in-session"></a>What is stored in session?</h3>
+<div class="paragraph">
+<p>Any state that a user needs can be stored in session. It could be as minimal as the user&#8217;s name. User preferences can also be stored in session: language, preferred retail location, invitation/coupon codes, authorization, and more.</p>
+</div>
+<div class="paragraph">
+<p>Some more examples of data you might put in a session store:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Shopping carts / baskets (for ecommerce)</p>
+</li>
+<li>
+<p>Ticket selections (for events/ticket sales)</p>
+</li>
+<li>
+<p>Bet slips (as you build before you submit)</p>
+</li>
+<li>
+<p>Cookie tracking</p>
+</li>
+<li>
+<p>Browse-back (to keep track of where a user came from)</p>
+</li>
+<li>
+<p>Site activity tracking (to watch a customer&#8217;s journey on your site)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="why-do-i-need-one"><a class="anchor" href="#why-do-i-need-one"></a>Why do I need one?</h3>
+<div class="paragraph">
+<p>Because HTTP is "stateless", a web application needs to store session-related data somewhere. By default, session data is usually stored in memory on the web server. However, if the web server goes down or is restarted, that session information is wiped out. To prevent this, session data can be stored elsewhere.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="session-storage-with-web-farms"><a class="anchor" href="#session-storage-with-web-farms"></a>Session storage with web farms</h3>
+<div class="paragraph">
+<p>Another reason to store session data elsewhere is because of web farms. In the below diagram, an Java web application is being scaled horizontally. Incoming HTTP requests are routed through a load balancer which picks one of the instances to send the user&#8217;s request.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00101-session-diagram-java.png" alt="Session storage diagram"></span></p>
+</div>
+<div class="paragraph">
+<p>If session data is stored on the application <em>itself</em>, then a single user can only interact with a single instance. The load balancer must send the user to the same server every time. This is known as "sticky sessions".</p>
+</div>
+<div class="paragraph">
+<p>Sticky sessions can be problematic (can result in unbalanced loads, and data still can be wiped out by a web server going down). Using a shared location for data avoids enabling sticky sessions.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="why-couchbase-is-a-good-choice-for-a-session-store"><a class="anchor" href="#why-couchbase-is-a-good-choice-for-a-session-store"></a>Why Couchbase is a good choice for a Session Store</h3>
+<div class="paragraph">
+<p>The bare minimum for a good session store should be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Performance: Couchbase Server has a memory-first architecture. Data can be retrieved with very low latency. This is important because session data is often retrieved on every page.</p>
+</li>
+<li>
+<p>Flexibility: Session data can vary a lot depending on the needs of different parts of the web site.</p>
+</li>
+<li>
+<p>TTL: Data stored in Couchbase can be easily configured to expire after a set period of time with time-to-live (TTL).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In addition, Couchbase Server has more capabilities that make it an ideal choice for a session store:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../../server/current/n1ql/n1ql-language-reference/index.html" class="xref page">N1QL querying</a> - the ability to easily query sessions with SQL for business insight</p>
+</li>
+<li>
+<p><a href="../../server/current/learn/services-and-indexes/indexes/storage-modes.html" class="xref page">Memory Optimized Indexes (MOI)</a> - enabling high-speed maintenance and scanning by keeping the indexes in memory</p>
+</li>
+<li>
+<p><a href="../../server/current/learn/services-and-indexes/services/services.html" class="xref page">Scaling</a> - not only does Couchbase make it easy to scale horizontally, but it makes it easy to scale individual services vertically with multi-dimensional scaling (MDS)</p>
+</li>
+<li>
+<p>Couchbase&#8217;s memory-first architecture with real-time disk-based persistance makes it a good choice for both short- and long-term session storage.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="session-store-step-by-step"><a class="anchor" href="#session-store-step-by-step"></a>Session Store Step-by-step</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The rest of this tutorial will walk you through the steps of using Couchbase as a session store:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Installing and setting up Couchbase</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Configuring Couchbase for session storage</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Creating an Java application</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Integrating Java with Couchbase</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Reading/Writing session data</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Querying session data with N1QL for business insights</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="installing-couchbase"><a class="anchor" href="#installing-couchbase"></a>Installing Couchbase</h3>
+<div class="paragraph">
+<p>There are a number of different ways to get started with Couchbase. Choose the method that&#8217;s easiest for you. Check out <a href="install.html" class="xref page">Session Storage Tutorial: Getting Started</a> to review the options.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setting-up-couchbase-server"><a class="anchor" href="#setting-up-couchbase-server"></a>Setting up Couchbase Server</h3>
+<div class="paragraph">
+<p>You will need to start by accessing the Couchbase Server Console with a web browser on port 8091 (for example, http://localhost:8091). Once there, you will see a "Welcome" screen that will start to walk you through the process of setting up a new cluster. For complete details, check out the <a href="../../server/current/manage/manage-nodes/create-cluster.html" class="xref page">Create Cluster</a> documentation.</p>
+</div>
+<div class="paragraph">
+<p>Note that you can also set up Couchbase by using <a href="../../server/current/cli/cli-intro.html" class="xref page">command line tools</a> and/or <a href="../../server/current/rest-api/rest-intro.html" class="xref page">a REST API</a> instead of the UI. Using the UI for this tutorial will help you get comfortable with Couchbase, but in the long run you may want to script/automate cluster management using CLI/REST. If you are using the Kubernetes Operator, these settings can also be configured in a YAML file.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creating-a-bucket"><a class="anchor" href="#creating-a-bucket"></a>Creating a bucket</h3>
+<div class="paragraph">
+<p>Couchbase clusters contain <a href="../../server/current/learn/buckets-memory-and-storage/buckets.html" class="xref page">buckets</a>, which are a collection of key/value pairs.</p>
+</div>
+<div class="paragraph">
+<p>To store session data, you need at least one bucket. In the Couchbase Server Console, navigate to "Buckets" and then "Add Bucket". Give it whatever name you&#8217;d like, for example "sessionstore".</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00105-create-bucket-dialog.png" alt="Create session store bucket"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Then, go to "Security" and click on "ADD USER"</p>
+</li>
+<li>
+<p>Fill out the form with the following data:</p>
+<div class="paragraph">
+<p><strong>Username:</strong> sessionstore <br>
+<strong>Full Name:</strong> sessionstore <br>
+<strong>Password:</strong> password <br>
+<strong>Verify Password:</strong> password<br>
+<strong>Roles:</strong> under "sessionstore", select "Application Access"</p>
+</div>
+</li>
+<li>
+<p>Finally, click on "Add User".</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Two important factors that this tutorial will touch on is bucket types: "Ephemeral vs Couchbase". This tutorial will also touch on replication, briefly.</p>
+</div>
+<div class="paragraph">
+<p>For more details on how to create a bucket and all of the advanced settings, check out the <a href="../../server/current/manage/manage-buckets/create-bucket.html" class="xref page">Create Bucket</a> documentation.</p>
+</div>
+<div class="sect3">
+<h4 id="couchbase-vs-ephemeral"><a class="anchor" href="#couchbase-vs-ephemeral"></a>Couchbase vs Ephemeral</h4>
+<div class="paragraph">
+<p>There are two kinds of buckets you can use for a session store:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Couchbase: this is the default bucket type. Data is stored in memory as well as disk. If memory is full, items are ejected from RAM, but can still be accessed from disk when needed.</p>
+</li>
+<li>
+<p>Ephemeral: this is a memory-only bucket. You can avoid the overhead of disk access, but if memory is full, then there is nowhere else to store data. You can configure items to be ejected or you can forbid additional data being added.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There&#8217;s actually a third kind of bucket: Memcached. These are also memory-only buckets. If memory is full, items will be ejected to make room as new items are added. Unless you need Memcached compatibility, you are better off using Couchbase or Ephemeral buckets.</p>
+</div>
+<div class="paragraph">
+<p>For more details about the different bucket types, check out <a href="../../server/current/learn/buckets-memory-and-storage/buckets.html" class="xref page">Buckets</a> in the Couchbase documentation.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="replication"><a class="anchor" href="#replication"></a>Replication</h4>
+<div class="paragraph">
+<p>To start with, your Couchbase Server cluster may only consist of a single instance of Couchbase Server. One of Couchbase Server&#8217;s strengths is its ability to horizontally scale to accommodate large scale applications. As you add more "nodes" to a cluster, you gain the ability to <strong>replicate</strong> data across the cluster. This means that if a single node goes down, you can (automatically) recover data from replicas.</p>
+</div>
+<div class="paragraph">
+<p>When creating a bucket, if you enable replicas, then you will need to select how many total replicas you want: "1", "2", or "3". Note that you will need to have at least that many servers for replication to work properly.</p>
+</div>
+<div class="paragraph">
+<p>At this point, Couchbase should be ready to go. We&#8217;ll look at a Java application next.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> Installing and setting up Couchbase</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Configuring Couchbase for session storage</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Creating a Java application</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Integrating Java with Couchbase</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Reading/Writing session data</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Querying session data with N1QL for business insights</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="web-server-integration"><a class="anchor" href="#web-server-integration"></a>Web server integration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Session stores can take several different forms. Most commonly, it&#8217;s an integration between a persistence tool (a database like Couchbase) and web framework software (like Spring, ASP.NET, Express, etc).</p>
+</div>
+<div class="sect2">
+<h3 id="web-frameworks"><a class="anchor" href="#web-frameworks"></a>Web frameworks</h3>
+<div class="paragraph">
+<p>Web frameworks are the tools that developers typically use to create web sites. They may serve up dynamically generated content (e.g. HTML), static content (e.g. CSS/JS/images), or they may directly serve data (e.g. JSON over HTTP/REST).</p>
+</div>
+<div class="paragraph">
+<p>In this tutorial, we&#8217;ll look at how to use Couchbase as a session store for an Thymeleaf + Spring Boot application.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="spring-session-integration"><a class="anchor" href="#spring-session-integration"></a>Spring Session Integration</h3>
+<div class="paragraph">
+<p>The complete source code for this example is <a href="https://github.com/couchbaselabs/session-store-java">available on GitHub</a> if you&#8217;d like to follow along. Assuming you&#8217;ve got Couchbase, the JDK and Maven installed, there are four steps to get the example running:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>git clone</code> the repository</p>
+</li>
+<li>
+<p>Add you Couchbase credentials to the <strong>application.properties</strong> file</p>
+</li>
+<li>
+<p>Run <code>mvn spring-boot:run</code> in the project folder</p>
+</li>
+<li>
+<p>Open your browser at <a href="http://localhost:8080" class="bare">http://localhost:8080</a></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Once you&#8217;ve done that, you&#8217;ll be able to use the finished sample application. The rest of this tutorial walks through the steps in building the application. You can follow along by browsing the source code or trying to recreate the sample application yourself.</p>
+</div>
+<div class="paragraph">
+<p>To start with, let&#8217;s create a brand new project using Spring Initialzr:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Go to Spring Initialzr at <a href="https://start.spring.io/" class="bare">https://start.spring.io/</a></p>
+</li>
+<li>
+<p>Fill out the for with the following data:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Group: com.cb</p>
+</li>
+<li>
+<p>Artifact: session-store</p>
+</li>
+<li>
+<p>Dependencies:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Couchbase</p>
+</li>
+<li>
+<p>Lombok</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/java-001001-spring-initialzr.png" alt="Spring Initalizr"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on "Generate Project"</p>
+</li>
+<li>
+<p>Open the project on Intellij or Eclipse.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Then, add the following dependency in your <strong>pom.xml</strong> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;dependency&gt;
+	&lt;groupId&gt;io.github.couchbaselabs&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-session-data-couchbase&lt;/artifactId&gt;
+	&lt;version&gt;1.1.1&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, we need connect our new application to our database by defining the following configuration in the <strong>application.properties</strong> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">spring.couchbase.bootstrap-hosts=localhost
+spring.couchbase.bucket.name=sessiostore
+spring.couchbase.bucket.password=password
+spring.data.couchbase.auto-index=true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, in <strong>SessionStoreApplication.java</strong>, add the <strong>@EnableCouchbaseHttpSession</strong> annotation</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">@SpringBootApplication
+@EnableCouchbaseHttpSession
+public class SessionStoreApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SessionStoreApplication.class, args);
+	}
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, the HttpSession will automatically be saved in Couchbase. You can view all the <strong>@EnableCouchbaseHttpSession</strong> attributes <a href="https://github.com/couchbaselabs/spring-session-data-couchbase">here</a>.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> Installing and setting up Couchbase</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Configuring Couchbase for session storage</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Creating a Java application</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Integrating Java with Couchbase</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Reading/Writing session data</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Querying session data with N1QL for business insights</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="readingwriting-from-session"><a class="anchor" href="#readingwriting-from-session"></a>Reading/writing from session</h3>
+<div class="paragraph">
+<p>Let&#8217;s start by writing to session.</p>
+</div>
+<div class="paragraph">
+<p>In the sample application, there are three different types of session objects that a given user may store: User, Shopping Cart, Location. <code>User</code> stores username as well as phone number. <code>Shopping Cart</code> stores items, prices, and quantities of items that a user will purchase. <code>Location</code> stores address and latitude/longitude. In your application, you may want to break up different areas of session, as not all users will need every session object. For instance, a customer who is visiting your site may need browse-back and site activity tracking data, but may not need any shopping cart data until they put the first item into their cart.</p>
+</div>
+<div class="paragraph">
+<p>To store an item in session, use the <code>HttpSession</code> instance received as a parameter. Here&#8217;s an example of the "User" session data being stored:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">@GetMapping("/AddUserDataToSession")
+public String addUserDataToSession(Model model, HttpSession session) throws Exception {
+    SessionCart sc = new SessionCart();
+    sc.setUser(DataGenerator.getRandomUser());
+    session.setAttribute(SESSION_CART, sc);
+    return "welcome";
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To retrieve an item from session, use <code>HttpSession.getAttribute</code> method. Here&#8217;s an example of the "User" session data being retrieved:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">SessionCart sc = session.getAttribute(SESSION_CART);
+User user = sc.getUser();</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<a href="https://github.com/couchbaselabs/session-store-java/blob/master/src/main/java/com/cb/sessionstore/controller/DataGenerator.java">DataGenerator</a> is being used to set random data to these session objects for example purposes.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Finally, the session data will be erased automatically after 30 minutes (you can change this behavior via the attribute <strong>maxInactiveIntervalInSeconds</strong> in the <strong>@EnableCouchbaseHttpSession</strong> annotation ), you can also reset the session at any time using the <code>invalidate</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java"> @GetMapping("/newSession")
+public String newSession(HttpServletRequest request, Model model) throws Exception {
+
+    request.getSession().invalidate();//invalidade the current session
+    HttpSession newSession = request.getSession(); //create a new session
+    ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Putting these all together, the example application is able to create objects, read objects, and remove objects from session storage:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/java-session-store-demo.gif" alt="Session storage example in action"></span></p>
+</div>
+<div class="paragraph">
+<p>To simulate multiple users, you can use different browsers, clear your cookies, etc. There&#8217;s also a link in the sample application to "Start a new session". Before proceeding into exploring session data, it would be helpful to have a bunch of sessions created already in your session store bucket.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> Installing and setting up Couchbase</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Configuring Couchbase for session storage</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Creating a Java application</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Integrating Java with Couchbase</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Reading/Writing session data</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Querying session data with N1QL for business insights</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exploring-session-data"><a class="anchor" href="#exploring-session-data"></a>Exploring Session Data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Using Couchbase for session storage so far has been primarily based in fundamental key/value operations. However, Couchbase can do far more than perform operations based on document keys. Couchbase has SQL query capabilities (known as N1QL) that can be used to perform queries against <em>all</em> the sessions stored in Couchbase. This can be useful to gain valuable insights about your customers and users.</p>
+</div>
+<div class="paragraph">
+<p>In the above example, note that a session could contain a shopping cart. Suppose there are hundreds and thousands of sessions being stored at any given time. It would be useful to query all of this data to gain insights such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Most/least popular items in shopping carts</p>
+</li>
+<li>
+<p>Average age of a shopping cart</p>
+</li>
+<li>
+<p>Average value of all the items in a shopping cart.</p>
+</li>
+<li>
+<p>Much more, the sky&#8217;s the limit.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s explore a couple of simple examples of how N1QL could be used to explore the session data.</p>
+</div>
+<div class="sect2">
+<h3 id="how-session-data-is-stored"><a class="anchor" href="#how-session-data-is-stored"></a>How session data is stored</h3>
+<div class="paragraph">
+<p>Before we begin, let&#8217;s look at what a session storage document actually looks like.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-JavaScript hljs" data-lang="JavaScript">//key : 5b357ade-6059-4d16-aea3-6f784765e7b5
+
+
+{
+  "_principal": null,
+  "_interval": 1800,
+  "_expireAt": 1554743279889,
+  "_created": 1554741479889,
+  "_accessed": 1554741479889,
+  "_type": "sessions",
+  "_attr": "\"rO0ABXNyABFqYXZhLnV0aWwuSGFzaE1hcAUH2sHDFmDRAwACRgAKbG9hZEZhY3RvckkACXRocmVzaG9sZHhwP0AAAAAAAAx3CAAAABAAAAABdAADZm9vc3IAHWNvbS5jYi5zZXNzaW9uc3RvcmUubW9kZWwuRm9vO5F+XaK9pV0CAAJMAAphdHRyaWJ1dGUxdAASTGphdmEvbGFuZy9TdHJpbmc7TAAKYXR0cmlidXRlMnEAfgAEeHB0AAZ2YWx1ZTF0AAZ2YWx1ZTJ4\""
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that, all session&#8217;s data is binary stored in an attribute called <strong>_attr</strong>. Spring doesn&#8217;t know which objects types are in the session, so there is no easy way to convert it to human-readable format. You can overcome this limitation by setting the attribute <strong>keepStringAsLiteral</strong> as true in the <strong>EnableCouchbaseHttpSession</strong> annotation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">@SpringBootApplication
+@EnableCouchbaseHttpSession(keepStringAsLiteral = true)
+public class SessionStoreApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SessionStoreApplication.class, args);
+	}
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>keepStringAsLiteral</strong> will tell Couchbase Spring Session to store all session&#8217;s String attributes as top-level properties within the document. For instance, instead of adding a <a href="https://github.com/couchbaselabs/session-store-java/blob/master/src/main/java/com/cb/sessionstore/controller/SessionCart.java">SessionCart</a> instance directly to the session, we could convert the object to a JSON-encoded String format using Jackson&#8217;s <code>ObjectMapper</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">ObjectMapper mapper = new ObjectMapper();
+session.setAttribute(SESSION_CART, mapper.writeValueAsString(sessionCartInstance))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And then, when you need to read the session cart, convert it back to an object:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">ObjectMapper mapper = new ObjectMapper();
+mapper.readValue( session.getAttribute(SESSION_CART).toString(), SessionCart.class);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In our example, we have two methods responsible for reading/writting the session cart:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">@Controller
+public class MainController {
+    ...
+
+    private SessionCart getSessionCart(HttpSession session) throws IOException {
+        if(session.getAttribute("sessionCart") != null) {
+            return mapper.readValue( session.getAttribute("sessionCart").toString(), SessionCart.class);
+        } else {
+            return new SessionCart();
+        }
+    }
+
+    private void putSessionCart(SessionCart cart, HttpSession session) throws JsonProcessingException {
+        session.setAttribute("sessionCart", mapper.writeValueAsString(cart));
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As <strong>sessionCart</strong> is a String, it will be stored as it is in the database:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-JavaScript hljs" data-lang="JavaScript">//key : 5b2a2487-4825-43de-b089-1b61703556b2
+
+{
+  "_principal": null,
+  "_interval": 1800,
+  "_expireAt": 1554746972015,
+  "_created": 1554745163803,
+  "_accessed": 1554745172015,
+  "sessionCart": "{\"shoppingCart\":{\"created\":1554745170784,\"items\":[{\"itemName\":\"Tennis Shoes\",\"price\":38.25186017511709,\"quantity\":3}]},\"user\":{\"username\":\"robertst\",\"phoneNumber\":\"(500)-383-1668\"},\"location\":{\"address\":\"90 Arrowhead Avenue Jonesboro, GA 30236\",\"country\":\"USA\",\"coordinates\":{\"lat\":10,\"lon\":37}}}",
+  "_type": "sessions",
+  "_attr": "\"rO0ABXNyABFqYXZhLnV0aWwuSGFzaE1hcAUH2sHDFmDRAwACRgAKbG9hZEZhY3RvckkACXRocmVzaG9sZHhwP0AAAAAAAAB3CAAAABAAAAAAeA==\""
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://www.couchbase.com/products/n1ql">N1QL</a> has a function called <a href="../../server/current/n1ql/n1ql-language-reference/jsonfun.html" class="xref page">DECODE_JSON</a>, which can function can unmarshal a JSON-encoded String to an object, so whenever you need to filter a query by the sessionCart, all you have to do is to use <code>DECODE_JSON(sessionCart).someAttribute</code>. Let&#8217;s see some examples:</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="most-recent-shopping-carts"><a class="anchor" href="#most-recent-shopping-carts"></a>Most recent shopping carts</h3>
+<div class="paragraph">
+<p>We will start with a simple case. Suppose we want a snapshot of the 10 most recent shopping carts. This might be useful for a dashboard or for just looking at what&#8217;s going on with the site right now. Here&#8217;s a N1QL query to find those shopping carts:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">SELECT
+    meta().id as id, _created, ARRAY_COUNT(DECODE_JSON(sessionCart).shoppingCart.items)
+FROM sessionstore
+ORDER BY _created DESC
+LIMIT 10</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you are using Couchbase Server 6.5+, you can <a href="http://docs.couchbase.com/tutorials/session-storage/udf.html">create a User-Defined Function</a> to simplify this query and avoid the need to use <code>DECODE_JSON</code> in every query.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To make this query work, we&#8217;ll need appropriate indexing. The <code>IndexConfigRunner</code> automatically create a primary index for you during the startup:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">@Component
+public class IndexConfigRunner implements CommandLineRunner {
+    @Autowired
+    private Bucket bucket;
+
+    @Override
+    public void run(String... strings) throws Exception {
+        bucket.bucketManager().createN1qlPrimaryIndex(true, true);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>But you can also create it manually via N1QL:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">CREATE PRIMARY INDEX sessionstore_idx ON sessionstore</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After that index is created, the above <code>SELECT</code> query will function, and it will return the 10 most recent shopping carts. The sample application (available on Github) uses this query to generate a report that looks like this:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00103-recent-shopping-carts.png" alt="10 Most Recent Shopping Cart report"></span></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+In a production environment you should create a proper secondary index for the query above instead of relying on the primary index.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="most-common-items"><a class="anchor" href="#most-common-items"></a>Most common items</h3>
+<div class="paragraph">
+<p>Another insight we could gather is the most popular item that has been added to shopping carts.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">SELECT
+    i.itemName as itemName,
+    SUM(i.quantity) AS totalQuantity
+FROM sessionstore s
+UNNEST DECODE_JSON(s.sessionCart).shoppingCart.items i
+WHERE s.sessionCart IS NOT MISSING
+GROUP BY i.itemName
+ORDER BY SUM(i.quantity) DESC
+LIMIT 10</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Again, DECODE_JSON needs to be used here. This query uses the <a href="../../server/current/n1ql/n1ql-language-reference/from.html#unnest" class="xref page"><code>UNNEST</code> keyword</a> to break down the nested objects in each shopping cart to the root level.</p>
+</div>
+<div class="paragraph">
+<p>Fortunately, the primary index that was created in the above example also works for this query, so no additional index is needed. Here&#8217;s an example of a report that uses the above query (also included in the sample project on GitHub):</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/00104-most-popular-items.png" alt="Most popular items"></span></p>
+</div>
+<div class="paragraph">
+<p>These examples just scratch the surface of the analysis that can be done on the session data that Couchbase is storing.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conclusion-and-resources"><a class="anchor" href="#conclusion-and-resources"></a>Conclusion and Resources</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The step-by-step instructions for using Couchbase Server for session storage with ASP.NET Core is now complete.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> Installing and setting up Couchbase</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Configuring Couchbase for session storage</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Creating a Java application</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Integrating Java with Couchbase</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Reading/Writing session data</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Querying session data with N1QL for business insights</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>But your journey with Couchbase is just beginning. Depending on your requirements, you may also want to look into <a href="../../server/current/eventing/eventing-overview.html" class="xref page">Couchbase Eventing</a>, to respond to data changes on the cluster directly. <a href="../../server/current/search/search.html" class="xref page">Full Text Search</a> may also be useful for searching through any text that is being stored in your sessions. <a href="#server:analytics:introduction.adoc" class="xref unresolved">Analytics</a> can help with bigger sets and more complex queries against long-term/historical session store data. All of these services are available on a single platform: no extra integration is required.</p>
+</div>
+<div class="paragraph">
+<p>For more information about using Couchbase as a session store, check out these resources:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/couchbaselabs/Couchbase.Extensions/blob/master/docs/session.md">Couchbase.Extensions.Session</a> - the Couchbase.Extension.Session package that was used for ASP.NET Core in this tutorial.</p>
+</li>
+<li>
+<p><a href="https://github.com/couchbaselabs/couchbase-aspnet/">Couchbase ASP.NET Integration</a> - if you haven&#8217;t switched to ASP.NET Core yet, you can still use this library to store ASP.NET session in Couchbase</p>
+</li>
+<li>
+<p><a href="../../server/current/n1ql/n1ql-language-reference/index.html" class="xref page">N1QL documentation</a></p>
+</li>
+<li>
+<p><a href="https://docs.couchbase.com/dotnet-sdk/2.7/start-using-sdk.html">Couchbase .NET SDK documentation</a></p>
+</li>
+<li>
+<p>Full source code of the example used in this tutorial is <a href="https://github.com/couchbaselabs/tutorials-contrib/tree/master/modules/session-storage/examples/AspNetCoreSession">available on GitHub</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <div class="col">
+        <div class="footer-logo">
+          <a href="https://www.couchbase.com" class="icon">
+            <img src="../../_/img/couchbase-logo.svg" alt="Couchbase">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://docs.couchbase.com" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://forums.couchbase.com" target="_blank" rel="noopener">Forums</a></li>
+          <li><a href="https://support.couchbase.com" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://developer.couchbase.com" target="_blank" rel="noopener">Developer Portal</a></li>
+          <li><a href="https://blog.couchbase.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://www.couchbase.com/resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://www.couchbase.com/get-started-developing-nosql">Get Started</a></li>
+          <li><a href="https://www.couchbase.com/downloads">Downloads</a></li>
+          <li><a href="https://learn.couchbase.com/store?utf8=%E2%9C%93&ss=1&ct=78327&commit=Filter" target="_blank" rel="noopener">Training</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="social-icons">
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32.1 26.1"> <path id="twitter" class="cls-1" d="M32,7.1a11.836,11.836,0,0,1-3.8,1,6.462,6.462,0,0,0,2.9-3.6,12.606,12.606,0,0,1-4.2,1.6A6.492,6.492,0,0,0,22.1,4a6.594,6.594,0,0,0-6.6,6.6,7.719,7.719,0,0,0,.2,1.5A18.458,18.458,0,0,1,2.2,5.2a6.294,6.294,0,0,0-.9,3.3A6.765,6.765,0,0,0,4.2,14a6.109,6.109,0,0,1-3-.8v.1a6.543,6.543,0,0,0,5.3,6.4,4.678,4.678,0,0,1-1.7.2,4.869,4.869,0,0,1-1.2-.1,6.679,6.679,0,0,0,6.1,4.6,12.917,12.917,0,0,1-8.2,2.8,9.151,9.151,0,0,1-1.6-.1,18.438,18.438,0,0,0,10.1,3c12.1,0,18.7-10,18.7-18.7v-.8A13.336,13.336,0,0,0,32,7.2Z" transform="translate(0.1 -4)"/></svg>
+            <a href="https://twitter.com/couchbase" class="icon">
+              Twitter
+            </a>
+          </li>
+          <li>
+          <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="linkedin" class="cls-1" d="M29,0H3A3.076,3.076,0,0,0,0,3V29a3.009,3.009,0,0,0,3,3H29a2.946,2.946,0,0,0,3-3V3A3.009,3.009,0,0,0,29,0ZM12,26H8V12h4ZM10,10a2,2,0,1,1,2-2A2.006,2.006,0,0,1,10,10ZM26,26H22V18a2,2,0,0,0-4,0v8H14V12h4v2.5c.8-1.1,2.1-2.5,3.5-2.5A4.736,4.736,0,0,1,26,17Z"/></svg>
+              <a href="https://www.linkedin.com/company/couchbase" class="icon">
+             Linkedin
+            </a>
+          </li>
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="facebook" class="cls-1" d="M29,0H3A2.652,2.652,0,0,0,0,3V29a2.652,2.652,0,0,0,3,3H16V18H12V14h4V12a6.452,6.452,0,0,1,6-6h4v4H22a2.151,2.151,0,0,0-2,2v2h6l-1,4H20V32h9a2.652,2.652,0,0,0,3-3V3A2.652,2.652,0,0,0,29,0Z"/></svg>
+            <a href="https://www.facebook.com/Couchbase" class="icon">
+            Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-terms">
+      <div class="footer-terms-copyright">
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+      </div>
+      <div class="footer-terms-links">
+        <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
+        <a href="https://www.couchbase.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.couchbase.com/cookie-policy">Cookie Policy</a>
+        <a href="https://www.couchbase.com/support-policy">Support Policy</a>
+        <a href="https://info.couchbase.com/unsubscribe-or-manage-preferences.html" target="_blank" rel="noopener">Marketing Preference Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../../_/js/site-navigation-data.js"></script>
+<script id="page-navigation-group" type="application/json">
+{"title":"General","components":["shared-mobile","sdk","tutorials","userprofile-couchbase-mobile"],"latestVersions":{"shared-mobile":"2.8","sdk":"7.1.2","tutorials":"master","userprofile-couchbase-mobile":"backgroundfetch"}}
+</script>
+<template id="run-code-panel">
+<div class="action-panel">
+  <form class="action-panel-control" method="POST" action="https://couchbase.live/run" target="run-code-output">
+    <input type="hidden" name="lang">
+    <input type="hidden" name="code">
+    <input type="hidden" name="from" value="docs">
+    <div class="controls">
+      <button class="control-button rerun" type="submit"><i class="fas fa-redo"></i></button>
+      <span class="shell-name control-label">Output</span>
+      <button class="control-button close"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </form>
+  <iframe class="run-code-output" name="run-code-output"></iframe>
+</div>
+</template>
+<script id="site-script" src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
+<script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+</body>
+</html>
