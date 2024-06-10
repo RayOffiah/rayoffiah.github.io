@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
+<title>New in 3.0 | Couchbase Docs</title>
+<link rel="canonical" href="https://docs.couchbase.com/sync-gateway/current/whatsnew.html">
+<link rel="stylesheet" href="../../_/css/site.css">
+<script src="../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="Couchbase Sync Gateway -- What&#x27;s new in the latest release">
+<meta name="keywords" content="edge nosql api synchronization replication">
+<link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+
+
+<meta name="dcterms.subject" content="sync-gateway">
+<meta name="dcterms.identifier" content="3.0">
+<meta name="page-url" content="/sync-gateway/current/whatsnew.html">
+<meta name="page-nav-header-levels" content="0">
+<meta name="generator" content="Antora 3.1.7">
+<link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
+</head>
+<body class="article">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="header fixed-top">
+  <div class="header-top-row">
+      <div class="container">
+          <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
+              <ul class="navbar-brand-list">
+                <li class="brand-logo">
+                  <a class="navbar-brand" href="https://www.couchbase.com">
+                    <img src="../../_/img/couchbase-logo.svg" alt="Couchbase" />
+                  </a>
+                </li>
+                <li>
+                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                    <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
+                    <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  </a>
+                </li>
+              </ul>
+              <button class="navbar-burger" data-target="topbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+          </nav>
+      </div>
+  </div>
+  <div class="header-bottom-row" id="topbar-menu">
+    <div class="container">
+        <nav  class="navbar navbar-new-bottom">
+
+              <div class="navbar-collapse collapse" id="navbar2">
+                <ul class="navbar-nav w-100 justify-content-start">
+                  <li class="nav-item">
+                    <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
+                      <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../home/server.html">
+                      Server
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../home/mobile.html">
+                      Mobile
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="primary-action">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                  Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
+                </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+
+              </div>
+
+        </nav>
+    </div>
+   </div>
+</header>
+<div class="body container">
+<aside class="nav left-sidebar">
+  <div class="nav-container">
+    <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+    <template id="page-versions" style="display: none">
+      <select class="version_list" data-component="sync-gateway">
+        <option value="3.0" data-url="whatsnew.html" selected>3.0</option>
+        <option value="2.8" data-url="../2.8/whatsnew.html">2.8</option>
+        <option value="2.7" data-url="../2.7/index.html">2.7</option>
+        <option value="2.6" data-url="../2.6/index.html">2.6</option>
+        <option value="2.5" data-url="../2.5/index.html">2.5</option>
+        <option value="2.1" data-url="../2.1/index.html">2.1</option>
+        <option value="2.0" data-url="../2.0/index.html">2.0</option>
+        <option value="1.5" data-url="../1.5/index.html">1.5</option>
+      </select>
+    </template>
+  </div>
+</aside>
+<aside class="toc sidebar"
+      data-title="Contents"
+      data-levels="2">
+  <div class="sidebar-box">
+    <div class="tools" role="navigation">
+<ul>
+<li class="tool edit"><a href="https://github.com/couchbaselabs/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/whatsnew.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+</ul>
+</div>
+    <div class="toc-menu"></div>
+    <div class="is-this-helpful-box">
+      <h4> Is this page helpful?</h4>
+      <div class="btn-row">
+        <a href="#" class="like-btn helpful-btn" id="yesBtn" data-page-rating="like" >
+                <i class="far fa-thumbs-up"></i>
+            Yes
+
+            </a>
+        <a href="#" class="dislike-btn helpful-btn" id="noBtn"  data-page-rating="dislike"> <i class="far fa-thumbs-down"></i> No</a>
+      </div>
+      <div class="any-feedback">
+        <a href="#" class="btn any-feedback-btn" id="myCustomTrigger">Leave Additional Feedback? </a>
+      </div>
+      <div class="dialog-box" id="dialogBox">
+        <form>
+            <div class="form-group " id="additionalFeedbackBox">
+              <textarea class="input-control feed-back-msg" rows="8" placeholder="Any Additonal Feedback?"></textarea>
+
+              <div class="action-btn-row ">
+                <a href="#" class="skip-btn" id="skipBtnMsg">Skip</a>
+                  <button class="submit-btn btn blue-btn disabled" > Submit  </button>
+                  <a href="#" class="info-btn"><i class="fas fa-info-circle"></i></a>
+              </div>
+
+
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="feedback-modal modal-popup">
+  <div class="modal-popup-dialogue">
+    <div class="popup-header">
+      <a href="#" class="close-popup"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="popup-content">
+      <p>
+        Please use the form below to provide your feedback. Because your feedback is valuable to us,
+         the information you submit in this form is recorded in our issue tracking system (JIRA), which is publicly available.
+        You can track the status of your feedback using the ticket number displayed in the dialog once you submit the form.
+      </p>
+    </div>
+  </div>
+</div>
+
+<main class="article" data-ceiling="topbar">
+<div class="article-header">
+<nav class="crumbs" aria-label="breadcrumbs">
+<ul>
+<li class="crumb"><a href="index.html">Sync Gateway</a></li>
+<li class="crumb"><a href="whatsnew.html"><strong><em>New in 3.0</em></strong></a></li>
+</ul>
+</nav>
+</div>
+<article class="doc">
+<div class="page-heading-title">
+<h1 class="page">New in 3.0</h1>
+<div class="labels">
+<ul></ul>
+</div>
+
+
+</div>
+<div class="contributor-list-box">
+<span class="last-commit-date" id="commitdate">    </span>
+<ul id="contributorList"></ul>
+<span  id="otherContributor"> + </span>
+</div><div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock abstract">
+<blockquote>
+<div class="paragraph">
+<p>Couchbase Sync Gateway&#8201;&#8212;&#8201;What&#8217;s new in the latest release<br>
+This content covers the new features introduced in Sync Gateway 3.0</p>
+</div>
+</blockquote>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Sync&#160;Gateway 3.0 introduces some breaking changes.<br>
+If you are upgrading from 2.x, please refer to the <a href="upgrading.html" class="xref page">Upgrading</a> page.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview-of-syncgateway-3-0"><a class="anchor" href="#overview-of-syncgateway-3-0"></a>Overview of Sync&#160;Gateway 3.0</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>This release of <em>Sync&#160;Gateway</em> introduces significant strategic new features and enhancements aimed at boosting the functionality supporting mobile and edge computing solutions.</em></p>
+</div>
+<div class="paragraph">
+<p>Most significant are the major architectural enhancements to make sync&#160;gateway node configuration simpler, more modular and cluster-aware.
+The secure, encrypted, REST API endpoints now support persistent configuration changes to simplify management and administration.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="centralized-persistent-modular-configuration"><a class="anchor" href="#centralized-persistent-modular-configuration"></a>Centralized Persistent Modular Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Centralized Persistent Modular Configuration is a core enhancement that makes it simpler for administrators to configure and manage the Sync Gateway.</em></p>
+</div>
+<div class="paragraph">
+<p>This enhancement removes reliance on monolithic JSON configuration files whilst providing a modular and <em>cluster-aware</em> approach to Sync Gateway node configuration.</p>
+</div>
+<div class="paragraph">
+<p>Basic startup configuration settings bootstrap your Sync Gateway nodes and securely connect them to a Couchbase Server.
+Configuration of cluster-wide Sync Gateway databases, access control policies and inter-Sync Gateway replications is then provided using the Admin REST API.</p>
+</div>
+<div class="paragraph">
+<p>Persistent configuration changes made to any node in a sync&#160;gateway cluster are automatically propagated throughout the cluster or&#8201;&#8212;&#8201;by using Sync&#160;gateway groups&#8201;&#8212;&#8201;a defined cluster subset.
+These changes persist across sync&#160;gateway restarts.</p>
+</div>
+<div class="paragraph">
+<p>Your existing JSON configurations can be automatically converted to the new centralized persistent modular configuration format on start-up; there is an opt-out for user wishing to temporarily continue working in legacy mode.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">More</dt>
+<dd>
+<p><a href="configuration-overview.html" class="xref page">Configuration Overview</a></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="secure-administration"><a class="anchor" href="#secure-administration"></a>Secure Administration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>This major enhancement complements the introduction of the centralized persistent configuration by introducing secure administration of a cluster through the Admin REST API.</em></p>
+</div>
+<div class="paragraph">
+<p>The Admin REST API now enforces authentication and role-based access control by default.</p>
+</div>
+<div class="paragraph">
+<p>All Admin API traffic must be conducted using existing, valid, Couchbase Server RBAC user credentials.
+These users must be set-up with specific sync gateway roles.</p>
+</div>
+<div class="paragraph">
+<p>A similar approach is also adopted for users of the Metrics API.
+Public API users are not impacted by the change.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">More</dt>
+<dd>
+<p><a href="rest-api-access.html" class="xref page">REST API Access</a></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="tls-encryption-enabled-by-default"><a class="anchor" href="#tls-encryption-enabled-by-default"></a>TLS Encryption Enabled by Default</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>The default enabling of secure TLS connections for all Couchbase Server,side communication ensures that all such communication is encrypted; enforcing and encouraging security best practices.</em></p>
+</div>
+<div class="paragraph">
+<p>Sync Gateway supports v1.3 of TLS.
+No un-encrypted access using non-TLS schemes (for example, <code>couchbase://</code> or <code>http://</code>) is permitted for server side network through Couchbase Server.</p>
+</div>
+<div class="paragraph">
+<p>While we strongly recommend always having TLS enabled, we recognize that users may want to disable it for development and testing environments; there is an opt-out option to do this.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">More</dt>
+<dd>
+<p><a href="secure-sgw-access.html" class="xref page">Secure Sync Gateway Access</a></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="user-defined-extended-attributesxattrs-for-access-control"><a class="anchor" href="#user-defined-extended-attributesxattrs-for-access-control"></a>User Defined Extended Attributes(XAttrs) for Access Control</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Use extended attributes (metadata) to avoid the need to embed sensitive access grant information such as channels and roles within document bodies.</em></p>
+</div>
+<div class="paragraph">
+<p>This key architectural enhancement enforces separation of concerns by providing you the option to use Extended Attributes (XATTRs) to specify channel access grants outside of your document bodies.</p>
+</div>
+<div class="paragraph">
+<p>In addition to addressing privacy concerns, this feature can result in bandwidth savings as it ensures that changes to access grants do not impact document body content and so are no longer propagated to clients.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">More</dt>
+<dd>
+<p><a href="access-control-how-use-xattrs-for-access-grants.html" class="xref page">Use XATTRs for Access Grants</a></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="auto-purge-on-channel-access-revocation-in-inter-sync-gateway-replication"><a class="anchor" href="#auto-purge-on-channel-access-revocation-in-inter-sync-gateway-replication"></a>Auto-Purge on Channel Access Revocation in Inter-Sync Gateway Replication</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>This enhancement to inter-Sync Gateway replication technology helps with the enforcement of data privacy and governance in complex workflows.</em></p>
+</div>
+<div class="paragraph">
+<p>Sync&#160;gateway nodes can replicate data with each other using
+<a href="sync-inter-syncgateway-overview.html" class="xref page">inter-Sync Gateway replication</a> technology.</p>
+</div>
+<div class="paragraph">
+<p>When a user loses access to a channel (and therefore the documents in it) you can opt to enable the initiating sync&#160;gateway cluster to auto-purge those documents in the revoked channel.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">More</dt>
+<dd>
+<p><a href="auto-purge-channel-access-revocation.html" class="xref page">Auto-purge on Channel Access Revocation</a></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="use-environment-variables-in-configuration-file"><a class="anchor" href="#use-environment-variables-in-configuration-file"></a>Use Environment Variables in Configuration File</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sync Gateway configuration is extended to allow the use of defined <em>environment variables</em> as substitution values inside the configuration file.
+This allows users to determine, pick-up and substitute appropriate values during Sync Gateway start-up.</p>
+</div>
+<div class="paragraph">
+<p>The use of environment variables within the configuration file increases the flexibility of the configuration process.
+It makes the switching of the runtime behavior&#8201;&#8212;&#8201;for example during development, experimentation or testing&#8201;&#8212;&#8201;much easier.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">More</dt>
+<dd>
+<p><a href="configuration-environment-variables.html" class="xref page">Configuration Environment Variables</a></p>
+</dd>
+</dl>
+</div>
+<hr>
+<h5 id="" class="discrete"></h5>
+</div>
+</div>
+<div class="sect1">
+<h2 id="related-content"><a class="anchor" href="#related-content"></a>Related Content</h2>
+<div class="sectionbody">
+<div class="card-row three-column-row">
+<div class="sect5 column">
+<h6 id="-2"><a class="anchor" href="#-2"></a></h6>
+<div class="ulist">
+<div class="title">Learn more &#8230;&#8203;</div>
+<ul>
+<li>
+<p><a href="sync-function-overview.html" class="xref page">Sync Function</a></p>
+</li>
+<li>
+<p><a href="import-filter.html" class="xref page">Import filter</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect5 column">
+<h6 id="-3"><a class="anchor" href="#-3"></a></h6>
+<div class="ulist">
+<div class="title">Reference material &#8230;&#8203;</div>
+<ul>
+<li>
+<p><a href="rest-api.html" class="xref page">Public REST API</a></p>
+</li>
+<li>
+<p><a href="rest-api-admin.html" class="xref page">Admin REST API</a></p>
+</li>
+<li>
+<p><a href="rest-api-metrics.html" class="xref page">Metrics REST API</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect5 column">
+<h6 id="-4"><a class="anchor" href="#-4"></a></h6>
+<div class="paragraph">
+<div class="title">Community</div>
+<p><a href="https://forums.couchbase.com/c/mobile/14">Mobile Forum</a> |
+<a href="https://blog.couchbase.com/">Blog</a> |
+<a href="https://blog.couchbase.com/category/couchbase-mobile/?ref=blog-menu">Blog (Mobile)</a> |
+<a href="https://docs.couchbase.com/tutorials/">Tutorials</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <div class="col">
+        <div class="footer-logo">
+          <a href="https://www.couchbase.com" class="icon">
+            <img src="../../_/img/couchbase-logo.svg" alt="Couchbase">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://docs.couchbase.com" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://forums.couchbase.com" target="_blank" rel="noopener">Forums</a></li>
+          <li><a href="https://support.couchbase.com" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://developer.couchbase.com" target="_blank" rel="noopener">Developer Portal</a></li>
+          <li><a href="https://blog.couchbase.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://www.couchbase.com/resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://www.couchbase.com/get-started-developing-nosql">Get Started</a></li>
+          <li><a href="https://www.couchbase.com/downloads">Downloads</a></li>
+          <li><a href="https://learn.couchbase.com/store?utf8=%E2%9C%93&ss=1&ct=78327&commit=Filter" target="_blank" rel="noopener">Training</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="social-icons">
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32.1 26.1"> <path id="twitter" class="cls-1" d="M32,7.1a11.836,11.836,0,0,1-3.8,1,6.462,6.462,0,0,0,2.9-3.6,12.606,12.606,0,0,1-4.2,1.6A6.492,6.492,0,0,0,22.1,4a6.594,6.594,0,0,0-6.6,6.6,7.719,7.719,0,0,0,.2,1.5A18.458,18.458,0,0,1,2.2,5.2a6.294,6.294,0,0,0-.9,3.3A6.765,6.765,0,0,0,4.2,14a6.109,6.109,0,0,1-3-.8v.1a6.543,6.543,0,0,0,5.3,6.4,4.678,4.678,0,0,1-1.7.2,4.869,4.869,0,0,1-1.2-.1,6.679,6.679,0,0,0,6.1,4.6,12.917,12.917,0,0,1-8.2,2.8,9.151,9.151,0,0,1-1.6-.1,18.438,18.438,0,0,0,10.1,3c12.1,0,18.7-10,18.7-18.7v-.8A13.336,13.336,0,0,0,32,7.2Z" transform="translate(0.1 -4)"/></svg>
+            <a href="https://twitter.com/couchbase" class="icon">
+              Twitter
+            </a>
+          </li>
+          <li>
+          <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="linkedin" class="cls-1" d="M29,0H3A3.076,3.076,0,0,0,0,3V29a3.009,3.009,0,0,0,3,3H29a2.946,2.946,0,0,0,3-3V3A3.009,3.009,0,0,0,29,0ZM12,26H8V12h4ZM10,10a2,2,0,1,1,2-2A2.006,2.006,0,0,1,10,10ZM26,26H22V18a2,2,0,0,0-4,0v8H14V12h4v2.5c.8-1.1,2.1-2.5,3.5-2.5A4.736,4.736,0,0,1,26,17Z"/></svg>
+              <a href="https://www.linkedin.com/company/couchbase" class="icon">
+             Linkedin
+            </a>
+          </li>
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="facebook" class="cls-1" d="M29,0H3A2.652,2.652,0,0,0,0,3V29a2.652,2.652,0,0,0,3,3H16V18H12V14h4V12a6.452,6.452,0,0,1,6-6h4v4H22a2.151,2.151,0,0,0-2,2v2h6l-1,4H20V32h9a2.652,2.652,0,0,0,3-3V3A2.652,2.652,0,0,0,29,0Z"/></svg>
+            <a href="https://www.facebook.com/Couchbase" class="icon">
+            Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-terms">
+      <div class="footer-terms-copyright">
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+      </div>
+      <div class="footer-terms-links">
+        <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
+        <a href="https://www.couchbase.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.couchbase.com/cookie-policy">Cookie Policy</a>
+        <a href="https://www.couchbase.com/support-policy">Support Policy</a>
+        <a href="https://info.couchbase.com/unsubscribe-or-manage-preferences.html" target="_blank" rel="noopener">Marketing Preference Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../../_/js/site-navigation-data.js"></script>
+<script id="page-navigation-group" type="application/json">
+{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"2.8","sync-gateway":"3.0"}}
+</script>
+<template id="run-code-panel">
+<div class="action-panel">
+  <form class="action-panel-control" method="POST" action="https://couchbase.live/run" target="run-code-output">
+    <input type="hidden" name="lang">
+    <input type="hidden" name="code">
+    <input type="hidden" name="from" value="docs">
+    <div class="controls">
+      <button class="control-button rerun" type="submit"><i class="fas fa-redo"></i></button>
+      <span class="shell-name control-label">Output</span>
+      <button class="control-button close"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </form>
+  <iframe class="run-code-output" name="run-code-output"></iframe>
+</div>
+</template>
+<script id="site-script" src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
+<script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+</body>
+</html>
