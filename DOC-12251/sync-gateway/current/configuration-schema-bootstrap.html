@@ -1,0 +1,2468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
+<title>Bootstrap Configuration | Couchbase Docs</title>
+<link rel="canonical" href="https://docs.couchbase.com/sync-gateway/current/configuration-schema-bootstrap.html">
+<link rel="stylesheet" href="../../_/css/site.css">
+<script src="../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="Reference data on the contents of Sync Gateway&#x27;s bootstrap configuration, which determines its run time behavior.">
+<meta name="keywords" content="sync, data replication, cloud-to-edge, configuration">
+<link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+
+
+<meta name="dcterms.subject" content="sync-gateway">
+<meta name="dcterms.identifier" content="3.1">
+<meta name="page-url" content="/sync-gateway/current/configuration-schema-bootstrap.html">
+<meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="sync-gateway">
+<meta name="docsearch:component_title" content="Sync Gateway">
+<meta name="docsearch:cversion" content="3.1">
+<meta name="docsearch:component_version" content="sync-gateway@3.1">
+<meta name="docsearch:module" content="">
+<meta name="docsearch:breadcrumbs" content="Sync Gateway / Configuration / Bootstrap">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
+<meta name="generator" content="Antora 3.1.7">
+<link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
+</head>
+<body class="article">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="header fixed-top">
+  <div class="header-top-row">
+      <div class="container">
+          <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
+              <ul class="navbar-brand-list">
+                <li class="brand-logo">
+                  <a class="navbar-brand" href="https://www.couchbase.com">
+                    <img src="../../_/img/couchbase-logo.svg" alt="Couchbase" />
+                  </a>
+                </li>
+                <li>
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
+                    <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
+                    <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  </a>
+                </li>
+              </ul>
+              <button class="navbar-burger" data-target="topbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+          </nav>
+      </div>
+  </div>
+  <div class="header-bottom-row" id="topbar-menu">
+    <div class="container">
+        <nav  class="navbar navbar-new-bottom">
+
+              <div class="navbar-collapse collapse" id="navbar2">
+                <ul class="navbar-nav w-100 justify-content-start">
+
+                  <li class="nav-item "">
+                    <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
+                      <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../home/server.html">
+                      Server
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../home/mobile.html">
+                      Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../home/sdk.html">
+                      SDKs
+                      
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="primary-action">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                  Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
+                </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+              </div>
+
+        </nav>
+    </div>
+   </div>
+</header>
+<div class="body container">
+<aside class="nav left-sidebar">
+  <div class="nav-container">
+    <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+    <template id="page-versions" style="display: none">
+      <select class="version_list" data-component="sync-gateway">
+        <option value="3.1" data-url="configuration-schema-bootstrap.html" selected>3.1</option>
+        <option value="3.0" data-url="../3.0/configuration-schema-bootstrap.html">3.0</option>
+        <option value="2.8" data-url="../2.8/index.html">2.8</option>
+      </select>
+    </template>
+  </div>
+</aside>
+<aside class="toc sidebar"
+      data-title="Contents"
+      data-levels="2">
+  <div class="sidebar-box">
+    <div class="tools" role="navigation">
+<ul>
+<li class="tool edit"><a href="https://github.com/couchbaselabs/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/configuration-schema-bootstrap.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+</ul>
+</div>
+    <div class="toc-menu"></div>
+    <div class="is-this-helpful-box">
+      <h4> Is this page helpful?</h4>
+      <div class="btn-row">
+        <a href="#" class="like-btn helpful-btn" id="yesBtn" data-page-rating="like" >
+                <i class="far fa-thumbs-up"></i>
+            Yes
+
+            </a>
+        <a href="#" class="dislike-btn helpful-btn" id="noBtn"  data-page-rating="dislike"> <i class="far fa-thumbs-down"></i> No</a>
+      </div>
+      <div class="any-feedback">
+        <a href="#" class="btn any-feedback-btn" id="myCustomTrigger">Leave Additional Feedback? </a>
+      </div>
+      <div class="dialog-box" id="dialogBox">
+        <form>
+            <div class="form-group " id="additionalFeedbackBox">
+              <textarea class="input-control feed-back-msg" rows="8" placeholder="Any Additonal Feedback?"></textarea>
+
+              <div class="action-btn-row ">
+                <a href="#" class="skip-btn" id="skipBtnMsg">Skip</a>
+                  <button class="submit-btn btn blue-btn disabled" > Submit  </button>
+                  <a href="#" class="info-btn"><i class="fas fa-info-circle"></i></a>
+              </div>
+
+
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="feedback-modal modal-popup">
+  <div class="modal-popup-dialogue">
+    <div class="popup-header">
+      <a href="#" class="close-popup"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="popup-content">
+      <p>
+        Please use the form below to provide your feedback. Because your feedback is valuable to us,
+         the information you submit in this form is recorded in our issue tracking system (JIRA), which is publicly available.
+        You can track the status of your feedback using the ticket number displayed in the dialog once you submit the form.
+      </p>
+    </div>
+  </div>
+</div>
+
+<main class="article" data-ceiling="topbar">
+<div class="article-header">
+<nav class="crumbs" aria-label="breadcrumbs">
+<ul>
+<li class="crumb"><a href="index.html">Sync Gateway</a></li>
+<li class="crumb">Configuration</li>
+<li class="crumb"><a href="configuration-schema-bootstrap.html">Bootstrap</a></li>
+</ul>
+</nav>
+</div>
+<article class="doc">
+<div class="page-heading-title">
+<h1 class="page">Bootstrap Configuration</h1>
+<div class="labels">
+<ul></ul>
+</div>
+
+
+</div>
+<div class="contributor-list-box">
+<span class="last-commit-date" id="commitdate">    </span>
+<ul id="contributorList"></ul>
+<span  id="otherContributor"> + </span>
+</div><div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock abstract">
+<blockquote>
+<div class="paragraph">
+<p>Reference data on the contents of Sync Gateway&#8217;s bootstrap configuration, which determines its run time behavior.<br></p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p><em>Related  topics</em>:  <a href="configuration-overview.html" class="xref page">Overview</a>  |  Bootstrap  |  <a href="configuration-schema-database.html" class="xref page">Database</a>  |  <a href="#configuration-schema-db-security&.adoc#8212;&#8203;page}" class="xref unresolved">Database Security</a>  |  <a href="configuration-schema-access-control.html" class="xref page">Access Control</a> |  <a href="configuration-schema-import-filter.html" class="xref page">Import</a> |  <a href="configuration-schema-isgr.html" class="xref page">Inter-Sync Gateway Replication</a></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">Pre-3.0 Legacy Configuration Equivalents</div>
+<div class="paragraph">
+<p>This content describes configuration for Sync Gateway 3.0 and higher&#8201;&#8212;&#8201;for legacy configuration, see: <a href="configuration-properties-legacy.html" class="xref page">Legacy Pre-3.0 Configuration</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <em>Sync&#160;Gateway</em> bootstrap configuration is provisioned in a JSON format file.
+The configuration properties define sync&#160;gateway&#8217;s runtime behavior.
+See the <a href="#lbl-schema">schema</a> below for more details on these properties.</p>
+</div>
+<div class="paragraph">
+<p>Sync&#160;gateway will look for the following configuration file unless you direct it otherwise:<br>
+<code>/home/sync_gateway/sync_gateway.json</code></p>
+</div>
+<div class="paragraph">
+<p>Use the following command to run Sync Gateway with a configuration file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bashrc hljs" data-lang="bashrc">sync_gateway sync-gateway-bootstrap.json</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="lbl-schema"><a class="anchor" href="#lbl-schema"></a>Bootstrap Configuration Schema</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This schema identifies all the configurable properties.</p>
+</div>
+<pre>
+{
+   <a href="#api">api</a>: {
+      <a href="#api-admin_interface">admin_interface</a>: "127.0.0.1:4985",
+      <a href="#api-admin_interface_authentication">admin_interface_authentication</a>: true,
+      <a href="#api-compress_responses">compress_responses</a>: true,
+      cors: {
+         <a href="#api-cors-headers">headers</a>: [],
+         <a href="#api-cors-login_origin">login_origin</a>: [],
+         <a href="#api-cors-max_age">max_age</a>: 0,
+         <a href="#api-cors-origin">origin</a>: []
+      },
+      <a href="#api-enable_advanced_auth_dp">enable_advanced_auth_dp</a>: true,
+      <a href="#api-hide_product_version">hide_product_version</a>: true,
+      https: {
+         <a href="#api-https-tls_cert_path">tls_cert_path</a>: "string",
+         <a href="#api-https-tls_key_path">tls_key_path</a>: "string",
+         <a href="#api-https-tls_minimum_version">tls_minimum_version</a>: "tlsv1.2"
+      },
+      <a href="#api-idle_timeout">idle_timeout</a>: "90s",
+      <a href="#api-max_connections">max_connections</a>: 0,
+      <a href="#api-metric_interface">metric_interface</a>: "127.0.0.1:4986",
+      <a href="#api-metrics_interface_authentication">metrics_interface_authentication</a>: true,
+      <a href="#api-pretty">pretty</a>: true,
+      <a href="#api-profile_interface">profile_interface</a>: "string",
+      <a href="#api-public_interface">public_interface</a>: ":4984",
+      <a href="#api-read_header_timeout">read_header_timeout</a>: "5s",
+      <a href="#api-server_read_timeout">server_read_timeout</a>: "string",
+      <a href="#api-server_write_timeout">server_write_timeout</a>: "string"
+   },
+   auth: {
+      <a href="#auth-bcrypt_cost">bcrypt_cost</a>: 10
+   },
+   <a href="#bootstrap">bootstrap</a>: {
+      <a href="#bootstrap-ca_cert_path">ca_cert_path</a>: "string",
+      <a href="#bootstrap-config_update_frequency">config_update_frequency</a>: "10s",
+      <a href="#bootstrap-group_id">group_id</a>: "default",
+      <a href="#bootstrap-password">password</a>: "string",
+      <a href="#bootstrap-server">server</a>: "string",
+      <a href="#bootstrap-server_tls_skip_verify">server_tls_skip_verify</a>: false,
+      <a href="#bootstrap-use_tls_server">use_tls_server</a>: true,
+      <a href="#bootstrap-username">username</a>: "string",
+      <a href="#bootstrap-x509_cert_path">x509_cert_path</a>: "string",
+      <a href="#bootstrap-x509_key_path">x509_key_path</a>: "string"
+   },
+   <a href="#bucket_credentials">bucket_credentials</a>: {
+      <a href="#bucket_credentials-{bucketname}">{bucketname...}</a>: {
+         <a href="#bucket_credentials-{bucketname}-password">password</a>: "string",
+         <a href="#bucket_credentials-{bucketname}-username">username</a>: "string",
+         <a href="#bucket_credentials-{bucketname}-x509_cert_path">x509_cert_path</a>: "string",
+         <a href="#bucket_credentials-{bucketname}-x509_key_path">x509_key_path</a>: "string"
+      }
+   },
+   <a href="#couchbase_keepalive_interval">couchbase_keepalive_interval</a>: 0,
+   <a href="#database_credentials">database_credentials</a>: {
+      <a href="#database_credentials-{databasename}">{databasename...}</a>: {
+         <a href="#database_credentials-{databasename}-password">password</a>: "string",
+         <a href="#database_credentials-{databasename}-username">username</a>: "string",
+         <a href="#database_credentials-{databasename}-x509_cert_path">x509_cert_path</a>: "string",
+         <a href="#database_credentials-{databasename}-x509_key_path">x509_key_path</a>: "string"
+      }
+   },
+   <a href="#logging">logging</a>: {
+      console: {
+         <a href="#logging-console-collation_buffer_size">collation_buffer_size</a>: 0,
+         <a href="#logging-console-color_enabled">color_enabled</a>: true,
+         <a href="#logging-console-enabled">enabled</a>: true,
+         <a href="#logging-console-file_output">file_output</a>: "string",
+         <a href="#logging-console-log_keys">log_keys</a>: [],
+         <a href="#logging-console-log_level">log_level</a>: "none",
+         rotation: {
+            <a href="#logging-console-rotation-localtime">localtime</a>: true,
+            <a href="#logging-console-rotation-max_age">max_age</a>: 0,
+            <a href="#logging-console-rotation-max_size">max_size</a>: 0,
+            <a href="#logging-console-rotation-rotated_logs_size">rotated_logs_size</a>: 0
+         }
+      },
+      debug: {
+         <a href="#logging-debug-collation_buffer_size">collation_buffer_size</a>: 0,
+         <a href="#logging-debug-enabled">enabled</a>: true,
+         rotation: {
+            <a href="#logging-debug-rotation-localtime">localtime</a>: true,
+            <a href="#logging-debug-rotation-max_age">max_age</a>: 0,
+            <a href="#logging-debug-rotation-max_size">max_size</a>: 0,
+            <a href="#logging-debug-rotation-rotated_logs_size">rotated_logs_size</a>: 0
+         }
+      },
+      error: {
+         <a href="#logging-error-collation_buffer_size">collation_buffer_size</a>: 0,
+         <a href="#logging-error-enabled">enabled</a>: true,
+         rotation: {
+            <a href="#logging-error-rotation-localtime">localtime</a>: true,
+            <a href="#logging-error-rotation-max_age">max_age</a>: 0,
+            <a href="#logging-error-rotation-max_size">max_size</a>: 0,
+            <a href="#logging-error-rotation-rotated_logs_size">rotated_logs_size</a>: 0
+         }
+      },
+      info: {
+         <a href="#logging-info-collation_buffer_size">collation_buffer_size</a>: 0,
+         <a href="#logging-info-enabled">enabled</a>: true,
+         rotation: {
+            <a href="#logging-info-rotation-localtime">localtime</a>: true,
+            <a href="#logging-info-rotation-max_age">max_age</a>: 0,
+            <a href="#logging-info-rotation-max_size">max_size</a>: 0,
+            <a href="#logging-info-rotation-rotated_logs_size">rotated_logs_size</a>: 0
+         }
+      },
+      <a href="#logging-log_file_path">log_file_path</a>: "string",
+      <a href="#logging-redaction_level">redaction_level</a>: "partial",
+      stats: {
+         <a href="#logging-stats-collation_buffer_size">collation_buffer_size</a>: 0,
+         <a href="#logging-stats-enabled">enabled</a>: true,
+         rotation: {
+            <a href="#logging-stats-rotation-localtime">localtime</a>: true,
+            <a href="#logging-stats-rotation-max_age">max_age</a>: 0,
+            <a href="#logging-stats-rotation-max_size">max_size</a>: 0,
+            <a href="#logging-stats-rotation-rotated_logs_size">rotated_logs_size</a>: 0
+         }
+      },
+      trace: {
+         <a href="#logging-trace-collation_buffer_size">collation_buffer_size</a>: 0,
+         <a href="#logging-trace-enabled">enabled</a>: true,
+         rotation: {
+            <a href="#logging-trace-rotation-localtime">localtime</a>: true,
+            <a href="#logging-trace-rotation-max_age">max_age</a>: 0,
+            <a href="#logging-trace-rotation-max_size">max_size</a>: 0,
+            <a href="#logging-trace-rotation-rotated_logs_size">rotated_logs_size</a>: 0
+         }
+      },
+      warn: {
+         <a href="#logging-warn-collation_buffer_size">collation_buffer_size</a>: 0,
+         <a href="#logging-warn-enabled">enabled</a>: true,
+         rotation: {
+            <a href="#logging-warn-rotation-localtime">localtime</a>: true,
+            <a href="#logging-warn-rotation-max_age">max_age</a>: 0,
+            <a href="#logging-warn-rotation-max_size">max_size</a>: 0,
+            <a href="#logging-warn-rotation-rotated_logs_size">rotated_logs_size</a>: 0
+         }
+      }
+   },
+   <a href="#max_file_descriptors">max_file_descriptors</a>: 5000,
+   replicator: {
+      <a href="#replicator-blip_compression">blip_compression</a>: 0,
+      <a href="#replicator-max_concurrent_replications">max_concurrent_replications</a>: 0,
+      <a href="#replicator-max_heartbeat">max_heartbeat</a>: "string"
+   },
+   <a href="#unsupported">unsupported</a>: {
+      http2: {
+         <a href="#unsupported-http2-enabled">enabled</a>: true
+      },
+      <a href="#unsupported-serverless">serverless</a>: {
+         <a href="#unsupported-serverless-enabled">enabled</a>: true,
+         <a href="#unsupported-serverless-min_config_fetch_interval">min_config_fetch_interval</a>: "1s"
+      },
+      <a href="#unsupported-stats_log_frequency">stats_log_frequency</a>: "1m",
+      <a href="#unsupported-use_stdlib_json">use_stdlib_json</a>: true,
+      <a href="#unsupported-use_xattr_config">use_xattr_config</a>: true
+   }
+}
+</pre>
+<h4 id="api" class="discrete"><code>api</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>object</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Configuration settings for modifying how the REST API is interacted with.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-admin_interface" class="discrete"><code>api.admin_interface</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Network interface to bind admin API to.</p>
+<p>By default, this will only be accessible to the localhost.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-admin_interface_authentication" class="discrete"><code>api.admin_interface_authentication</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Whether the admin API requires authentication</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-compress_responses" class="discrete"><code>api.compress_responses</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>If false, disables compression of HTTP responses</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-cors-headers" class="discrete"><code>api.cors.headers</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>array</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>List of allowed headers</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-cors-login_origin" class="discrete"><code>api.cors.login_origin</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>array</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>List of allowed login origins</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-cors-max_age" class="discrete"><code>api.cors.max_age</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Maximum age of the CORS Options request</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-cors-origin" class="discrete"><code>api.cors.origin</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>array</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>List of allowed origins, use ['*'] to allow access from everywhere</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-enable_advanced_auth_dp" class="discrete"><code>api.enable_advanced_auth_dp</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Whether to enable the DP permissions check feature of admin auth.</p>
+<p>Defaults to <code>true</code> if using enterprise-edition or <code>false</code> if using community-edition.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-hide_product_version" class="discrete"><code>api.hide_product_version</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Whether product versions removed from Server headers and REST API responses</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-https-tls_cert_path" class="discrete"><code>api.https.tls_cert_path</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The TLS cert file to use for the REST APIs</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-https-tls_key_path" class="discrete"><code>api.https.tls_key_path</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The TLS key file to use for the REST APIs</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-https-tls_minimum_version" class="discrete"><code>api.https.tls_minimum_version</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The minimum allowable TLS version for the REST APIs</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-idle_timeout" class="discrete"><code>api.idle_timeout</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The maximum amount of time to wait for the next request when keep-alives are enabled.</p>
+<p>This is a duration and therefore can be provided with units &quot;h&quot;, &quot;m&quot;, &quot;s&quot;, &quot;ms&quot;, &quot;us&quot;, and &quot;ns&quot;. For example, 5 hours, 20 minutes, and 30 seconds would be <code>5h20m30s</code>.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-max_connections" class="discrete"><code>api.max_connections</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>number</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Max of incoming HTTP connections to accept</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-metric_interface" class="discrete"><code>api.metric_interface</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Network interface to bind metrics API to.</p>
+<p>By default, this will only be accessible to the localhost.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-metrics_interface_authentication" class="discrete"><code>api.metrics_interface_authentication</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Whether the metrics API requires authentication</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-pretty" class="discrete"><code>api.pretty</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Pretty-print JSON responses</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-profile_interface" class="discrete"><code>api.profile_interface</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Network interface to bind profiling API to</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-public_interface" class="discrete"><code>api.public_interface</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Network interface to bind public API to</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-read_header_timeout" class="discrete"><code>api.read_header_timeout</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The amount of time allowed to read request headers.</p>
+<p>This is a duration and therefore can be provided with units &quot;h&quot;, &quot;m&quot;, &quot;s&quot;, &quot;ms&quot;, &quot;us&quot;, and &quot;ns&quot;. For example, 5 hours, 20 minutes, and 30 seconds would be <code>5h20m30s</code>.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-server_read_timeout" class="discrete"><code>api.server_read_timeout</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Maximum duration.Second before timing out read of the HTTP(S) request.</p>
+<p>This is a duration and therefore can be provided with units &quot;h&quot;, &quot;m&quot;, &quot;s&quot;, &quot;ms&quot;, &quot;us&quot;, and &quot;ns&quot;. For example, 5 hours, 20 minutes, and 30 seconds would be <code>5h20m30s</code>.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="api-server_write_timeout" class="discrete"><code>api.server_write_timeout</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Maximum duration.Second before timing out write of the HTTP(S) response.</p>
+<p>This is a duration and therefore can be provided with units &quot;h&quot;, &quot;m&quot;, &quot;s&quot;, &quot;ms&quot;, &quot;us&quot;, and &quot;ns&quot;. For example, 5 hours, 20 minutes, and 30 seconds would be <code>5h20m30s</code>.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="auth-bcrypt_cost" class="discrete"><code>auth.bcrypt_cost</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Cost to use for bcrypt password hashes</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="bootstrap" class="discrete"><code>bootstrap</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>object</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Configuration settings for interacting with Couchbase Server.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="bootstrap-ca_cert_path" class="discrete"><code>bootstrap.ca_cert_path</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Root CA cert path for TLS connection</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="bootstrap-config_update_frequency" class="discrete"><code>bootstrap.config_update_frequency</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>How often to poll Couchbase Server for new config changes.</p>
+<p>This is a duration and therefore can be provided with units &quot;h&quot;, &quot;m&quot;, &quot;s&quot;, &quot;ms&quot;, &quot;us&quot;, and &quot;ns&quot;. For example, 5 hours, 20 minutes, and 30 seconds would be <code>5h20m30s</code>.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="bootstrap-group_id" class="discrete"><code>bootstrap.group_id</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The config group ID to use when discovering databases. Allows for non-homogenous configuration.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="bootstrap-password" class="discrete"><code>bootstrap.password</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Password for authenticating to server</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="bootstrap-server" class="discrete"><code>bootstrap.server</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Couchbase Server connection string/URL.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="bootstrap-server_tls_skip_verify" class="discrete"><code>bootstrap.server_tls_skip_verify</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Allow empty server CA Cert Path without attempting to use system root pool</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="bootstrap-use_tls_server" class="discrete"><code>bootstrap.use_tls_server</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Enforces a secure or non-secure server scheme</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="bootstrap-username" class="discrete"><code>bootstrap.username</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Username for authenticating to server.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="bootstrap-x509_cert_path" class="discrete"><code>bootstrap.x509_cert_path</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Cert path (public key) for X.509 bucket auth</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="bootstrap-x509_key_path" class="discrete"><code>bootstrap.x509_key_path</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Key path (private key) for X.509 bucket auth</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="bucket_credentials" class="discrete"><code>bucket_credentials</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>object</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>A map of bucket names to credentials, that can be used instead of the bootstrap ones.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="bucket_credentials-{bucketname}" class="discrete"><code>bucket_credentials.{bucketname&#8230;&#8203;}</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>object</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The configuration for the credentials set.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="bucket_credentials-{bucketname}-password" class="discrete"><code>bucket_credentials.{bucketname&#8230;&#8203;}.password</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Password for authenticating to the bucket. This value is always redacted.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="bucket_credentials-{bucketname}-username" class="discrete"><code>bucket_credentials.{bucketname&#8230;&#8203;}.username</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Username for authenticating to the bucket</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="bucket_credentials-{bucketname}-x509_cert_path" class="discrete"><code>bucket_credentials.{bucketname&#8230;&#8203;}.x509_cert_path</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Cert path (public key) for X.509 bucket auth</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="bucket_credentials-{bucketname}-x509_key_path" class="discrete"><code>bucket_credentials.{bucketname&#8230;&#8203;}.x509_key_path</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Key path (private key) for X.509 bucket auth</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="couchbase_keepalive_interval" class="discrete"><code>couchbase_keepalive_interval</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>TCP keep-alive interval between SG and Couchbase server</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="database_credentials" class="discrete"><code>database_credentials</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>object</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>A map of database name to credentials, that can be used instead of the bootstrap ones.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="database_credentials-{databasename}" class="discrete"><code>database_credentials.{databasename&#8230;&#8203;}</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>object</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The configuration for the credentials set.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="database_credentials-{databasename}-password" class="discrete"><code>database_credentials.{databasename&#8230;&#8203;}.password</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Password for authenticating to the bucket. This value is always redacted.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="database_credentials-{databasename}-username" class="discrete"><code>database_credentials.{databasename&#8230;&#8203;}.username</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Username for authenticating to the bucket</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="database_credentials-{databasename}-x509_cert_path" class="discrete"><code>database_credentials.{databasename&#8230;&#8203;}.x509_cert_path</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Cert path (public key) for X.509 bucket auth</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="database_credentials-{databasename}-x509_key_path" class="discrete"><code>database_credentials.{databasename&#8230;&#8203;}.x509_key_path</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Key path (private key) for X.509 bucket auth</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging" class="discrete"><code>logging</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>object</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The configuration settings for modifying Sync Gateway logging.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-console-collation_buffer_size" class="discrete"><code>logging.console.collation_buffer_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The size of the log collation buffer.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-console-color_enabled" class="discrete"><code>logging.console.color_enabled</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Log with color for the console output</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-console-enabled" class="discrete"><code>logging.console.enabled</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Toggle for this log output</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-console-file_output" class="discrete"><code>logging.console.file_output</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Override the default stderr output, and write to the file specified instead</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-console-log_keys" class="discrete"><code>logging.console.log_keys</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>array</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Log Keys for the console output</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-console-log_level" class="discrete"><code>logging.console.log_level</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Log Level for the console output</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-console-rotation-localtime" class="discrete"><code>logging.console.rotation.localtime</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>If true, it uses the computer's local time to format the backup timestamp.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-console-rotation-max_age" class="discrete"><code>logging.console.rotation.max_age</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The maximum number of days to retain old log files.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-console-rotation-max_size" class="discrete"><code>logging.console.rotation.max_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The maximum size in MB of the log file before it gets rotated.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-console-rotation-rotated_logs_size" class="discrete"><code>logging.console.rotation.rotated_logs_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Max Size (in mb) of log files before deletion</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-debug-collation_buffer_size" class="discrete"><code>logging.debug.collation_buffer_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The size of the log collation buffer</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-debug-enabled" class="discrete"><code>logging.debug.enabled</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Toggle for this log output</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-debug-rotation-localtime" class="discrete"><code>logging.debug.rotation.localtime</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>If true, it uses the computer's local time to format the backup timestamp.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-debug-rotation-max_age" class="discrete"><code>logging.debug.rotation.max_age</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The maximum number of days to retain old log files.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-debug-rotation-max_size" class="discrete"><code>logging.debug.rotation.max_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The maximum size in MB of the log file before it gets rotated.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-debug-rotation-rotated_logs_size" class="discrete"><code>logging.debug.rotation.rotated_logs_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Max Size (in mb) of log files before deletion</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-error-collation_buffer_size" class="discrete"><code>logging.error.collation_buffer_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The size of the log collation buffer</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-error-enabled" class="discrete"><code>logging.error.enabled</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Toggle for this log output</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-error-rotation-localtime" class="discrete"><code>logging.error.rotation.localtime</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>If true, it uses the computer's local time to format the backup timestamp.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-error-rotation-max_age" class="discrete"><code>logging.error.rotation.max_age</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The maximum number of days to retain old log files.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-error-rotation-max_size" class="discrete"><code>logging.error.rotation.max_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The maximum size in MB of the log file before it gets rotated.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-error-rotation-rotated_logs_size" class="discrete"><code>logging.error.rotation.rotated_logs_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Max Size (in mb) of log files before deletion</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-info-collation_buffer_size" class="discrete"><code>logging.info.collation_buffer_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The size of the log collation buffer</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-info-enabled" class="discrete"><code>logging.info.enabled</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Toggle for this log output</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-info-rotation-localtime" class="discrete"><code>logging.info.rotation.localtime</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>If true, it uses the computer's local time to format the backup timestamp.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-info-rotation-max_age" class="discrete"><code>logging.info.rotation.max_age</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The maximum number of days to retain old log files.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-info-rotation-max_size" class="discrete"><code>logging.info.rotation.max_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The maximum size in MB of the log file before it gets rotated.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-info-rotation-rotated_logs_size" class="discrete"><code>logging.info.rotation.rotated_logs_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Max Size (in mb) of log files before deletion</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-log_file_path" class="discrete"><code>logging.log_file_path</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Absolute or relative path on the filesystem to the log file directory. A relative path is from the directory that contains the Sync Gateway executable file.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-redaction_level" class="discrete"><code>logging.redaction_level</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Redaction level to apply to log output.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-stats-collation_buffer_size" class="discrete"><code>logging.stats.collation_buffer_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The size of the log collation buffer</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-stats-enabled" class="discrete"><code>logging.stats.enabled</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Toggle for this log output</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-stats-rotation-localtime" class="discrete"><code>logging.stats.rotation.localtime</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>If true, it uses the computer's local time to format the backup timestamp.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-stats-rotation-max_age" class="discrete"><code>logging.stats.rotation.max_age</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The maximum number of days to retain old log files.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-stats-rotation-max_size" class="discrete"><code>logging.stats.rotation.max_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The maximum size in MB of the log file before it gets rotated.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-stats-rotation-rotated_logs_size" class="discrete"><code>logging.stats.rotation.rotated_logs_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Max Size (in mb) of log files before deletion</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-trace-collation_buffer_size" class="discrete"><code>logging.trace.collation_buffer_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The size of the log collation buffer</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-trace-enabled" class="discrete"><code>logging.trace.enabled</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Toggle for this log output</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-trace-rotation-localtime" class="discrete"><code>logging.trace.rotation.localtime</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>If true, it uses the computer's local time to format the backup timestamp.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-trace-rotation-max_age" class="discrete"><code>logging.trace.rotation.max_age</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The maximum number of days to retain old log files.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-trace-rotation-max_size" class="discrete"><code>logging.trace.rotation.max_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The maximum size in MB of the log file before it gets rotated.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-trace-rotation-rotated_logs_size" class="discrete"><code>logging.trace.rotation.rotated_logs_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Max Size (in mb) of log files before deletion</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-warn-collation_buffer_size" class="discrete"><code>logging.warn.collation_buffer_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The size of the log collation buffer</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-warn-enabled" class="discrete"><code>logging.warn.enabled</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Toggle for this log output</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-warn-rotation-localtime" class="discrete"><code>logging.warn.rotation.localtime</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>If true, it uses the computer's local time to format the backup timestamp.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-warn-rotation-max_age" class="discrete"><code>logging.warn.rotation.max_age</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The maximum number of days to retain old log files.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-warn-rotation-max_size" class="discrete"><code>logging.warn.rotation.max_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>The maximum size in MB of the log file before it gets rotated.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="logging-warn-rotation-rotated_logs_size" class="discrete"><code>logging.warn.rotation.rotated_logs_size</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Max Size (in mb) of log files before deletion</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="max_file_descriptors" class="discrete"><code>max_file_descriptors</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>number</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Max of open file descriptors (RLIMIT_NOFILE)</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="replicator-blip_compression" class="discrete"><code>replicator.blip_compression</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>BLIP data compression level (0-9)</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="replicator-max_concurrent_replications" class="discrete"><code>replicator.max_concurrent_replications</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>integer</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Maximum number of concurrent replication connections allowed. If set to 0 this limit will be ignored.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="replicator-max_heartbeat" class="discrete"><code>replicator.max_heartbeat</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Max heartbeat value for <code>_changes</code> request.</p>
+<p>This is a duration and therefore can be provided with units &quot;h&quot;, &quot;m&quot;, &quot;s&quot;, &quot;ms&quot;, &quot;us&quot;, and &quot;ns&quot;. For example, 5 hours, 20 minutes, and 30 seconds would be <code>5h20m30s</code>.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="unsupported" class="discrete"><code>unsupported</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>object</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Settings that are not officially supported. It is highly recommended these are <strong>not</strong> used.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="unsupported-http2-enabled" class="discrete"><code>unsupported.http2.enabled</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Whether HTTP2 support is enabled</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="unsupported-serverless" class="discrete"><code>unsupported.serverless</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>object</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Configuration for when SG is running in serverless mode</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="unsupported-serverless-enabled" class="discrete"><code>unsupported.serverless.enabled</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Run SG in to serverless mode</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="unsupported-serverless-min_config_fetch_interval" class="discrete"><code>unsupported.serverless.min_config_fetch_interval</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>How long database configs should be kept for in Sync Gateway before refreshing. Set to 0 to fetch configs everytime. This is used for requested databases that SG does not know about.</p>
+<p>This is a duration and therefore can be provided with units &quot;h&quot;, &quot;m&quot;, &quot;s&quot;, &quot;ms&quot;, &quot;us&quot;, and &quot;ns&quot;. For example, 5 hours, 20 minutes, and 30 seconds would be <code>5h20m30s</code>.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="unsupported-stats_log_frequency" class="discrete"><code>unsupported.stats_log_frequency</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>string</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>How often should stats be written to stats logs.</p>
+<p>This is a duration and therefore can be provided with units &quot;h&quot;, &quot;m&quot;, &quot;s&quot;, &quot;ms&quot;, &quot;us&quot;, and &quot;ns&quot;. For example, 5 hours, 20 minutes, and 30 seconds would be <code>5h20m30s</code>.</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="unsupported-use_stdlib_json" class="discrete"><code>unsupported.use_stdlib_json</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Bypass the jsoniter package and use Go's stdlib instead</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<h4 id="unsupported-use_xattr_config" class="discrete"><code>unsupported.use_xattr_config</code></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type</dt>
+<dd>
+<p>boolean</p>
+</dd>
+<dt class="hdlist1">Description</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<p>Store database configurations in system xattrs</p>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<hr>
+<h5 id="" class="discrete"></h5>
+</div>
+</div>
+<div class="sect1">
+<h2 id="related-content"><a class="anchor" href="#related-content"></a>Related Content</h2>
+<div class="sectionbody">
+<div class="card-row three-column-row">
+<div class="sect5 column">
+<h6 id="-2"><a class="anchor" href="#-2"></a></h6>
+<div class="ulist">
+<div class="title">API Topics</div>
+<ul>
+<li>
+<p><a href="rest-api.html" class="xref page">Public REST API</a></p>
+</li>
+<li>
+<p><a href="rest-api-admin.html" class="xref page">Admin REST API</a></p>
+</li>
+<li>
+<p><a href="rest-api-metrics.html" class="xref page">Metrics REST API</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect5 column">
+<h6 id="-3"><a class="anchor" href="#-3"></a></h6>
+<div class="ulist">
+<div class="title">Reference</div>
+<ul>
+<li>
+<p><a href="#">Bootstrap</a></p>
+</li>
+<li>
+<p><a href="configuration-schema-database.html" class="xref page">Database</a></p>
+</li>
+<li>
+<p><a href="configuration-schema-db-security.html" class="xref page">Database Security</a></p>
+</li>
+<li>
+<p><a href="configuration-schema-access-control.html" class="xref page">Access Control</a></p>
+</li>
+<li>
+<p><a href="configuration-schema-import-filter.html" class="xref page">Import Filter</a></p>
+</li>
+<li>
+<p><a href="configuration-schema-isgr.html" class="xref page">Inter-Sync&#160;Gateway Replication</a></p>
+</li>
+<li>
+<p><a href="configuration-properties-legacy.html" class="xref page">Legacy Pre-3.0 Configuration</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect5 column">
+<h6 id="-4"><a class="anchor" href="#-4"></a></h6>
+<div class="paragraph">
+<div class="title">Community</div>
+<p><a href="https://forums.couchbase.com/c/mobile/14">Mobile Forum</a> |
+<a href="https://blog.couchbase.com/">Blog</a> |
+<a href="https://blog.couchbase.com/category/couchbase-mobile/?ref=blog-menu">Blog (Mobile)</a> |
+<a href="https://docs.couchbase.com/tutorials/">Tutorials</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <div class="col">
+        <div class="footer-logo">
+          <a href="https://www.couchbase.com" class="icon">
+            <img src="../../_/img/couchbase-logo.svg" alt="Couchbase">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://docs.couchbase.com" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://forums.couchbase.com" target="_blank" rel="noopener">Forums</a></li>
+          <li><a href="https://support.couchbase.com" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://developer.couchbase.com" target="_blank" rel="noopener">Developer Portal</a></li>
+          <li><a href="https://blog.couchbase.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://www.couchbase.com/resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://www.couchbase.com/get-started-developing-nosql">Get Started</a></li>
+          <li><a href="https://www.couchbase.com/downloads">Downloads</a></li>
+          <li><a href="https://learn.couchbase.com/store?utf8=%E2%9C%93&ss=1&ct=78327&commit=Filter" target="_blank" rel="noopener">Training</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="social-icons">
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32.1 26.1"> <path id="twitter" class="cls-1" d="M32,7.1a11.836,11.836,0,0,1-3.8,1,6.462,6.462,0,0,0,2.9-3.6,12.606,12.606,0,0,1-4.2,1.6A6.492,6.492,0,0,0,22.1,4a6.594,6.594,0,0,0-6.6,6.6,7.719,7.719,0,0,0,.2,1.5A18.458,18.458,0,0,1,2.2,5.2a6.294,6.294,0,0,0-.9,3.3A6.765,6.765,0,0,0,4.2,14a6.109,6.109,0,0,1-3-.8v.1a6.543,6.543,0,0,0,5.3,6.4,4.678,4.678,0,0,1-1.7.2,4.869,4.869,0,0,1-1.2-.1,6.679,6.679,0,0,0,6.1,4.6,12.917,12.917,0,0,1-8.2,2.8,9.151,9.151,0,0,1-1.6-.1,18.438,18.438,0,0,0,10.1,3c12.1,0,18.7-10,18.7-18.7v-.8A13.336,13.336,0,0,0,32,7.2Z" transform="translate(0.1 -4)"/></svg>
+            <a href="https://twitter.com/couchbase" class="icon">
+              Twitter
+            </a>
+          </li>
+          <li>
+          <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="linkedin" class="cls-1" d="M29,0H3A3.076,3.076,0,0,0,0,3V29a3.009,3.009,0,0,0,3,3H29a2.946,2.946,0,0,0,3-3V3A3.009,3.009,0,0,0,29,0ZM12,26H8V12h4ZM10,10a2,2,0,1,1,2-2A2.006,2.006,0,0,1,10,10ZM26,26H22V18a2,2,0,0,0-4,0v8H14V12h4v2.5c.8-1.1,2.1-2.5,3.5-2.5A4.736,4.736,0,0,1,26,17Z"/></svg>
+              <a href="https://www.linkedin.com/company/couchbase" class="icon">
+             Linkedin
+            </a>
+          </li>
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="facebook" class="cls-1" d="M29,0H3A2.652,2.652,0,0,0,0,3V29a2.652,2.652,0,0,0,3,3H16V18H12V14h4V12a6.452,6.452,0,0,1,6-6h4v4H22a2.151,2.151,0,0,0-2,2v2h6l-1,4H20V32h9a2.652,2.652,0,0,0,3-3V3A2.652,2.652,0,0,0,29,0Z"/></svg>
+            <a href="https://www.facebook.com/Couchbase" class="icon">
+            Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-terms">
+      <div class="footer-terms-copyright">
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+      </div>
+      <div class="footer-terms-links">
+        <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
+        <a href="https://www.couchbase.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.couchbase.com/cookie-policy">Cookie Policy</a>
+        <a href="https://www.couchbase.com/support-policy">Support Policy</a>
+        <a href="https://info.couchbase.com/unsubscribe-or-manage-preferences.html" target="_blank" rel="noopener">Marketing Preference Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../../_/js/site-navigation-data.js"></script>
+<script id="page-navigation-group" type="application/json">
+{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.1","sync-gateway":"3.1"}}
+</script>
+<template id="run-code-panel">
+<div class="action-panel">
+  <form class="action-panel-control" method="POST" action="https://couchbase.live/run" target="run-code-output">
+    <input type="hidden" name="lang">
+    <input type="hidden" name="code">
+    <input type="hidden" name="from" value="docs">
+    <div class="controls">
+      <button class="control-button rerun" type="submit"><i class="fas fa-redo"></i></button>
+      <span class="shell-name control-label">Output</span>
+      <button class="control-button close"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </form>
+  <iframe class="run-code-output" name="run-code-output"></iframe>
+</div>
+</template>
+<script id="site-script" src="../../_/js/vendor/chatbox-ui.js"></script>
+<script id="site-script" src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
+<script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+</body>
+</html>
