@@ -12,27 +12,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Query | Couchbase Docs</title>
+<title>N1QL Queries from the SDK | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/python-sdk/current/howtos/n1ql-queries-with-sdk.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="You can query for documents in Couchbase using the SQL++ query language, a language based on SQL, but designed for structured and flexible JSON documents.">
+<meta name="description" content="You can query for documents in Couchbase using the N1QL query language, a language based on SQL, but designed for structured and flexible JSON documents.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
-        <link rel="prev" href="caching-example.html">
-        <link rel="next" href="full-text-searching-with-sdk.html">
-
-
-
-                    <link rel="prev" href="caching-example.html">
-
-
-                    <link rel="next" href="full-text-searching-with-sdk.html">
 
 
 <meta name="dcterms.subject" content="python-sdk">
-<meta name="dcterms.identifier" content="4.1">
+<meta name="dcterms.identifier" content="4.0">
 <meta name="page-url" content="/python-sdk/current/howtos/n1ql-queries-with-sdk.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="python-sdk">
+<meta name="docsearch:component_title" content="Python SDK">
+<meta name="docsearch:cversion" content="4.0">
+<meta name="docsearch:component_version" content="python-sdk@4.0">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="Python SDK / Working with Data / Query">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -50,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -71,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -97,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -108,15 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="python-sdk">
-        <option value="4.1" data-url="n1ql-queries-with-sdk.html" selected>4.1</option>
-        <option value="4.0" data-url="../../4.0/howtos/n1ql-queries-with-sdk.html">4.0</option>
-        <option value="3.2" data-url="../../3.2/howtos/n1ql-queries-with-sdk.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/howtos/n1ql-queries-with-sdk.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/howtos/n1ql-queries-with-sdk.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -125,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-python/edit/release/4.1/modules/howtos/pages/n1ql-queries-with-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/pages/n1ql-queries-with-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -184,14 +195,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../hello-world/overview.html">Python SDK</a></li>
-<li class="crumb">Getting Started</li>
+<li class="crumb">Working with Data</li>
 <li class="crumb"><a href="n1ql-queries-with-sdk.html">Query</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Query</h1>
+<h1 class="page">N1QL Queries from the SDK</h1>
 <div class="labels">
 <ul><li class="guide"><span><i class="far fa-check-square"></i> how-to</span></li>
 </ul>
@@ -207,15 +218,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-You can query for documents in Couchbase using the SQL++ query language, a language based on SQL, but designed for structured and flexible JSON documents.
+You can query for documents in Couchbase using the N1QL query language, a language based on SQL, but designed for structured and flexible JSON documents.
 Querying can solve typical programming tasks such as finding a user profile by email address, facebook login, or user ID.
 </blockquote>
 </div>
 <div class="paragraph">
-<p>Our query service uses SQL++ (formerly N1QL), which will be fairly familiar to anyone who&#8217;s used any dialect of SQL.
-<a href="#additional-resources">Further resources</a> for learning about SQL++ are listed at the bottom of the page.
+<p>Our query service uses N1QL, which will be fairly familiar to anyone who&#8217;s used any dialect of SQL.
+<a href="#additional-resources">Further resources</a> for learning about N1QL are listed at the bottom of the page.
 Before you get started you may wish to checkout the
-<a href="#7.1@server:n1ql:n1ql-language-reference/index.adoc" class="xref unresolved">SQL++ intro page</a>, or just dive in with a query against our "travel-sample" data set.
+<a href="#7.1@server:n1ql:n1ql-language-reference/index.adoc" class="xref unresolved">N1QL intro page</a>, or just dive in with a query against our "travel-sample" data set.
 In this case, note that before you can query a bucket, you must define at least one index.
 You can define a <em>primary</em> index on a bucket.
 When a primary index is defined you can issue non-covered queries on the bucket as well.</p>
@@ -245,26 +256,22 @@ The default installation places cbq in <code>/opt/couchbase/bin/</code> on Linux
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Note that building indexes is covered in more detail on the <a href="../concept-docs/n1ql-query.html#index-building" class="xref page">Query concept page</a>&#8201;&#8212;&#8201;and in the <a href="https://docs.couchbase.com/sdk-api/couchbase-python-client/couchbase_api/couchbase_management.html#module-couchbase.management.queries">API Reference</a>.</p>
-</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="getting-started"><a class="anchor" href="#getting-started"></a>Getting Started</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After familiarizing yourself with the basics on how the SQL++ query language works and how to query it from the UI you can use it from the Python SDK. Here&#8217;s a complete example of doing a query and handling the results:</p>
+<p>After familiarizing yourself with the basics on how the N1QL query language works and how to query it from the UI you can use it from the Python SDK. Here&#8217;s a complete example of doing a query and handling the results:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/n1ql_ops.py#L6-L29">from couchbase.cluster import Cluster
-from couchbase.options import ClusterOptions, QueryOptions
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/n1ql_ops.py#L6-L29">from couchbase.cluster import Cluster, ClusterOptions, QueryOptions
 from couchbase.auth import PasswordAuthenticator
 from couchbase.exceptions import CouchbaseException
 
 cluster = Cluster.connect(
-    "couchbase://your-ip",
+    "couchbase://localhost",
     ClusterOptions(PasswordAuthenticator("Administrator", "password")))
 bucket = cluster.bucket("travel-sample")
 collection = bucket.default_collection()
@@ -274,9 +281,10 @@ try:
         "SELECT * FROM `travel-sample`.inventory.airport LIMIT 10", QueryOptions(metrics=True))
 
     for row in result.rows():
-        print(f"Found row: {row}")
+        print("Found row: {}".format(row))
 
-    print(f"Report execution time: {result.metadata().metrics().execution_time()}")
+    print("Report execution time: {}".format(
+        result.metadata().metrics().execution_time()))
 
 except CouchbaseException as ex:
     import traceback
@@ -290,7 +298,7 @@ except CouchbaseException as ex:
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-When using a Couchbase version &lt; 6.5 you must create a valid Bucket connection using <code>cluster.bucket(name)</code> before you can execute queries.
+When using a Couchbase version &lt; 6.5 you must create a valid Bucket connection using <code>cluster.bucket(name)</code> before you can use N1QL.
 </td>
 </tr>
 </table>
@@ -316,14 +324,14 @@ Note that both parameters and options are optional.</p>
 <div class="listingblock">
 <div class="title">Positional parameter example:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/n1ql_ops.py#L33-L35">result = cluster.query(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/n1ql_ops.py#L33-L35">result = cluster.query(
     "SELECT ts.* FROM `travel-sample`.inventory.airport WHERE city=$1",
     "San Jose")</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/n1ql_ops.py#L39-L41">result = cluster.query(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/n1ql_ops.py#L39-L41">result = cluster.query(
     "SELECT ts.* FROM `travel-sample`.inventory.airport WHERE city=$1",
     QueryOptions(positional_parameters=["San Jose"]))</code></pre>
 </div>
@@ -331,14 +339,14 @@ Note that both parameters and options are optional.</p>
 <div class="listingblock">
 <div class="title">Named parameter example:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/n1ql_ops.py#L45-L47">result = cluster.query(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/n1ql_ops.py#L45-L47">result = cluster.query(
     "SELECT ts.* FROM `travel-sample`.inventory.airport WHERE city=$city",
     city='San Jose')</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/n1ql_ops.py#L51-L53">result = cluster.query(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/n1ql_ops.py#L51-L53">result = cluster.query(
     "SELECT ts.* FROM `travel-sample`.inventory.airport WHERE city=$city",
     QueryOptions(named_parameters={"city": "San Jose"}))</code></pre>
 </div>
@@ -360,32 +368,16 @@ If no error is returned then the request succeeded and the result provides acces
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/n1ql_ops.py#L57-L68">result = cluster.query(
-    "SELECT * FROM `travel-sample`.inventory.airline LIMIT 10")
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/n1ql_ops.py#L57-L65">result = cluster.query(
+    "SELECT ts.* FROM `travel-sample`.inventory.airline LIMIT 10")
 
 # iterate over rows
 for row in result:
     # each row is an instance of the query call
-    try:
-        name = row["airline"]["name"]
-        callsign = row["airline"]["callsign"]
-        print(f"Airline name: {name}, callsign: {callsign}")
-    except KeyError:
-        print("Row does not contain 'name' key")</code></pre>
+    name = row["name"]
+    callsign = row["callsign"]
+    print("Airline name: {}, callsign: {}".format(name, callsign))</code></pre>
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The SDK executes queries lazily, meaning the query is only run against the cluster when you try to use the <code>QueryResult</code> object.
-You therefore cannot iterate over the <code>QueryResult</code> multiple times, and attempting to do so raises an <code>AlreadyQueriedException</code>.
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>The <code>QueryMetaData</code> provides insight into some basic profiling/timing information as well as information like the <code>ClientContextID</code>.</p>
@@ -438,11 +430,11 @@ You therefore cannot iterate over the <code>QueryResult</code> multiple times, a
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/n1ql_ops.py#L72-L77">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/n1ql_ops.py#L69-L74">
 result = cluster.query("SELECT 1=1", QueryOptions(metrics=True))
-for row in result:
-    print(f"Result: {row}")
-print(f"Execution time: {result.metadata().metrics().execution_time()}")</code></pre>
+
+print("Execution time: {}".format(
+    result.metadata().metrics().execution_time()))</code></pre>
 </div>
 </div>
 </div>
@@ -548,8 +540,8 @@ If <code>QueryScanConsistency.REQUEST_PLUS</code> is chosen, it will likely take
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/n1ql_ops.py#L81-L83">result = cluster.query(
-    "SELECT * FROM `travel-sample`.inventory.airline LIMIT 10",
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/n1ql_ops.py#L78-L80">result = cluster.query(
+    "SELECT ts.* FROM `travel-sample`.inventory.airline LIMIT 10",
     QueryOptions(scan_consistency=QueryScanConsistency.REQUEST_PLUS))</code></pre>
 </div>
 </div>
@@ -560,7 +552,7 @@ Depending on the index update rate this might provide a speedier response.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/n1ql_ops.py#L87-L104">new_hotel = {
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/n1ql_ops.py#L84-L101">new_hotel = {
     "callsign": None,
     "country": "United States",
     "iata": "TX",
@@ -590,7 +582,7 @@ Whatever is chosen, we recommend making sure it is unique so different queries c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/n1ql_ops.py#L108-L111">result = cluster.query(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/n1ql_ops.py#L105-L108">result = cluster.query(
     "SELECT ts.* FROM `travel-sample`.inventory.hotel LIMIT 10",
     QueryOptions(client_context_id="user-44{}".format(uuid.uuid4())))</code></pre>
 </div>
@@ -605,7 +597,7 @@ The query engine will ensure that actually no data is mutated when parsing and p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/n1ql_ops.py#L115-L117">result = cluster.query(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/n1ql_ops.py#L112-L114">result = cluster.query(
     "SELECT ts.* FROM `travel-sample`.inventory.hotel LIMIT 10",
     QueryOptions(read_only=True))</code></pre>
 </div>
@@ -637,15 +629,15 @@ If you are in doubt of which API to use, we recommend looking at the asyncio API
 <div class="listingblock">
 <div class="title">ACouchbase</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/acouchbase_n1ql_ops.py#L2-L31">from acouchbase.cluster import Cluster, get_event_loop
-from couchbase.options import ClusterOptions, QueryOptions
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/acouchbase_n1ql_ops.py#L2-L31">from acouchbase.cluster import Cluster, get_event_loop
+from couchbase.cluster import ClusterOptions, QueryOptions
 from couchbase.auth import PasswordAuthenticator
 from couchbase.exceptions import ParsingFailedException
 
 
 async def get_couchbase():
     cluster = Cluster(
-        "couchbase://your-ip",
+        "couchbase://localhost",
         ClusterOptions(PasswordAuthenticator("Administrator", "password")))
     bucket = cluster.bucket("travel-sample")
     await bucket.on_connect()
@@ -672,12 +664,10 @@ loop.run_until_complete(simple_query(cluster))</code></pre>
 <div class="listingblock">
 <div class="title">TxCouchbase</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/txcouchbase_n1ql_ops.py#L2-L43"># **IMPORTANT** need to do this import prior to importing the reactor (new to the Python 4.x SDK)
-import txcouchbase
-from twisted.internet import reactor
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/txcouchbase_n1ql_ops.py#L2-L27">from twisted.internet import reactor
 
 from txcouchbase.cluster import TxCluster
-from couchbase.options import ClusterOptions, QueryOptions
+from couchbase.cluster import ClusterOptions, QueryOptions
 from couchbase.auth import PasswordAuthenticator
 
 
@@ -687,31 +677,17 @@ def handle_query_results(result):
     reactor.stop()
 
 
-def on_streaming_error(error):
-    print("Streaming operation had an error.\nError: {}".format(error))
-    reactor.stop()
-
-
-def on_connect_ok(result, cluster):
-    # create a bucket object
-    bucket = cluster.bucket("travel-sample")
-    # create a collection object
-    cb = bucket.default_collection()
-
-    d = cluster.query("SELECT ts.* FROM `travel-sample` ts WHERE ts.`type`=$type LIMIT 10",
-                    QueryOptions(named_parameters={"type": "hotel"}))
-    d.addCallback(handle_query_results).addErrback(on_streaming_error)
-
-
-def on_connect_err(error):
-    print("Unable to connect.\n{}".format(error))
-
-cluster = TxCluster("couchbase://your-ip",
+cluster = TxCluster("couchbase://localhost",
                     ClusterOptions(PasswordAuthenticator("Administrator", "password")))
 
-# wait for connect
-cluster.on_connect().addCallback(on_connect_ok, cluster).addErrback(on_connect_err)
+# create a bucket object
+bucket = cluster.bucket("travel-sample")
+# create a collection object
+cb = bucket.default_collection()
 
+d = cluster.query("SELECT ts.* FROM `travel-sample` ts WHERE ts.`type`=$type LIMIT 10",
+                  QueryOptions(named_parameters={"type": "hotel"}))
+d.addCallback(handle_query_results)
 
 reactor.run()</code></pre>
 </div>
@@ -728,7 +704,7 @@ It takes the statement as a required argument, and then allows additional option
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/n1ql_ops.py#L121-L125">agent_scope = bucket.scope("inventory")
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/n1ql_ops.py#L118-L122">agent_scope = bucket.scope("inventory")
 
 result = agent_scope.query(
         "SELECT a.* FROM `airline` a WHERE a.country=$country LIMIT 10",
@@ -747,8 +723,8 @@ result = agent_scope.query(
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-SQL++ is not the only query option in Couchbase.
-Be sure to check that <a href="../concept-docs/data-services.html" class="xref page">your use case fits your selection of query service</a>.
+N1QL is not the only query option in Couchbase.
+Be sure to check that <a href="#concept-docs:http-services.adoc" class="xref unresolved">your use case fits your selection of query service</a>.
 </td>
 </tr>
 </table>
@@ -756,33 +732,25 @@ Be sure to check that <a href="../concept-docs/data-services.html" class="xref p
 <div class="ulist">
 <ul>
 <li>
-<p>For a deeper dive into SQL++ from the SDK, refer to our <a href="../concept-docs/n1ql-query.html" class="xref page">SQL++ SDK concept doc</a>.</p>
+<p>For a deeper dive into N1QL from the SDK, refer to our <a href="../concept-docs/n1ql-query.html" class="xref page">N1QL SDK concept doc</a>.</p>
 </li>
 <li>
-<p>The <a href="#7.1@server:n1ql:n1ql-language-reference/index.adoc" class="xref unresolved">Server doc SQL++ intro</a> introduces a complete guide to the SQL++ language, including all of the latest additions.</p>
+<p>The <a href="#7.1@server:n1ql:n1ql-language-reference/index.adoc" class="xref unresolved">Server doc N1QL intro</a> introduces a complete guide to the N1QL language, including all of the latest additions.</p>
 </li>
 <li>
-<p>The <a href="http://query.pub.couchbase.com/tutorial/#1">SQL++ interactive tutorial</a> is a good introduction to the basics of SQL++ use.</p>
+<p>The <a href="http://query.pub.couchbase.com/tutorial/#1">N1QL interactive tutorial</a> is a good introduction to the basics of N1QL use.</p>
 </li>
 <li>
 <p>For scaling up queries, be sure to
 <a href="#7.1@server:n1ql:n1ql-language-reference/index.adoc" class="xref unresolved">read up on Indexes</a>.</p>
 </li>
 <li>
-<p>The Query Service is for operational queries; for analytical workloads, read more on <a href="../concept-docs/data-services.html#Long-Running-Queries-&amp;-Big-Data" class="xref page">when to choose Analytics Service</a>.</p>
+<p>N1QL is for operational queries; for analytical workloads, read more on <a href="#concept-docs:http-services.adoc#Long-Running-Queries-&amp;-Big-Data" class="xref unresolved">when to choose Analytics Service</a>, our implementation of SQL++.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
-
-        <nav class="pagination">
-
-                    <span class="prev"><a href="caching-example.html">Caching Example</a></span>
-
-
-                    <span class="next"><a href="full-text-searching-with-sdk.html">Search</a></span>
-
 </article>
 </main>
 </div>
@@ -856,7 +824,7 @@ Be sure to check that <a href="../concept-docs/data-services.html" class="xref p
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -873,6 +841,7 @@ Be sure to check that <a href="../concept-docs/data-services.html" class="xref p
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

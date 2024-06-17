@@ -24,6 +24,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="dcterms.identifier" content="4.0">
 <meta name="page-url" content="/php-sdk/current/hello-world/start-using-sdk.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="php-sdk">
+<meta name="docsearch:component_title" content="PHP SDK">
+<meta name="docsearch:cversion" content="4.0">
+<meta name="docsearch:component_version" content="php-sdk@4.0">
+<meta name="docsearch:module" content="hello-world">
+<meta name="docsearch:breadcrumbs" content="PHP SDK / Getting Started! / Start Using the PHP SDK">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,14 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="php-sdk">
-        <option value="4.0" data-url="start-using-sdk.html" selected>4.0</option>
-        <option value="3.2" data-url="../../3.2/hello-world/start-using-sdk.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/hello-world/start-using-sdk.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/hello-world/start-using-sdk.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -115,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-php/edit/release/4.0/modules/hello-world/pages/start-using-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/hello-world/pages/start-using-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -214,25 +235,25 @@ It is a native PHP extension and uses the <code>Couchbase++</code> high-performa
 <div class="paragraph">
 <p>We will go through the code sample step by step, but for those in a hurry to see it, here it is:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset1_couchbase-capella-sample"></a>Couchbase Capella Sample</p>
+<li id="tabs-1-couchbase-capella-sample" class="tab">
+<p>Couchbase Capella Sample</p>
 </li>
-<li>
-<p><a id="tabset1_local-couchbase-server"></a>Local Couchbase Server</p>
+<li id="tabs-1-local-couchbase-server" class="tab">
+<p>Local Couchbase Server</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_couchbase-capella-sample">
+<div id="tabs-1-couchbase-capella-sample--panel" class="tabpanel" aria-labelledby="tabs-1-couchbase-capella-sample">
 <div class="paragraph">
 <p>If you are connecting to <a href="https://docs.couchbase.com/cloud/index.html">Couchbase Capella</a>, be sure to get the correct endpoint as well as the username and password.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/hello-world/examples/cloud.php">&lt;?php
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/hello-world/examples/cloud.php">&lt;?php
 
 // NOTE: Change the below vendor path to your own.
 require_once '../../../vendor/autoload.php';
@@ -273,10 +294,10 @@ foreach ($queryResult-&gt;rows() as $row) {
 <p>The Couchbase Capella free trial version comes with the Travel Sample Bucket, and its Query indexes, loaded and ready.</p>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_local-couchbase-server">
+<div id="tabs-1-local-couchbase-server--panel" class="tabpanel" aria-labelledby="tabs-1-local-couchbase-server">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/hello-world/examples/start-using.php">&lt;?php
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/hello-world/examples/start-using.php">&lt;?php
 
 // NOTE: Change the below vendor path to your own.
 require_once '../../../vendor/autoload.php';
@@ -328,22 +349,22 @@ or the <a href="#7.1@server:manage:manage-settings/install-sample-buckets.adoc#i
 <div class="paragraph">
 <p>A more detailed guide in our <a href="../project-docs/sdk-full-installation.html" class="xref page">Installation page</a> covers every supported platform, but this section should be enough to get up and running in most cases.</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div id="tabs-2" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset2_mac-and-linux"></a>Mac and Linux</p>
+<li id="tabs-2-mac-and-linux" class="tab">
+<p>Mac and Linux</p>
 </li>
-<li>
-<p><a id="tabset2_alpine-linux"></a>Alpine Linux</p>
+<li id="tabs-2-alpine-linux" class="tab">
+<p>Alpine Linux</p>
 </li>
-<li>
-<p><a id="tabset2_windows"></a>Windows</p>
+<li id="tabs-2-windows" class="tab">
+<p>Windows</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_mac-and-linux">
+<div id="tabs-2-mac-and-linux--panel" class="tabpanel" aria-labelledby="tabs-2-mac-and-linux">
 <div class="paragraph">
 <p>On Mac and most Linux distributions,
 simply use <code>pecl</code> to install the Couchbase PHP SDK.</p>
@@ -354,7 +375,7 @@ simply use <code>pecl</code> to install the Couchbase PHP SDK.</p>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset2_alpine-linux">
+<div id="tabs-2-alpine-linux--panel" class="tabpanel" aria-labelledby="tabs-2-alpine-linux">
 <div class="paragraph">
 <p><strong>Alpine Linux</strong> is very slim and uses <code>musl libc</code> and the <code>apk</code> package manager.
 As a result, the installation is a little different from other Unix-Like systems and <code>pecl</code> equivalent packages are used instead.</p>
@@ -365,7 +386,7 @@ As a result, the installation is a little different from other Unix-Like systems
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset2_windows">
+<div id="tabs-2-windows--panel" class="tabpanel" aria-labelledby="tabs-2-windows">
 <div class="paragraph">
 <p>Windows downloads and instructions for the PHP SDK are available from <a href="../project-docs/sdk-full-installation.html#installing-on-microsoft-windows" class="xref page">the installation page</a>.</p>
 </div>
@@ -420,7 +441,7 @@ If there are any problems, refer to the full <a href="../project-docs/sdk-full-i
 <div class="ulist">
 <ul>
 <li>
-<p>Couchbase <a href="#cloud:ROOT:index.adoc" class="xref unresolved">Capella</a> cluster, or Couchbase Server is installed and accessible locally (<a href="#server:getting-started:do-a-quick-install.adoc" class="xref unresolved">Do a Quick Install</a> if you don&#8217;t already have Couchbase Server installed).</p>
+<p>Couchbase <a href="../../../cloud/index.html" class="xref page">Capella</a> cluster, or Couchbase Server is installed and accessible locally (<a href="#server:getting-started:do-a-quick-install.adoc" class="xref unresolved">Do a Quick Install</a> if you don&#8217;t already have Couchbase Server installed).</p>
 </li>
 <li>
 <p>You have create a bucket (perhaps using the <a href="#server:manage:manage-settings/install-sample-buckets.adoc" class="xref unresolved">travel-sample dataset</a>, or by creating a new bucket).
@@ -451,7 +472,7 @@ If you&#8217;re developing client code on the same VM or machine as the Couchbas
 </div>
 <div id="imports" class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/hello-world/examples/start-using.php#L4-L8">// NOTE: Change the below vendor path to your own.
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/hello-world/examples/start-using.php#L4-L8">// NOTE: Change the below vendor path to your own.
 require_once '../../../vendor/autoload.php';
 
 use Couchbase\ClusterOptions;
@@ -464,22 +485,22 @@ use Couchbase\Cluster;</code></pre>
 <div class="paragraph">
 <p>Then you can connect to the cluster:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div id="tabs-3" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset3_capella-connection"></a>Capella Connection</p>
+<li id="tabs-3-capella-connection" class="tab">
+<p>Capella Connection</p>
 </li>
-<li>
-<p><a id="tabset3_local-server-connection"></a>Local Server Connection</p>
+<li id="tabs-3-local-server-connection" class="tab">
+<p>Local Server Connection</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_capella-connection">
+<div id="tabs-3-capella-connection--panel" class="tabpanel" aria-labelledby="tabs-3-capella-connection">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/hello-world/examples/cloud.php#L12-L18">// Update these credentials for your Capella instance!
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/hello-world/examples/cloud.php#L12-L18">// Update these credentials for your Capella instance!
 $connectionString = "couchbases://cb.&lt;your-instance&gt;.cloud.couchbase.com";
 $options = new ClusterOptions();
 
@@ -493,10 +514,10 @@ $cluster = new Cluster($connectionString, $options);</code></pre>
 You do need to enable TLS, which can be done by simply using <code>couchbases:</code> in the Connection String as in this example.</p>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset3_local-server-connection">
+<div id="tabs-3-local-server-connection--panel" class="tabpanel" aria-labelledby="tabs-3-local-server-connection">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/hello-world/examples/start-using.php#L12-L17">// Update these credentials for your Local instance!
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/hello-world/examples/start-using.php#L12-L17">// Update these credentials for your Local instance!
 $connectionString = "couchbase://localhost";
 $options = new ClusterOptions();
 
@@ -525,7 +546,7 @@ with <code>couchbases://</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/hello-world/examples/start-using.php#L21-L22">// get a bucket reference
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/hello-world/examples/start-using.php#L21-L22">// get a bucket reference
 $bucket = $cluster-&gt;bucket("travel-sample");</code></pre>
 </div>
 </div>
@@ -535,7 +556,7 @@ Our Travel Sample bucket has separate scopes for inventory (flights, etc.), and 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/hello-world/examples/start-using.php#L26-L28">// get a user-defined collection reference
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/hello-world/examples/start-using.php#L26-L28">// get a user-defined collection reference
 $scope = $bucket-&gt;scope("tenant_agent_00");
 $collection = $scope-&gt;collection("users");</code></pre>
 </div>
@@ -545,7 +566,7 @@ $collection = $scope-&gt;collection("users");</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/hello-world/examples/start-using.php#L32-L36">$upsertResult = $collection-&gt;upsert("my-document-key", ["name" =&gt; "Ted", "Age" =&gt; 31]);
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/hello-world/examples/start-using.php#L32-L36">$upsertResult = $collection-&gt;upsert("my-document-key", ["name" =&gt; "Ted", "Age" =&gt; 31]);
 
 $getResult = $collection-&gt;get("my-document-key");
 
@@ -571,7 +592,7 @@ print_r($getResult-&gt;content());</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/hello-world/examples/start-using.php#L40-L45">$queryResult = $cluster-&gt;query("select \"Hello World\" as greeting");
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/hello-world/examples/start-using.php#L40-L45">$queryResult = $cluster-&gt;query("select \"Hello World\" as greeting");
 
 // Iterate over the rows to access result data and print to the terminal.
 foreach ($queryResult-&gt;rows() as $row) {
@@ -723,7 +744,7 @@ If you&#8217;re running the SDK on your laptop against a Capella cluster, see fu
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -740,6 +761,7 @@ If you&#8217;re running the SDK on your laptop against a Capella cluster, see fu
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

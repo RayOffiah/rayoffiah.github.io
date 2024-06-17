@@ -12,27 +12,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Query | Couchbase Docs</title>
+<title>N1QL Queries from the SDK | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/scala-sdk/current/howtos/n1ql-queries-with-sdk.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="You can query for documents in Couchbase using the SQL++ query language, a language based on SQL, but designed for structured and flexible JSON documents.">
+<meta name="description" content="link:project-docs:partial$attributes.adoc[]">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
-        <link rel="prev" href="kv-operations.html">
-        <link rel="next" href="full-text-searching-with-sdk.html">
-
-
-
-                    <link rel="prev" href="kv-operations.html">
-
-
-                    <link rel="next" href="full-text-searching-with-sdk.html">
 
 
 <meta name="dcterms.subject" content="scala-sdk">
-<meta name="dcterms.identifier" content="1.4">
+<meta name="dcterms.identifier" content="1.3">
 <meta name="page-url" content="/scala-sdk/current/howtos/n1ql-queries-with-sdk.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="scala-sdk">
+<meta name="docsearch:component_title" content="Scala SDK">
+<meta name="docsearch:cversion" content="1.3">
+<meta name="docsearch:component_version" content="scala-sdk@1.3">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="Scala SDK / Working with Data / Query">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -50,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -71,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -97,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -108,14 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="scala-sdk">
-        <option value="1.4" data-url="n1ql-queries-with-sdk.html" selected>1.4</option>
-        <option value="1.3" data-url="../../1.3/howtos/n1ql-queries-with-sdk.html">1.3</option>
-        <option value="1.2" data-url="../../1.2/howtos/n1ql-queries-with-sdk.html">1.2</option>
-        <option value="1.1" data-url="../../1.1/howtos/n1ql-queries-with-sdk.html">1.1</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -124,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-scala/edit/release/1.4/modules/howtos/pages/n1ql-queries-with-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/pages/n1ql-queries-with-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -183,14 +195,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../hello-world/overview.html">Scala SDK</a></li>
-<li class="crumb">Getting Started</li>
+<li class="crumb">Working with Data</li>
 <li class="crumb"><a href="n1ql-queries-with-sdk.html">Query</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Query</h1>
+<h1 class="page">N1QL Queries from the SDK</h1>
 <div class="labels">
 <ul><li class="guide"><span><i class="far fa-check-square"></i> how-to</span></li>
 </ul>
@@ -204,15 +216,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span  id="otherContributor"> + </span>
 </div><div id="preamble">
 <div class="sectionbody">
+<div class="paragraph">
+<p><a href="project-docs:partial$attributes.adoc" class="bare">project-docs:partial$attributes.adoc</a></p>
+</div>
 <div class="quoteblock abstract">
 <blockquote>
-You can query for documents in Couchbase using the SQL++ query language (formerly N1QL), a language based on SQL, but designed for structured and flexible JSON documents.
+You can query for documents in Couchbase using the N1QL query language, a language based on SQL, but designed for structured and flexible JSON documents.
 </blockquote>
 </div>
 <div class="paragraph">
-<p>Our query service uses SQL++, which will be fairly familiar to anyone who&#8217;s used any dialect of SQL.
-<a href="#additional-resources">Additional Resources</a> for learning about SQL++ are listed at the bottom of the page.
-Before you get started you may wish to checkout the <a href="#6.5@server:n1ql:n1ql-language-reference/index.adoc" class="xref unresolved">SQL++ intro page</a>.</p>
+<p>Our query service uses N1QL, which will be fairly familiar to anyone who&#8217;s used any dialect of SQL.
+<a href="#additional-resources">Additional Resources</a> for learning about N1QL are listed at the bottom of the page.
+Before you get started you may wish to checkout the <a href="#6.5@server:n1ql:n1ql-language-reference/index.adoc" class="xref unresolved">N1QL intro page</a>.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -221,9 +236,9 @@ Before you get started you may wish to checkout the <a href="#6.5@server:n1ql:n1
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-<div class="title">SQL++ Compared to Key-Value</div>
+<div class="title">N1QL Compared to Key-Value</div>
 <div class="paragraph">
-<p>SQL++ is excellent for performing queries against multiple documents, but if you only need to access or mutate a single document and you know its unique ID, it will be
+<p>N1QL is excellent for performing queries against multiple documents, but if you only need to access or mutate a single document and you know its unique ID, it will be
 much more efficient to use the Key-Value API.  We strongly recommend using both APIs to create a flexible, performant application.</p>
 </div>
 </td>
@@ -240,7 +255,7 @@ much more efficient to use the Key-Value API.  We strongly recommend using both 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/Queries.scala#L18-L26">import com.couchbase.client.scala._
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/Queries.scala#L18-L26">import com.couchbase.client.scala._
 import com.couchbase.client.scala.implicits.Codec
 import com.couchbase.client.scala.json._
 import com.couchbase.client.scala.kv.MutationState
@@ -256,7 +271,7 @@ import scala.util.{Failure, Success, Try}</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/Queries.scala#L33-L35">    val cluster = Cluster.connect("localhost", "Administrator", "password").get
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/Queries.scala#L33-L35">    val cluster = Cluster.connect("localhost", "Administrator", "password").get
     val bucket = cluster.bucket("travel-sample")
     val collection = bucket.defaultCollection</code></pre>
 </div>
@@ -273,9 +288,6 @@ through the Couchbase Admin UI.  Simply visit the Query tab then write this in t
 <pre class="highlightjs highlight"><code class="language-n1ql hljs" data-lang="n1ql">CREATE PRIMARY INDEX ON `travel-sample`</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Note that building indexes is covered in more detail on the <a href="../concept-docs/n1ql-query.html#index-building" class="xref page">Query concept page</a>&#8201;&#8212;&#8201;and in the <a href="https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/manager/query/index.html">API Reference</a>.</p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -286,19 +298,19 @@ through the Couchbase Admin UI.  Simply visit the Query tab then write this in t
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/Queries.scala#L40-L41">val statement = """select * from `travel-sample` limit 10;"""
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/Queries.scala#L40-L41">val statement = """select * from `travel-sample` limit 10;"""
 val result: Try[QueryResult] = cluster.query(statement)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>(Note that we won&#8217;t be covering the SQL++ language itself in any detail here, but if you&#8217;re familiar with SQL you&#8217;ll see it&#8217;s very similar.)</p>
+<p>(Note that we won&#8217;t be covering the N1QL language itself in any detail here, but if you&#8217;re familiar with SQL you&#8217;ll see it&#8217;s very similar.)</p>
 </div>
 <div class="paragraph">
-<p>The Scala SDK returns <code>Try</code> rather than throwing exceptions, to allow you to handle errors in a functional way.  A <code>Try</code> can either be a <code>Success(QueryResult)</code> if the SQL++ statement was successfully executed, or <code>Failure(Throwable)</code> if something went wrong.  It can be pattern matched on like this:</p>
+<p>The Scala SDK returns <code>Try</code> rather than throwing exceptions, to allow you to handle errors in a functional way.  A <code>Try</code> can either be a <code>Success(QueryResult)</code> if the N1QL statement was successfully executed, or <code>Failure(Throwable)</code> if something went wrong.  It can be pattern matched on like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/Queries.scala#L45-L53">result match {
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/Queries.scala#L45-L53">result match {
   case Success(result: QueryResult) =&gt;
     result.rowsAs[JsonObject] match {
       case Success(rows) =&gt;
@@ -343,7 +355,7 @@ example demonstrates returning the results as <code>JsonObject</code>, the JSON 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/Queries.scala#L59-L66">cluster
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/Queries.scala#L59-L66">cluster
   .query("""select * from `travel-sample` limit 10;""")
   .flatMap(_.rowsAs[JsonObject]) match {
   case Success(rows: Seq[JsonObject]) =&gt;
@@ -384,7 +396,7 @@ streaming reactive API, for which we&#8217;ll see an example later.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/Queries.scala#L98-L107">      val stmt =
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/Queries.scala#L98-L107">      val stmt =
         """select count(*)
         from `travel-sample`.inventory.airport
         where country=$1;"""
@@ -401,7 +413,7 @@ streaming reactive API, for which we&#8217;ll see an example later.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/Queries.scala#L114-L121">      val stmt =
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/Queries.scala#L114-L121">      val stmt =
         """select `travel-sample`.* from `travel-sample` where type=$type and country=$country limit 10;"""
       val result = cluster.query(
         stmt,
@@ -422,7 +434,7 @@ streaming reactive API, for which we&#8217;ll see an example later.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>A SQL++ query using the default <code>NotBounded</code> scan consistency will not wait for any indexes to finish updating before running the query and returning results, meaning that results are returned quickly, but the query will not return any documents that are yet to be indexed.</p>
+<p>A N1QL query using the default <code>NotBounded</code> scan consistency will not wait for any indexes to finish updating before running the query and returning results, meaning that results are returned quickly, but the query will not return any documents that are yet to be indexed.</p>
 </li>
 <li>
 <p>With scan consistency set to <code>RequestPlus</code>, all outstanding document changes and index updates are processed before the query is run.
@@ -438,7 +450,7 @@ Select this when consistency is always more important than performance.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/Queries.scala#L127-L130">      val result = cluster.query(
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/Queries.scala#L127-L130">      val result = cluster.query(
         "select `travel-sample`.* from `travel-sample` limit 10;",
         QueryOptions().scanConsistency(QueryScanConsistency.RequestPlus())
       )</code></pre>
@@ -449,7 +461,7 @@ Select this when consistency is always more important than performance.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/Queries.scala#L137-L150">val result = collection.upsert("id", content)
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/Queries.scala#L137-L150">val result = collection.upsert("id", content)
   .flatMap(upsertResult =&gt; {
     val ms = MutationState.from(upsertResult)
 
@@ -471,7 +483,7 @@ result match {
 <h2 id="returning-results-as-case-classes"><a class="anchor" href="#returning-results-as-case-classes"></a>Returning Results as Case Classes</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Scala SDK supports returning SQL++ results directly as Scala case classes.</p>
+<p>The Scala SDK supports returning N1QL results directly as Scala case classes.</p>
 </div>
 <div class="paragraph">
 <p>A small amount of boilerplate is required to tell the SDK how to convert your case class to/from JSON.  There are more details
@@ -479,7 +491,7 @@ available <a href="json.html#case-classes" class="xref page">here</a>, but the s
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/Queries.scala#L72-L76">case class Address(line1: String)
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/Queries.scala#L72-L76">case class Address(line1: String)
 case class User(name: String, age: Int, addresses: Seq[Address])
 object User {
   implicit val codec: Codec[User] = Codec.codec[User]
@@ -491,7 +503,7 @@ object User {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/Queries.scala#L80-L91">
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/Queries.scala#L80-L91">
 val statement =
   """select `users`.* from `users` limit 10;"""
 
@@ -525,7 +537,7 @@ val users = cluster
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/Queries.scala#L156-L170">// When we work with Scala Futures an ExecutionContext must be provided.
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/Queries.scala#L156-L170">// When we work with Scala Futures an ExecutionContext must be provided.
 // For this example we'll just use the global default
       import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -575,7 +587,7 @@ You&#8217;ll see both <code>reactor.core.scala.publisher</code> and <code>reacto
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/Queries.scala#L176-L190">      val stmt = """select `travel-sample`.* from `travel-sample`;"""
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/Queries.scala#L176-L190">      val stmt = """select `travel-sample`.* from `travel-sample`;"""
       val mono: SMono[ReactiveQueryResult] = cluster.reactive.query(stmt)
 
       val rows: SFlux[JsonObject] = mono
@@ -632,25 +644,17 @@ the assumption is that the <code>airline</code> collection exists within a scope
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-SQL++ is not the only query option in Couchbase.
+N1QL is not the only query option in Couchbase.
 Be sure to check that <a href="../concept-docs/data-services.html" class="xref page">your use case fits your selection of query service</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The <a href="http://query.pub.couchbase.com/tutorial/#1">SQL++ interactive tutorial</a> is a good introduction to the basics of SQL++ use.</p>
+<p>The <a href="http://query.pub.couchbase.com/tutorial/#1">N1QL interactive tutorial</a> is a good introduction to the basics of N1QL use.</p>
 </div>
 </div>
 </div>
-
-        <nav class="pagination">
-
-                    <span class="prev"><a href="kv-operations.html">Data Operations</a></span>
-
-
-                    <span class="next"><a href="full-text-searching-with-sdk.html">Search</a></span>
-
 </article>
 </main>
 </div>
@@ -724,7 +728,7 @@ Be sure to check that <a href="../concept-docs/data-services.html" class="xref p
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -741,6 +745,7 @@ Be sure to check that <a href="../concept-docs/data-services.html" class="xref p
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

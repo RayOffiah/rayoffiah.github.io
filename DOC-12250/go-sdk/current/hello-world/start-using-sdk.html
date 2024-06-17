@@ -12,25 +12,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Start Using the Go SDK | Couchbase Docs</title>
+<title>Install and Start Using the Go SDK with Couchbase Server | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/go-sdk/current/hello-world/start-using-sdk.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="A quick start guide to get you up and running with Couchbase and the Go SDK.">
+<meta name="description" content="Installing the Couchbase Go SDK &amp;amp; a Hello World example program.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
-        <link rel="prev" href="overview.html">
-        <link rel="next" href="../howtos/kv-operations.html">
 
 
-
-
-                    <link rel="next" href="../howtos/kv-operations.html">
-
-        
 <meta name="dcterms.subject" content="go-sdk">
-<meta name="dcterms.identifier" content="2.6">
+<meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/go-sdk/current/hello-world/start-using-sdk.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="go-sdk">
+<meta name="docsearch:component_title" content="Go SDK">
+<meta name="docsearch:cversion" content="2.5">
+<meta name="docsearch:component_version" content="go-sdk@2.5">
+<meta name="docsearch:module" content="hello-world">
+<meta name="docsearch:breadcrumbs" content="Go SDK / Getting Started / Start Using the Go SDK">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -48,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -69,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -95,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -106,17 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="go-sdk">
-        <option value="2.6" data-url="start-using-sdk.html" selected>2.6</option>
-        <option value="2.5" data-url="../../2.5/hello-world/start-using-sdk.html">2.5</option>
-        <option value="2.4" data-url="../../2.4/hello-world/start-using-sdk.html">2.4</option>
-        <option value="2.3" data-url="../../2.3/hello-world/start-using-sdk.html">2.3</option>
-        <option value="2.2" data-url="../../2.2/hello-world/start-using-sdk.html">2.2</option>
-        <option value="2.1" data-url="../../2.1/hello-world/start-using-sdk.html">2.1</option>
-        <option value="2.0" data-url="../../2.0/hello-world/start-using-sdk.html">2.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -125,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-go/edit/release/2.6/modules/hello-world/pages/start-using-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/hello-world/pages/start-using-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -191,10 +202,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Start Using the Go SDK</h1>
+<h1 class="page">Install and Start Using the Go SDK with Couchbase Server</h1>
 <div class="labels">
-<ul><li class="tutorial"><span><i class="fas fa-book-reader"></i> tutorial</span></li>
-</ul>
+<ul></ul>
 </div>
 
 
@@ -203,56 +213,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span class="last-commit-date" id="commitdate">    </span>
 <ul id="contributorList"></ul>
 <span  id="otherContributor"> + </span>
-</div><div id="preamble">
-<div class="sectionbody">
-<div class="quoteblock abstract">
-<blockquote>
-A quick start guide to get you up and running with Couchbase and the Go SDK.
-</blockquote>
-</div>
-<div class="paragraph">
-<p>In this guide, you will learn:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>How to <a href="#connect">connect to Couchbase Capella or Couchbase Server</a>.</p>
-</li>
-<li>
-<p>How to <a href="#add-and-retrieve-documents">add and retrieve Documents</a>.</p>
-</li>
-<li>
-<p>How to <a href="#sql-lookup">lookup documents</a> with the <a href="https://www.couchbase.com/products/n1ql">SQL++ (formerly N1QL)</a> query language.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
+</div><div class="sect1">
 <h2 id="hello-couchbase"><a class="anchor" href="#hello-couchbase"></a>Hello Couchbase</h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p>On this page we show you how to quickly get up and running&#8201;&#8212;&#8201;installing the Couchbase Go SDK, and trying out the Hello World code example against Couchbase Capella, or against a local Couchbase cluster.</p>
+</div>
+<div class="paragraph">
 <p>We will go through the code sample step by step, but for those in a hurry to see it, here it is:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset1_couchbase-capella-sample"></a>Couchbase Capella Sample</p>
+<li id="tabs-1-couchbase-capella-sample" class="tab">
+<p>Couchbase Capella Sample</p>
 </li>
-<li>
-<p><a id="tabset1_local-couchbase-server"></a>Local Couchbase Server</p>
+<li id="tabs-1-local-couchbase-server" class="tab">
+<p>Local Couchbase Server</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_couchbase-capella-sample">
+<div id="tabs-1-couchbase-capella-sample--panel" class="tabpanel" aria-labelledby="tabs-1-couchbase-capella-sample">
 <div class="paragraph">
-<p>To connect to <a href="#cloud::index.adoc" class="xref unresolved">Couchbase Capella</a>, be sure to get the correct endpoint as well as user, password and bucket name.</p>
+<p>To connect to <a href="../../../cloud/index.html" class="xref page">Couchbase Capella</a>, be sure to get the correct endpoint as well as user, password and bucket name.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/cloud.go">package main
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/cloud.go">package main
 
 import (
 	"fmt"
@@ -268,125 +256,13 @@ func main() {
 	// gocb.SetLogger(gocb.VerboseStdioLogger())
 
 	// Update this to your cluster details
-	connectionString := "cb.&lt;your-endpoint&gt;.cloud.couchbase.com"
+	endpoint := "cb.&lt;your-endpoint&gt;.cloud.couchbase.com"
 	bucketName := "travel-sample"
 	username := "username"
-	password := "Password!123"
-
-	options := gocb.ClusterOptions{
-		Authenticator: gocb.PasswordAuthenticator{
-			Username: username,
-			Password: password,
-		},
-	}
-
-	// Sets a pre-configured profile called "wan-development" to help avoid latency issues
-	// when accessing Capella from a different Wide Area Network
-	// or Availability Zone (e.g. your laptop).
-	if err := options.ApplyProfile(gocb.ClusterConfigProfileWanDevelopment); err != nil {
-		log.Fatal(err)
-	}
+	password := "Password123!"
 
 	// Initialize the Connection
-	cluster, err := gocb.Connect("couchbases://"+connectionString, options)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	bucket := cluster.Bucket(bucketName)
-
-	err = bucket.WaitUntilReady(5*time.Second, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// Get a reference to the default collection, required for older Couchbase server versions
-	// col := bucket.DefaultCollection()
-
-	col := bucket.Scope("tenant_agent_00").Collection("users")
-
-	// Create and store a Document
-	type User struct {
-		Name      string   `json:"name"`
-		Email     string   `json:"email"`
-		Interests []string `json:"interests"`
-	}
-
-	_, err = col.Upsert("u:jade",
-		User{
-			Name:      "Jade",
-			Email:     "jade@test-email.com",
-			Interests: []string{"Swimming", "Rowing"},
-		}, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// Get the document back
-	getResult, err := col.Get("u:jade", nil)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	var inUser User
-	err = getResult.Content(&amp;inUser)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("User: %v\n", inUser)
-
-	// Perform a N1QL Query
-	inventoryScope := bucket.Scope("inventory")
-	queryResult, err := inventoryScope.Query(
-		fmt.Sprintf("SELECT * FROM airline WHERE id=10"),
-		&amp;gocb.QueryOptions{},
-	)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// Print each found Row
-	for queryResult.Next() {
-		var result interface{}
-		err := queryResult.Row(&amp;result)
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmt.Println(result)
-	}
-
-	if err := queryResult.Err(); err != nil {
-		log.Fatal(err)
-	}
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_local-couchbase-server">
-<div class="listingblock try-it">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/hello-world/examples/startusing.go">package main
-
-import (
-	"fmt"
-	"log"
-	"time"
-
-	"github.com/couchbase/gocb/v2"
-)
-
-func main() {
-	// Uncomment following line to enable logging
-	// gocb.SetLogger(gocb.VerboseStdioLogger())
-
-	// Update this to your cluster details
-	connectionString := "localhost"
-	bucketName := "travel-sample"
-	username := "Administrator"
-	password := "password"
-
-	// For a secure cluster connection, use `couchbases://&lt;your-cluster-ip&gt;` instead.
-	cluster, err := gocb.Connect("couchbase://"+connectionString, gocb.ClusterOptions{
+	cluster, err := gocb.Connect("couchbases://"+endpoint, gocb.ClusterOptions{
 		Authenticator: gocb.PasswordAuthenticator{
 			Username: username,
 			Password: password,
@@ -415,18 +291,18 @@ func main() {
 	}
 
 	// Create and store a Document
-	_, err = col.Upsert("u:jade",
+	_, err = col.Upsert("u:kingarthur",
 		User{
-			Name:      "Jade",
-			Email:     "jade@test-email.com",
-			Interests: []string{"Swimming", "Rowing"},
+			Name:      "Arthur",
+			Email:     "kingarthur@couchbase.com",
+			Interests: []string{"Holy Grail", "African Swallows"},
 		}, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// Get the document back
-	getResult, err := col.Get("u:jade", nil)
+	getResult, err := col.Get("u:kingarthur", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -439,10 +315,125 @@ func main() {
 	fmt.Printf("User: %v\n", inUser)
 
 	// Perform a N1QL Query
-	inventoryScope := bucket.Scope("inventory")
-	queryResult, err := inventoryScope.Query(
-		fmt.Sprintf("SELECT * FROM airline WHERE id=10"),
-		&amp;gocb.QueryOptions{Adhoc: true},
+	queryResult, err := cluster.Query(
+		fmt.Sprintf("SELECT name FROM `%s` WHERE $1 IN interests", bucketName),
+		&amp;gocb.QueryOptions{PositionalParameters: []interface{}{"African Swallows"}},
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Print each found Row
+	for queryResult.Next() {
+		var result interface{}
+		err := queryResult.Row(&amp;result)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println(result)
+	}
+
+	if err := queryResult.Err(); err != nil {
+		log.Fatal(err)
+	}
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="tabs-1-local-couchbase-server--panel" class="tabpanel" aria-labelledby="tabs-1-local-couchbase-server">
+<div class="listingblock try-it">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/hello-world/examples/startusing.go">package main
+
+import (
+	"crypto/x509"
+	"fmt"
+	"io/ioutil"
+	"log"
+	"time"
+
+	"github.com/couchbase/gocb/v2"
+)
+
+func main() {
+	// Uncomment following line to enable logging
+	// gocb.SetLogger(gocb.VerboseStdioLogger())
+
+	// Update this to your cluster details
+	bucketName := "travel-sample"
+	username := "Administrator"
+	password := "password"
+
+	p, err := ioutil.ReadFile("path/to/ca.pem")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	roots := x509.NewCertPool()
+	roots.AppendCertsFromPEM(p)
+
+	// Initialize the Connection
+	cluster, err := gocb.Connect("couchbases://127.0.0.1", gocb.ClusterOptions{
+		Authenticator: gocb.PasswordAuthenticator{
+			Username: username,
+			Password: password,
+		},
+		SecurityConfig: gocb.SecurityConfig{
+			TLSRootCAs: roots,
+			// WARNING: Do not set this to true in production, only use this for testing!
+			// TLSSkipVerify: true,
+		},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	bucket := cluster.Bucket(bucketName)
+
+	err = bucket.WaitUntilReady(5*time.Second, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Get a reference to the default collection, required for older Couchbase server versions
+	// col := bucket.DefaultCollection()
+
+	col := bucket.Scope("tenant_agent_00").Collection("users")
+
+	type User struct {
+		Name      string   `json:"name"`
+		Email     string   `json:"email"`
+		Interests []string `json:"interests"`
+	}
+
+	// Create and store a Document
+	_, err = col.Upsert("u:kingarthur",
+		User{
+			Name:      "Arthur",
+			Email:     "kingarthur@couchbase.com",
+			Interests: []string{"Holy Grail", "African Swallows"},
+		}, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Get the document back
+	getResult, err := col.Get("u:kingarthur", nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var inUser User
+	err = getResult.Content(&amp;inUser)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("User: %v\n", inUser)
+
+	// Perform a N1QL Query
+	queryResult, err := cluster.Query(
+		fmt.Sprintf("SELECT name FROM `%s` WHERE $1 IN interests", bucketName),
+		&amp;gocb.QueryOptions{PositionalParameters: []interface{}{"African Swallows"}},
 	)
 	if err != nil {
 		log.Fatal(err)
@@ -478,95 +469,6 @@ or the <a href="#7.1@server:manage:manage-settings/install-sample-buckets.adoc#i
 </div>
 </div>
 <div class="sect1">
-<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following code samples assume:</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_couchbase-capella"></a>Couchbase Capella</p>
-</li>
-<li>
-<p><a id="tabset2_couchbase-server"></a>Couchbase Server</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_couchbase-capella">
-<div class="ulist">
-<ul>
-<li>
-<p>You have initalised a <a href="https://go.dev/blog/using-go-modules">Go module</a>, and have a <code>go.mod</code> file in your working directory.</p>
-</li>
-<li>
-<p>You have signed up to <a href="https://cloud.couchbase.com/sign-up">Couchbase Capella</a>.</p>
-</li>
-<li>
-<p>You have created your own bucket, or loaded the Travel Sample dataset.
-Note, the Travel Sample dataset is installed automatically by the Capella free trial.</p>
-</li>
-<li>
-<p>A user is created with permissions to access the cluster (at least Application Access permissions).
-See the <a href="#cloud:get-started:cluster-and-data.adoc#credentials" class="xref unresolved">Capella connection page</a> for more details.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Couchbase Capella uses <a href="#cloud:organizations:organization-projects-overview.adoc" class="xref unresolved">Roles</a> to control user access to database resources.
-For the purposes of this guide, you can use the <strong>Organization Owner</strong> role automatically assigned to your account during installation of the Capella cluster.
-In a production scenario, we strongly recommend setting up users with more granular access roles as a best practice.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_couchbase-server">
-<div class="ulist">
-<ul>
-<li>
-<p>You have initalised a <a href="https://go.dev/blog/using-go-modules">Go module</a>, and have a <code>go.mod</code> file in your working directory.</p>
-</li>
-<li>
-<p><a href="#7.1@server:getting-started/do-a-quick-install.adoc" class="xref unresolved">Couchbase Server</a> is installed and accessible locally.</p>
-</li>
-<li>
-<p>You have created your own bucket, or loaded the Travel Sample dataset using the <a href="#7.1@server:manage:manage-settings/install-sample-buckets.adoc#install-sample-buckets-with-the-ui" class="xref unresolved">Web interface</a>.</p>
-</li>
-<li>
-<p>A user is created with permissions to access your cluster (at least Application Access permissions).
-See <a href="#7.1@server:manage:manage-security/manage-users-and-roles.adoc" class="xref unresolved">Manage Users, Groups and Roles</a> for more details.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Couchbase Server uses <a href="#7.1@server:learn:security/roles.adoc" class="xref unresolved">Role Based Access Control (RBAC)</a> to control access to resources.
-In this guide we suggest using the <strong>Full Admin</strong> role created during setup of your local Couchbase Server cluster.
-For production client code, you will want to use more appropriate, restrictive settings.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="quick-installation"><a class="anchor" href="#quick-installation"></a>Quick Installation</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -575,7 +477,7 @@ You can use <code>go get</code> to download the SDK:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ go get github.com/couchbase/gocb/v2</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ go get github.com/couchbase/gocb/v2@v2.5.1</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -599,14 +501,32 @@ In line with the <a href="https://golang.org/doc/devel/release.html#policy">Gola
 <h2 id="step-by-step"><a class="anchor" href="#step-by-step"></a>Step by Step</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Create an empty file named <code>main.go</code> and walk through adding code step-by-step.</p>
+<p>At this point we want to transition from the terminal to your code editor of choice.</p>
 </div>
 <div class="paragraph">
-<p>Here are all the imports needed to run the sample code:</p>
+<p>Let&#8217;s now create an empty file named <code>main.go</code> and walk through adding code step-by-step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Connect to a single node cluster, bucket, and collection;</p>
+</li>
+<li>
+<p>Add and retrieve a new document;</p>
+</li>
+<li>
+<p>Look up (SQL-type query) the new document by attribute value.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
+<div class="paragraph">
+<p>Here are all of the imports that you will need to run the sample code.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/cloud.go">package main
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/cloud.go">package main
 
 import (
 	"fmt"
@@ -628,113 +548,53 @@ import (
 </div>
 </div>
 <div class="paragraph">
-<p>In your <code>main()</code> function, add the following variables and update them accordingly:</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset3_couchbase-capella"></a>Couchbase Capella</p>
-</li>
-<li>
-<p><a id="tabset3_local-couchbase-server"></a>Local Couchbase Server</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_couchbase-capella">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/cloud.go#L19-L23">// Update this to your cluster details
-connectionString := "cb.&lt;your-endpoint&gt;.cloud.couchbase.com"
-bucketName := "travel-sample"
-username := "username"
-password := "Password!123"</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset3_local-couchbase-server">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/hello-world/examples/startusing.go#L16-L20">// Update this to your cluster details
-connectionString := "localhost"
-bucketName := "travel-sample"
-username := "Administrator"
-password := "password"</code></pre>
-</div>
-</div>
-</div>
+<p>We will update this function as we go along the steps in this guide.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="connect"><a class="anchor" href="#connect"></a>Connect</h3>
+<h3 id="connection"><a class="anchor" href="#connection"></a>Connection</h3>
 <div class="paragraph">
-<p>Connect to your cluster by calling the <code>Cluster.Connect()</code> function and pass it your connection details.
-The basic connection details that you’ll need are given below&#8201;&#8212;&#8201;for more background information, see <a href="../howtos/managing-connections.html" class="xref page">Managing Connections</a>.</p>
+<p>The basic connection details that you&#8217;ll need are given below&#8201;&#8212;&#8201;for more background information, refer to the <a href="../howtos/managing-connections.html#connection-strings" class="xref page">Managing Connections page</a>.</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div class="paragraph">
+<p>In the <code>main()</code> function, add the following:</p>
+</div>
+<div id="tabs-2" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset4_couchbase-capella"></a>Couchbase Capella</p>
+<li id="tabs-2-couchbase-capella" class="tab">
+<p>Couchbase Capella</p>
 </li>
-<li>
-<p><a id="tabset4_local-couchbase-server"></a>Local Couchbase Server</p>
+<li id="tabs-2-local-couchbase-server" class="tab">
+<p>Local Couchbase Server</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset4_couchbase-capella">
-<div class="paragraph">
-<p>Couchbase Capella requires mandatory use of TLS (Transport Layer Security).
-As of Go SDK version 2.5.0, the standard certificate required to connect to a Capella cluster is automatically included with no additional configuration.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/cloud.go#L27-L45">options := gocb.ClusterOptions{
-	Authenticator: gocb.PasswordAuthenticator{
-		Username: username,
-		Password: password,
-	},
-}
-
-// Sets a pre-configured profile called "wan-development" to help avoid latency issues
-// when accessing Capella from a different Wide Area Network
-// or Availability Zone (e.g. your laptop).
-if err := options.ApplyProfile(gocb.ClusterConfigProfileWanDevelopment); err != nil {
-	log.Fatal(err)
-}
-
-// Initialize the Connection
-cluster, err := gocb.Connect("couchbases://"+connectionString, options)
-if err != nil {
-	log.Fatal(err)
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When accessing Capella from a different Wide Area Network or Availability Zone, you may experience latency issues with the default connection settings.
-SDK 2.6 introduces a <code>wan-development</code> Configuration Profile, which provides pre-configured timeout settings suitable for working in high latency environments.
-Basic usage is shown in the example above, but if you want to learn more see <a href="../ref/client-settings.html#constrained-network-environments" class="xref page">Constrained Network Environments</a>.</p>
-</div>
-<div class="admonitionblock caution">
+<div id="tabs-2-couchbase-capella--panel" class="tabpanel" aria-labelledby="tabs-2-couchbase-capella">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-The Configuration Profiles feature is currently a <a href="../project-docs/compatibility.html#interface-stability" class="xref page">Volatile API</a> and may be subject to change.
+Couchbase Capella requires mandatory use of TLS (Transport Layer Security).
+As of Go SDK version 2.5.0, the standard certificate required to connect to a Capella cluster is automatically included with no additional configuration.
 </td>
 </tr>
 </table>
 </div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset4_local-couchbase-server">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/hello-world/examples/startusing.go#L24-L33">// For a secure cluster connection, use `couchbases://&lt;your-cluster-ip&gt;` instead.
-cluster, err := gocb.Connect("couchbase://"+connectionString, gocb.ClusterOptions{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/cloud.go#L19-L34">// Update this to your cluster details
+endpoint := "cb.&lt;your-endpoint&gt;.cloud.couchbase.com"
+bucketName := "travel-sample"
+username := "username"
+password := "Password123!"
+
+// Initialize the Connection
+cluster, err := gocb.Connect("couchbases://"+endpoint, gocb.ClusterOptions{
 	Authenticator: gocb.PasswordAuthenticator{
 		Username: username,
 		Password: password,
@@ -746,18 +606,64 @@ if err != nil {
 </div>
 </div>
 <div class="paragraph">
-<p>For developing locally on the same machine as Couchbase Server, your URI can be <code>couchbase://localhost</code> as shown here.
-For production deployments, you will want to use a secure server, with <code>couchbases://</code>.</p>
+<p>Couchbase Capella uses <a href="../../../cloud/organizations/organization-projects-overview.html" class="xref page">Roles</a> to control user access to database resources.
+For the purposes of this example, we can use the <em>Organization Owner</em> role automatically assigned to a user account during installation of the Capella cluster.
+This role grants full access to a Capella organization, including full data access to all projects and clusters.
+In a production scenario, we strongly recommend setting up users with more granular access roles as a best practice.</p>
+</div>
+<div class="paragraph">
+<p>For the SDK client to access cluster data, you will need to set up credentials for your database by <a href="../../../cloud/get-started/run-first-queries.html#credentials" class="xref page">following these steps</a>.</p>
+</div>
+</div>
+<div id="tabs-2-local-couchbase-server--panel" class="tabpanel" aria-labelledby="tabs-2-local-couchbase-server">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/hello-world/examples/startusing.go#L18-L45">// Update this to your cluster details
+bucketName := "travel-sample"
+username := "Administrator"
+password := "password"
+
+p, err := ioutil.ReadFile("path/to/ca.pem")
+if err != nil {
+	log.Fatal(err)
+}
+
+roots := x509.NewCertPool()
+roots.AppendCertsFromPEM(p)
+
+// Initialize the Connection
+cluster, err := gocb.Connect("couchbases://127.0.0.1", gocb.ClusterOptions{
+	Authenticator: gocb.PasswordAuthenticator{
+		Username: username,
+		Password: password,
+	},
+	SecurityConfig: gocb.SecurityConfig{
+		TLSRootCAs: roots,
+		// WARNING: Do not set this to true in production, only use this for testing!
+		// TLSSkipVerify: true,
+	},
+})
+if err != nil {
+	log.Fatal(err)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Couchbase uses <a href="#7.1@server:learn:security/roles.adoc" class="xref unresolved">Role Based Access Control (RBAC)</a> to control access to resources.
+For the purposes of this example, we are connecting to Couchbase using the <em>Full Admin</em> role created during the installation of our Couchbase Server.</p>
+</div>
+<div class="paragraph">
+<p>Couchbase RBAC is fully described in the <a href="#7.1@server:manage:manage-security/manage-users-and-roles.adoc" class="xref unresolved">Manage Users, Groups, and Roles</a> page.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>Following successful authentication, add this code snippet to access your <code>Bucket</code>:</p>
+<p>Following successful authentication, the bucket can be opened:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/cloud.go#L49-L54">bucket := cluster.Bucket(bucketName)
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/cloud.go#L38-L43">bucket := cluster.Bucket(bucketName)
 
 err = bucket.WaitUntilReady(5*time.Second, nil)
 if err != nil {
@@ -765,63 +671,69 @@ if err != nil {
 }</code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We are working with the <a href="#7.1@server:manage:manage-settings/install-sample-buckets.adoc" class="xref unresolved">travel-sample</a> data bucket.
+If you are not, update the <code>bucketName</code> variable used in the example with your own.
+</td>
+</tr>
+</table>
 </div>
-<div class="sect2">
-<h3 id="add-and-retrieve-documents"><a class="anchor" href="#add-and-retrieve-documents"></a>Add and Retrieve Documents</h3>
 <div class="paragraph">
-<p>The Go SDK supports full integration with the <a href="../concept-docs/collections.html" class="xref page">Collections</a> feature introduced in Couchbase Server 7.0.
-<em>Collections</em> allow documents to be grouped by purpose or theme, according to a specified <em>Scope</em>.</p>
-</div>
-<div class="paragraph">
-<p>Here we refer to the <code>users</code> collection within the <code>tenant_agent_00</code> scope from the Travel Sample bucket as an example, but you may replace this with your own data.</p>
+<p>The 2.5 SDK supports full integration with the <a href="../concept-docs/collections.html" class="xref page">Collections</a> feature introduced in Couchbase Server 7.0.
+<em>Collections</em> allow documents to be grouped by purpose or theme, according to a specified <em>Scope</em>.
+Here we will use the <code>users</code> collection within the <code>tenant_agent_00</code> scope from <code>travel-sample</code> bucket as an example.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/cloud.go#L58-L61">// Get a reference to the default collection, required for older Couchbase server versions
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/cloud.go#L47-L50">// Get a reference to the default collection, required for older Couchbase server versions
 // col := bucket.DefaultCollection()
 
 col := bucket.Scope("tenant_agent_00").Collection("users")</code></pre>
 </div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<div class="title">For Local Couchbase Server only</div>
-<p>The <code>DefaultCollection</code> must be used when connecting to a 6.6 cluster or earlier&#8201;&#8212;&#8201;see comment in the code snippet above.</p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>The code shows how you would use a named collection and scope.
 A named or default collection will provide the same functionality as bucket-level operations did in previous versions of Couchbase Server.</p>
 </div>
 <div class="paragraph">
-<p><a href="../howtos/kv-operations.html" class="xref page">Data operations</a>, such as storing and retrieving documents, can be done using <code>Collection.Upsert()</code> and <code>Collection.Get()</code>.</p>
+<p>The <code>DefaultCollection</code> must be used when connecting to a 6.6 cluster or earlier.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="document-addition-and-retrieval"><a class="anchor" href="#document-addition-and-retrieval"></a>Document Addition and Retrieval</h3>
 <div class="paragraph">
-<p>Add the following code to create a new document:</p>
+<p>Let&#8217;s create a struct in our application that we can add to our <code>travel-sample</code> bucket that conforms to the structure of a document of type user.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/cloud.go#L65-L80">// Create and store a Document
-type User struct {
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/cloud.go#L54-L58">type User struct {
 	Name      string   `json:"name"`
 	Email     string   `json:"email"`
 	Interests []string `json:"interests"`
-}
-
-_, err = col.Upsert("u:jade",
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="../howtos/kv-operations.html" class="xref page">Document operations</a>, such as storing and retrieving documents, can be done using <code>Collection.Upsert()</code> and <code>Collection.Get()</code>.
+Simply pass the key (and value, if applicable) to the relevant methods.</p>
+</div>
+<div class="paragraph">
+<p>The following function will <em>upsert</em> a document into the database:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/cloud.go#L62-L71">// Create and store a Document
+_, err = col.Upsert("u:kingarthur",
 	User{
-		Name:      "Jade",
-		Email:     "jade@test-email.com",
-		Interests: []string{"Swimming", "Rowing"},
+		Name:      "Arthur",
+		Email:     "kingarthur@couchbase.com",
+		Interests: []string{"Holy Grail", "African Swallows"},
 	}, nil)
 if err != nil {
 	log.Fatal(err)
@@ -829,12 +741,13 @@ if err != nil {
 </div>
 </div>
 <div class="paragraph">
-<p>Now, let&#8217;s retrieve it using a key-value (data) operation.</p>
+<p>Now, let&#8217;s retrieve that document using a key-value operation.
+The following function runs a get for a document key and logs out the result in our console:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/cloud.go#L84-L95">// Get the document back
-getResult, err := col.Get("u:jade", nil)
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/cloud.go#L75-L86">// Get the document back
+getResult, err := col.Get("u:kingarthur", nil)
 if err != nil {
 	log.Fatal(err)
 }
@@ -851,19 +764,15 @@ fmt.Printf("User: %v\n", inUser)</code></pre>
 <div class="sect2">
 <h3 id="sql-lookup"><a class="anchor" href="#sql-lookup"></a>SQL++ Lookup</h3>
 <div class="paragraph">
-<p>Couchbase SQL++ queries are performed by invoking <code>Cluster.Query()</code> or <code>Scope.Query</code>.</p>
-</div>
-<div class="paragraph">
-<p>Cluster level queries require you to specify the fully qualified keyspace each time (e.g. <code>travel-sample.inventory.airline</code>).
-However, with a Scope level query you only need to specify the Collection name&#8201;&#8212;&#8201;which in this case is <code>airline</code>:</p>
+<p>Couchbase N1QL queries are performed by invoking <code>Cluster.Query()</code>.
+In the code below we will query Couchbase to retrieve users with a particular interest and print the results.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/cloud.go#L99-L121">// Perform a N1QL Query
-inventoryScope := bucket.Scope("inventory")
-queryResult, err := inventoryScope.Query(
-	fmt.Sprintf("SELECT * FROM airline WHERE id=10"),
-	&amp;gocb.QueryOptions{},
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/cloud.go#L90-L111">// Perform a N1QL Query
+queryResult, err := cluster.Query(
+	fmt.Sprintf("SELECT name FROM `%s` WHERE $1 IN interests", bucketName),
+	&amp;gocb.QueryOptions{PositionalParameters: []interface{}{"African Swallows"}},
 )
 if err != nil {
 	log.Fatal(err)
@@ -884,9 +793,6 @@ if err := queryResult.Err(); err != nil {
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>You can learn more about SQL++ queries on the <a href="../howtos/n1ql-queries-with-sdk.html" class="xref page">Query</a> page.</p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="execute"><a class="anchor" href="#execute"></a>Execute!</h3>
@@ -903,8 +809,8 @@ if err := queryResult.Err(); err != nil {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">User: {Jade jade@test-email.com [Swimming Rowing]}
-map[airline:map[callsign:MILE-AIR country:United States iata:Q5 icao:MLA id:10 name:40-Mile Air type:airline]]</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">User: {Arthur kingarthur@couchbase.com [Holy Grail African Swallows]}
+map[name:Arthur]</code></pre>
 </div>
 </div>
 </div>
@@ -925,7 +831,7 @@ map[airline:map[callsign:MILE-AIR country:United States iata:Q5 icao:MLA id:10 n
 <p>Explore <a href="../howtos/kv-operations.html" class="xref page">Key Value Operations</a> (CRUD) against a document database;</p>
 </li>
 <li>
-<p>Or <a href="../howtos/n1ql-queries-with-sdk.html" class="xref page">Query</a> with our SQL-based SQL++ query language;</p>
+<p>Or <a href="../howtos/n1ql-queries-with-sdk.html" class="xref page">Query</a> with our SQL-based N1QL language;</p>
 </li>
 <li>
 <p>Or read up on <a href="../concept-docs/data-services.html" class="xref page">which service fits your use case</a>.</p>
@@ -975,13 +881,6 @@ If you&#8217;re running the SDK on your laptop against a Capella cluster, see fu
 </div>
 </div>
 </div>
-
-        <nav class="pagination">
-
-                <span>&nbsp;</span>
-        
-                    <span class="next"><a href="../howtos/kv-operations.html">Data Operations</a></span>
-
 </article>
 </main>
 </div>
@@ -1055,7 +954,7 @@ If you&#8217;re running the SDK on your laptop against a Capella cluster, see fu
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -1072,6 +971,7 @@ If you&#8217;re running the SDK on your laptop against a Capella cluster, see fu
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

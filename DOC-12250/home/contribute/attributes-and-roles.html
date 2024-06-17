@@ -23,6 +23,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="dcterms.identifier" content="master">
 <meta name="page-url" content="/home/contribute/attributes-and-roles.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="home">
+<meta name="docsearch:component_title" content="Couchbase Documentation">
+<meta name="docsearch:cversion" content="master">
+<meta name="docsearch:component_version" content="home@master">
+<meta name="docsearch:module" content="contribute">
+<meta name="docsearch:breadcrumbs" content=" / Writing Documentation / Attributes and Roles">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="0">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -40,7 +54,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -61,19 +76,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -87,7 +117,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -175,11 +204,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="labels">
 <ul></ul>
 </div>
-<div class="labels">
-<ul>
-<li class="status"><span>OUT OF DATE</span></li>
-</ul>
-</div>
 
 
 </div>
@@ -189,17 +213,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span  id="otherContributor"> + </span>
 </div><div id="preamble">
 <div class="sectionbody">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This documentation is out of date
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Use attributes and roles to insert content or CSS styles into your pages.</p>
 </div>
 </div>
 </div>
@@ -207,22 +222,26 @@ This documentation is out of date
 <h2 id="setting-and-referencing-document-attributes"><a class="anchor" href="#setting-and-referencing-document-attributes"></a>Setting and Referencing Document Attributes</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>AsciiDoc attributes are optional key-value pairs that can be used to hold names, URLs, and reusable content phrases.
-Some attributes are built-in to Asciidoctor; others are defined especially for the Couchbase documentation or by the writer.</p>
+<p>Use an AsciiDoc attribute to hold names, URLs, and reusable content phrases.</p>
 </div>
 <div class="paragraph">
-<p>When defined in the document header, these attributes become available to the whole document and all of its includes.
+<p>An attribute consists of a key-value pair set in a page header or in the playbook file for the documentation site.
+Some attributes are built-in to Asciidoctor.
+Others are defined especially for the Couchbase documentation or by the writer.</p>
+</div>
+<div class="paragraph">
+<p>Adding an attribute to a document header makes an attribute available to an entire page and all of its includes.
 Each attribute must be entered on a separate line, known as an attribute entry.
 The syntax of an attribute entry as follows:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>:name: value</pre>
+<pre> :name: value</pre>
 </div>
 </div>
 <div class="paragraph">
 <p>In this case, <code>name</code> is the name of the attribute and <code>value</code> is the optional value.
-You can see several examples of attribute entries in the listing below.</p>
+The following example shows a document header with multiple included attributes:</p>
 </div>
 <div class="listingblock">
 <div class="title">Examples of document attributes</div>
@@ -273,32 +292,280 @@ In this case, the tabs feature is turned on by setting <code>tabs</code>.</td>
 </div>
 </div>
 <div class="sect1">
+<h2 id="available-document-attributes"><a class="anchor" href="#available-document-attributes"></a>Available Document Attributes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following document attributes must be included for every AsciiDoc file stored in a <strong>pages</strong> directory:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:page-topic-type:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The page topic type sets the content type for a page and automatically adds a corresponding badge.
+These badges help users quickly identify the kind of content they&#8217;re going to find on a page.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>For concepts: <code>concept</code></p>
+</li>
+<li>
+<p>For tasks: <code>guide</code></p>
+</li>
+<li>
+<p>For references: <code>reference</code></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:description:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The page description is used for SEO and provides a brief description of the page, which is displayed using the <code>[abstract]</code> attribute on the page.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Enter a quick description of the content on the page.
+Emphasize what the user would want to know at a glance.</p>
+</div>
+<div class="paragraph">
+<p>Try to keep it to 1-2 sentences.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>You can also use the following optional attributes:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:imagesdir:</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Use the <code>imagesdir</code> attribute to set where Antora should resolve the location of images included in a page.
+By default, the value of <code>imagesdir</code> is empty, and image paths are resolved relative to the current page.</p>
+</div>
+<div class="paragraph">
+<p>Set the <code>imagesdir</code> to avoid hard-coding image paths when writing an include, as Antora will automatically prefix any path with the set value.</p>
+</div>
+<div class="paragraph">
+<p>For example, the following would become a valid image include:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>image::name-of-image.png[]</pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>:imagesdir: ../assets/images</code></p>
+</div>
+<div class="paragraph">
+<p>Try to keep your images inside the <code>assets/images</code> folder in a module.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:keywords:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use the <code>keywords</code> attribute to add meta keywords to the HTML head for your page.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any applicable keyword, separated by commas (<code>,</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:page-aliases:</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Use the <code>page-aliases</code> attribute when you need to delete or rename a page to avoid breaking links.
+Antora will resolve any links to the filename(s) you specify in this attribute to redirect to the current page, instead.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You should only use <code>page-aliases</code> if it&#8217;s absolutely necessary.
+It&#8217;s not designed to be a general-purpose URL router, and it can get noisy and chaotic to maintain a large number of <code>page-aliases</code> on a page, or across pages.</p>
+</div>
+<div class="paragraph">
+<p>Do your part to keep the AsciiDoc files clean and easy to understand.
+Try to appropriately name your pages from the start.</p>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A <a href="cross-references.html" class="xref page">valid cross reference</a> to a page.</p>
+<p class="tableblock">For a page in the same module: <code>:page-aliases: search-query.adoc</code></p>
+<p class="tableblock">For a page in a different module: <code>:page-aliases: ROOT:search-query.adoc</code></p>
+<p class="tableblock">For a page in another repository: <code>:page-aliases:7.6@server:develop:integrations.adoc</code></p>
+<p class="tableblock">When linking to a repository that has a version, you must specify which version in that repository redirects to your current page.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:page-edition:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If you&#8217;re writing content that only applies to a specific edition of Couchbase Server, usually the Enterprise Edition, use the <code>page-edition</code> attribute to add a badge to the page that indicates the Edition the content applies to.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>page-edition: Enterprise Edition</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:page-layout:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the UI layout to assign to a page.
+By default, pages use the <code>default.hbs</code> template from the <a href="https://github.com/couchbase/docs-ui" target="_blank" rel="noopener">docs-ui repository</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For the list of all available templates, see <a href="https://github.com/couchbase/docs-ui/tree/master/src/layouts">the docs-ui repository</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:page-pagination:</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Include the <code>page-pagination</code> attribute to add pagination to the bottom of a page.</p>
+</div>
+<div class="paragraph">
+<p>Set the attribute to <code>prev</code> to allow the user to navigate to the previous and next pages surrounding the current page in the module&#8217;s table of contents.</p>
+</div>
+<div class="paragraph">
+<p>Set the attribute to <code>next</code> to include only navigation going to the next topic in the table of contents.</p>
+</div>
+<div class="paragraph">
+<p>For an example of <code>page-pagination</code>, see <a href="../../server/current/guides/insert.html" class="xref page">the Server documentation</a>.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>:page-pagination: prev</code></p>
+</div>
+<div class="paragraph">
+<p><code>:page-pagination: next</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:page-partial:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows this page to be included inside another page as a <a href="includes.html#partial-files" class="xref page">partial file</a>.
+You only need to set this attribute on a page that you add to the <code>pages</code> directory of a module.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:page-partial:</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:page-role:</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Assign a role to a page to change the default CSS or add new CSS styles to the entire page.
+The exact behavior depends on the assigned role.</p>
+</div>
+<div class="paragraph">
+<p>The <code>page-role</code> attribute can take multiple values, separated by a single space.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>:page-role: tiles</code>: Arranges and renders H2 headings as tiles, in 2 columns down the page.</p>
+</div>
+<div class="paragraph">
+<p><code>:page-role: -toc</code>: Removes the in-page table of contents from a page.
+Useful for landing pages.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:page-status:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If you&#8217;re writing content that only applies to a beta or specific software version, use the <code>page-status</code> attribute to mark the page with a badge.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Any valid software name and version.</p>
+</div>
+<div class="paragraph">
+<p>For example, <code>:page-status: Couchbase Server 7.2</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="page-toclevels"></a><code>:page-toclevels:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use the <code>page-toclevels</code> attribute to control the depth of headings displayed on the in-page table of contents, at the right of the document contents.
+By default, the in-page table of contents only displays Heading 2 (H2) headings.
+Set the attribute to any value greater than or equal to <code>2</code> to increase the heading depth displayed.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>page-toclevels: &lt;Any integer greater than 1&gt;</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:sectids:</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="#unsetting-a-document-attribute">Unset</a> the <code>sectids</code> attribute to stop automatically generating section IDs for headings inside an AsciiDoc file.</p>
+</div>
+<div class="paragraph">
+<p>If <code>sectids</code> is left set for a document, section IDs for <a href="cross-references.html" class="xref page">cross references</a> are generated based on the content of the heading, replacing spaces with dashes.</p>
+</div>
+<div class="paragraph">
+<p>You can always override these automatic IDs by assigning your own.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>:sectids:</code> (set)</p>
+</div>
+<div class="paragraph">
+<p><code>:!sectids:</code> (unset)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:tabs:</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>To add the tabs feature to your page and allow tabbed content blocks, you must set the <code>tabs</code> attribute.</p>
+</div>
+<div class="paragraph">
+<p>You can find an example of tabbed content in <a href="../../server/current/guides/deleting-data.html#deleting-a-document" class="xref page">the Server documentation</a>.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>:tabs:</code></p>
+</div>
+<div class="paragraph">
+<p><code>:!tabs:</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:xrefstyle:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Controls the generated text for <a href="cross-references.html" class="xref page">cross references</a> in a document, when linking to block content that has a caption set.
+For more information, see <a href="https://docs.asciidoctor.org/asciidoc/latest/macros/xref-text-and-style/" target="_blank" rel="noopener">the AsiiDoc documentation</a>.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>:xrefstyle: full</code></p>
+</div>
+<div class="paragraph">
+<p><code>:xrefstyle: short</code></p>
+</div>
+<div class="paragraph">
+<p><code>:xrefstyle: basic</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Antora also assigns several page attributes on each page to provide information about the component, version, and module where a page is located.
+You can find a list of these attributes in the <a href="https://docs.antora.org/antora/latest/page/intrinsic-attributes/" target="_blank" rel="noopener">Antora documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>See the <a href="https://github.com/couchbase/docs-site/blob/master/antora-playbook.yml" target="_blank" rel="noopener">production</a> and <a href="https://github.com/couchbase/docs-site/blob/master/antora-playbook-staging.yml" target="_blank" rel="noopener">staging</a> Antora playbooks to review which AsciiDoc attributes are currently set and unset for all of the Couchbase documentation pages.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="unsetting-a-document-attribute"><a class="anchor" href="#unsetting-a-document-attribute"></a>Unsetting a Document Attribute</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Some built-in attributes are set (turned on) by default and set for all of the Couchbase document in the playbook.</p>
 </div>
 <div class="paragraph">
-<p>For example, section IDs are automatically generated for all of the Couchbase documentation pages.
-This occurs because the <code>sectids</code> attribute is turned on by default.
-To unset (turn off) an attribute on a page, prefix the name with a bang (<code>!</code>).</p>
+<p>For example, the <code>sectids</code> attribute is turned on by default and automatically generates section IDs for all Couchbase documentation pages.
+To unset (turn off) an attribute on a page, prefix the name with a bang (<code>!</code>):</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">= Page Title
-:!sectids: <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+:!sectids:</code></pre>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Unset <code>sectids</code> with a <code>!</code> so that sections IDs are not generated from the section titles in the document.</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>See the production and staging Antora playbooks to review which AsciiDoc attributes are currently set and unset for all of the Couchbase documentation pages.</p>
 </div>
 </div>
 </div>
@@ -307,14 +574,39 @@ To unset (turn off) an attribute on a page, prefix the name with a bang (<code>!
 <div class="sectionbody">
 <div class="paragraph">
 <p>A role applies alternative or additional CSS styles to a document, block, or phrase.
-The styles for each role are defined by the UI.
-A role is applied to a block or phrase by prefixing the role name with a dot and inserting it between a set of square brackets (<code>[.role-name]</code>).</p>
+The styles for each role are defined by the code in the <a href="https://github.com/couchbase/docs-ui" target="_blank" rel="noopener">docs-ui repository</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="page-role"><a class="anchor" href="#page-role"></a>Page Role</h3>
+<h3 id="inline-roles"><a class="anchor" href="#inline-roles"></a>Inline Roles</h3>
 <div class="paragraph">
-<p>Assign a role to the page works a little differently.
-When set, the <code>page-role</code> attribute applies one or more roles to the entire page.
+<p>Add a role to a block or phrase by prefixing the role name with a dot and inserting it between a set of square brackets:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[.role-name]`I'm a phrase with an assigned role!`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As stated in the <a href="https://docs.asciidoctor.org/asciidoc/latest/attributes/role/" target="_blank" rel="noopener">AsciiDoc documentation</a>, inline elements must be surrounded by formatting syntax to be assigned a role.</p>
+</div>
+<div class="paragraph">
+<p>You can add multiple roles to a single block or phrase by separating each role name with a period (<code>.</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[.role1 .role2]*I'm a phrase with an assigned role!*
+
+[.role1 .role2]
+\----
+I'm a block with an assigned role!
+\----</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="page-roles"><a class="anchor" href="#page-roles"></a>Page Roles</h3>
+<div class="paragraph">
+<p>Assigning a role to a page applies that role to the entire page, rather than a specific block or phrase.
 <code>page-role</code> is an example of a <a href="#using-page-attributes">page attribute</a>.
 It must be defined in the document header.</p>
 </div>
@@ -327,10 +619,10 @@ It must be defined in the document header.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>tiles</p>
+<p><code>tiles</code></p>
 </li>
 <li>
-<p>-toc</p>
+<p><code>-toc</code></p>
 </li>
 </ul>
 </div>
@@ -357,103 +649,32 @@ The -toc role tells the UI template not to add a table of contents (TOC) to the 
 <h2 id="using-page-attributes"><a class="anchor" href="#using-page-attributes"></a>Using Page Attributes</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Certain document attributes are reserved specifically for use with Antora.
+<p>Certain document attribute names are reserved specifically for use with Antora.
 These are know as page attributes.
 All page attributes begin with the <code>page-</code> prefix.
 The prefix is removed and the remainder is passed on to the UI as metadata.
 For the most part, it&#8217;s up to the UI to decide how to use this information.</p>
 </div>
 <div class="paragraph">
-<p>There are several built-in page attribute in Antora and a few others that the Couchbase UI already recognized.</p>
+<p>Antora has several <a href="https://docs.antora.org/antora/latest/page/intrinsic-attributes/" target="_blank" rel="noopener">built-in page attributes</a>, and some other attributes have been added to the Couchbase UI.</p>
 </div>
-<div class="sect2">
-<h3 id="built-in-page-attributes"><a class="anchor" href="#built-in-page-attributes"></a>Built-in Page Attributes</h3>
-<div class="paragraph">
-<p>The built-in page attributes in Antora are as follows:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">page-layout</dt>
-<dd>
-<p>Specifies the UI layout to apply to the page.
-If not set, the page layout defaults to <code>default</code> (hence loading the <code>default.hbs</code> template).</p>
-<div class="paragraph">
-<p>The home page for the site uses the <code>home</code> layout by assigning <code>:page-layout: home</code> in the document header.</p>
-</div>
-</dd>
-<dt class="hdlist1">page-partial</dt>
-<dd>
-<p>Indicates that this page may be included in another page.
-Only requires for AsciiDoc files in the pages directory (not the partials directory).</p>
-</dd>
-<dt class="hdlist1">page-aliases</dt>
-<dd>
-<p>A comma-separated list of alternate page IDs that should redirect to this page.
-We recommend that, as far as possible, you avoid renaming or moving pages when editing the documentation.
-If you do need to move or rename a page, you will need to list the old page ID in this attribute so that the web server will redirect visitors from the old page to the new location.</p>
-<div class="paragraph">
-<p>These can be given as just the <code>.adoc</code> filename, for a page in the same module:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:page-aliases: search-query.adoc</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Through another module&#8201;&#8212;&#8201;<code>ROOT:search-query.adoc</code>&#8201;&#8212;&#8201;to redirecting to a page in another repo:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:page-aliases: 7.0@server:developer-guide:expiry.adoc</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Note that here the version number must be used to specify which particular page version in the other repo is redirecting to this one.</p>
-</div>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>Antora also assigns several page attributes on each page to provide information about which component, version, and module in which the page is located.
-You can find a list of these attributes in the <a href="https://docs.antora.org/antora/2.0/page/page-and-site-attributes/" target="_blank" rel="noopener">Antora documentation</a>.</p>
-</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Do not create your own attributes that conflict with the names of any built-in page attributes or page attributes that are already in use.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="custom-page-attributes"><a class="anchor" href="#custom-page-attributes"></a>Custom Page Attributes</h3>
 <div class="paragraph">
-<p>Custom page attibutes are used to pass information from the document to the UI.
-It&#8217;s up to the UI to give these attributes meaning.</p>
-</div>
-<div class="paragraph">
-<p>The Couchbase UI supports the following custom page attributes:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">page-edition</dt>
-<dd>
-<p>Used to add a blue badge under the page title that indicates the server edition to which the content applies.
-The badge automatically links to https://www.couchbase.com/products/editions.
-The value of the attribute is used as the text of the badge.</p>
-</dd>
-<dt class="hdlist1">page-status</dt>
-<dd>
-<p>Used to add an orange badge under the page title that indicates the status of the page, such as beta or the minimum software version to which the content applies.
-The value of the attribute is used as the text of the badge.</p>
-</dd>
-<dt class="hdlist1">description</dt>
-<dd>
-<p>Sets the value of the meta description in the HTML head.
-Note that the <code>page-</code> prefix is not required in this case.</p>
-</dd>
-<dt class="hdlist1">keywords</dt>
-<dd>
-<p>Sets the value of the meta keywords in the HTML head.
-Note that the <code>page-</code> prefix is not required in this case.</p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>Additional custom page attributes can be added by agreeing on a contract between the page and the UI.</p>
+<p>Use custom page attributes to pass information from the document to the UI.
+Use the <a href="https://github.com/couchbase/docs-ui" target="_blank" rel="noopener">docs-ui repository</a> to control what these attributes actually do with the contents of a page.</p>
 </div>
 </div>
 </div>
@@ -531,7 +752,7 @@ Note that the <code>page-</code> prefix is not required in this case.</p>
 </footer>
 <script src="../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Home","components":["home"],"latestVersions":{"home":"master"}}
+{"title":"Contribute","components":["home","styleguide","ui-ux","pendo"],"latestVersions":{"home":"master","styleguide":"","ui-ux":"","pendo":""}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -548,6 +769,7 @@ Note that the <code>page-</code> prefix is not required in this case.</p>
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../_/js/site.js"></script>
 <script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>

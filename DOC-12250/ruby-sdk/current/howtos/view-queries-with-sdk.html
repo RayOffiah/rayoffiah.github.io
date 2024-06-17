@@ -24,6 +24,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="dcterms.identifier" content="3.3">
 <meta name="page-url" content="/ruby-sdk/current/howtos/view-queries-with-sdk.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="ruby-sdk">
+<meta name="docsearch:component_title" content="Ruby SDK">
+<meta name="docsearch:cversion" content="3.3">
+<meta name="docsearch:component_version" content="ruby-sdk@3.3">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="Ruby SDK / Working with Data / MapReduce Views">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,14 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="ruby-sdk">
-        <option value="3.3" data-url="view-queries-with-sdk.html" selected>3.3</option>
-        <option value="3.2" data-url="../../3.2/howtos/view-queries-with-sdk.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/howtos/view-queries-with-sdk.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/howtos/view-queries-with-sdk.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -115,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-ruby/edit/release/3.3/modules/howtos/pages/view-queries-with-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-ruby/modules/howtos/pages/view-queries-with-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -200,39 +221,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 You can use MapReduce views to create queryable indexes in Couchbase Data Platform.
 </blockquote>
 </div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Although still maintained and supported for legacy use, Views date from the earliest days of Couchbase Server development, and as such are rarely the best choice over, say, <a href="n1ql-queries-with-sdk.html" class="xref page">our Query service</a> if you are starting a fresh application.
-See our discussion document on <a href="../concept-docs/data-services.html" class="xref page">the best service for you to use</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Unresolved include directive in modules/howtos/pages/view-queries-with-sdk.adoc - include::7.1@sdk:shared:partial$views.adoc[]</p>
 </div>
 <div class="paragraph">
-<p>The normal CRUD methods allow you to look up a document by its ID.
-A MapReduce (<em>view</em> query) allows you to lookup one or more documents based on various criteria.
-MapReduce views are comprised of a <em>map</em> function that is executed once per document (this is done incrementally, so this is not run each time you query the view) and an optional <em>reduce</em> function that performs aggregation on the results of the <em>map</em> function.
-The <em>map</em> and <em>reduce</em> functions are stored on the server and written in JavaScript.</p>
-</div>
-<div class="paragraph">
-<p>MapReduce queries can be further customized during query time to allow only a subset (or range) of the data to be returned.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-See the <a href="#7.1@server:learn:views/views-writing.adoc" class="xref unresolved">Incremental MapReduce Views</a> and <a href="#7.1@server:learn:views/views-querying.adoc" class="xref unresolved">Querying Data with Views</a> sections of the general documentation to learn more about views and their architecture.
-</td>
-</tr>
-</table>
+<p>Unresolved include directive in modules/howtos/pages/view-queries-with-sdk.adoc - include::7.1@sdk:shared:partial$views.adoc[]</p>
 </div>
 </div>
 </div>
@@ -247,7 +240,7 @@ See the <a href="#7.1@server:learn:views/views-writing.adoc" class="xref unresol
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="https://github.com/couchbase/docs-sdk-ruby/blob/70882f1e0ff06b07b48e5ee39f7b3f0445fd9882/modules/howtos/examples/views.rb#L11-L27">bucket = cluster.bucket("beer-sample")
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-ruby/modules/howtos/examples/views.rb#L11-L27">bucket = cluster.bucket("beer-sample")
 
 options = Bucket::ViewOptions.new
 options.limit = 5
@@ -276,7 +269,7 @@ puts "Total rows: #{view_result.meta_data.total_rows}"
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="https://github.com/couchbase/docs-sdk-ruby/blob/70882f1e0ff06b07b48e5ee39f7b3f0445fd9882/modules/howtos/examples/views.rb#L45-L52">options = Bucket::ViewOptions.new
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-ruby/modules/howtos/examples/views.rb#L45-L52">options = Bucket::ViewOptions.new
 options.limit = 5
 options.debug = true
 view_result = bucket.view_query("beer", "brewery_beers", options)
@@ -364,7 +357,7 @@ puts "Debug info present: #{view_result.meta_data.debug_info.is_a?(Hash)}"
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -381,6 +374,7 @@ puts "Debug info present: #{view_result.meta_data.debug_info.is_a?(Hash)}"
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

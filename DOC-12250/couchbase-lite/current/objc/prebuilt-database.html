@@ -21,9 +21,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="couchbase-lite">
-<meta name="dcterms.identifier" content="2.8">
+<meta name="dcterms.identifier" content="3.1">
 <meta name="page-url" content="/couchbase-lite/current/objc/prebuilt-database.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="couchbase-lite">
+<meta name="docsearch:component_title" content="Couchbase Lite">
+<meta name="docsearch:cversion" content="3.1">
+<meta name="docsearch:component_version" content="couchbase-lite@3.1">
+<meta name="docsearch:module" content="objc">
+<meta name="docsearch:breadcrumbs" content="Couchbase Lite / Objective-C / Pre-built Database">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item nav-item-selected">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,15 +128,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+    <template id="page-versions" style="display: none">
+      <select class="version_list" data-component="couchbase-lite">
+        <option value="3.1" data-url="prebuilt-database.html" selected>3.1</option>
+        <option value="3.0" data-url="../../3.0/objc/prebuilt-database.html">3.0</option>
+        <option value="2.8" data-url="../../2.8/objc/prebuilt-database.html">2.8</option>
+      </select>
+    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
       data-title="Contents"
-      data-levels="1">
+      data-levels="2">
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/objc/pages/prebuilt-database.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="https://github.com/couchbaselabs/docs-couchbase-lite/edit/release/3.1/modules/objc/pages/prebuilt-database.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -166,6 +202,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../index.html">Couchbase Lite</a></li>
+<li class="crumb"><a href="quickstart.html">Objective-C</a></li>
 <li class="crumb"><a href="prebuilt-database.html">Pre-built Database</a></li>
 </ul>
 </nav>
@@ -199,34 +236,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase Lite’s support for pre-built databases means you can pre-load your app with data instead of syncing it down from Sync Gateway during startup.
-This might benefit, for example, a mobile application developer striving to minimize consumer wait time (arising from data setup) on initial install and launch of the application.</p>
+<p><em>Couchbase&#160;Lite</em> supports  pre-built databases. You can pre-load your app with data instead of syncing it from <em>Sync&#160;Gateway</em> during startup to minimize consumer wait time (arising from data setup) on initial install and launch of the application.</p>
 </div>
 <div class="paragraph">
-<p>Avoiding an initial bulk sync will help reduce startup time and network transfer costs, leading to a better consumer experience.
-It is typically more efficient to download bulk data using the http/ftp stream  employed during the application installation than to install a smaller application bundle and then have to use a replicator to pull-in the bulk data.</p>
+<p>Avoiding an initial bulk sync reduces startup time and network transfer costs.</p>
 </div>
 <div class="paragraph">
-<p>This prepackaging of the data typically applies to public/shared, non-user specific data that is mostly static.
-Even if the data is not static, you can still benefit from preloading it and only syncing the changed documents on startup</p>
+<p>It is typically more efficient to download bulk data using the http/ftp stream employed during the application installation than to install a smaller application bundle and then use a replicator to pull in the bulk data.</p>
 </div>
 <div class="paragraph">
-<p>The initial sync of any pre-built database will pull-in any content changes on the server that occurred after its incorporation into the app, quickly bringing the database up to date.</p>
+<p>Pre-loaded data is typically public/shared, non-user-specific data that is static. Even if the data is not static, you can still benefit from preloading it and only syncing the changed documents on startup.</p>
 </div>
-<div class="ulist">
-<div class="title"><strong>To use a prebuilt database:</strong></div>
-<ul>
+<div class="paragraph">
+<p>The initial sync of any pre-built database pulls in any content changes on the server that occurred after its incorporation into the app, updating the database.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">To use a prebuilt database:</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Create a new Couchbase Lite database with the required data set&#8201;&#8212;&#8201;see <a href="#crt-db">Creating Pre-built database</a></p>
+<p>Create a new Couchbase Lite database with the required dataset&#8201;&#8212;&#8201;see <a href="#crt-db">Creating Pre-built database</a></p>
 </li>
 <li>
-<p>Incorporate the pre-built database with your app bundle as an asset/resource&#8201;&#8212;&#8201;see <a href="#bundle-db">Bundle Database with Application</a></p>
+<p>Incorporate the pre-built database with your app bundle as an asset/resource&#8201;&#8212;&#8201;see <a href="#bundle-db">Bundle a Database with an Application</a></p>
 </li>
 <li>
-<p>Adjust the start-up logic of your app to check for the presence of the required database.
-If it doesn&#8217;t already exist, it should create one using the bundled pre-built database, before initiating a sync to update the data&#8201;&#8212;&#8201;see <a href="#deploy-db">Using Pre-built Database on App Launch</a></p>
+<p>Adjust the start-up logic of your app to check for the presence of the required database.<br>
+If the database doesn&#8217;t already exist, create one using the bundled pre-built database.
+Initiate a sync to update the data&#8201;&#8212;&#8201;see <a href="#deploy-db">Using Pre-built Database on App Launch</a></p>
 </li>
-</ul>
+</ol>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -234,7 +276,7 @@ If it doesn&#8217;t already exist, it should create one using the bundled pre-bu
 <h2 id="crt-db"><a class="anchor" href="#crt-db"></a>Creating Pre-built database</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>These steps would typically be part of your build and release process:</p>
+<p>These steps should form part of your build and release process:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -244,7 +286,7 @@ If it doesn&#8217;t already exist, it should create one using the bundled pre-bu
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Must Do"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -264,7 +306,7 @@ If it doesn&#8217;t already exist, it should create one using the bundled pre-bu
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Must Do"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -274,24 +316,25 @@ If it doesn&#8217;t already exist, it should create one using the bundled pre-bu
 <p><strong>Otherwise:</strong> &#8230;&#8203; there will be a <a href="refer-glossary.html#checkpoint" class="xref page">checkpoint</a> mismatch and the app will attempt to pull the data down again</p>
 </div>
 <div class="paragraph">
-<p>So don&#8217;t, for instance, create a pre-built database against a staging Sync Gateway server and try to use that within a production app that syncs against a production Sync Gateway.</p>
+<p>Don&#8217;t, for instance, create a pre-built database against a staging Sync Gateway server and use it within a production app that syncs against a production Sync Gateway.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>You can use the cblite tool (<code>cblite cp</code>) for this&#8201;&#8212;&#8201;see: <a href="https://github.com/couchbaselabs/couchbase-mobile-tools/blob/master/Documentation.md#cp-aka-export-import-push-pull" target="_blank" rel="noopener">cblite cp (export, import, push, pull)</a>  |  <a href="https://github.com/couchbaselabs/couchbase-mobile-tools/blob/master/README.cblite.md" target="_blank" rel="noopener">cblite on GitHub</a></p>
+<p>You can use the cblite tool (<code>cblite cp</code>) for this&#8201;&#8212;&#8201;see: <a href="https://github.com/couchbaselabs/couchbase-mobile-tools/blob/master/Documentation.md#cp-aka-export-import-push-pull">cblite cp (export, import, push, pull)</a>  |  <a href="https://github.com/couchbaselabs/couchbase-mobile-tools/blob/master/README.cblite.md">cblite on GitHub</a></p>
 </div>
 <div class="ulist">
 <div class="title"><strong>Alternatively</strong> &#8230;&#8203;</div>
 <ul>
 <li>
-<p>You can write a simple CBL app to just initiate the required pull sync&#8201;&#8212;&#8201;see: <a href="replication.html#starting-a-replication" class="xref page">starting a Sync Gateway Replication</a></p>
+<p>You can write a simple CBL app to just initiate the required pull sync&#8201;&#8212;&#8201;see: <a href="replication.html" class="xref page">Remote Sync Gateway</a></p>
 </li>
 <li>
 <p>A third party community Java app is available.
-It provides a UI to create a local Couchbase Lite database and pull data from a Sync Gateway database&#8201;&#8212;&#8201;see: <a href="https://github.com/Infosys/CouchbaseLiteTester">CouchbaseLite Tester</a></p>
+It provides a UI to create a local Couchbase Lite database and pull data from a Sync Gateway database&#8201;&#8212;&#8201;see:
+<a href="https://github.com/Infosys/CouchbaseLiteTester">CouchbaseLite Tester</a></p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -299,7 +342,7 @@ It provides a UI to create a local Couchbase Lite database and pull data from a 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Couchbase accepts no responsibility for the ongoing availability, maintenance or support of this third party community contribution, nor for the provision of support for issues arising from its use.
+Couchbase accepts no responsibility for the ongoing availability, maintenance, or support of this third party community contribution, nor for the provision of support for issues arising from its use.
 </td>
 </tr>
 </table>
@@ -316,7 +359,7 @@ Couchbase accepts no responsibility for the ongoing availability, maintenance or
 </div>
 </div>
 <div class="sect1">
-<h2 id="bundle-db"><a class="anchor" href="#bundle-db"></a>Bundle Database with Application</h2>
+<h2 id="bundle-db"><a class="anchor" href="#bundle-db"></a>Bundle a Database with an Application</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Copy the database into your app package.</p>
@@ -329,6 +372,46 @@ Couchbase accepts no responsibility for the ongoing availability, maintenance or
 </div>
 <div class="paragraph">
 <p><strong>Alternatively</strong> &#8230;&#8203; rather than bundling the database within the app, the app could pull the database down from a CDN server on launch.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="database-encryption"><a class="anchor" href="#database-encryption"></a>Database Encryption</h2>
+<div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This is an <a href="https://www.couchbase.com/products/editions">Enterprise Edition</a> feature.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If you are using an encrypted database,
+<a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc(cs)CBLDatabase(cm)copyFromPath:toDatabase:withConfig:error:">copyFromPath()</a>
+does not change the encryption key.
+The encryption key specified in the config when opening the database is the encryption key used for both the original database and copied database.</p>
+</div>
+<div class="paragraph">
+<p>If you copied an un-encrypted database and want to apply encryption to the copy, or if you want to change (or remove) the encryption key applied to the copy:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Provide the original encryption-key (if any) in the database copy&#8217;s configuration using <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-objc/Classes/CBLDatabaseConfiguration.html#/c:objc(cs)CBLDatabaseConfiguration(py)encryptionKey">CBLDatabaseConfiguration.encryptionKey()</a></p>
+</li>
+<li>
+<p>Open the database copy</p>
+</li>
+<li>
+<p>Use <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc(cs)CBLDatabase(im)changeEncryptionKey:error:">CBLDatabase.changeEncryptionKey()</a> on the database copy to set the required encryption key.<br>
+NOTE: To remove encryption on the copy, provide a null encryption-key</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -346,39 +429,20 @@ Couchbase accepts no responsibility for the ongoing availability, maintenance or
 <li>
 <p>Copy the pre-packaged database to the required location</p>
 <div class="paragraph">
-<p>Use the API&#8217;s <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc(cs)CBLDatabase(cm)copyFromPath:toDatabase:withConfig:error:">copyFromPath()</a> method; this ensures that a UUID is generated for each copy&#8201;&#8212;&#8201;see: <a href="#copy-db">Code Example 1</a></p>
+<p>Use the API&#8217;s <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc(cs)CBLDatabase(cm)copyFromPath:toDatabase:withConfig:error:">copyFromPath()</a> method&#8201;&#8212;&#8201;see: <a href="#lbl-code">Example 1</a>; this ensures that a UUID is generated for each copy</p>
 </div>
 <div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Must Do"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-<div class="paragraph">
-<p><strong>Do not copy the database using any other method</strong></p>
-</div>
-<div class="paragraph">
-<p><strong>Otherwise:</strong> Each copy of the app will invalidate the other apps’ <a href="refer-glossary.html#checkpoint" class="xref page">checkpoints</a> because a new UUID was not generated.</p>
-</div>
+<strong>Do not copy the database using any other method</strong><br>
+<strong>Otherwise:</strong> Each copy of the app will invalidate the other apps' <a href="refer-glossary.html#checkpoint" class="xref page">checkpoints</a> because a new UUID was not generated.
 </td>
 </tr>
 </table>
-</div>
-<div id="copy-db" class="listingblock">
-<div class="title">Code Example 1. Copy database using API</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/objc/examples/code_snippets/SampleCodeTest.m#L208-L217">// Note: Getting the path to a database is platform-specific.
-// For iOS you need to get the path from the main bundle.
-if (![CBLDatabase databaseExists:@"travel-sample" inDirectory:nil]) {
-    NSError*error;
-    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"travel-sample" ofType:@"cblite2"];
-    if (![CBLDatabase copyFromPath:path toDatabase:@"travel-sample" withConfig:nil error:&amp;error]) {
-        [NSException raise:NSInternalInconsistencyException
-                    format:@"Could not load pre-built database: %@", error];
-    }
-}</code></pre>
-</div>
 </div>
 </li>
 <li>
@@ -393,7 +457,7 @@ if (![CBLDatabase databaseExists:@"travel-sample" inDirectory:nil]) {
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Must Do"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -423,6 +487,25 @@ They can begin interacting with your app whilst any out-of-data data is being up
 </div>
 </li>
 </ol>
+</div>
+<div id="lbl-code" class="exampleblock">
+<div class="title">Example 1. Copy database using API</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m">// Note:Getting the path to a database is platform-specific.
+// For iOS you need to get the path from the main bundle.
+if (![CBLDatabase databaseExists:@"travel-sample" inDirectory:nil]) {
+    NSError *error;
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"travel-sample" ofType:@"cblite2"];
+    if (![CBLDatabase copyFromPath:path toDatabase:@"travel-sample" withConfig:nil error:&amp;error]) {
+        [NSException raise:NSInternalInconsistencyException
+                    format:@"Could not load pre-built database:%@", error];
+    }
+}</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -462,7 +545,7 @@ They can begin interacting with your app whilst any out-of-data data is being up
 <p><a href="blob.html" class="xref page">Blobs</a></p>
 </li>
 <li>
-<p><a href="replication.html" class="xref page">Remote Sync using Sync Gateway</a></p>
+<p><a href="replication.html" class="xref page">Remote Sync Gateway</a></p>
 </li>
 <li>
 <p><a href="conflict.html" class="xref page">Handling Data Conflicts</a></p>
@@ -472,13 +555,11 @@ They can begin interacting with your app whilst any out-of-data data is being up
 </div>
 <div class="sect5 column">
 <h6 id="-3"><a class="anchor" href="#-3"></a></h6>
-<div class="ulist">
+<div class="paragraph">
 <div class="title">Dive Deeper . . .</div>
-<ul>
-<li>
-<p><a href="https://forums.couchbase.com/c/mobile/14">Forum</a> <strong>|</strong> <a href="https://blog.couchbase.com/">Blog</a> <strong>|</strong> <a href="https://docs.couchbase.com/tutorials/index.html">Tutorials</a></p>
-</li>
-</ul>
+<p><a href="https://forums.couchbase.com/c/mobile/14">Mobile Forum</a> |
+<a href="https://blog.couchbase.com/">Blog</a> |
+<a href="https://docs.couchbase.com/tutorials/">Tutorials</a></p>
 </div>
 </div>
 </div>
@@ -557,7 +638,7 @@ They can begin interacting with your app whilst any out-of-data data is being up
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"2.8","sync-gateway":"3.0"}}
+{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.1","sync-gateway":"3.1"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -574,6 +655,7 @@ They can begin interacting with your app whilst any out-of-data data is being up
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

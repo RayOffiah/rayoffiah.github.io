@@ -12,7 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Migrating to SDK 3 API | Couchbase Docs</title>
+<title>Migrating from SDK2 to SDK3 API | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/java-sdk/current/project-docs/migrating-sdk-code-to-3.n.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
@@ -21,9 +21,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="java-sdk">
-<meta name="dcterms.identifier" content="3.4">
+<meta name="dcterms.identifier" content="3.3">
 <meta name="page-url" content="/java-sdk/current/project-docs/migrating-sdk-code-to-3.n.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="java-sdk">
+<meta name="docsearch:component_title" content="Java SDK">
+<meta name="docsearch:cversion" content="3.3">
+<meta name="docsearch:component_version" content="java-sdk@3.3">
+<meta name="docsearch:module" content="project-docs">
+<meta name="docsearch:breadcrumbs" content="Java SDK / Project Docs / Compatibility / Migrating to SDK 3 API">
+<meta name="docsearch:topic_type" content="concept">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,15 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="java-sdk">
-        <option value="3.4" data-url="migrating-sdk-code-to-3.n.html" selected>3.4</option>
-        <option value="3.3" data-url="../../3.3/project-docs/migrating-sdk-code-to-3.n.html">3.3</option>
-        <option value="3.2" data-url="../../3.2/project-docs/migrating-sdk-code-to-3.n.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/project-docs/migrating-sdk-code-to-3.n.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/project-docs/migrating-sdk-code-to-3.n.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -116,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-java/edit/release/3.4/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -183,7 +203,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Migrating to SDK 3 API</h1>
+<h1 class="page">Migrating from SDK2 to SDK3 API</h1>
 <div class="labels">
 <ul>
 <li class="concept"><span><i class="far fa-lightbulb"></i> concept</span></li>
@@ -206,88 +226,36 @@ Retry behaviour is more proactive, and lazy bootstrapping moves all error handli
 Individual behavior changes across services are explained here.
 </blockquote>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="fundamentals"><a class="anchor" href="#fundamentals"></a>Fundamentals</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Before this guide dives into the language-specific technical component of the migration, it is important to understand the high level changes first.
-As a migration guide, this document assumes you are familiar with the previous generation of the SDK and does not re-introduce SDK API 2 concepts.
-We recommend familiarizing yourself with the new SDK first by reading at least the <a href="../hello-world/start-using-sdk.html" class="xref page">getting started guide</a>, and browsing through the other chapters a little.</p>
-</div>
-<div class="sect2">
-<h3 id="terminology"><a class="anchor" href="#terminology"></a>Terminology</h3>
-<div class="paragraph">
-<p>The concept of a <code>Cluster</code> and a <code>Bucket</code> remain the same, but a fundamental new layer is introduced into the API: <code>Collections</code> and their <code>Scopes</code>.
-Collections are logical data containers inside a Couchbase bucket that let you group similar data just like a <em>Table</em> does in a relational database&#8201;&#8212;&#8201;although documents inside a collection do not need to have the same structure.
-Scopes allow the grouping of collections into a namespace, which is very usfeul when you have multilpe tenants acessing the same bucket.
-Couchbase Server includes support for collections as a <a href="#6.5@server:developer-preview:preview-mode.adoc" class="xref unresolved">developer preview</a> in version 6.5, and as a first class concept of the programming model from <a href="#7.1@server:learn:data/scopes-and-collections.adoc" class="xref unresolved">version 7.0.</a></p>
+<p>Unresolved include directive in modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc - include::7.1@sdk:shared:partial$migration.adoc[]</p>
 </div>
 <div class="paragraph">
-<p>Note that the SDKs include the feature from SDK 3.0, to allow easier migration.</p>
-</div>
-<div class="paragraph">
-<p>In the previous SDK generation, particularly with the <code>KeyValue</code> API, the focus has been on the codified concept of a <code>Document</code>.
-Documents were read and written and had a certain structure, including the <code>id</code>/<code>key</code>, content, expiry (<code>ttl</code>), and so forth.
-While the server still operates on the logical concept of documents, we found that this model in practice didn&#8217;t work so well for client code in certain edge cases.
-As a result we have removed the <code>Document</code> class/structure completely from the API.
-The new API follows a clear scheme: each command takes required arguments explicitly, and an option block for all optional values.
-The returned value is always of type <code>Result</code>.
-This avoids method overloading bloat in certain languages, and has the added benefit of making it easy to grasp APIs evenly across services.</p>
+<p>Unresolved include directive in modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc - include::7.1@sdk:shared:partial$migration.adoc[]</p>
 </div>
 <div class="paragraph">
 <p>As an example here is a KeyValue document fetch:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/MigratingSDKCodeTo3n.java#L57">GetResult getResult = collection.get("airline_10", getOptions().timeout(Duration.ofSeconds(3)));</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/MigratingSDKCodeTo3n.java#L57">GetResult getResult = collection.get("airline_10", getOptions().timeout(Duration.ofSeconds(3)));</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Compare this to a <a href="https://www.couchbase.com/products/n1ql">SQL++ (formerly N1QL)</a> query:</p>
+<p>Compare this to a N1QL query:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/MigratingSDKCodeTo3n.java#L63">QueryResult queryResult = cluster.query("select 1=1", queryOptions().timeout(Duration.ofSeconds(3)));</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/MigratingSDKCodeTo3n.java#L63">QueryResult queryResult = cluster.query("select 1=1", queryOptions().timeout(Duration.ofSeconds(3)));</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Since documents also fundamentally handled the serialization aspects of content, two new concepts are introduced: the <code>Serializer</code> and the <code>Transcoder</code>.
-Out of the box the SDKs ship with a JSON serializer which handles the encoding and decoding of JSON.
-You&#8217;ll find the serializer exposes the options for methods like SQL++ queries and KeyValue subdocument operations,.</p>
+<p>Unresolved include directive in modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc - include::7.1@sdk:shared:partial$migration.adoc[]</p>
 </div>
 <div class="paragraph">
-<p>The KV API extends the concept of the serializer to the <code>Transcoder</code>.
-Since you can also store non-JSON data inside a document, the <code>Transcoder</code> allows the writing of binary data as well.
-It handles the object/entity encoding and decoding, and if it happens to deal with JSON makes uses of the configured <code>Serializer</code> internally.
-See the <em>Serialization and Transcoding</em> section below for details.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="what-to-look-out-for"><a class="anchor" href="#what-to-look-out-for"></a>What to look out for</h3>
-<div class="paragraph">
-<p>The SDKs are more proactive in retrying with certain errors and in certain situations, within the timeout budget given by the user&#8201;&#8212;&#8201;as an example, temporary failures or locked documents are now being retried by default&#8201;&#8212;&#8201;making it even easier to program against certain error cases.
-This behavior is customizable in a <code>RetryStrategy</code>, which can be overridden on a per operation basis for maximum flexibility if you need it.</p>
+<p>Unresolved include directive in modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc - include::7.1@sdk:shared:partial$migration.adoc[]</p>
 </div>
 <div class="paragraph">
-<p>Note, most of the bootstrap sequence is now lazy (happening behind the scenes).
-For example, opening a bucket is not raising an error anymore, but it will only show up once you perform an actual operation.
-The reason behind this is to spare the application developer the work of having to do error handling in more places than needed.
-A bucket can go down 2ms after you opened it, so you have to handle request failures anyway.
-By delaying the error into the operation result itself, there is only one place to do the error handling.
-There will still be situations why you want to check if the resource you are accessing is available before continuing the bootstrap;
-for this, we have the diagnostics and ping commands at each level which allow you to perform those checks eagerly.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="language-specifics"><a class="anchor" href="#language-specifics"></a>Language Specifics</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Now that you are familiar with the general theme of the migration, the next sections dive deep into the specifics.
-First, installation and configuration are covered, then we talk about exception handling, and then each service (i.e. Key/Value, Query,&#8230;&#8203;) is covered separately.</p>
+<p>Unresolved include directive in modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc - include::7.1@sdk:shared:partial$migration.adoc[]</p>
 </div>
 </div>
 </div>
@@ -370,7 +338,7 @@ CouchbaseEnvironment env = DefaultCouchbaseEnvironment
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L68-L70">// SDK 3 equivalent
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L68-L70">// SDK 3 equivalent
 ClusterEnvironment env = ClusterEnvironment.builder()
     .timeoutConfig(TimeoutConfig.kvTimeout(Duration.ofSeconds(5))).build();</code></pre>
 </div>
@@ -380,7 +348,7 @@ ClusterEnvironment env = ClusterEnvironment.builder()
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L76-L83">ClusterEnvironment env = ClusterEnvironment.create();
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L76-L83">ClusterEnvironment env = ClusterEnvironment.create();
 Cluster cluster = Cluster.connect("127.0.0.1",
     // pass the custom environment through the cluster options
     clusterOptions("Administrator", "password").environment(env));
@@ -397,7 +365,7 @@ Note that the property paths have changed.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L89-L94">// Will set the max http connections to 23
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L89-L94">// Will set the max http connections to 23
 System.setProperty("com.couchbase.env.io.maxHttpConnections", "23");
 Cluster.connect("127.0.0.1", "Administrator", "password");
 
@@ -407,7 +375,7 @@ ClusterEnvironment env = ClusterEnvironment.builder().ioConfig(IoConfig.maxHttpC
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L100-L104">// Will set the max http connections to 23
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L100-L104">// Will set the max http connections to 23
 Cluster.connect("127.0.0.1?io.maxHttpConnections=23", "Administrator", "password");
 
 // This is equivalent to
@@ -432,7 +400,7 @@ This is why you can set the username and password when directly connecting:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L110">Cluster.connect("127.0.0.1", "Administrator", "password");</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L110">Cluster.connect("127.0.0.1", "Administrator", "password");</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -440,7 +408,7 @@ This is why you can set the username and password when directly connecting:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L116">Cluster.connect("127.0.0.1", clusterOptions(PasswordAuthenticator.create("Administrator", "password")));</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L116">Cluster.connect("127.0.0.1", clusterOptions(PasswordAuthenticator.create("Administrator", "password")));</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -448,7 +416,7 @@ This is why you can set the username and password when directly connecting:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L123-L125">KeyManagerFactory keyManagerFactory = null; // configure certificates per documentation
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L123-L125">KeyManagerFactory keyManagerFactory = null; // configure certificates per documentation
 Cluster.connect("127.0.0.1",
     clusterOptions(CertificateAuthenticator.fromKeyManagerFactory(() -&gt; keyManagerFactory)));</code></pre>
 </div>
@@ -477,7 +445,7 @@ This simplifies error handling and retry logic for an application.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/MigratingSDKCodeTo3n.java#L69-L75">Cluster cluster = Cluster.connect(connectionString, username, password);
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/MigratingSDKCodeTo3n.java#L69-L75">Cluster cluster = Cluster.connect(connectionString, username, password);
 
 Bucket bucket = cluster.bucket(bucketName);
 
@@ -491,7 +459,7 @@ cluster.disconnect();</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L135-L142">Cluster cluster = Cluster.connect("127.0.0.1", "Administrator", "password");
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L135-L142">Cluster cluster = Cluster.connect("127.0.0.1", "Administrator", "password");
 Bucket bucket = cluster.bucket("travel-sample");
 Scope scope = bucket.scope("inventory");
 Collection collection = scope.collection("airline");
@@ -552,7 +520,7 @@ JsonDocument getResult = bucket.get("mydoc-id");</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L153-L154">MutationResult upsertResult = collection.upsert("mydoc-id", JsonObject.create());
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L153-L154">MutationResult upsertResult = collection.upsert("mydoc-id", JsonObject.create());
 GetResult getResult = collection.get("mydoc-id");</code></pre>
 </div>
 </div>
@@ -561,7 +529,7 @@ GetResult getResult = collection.get("mydoc-id");</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L160-L162">byte[] content = "{}".getBytes(StandardCharsets.UTF_8);
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L160-L162">byte[] content = "{}".getBytes(StandardCharsets.UTF_8);
 MutationResult upsertResult = collection.upsert("mydoc-id", content,
     upsertOptions().transcoder(RawJsonTranscoder.INSTANCE));</code></pre>
 </div>
@@ -673,7 +641,7 @@ There have been changes made in the following areas:</p>
 Each <code>CouchbaseException</code> has an associated <code>ErrorContext</code> which is populated with as much information as possible and then dumped alongside the stack trace if an error happens.</p>
 </div>
 <div class="paragraph">
-<p>Here is an example of the error context if a SQL++ query is performed with an invalid syntax (i.e. <code>select 1= from</code>):</p>
+<p>Here is an example of the error context if a N1QL query is performed with an invalid syntax (i.e. <code>select 1= from</code>):</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -872,7 +840,7 @@ For example:</p>
 <div class="listingblock">
 <div class="title">SDK 3</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/MigratingSDKCodeTo3n.java#L90-L95">collection.mutateIn(
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/MigratingSDKCodeTo3n.java#L90-L95">collection.mutateIn(
     "myDocument",
     Collections.singletonList(MutateInSpec.insert("color", "blue")),
     MutateInOptions.mutateInOptions()
@@ -880,19 +848,6 @@ For example:</p>
 );</code></pre>
 </div>
 </div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The unofficial, unsupported <a href="https://github.com/couchbaselabs/couchbase-java-sdk2-migration-kit">Couchbase Java SDK 2 Migration Kit</a> has more Sub-Document API migration examples.
-It also has source code for temporary bridge classes that can assist with migrating Sub-Document requests from SDK 2 to SDK 3.
 </td>
 </tr>
 </table>
@@ -1017,7 +972,7 @@ bucket.get("mydoc-id", 5, TimeUnit.SECONDS);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L168-L169">// SDK 3 custom timeout
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L168-L169">// SDK 3 custom timeout
 GetResult getResult = collection.get("mydoc-id", getOptions().timeout(Duration.ofSeconds(5)));</code></pre>
 </div>
 </div>
@@ -1058,7 +1013,7 @@ Similar functionality is available through <code>mutateIn</code> on JSON documen
 <div class="sect2">
 <h3 id="query"><a class="anchor" href="#query"></a>Query</h3>
 <div class="paragraph">
-<p>SQL++ querying is now available at the <code>Cluster</code> level instead of the bucket level, because you can also write SQL++ queries that span multiple buckets. Compare a simple SQL++ query from SDK 2 with its SDK 3 equivalent:</p>
+<p>N1QL querying is now available at the <code>Cluster</code> level instead of the bucket level, because you can also write N1QL queries that span multiple buckets. Compare a simple N1QL query from SDK 2 with its SDK 3 equivalent:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1072,7 +1027,7 @@ for (N1qlQueryRow row : queryResult) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L175-L179">// SDK 3 simple query
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L175-L179">// SDK 3 simple query
 QueryResult queryResult = cluster.query("select * from `travel-sample`.inventory.airport limit 10");
 for (JsonObject value : queryResult.rowsAsObject()) {
   // ...
@@ -1100,7 +1055,7 @@ bucket.query(N1qlQuery.parameterized(
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L185-L191">// SDK 3 named parameters
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L185-L191">// SDK 3 named parameters
 cluster.query("select * from `travel-sample`.inventory.airport where airportname = $name",
     queryOptions().parameters(JsonObject.create().put("name", "Calais Dunkerque")));
 
@@ -1176,7 +1131,7 @@ This makes error handling much easier in both the blocking and non-blocking case
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/MigratingSDKCodeTo3n.java#L81-L84">QueryResult queryResult = cluster.query("select 1=");
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/MigratingSDKCodeTo3n.java#L81-L84">QueryResult queryResult = cluster.query("select 1=");
 if (!queryResult.metaData().warnings().isEmpty()) {
   // errors contain [{"msg":"syntax error - at end of input","code":3000}]
 }</code></pre>
@@ -1204,30 +1159,17 @@ For these reasons it is not amongst the features carried over to SDK 3.x.</p>
 <div class="paragraph">
 <p>In most cases, a simple string statement is the best replacement.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-You can still use the Query DSL classes with SDK 3 if you want, but you&#8217;ll need to add the source code to your project and maintain it yourself.
-A version of the source code modified to work with SDK 3 is available as part of the unofficial, unsupported <a href="https://github.com/couchbaselabs/couchbase-java-sdk2-migration-kit">Couchbase Java SDK 2 Migration Kit</a>.
-</td>
-</tr>
-</table>
-</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="analytics"><a class="anchor" href="#analytics"></a>Analytics</h3>
 <div class="paragraph">
-<p>Analytics querying, like SQL++, is also moved to the <code>Cluster</code> level: it is now accessible through the <code>Cluster.analyticsQuery</code> method.
+<p>Analytics querying, like N1QL, is also moved to the <code>Cluster</code> level: it is now accessible through the <code>Cluster.analyticsQuery</code> method.
 As with the Query service, parameters for the Analytics queries have moved into the <code>AnalyticsOptions</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L197-L201">// SDK 3 simple analytics query
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L197-L201">// SDK 3 simple analytics query
 AnalyticsResult analyticsResult = cluster.analyticsQuery("select * from `travel-sample`.inventory.airport limit 10");
 for (JsonObject value : analyticsResult.rowsAsObject()) {
   // ...
@@ -1236,7 +1178,7 @@ for (JsonObject value : analyticsResult.rowsAsObject()) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L207-L213">// SDK 3 named parameters for analytics
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L207-L213">// SDK 3 named parameters for analytics
 cluster.analyticsQuery("select * from `travel-sample`.inventory.airport where airportname = $name",
     analyticsOptions().parameters(JsonObject.create().put("name", "Calais Dunkerque")));
 
@@ -1292,7 +1234,7 @@ for (SearchQueryRow row : searchResult.hits()) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L219-L224">// SDK 3 search query
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L219-L224">// SDK 3 search query
 SearchResult searchResult = cluster.searchQuery("travel-sample-index", SearchQuery.queryString("swanky"),
     searchOptions().timeout(Duration.ofSeconds(2)).limit(5).fields("description", "type", "city"));
 for (SearchRow row : searchResult.rows()) {
@@ -1320,7 +1262,7 @@ The reasoning behind this is that usually with search results, having partial re
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L230-L234">SearchResult searchResult = cluster.searchQuery("travel-sample-index", SearchQuery.queryString("swanky"));
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L230-L234">SearchResult searchResult = cluster.searchQuery("travel-sample-index", SearchQuery.queryString("swanky"));
 SearchMetaData searchMetaData = searchResult.metaData();
 if (searchMetaData.errors() == null || searchMetaData.errors().isEmpty()) {
   // no errors present, so full data got returned
@@ -1379,7 +1321,7 @@ for (ViewRow row : query) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/project-docs/examples/Migrating.java#L243-L248">// SDK 3 view query
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/project-docs/examples/Migrating.java#L243-L248">// SDK 3 view query
 ViewResult viewResult = bucket.viewQuery("dev_landmarks-by-name", "by_name",
     viewOptions().limit(5).skip(2).timeout(Duration.ofSeconds(10)));
 for (ViewRow row : viewResult.rows()) {
@@ -1404,7 +1346,7 @@ for (ViewRow row : viewResult.rows()) {
 <p>In SDK 2, the management APIs were centralized in the <code>ClusterManager</code> at the cluster level and the <code>BucketManager</code> at the bucket level.
 Since SDK 3 provides more management APIs, they have been split up in their respective domains.
 So for example when in SDK 2 you needed to remove a bucket you would call <code>ClusterManager.removeBucket</code> you will now find it under <code>BucketManager.dropBucket</code>.
-Also, creating a SQL++ index now lives in the <code>QueryIndexManager</code>, which is accessible through the <code>Cluster</code>.</p>
+Also, creating a N1QL index now lives in the <code>QueryIndexManager</code>, which is accessible through the <code>Cluster</code>.</p>
 </div>
 <div class="paragraph">
 <p>The following table provides a mapping from the SDK 2 management APIs to those of SDK 3:</p>
@@ -1956,15 +1898,8 @@ Note that some options have been removed, and others have different ways to conf
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="comparing-older-documentation"><a class="anchor" href="#comparing-older-documentation"></a>Comparing Older Documentation</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>You may want to visit documentation for older versions of the SDK, to help to understand application code that you are migrating.
-Versions that have reached end of life can be found in the <a href="https://docs-archive.couchbase.com/home/index.html">archive</a>.
-In the release notes pages of these older docs, you will also find links to the API reference for each no-longer-supported release.</p>
+<p>Unresolved include directive in modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc - include::7.1@sdk:shared:partial$archive.adoc[]</p>
 </div>
 </div>
 </div>
@@ -2041,7 +1976,7 @@ In the release notes pages of these older docs, you will also find links to the 
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -2058,6 +1993,7 @@ In the release notes pages of these older docs, you will also find links to the 
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

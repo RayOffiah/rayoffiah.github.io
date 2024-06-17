@@ -12,7 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Error Handling | Couchbase Docs</title>
+<title>Handling Errors | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/python-sdk/current/howtos/error-handling.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
@@ -21,9 +21,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="python-sdk">
-<meta name="dcterms.identifier" content="4.1">
+<meta name="dcterms.identifier" content="4.0">
 <meta name="page-url" content="/python-sdk/current/howtos/error-handling.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="python-sdk">
+<meta name="docsearch:component_title" content="Python SDK">
+<meta name="docsearch:cversion" content="4.0">
+<meta name="docsearch:component_version" content="python-sdk@4.0">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="Python SDK / Errors &amp; Diagnostics / Error Handling">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,15 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="python-sdk">
-        <option value="4.1" data-url="error-handling.html" selected>4.1</option>
-        <option value="4.0" data-url="../../4.0/howtos/error-handling.html">4.0</option>
-        <option value="3.2" data-url="../../3.2/howtos/error-handling.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/howtos/error-handling.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/howtos/error-handling.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -116,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-python/edit/release/4.1/modules/howtos/pages/error-handling.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/pages/error-handling.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -182,7 +202,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Error Handling</h1>
+<h1 class="page">Handling Errors</h1>
 <div class="labels">
 <ul><li class="guide"><span><i class="far fa-check-square"></i> how-to</span></li>
 </ul>
@@ -240,7 +260,7 @@ If containment is not able to handle the exception, then it needs to propagate u
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/error_handling.py#L30-L34">try:
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/error_handling.py#L30-L34">try:
     res = collection.get("not-a-key")
 except CouchbaseException:
     # we can handle any exceptions thrown here.
@@ -280,34 +300,19 @@ couchbase.exceptions.DocumentNotFoundException: &lt;Key='not-a-key', RC=0x12D[LC
 <div class="paragraph">
 <p>Transient errors&#8201;&#8212;&#8201;such as those caused by resource starvation&#8201;&#8212;&#8201;are best tackled with one of the following retry strategies:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Retry with an exponentially increasing delay and a delay ceiling.</p>
-</li>
-<li>
-<p>Retry with a linearly increasing delay and a delay ceiling.</p>
-</li>
-<li>
-<p>Retry with a fixed delay.</p>
-</li>
-<li>
-<p>Retry with a random delay.</p>
-</li>
-<li>
-<p>Retry immediately (not preferred) with a limit of retries.</p>
-</li>
-</ul>
-</div>
 <div class="paragraph">
-<p>Retrying immediately may be appropriate in some situations, but is not as preferred as it can lead to pathological failure type situations where an exhausted resource is put under further load and never has a chance to recover.</p>
+<p>Retry immediately.
+Retry with a fixed delay.
+Retry with a linearly increasing delay.
+Retry with an exponentially increasing delay.
+Retry with a random delay.</p>
 </div>
 <div class="paragraph">
 <p>Consider a decorator that provides flexibility to determine which Exceptions to retry and how to retry (fixed, linear or exponential delay).</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/error_handling.py#L39-L87">def allow_retries(retry_limit=3,                # type: int
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/error_handling.py#L39-L87">def allow_retries(retry_limit=3,                # type: int
                   backoff=1.0,                  # type: float
                   exponential_backoff=False,    # type: bool
                   linear_backoff=False,         # type: bool
@@ -342,7 +347,7 @@ couchbase.exceptions.DocumentNotFoundException: &lt;Key='not-a-key', RC=0x12D[LC
 
 @allow_retries(retry_limit=5,
                backoff=0.5,
-               allowed_exceptions=(CASMismatchException))
+               allowed_exceptions=(CASMismatchException, CouchbaseTransientException))
 def update_with_cas(collection,    # type: str
                     doc_key       # type: str
                     ) -&gt; bool:
@@ -372,7 +377,7 @@ update_with_cas(collection, key)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/error_handling.py#L91-L95">try:
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/error_handling.py#L91-L95">try:
     key = "not-a-key"
     res = collection.get(key)
 except DocumentNotFoundException:
@@ -384,7 +389,7 @@ except DocumentNotFoundException:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/error_handling.py#L99-L104">try:
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/error_handling.py#L99-L104">try:
     key = "hotel_10026"
     res = collection.insert(
         key, {"title": "New Hotel", "name": "The New Hotel"})
@@ -402,7 +407,7 @@ If it has, it returns <code>CASMismatchException</code>. See the <a href="#retry
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/error_handling.py#L108-L113">try:
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/error_handling.py#L108-L113">try:
     result = collection.get("hotel_10026")
     collection.replace("hotel_10026", {}, cas=result.cas)
 except CASMismatchException:
@@ -434,7 +439,7 @@ If it now fails with a <code>DocumentExistsException</code>, we know that the pr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/error_handling.py#L117-L133">for i in range(5):
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/error_handling.py#L117-L133">for i in range(5):
     try:
         durability = ServerDurability(level=Durability.PERSIST_TO_MAJORITY)
         collection.insert(
@@ -488,15 +493,15 @@ After an ambiguous exception on a Non-Idempotent operation, you should first rea
 <h2 id="query-and-analytics-errors"><a class="anchor" href="#query-and-analytics-errors"></a>Query and Analytics Errors</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A SQL++ (formerly N1QL) query either returns results or will throw an error with a <code>QueryErrorContext</code>, like so:</p>
+<p>A N1QL query either returns results or will throw an error with a <code>QueryErrorContext</code>, like so:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/error_handling.py#L137-L147">try:
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/error_handling.py#L137-L147">try:
     cluster.query("SELECT * FROM no_such_bucket").rows()
 except CouchbaseException as ex:
     if isinstance(ex.context, QueryErrorContext):
-        # We have a Query error context, we can print out some useful information:
+        # We have a N1QL error context, we can print out some useful information:
         print(ex.context.statement)
         print(ex.context.first_error_code)
         print(ex.context.first_error_message)
@@ -599,7 +604,7 @@ We offer <a href="collecting-information-and-logging.html" class="xref page">rec
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -616,6 +621,7 @@ We offer <a href="collecting-information-and-logging.html" class="xref page">rec
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

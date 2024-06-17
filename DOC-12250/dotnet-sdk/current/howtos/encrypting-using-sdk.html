@@ -12,7 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Encrypting Your Data | Couchbase Docs</title>
+<title>Field Level Encryption from the .NET SDK | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/dotnet-sdk/current/howtos/encrypting-using-sdk.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
@@ -21,9 +21,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="dotnet-sdk">
-<meta name="dcterms.identifier" content="3.4">
+<meta name="dcterms.identifier" content="3.3">
 <meta name="page-url" content="/dotnet-sdk/current/howtos/encrypting-using-sdk.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="dotnet-sdk">
+<meta name="docsearch:component_title" content=".NET SDK">
+<meta name="docsearch:cversion" content="3.3">
+<meta name="docsearch:component_version" content="dotnet-sdk@3.3">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content=".NET SDK / Advanced Data Operations / Encrypting Your Data">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="Enterprise Edition">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,15 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="dotnet-sdk">
-        <option value="3.4" data-url="encrypting-using-sdk.html" selected>3.4</option>
-        <option value="3.3" data-url="../../3.3/howtos/encrypting-using-sdk.html">3.3</option>
-        <option value="3.2" data-url="../../3.2/howtos/encrypting-using-sdk.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/howtos/encrypting-using-sdk.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/howtos/encrypting-using-sdk.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -116,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.4/modules/howtos/pages/encrypting-using-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/howtos/pages/encrypting-using-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -175,14 +195,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../hello-world/overview.html">.NET SDK</a></li>
-<li class="crumb">Further Data Ops</li>
+<li class="crumb">Advanced Data Operations</li>
 <li class="crumb"><a href="encrypting-using-sdk.html">Encrypting Your Data</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Encrypting Your Data</h1>
+<h1 class="page">Field Level Encryption from the .NET SDK</h1>
 <div class="labels">
 <ul><li class="guide"><span><i class="far fa-check-square"></i> how-to</span></li>
 </ul>
@@ -216,7 +236,7 @@ A practical guide for getting started with Field-Level Encryption, showing how t
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Couchbase .NET SDK works together with the <a href="https://github.com/couchbase/dotnet-couchbase-encryption" target="_blank" rel="noopener">.NET Couchbase Encryption</a> library to provide support for encryption and decryption of JSON fields.
-This library makes use of the cryptographic algorithms available on your platform, and provides a framework for implementing your own crypto components.</p>
+This library includes cryptographic algorithms and keyrings you can use out of the box, and provides a framework for implementing your own crypto components.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -270,7 +290,7 @@ Refer to the <a href="#maven-coordinates">dependencies section</a>.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/howtos/examples/EncryptingUsingSdk.csx#L27-L47">var provider =
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/howtos/examples/EncryptingUsingSdk.csx#L27-L47">var provider =
     new AeadAes256CbcHmacSha512Provider(
         new AeadAes256CbcHmacSha512Cipher(), new Keyring(new IKey[]
         {
@@ -286,7 +306,7 @@ var encryptedTranscoder = new EncryptedFieldTranscoder(cryptoManager);
 
 var clusterOptions = new ClusterOptions()
     .WithTranscoder(encryptedTranscoder)
-    .WithConnectionString("couchbase://your-ip")
+    .WithConnectionString("couchbase://localhost")
     .WithCredentials("Administrator", "password");
 
 var cluster = await Cluster.ConnectAsync(clusterOptions);
@@ -319,7 +339,7 @@ Let&#8217;s use this class as an example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/howtos/examples/EncryptingUsingSdk.csx#L147-L151">public class Employee
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/howtos/examples/EncryptingUsingSdk.csx#L147-L151">public class Employee
 {
     [EncryptedField(KeyName = "test-key")]
     public bool IsReplicant { get; set; }
@@ -331,7 +351,7 @@ Let&#8217;s use this class as an example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/howtos/examples/EncryptingUsingSdk.csx#L58-L61">var collection = await bucket.DefaultCollectionAsync();
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/howtos/examples/EncryptingUsingSdk.csx#L58-L61">var collection = await bucket.DefaultCollectionAsync();
 
 await collection.UpsertAsync(id, employee, options =&gt; { options.Expiry(TimeSpan.FromSeconds(10)); })
     .ConfigureAwait(false); //encrypts the IsReplicant field</code></pre>
@@ -342,7 +362,7 @@ await collection.UpsertAsync(id, employee, options =&gt; { options.Expiry(TimeSp
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/howtos/examples/EncryptingUsingSdk.csx#L72-L76">var getResult1 = await collection.GetAsync(id, options =&gt; options.Transcoder(encryptedTranscoder))
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/howtos/examples/EncryptingUsingSdk.csx#L72-L76">var getResult1 = await collection.GetAsync(id, options =&gt; options.Transcoder(encryptedTranscoder))
     .ConfigureAwait(false);
 
 var encrypted = getResult1.ContentAs&lt;JObject&gt;();
@@ -368,7 +388,7 @@ Console.WriteLine(encrypted);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/howtos/examples/EncryptingUsingSdk.csx#L80-L84">var getResult2 = await collection.GetAsync(id, options =&gt; options.Transcoder(encryptedTranscoder))
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/howtos/examples/EncryptingUsingSdk.csx#L80-L84">var getResult2 = await collection.GetAsync(id, options =&gt; options.Transcoder(encryptedTranscoder))
     .ConfigureAwait(false);
 
 var readItBack = getResult2.ContentAs&lt;Employee&gt;();
@@ -392,7 +412,7 @@ Console.WriteLine(readItBack.IsReplicant);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/howtos/examples/EncryptingUsingSdk.csx#L91-L97">var keyBytes = new Span&lt;byte&gt;(new byte[64]);
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/howtos/examples/EncryptingUsingSdk.csx#L91-L97">var keyBytes = new Span&lt;byte&gt;(new byte[64]);
 RandomNumberGenerator.Fill(keyBytes);
 
 var keyRing = new Keyring(new IKey[]
@@ -406,7 +426,7 @@ var keyRing = new Keyring(new IKey[]
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/howtos/examples/EncryptingUsingSdk.csx#L101-L111">var provider =
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/howtos/examples/EncryptingUsingSdk.csx#L101-L111">var provider =
     new AeadAes256CbcHmacSha512Provider(
         new AeadAes256CbcHmacSha512Cipher(), new Keyring(new IKey[]
         {
@@ -457,14 +477,14 @@ In SDK 3, the default prefix is <code>encrypted$</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/howtos/examples/EncryptingUsingSdk.csx#L119-L122">var cryptoManager = DefaultCryptoManager.Builder()
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/howtos/examples/EncryptingUsingSdk.csx#L119-L122">var cryptoManager = DefaultCryptoManager.Builder()
     .EncryptedFieldNamePrefix("__crypt_")
     //other config
     .Build();</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Alternatively, you can <a href="https://forums.couchbase.com/t/replacing-field-name-prefix/28786">rename the existing fields using a SQL++ statement</a> (formerly N1QL).</p>
+<p>Alternatively, you can <a href="https://forums.couchbase.com/t/replacing-field-name-prefix/28786">rename the existing fields using a N1QL statement</a>.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -475,7 +495,7 @@ In SDK 3, the default prefix is <code>encrypted$</code>.</p>
 <td class="content">
 In SDK 2, only top-level fields could be encrypted.
 SDK 3 allows encrypting fields at any depth.
-If you decide to rename the existing fields, make sure to do so <em>before</em> writing any encrypted fields below the top level, otherwise it may be difficult to rename the nested fields using a generic SQL++ statement.
+If you decide to rename the existing fields, make sure to do so <em>before</em> writing any encrypted fields below the top level, otherwise it may be difficult to rename the nested fields using a generic N1QL statement.
 </td>
 </tr>
 </table>
@@ -489,7 +509,7 @@ To enable decrypting fields written by SDK 2, register the legacy decrypters whe
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/howtos/examples/EncryptingUsingSdk.csx#L137-L141">var cryptoManager = DefaultCryptoManager.Builder()
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/howtos/examples/EncryptingUsingSdk.csx#L137-L141">var cryptoManager = DefaultCryptoManager.Builder()
     .LegacyAesDecrypters(keyring, "hmacKey")
     .DefaultEncrypter(provider.Encrypter("upgrade-key"))
     .Decrypter(provider.Decrypter())
@@ -586,7 +606,7 @@ For RSA, this function accepts a public key name and returns the corresponding p
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -603,6 +623,7 @@ For RSA, this function accepts a public key name and returns the corresponding p
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

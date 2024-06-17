@@ -31,6 +31,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="dcterms.identifier" content="4.0">
 <meta name="page-url" content="/php-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="php-sdk">
+<meta name="docsearch:component_title" content="PHP SDK">
+<meta name="docsearch:cversion" content="4.0">
+<meta name="docsearch:component_version" content="php-sdk@4.0">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="PHP SDK / Transactions / How-to Guide">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -48,7 +62,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -69,19 +84,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -95,7 +125,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -106,14 +135,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="php-sdk">
-        <option value="4.0" data-url="distributed-acid-transactions-from-the-sdk.html" selected>4.0</option>
-        <option value="3.2" data-url="../../3.2/howtos/distributed-acid-transactions-from-the-sdk.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/howtos/distributed-acid-transactions-from-the-sdk.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/howtos/distributed-acid-transactions-from-the-sdk.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -122,7 +143,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-php/edit/release/4.0/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -218,19 +239,19 @@ Distributed ACID Transactions in Couchbase SDKs
 <div class="sect1">
 <h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
 <div class="sectionbody">
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset1_couchbase-capella"></a>Couchbase Capella</p>
+<li id="tabs-1-couchbase-capella" class="tab">
+<p>Couchbase Capella</p>
 </li>
-<li>
-<p><a id="tabset1_couchbase-server"></a>Couchbase Server</p>
+<li id="tabs-1-couchbase-server" class="tab">
+<p>Couchbase Server</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_couchbase-capella">
+<div id="tabs-1-couchbase-capella--panel" class="tabpanel" aria-labelledby="tabs-1-couchbase-capella">
 <div class="ulist">
 <ul>
 <li>
@@ -241,7 +262,7 @@ Distributed ACID Transactions in Couchbase SDKs
 </li>
 <li>
 <p>Your application should have the relevant roles and permissions on the required buckets, scopes, and collections, to perform transactional operations.
-Refer to the <a href="#cloud:organizations:organization-projects-overview.adoc" class="xref unresolved">Organizations &amp; Access</a> page for more details.</p>
+Refer to the <a href="../../../cloud/organizations/organization-projects-overview.html" class="xref page">Organizations &amp; Access</a> page for more details.</p>
 </li>
 <li>
 <p>If your application is using <a href="../concept-docs/xattr.html" class="xref page">extended attributes (XATTRs)</a>, you should avoid using the XATTR field <code>txn</code>&#8201;&#8212;&#8201;this is reserved for Couchbase use.</p>
@@ -249,7 +270,7 @@ Refer to the <a href="#cloud:organizations:organization-projects-overview.adoc" 
 </ul>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_couchbase-server">
+<div id="tabs-1-couchbase-server--panel" class="tabpanel" aria-labelledby="tabs-1-couchbase-server">
 <div class="ulist">
 <ul>
 <li>
@@ -273,39 +294,8 @@ Refer to the <a href="#7.1@server:learn:security/roles.adoc" class="xref unresol
 </div>
 </div>
 </div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-<div class="title">Single Node Cluster</div>
 <div class="paragraph">
-<p>When using a single node cluster (for example, during development), the default number of replicas for a newly created bucket is <strong>1</strong>.
-If left at this default, all key-value writes performed with durability will fail with a <code>DurabilityImpossibleException</code>.
-In turn, this will cause all transactions (which perform all key-value writes durably) to fail.
-This setting can be changed via:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#cloud:clusters:data-service/manage-buckets.adoc#add-bucket" class="xref unresolved">Capella UI</a></p>
-</li>
-<li>
-<p><a href="#7.1@server:manage:manage-buckets/create-bucket.adoc#couchbase-bucket-settings" class="xref unresolved">Couchbase Server UI</a></p>
-</li>
-<li>
-<p><a href="#7.1@server:cli:cbcli/couchbase-cli-bucket-create.adoc#options" class="xref unresolved">Command Line</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>If the bucket already exists, then the server needs to be rebalanced for the setting to take effect.</p>
-</div>
-</td>
-</tr>
-</table>
+<p>Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 </div>
 </div>
@@ -313,13 +303,11 @@ This setting can be changed via:</p>
 <h2 id="creating-a-transaction"><a class="anchor" href="#creating-a-transaction"></a>Creating a Transaction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To create a transaction, an application must supply its logic inside a <code>lambda</code>, including any conditional logic required.
-Once the lambda has successfully run to conclusion, the transaction will be automatically committed.
-If at any point an error occurs, the transaction will rollback and the lambda may run again.</p>
+<p>Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/transactions-example.php#L107-L153">try {
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/transactions-example.php#L107-L153">try {
   $cluster-&gt;transactions()-&gt;run(
     function (TransactionAttemptContext $ctx) use ($collection) {
       // Inserting a doc:
@@ -368,31 +356,11 @@ If at any point an error occurs, the transaction will rollback and the lambda ma
 }</code></pre>
 </div>
 </div>
-<div id="lambda-ops" class="paragraph">
-<p>The transaction lambda gets passed a <code>TransactionAttemptContext</code> object&#8201;&#8212;&#8201;generally referred to as <code>ctx</code> in these examples.
-Since the lambda could be rerun multiple times, it is important that it does not contain any side effects.
-In particular, you should never perform regular operations on a <code>Collection</code>, such as <code>collection.insert()</code>, inside the lambda.
-Such operations may be performed multiple times, and will not be performed transactionally.
-Instead, you should perform these operations through the <code>ctx</code> object, e.g. <code>ctx.insert()</code>.</p>
+<div class="paragraph">
+<p>Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 <div class="paragraph">
-<p>The result of a transaction is represented by a <code>TransactionResult</code> object, which can be used to expose debugging and logging information to help track what happened during a transaction.</p>
-</div>
-<div class="paragraph">
-<p>In the event that a transaction fails, your application could run into the following errors:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>TransactionCommitAmbiguousException</code></p>
-</li>
-<li>
-<p><code>TransactionFailedException</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Refer to <a href="../concept-docs/transactions-error-handling.html#transaction_errors" class="xref page">Error Handling</a> for more details on these.</p>
+<p>Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 <div class="sect2">
 <h3 id="logging"><a class="anchor" href="#logging"></a>Logging</h3>
@@ -448,7 +416,7 @@ Instead, you should perform these operations through the <code>ctx</code> object
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/transactions-example.php#L238-L242">$cluster-&gt;transactions()-&gt;run(
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/transactions-example.php#L238-L242">$cluster-&gt;transactions()-&gt;run(
   function (TransactionAttemptContext $ctx) use ($collection) {
     $adoc = $ctx-&gt;insert($collection, "docId", []);
   }
@@ -463,7 +431,7 @@ Instead, you should perform these operations through the <code>ctx</code> object
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/transactions-example.php#L178-L182">$cluster-&gt;transactions()-&gt;run(
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/transactions-example.php#L178-L182">$cluster-&gt;transactions()-&gt;run(
   function (TransactionAttemptContext $ctx) use ($collection) {
     $docA = $ctx-&gt;get($collection, "doc-a");
   }
@@ -478,7 +446,7 @@ Instead, you should perform these operations through the <code>ctx</code> object
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/transactions-example.php#L191-L198">$cluster-&gt;transactions()-&gt;run(
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/transactions-example.php#L191-L198">$cluster-&gt;transactions()-&gt;run(
   function (TransactionAttemptContext $ctx) use ($collection) {
     $docId = 'docId';
     $ctx-&gt;insert($collection, $docId, []);
@@ -497,7 +465,7 @@ This is necessary so the SDK can check that the document is not involved in anot
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/transactions-example.php#L206-L217">$cluster-&gt;transactions()-&gt;run(
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/transactions-example.php#L206-L217">$cluster-&gt;transactions()-&gt;run(
   function (TransactionAttemptContext $ctx) use ($collection) {
     $doc = $ctx-&gt;get($collection, "doc-b");
     $content = $doc-&gt;content();
@@ -519,7 +487,7 @@ This is necessary so the SDK can check that the document is not involved in anot
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/transactions-example.php#L225-L230">$cluster-&gt;transactions()-&gt;run(
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/transactions-example.php#L225-L230">$cluster-&gt;transactions()-&gt;run(
   function (TransactionAttemptContext $ctx) use ($collection) {
     $doc = $ctx-&gt;get($collection, "docId");
     $ctx-&gt;remove($doc);
@@ -556,7 +524,7 @@ It returns the same <code>QueryResult</code> you are used to, and takes most of 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/transactions-example.php#L254-L267">$cluster-&gt;transactions()-&gt;run(
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/transactions-example.php#L254-L267">$cluster-&gt;transactions()-&gt;run(
   function (TransactionAttemptContext $ctx) {
     $st = "SELECT * FROM `travel-sample`.inventory.hotel WHERE country = $1";
     $qr = $ctx-&gt;query(
@@ -577,7 +545,7 @@ It returns the same <code>QueryResult</code> you are used to, and takes most of 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/transactions-example.php#L298-L323">$cluster-&gt;transactions()-&gt;run(
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/transactions-example.php#L298-L323">$cluster-&gt;transactions()-&gt;run(
   function (TransactionAttemptContext $ctx) use ($hotelChain, $country) {
     // Find all hotels of the chain
     $qr = $ctx-&gt;query(
@@ -615,7 +583,7 @@ This example shows inserting a document and then selecting it again:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/transactions-example.php#L331-L343">$cluster-&gt;transactions()-&gt;run(
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/transactions-example.php#L331-L343">$cluster-&gt;transactions()-&gt;run(
   function (TransactionAttemptContext $ctx) {
     // Query INSERT
     $ctx-&gt;query(
@@ -650,7 +618,7 @@ Other transactions, and other non-transactional actors, will not be able to see 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/transactions-example.php#L368-L379">$cluster-&gt;transactions()-&gt;run(
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/transactions-example.php#L368-L379">$cluster-&gt;transactions()-&gt;run(
   function (TransactionAttemptContext $ctx) {
     $txQo = TransactionQueryOptions::build()
       -&gt;readonly(false)
@@ -741,7 +709,7 @@ Other transactions, and other non-transactional actors, will not be able to see 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/transactions-example.php#L351-L360">$cluster-&gt;transactions()-&gt;run(
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/transactions-example.php#L351-L360">$cluster-&gt;transactions()-&gt;run(
   function (TransactionAttemptContext $ctx) use ($collection) {
     // Key-Value insert
     $ctx-&gt;insert($collection, "doc-greeting", ["greeting" =&gt; "Hello World"]); <i class="conum" data-value="1"></i><b>(1)</b>
@@ -776,7 +744,7 @@ For example, if you want to change the level of durability which must be attaine
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/transactions-example.php#L16-L27">$CB_USER = getenv('CB_USER') ?: 'Administrator';
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/transactions-example.php#L16-L27">$CB_USER = getenv('CB_USER') ?: 'Administrator';
 $CB_PASS = getenv('CB_PASS') ?: 'password';
 $CB_HOST = getenv('CB_HOST') ?: 'couchbase://localhost';
 
@@ -791,22 +759,7 @@ $cluster = new Cluster($CB_HOST, $options);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The default configuration will perform all writes with the durability setting <code>Majority</code>, ensuring that each write is available in-memory on the majority of replicas before the transaction continues.
-There are two higher durability settings available that will additionally wait for all mutations to be written to physical storage on either the active or the majority of replicas, before continuing.
-This further increases safety, at a cost of additional latency.</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-A level of <code>None</code> is present but its use is discouraged and unsupported.
-If durability is set to <code>None</code>, then ACID semantics are not guaranteed.
-</td>
-</tr>
-</table>
+<p>Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 </div>
 </div>
@@ -905,7 +858,7 @@ If durability is set to <code>None</code>, then ACID semantics are not guarantee
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -922,6 +875,7 @@ If durability is set to <code>None</code>, then ACID semantics are not guarantee
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

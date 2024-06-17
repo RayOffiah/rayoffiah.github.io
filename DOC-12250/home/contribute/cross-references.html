@@ -23,6 +23,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="dcterms.identifier" content="master">
 <meta name="page-url" content="/home/contribute/cross-references.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="home">
+<meta name="docsearch:component_title" content="Couchbase Documentation">
+<meta name="docsearch:cversion" content="master">
+<meta name="docsearch:component_version" content="home@master">
+<meta name="docsearch:module" content="contribute">
+<meta name="docsearch:breadcrumbs" content=" / Writing Documentation / Cross References">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="0">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -40,7 +54,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -61,19 +76,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -87,7 +117,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -175,11 +204,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="labels">
 <ul></ul>
 </div>
-<div class="labels">
-<ul>
-<li class="status"><span>OUT OF DATE</span></li>
-</ul>
-</div>
 
 
 </div>
@@ -189,22 +213,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span  id="otherContributor"> + </span>
 </div><div id="preamble">
 <div class="sectionbody">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This documentation is out of date
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>To create links between pages inside the Couchbase Documentation, you must use the cross reference (xref) macro.</p>
 </div>
 <div class="paragraph">
-<p>To link between documentation pages, use the cross reference macro (commonly called an xref) and a page ID.
-The number of page ID coordinates you need to specify in the xref depends on the location of the current page in relation to the location of the destination page (i.e., the page you want to link to).
-The closer the two files are, the shorter the page ID.</p>
+<p>You need the resource ID of the page you want to link to before you can create an xref.
+The number of attributes you need to specify in the resource ID depends on where the page you want to link to is located in relation to your current page.
+Closer pages need fewer attributes.</p>
+</div>
+<div class="paragraph">
+<p>For a good overview about resource IDs, see <a href="https://docs.antora.org/antora/latest/page/resource-id-coordinates/" target="_blank" rel="noopener">the Antora documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>To understand some of the key terms associated with resource IDs and creating xrefs, see <a href="repositories.html#dir-structure" class="xref page">About Couchbase Documentation Repositories</a>.</p>
 </div>
 </div>
 </div>
@@ -212,7 +233,18 @@ The closer the two files are, the shorter the page ID.</p>
 <h2 id="link-to-a-page-in-the-same-module"><a class="anchor" href="#link-to-a-page-in-the-same-module"></a>Link to a Page in the Same Module</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To link to a page in the same module as the current page, all you need to know is the file name of the document.</p>
+<p>A page is in the same module as another page if they&#8217;re in the same <code>&lt;module-name&gt;/pages</code> folder.</p>
+</div>
+<div class="paragraph">
+<p>To link to a page in the same module as the current page, all you need to know is the page&#8217;s filename.</p>
+</div>
+<div class="paragraph">
+<p>Start with the <code>xref:</code> macro, and add the full filename, including the extension.
+End with a set of square brackets (<code>[]</code>).
+Put text inside the square brackets to add link text, or leave it blank to use the title of the file.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -220,7 +252,7 @@ The closer the two files are, the shorter the page ID.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>For example, to link to the AsciiDoc Basics page, a document that is in the same module as this page, Cross References, you write:</p>
+<p>To use an example from this Writer&#8217;s Guide, to link to the <code>basics.adoc</code> file, which is in the same module as this page on cross references, you would write:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -228,31 +260,56 @@ The closer the two files are, the shorter the page ID.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>And this is the result:</p>
+<p>It would render in the finished documentation as:</p>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="paragraph">
 <p><a href="basics.html" class="xref page">This links to the AsciiDoc Basics page</a>.</p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="link-to-a-page-in-the-same-module-but-in-a-topic-folder"><a class="anchor" href="#link-to-a-page-in-the-same-module-but-in-a-topic-folder"></a>Link to a Page in the Same Module But in a Topic Folder</h3>
+<div class="paragraph">
+<p>If you want to link to a page that&#8217;s inside a topic folder, or a subfolder of the <code>&lt;module-name&gt;/pages</code> folder, you just need to add the folder name, followed by a backslash (<code>/</code>) in front of the file name.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Link to a page in a topic folder</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">xref:concept/index.adoc[Key Concepts]</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="link-to-a-page-in-the-same-module-but-in-a-different-version"><a class="anchor" href="#link-to-a-page-in-the-same-module-but-in-a-different-version"></a>Link to a Page in the Same Module But in a Different Version</h3>
+<div class="paragraph">
+<p>If you want to link to a page that&#8217;s inside the same <code>&lt;module-name&gt;/pages</code> folder but in a different version of the documentation, add the version number, followed by an <code>@</code>, in front of the filename.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Link to a page in the same module but in a different version</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">xref:3.3@error-handling.adoc#message-list[error messages]</code></pre>
 </div>
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="link-to-a-page-in-the-same-component"><a class="anchor" href="#link-to-a-page-in-the-same-component"></a>Link to a Page in the Same Component</h2>
+<h2 id="link-to-a-page-in-a-different-module-but-the-same-component"><a class="anchor" href="#link-to-a-page-in-a-different-module-but-the-same-component"></a>Link to a Page in a Different Module But the Same Component</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To link to a page in the same component as the current page, but in a different module, you need to know the file name of the document and the module name.
-The module name is the name of the top-level folder in the modules directory the document is stored in.</p>
+<p>To link to a page in the same component as the current page, but in a different module, you need to know the filename of the page and the module name.</p>
+</div>
+<div class="paragraph">
+<p>Add the module name (folder name), followed by a colon (<code>:</code>), in front of the filename.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -260,7 +317,7 @@ The module name is the name of the top-level folder in the modules directory the
 </div>
 </div>
 <div class="paragraph">
-<p>For example, to link to the document <em>index.adoc</em>, which is in the same component as this page but stored in the ROOT module, you write:</p>
+<p>To use an example from this Writer&#8217;s Guide, to link to the <code>index.adoc</code> file in the <code>ROOT</code> module, you would write:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -268,10 +325,14 @@ The module name is the name of the top-level folder in the modules directory the
 </div>
 </div>
 <div class="paragraph">
-<p>This renders as:</p>
+<p>It would render in the finished documentation as:</p>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="paragraph">
 <p>Let&#8217;s go to the <a href="../index.html" class="xref page">documentation home page</a>.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -279,7 +340,23 @@ The module name is the name of the top-level folder in the modules directory the
 <h2 id="component-coordinate"><a class="anchor" href="#component-coordinate"></a>Link to a Page in a Different Component</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To link to a page in a different component, you need to know the destination component&#8217;s name, module name, and file name.</p>
+<p>To link to a page in a different component, you need to know the page&#8217;s component name, module name, and filename:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Start with the component name, followed by a colon (<code>:</code>).</p>
+</li>
+<li>
+<p>Add the module name, followed by a colon (<code>:</code>).</p>
+</li>
+<li>
+<p>Add the filename, including the file extension.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -287,12 +364,18 @@ The module name is the name of the top-level folder in the modules directory the
 </div>
 </div>
 <div class="paragraph">
-<p>The component&#8217;s name is located in the <a href="component-configuration.html#config" class="xref page">component descriptor file, <em>antora.yml</em></a>, which is found in the destination component&#8217;s repository.</p>
+<p>If you&#8217;re not sure of the component name for your xref, you can check the <code>antora.yml</code> file inside the Documentation repository that holds that file.</p>
+</div>
+<div class="paragraph">
+<p>The <code>antora.yml</code> should always be found in the top-most level of the repository&#8217;s files.
+Look for the <code>name</code> attribute inside the <code>antora.yml</code> file.</p>
+</div>
+<div class="paragraph">
+<p>The following is an example <code>antora.yml</code> file for version 5.5 of the Couchbase Server documentation:</p>
 </div>
 <div class="listingblock">
-<div class="title">antora.yml in docs-server repository</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: server <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: server
 title: Couchbase Server
 version: '5.5'
 start_page: introduction:intro.adoc
@@ -300,16 +383,11 @@ nav:
 - modules/ROOT/nav.adoc</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Component name that you use in xrefs.</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>The <code>name</code> attribute is <code>server</code>.</p>
 </div>
 <div class="paragraph">
-<p>To link from this page, to the What&#8217;s New? page in the server component, you write:</p>
+<p>To link from this page in the Writer&#8217;s Guide to the What&#8217;s New? page in the <code>server</code> component, you would write:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -317,10 +395,14 @@ nav:
 </div>
 </div>
 <div class="paragraph">
-<p>This renders as:</p>
+<p>It would render in the finished documentation as:</p>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="paragraph">
 <p><a href="#server:introduction:whats-new.adoc" class="xref unresolved">What&#8217;s new</a> in Couchbase Server?</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -328,9 +410,16 @@ nav:
 <h2 id="link-to-element"><a class="anchor" href="#link-to-element"></a>Link to an Element in a Page</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To link to a specific element in another page, you need to know the element&#8217;s ID.
-Add a hash (<code>#</code>) directly after the file name, followed by the ID of the element.
-For example, to link from this page to the Images section on the AsciiDoc Basics page, you write:</p>
+<p>You can link to a specific element, such as a heading, table entry, and more, by assigning or knowing that element&#8217;s ID and adding it to your xref.</p>
+</div>
+<div class="paragraph">
+<p>This is known as an <a href="#styleguide:anchor-links.adoc" class="xref unresolved">anchor link</a>.</p>
+</div>
+<div class="paragraph">
+<p>After the filename and extension, add a hash (<code>#</code>), then the element ID.</p>
+</div>
+<div class="paragraph">
+<p>For example, you can link from this page to the <strong>Images</strong> heading in the AsciiDoc Basics page by writing:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -338,10 +427,22 @@ For example, to link from this page to the Images section on the AsciiDoc Basics
 </div>
 </div>
 <div class="paragraph">
-<p>This renders as:</p>
+<p>The heading in the AsciiDoc Basics page looks like this in the source AsciiDoc file:</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="images"><a class="anchor" href="#images"></a>Images</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The xref would render in the finished documentation as:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
 <div class="paragraph">
 <p>See <a href="basics.html#images" class="xref page">Images</a>.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -351,10 +452,18 @@ For example, to link from this page to the Images section on the AsciiDoc Basics
 <div class="ulist">
 <ul>
 <li>
-<p>Create attributes for long page ID coordinates to improve the source readability for other contributors.</p>
+<p><a href="attributes-and-roles.html" class="xref page">Create attributes</a> for long page ID coordinates to improve the source readability for other contributors.</p>
 </li>
 <li>
-<p>Create attributes for page ID coordinates used several times on the same page.</p>
+<p><a href="attributes-and-roles.html" class="xref page">Create attributes</a> for page ID coordinates used several times on the same page.</p>
+</li>
+<li>
+<p>Make sure to always assign link text to xrefs when linking to an element on a page with an anchor link.
+Try to write <a href="#styleguide:links.adoc" class="xref unresolved">good link text</a>.</p>
+</li>
+<li>
+<p>Leave the link text blank when you&#8217;re not linking with an anchor link.
+This keeps link text up-to-date and accurate if a page title changes.</p>
 </li>
 </ul>
 </div>
@@ -366,10 +475,10 @@ For example, to link from this page to the Images section on the AsciiDoc Basics
 <div class="ulist">
 <ul>
 <li>
-<p>Refer to <a href="ids.html" class="xref page">Element IDs and Same-Page Cross References</a> to learn how to create element IDs.</p>
+<p>For more information about how to assign IDs to elements on a page, see <a href="ids.html" class="xref page">Element IDs and Same-Page Cross References</a>.</p>
 </li>
 <li>
-<p>Refer to <a href="attributes-and-roles.html" class="xref page">Attributes</a> to learn how to create document attributes.</p>
+<p>For more information about how to create and work with attributes in the documentation, see <a href="attributes-and-roles.html" class="xref page">Attributes</a>.</p>
 </li>
 </ul>
 </div>
@@ -381,10 +490,10 @@ For example, to link from this page to the Images section on the AsciiDoc Basics
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.antora.org/antora/2.0/page/page-id/#important" target="_blank" rel="noopener">Why is the page ID important?</a></p>
+<p><a href="https://docs.antora.org/antora/latest//page/xref/" target="_blank" rel="noopener">Why is the page ID important?</a></p>
 </li>
 <li>
-<p><a href="https://docs.antora.org/antora/2.0/asciidoc/page-to-page-xref/" target="_blank" rel="noopener">More xref usage examples</a></p>
+<p><a href="https://docs.antora.org/antora/latest//asciidoc/page-to-page-xref/" target="_blank" rel="noopener">More xref usage examples</a></p>
 </li>
 </ul>
 </div>
@@ -463,7 +572,7 @@ For example, to link from this page to the Images section on the AsciiDoc Basics
 </footer>
 <script src="../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Home","components":["home"],"latestVersions":{"home":"master"}}
+{"title":"Contribute","components":["home","styleguide","ui-ux","pendo"],"latestVersions":{"home":"master","styleguide":"","ui-ux":"","pendo":""}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -480,6 +589,7 @@ For example, to link from this page to the Images section on the AsciiDoc Basics
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../_/js/site.js"></script>
 <script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>

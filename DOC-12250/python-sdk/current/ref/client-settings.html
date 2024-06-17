@@ -21,9 +21,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="python-sdk">
-<meta name="dcterms.identifier" content="4.1">
+<meta name="dcterms.identifier" content="4.0">
 <meta name="page-url" content="/python-sdk/current/ref/client-settings.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="python-sdk">
+<meta name="docsearch:component_title" content="Python SDK">
+<meta name="docsearch:cversion" content="4.0">
+<meta name="docsearch:component_version" content="python-sdk@4.0">
+<meta name="docsearch:module" content="ref">
+<meta name="docsearch:breadcrumbs" content="Python SDK / Reference / Client Settings">
+<meta name="docsearch:topic_type" content="reference">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,15 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="python-sdk">
-        <option value="4.1" data-url="client-settings.html" selected>4.1</option>
-        <option value="4.0" data-url="../../4.0/ref/client-settings.html">4.0</option>
-        <option value="3.2" data-url="../../3.2/ref/client-settings.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/ref/client-settings.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/ref/client-settings.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -116,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-python/edit/release/4.1/modules/ref/pages/client-settings.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/ref/pages/client-settings.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -345,7 +365,7 @@ See the <a href="../howtos/managing-connections.html#using-dns-srv-records" clas
 <p>Default:  <code>True</code></p>
 </div>
 <div class="paragraph">
-<p>Mutation tokens allow enhanced durability requirements as well as advanced SQL++ (formerly N1QL) querying capabilities.
+<p>Mutation tokens allow enhanced durability requirements as well as advanced N1QL querying capabilities.
 Set this to <code>False</code> if you do not require these features and wish to avoid the associated overhead.</p>
 </div>
 </dd>
@@ -568,9 +588,6 @@ This includes all commands like get(), get_from_replica() and all mutation comma
 <div class="paragraph">
 <p>Key/Value operations with enhanced durability requirements may take longer to complete, so they have a separate default timeout.</p>
 </div>
-<div class="paragraph">
-<p><strong>Do not</strong> set this above 65s, which is the maximum possible <code>SyncWrite</code> timeout on the Server side.</p>
-</div>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -609,7 +626,7 @@ Also, if there is a node failure during the request the internal cluster timeout
 <p>Default:  <code>None</code></p>
 </div>
 <div class="paragraph">
-<p>The Query timeout is used on all SQL++ query operations if not overridden by a custom timeout.
+<p>The Query timeout is used on all N1QL query operations if not overridden by a custom timeout.
 Note that it is set to such a high timeout compared to key/value since it can affect hundreds or thousands of rows.</p>
 </div>
 </dd>
@@ -1092,136 +1109,9 @@ When writing documents it sets the appropriate flags to indicate the document co
 </dd>
 </dl>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="commonly-used-options"><a class="anchor" href="#commonly-used-options"></a>Commonly Used Options</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>The defaults above have been carefully considered and in general it is not recommended to make changes without expert guidance or careful testing of the change.
-Some options may be commonly used together in certain envionments or to achieve certain effects.</p>
+<p>Unresolved include directive in modules/ref/pages/client-settings.adoc - include::7.1@sdk:shared:partial$client-settings-wide-network.adoc[]</p>
 </div>
-<div class="sect2">
-<h3 id="constrained-network-environments"><a class="anchor" href="#constrained-network-environments"></a>Constrained Network Environments</h3>
-<div class="paragraph">
-<p>Though <a href="../project-docs/compatibility.html#network-requirements" class="xref page">wide area network</a> (WAN) connections are not directly supported, some development and non-critical operations activities across a WAN are convenient.
-Most likely for connecting to Couchbase Capella, or Server running in your own cloud account, whilst developing from a laptop or other machine not located in the same data center.
-These settings are some you may want to consider adjusting:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Connect Timeout to 30s</p>
-</li>
-<li>
-<p>Key-Value Timeout to 5s</p>
-</li>
-<li>
-<p>Config Poll Interval to 10s</p>
-</li>
-<li>
-<p>Circuit Breaker ErrorThresholdPercentage to 75</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-As of SDK API 3.4 you can also use a <strong>Configuration Profile</strong>, which allows you to quickly configure your environment for common use-cases.
-See the <a href="#configuration-profiles">Configuration Profiles</a> section for more details.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>A program using the SDK can also use the <code>waitUntilReady()</code> API call to handle all connection negotiations and related errors at one place.
-It may be useful to block in, for example, a basic console testing application for up to 30 seconds before proceeding in the program to perform data operations.
-See the API reference for further details.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="configuration-profiles"><a class="anchor" href="#configuration-profiles"></a>Configuration Profiles</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Configuration Profiles provide predefined client settings that allow you to quickly configure an environment for common use-cases.
-When using a configuration profile, the current client settings are overridden with the values provided in the profile.
-Any property that is not specified in the profile is left unchanged.</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-The Configuration Profiles feature is currently a <a href="../project-docs/compatibility.html#interface-stability" class="xref page">Volatile API</a> and may be subject to change.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="wan-development"><a class="anchor" href="#wan-development"></a>WAN Development</h3>
-<div class="paragraph">
-<p><strong>Cluster Option:</strong> apply_profile("wan_development")</p>
-</div>
-<div class="paragraph">
-<p>A <code>wan_development</code> configuration profile can be used to modify client settings for development or high-latency environments.
-This profile changes the default timeouts.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Profile Settings</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Setting</th>
-<th class="tableblock halign-left valign-top">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>connect_timeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">20s</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kv_timeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">20s</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kv_durable_timeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">20s</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>views_timeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">120s</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>query_timeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">120s</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>analyticsTimeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">120s</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>search_timeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">120s</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>management_timeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">120s</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 </div>
@@ -1298,7 +1188,7 @@ This profile changes the default timeouts.</p>
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -1315,6 +1205,7 @@ This profile changes the default timeouts.</p>
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

@@ -22,9 +22,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="couchbase-lite">
-<meta name="dcterms.identifier" content="2.8">
+<meta name="dcterms.identifier" content="3.1">
 <meta name="page-url" content="/couchbase-lite/current/android/gs-install.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="couchbase-lite">
+<meta name="docsearch:component_title" content="Couchbase Lite">
+<meta name="docsearch:cversion" content="3.1">
+<meta name="docsearch:component_version" content="couchbase-lite@3.1">
+<meta name="docsearch:module" content="android">
+<meta name="docsearch:breadcrumbs" content="Couchbase Lite / Android / Start Here! / Install">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -42,7 +56,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -63,19 +78,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item nav-item-selected">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -89,7 +119,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -100,15 +129,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+    <template id="page-versions" style="display: none">
+      <select class="version_list" data-component="couchbase-lite">
+        <option value="3.1" data-url="gs-install.html" selected>3.1</option>
+        <option value="3.0" data-url="../../3.0/android/gs-install.html">3.0</option>
+        <option value="2.8" data-url="../../2.8/android/gs-install.html">2.8</option>
+      </select>
+    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
       data-title="Contents"
-      data-levels="1">
+      data-levels="2">
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/pages/gs-install.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="https://github.com/couchbaselabs/docs-couchbase-lite/edit/release/3.1/modules/android/pages/gs-install.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -192,67 +228,179 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <blockquote>
 <div class="paragraph">
 <p>Description&#8201;&#8212;&#8201;<em>How to install Couchbase Lite on Android</em><br>
-<em>Abstract&#8201;&#8212;&#8201;Getting you up and running quickly with Couchbase Lite on java-android</em><br></p>
+<em>Abstract&#8201;&#8212;&#8201;Getting you up and running quickly with Couchbase Lite on android</em><br></p>
 </div>
 </blockquote>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Create or open an existing Android Studio project and install Couchbase Lite using the following method.</p>
+<p>Couchbase Lite on Android supports the development of applications in Java or <a href="kotlin.html" class="xref page">Kotlin</a>.</p>
 </div>
 <div class="paragraph">
-<p>Make the following additions to the module-level <code>build.gradle</code> file (typically in the <strong>app</strong> folder).
-<strong>Note:</strong> In the gradle examples replace the <code>$2.8</code> token with the required Couchbase Lite version number.</p>
+<p>You can install Couchbase Lite Community and-or Enterprise editions from the Maven repository.
+There are separate downloads for Kotlin and Java.</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_community"></a>Community</p>
-</li>
-<li>
-<p><a id="tabset1_enterprise"></a>Enterprise</p>
-</li>
-</ul>
-</div>
+<div class="sidebarblock">
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_community">
+<div class="title">Quick Steps</div>
+<div class="paragraph">
+<p>For experienced developers, this is all you need to add <em>Couchbase Lite for Android 3.1.1</em> to your application projects.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Kotlin - Enterprise</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Include the following in the <code>android {}</code> section:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">android {
-    // Required only if your project has some Kotlin source code
-    kotlinOptions { jvmTarget = '1.8' }
-
-    // Set minimum JVM level to ensure availability of, for example, lambda expressions
-    compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
-    }
-
-//   ... other section content as required by user
-}</code></pre>
-</div>
-</div>
+<p>Create a Kotlin Android app project in Android Studio</p>
 </li>
 <li>
-<p>Include the following in the <code>dependencies{}</code> section:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
-    implementation "com.couchbase.lite:couchbase-lite-android:${version}"
-
-//   ... other section content as required by user
-}</code></pre>
-</div>
-</div>
+<p>Add Couchbase Lite as a dependency in your app-level <code>build.gradle</code><br>
+<code>implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:3.1.1'</code></p>
+</li>
+<li>
+<p>Add the following <em>maven</em> repo to your repositories (in <code>build.gradle</code> or <code>settings.gradle</code> as required<br>
+<code><a href="https://mobile.maven.couchbase.com/maven2/dev/" class="bare">https://mobile.maven.couchbase.com/maven2/dev/</a></code></p>
+</li>
+<li>
+<p>Build the project and it will pull Couchbase Lite down.</p>
 </li>
 </ol>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_enterprise">
+</div>
+</dd>
+<dt class="hdlist1">Kotlin - Community</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a Kotlin Android app project in Android Studio</p>
+</li>
+<li>
+<p>Add Couchbase Lite as a dependency in your app-level <code>build.gradle</code><br>
+<code>implementation 'com.couchbase.lite:couchbase-lite-android-ktx:3.1.1'</code></p>
+</li>
+<li>
+<p>Check you have <code>mavenCentral()</code> in <code>repositories</code> (or in <code>settings.gradle</code>)</p>
+</li>
+<li>
+<p>Build the project and it will pull Couchbase Lite down.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Java - Enterprise</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a Java Android app project in Android Studio</p>
+</li>
+<li>
+<p>Add Couchbase Lite as a dependency in your app-level <code>build.gradle</code><br>
+<code>implementation 'com.couchbase.lite:couchbase-lite-android-ee:3.1.1'</code></p>
+</li>
+<li>
+<p>Add the following <em>maven</em> repo to your repositories (in <code>build.gradle</code> or <code>settings.gradle</code> as required<br>
+<code><a href="https://mobile.maven.couchbase.com/maven2/dev/" class="bare">https://mobile.maven.couchbase.com/maven2/dev/</a></code></p>
+</li>
+<li>
+<p>Build the project and it will pull Couchbase Lite down.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Java - Community</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a Java Android app project in Android Studio</p>
+</li>
+<li>
+<p>Add Couchbase Lite as a dependency in your app-level <code>build.gradle</code><br>
+<code>implementation 'com.couchbase.lite:couchbase-lite-android:3.1.1'</code></p>
+</li>
+<li>
+<p>Check you have <code>mavenCentral()</code> in <code>repositories</code> (or in <code>settings.gradle</code>)</p>
+</li>
+<li>
+<p>Build the project and it will pull Couchbase Lite down.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>That&#8217;s it!
+You''re all set to begin developing powerful Couchbase Lite applications.</p>
+</div>
+<div class="paragraph">
+<p>Now, try the <a href="gs-build.html" class="xref page">Getting Started</a> application, which demonstrates use of key CRUD functionality.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="kotlin-step-by-step-install"><a class="anchor" href="#kotlin-step-by-step-install"></a>Kotlin - Step-by-Step Install</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>More detailed instructions on getting up and running with Couchbase Lite for Android (Kotlin).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Kotlin download also includes the Java version of Couchbase Lite for Android, along with the other dependencies.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Create or open an existing Android Studio project and include the following entries in the app-level <code>build.gradle</code> file (typically in the <strong>app</strong> folder).</p>
+</div>
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-1-enterprise-edition" class="tab">
+<p>Enterprise Edition</p>
+</li>
+<li id="tabs-1-community-edition" class="tab">
+<p>Community Edition</p>
+</li>
+</ul>
+</div>
+<div id="tabs-1-enterprise-edition--panel" class="tabpanel" aria-labelledby="tabs-1-enterprise-edition">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -260,26 +408,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">android {
-    // Required only if your project has some Kotlin source code
-    kotlinOptions { jvmTarget = '1.8' }
+// Required only if your project has some Kotlin source code
+  kotlinOptions { jvmTarget = 1.8}
 
-    // Set minimum JVM level to ensure availability of, for example, lambda expressions
-    compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
-    }
-
-//   ... other section content as required by user
-}</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Include the following in the <code>dependencies{}</code> section:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
-    implementation "com.couchbase.lite:couchbase-lite-android-ee:${version}"
+  compileOptions {
+      targetCompatibility 1.8
+      sourceCompatibility 1.8
+  }
 
 //   ... other section content as required by user
 }</code></pre>
@@ -291,10 +426,192 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">repositories {
-    maven { url 'https://mobile.maven.couchbase.com/maven2/dev/' }
-    google()
-    jcenter()
+  maven { url 'https://mobile.maven.couchbase.com/maven2/dev/' }
 
+//   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Include the following in the <code>dependencies{}</code> section:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">dependencies {
+
+  implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:3.1.1'
+
+//   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="tabs-1-community-edition--panel" class="tabpanel" aria-labelledby="tabs-1-community-edition">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set the Java Version, include the following in the <code>android {}</code> section:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">android {
+  compileOptions {
+      sourceCompatibility JavaVersion.VERSION_1_8
+      targetCompatibility JavaVersion.VERSION_1_8
+  }
+//   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Ensure your <code>repositories</code> section includes <code>mavencentral()</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">repositories {
+
+  mavenCentral()
+
+  //   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add <em>Couchbase&#160;Lite</em> to the <code>dependencies{}</code> section:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">dependencies {
+
+  implementation "com.couchbase.lite:couchbase-lite-android-ktx:3.1.1"
+
+//   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="java-step-by-step-install"><a class="anchor" href="#java-step-by-step-install"></a>Java - Step-by-step Install</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>More detailed instructions on getting up and running with Couchbase Lite for Android (Java).</p>
+</div>
+<div class="paragraph">
+<p>Create or open an existing <em>Android Studio</em> project and install Couchbase Lite using the following method.</p>
+</div>
+<div class="paragraph">
+<p>Include the following entries to the app-level <code>build.gradle</code> file (typically in the <strong>app</strong> folder).</p>
+</div>
+<div id="tabs-2" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-2-enterprise" class="tab">
+<p>Enterprise</p>
+</li>
+<li id="tabs-2-community" class="tab">
+<p>Community</p>
+</li>
+</ul>
+</div>
+<div id="tabs-2-enterprise--panel" class="tabpanel" aria-labelledby="tabs-2-enterprise">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set the Java Version, include the following in the <code>android {}</code> section:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">android {
+// Required only if your project has some Kotlin source code
+  kotlinOptions { jvmTarget = 1.8}
+
+  compileOptions {
+      targetCompatibility 1.8
+      sourceCompatibility 1.8
+  }
+
+//   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the following in the <code>repositories {}</code> section:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">repositories {
+  maven { url 'https://mobile.maven.couchbase.com/maven2/dev/' }
+
+//   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add <em>Couchbase&#160;Lite</em> to your <code>dependencies{}</code> section:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
+
+  implementation 'com.couchbase.lite:couchbase-lite-android-ee:3.1.1'
+
+//   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="tabs-2-community--panel" class="tabpanel" aria-labelledby="tabs-2-community">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Include the following in the <code>android {}</code> section:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">android {
+// Required only if your project has some Kotlin source code
+  kotlinOptions { jvmTarget = 1.8 }
+
+  compileOptions {
+      targetCompatibility 1.8
+      sourceCompatibility 1.8
+  }
+
+//   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Ensure your <code>repositories</code> section includes <code>mavencentral()</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">repositories {
+
+  mavenCentral()
+
+  //   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Include the following in the <code>dependencies{}</code> section:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
+  implementation 'com.couchbase.lite:couchbase-lite-android:3.1.1'
 //   ... other section content as required by user
 }</code></pre>
 </div>
@@ -343,7 +660,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p><a href="blob.html" class="xref page">Blobs</a></p>
 </li>
 <li>
-<p><a href="replication.html" class="xref page">Remote Sync using Sync Gateway</a></p>
+<p><a href="replication.html" class="xref page">Remote Sync Gateway</a></p>
 </li>
 <li>
 <p><a href="conflict.html" class="xref page">Handling Data Conflicts</a></p>
@@ -353,13 +670,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="sect5 column">
 <h6 id="-3"><a class="anchor" href="#-3"></a></h6>
-<div class="ulist">
+<div class="paragraph">
 <div class="title">Dive Deeper . . .</div>
-<ul>
-<li>
-<p><a href="https://forums.couchbase.com/c/mobile/14">Forum</a> <strong>|</strong> <a href="https://blog.couchbase.com/">Blog</a> <strong>|</strong> <a href="https://docs.couchbase.com/tutorials/index.html">Tutorials</a></p>
-</li>
-</ul>
+<p><a href="https://forums.couchbase.com/c/mobile/14">Mobile Forum</a> |
+<a href="https://blog.couchbase.com/">Blog</a> |
+<a href="https://docs.couchbase.com/tutorials/">Tutorials</a></p>
 </div>
 </div>
 </div>
@@ -438,7 +753,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"2.8","sync-gateway":"3.0"}}
+{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.1","sync-gateway":"3.1"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -455,6 +770,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

@@ -12,7 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Encrypting Your Data | Couchbase Docs</title>
+<title>Field Level Encryption from the SDK | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/python-sdk/current/howtos/encrypting-using-sdk.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
@@ -21,9 +21,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="python-sdk">
-<meta name="dcterms.identifier" content="4.1">
+<meta name="dcterms.identifier" content="4.0">
 <meta name="page-url" content="/python-sdk/current/howtos/encrypting-using-sdk.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="python-sdk">
+<meta name="docsearch:component_title" content="Python SDK">
+<meta name="docsearch:cversion" content="4.0">
+<meta name="docsearch:component_version" content="python-sdk@4.0">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="Python SDK / Advanced Data Operations / Encrypting Your Data">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="Enterprise Edition">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,15 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="python-sdk">
-        <option value="4.1" data-url="encrypting-using-sdk.html" selected>4.1</option>
-        <option value="4.0" data-url="../../4.0/howtos/encrypting-using-sdk.html">4.0</option>
-        <option value="3.2" data-url="../../3.2/howtos/encrypting-using-sdk.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/howtos/encrypting-using-sdk.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/howtos/encrypting-using-sdk.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -116,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-python/edit/release/4.1/modules/howtos/pages/encrypting-using-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/pages/encrypting-using-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -175,14 +195,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../hello-world/overview.html">Python SDK</a></li>
-<li class="crumb">Further Data Ops</li>
+<li class="crumb">Advanced Data Operations</li>
 <li class="crumb"><a href="encrypting-using-sdk.html">Encrypting Your Data</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Encrypting Your Data</h1>
+<h1 class="page">Field Level Encryption from the SDK</h1>
 <div class="labels">
 <ul><li class="guide"><span><i class="far fa-check-square"></i> how-to</span></li>
 </ul>
@@ -207,7 +227,7 @@ A practical guide for getting started with Field-Level Encryption, showing how t
 </blockquote>
 </div>
 <div class="paragraph">
-<p>For a high-level overview of this feature, see <a href="../concept-docs/encryption.html" class="xref page">Field Level Encryption</a>.</p>
+<p>For a high-level overview of this feature, see <a href="../concept-docs/encryption.html" class="xref page">concept-docs:encryption.adoc</a>.</p>
 </div>
 </div>
 </div>
@@ -216,7 +236,7 @@ A practical guide for getting started with Field-Level Encryption, showing how t
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Couchbase Python SDK works together with the <a href="https://github.com/couchbase/python-couchbase-encryption" target="_blank" rel="noopener">Python Couchbase Encryption</a> library to provide support for encryption and decryption of JSON fields.
-This library makes use of the cryptographic algorithms available on your platform, and provides a framework for implementing your own crypto components.</p>
+This library includes cryptographic algorithms you can use out of the box, and provides a framework for implementing your own crypto components.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -276,7 +296,7 @@ Refer to the <a href="#pip-install">install section</a>.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/encrypting_using_sdk.py#L89-L103">keyring = InsecureKeyring()
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/encrypting_using_sdk.py#L89-L103">keyring = InsecureKeyring()
 secret_key_id = "secret_key"
 keyring.set_key(
     secret_key_id,
@@ -300,7 +320,7 @@ At this point we also create <code>CryptoManager</code> and register our encrypt
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/encrypting_using_sdk.py#L108-L139"># AES-256 authenticated with HMAC SHA-512. Requires a 64-byte key.
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/encrypting_using_sdk.py#L108-L139"># AES-256 authenticated with HMAC SHA-512. Requires a 64-byte key.
 aes256_provider = AeadAes256CbcHmacSha512Provider(keyring)
 
 # Create a CryptoManager
@@ -344,7 +364,7 @@ except DecrypterAlreadyExistsException as ex:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/encrypting_using_sdk.py#L17-L83"># Create a helper method to encrypt document fields
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/encrypting_using_sdk.py#L17-L83"># Create a helper method to encrypt document fields
 def encrypt_doc(
     crypto_mgr,  # type: "CryptoManager"
     doc,  # type: Dict
@@ -418,7 +438,7 @@ def decrypt_doc(
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/encrypting_using_sdk.py#L166-L187">user = {
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/encrypting_using_sdk.py#L166-L187">user = {
     "firstName": "Monty",
     "lastName": "Python",
     "password": "bang!",
@@ -447,7 +467,7 @@ collection.upsert("user::1", encrypted_user)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/encrypting_using_sdk.py#L191-L192">result = collection.get("user::1")
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/encrypting_using_sdk.py#L191-L192">result = collection.get("user::1")
 print("Encrypted doc:\n{}".format(result.content_as[dict]))</code></pre>
 </div>
 </div>
@@ -482,7 +502,7 @@ print("Encrypted doc:\n{}".format(result.content_as[dict]))</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/encrypting_using_sdk.py#L196-L197">decrypted_user = decrypt_doc(crypto_mgr, result.content_as[dict], field_specs)
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/encrypting_using_sdk.py#L196-L197">decrypted_user = decrypt_doc(crypto_mgr, result.content_as[dict], field_specs)
 print("Decrypted doc:\n{}".format(decrypted_user))</code></pre>
 </div>
 </div>
@@ -546,7 +566,7 @@ mgr = DefaultCryptoManager(encrypted_field_prefix=prefix)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Alternatively, you can <a href="https://forums.couchbase.com/t/replacing-field-name-prefix/28786">rename the existing fields using a SQL++ (formerly N1QL) statement</a>.</p>
+<p>Alternatively, you can <a href="https://forums.couchbase.com/t/replacing-field-name-prefix/28786">rename the existing fields using a N1QL statement</a>.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -557,7 +577,7 @@ mgr = DefaultCryptoManager(encrypted_field_prefix=prefix)</code></pre>
 <td class="content">
 In SDK 2, only top-level fields could be encrypted.
 SDK 3 allows encrypting fields at any depth.
-If you decide to rename the existing fields, make sure to do so <em>before</em> writing any encrypted fields below the top level, otherwise it may be difficult to rename the nested fields using a generic SQL++ statement.
+If you decide to rename the existing fields, make sure to do so <em>before</em> writing any encrypted fields below the top level, otherwise it may be difficult to rename the nested fields using a generic N1QL statement.
 </td>
 </tr>
 </table>
@@ -571,7 +591,7 @@ To enable decrypting fields written by SDK 3, register the legacy decrypters wit
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/encrypting_using_sdk.py#L148-L154">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/encrypting_using_sdk.py#L148-L154">
 # The register_legacy_decrypters() method takes a function parameter so that the single decrypter 
 # can support multiple keys. The function accepts a public key name and returns the 
 # corresponding private key name.
@@ -656,7 +676,7 @@ crypto_mgr.register_legacy_decrypters(
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -673,6 +693,7 @@ crypto_mgr.register_legacy_decrypters(
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

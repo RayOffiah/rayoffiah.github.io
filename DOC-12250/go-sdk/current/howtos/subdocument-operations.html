@@ -12,7 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Sub-Document Operations | Couchbase Docs</title>
+<title>Sub-Document Operations with the Go SDK | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/go-sdk/current/howtos/subdocument-operations.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
@@ -21,9 +21,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="go-sdk">
-<meta name="dcterms.identifier" content="2.6">
+<meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/go-sdk/current/howtos/subdocument-operations.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="go-sdk">
+<meta name="docsearch:component_title" content="Go SDK">
+<meta name="docsearch:cversion" content="2.5">
+<meta name="docsearch:component_version" content="go-sdk@2.5">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="Go SDK / Working with Data / Sub-Document Operations">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,17 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="go-sdk">
-        <option value="2.6" data-url="subdocument-operations.html" selected>2.6</option>
-        <option value="2.5" data-url="../../2.5/howtos/subdocument-operations.html">2.5</option>
-        <option value="2.4" data-url="../../2.4/howtos/subdocument-operations.html">2.4</option>
-        <option value="2.3" data-url="../../2.3/howtos/subdocument-operations.html">2.3</option>
-        <option value="2.2" data-url="../../2.2/howtos/subdocument-operations.html">2.2</option>
-        <option value="2.1" data-url="../../2.1/howtos/subdocument-operations.html">2.1</option>
-        <option value="2.0" data-url="../../2.0/howtos/subdocument-operations.html">2.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -118,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-go/edit/release/2.6/modules/howtos/pages/subdocument-operations.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/howtos/pages/subdocument-operations.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -177,14 +195,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../hello-world/overview.html">Go SDK</a></li>
-<li class="crumb">Further Data Ops</li>
+<li class="crumb">Working with Data</li>
 <li class="crumb"><a href="subdocument-operations.html">Sub-Document Operations</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Sub-Document Operations</h1>
+<h1 class="page">Sub-Document Operations with the Go SDK</h1>
 <div class="labels">
 <ul><li class="guide"><span><i class="far fa-check-square"></i> how-to</span></li>
 </ul>
@@ -233,15 +251,15 @@ Sub-Document operations can be used to efficiently access and change parts of do
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-The Sub-Document operations described on this page are for <em>Key-Value</em> requests only: they are not related to Sub-Document <a href="https://www.couchbase.com/products/n1ql">SQL++ (formerly N1QL)</a> queries.
-Sub-document SQL++ queries are explained in the <a href="n1ql-queries-with-sdk.html" class="xref page">Query page</a>.
+The Sub-Document operations described on this page are for <em>Key-Value</em> requests only: they are not related to Sub-Document N1QL queries.
+(Sub-document N1QL queries are explained in the section <a href="n1ql-queries-with-sdk.html" class="xref page">Querying with N1QL</a>.)
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
 <p>In order to use Sub-Document operations you need to specify a <em>path</em> indicating the location of the Sub-Document.
-The <em>path</em> follows <a href="#Path syntax">SQL++ syntax</a>.</p>
+The <em>path</em> follows <a href="#Path syntax">N1QL syntax</a>.</p>
 </div>
 <div class="paragraph">
 <p>Considering the document:</p>
@@ -379,7 +397,7 @@ The <code>LookupInResult</code> contains two functions for inspecting the result
 <div class="listingblock">
 <div class="title">Retrieve Sub-Document value</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-lookupin.go#L51-L64">	ops := []gocb.LookupInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-lookupin.go#L51-L64">	ops := []gocb.LookupInSpec{
 		gocb.GetSpec("addresses.delivery.country", &amp;gocb.GetSpecOptions{}),
 	}
 	getResult, err := collection.LookupIn("customer123", ops, &amp;gocb.LookupInOptions{})
@@ -410,7 +428,7 @@ The value pointer provided to the <code>ContentAt</code> function must match the
 <div class="listingblock">
 <div class="title">Check existence of Sub-Document path</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-lookupin.go#L69-L79">	ops = []gocb.LookupInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-lookupin.go#L69-L79">	ops = []gocb.LookupInSpec{
 		gocb.ExistsSpec("purchases.pending[-1]", &amp;gocb.ExistsSpecOptions{}),
 	}
 	existsResult, err := collection.LookupIn("customer123", ops, &amp;gocb.LookupInOptions{})
@@ -441,7 +459,7 @@ Using <code>ExistsSpec</code> with <code>ContentAt</code> will return an error i
 <div class="listingblock">
 <div class="title">Combine multiple lookup operations</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-lookupin.go#L84-L103">	ops = []gocb.LookupInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-lookupin.go#L84-L103">	ops = []gocb.LookupInSpec{
 		gocb.GetSpec("addresses.delivery.country", nil),
 		gocb.ExistsSpec("purchases.pending[-1]", nil),
 	}
@@ -475,7 +493,7 @@ The simplest of these operations is <em>Upsert</em>, which, similar to the fulld
 <div class="listingblock">
 <div class="title">Upserting a new Sub-Document</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-mutatein.go#L51-L59">	mops := []gocb.MutateInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-mutatein.go#L51-L59">	mops := []gocb.MutateInSpec{
 		gocb.UpsertSpec("fax", "311-555-0151", &amp;gocb.UpsertSpecOptions{}),
 	}
 	upsertResult, err := collection.MutateIn("customer123", mops, &amp;gocb.MutateInOptions{
@@ -492,7 +510,7 @@ The simplest of these operations is <em>Upsert</em>, which, similar to the fulld
 <div class="listingblock">
 <div class="title">Inserting a Sub-Document</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-mutatein.go#L65-L71">	mops = []gocb.MutateInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-mutatein.go#L65-L71">	mops = []gocb.MutateInSpec{
 		gocb.InsertSpec("purchases.pending", []interface{}{32, true, "None"}, &amp;gocb.InsertSpecOptions{}),
 	}
 	insertResult, err := collection.MutateIn("customer123", mops, &amp;gocb.MutateInOptions{})
@@ -508,7 +526,7 @@ Here&#8217;s an example of one which replaces one path and removes another.</p>
 <div class="listingblock">
 <div class="title">Combine multiple mutate operations</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-mutatein.go#L77-L84">	mops = []gocb.MutateInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-mutatein.go#L77-L84">	mops = []gocb.MutateInSpec{
 		gocb.RemoveSpec("addresses.billing", nil),
 		gocb.ReplaceSpec("email", "dougr96@hotmail.com", nil),
 	}
@@ -543,7 +561,7 @@ Unlike fulldoc <em>Append</em>/<em>Prepend</em> operations (which simply concate
 <div class="listingblock">
 <div class="title">Array appending a sub-document</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L52-L59">	mops := []gocb.MutateInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L52-L59">	mops := []gocb.MutateInSpec{
 		gocb.ArrayAppendSpec("purchases.complete", 777, nil),
 	}
 	arrayAppendResult, err := collection.MutateIn("customer123", mops, &amp;gocb.MutateInOptions{})
@@ -556,7 +574,7 @@ Unlike fulldoc <em>Append</em>/<em>Prepend</em> operations (which simply concate
 <div class="listingblock">
 <div class="title">Array prepending a sub-document</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L65-L72">	mops = []gocb.MutateInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L65-L72">	mops = []gocb.MutateInSpec{
 		gocb.ArrayPrependSpec("purchases.abandoned", 17, nil),
 	}
 	arrayPrependResult, err := collection.MutateIn("customer123", mops, &amp;gocb.MutateInOptions{})
@@ -573,7 +591,7 @@ Simply initialize the document with an empty array and then use the empty path f
 <div class="listingblock">
 <div class="title">Creating and populating an array document</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L78-L92">	upsertDocResult, err := collection.Upsert("my_array", []int{}, nil)
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L78-L92">	upsertDocResult, err := collection.Upsert("my_array", []int{}, nil)
 	if err != nil {
 		panic(err)
 	}
@@ -603,7 +621,7 @@ You can read more about CAS in the <a href="concurrent-document-mutations.html" 
 <div class="listingblock">
 <div class="title">Add multiple elements to an array</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L98-L107">	mops = []gocb.MutateInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L98-L107">	mops = []gocb.MutateInSpec{
 		gocb.ArrayAppendSpec("", []string{"elem1", "elem2", "elem3"}, &amp;gocb.ArrayAppendSpecOptions{
 			HasMultiple: true, // this signifies that the value is multiple array elements rather than one
 		}),
@@ -618,7 +636,7 @@ You can read more about CAS in the <a href="concurrent-document-mutations.html" 
 <div class="listingblock">
 <div class="title">Add single array as element to existing array</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L113-L120">	mops = []gocb.MutateInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L113-L120">	mops = []gocb.MutateInSpec{
 		gocb.ArrayAppendSpec("", []string{"elem1", "elem2", "elem3"}, &amp;gocb.ArrayAppendSpecOptions{}),
 	}
 	singleArrayAppendResult, err := collection.MutateIn("my_array", mops, &amp;gocb.MutateInOptions{})
@@ -635,7 +653,7 @@ Below we set elements individually to achieve the same as the <code>HasMultiple<
 <div class="listingblock">
 <div class="title">Adding multiple elements to array (slow)</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L126-L134">	mops = []gocb.MutateInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L126-L134">	mops = []gocb.MutateInSpec{
 		gocb.ArrayAppendSpec("", "elem1", &amp;gocb.ArrayAppendSpecOptions{}),
 		gocb.ArrayAppendSpec("", "elem2", &amp;gocb.ArrayAppendSpecOptions{}),
 		gocb.ArrayAppendSpec("", "elem3", &amp;gocb.ArrayAppendSpecOptions{}),
@@ -652,7 +670,7 @@ Below we set elements individually to achieve the same as the <code>HasMultiple<
 <div class="listingblock">
 <div class="title">Array appending a sub-document with create path</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L140-L155">	// Create an empty document so that MutateIn can create the path.
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L140-L155">	// Create an empty document so that MutateIn can create the path.
 	_, err = collection.Upsert("my_object", map[string]interface{}{}, nil)
 	if err != nil {
 		panic(err)
@@ -682,7 +700,7 @@ This will do a check to determine if the given value exists or not before actual
 <div class="listingblock">
 <div class="title">Adding unique elements to arrays</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L161-L173">	mops = []gocb.MutateInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L161-L173">	mops = []gocb.MutateInSpec{
 		gocb.ArrayAddUniqueSpec("purchases.complete", 95, &amp;gocb.ArrayAddUniqueSpecOptions{}),
 	}
 	arrayAddUniqueResult, err := collection.MutateIn("customer123", mops, &amp;gocb.MutateInOptions{})
@@ -722,7 +740,7 @@ For example, to insert <code>"Cruel"</code> as the second element in the array <
 <div class="listingblock">
 <div class="title">Inserting elements into arrays</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L179-L186">	mops = []gocb.MutateInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-mutatein-arrays.go#L179-L186">	mops = []gocb.MutateInSpec{
 		gocb.ArrayInsertSpec("some.array[1]", "Cruel", &amp;gocb.ArrayInsertSpecOptions{}),
 	}
 	arrayInsertResult, err := collection.MutateIn("my_object", mops, &amp;gocb.MutateInOptions{})
@@ -748,7 +766,7 @@ These operations are logically similar to the <em>counter</em> operation on an e
 <div class="listingblock">
 <div class="title">Incrementing a counter</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-counter.go#L51-L64">	mops := []gocb.MutateInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-counter.go#L51-L64">	mops := []gocb.MutateInSpec{
 		gocb.IncrementSpec("logins", 1, &amp;gocb.CounterSpecOptions{}),
 	}
 	incrementResult, err := collection.MutateIn("customer123", mops, &amp;gocb.MutateInOptions{})
@@ -771,7 +789,7 @@ The updated value is returned.</p>
 <div class="listingblock">
 <div class="title">Decrementing a counter</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-counter.go#L69-L88">	_, err = collection.Upsert("player432", map[string]int{"gold": 1000}, &amp;gocb.UpsertOptions{})
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-counter.go#L69-L88">	_, err = collection.Upsert("player432", map[string]int{"gold": 1000}, &amp;gocb.UpsertOptions{})
 	if err != nil {
 		panic(err)
 	}
@@ -890,7 +908,7 @@ Sometimes it is necessary to have the server create the hierarchy however.</p>
 <div class="listingblock">
 <div class="title">Upsert with CreatePath</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-mutatein.go#L90-L101">	mops = []gocb.MutateInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-mutatein.go#L90-L101">	mops = []gocb.MutateInSpec{
 		gocb.UpsertSpec("level_0.level_1.foo.bar.phone", map[string]interface{}{
 			"num": "311-555-0101",
 			"ext": 16,
@@ -916,7 +934,7 @@ For example the following two blocks can execute concurrently without any risk o
 <div class="listingblock">
 <div class="title">Performing concurrent Sub Document mutations</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/howtos/examples/subdoc.go#L32-L46">	mops := []gocb.MutateInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/howtos/examples/subdoc.go#L32-L46">	mops := []gocb.MutateInSpec{
 		gocb.ArrayAppendSpec("purchases.complete", 99, &amp;gocb.ArrayAppendSpecOptions{}),
 	}
 	firstConcurrentResult, err := collection.MutateIn("customer123", mops, &amp;gocb.MutateInOptions{})
@@ -944,7 +962,7 @@ If CAS is required then it can be provided like this:</p>
 <div class="listingblock">
 <div class="title">Performing concurrent Sub Document mutations with CAS</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/howtos/examples/subdoc.go#L57-L70">	getRes, err := collection.Get("player432", &amp;gocb.GetOptions{})
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/howtos/examples/subdoc.go#L57-L70">	getRes, err := collection.Get("player432", &amp;gocb.GetOptions{})
 	if err != nil {
 		panic(err)
 	}
@@ -972,7 +990,7 @@ If CAS is required then it can be provided like this:</p>
 <div class="listingblock">
 <div class="title">Performing Sub Document mutations with traditional durability</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-durability.go#L33-L43">	mops := []gocb.MutateInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-durability.go#L33-L43">	mops := []gocb.MutateInSpec{
 		gocb.InsertSpec("name", "mike", nil),
 	}
 	observeResult, err := collection.MutateIn("key", mops, &amp;gocb.MutateInOptions{
@@ -992,7 +1010,7 @@ which uses the concept of <a href="#7.1@server:learn:data/durability.adoc#majori
 <div class="listingblock">
 <div class="title">Performing Sub Document mutations with Durable Writes</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/subdoc-durability.go#L49-L58">	mops = []gocb.MutateInSpec{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/subdoc-durability.go#L49-L58">	mops = []gocb.MutateInSpec{
 		gocb.InsertSpec("name", "mike", nil),
 	}
 	durableResult, err := collection.MutateIn("key2", mops, &amp;gocb.MutateInOptions{
@@ -1067,7 +1085,7 @@ When receiving a top-level error code, you should traverse the results of the co
 <h2 id="path-syntax"><a class="anchor" href="#path-syntax"></a>Path Syntax</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Path syntax largely follows SQL++ conventions: A path is divided into components, with each component referencing a specific <em>level</em> in a document hierarchy.
+<p>Path syntax largely follows N1QL conventions: A path is divided into components, with each component referencing a specific <em>level</em> in a document hierarchy.
 Components are separated by dots (<code>.</code>) in the case where the element left of the dot is a dictionary, or by brackets (<code>[n]</code>) where the element left of the bracket is an array and <code>n</code> is the index within the array.</p>
 </div>
 <div class="paragraph">
@@ -1097,7 +1115,7 @@ In other words, the path component must match exactly the path inside the docume
 <p>must be referenced as <code>literal\"quote.array</code>.</p>
 </div>
 <div class="paragraph">
-<p>If the path also has special path characters (i.e. a dot or brackets) it may be escaped using SQL++ escapes.</p>
+<p>If the path also has special path characters (i.e. a dot or brackets) it may be escaped using N1QL escapes.</p>
 </div>
 <div class="paragraph">
 <p>Considering the document</p>
@@ -1127,15 +1145,8 @@ Currently, paths cannot exceed 1024 characters, and cannot be more than 32 level
 </tr>
 </table>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="extended-attributes"><a class="anchor" href="#extended-attributes"></a>Extended Attributes</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Extended Attributes (also known as XATTRs), built upon the Sub-Document API, allow developers to define application-specific metadata that will only be visible to those applications that request it or attempt to modify it.
-This might be, for example, meta-data specific to a programming framework that should be hidden by default from other frameworks or libraries, or possibly from other versions of the same framework.
-They are not intended for use in general applications, and data stored there cannot be accessed easily by some Couchbase services, such as Search.</p>
+<p>Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::7.1@sdk:shared:partial$sdk-xattr-overview.adoc[]</p>
 </div>
 </div>
 </div>
@@ -1212,7 +1223,7 @@ They are not intended for use in general applications, and data stored there can
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -1229,6 +1240,7 @@ They are not intended for use in general applications, and data stored there can
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

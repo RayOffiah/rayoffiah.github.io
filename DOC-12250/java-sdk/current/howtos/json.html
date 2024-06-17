@@ -21,9 +21,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="java-sdk">
-<meta name="dcterms.identifier" content="3.4">
+<meta name="dcterms.identifier" content="3.3">
 <meta name="page-url" content="/java-sdk/current/howtos/json.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="java-sdk">
+<meta name="docsearch:component_title" content="Java SDK">
+<meta name="docsearch:cversion" content="3.3">
+<meta name="docsearch:component_version" content="java-sdk@3.3">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="Java SDK / Working with Data / JSON">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,15 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="java-sdk">
-        <option value="3.4" data-url="json.html" selected>3.4</option>
-        <option value="3.3" data-url="../../3.3/howtos/json.html">3.3</option>
-        <option value="3.2" data-url="../../3.2/howtos/json.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/howtos/json.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/howtos/json.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -116,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-java/edit/release/3.4/modules/howtos/pages/json.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/pages/json.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -175,8 +195,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../hello-world/overview.html">Java SDK</a></li>
-<li class="crumb">Further Data Ops</li>
-<li class="crumb"><a href="json.html">JSON Modelling</a></li>
+<li class="crumb">Working with Data</li>
+<li class="crumb"><a href="json.html">JSON</a></li>
 </ul>
 </nav>
 </div>
@@ -229,7 +249,7 @@ We use <a href="https://github.com/FasterXML/jackson">Jackson</a> internally, so
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java#L158-L161">{ 
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java#L158-L161">{ 
   name: "Arthur",
   number: 42
 }</code></pre>
@@ -240,7 +260,7 @@ We use <a href="https://github.com/FasterXML/jackson">Jackson</a> internally, so
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java#L171">collection.upsert("arthur", json);</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java#L171">collection.upsert("arthur", json);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -251,12 +271,12 @@ We use <a href="https://github.com/FasterXML/jackson">Jackson</a> internally, so
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">import com.couchbase.client.java.json.*;</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">import com.couchbase.client.java.json.*;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">JsonObject json = JsonObject.create()
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">JsonObject json = JsonObject.create()
   .put("name", "Arthur")
   .put("number", 42);</code></pre>
 </div>
@@ -270,7 +290,7 @@ In this example, we print the JSON back, and access one of the fields:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">JsonObject jsonResult = collection.get("arthur")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">JsonObject jsonResult = collection.get("arthur")
   .contentAsObject();
 
 System.out.println(jsonResult);
@@ -286,7 +306,7 @@ So we can easily create an object from an existing Map:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">Map&lt;String, Object&gt; map = Map.of( // Java 9+ syntax
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">Map&lt;String, Object&gt; map = Map.of( // Java 9+ syntax
   "name", "Arthur",
   "number", 42);
 
@@ -299,7 +319,7 @@ But most JSON serializers can handle simple objects like a Map already, and ours
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">collection.upsert("arthur", map);</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">collection.upsert("arthur", map);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -310,7 +330,7 @@ But most JSON serializers can handle simple objects like a Map already, and ours
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">Map&lt;String, Object&gt; result = collection.get("arthur")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">Map&lt;String, Object&gt; result = collection.get("arthur")
   .contentAs(Map.class);</code></pre>
 </div>
 </div>
@@ -325,7 +345,7 @@ But most JSON serializers can handle simple objects like a Map already, and ours
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">import java.nio.file.Paths;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;</code></pre>
@@ -333,7 +353,7 @@ import java.nio.charset.StandardCharsets;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">String content  = new String(
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">String content  = new String(
   Files.readAllBytes(
     Paths.get(pathToArthurJson)),
   StandardCharsets.UTF_8);
@@ -351,12 +371,12 @@ We&#8217;re reading a string, inflating it into a JsonObject, passing it to a se
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">import com.couchbase.client.java.codec.RawJsonTranscoder;</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">import com.couchbase.client.java.codec.RawJsonTranscoder;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">collection.upsert("arthur", content,
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">collection.upsert("arthur", content,
   UpsertOptions.upsertOptions().transcoder(RawJsonTranscoder.INSTANCE));</code></pre>
 </div>
 </div>
@@ -374,7 +394,7 @@ Using this simple class:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">public class Person {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">public class Person {
   public String name;
   
   public int number;
@@ -393,7 +413,7 @@ Using this simple class:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">collection.upsert("arthur", new Person("Arthur", 42));</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">collection.upsert("arthur", new Person("Arthur", 42));</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -401,7 +421,7 @@ Using this simple class:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">Person person = collection.get("arthur")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">Person person = collection.get("arthur")
   .contentAs(Person.class);</code></pre>
 </div>
 </div>
@@ -414,7 +434,7 @@ Though the SDK automatically uses your version of Jackson when it finds the libr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">import com.couchbase.client.java.env.ClusterEnvironment;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">import com.couchbase.client.java.env.ClusterEnvironment;
 import com.couchbase.client.java.codec.JacksonJsonSerializer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -423,7 +443,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">ObjectMapper mapper = new ObjectMapper();
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">ObjectMapper mapper = new ObjectMapper();
 mapper.registerModule(new JsonValueModule()); // for JsonObject
 
 ClusterEnvironment env = 
@@ -445,7 +465,7 @@ But the generated JSON will have the same fields as before, for easy interoperab
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">public class Persona {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">public class Persona {
   @JsonProperty("name")
   public String nombre;
   
@@ -500,7 +520,7 @@ But the generated JSON will have the same fields as before, for easy interoperab
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">JsonObject arthur = JsonObject.create()
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">JsonObject arthur = JsonObject.create()
   .put("name", "Arthur")
   .put("number", 42)
   .put("float", 42.0)
@@ -527,7 +547,7 @@ But the generated JSON will have the same fields as before, for easy interoperab
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">collection.upsert("some-string", "string-value");</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">collection.upsert("some-string", "string-value");</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -535,7 +555,7 @@ But the generated JSON will have the same fields as before, for easy interoperab
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">System.out.println(
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">System.out.println(
   collection.get("some-string")
     .contentAs(String.class));</code></pre>
 </div>
@@ -557,7 +577,7 @@ But the generated JSON will have the same fields as before, for easy interoperab
 </ul>
 </div>
 <div class="paragraph">
-<p>While it doesn&#8217;t matter which you choose (as long as you serialize and deserialize your Date object consistently!) it may make sense to store the dates in Couchbase in a format that can be easily manipulated using the <a href="#7.1@server:n1ql:n1ql-language-reference/datefun.adoc" class="xref unresolved">date functions in SQL++</a>.</p>
+<p>While it doesn&#8217;t matter which you choose (as long as you serialize and deserialize your Date object consistently!) it may make sense to store the dates in Couchbase in a format that can be easily manipulated using the <a href="#7.1@server:n1ql:n1ql-language-reference/datefun.adoc" class="xref unresolved">date functions in N1QL</a>.</p>
 </div>
 <div class="paragraph">
 <p>Handily, as we can see on the same page, the
@@ -568,7 +588,7 @@ But the generated JSON will have the same fields as before, for easy interoperab
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">public  class Event {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">public  class Event {
   public String name;
   
   @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss")
@@ -583,7 +603,7 @@ But the generated JSON will have the same fields as before, for easy interoperab
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">import java.time.*;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">import java.time.*;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.annotation.JsonFormat;</code></pre>
@@ -594,7 +614,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">mapper.registerModule(new JavaTimeModule());
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">mapper.registerModule(new JavaTimeModule());
 mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);</code></pre>
 </div>
 </div>
@@ -603,7 +623,7 @@ mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">Event towelday = new Event("Towel Day",
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">Event towelday = new Event("Towel Day",
   LocalDateTime.of(2021, Month.MAY, 25, 9, 30));
 
 collection.upsert("towel-day", towelday);
@@ -624,14 +644,14 @@ So taking our original "Arthur" object above, we can insert a simple value:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">String string = "value";
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">String string = "value";
 collection.mutateIn("arthur",
   Arrays.asList(MutateInSpec.upsert("key", string)));</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">{ "name": "Arthur",
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">{ "name": "Arthur",
   "number": 42,
   "key": "value" }</code></pre>
 </div>
@@ -641,14 +661,14 @@ collection.mutateIn("arthur",
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">JsonObject object  = JsonObject.create().put("subkey", "subvalue");
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">JsonObject object  = JsonObject.create().put("subkey", "subvalue");
 collection.mutateIn("arthur",
   Arrays.asList(MutateInSpec.upsert("key", object)));</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">{ "name": "Arthur",
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">{ "name": "Arthur",
   "number": 42,
   "key": {
     "subkey":"subvalue"
@@ -685,12 +705,12 @@ DJSON documents with more than 32 nested layers cannot be parsed, atttempting to
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">import com.fasterxml.jackson.databind.JsonNode;</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">import com.fasterxml.jackson.databind.JsonNode;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Json.java">GetResult result = collection.get("mystery");
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Json.java">GetResult result = collection.get("mystery");
 
 JsonNode node = result.contentAs(JsonNode.class);
 if (node.isBoolean()) {
@@ -792,7 +812,7 @@ else {
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -809,6 +829,7 @@ else {
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

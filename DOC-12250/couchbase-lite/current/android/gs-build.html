@@ -22,9 +22,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="couchbase-lite">
-<meta name="dcterms.identifier" content="2.8">
+<meta name="dcterms.identifier" content="3.1">
 <meta name="page-url" content="/couchbase-lite/current/android/gs-build.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="couchbase-lite">
+<meta name="docsearch:component_title" content="Couchbase Lite">
+<meta name="docsearch:cversion" content="3.1">
+<meta name="docsearch:component_version" content="couchbase-lite@3.1">
+<meta name="docsearch:module" content="android">
+<meta name="docsearch:breadcrumbs" content="Couchbase Lite / Android / Start Here! / Build and Run">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -42,7 +56,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -63,19 +78,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item nav-item-selected">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -89,7 +119,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -100,15 +129,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+    <template id="page-versions" style="display: none">
+      <select class="version_list" data-component="couchbase-lite">
+        <option value="3.1" data-url="gs-build.html" selected>3.1</option>
+        <option value="3.0" data-url="../../3.0/android/gs-build.html">3.0</option>
+        <option value="2.8" data-url="../../2.8/android/gs-build.html">2.8</option>
+      </select>
+    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
       data-title="Contents"
-      data-levels="1">
+      data-levels="2">
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/pages/gs-build.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="https://github.com/couchbaselabs/docs-couchbase-lite/edit/release/3.1/modules/android/pages/gs-build.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -192,9 +228,396 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <blockquote>
 <div class="paragraph">
 <p>Description&#8201;&#8212;&#8201;<em>Build and run a starter app to validate your install of Couchbase Lite on Android</em><br>
-<em>Abstract&#8201;&#8212;&#8201;This content provides sample code and instructions that enable you to test your Couchbase Lite for java-android installation.</em><br></p>
+<em>Abstract&#8201;&#8212;&#8201;This content provides sample code and instructions that enable you to test your Couchbase Lite for android installation.</em><br></p>
 </div>
 </blockquote>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Getting Started app is a very basic Android app that uses a database manager singleton.</p>
+</div>
+<div class="paragraph">
+<p>You can access the <code>GettingStarted</code> project on github here:<br>
+<a href="https://github.com/couchbase/docs-couchbase-lite/tree/release/3.1/modules/android/examples/GetStartedKotlin">Kotlin</a> |  <a href="https://github.com/couchbase/docs-couchbase-lite/tree/release/3.1/modules/android/examples/GetStartedJava">Java</a></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Quick Steps</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Get the project and open it in Android Studio: <a href="https://github.com/couchbase/docs-couchbase-lite/tree/release/3.1/modules/android/examples/GetStartedKotlin">Kotlin</a> |  <a href="https://github.com/couchbase/docs-couchbase-lite/tree/release/3.1/modules/android/examples/GetStartedJava">Java</a></p>
+</li>
+<li>
+<p>Build it</p>
+</li>
+<li>
+<p>Run it</p>
+</li>
+<li>
+<p>Push the "Run it!" Button</p>
+</li>
+<li>
+<p>That&#8217;s it.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If you had problems, or just want more information on the app, there&#8217;s more below.</p>
+</div>
+<div id="img-output" class="imageblock">
+<div class="content">
+<img src="../_images/getstarted-output-ktx.png" alt="getstarted output ktx" width="600">
+</div>
+<div class="title">Figure 1. Logcat Output from Android Studio</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-started-app"><a class="anchor" href="#getting-started-app"></a>Getting Started App</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Getting Started app shows examples of the essential Couchbase for Android CRUD operations, including:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Initialize the library</p>
+</li>
+<li>
+<p>Create database</p>
+</li>
+<li>
+<p>Create collection</p>
+</li>
+<li>
+<p>Create a document</p>
+</li>
+<li>
+<p>Retrieve a document</p>
+</li>
+<li>
+<p>Update a document</p>
+</li>
+<li>
+<p>Query documents</p>
+</li>
+<li>
+<p>Create and run a replicator</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Whilst no exemplar of a real application, it will give you a good idea how to get started using Couchbase Lite.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="add-the-app-to-your-own-project"><a class="anchor" href="#add-the-app-to-your-own-project"></a>Add the App to Your Own Project</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a new 'empty activity' project
+in Android Studio</p>
+</li>
+<li>
+<p>Create a new Application class, similar to the GettingStartedApplication class</p>
+</li>
+<li>
+<p>Copy the DBManager class to your project</p>
+</li>
+<li>
+<p>Create a ViewModel and an Activity, like the ones in the sample</p>
+</li>
+<li>
+<p>Build and run.<br>
+You should be able to create a document and persist it to the database.</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="sample-code-in-detail"><a class="anchor" href="#sample-code-in-detail"></a>Sample Code in Detail</h3>
+<div id="ex-test-code" class="exampleblock">
+<div class="content">
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-1-kotlin" class="tab">
+<p>Kotlin</p>
+</li>
+<li id="tabs-1-java" class="tab">
+<p>Java</p>
+</li>
+</ul>
+</div>
+<div id="tabs-1-kotlin--panel" class="tabpanel" aria-labelledby="tabs-1-kotlin">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/GetStartedKotlin/app/src/main/java/com/couchbase/android/getstarted/kotlin/DBManager.kt#L48-L145">
+    <i class="conum" data-value="1"></i><b>(1)</b>
+    // One-off initialization
+    private fun init(context: Context) {
+        CouchbaseLite.init(context)
+        Log.i(TAG, "CBL Initialized")
+
+    }
+
+    <i class="conum" data-value="2"></i><b>(2)</b>
+    // Create a database
+    fun createDb(dbName: String) {
+        database = Database(dbName)
+        Log.i(TAG, "Database created: $dbName")
+    }
+
+    <i class="conum" data-value="3"></i><b>(3)</b>
+    // Create a new named collection (like a SQL table)
+    // in the database's default scope.
+    fun createCollection(collName: String) {
+        collection = database!!.createCollection(collName)
+        Log.i(TAG, "Collection created: $collection")
+    }
+
+    <i class="conum" data-value="4"></i><b>(4)</b>
+    // Create a new document (i.e. a record)
+    // and save it in a collection in the database.
+    fun createDoc(): String {
+        val mutableDocument = MutableDocument()
+            .setFloat("version", 2.0f)
+            .setString("language", "Java")
+        collection?.save(mutableDocument)
+        return mutableDocument.id
+    }
+
+    <i class="conum" data-value="5"></i><b>(5)</b>
+    // Retrieve immutable document and log the database generated
+    // document ID and some document properties
+    fun retrieveDoc(docId: String) {
+        collection?.getDocument(docId)
+            ?.let {
+                Log.i(TAG, "Document ID :: ${docId}")
+                Log.i(TAG, "Learning :: ${it.getString("language")}")
+            }
+            ?: Log.i(TAG, "No such document :: $docId")
+    }
+
+    <i class="conum" data-value="6"></i><b>(6)</b>
+    // Retrieve immutable document and update `language` property
+    // document ID and some document properties
+    fun updateDoc(docId: String) {
+        collection?.getDocument(docId)?.let {
+            collection?.save(
+                it.toMutable().setString("language", "Kotlin")
+            )
+        }
+    }
+
+    <i class="conum" data-value="7"></i><b>(7)</b>
+    // Create a query to fetch documents with language == Kotlin.
+    fun queryDocs() {
+        val coll = collection ?: return
+        val query: Query = QueryBuilder.select(SelectResult.all())
+            .from(DataSource.collection(coll))
+            .where(Expression.property("language").equalTo(Expression.string("Kotlin")))
+        query.execute().use { rs -&gt;
+            Log.i(TAG, "Number of rows :: ${rs.allResults().size}")
+        }
+    }
+
+    <i class="conum" data-value="8"></i><b>(8)</b>
+    // OPTIONAL -- if you have Sync Gateway Installed you can try replication too.
+    // Create a replicator to push and pull changes to and from the cloud.
+    // Be sure to hold a reference to the Replicator to prevent it from being GCed
+    fun replicate(): Flow&lt;ReplicatorChange&gt;? {
+        val coll = collection ?: return null
+
+        val collConfig = CollectionConfiguration()
+            .setPullFilter { doc, _ -&gt; "Java" == doc.getString("language") }
+
+        val repl = Replicator(
+            ReplicatorConfigurationFactory.newConfig(
+                target = URLEndpoint(URI("ws://localhost:4984/getting-started-db")),
+                collections = mapOf(setOf(coll) to collConfig),
+                type = ReplicatorType.PUSH_AND_PULL,
+                authenticator = BasicAuthenticator("sync-gateway", "password".toCharArray())
+            )
+        )
+
+        // Listen to replicator change events.
+        val changes = repl.replicatorChangesFlow()
+
+        // Start replication.
+        repl.start()
+        replicator = repl
+
+        return changes
+    }</code></pre>
+</div>
+</div>
+</div>
+<div id="tabs-1-java--panel" class="tabpanel" aria-labelledby="tabs-1-java">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/GetStartedJava/app/src/main/java/com/couchbase/android/getstarted/java/DBManager.java#L68-L164">
+    <i class="conum" data-value="1"></i><b>(1)</b>
+    // One-off initialization
+    private void init() {
+        CouchbaseLite.init(GettingStartedApplication.getAppContext());
+        Log.i(TAG, "CBL Initialized");
+    }
+
+    <i class="conum" data-value="2"></i><b>(2)</b>
+    // Create a database
+    public void createDb(String dbName) throws CouchbaseLiteException {
+        database = new Database(dbName);
+        Log.i(TAG, "Database created: " + dbName);
+    }
+
+    <i class="conum" data-value="3"></i><b>(3)</b>
+    // Create a new named collection (like a SQL table)
+    // in the database's default scope.
+    public void createCollection(String collName) throws CouchbaseLiteException {
+        collection = database.createCollection(collName);
+        Log.i(TAG, "Collection created: " + collection);
+    }
+
+    <i class="conum" data-value="4"></i><b>(4)</b>
+    // Create a new document (i.e. a record)
+    // and save it in a collection in the database.
+    public String createDoc() throws CouchbaseLiteException {
+        MutableDocument mutableDocument = new MutableDocument()
+            .setFloat("version", 2.0f)
+            .setString("language", "Java");
+        collection.save(mutableDocument);
+        return mutableDocument.getId();
+    }
+
+    <i class="conum" data-value="5"></i><b>(5)</b>
+    // Retrieve immutable document and log the database generated
+    // document ID and some document properties
+    public void retrieveDoc(String docId) throws CouchbaseLiteException {
+        Document document = collection.getDocument(docId);
+        if (document == null) {
+            Log.i(TAG, "No such document :: " + docId);
+        }
+        else {
+            Log.i(TAG, "Document ID :: " + document.getId());
+            Log.i(TAG, "Learning :: " + document.getString("language"));
+        }
+    }
+
+    <i class="conum" data-value="6"></i><b>(6)</b>
+    // Retrieve and update a document.
+    public void updateDoc(String docId) throws CouchbaseLiteException {
+        Document document = collection.getDocument(docId);
+        if (document != null) {
+            collection.save(
+                document.toMutable().setString("language", "Kotlin"));
+        }
+    }
+
+    <i class="conum" data-value="7"></i><b>(7)</b>
+    // Create a query to fetch documents with language == Kotlin.
+    public void queryDocs() throws CouchbaseLiteException {
+        Query query = QueryBuilder.select(SelectResult.all())
+            .from(DataSource.collection(collection))
+            .where(Expression.property("language").equalTo(Expression.string("Kotlin")));
+
+        try (ResultSet rs = query.execute()) {
+            Log.i(TAG, "Number of rows :: " + rs.allResults().size());
+        }
+    }
+
+    <i class="conum" data-value="8"></i><b>(8)</b>
+    // OPTIONAL -- if you have Sync Gateway Installed you can try replication too.
+    // Create a replicator to push and pull changes to and from the cloud.
+    // Be sure to hold a reference somewhere to prevent the Replicator from being GCed
+    public ListenerToken replicate(ReplicatorChangeListener listener) throws URISyntaxException {
+        CollectionConfiguration collConfig = new CollectionConfiguration()
+            .setPullFilter((doc, flags) -&gt; "Java".equals(doc.getString("language")));
+
+        ReplicatorConfiguration replConfig =
+            new ReplicatorConfiguration(
+                new URLEndpoint(new URI("ws://localhost:4984/getting-started-db")))
+                .addCollection(collection, collConfig)
+                .setType(ReplicatorType.PUSH_AND_PULL)
+                .setAuthenticator(new BasicAuthenticator("sync-gateway", "password".toCharArray()));
+
+        replicator = new Replicator(replConfig);
+
+        // Listen to replicator change events.
+        // Use `token.remove()` to stop the listener
+
+        ListenerToken token = replicator.addChangeListener(listener);
+
+        // Start replication.
+        replicator.start();
+
+        return token;
+    }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Initialize the Library</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Create a database</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Create a collection</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Create a new document</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Retrieve document from the database collection and log it</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Retrieve the document as mutable, change the <code>language</code> to <code>Kotlin</code> and update it</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Query the collection for documents with language == "Java" and log the count</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Optionally, initiate a replication</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="snags-and-pitfalls"><a class="anchor" href="#snags-and-pitfalls"></a>Snags and Pitfalls</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mostly around Gradle and versions.
+You may find you need to change IDE Build Tools settings to use Java 11 for Gradle, for instance.</p>
+</div>
+<div class="paragraph">
+<p>Using this app with Sync Gateway and Couchbase Server obviously requires you have, or install, working versions of both.
+See also&#8201;&#8212;&#8201;<a href="../../../sync-gateway/current/get-started-install.html" class="xref page">Install Sync Gateway</a></p>
 </div>
 </div>
 </div>
@@ -202,15 +625,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 id="minification"><a class="anchor" href="#minification"></a>Minification</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>An application that enables minification must ensure that certain pieces of Couchbase Lite library code are not changed&#8201;&#8212;&#8201;see <a href="#ruleset">Example 1</a> for a near-minimal rule set that retains the needed code:</p>
+<p>An application that enables minification must ensure that certain pieces of Couchbase&#160;Lite library code are not changed&#8201;&#8212;&#8201;see <a href="#ruleset">Example 1</a> for a near-minimal rule set that retains the needed code:</p>
 </div>
 <div id="ruleset" class="exampleblock">
 <div class="title">Example 1. Ruleset</div>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">-keep class com.couchbase.lite.ConnectionStatus { &lt;init&gt;(...); }
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin">-keep class com.couchbase.lite.ConnectionStatus { &lt;init&gt;(...); }
 -keep class com.couchbase.lite.LiteCoreException { static &lt;methods&gt;; }
+-keep class com.couchbase.lite.internal.replicator.CBLTrustManager {
+    public java.util.List checkServerTrusted(java.security.cert.X509Certificate[], java.lang.String, java.lang.String);
+}
+-keep class com.couchbase.lite.internal.ReplicationCollection {
+    static &lt;methods&gt;;
+    &lt;fields&gt;;
+}
 -keep class com.couchbase.lite.internal.core.C4* {
     static &lt;methods&gt;;
     &lt;fields&gt;;
@@ -219,88 +649,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="running"><a class="anchor" href="#running"></a>Running</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Open <strong>MainActivity.java</strong> in Android Studio and copy the following code in the <code>onCreate</code> method.
-This snippet demonstrates how to run basic CRUD operations, a simple Query and running bi-directional replications with Sync Gateway.</p>
-</div>
-<div class="exampleblock">
-<div class="title">Example 2. Sample code to test install</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/snippets/app/src/main/java/com/couchbase/code_snippets/Examples.java#L111-L167">
-// Initialize the Couchbase Lite system
-CouchbaseLite.init(context);
-
-// Get the database (and create it if it doesn’t exist).
-DatabaseConfiguration config = new DatabaseConfiguration();
-
-config.setDirectory(context.getFilesDir().getAbsolutePath());
-
-Database database = new Database("getting-started", config);
-
-
-// Create a new document (i.e. a record) in the database.
-MutableDocument mutableDoc = new MutableDocument()
-.setFloat("version", 2.0F)
-.setString("type", "SDK");
-
-// Save it to the database.
-database.save(mutableDoc);
-
-// Update a document.
-mutableDoc = database.getDocument(mutableDoc.getId()).toMutable();
-mutableDoc.setString("language", "Java");
-database.save(mutableDoc);
-Document document = database.getDocument(mutableDoc.getId());
-// Log the document ID (generated by the database) and properties
-Log.i(TAG, "Document ID :: " + document.getId());
-Log.i(TAG, "Learning " + document.getString("language"));
-
-// Create a query to fetch documents of type SDK.
-Query query = QueryBuilder.select(SelectResult.all())
-.from(DataSource.database(database))
-.where(Expression.property("type").equalTo(Expression.string("SDK")));
-ResultSet result = query.execute();
-Log.i(TAG, "Number of rows ::  " + result.allResults().size());
-
-// Create replicators to push and pull changes to and from the cloud.
-Endpoint targetEndpoint = new URLEndpoint(new URI("ws://localhost:4984/getting-started-db"));
-ReplicatorConfiguration replConfig = new ReplicatorConfiguration(database, targetEndpoint);
-replConfig.setReplicatorType(ReplicatorConfiguration.ReplicatorType.PUSH_AND_PULL);
-
-// Add authentication.
-replConfig.setAuthenticator(new BasicAuthenticator("sync-gateway", "password"));
-
-// Create replicator (be sure to hold a reference somewhere that will prevent the Replicator from being GCed)
-Replicator replicator = new Replicator(replConfig);
-
-// Listen to replicator change events.
-replicator.addChangeListener(change -&gt; {
-  if (change.getStatus().getError() != null) {
-    Log.i(TAG, "Error code ::  " + change.getStatus().getError().getCode());
-  }
-});
-
-// Start replication.
-replicator.start();</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Build and run.
-You should see the document ID and property printed to the console.
-The document was successfully persisted to the database.</p>
-</div>
-<div class="paragraph">
-<p>See also&#8201;&#8212;&#8201;<a href="gs-install.html" class="xref page">Install</a></p>
 </div>
 </div>
 </div>
@@ -340,7 +688,7 @@ The document was successfully persisted to the database.</p>
 <p><a href="blob.html" class="xref page">Blobs</a></p>
 </li>
 <li>
-<p><a href="replication.html" class="xref page">Remote Sync using Sync Gateway</a></p>
+<p><a href="replication.html" class="xref page">Remote Sync Gateway</a></p>
 </li>
 <li>
 <p><a href="conflict.html" class="xref page">Handling Data Conflicts</a></p>
@@ -350,13 +698,11 @@ The document was successfully persisted to the database.</p>
 </div>
 <div class="sect5 column">
 <h6 id="-3"><a class="anchor" href="#-3"></a></h6>
-<div class="ulist">
+<div class="paragraph">
 <div class="title">Dive Deeper . . .</div>
-<ul>
-<li>
-<p><a href="https://forums.couchbase.com/c/mobile/14">Forum</a> <strong>|</strong> <a href="https://blog.couchbase.com/">Blog</a> <strong>|</strong> <a href="https://docs.couchbase.com/tutorials/index.html">Tutorials</a></p>
-</li>
-</ul>
+<p><a href="https://forums.couchbase.com/c/mobile/14">Mobile Forum</a> |
+<a href="https://blog.couchbase.com/">Blog</a> |
+<a href="https://docs.couchbase.com/tutorials/">Tutorials</a></p>
 </div>
 </div>
 </div>
@@ -435,7 +781,7 @@ The document was successfully persisted to the database.</p>
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"2.8","sync-gateway":"3.0"}}
+{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.1","sync-gateway":"3.1"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -452,6 +798,7 @@ The document was successfully persisted to the database.</p>
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

@@ -24,6 +24,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="dcterms.identifier" content="4.0">
 <meta name="page-url" content="/php-sdk/current/concept-docs/durability-replication-failure-considerations.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="php-sdk">
+<meta name="docsearch:component_title" content="PHP SDK">
+<meta name="docsearch:cversion" content="4.0">
+<meta name="docsearch:component_version" content="php-sdk@4.0">
+<meta name="docsearch:module" content="concept-docs">
+<meta name="docsearch:breadcrumbs" content="PHP SDK / Learn / Failure Considerations">
+<meta name="docsearch:topic_type" content="concept">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,14 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="php-sdk">
-        <option value="4.0" data-url="durability-replication-failure-considerations.html" selected>4.0</option>
-        <option value="3.2" data-url="../../3.2/concept-docs/durability-replication-failure-considerations.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/concept-docs/durability-replication-failure-considerations.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/concept-docs/durability-replication-failure-considerations.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -115,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-php/edit/release/4.0/modules/concept-docs/pages/durability-replication-failure-considerations.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/concept-docs/pages/durability-replication-failure-considerations.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -205,87 +226,11 @@ It is the responsibility of the development team and the software architect to e
 </blockquote>
 </div>
 <div class="paragraph">
-<p>Couchbase’s distributed and scalable nature exposes any set-up to the risk of potential network and hardware problems.
-The key to durability is planning for resilience, by evaluating the options on offer for persistence and replication, and carefully considering the performance trade-offs involved.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="durability"><a class="anchor" href="#durability"></a>Durability</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Writes in Couchbase (from the SDK or elsewhere) are written to a single node.
-From there, Couchbase Server will take care of sending the mutation to any configured replicas, and to disk.
-By default all writes are asynchronous, but levels of durability can be set, to ensure replication and/or <em>persistence</em> to disks, before the write is <em>committed</em>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="durable-writes"><a class="anchor" href="#durable-writes"></a>Durable Writes</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Durability has been enhanced in Couchbase Data Platform 6.5, with <a href="#7.1@server:learn:data/durability.adoc" class="xref unresolved">Durable Writes</a>,
-under which mutations will not be visible to other clients until they have met their durability requirements.
-These requirements are now enforced on the server side, rather than requiring client logic, which means that this committed durability can now be guaranteed.</p>
+<p>Unresolved include directive in modules/concept-docs/pages/durability-replication-failure-considerations.adoc - include::7.1@sdk:shared:partial$durability-replication-failure-considerations.adoc[]</p>
 </div>
 <div class="paragraph">
-<p>The optional <code>durabilityLevel</code> parameter, which all mutating operations accept, allows the application to wait until this replication (or persistence) is successful before proceeding.
-If <code>durabilityLevel()</code> is used with no argument, the application will report success back as soon as the primary node has acknowledged the mutation in its memory.
-With Couchbase Server 6.5 and above, the three replication level options are:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>Majority</code>&#8201;&#8212;&#8201;The server will ensure that the change is available in memory on the majority of configured replicas.</p>
-</li>
-<li>
-<p><code>MajorityAndPersistToActive</code>&#8201;&#8212;&#8201;Majority level, plus persisted to disk on the active node.</p>
-</li>
-<li>
-<p><code>PersistToMajority</code>&#8201;&#8212;&#8201;Majority level, plus persisted to disk on the majority of configured replicas.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The options are in order of increasing levels of safety.
-For a given node, waiting for writes to storage is considerably slower than waiting for it to be available in-memory.
-In particular, <code>PersistToMajority</code> will take longer than the other two, and <code>timeout</code> value needs to be selected with care&#8201;&#8212;&#8201;particularly for large numbers of documents&#8201;&#8212;&#8201;after testing on a representative network, with a realistic workload.
-Variation in network speeds and conditions, <em>inter alia</em>, make it difficult to give blanket recommendations.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Durable Writes must not be made with three replicas.
-Attempting this will result in an error message: <code>DURABILITY_IMPOSSIBLE</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>While Durable Writes are being attempted, another client cannot write to the document concerned&#8201;&#8212;&#8201;see the diagram and explanation <a href="#7.1@server:learn:data/durability.adoc#process-and-communication" class="xref unresolved">in the Server Durability docs</a>.</p>
-</div>
-<div class="sect2">
-<h3 id="errors-exceptions"><a class="anchor" href="#errors-exceptions"></a>Errors &amp; Exceptions</h3>
-<div class="paragraph">
-<p>See <a href="../ref/error-codes.html#107-durabilitylevelnotavailable" class="xref page">Durable Writes error codes</a>.</p>
-</div>
-<div class="sect3">
-<h4 id="ambiguity"><a class="anchor" href="#ambiguity"></a>Ambiguity</h4>
-<div class="paragraph">
-<p>Durable Writes do a great deal to mitigate against network problems, but working in a distributed environment always brings its own class of extra problems to any client-server communication.</p>
-</div>
-<div class="paragraph">
-<p>Consider carefully the case where the client has sent the operation to the server, the server has sent the mutation on to the replica(s), and the replicas have acknowledged completion of their operation(s). Now, at the point where the server is sending the successful status to the client, the network drops. The client is in an ambiguous state, not knowing whether or not the operation was successful.</p>
-</div>
-<div class="paragraph">
-<p>In cases where the operation is idempotent (such as an upsert operation), then simply retrying is a perfectly acceptable strategy, where the cost of doing so is justified by the importance of the operation.
-Where the operation is an array append, or somesuch, then <a href="#7.1@server:learn:data/transactions.adoc" class="xref unresolved">distributed, multi-document ACID transactions</a> should be considered.</p>
-</div>
-</div>
+<p>Unresolved include directive in modules/concept-docs/pages/durability-replication-failure-considerations.adoc - include::7.1@sdk:shared:partial$durability-replication-failure-considerations.adoc[]
+Unresolved include directive in modules/concept-docs/pages/durability-replication-failure-considerations.adoc - include::7.1@sdk:shared:partial$durability-replication-failure-considerations.adoc[]</p>
 </div>
 </div>
 </div>
@@ -302,40 +247,18 @@ Where the operation is an array append, or somesuch, then <a href="#7.1@server:l
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Client Verified durability is supported in <a href="../../3.2/concept-docs/durability-replication-failure-considerations.html#older-server-versions" class="xref page">PHP SDK 3.2</a> but not in 4.0.
+Client Verified durability is supported in <a href="#3.2@durability-replication-failure-considerations.adoc#older-server-versions" class="xref unresolved">PHP SDK 3.2</a> but not in 4.0.
 Legacy support will be available in a later 4.x release.
 See the <a href="../project-docs/migrating-sdk-code-to-3.n.html#sdk4-specifics" class="xref page">SDK 4.0 migration considerations</a>.
 </td>
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="performance-considerations"><a class="anchor" href="#performance-considerations"></a>Performance considerations</h3>
 <div class="paragraph">
-<p>Note that Couchbase’s design of asynchronous persistence and replication is there for a reason: The time it takes to store an item in memory is several orders of magnitude quicker than persisting it to disk or sending it over the network.
-Operation times and latencies will increase when waiting on the speed of the network and the speed of the disk.</p>
+<p>Unresolved include directive in modules/concept-docs/pages/durability-replication-failure-considerations.adoc - include::7.1@sdk:shared:partial$durability-replication-failure-considerations.adoc[]</p>
 </div>
 <div class="paragraph">
-<p>Durability operations may also cause increased network traffic since it is implemented at the client level by sending special probes to each server once the actual modification has completed.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="transactions"><a class="anchor" href="#transactions"></a>Transactions</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Couchbase introduced <a href="#7.1@server:learn:data/transactions.adoc" class="xref unresolved">distributed, multi-document ACID Transactions</a>, with Couchbase Data Platform 6.5.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#7.1@server:learn:data/transactions.adoc" class="xref unresolved">An introductory guide to how Couchbase ACID Transactions work</a>.</p>
-</li>
-<li>
-<p><a href="../howtos/distributed-acid-transactions-from-the-sdk.html" class="xref page">A HOWTO guide</a>.</p>
-</li>
-</ul>
+<p>Unresolved include directive in modules/concept-docs/pages/durability-replication-failure-considerations.adoc - include::7.1@sdk:shared:partial$durability-replication-failure-considerations.adoc[]</p>
 </div>
 </div>
 </div>
@@ -412,7 +335,7 @@ Operation times and latencies will increase when waiting on the speed of the net
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -429,6 +352,7 @@ Operation times and latencies will increase when waiting on the speed of the net
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

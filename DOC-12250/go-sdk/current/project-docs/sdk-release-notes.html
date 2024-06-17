@@ -12,7 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Release Notes | Couchbase Docs</title>
+<title>Couchbase Go SDK Release Notes | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/go-sdk/current/project-docs/sdk-release-notes.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
@@ -21,9 +21,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="go-sdk">
-<meta name="dcterms.identifier" content="2.6">
+<meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/go-sdk/current/project-docs/sdk-release-notes.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="go-sdk">
+<meta name="docsearch:component_title" content="Go SDK">
+<meta name="docsearch:cversion" content="2.5">
+<meta name="docsearch:component_version" content="go-sdk@2.5">
+<meta name="docsearch:module" content="project-docs">
+<meta name="docsearch:breadcrumbs" content="Go SDK / Project Docs / Release Notes">
+<meta name="docsearch:topic_type" content="project-doc">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,26 +128,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="go-sdk">
-        <option value="2.6" data-url="sdk-release-notes.html" selected>2.6</option>
-        <option value="2.5" data-url="../../2.5/project-docs/sdk-release-notes.html">2.5</option>
-        <option value="2.4" data-url="../../2.4/project-docs/sdk-release-notes.html">2.4</option>
-        <option value="2.3" data-url="../../2.3/project-docs/sdk-release-notes.html">2.3</option>
-        <option value="2.2" data-url="../../2.2/project-docs/sdk-release-notes.html">2.2</option>
-        <option value="2.1" data-url="../../2.1/project-docs/sdk-release-notes.html">2.1</option>
-        <option value="2.0" data-url="../../2.0/project-docs/sdk-release-notes.html">2.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
       data-title="Contents"
-      data-levels="2">
+      data-levels="1">
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-go/edit/release/2.6/modules/project-docs/pages/sdk-release-notes.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/project-docs/pages/sdk-release-notes.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -184,7 +202,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Release Notes</h1>
+<h1 class="page">Couchbase Go SDK Release Notes</h1>
 <div class="labels">
 <ul></ul>
 </div>
@@ -204,7 +222,7 @@ Release notes, installation instructions, and download archive for the Couchbase
 </div>
 <div class="paragraph">
 <p>These pages cover the 2.x versions of the Couchbase Go SDK (3.x SDK API).
-For release notes, download links, and installation methods for 1.6 and earlier releases of the Couchbase Go Client, please see the <a href="https://docs-archive.couchbase.com/go-sdk/1.6/relnotes-go-sdk.html">1.x Go Release Notes &amp; Download Archive</a>.</p>
+For release notes, download links, and installation methods for 1.6 and earlier releases of the Couchbase Go Client, please see the <a href="https://docs-archive.couchbase.com/go-sdk/1.4/relnotes-go-sdk.html">1.x Go Release Notes &amp; Download Archive</a>.</p>
 </div>
 </div>
 </div>
@@ -213,7 +231,7 @@ For release notes, download links, and installation methods for 1.6 and earlier 
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ go get github.com/couchbase/gocb/v2@v2.6.5</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ go get github.com/couchbase/gocb/v2@v2.5.2</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -238,315 +256,16 @@ Older versions may work, but are not supported.
 </div>
 </div>
 <div class="sect1">
-<h2 id="latest-release"><a class="anchor" href="#latest-release"></a>Go SDK 2.6 Releases</h2>
+<h2 id="version-2-5-2-20-july-2022"><a class="anchor" href="#version-2-5-2-20-july-2022"></a>Version 2.5.2 (20 July 2022)</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>We always recommend using the latest version of the SDK&#8201;&#8212;&#8201;it contains all of the latest security patches and support for new and upcoming features.
-All patch releases for each dot minor release should be API compatible, and safe to upgrade;
-any changes to expected behavior are noted in the release notes that follow.</p>
-</div>
-<div class="sect2">
-<h3 id="version-2-6-5-18-october-2023"><a class="anchor" href="#version-2-6-5-18-october-2023"></a>Version 2.6.5 (18 October 2023)</h3>
-<div class="paragraph">
-<p>Version 2.6.5 is a maintenance release for the Go SDK 2.6.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.6.4?tab=doc">API Documentation</a></p>
-</div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes"><a class="anchor" href="#new-features-and-behavioral-changes"></a>New Features and Behavioral Changes</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1489">GOCBC-1489</a>:
-Exposed <code>ErrCircuitBreakOpen</code> as API stability uncommitted.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="fixed-issues"><a class="anchor" href="#fixed-issues"></a>Fixed Issues</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1485">GOCBC-1485</a>:
-Fixed issue where operations queue for collection id refresh would not be dequeued on refresh.</p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1493">GOCBC-1493</a>:
-Fixed issue where key value operation transcoding errors would be swallowed by the SDK.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="version-2-6-4-26-september-2023"><a class="anchor" href="#version-2-6-4-26-september-2023"></a>Version 2.6.4 (26 September 2023)</h3>
-<div class="paragraph">
-<p>Version 2.6.4 is a maintenance release for the Go SDK 2.6.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.6.4?tab=doc">API Documentation</a></p>
-</div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-2"><a class="anchor" href="#new-features-and-behavioral-changes-2"></a>New Features and Behavioral Changes</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1479">GOCBC-1479</a>:
-Cluster configs fetched during bootstrap are now only applied if select bucket succeeds.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="version-2-6-3-18-april-2023"><a class="anchor" href="#version-2-6-3-18-april-2023"></a>Version 2.6.3 (18 April 2023)</h3>
-<div class="paragraph">
-<p>Version 2.6.3 is a maintenance release for the Go SDK 2.6.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.6.3?tab=doc">API Documentation</a></p>
-</div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-3"><a class="anchor" href="#new-features-and-behavioral-changes-3"></a>New Features and Behavioral Changes</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1403">GOCBC-1403</a>:
-Updated CCCP polling to start running on startup rather than waiting for memcached connections to fetch a cluster config.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="fixed-issues-2"><a class="anchor" href="#fixed-issues-2"></a>Fixed Issues</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1400">GOCBC-1400</a>:
-Fixed issue where connection string parsing was missing some timeout values.</p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1402">GOCBC-1402</a>:
-Fixed issue where wan-development config profile was missing some timeout values.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="version-2-6-2-23-march-2023"><a class="anchor" href="#version-2-6-2-23-march-2023"></a>Version 2.6.2 (23 March 2023)</h3>
-<div class="paragraph">
-<p>Version 2.6.2 is a maintenance release for the Go SDK 2.6.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.6.2?tab=doc">API Documentation</a></p>
-</div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-4"><a class="anchor" href="#new-features-and-behavioral-changes-4"></a>New Features and Behavioral Changes</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1392">GOCBC-1392</a>:
-Added support for <code>NumReplicas</code> to create (primary) index options.</p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1393">GOCBC-1393</a>:
-Updated behaviour for when queries are retried when enhanced prepared statements are used (i.e. prepared statements against server version &gt;= 6.5.0).
-When an error is translated to a <code>QueryPreparedStatementFailureRetryReason</code> it will invalidate the prepared statement cache entry and attempt to reprepare the statement.</p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1395">GOCBC-1395</a>:
-Improved timeout error handling for http based services - if we know that an operation has already timed out then we will now immediately return a timeout error.
-Retry reason context is now carried throughout the lifetime of an entire prepared statement request.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="version-2-6-1-22-february-2023"><a class="anchor" href="#version-2-6-1-22-february-2023"></a>Version 2.6.1 (22 February 2023)</h3>
-<div class="paragraph">
-<p>Version 2.6.1 is a maintenance release for the Go SDK 2.6.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.6.1?tab=doc">API Documentation</a></p>
-</div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-5"><a class="anchor" href="#new-features-and-behavioral-changes-5"></a>New Features and Behavioral Changes</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1322">GOCBC-1322</a>:
-Added volatile support for kv range scan.</p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1373">GOCBC-1373</a>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Added uncommitted support for <code>CollectionQueryIndexManager</code>.</p>
-</li>
-<li>
-<p>Added support for sending <code>query_context</code> when <code>Scope</code> is set on <code>TransactionQueryyOptions</code>.</p>
-</li>
-<li>
-<p>Added support for handling query error code 1197 as feature not available.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="fixed-issues-3"><a class="anchor" href="#fixed-issues-3"></a>Fixed Issues</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1376">GOCBC-1376</a>:
-Fixed issue where lost cleanup would log an incorrectly formatted log line, leading to spamming the log.</p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1387">GOCBC-1387</a>:
-Fixed issue where an edge case could trigger a race between releasing connection buffers and reading on the connection&#8201;&#8212;&#8201;leading to a panic.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="version-2-6-0-20-october-2022"><a class="anchor" href="#version-2-6-0-20-october-2022"></a>Version 2.6.0 (20 October 2022)</h3>
-<div class="paragraph">
-<p>Version 2.6.0 is the first release in the Go SDK 2.6 series.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.6.0?tab=doc">API Documentation</a></p>
-</div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-6"><a class="anchor" href="#new-features-and-behavioral-changes-6"></a>New Features and Behavioral Changes</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1159">GOCBC-1159</a>:
-Added support for refreshing the DNS SRV record when cluster becomes uncontactable, if applicable.</p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1284">GOCBC-1284</a>,
-<a href="https://issues.couchbase.com/browse/GOCBC-1328">GOCBC-1328</a>,
-<a href="https://issues.couchbase.com/browse/GOCBC-1331">GOCBC-1331</a>:
-Significant refactoring work to kv bootstrap, including pipelining fetching a config from the cluster.</p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1316">GOCBC-1316</a>:
-Added support for transactions <code>ExtInsertExisting</code> - allowing <code>ErrDocumentExists</code> to be be ignored in transactional inserts.</p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1341">GOCBC-1341</a>:
-Added volatile level API support for <code>ConfigProfile</code>.</p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1352">GOCBC-1352</a>:
-Added support for trusting the system cert store when TLS is enabled with no <code>CertPool</code> registered and <code>SkipVerify</code> not set.</p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1356">GOCBC-1356</a>:
-Updated the behaviour when <code>MutateIn</code> or <code>Insert</code> returns <code>NOT_STORED</code> from the server to return a <code>ErrDocumentExists</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="fixed-issues-4"><a class="anchor" href="#fixed-issues-4"></a>Fixed Issues</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1347">GOCBC-1347</a>:
-Fixed issue where a nil agent value could cause logging <code>TransactionATRLocation</code> to log a panic.</p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1348">GOCBC-1348</a>:
-Fixed issue where a race on creating a client record could lead to a panic.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="go-sdk-2-5-releases"><a class="anchor" href="#go-sdk-2-5-releases"></a>Go SDK 2.5 Releases</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="version-2-5-4-27-october-2022"><a class="anchor" href="#version-2-5-4-27-october-2022"></a>Version 2.5.4 (27 October 2022)</h3>
-<div class="paragraph">
-<p>Version 2.5.4 is a maintenance release for the Go SDK 2.5.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.5.4?tab=doc">API Documentation</a></p>
-</div>
-<div class="sect3">
-<h4 id="fixed-issues-5"><a class="anchor" href="#fixed-issues-5"></a>Fixed Issues</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1347">GOCBC-1347</a>:
-Fixed issue where a nil agent value could cause logging <code>TransactionATRLocation</code> to log a panic.</p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1348">GOCBC-1348</a>:
-Fixed issue where a race on creating a client record could lead to a panic.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="version-2-5-3-21-september-2022"><a class="anchor" href="#version-2-5-3-21-september-2022"></a>Version 2.5.3 (21 September 2022)</h3>
-<div class="paragraph">
-<p>Version 2.5.3 is a maintenance release for the Go SDK 2.5.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.5.3?tab=doc">API Documentation</a></p>
-</div>
-<div class="sect3">
-<h4 id="fixed-issues-6"><a class="anchor" href="#fixed-issues-6"></a>Fixed Issues</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1338">GOCBC-1338</a>:
-Fixed issue where <code>lazyCircuitBreaker</code> was not using 64-bit aligned values.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="known-issues"><a class="anchor" href="#known-issues"></a>Known Issues</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1347">GOCBC-1347</a>:
-Known issue where a nil agent value could cause logging <code>TransactionATRLocation</code> to log a panic.</p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/GOCBC-1348">GOCBC-1348</a>:
-Known issue where a race on creating a client record can lead to a panic.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="version-2-5-2-20-july-2022"><a class="anchor" href="#version-2-5-2-20-july-2022"></a>Version 2.5.2 (20 July 2022)</h3>
 <div class="paragraph">
 <p>Version 2.5.2 is a maintenance release for the Go SDK 2.5.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.5.2?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-7"><a class="anchor" href="#new-features-and-behavioral-changes-7"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes"><a class="anchor" href="#new-features-and-behavioral-changes"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -564,8 +283,8 @@ Changed <code>WaitUntilReady</code> to always wait for any explicitly defined se
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-7"><a class="anchor" href="#fixed-issues-7"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues"><a class="anchor" href="#fixed-issues"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -576,16 +295,18 @@ Fixed issue where vbucket hashing function wasn&#8217;t masking out the 16th bit
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-5-1-22-june-2022"><a class="anchor" href="#version-2-5-1-22-june-2022"></a>Version 2.5.1 (22 June 2022)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-5-1-22-june-2022"><a class="anchor" href="#version-2-5-1-22-june-2022"></a>Version 2.5.1 (22 June 2022)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.5.1 is a maintenance release for the Go SDK 2.5.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.5.1?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-8"><a class="anchor" href="#new-features-and-behavioral-changes-8"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-2"><a class="anchor" href="#new-features-and-behavioral-changes-2"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -607,8 +328,8 @@ Added uncommitted API level support for <code>UserManager</code> <code>ChangePas
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-8"><a class="anchor" href="#fixed-issues-8"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-2"><a class="anchor" href="#fixed-issues-2"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -623,16 +344,18 @@ Fixed issue where transactions lost cleanup could temporarily block further resp
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-5-0-28-april-2022"><a class="anchor" href="#version-2-5-0-28-april-2022"></a>Version 2.5.0 (28 April 2022)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-5-0-28-april-2022"><a class="anchor" href="#version-2-5-0-28-april-2022"></a>Version 2.5.0 (28 April 2022)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.5.0 is the first release in the Go SDK 2.5 series.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.5.0?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-9"><a class="anchor" href="#new-features-and-behavioral-changes-9"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-3"><a class="anchor" href="#new-features-and-behavioral-changes-3"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -659,8 +382,8 @@ Removed <code>ServerDurationDisabled</code> from <code>ThresholdLoggingOptions</
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-9"><a class="anchor" href="#fixed-issues-9"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-3"><a class="anchor" href="#fixed-issues-3"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -672,20 +395,17 @@ Fixed issue where <code>GetAllIndexes</code> could incorrectly omit the default 
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
-<h2 id="go-sdk-2-4-releases"><a class="anchor" href="#go-sdk-2-4-releases"></a>Go SDK 2.4 Releases</h2>
+<h2 id="version-2-4-1-16-march-2022"><a class="anchor" href="#version-2-4-1-16-march-2022"></a>Version 2.4.1 (16 March 2022)</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="version-2-4-1-16-march-2022"><a class="anchor" href="#version-2-4-1-16-march-2022"></a>Version 2.4.1 (16 March 2022)</h3>
 <div class="paragraph">
 <p>Version 2.4.1 is a maintenance release for the Go SDK 2.4.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.4.1?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-10"><a class="anchor" href="#new-features-and-behavioral-changes-10"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-4"><a class="anchor" href="#new-features-and-behavioral-changes-4"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -708,8 +428,8 @@ Added <code>NewLoggingMeter</code> and <code>LoggingMeterOptions</code> for crea
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-10"><a class="anchor" href="#fixed-issues-10"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-4"><a class="anchor" href="#fixed-issues-4"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -732,16 +452,18 @@ Fixed issue where log redaction tags were not closed correctly.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-4-0-16-february-2022"><a class="anchor" href="#version-2-4-0-16-february-2022"></a>Version 2.4.0 (16 February 2022)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-4-0-16-february-2022"><a class="anchor" href="#version-2-4-0-16-february-2022"></a>Version 2.4.0 (16 February 2022)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.4.0 is the first release in the Go SDK 2.4 series, adding multi-document distributed ACID transactions.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.4.0?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-11"><a class="anchor" href="#new-features-and-behavioral-changes-11"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-5"><a class="anchor" href="#new-features-and-behavioral-changes-5"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -763,8 +485,8 @@ Integrated transactions into the SDK.</p>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-11"><a class="anchor" href="#fixed-issues-11"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-5"><a class="anchor" href="#fixed-issues-5"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -776,20 +498,17 @@ Fixed issue where <code>MutateIn</code> was not setting durability level.</p>
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
-<h2 id="go-sdk-2-3-releases"><a class="anchor" href="#go-sdk-2-3-releases"></a>Go SDK 2.3 Releases</h2>
+<h2 id="version-2-3-5-14-december-2021"><a class="anchor" href="#version-2-3-5-14-december-2021"></a>Version 2.3.5 (14 December 2021)</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="version-2-3-5-14-december-2021"><a class="anchor" href="#version-2-3-5-14-december-2021"></a>Version 2.3.5 (14 December 2021)</h3>
 <div class="paragraph">
 <p>Version 2.3.5 is a maintenance release for the Go SDK 2.3.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.3.5?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-12"><a class="anchor" href="#new-features-and-behavioral-changes-12"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-6"><a class="anchor" href="#new-features-and-behavioral-changes-6"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -818,8 +537,8 @@ Note: this is a breaking change, it not expected to impact any users.</p>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-12"><a class="anchor" href="#fixed-issues-12"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-6"><a class="anchor" href="#fixed-issues-6"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -837,16 +556,18 @@ Fixed issue where a quota limit error was returned rather than rate limit error 
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-3-4-16-november-2021"><a class="anchor" href="#version-2-3-4-16-november-2021"></a>Version 2.3.4 (16 November 2021)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-3-4-16-november-2021"><a class="anchor" href="#version-2-3-4-16-november-2021"></a>Version 2.3.4 (16 November 2021)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.3.4 is a maintenance release for the Go SDK 2.3.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.3.4?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-13"><a class="anchor" href="#new-features-and-behavioral-changes-13"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-7"><a class="anchor" href="#new-features-and-behavioral-changes-7"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -865,8 +586,8 @@ Added the ResponseBody field to QueryError, to allow easier debugging and error 
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-13"><a class="anchor" href="#fixed-issues-13"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-7"><a class="anchor" href="#fixed-issues-7"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -890,16 +611,18 @@ This fixed an issue with stuck deployments using the Eventing service, after upg
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-3-3-19-october-2021"><a class="anchor" href="#version-2-3-3-19-october-2021"></a>Version 2.3.3 (19 October 2021)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-3-3-19-october-2021"><a class="anchor" href="#version-2-3-3-19-october-2021"></a>Version 2.3.3 (19 October 2021)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.3.3 is a maintenance release for the Go SDK 2.3.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.3.3?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-14"><a class="anchor" href="#new-features-and-behavioral-changes-14"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-8"><a class="anchor" href="#new-features-and-behavioral-changes-8"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -909,8 +632,8 @@ We no longer remove poller controller watcher from cluster config updates.</p>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-14"><a class="anchor" href="#fixed-issues-14"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-8"><a class="anchor" href="#fixed-issues-8"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -925,16 +648,18 @@ Fixed issue where SSL certificates were be not verified when no root CAs were pr
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-3-2-21-september-2021"><a class="anchor" href="#version-2-3-2-21-september-2021"></a>Version 2.3.2 (21 September 2021)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-3-2-21-september-2021"><a class="anchor" href="#version-2-3-2-21-september-2021"></a>Version 2.3.2 (21 September 2021)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.3.2 is a maintenance release for the Go SDK 2.3.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.3.2?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-15"><a class="anchor" href="#new-features-and-behavioral-changes-15"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-9"><a class="anchor" href="#new-features-and-behavioral-changes-9"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -948,8 +673,8 @@ Check error codes and fallback to parsing messages in query index management.</p
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-15"><a class="anchor" href="#fixed-issues-15"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-9"><a class="anchor" href="#fixed-issues-9"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -964,16 +689,18 @@ Fixed issue where Search <code>ScanConsistency</code> was sending an incorrect v
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-3-1-17-august-2021"><a class="anchor" href="#version-2-3-1-17-august-2021"></a>Version 2.3.1 (17 August 2021)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-3-1-17-august-2021"><a class="anchor" href="#version-2-3-1-17-august-2021"></a>Version 2.3.1 (17 August 2021)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.3.1 is a maintenance release for the Go SDK 2.3.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.3.1?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-16"><a class="anchor" href="#fixed-issues-16"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-10"><a class="anchor" href="#fixed-issues-10"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -997,20 +724,17 @@ Fixed issue where <code>GetAllScopes</code> would panic on HTTP request send fai
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
-<h2 id="go-sdk-2-2-releases"><a class="anchor" href="#go-sdk-2-2-releases"></a>Go SDK 2.2 Releases</h2>
+<h2 id="version-2-2-5-17-august-2021"><a class="anchor" href="#version-2-2-5-17-august-2021"></a>Version 2.2.5 (17 August 2021)</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="version-2-2-5-17-august-2021"><a class="anchor" href="#version-2-2-5-17-august-2021"></a>Version 2.2.5 (17 August 2021)</h3>
 <div class="paragraph">
 <p>Version 2.2.5 is a maintenance release for the Go SDK 2.2.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.2.5?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-17"><a class="anchor" href="#fixed-issues-17"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-11"><a class="anchor" href="#fixed-issues-11"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1025,16 +749,18 @@ Fixed issue where <code>GetAllScopes</code> would panic on HTTP request send fai
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-3-0-15-july-2021"><a class="anchor" href="#version-2-3-0-15-july-2021"></a>Version 2.3.0 (15 July 2021)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-3-0-15-july-2021"><a class="anchor" href="#version-2-3-0-15-july-2021"></a>Version 2.3.0 (15 July 2021)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.3.0 is the first release in the Go SDK 2.3 series.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.3.0?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-16"><a class="anchor" href="#new-features-and-behavioral-changes-16"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-10"><a class="anchor" href="#new-features-and-behavioral-changes-10"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1075,8 +801,8 @@ Updated Query error handling to return an authentication error on error code 131
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-18"><a class="anchor" href="#fixed-issues-18"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-12"><a class="anchor" href="#fixed-issues-12"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1107,16 +833,18 @@ Fixed issue where benchmarks would not compile.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-2-4-15-june-2021"><a class="anchor" href="#version-2-2-4-15-june-2021"></a>Version 2.2.4 (15 June 2021)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-2-4-15-june-2021"><a class="anchor" href="#version-2-2-4-15-june-2021"></a>Version 2.2.4 (15 June 2021)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.2.4 is a maintenance release for the Go SDK 2.2.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.2.4?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-19"><a class="anchor" href="#fixed-issues-19"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-13"><a class="anchor" href="#fixed-issues-13"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1143,16 +871,18 @@ Fixed issue where the <code>took</code> field in search metrics was parsed incor
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-2-3-20-april-2021"><a class="anchor" href="#version-2-2-3-20-april-2021"></a>Version 2.2.3 (20 April 2021)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-2-3-20-april-2021"><a class="anchor" href="#version-2-2-3-20-april-2021"></a>Version 2.2.3 (20 April 2021)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.2.3 is a maintenance release for the Go SDK 2.2.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.2.3?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-17"><a class="anchor" href="#new-features-and-behavioral-changes-17"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-11"><a class="anchor" href="#new-features-and-behavioral-changes-11"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1174,8 +904,8 @@ During CCCP polling don&#8217;t retry request if the error is request cancelled.
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-20"><a class="anchor" href="#fixed-issues-20"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-14"><a class="anchor" href="#fixed-issues-14"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1198,16 +928,18 @@ Fixed issue where the poller controller could deadlock if a node reported a buck
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-2-2-16-march-2021"><a class="anchor" href="#version-2-2-2-16-march-2021"></a>Version 2.2.2 (16 March 2021)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-2-2-16-march-2021"><a class="anchor" href="#version-2-2-2-16-march-2021"></a>Version 2.2.2 (16 March 2021)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.2.2 is a maintenance release for the Go SDK 2.2.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.2.2?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-18"><a class="anchor" href="#new-features-and-behavioral-changes-18"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-12"><a class="anchor" href="#new-features-and-behavioral-changes-12"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1229,8 +961,8 @@ Dropped log level to warn for when applying a cluster config object is preempted
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-21"><a class="anchor" href="#fixed-issues-21"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-15"><a class="anchor" href="#fixed-issues-15"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1245,16 +977,18 @@ Fixed issue where shutting down cluster config polling could lead to a panic.</p
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-2-1-16-february-2021"><a class="anchor" href="#version-2-2-1-16-february-2021"></a>Version 2.2.1 (16 February 2021)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-2-1-16-february-2021"><a class="anchor" href="#version-2-2-1-16-february-2021"></a>Version 2.2.1 (16 February 2021)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.2.1 is a maintenance release for the Go SDK 2.2.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.2.1?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-19"><a class="anchor" href="#new-features-and-behavioral-changes-19"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-13"><a class="anchor" href="#new-features-and-behavioral-changes-13"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1272,8 +1006,8 @@ Updated <code>MutateIn</code> to allow a blank path with <code>RemoveSpec</code>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-22"><a class="anchor" href="#fixed-issues-22"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-16"><a class="anchor" href="#fixed-issues-16"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1292,8 +1026,59 @@ Fixed issue where an extra, empty, origin was added to user roles on fetching th
 </div>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="version-2-2-1-16-february-2021-2"><a class="anchor" href="#version-2-2-1-16-february-2021-2"></a>Version 2.2.1 (16 February 2021)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 2.2.1 is a maintenance release for the Go SDK 2.2.0.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.2.1?tab=doc">API Documentation</a></p>
+</div>
 <div class="sect2">
-<h3 id="version-2-2-0-15-december-2020"><a class="anchor" href="#version-2-2-0-15-december-2020"></a>Version 2.2.0 (15 December 2020)</h3>
+<h3 id="new-features-and-behavioral-changes-14"><a class="anchor" href="#new-features-and-behavioral-changes-14"></a>New Features and Behavioral Changes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/GOCBC-1017">GOCBC-1017</a>:
+Updated server endpoints for collections manager.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/GOCBC-1040">GOCBC-1040</a>:
+Updated json serialization of errors to include the underlying cause.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/GOCBC-1054">GOCBC-1054</a>:
+Updated <code>MutateIn</code> to allow a blank path with <code>RemoveSpec</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="fixed-issues-17"><a class="anchor" href="#fixed-issues-17"></a>Fixed Issues</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/GOCBC-1047">GOCBC-1047</a>:
+Fixed issue where <code>GetAllScopes</code> was not setting the max expiry value for any collections.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/GOCBC-1052">GOCBC-1052</a>:
+Fixed issue where <code>GetAllDesignDocuments</code> was ignoring the provided <code>namespace</code>.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/GOCBC-1061">GOCBC-1061</a>:
+Fixed issue where an extra, empty, origin was added to user roles on fetching the user.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-2-2-0-15-december-2020"><a class="anchor" href="#version-2-2-0-15-december-2020"></a>Version 2.2.0 (15 December 2020)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.2.0 is the first release in the Go SDK 2.2 series.
 It brings enhancements and bug fixes over 2.1.8, and improves compatibility with Server 6.6 and with 7.0β.</p>
@@ -1301,8 +1086,8 @@ It brings enhancements and bug fixes over 2.1.8, and improves compatibility with
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.2.0?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-20"><a class="anchor" href="#new-features-and-behavioral-changes-20"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-15"><a class="anchor" href="#new-features-and-behavioral-changes-15"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1344,8 +1129,8 @@ Updated <code>BucketSettings</code> ephemeral eviction policies support to API s
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-23"><a class="anchor" href="#fixed-issues-23"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-18"><a class="anchor" href="#fixed-issues-18"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1365,20 +1150,17 @@ Fixed issue where bootstrapping against a non-kv node could never successfully f
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
-<h2 id="go-sdk-2-1-releases"><a class="anchor" href="#go-sdk-2-1-releases"></a>Go SDK 2.1 Releases</h2>
+<h2 id="version-2-1-8-17-november-2020"><a class="anchor" href="#version-2-1-8-17-november-2020"></a>Version 2.1.8 (17 November 2020)</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="version-2-1-8-17-november-2020"><a class="anchor" href="#version-2-1-8-17-november-2020"></a>Version 2.1.8 (17 November 2020)</h3>
 <div class="paragraph">
 <p>Version 2.1.8 is a maintenance release for the Go SDK 2.1.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.1.8?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-21"><a class="anchor" href="#new-features-and-behavioral-changes-21"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-16"><a class="anchor" href="#new-features-and-behavioral-changes-16"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1396,8 +1178,8 @@ Changed the log level for retry strategy retries from info to debug.</p>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-24"><a class="anchor" href="#fixed-issues-24"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-19"><a class="anchor" href="#fixed-issues-19"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1408,16 +1190,18 @@ Fixed issue some operations were being incorrectly sent to the retry orchestrato
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-1-7-20-october-2020"><a class="anchor" href="#version-2-1-7-20-october-2020"></a>Version 2.1.7 (20 October 2020)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-1-7-20-october-2020"><a class="anchor" href="#version-2-1-7-20-october-2020"></a>Version 2.1.7 (20 October 2020)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.1.7 is a maintenance release for the Go SDK 2.1.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.1.7?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-22"><a class="anchor" href="#new-features-and-behavioral-changes-22"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-17"><a class="anchor" href="#new-features-and-behavioral-changes-17"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1448,8 +1232,8 @@ Added missing <code>Terms</code>, <code>DateRanges</code>, and <code>NumericRang
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-25"><a class="anchor" href="#fixed-issues-25"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-20"><a class="anchor" href="#fixed-issues-20"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1472,16 +1256,18 @@ Fixed issue where the <code>Map</code> datastructure was using invalid paths for
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-1-6-15-september-2020"><a class="anchor" href="#version-2-1-6-15-september-2020"></a>Version 2.1.6 (15 September 2020)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-1-6-15-september-2020"><a class="anchor" href="#version-2-1-6-15-september-2020"></a>Version 2.1.6 (15 September 2020)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.1.6 is a maintenance release for the Go SDK 2.1.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.1.6?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-23"><a class="anchor" href="#new-features-and-behavioral-changes-23"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-18"><a class="anchor" href="#new-features-and-behavioral-changes-18"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1491,8 +1277,8 @@ Add ExpiryTime to GetResult, providing the point in time at which a document wil
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-26"><a class="anchor" href="#fixed-issues-26"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-21"><a class="anchor" href="#fixed-issues-21"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1515,16 +1301,18 @@ Fixed issue where setting the <code>network</code> connection string property to
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-1-5-18-august-2020"><a class="anchor" href="#version-2-1-5-18-august-2020"></a>Version 2.1.5 (18 August 2020)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-1-5-18-august-2020"><a class="anchor" href="#version-2-1-5-18-august-2020"></a>Version 2.1.5 (18 August 2020)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.1.5 is a maintenance release for the Go SDK 2.1.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.1.5?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-24"><a class="anchor" href="#new-features-and-behavioral-changes-24"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-19"><a class="anchor" href="#new-features-and-behavioral-changes-19"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1540,8 +1328,8 @@ Note: The threshold logger is the default tracer used by the SDK.</p>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-27"><a class="anchor" href="#fixed-issues-27"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-22"><a class="anchor" href="#fixed-issues-22"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1561,16 +1349,18 @@ Fixed issue where n1ql indexes were being created using prepared statements.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-1-4-21-july-2020"><a class="anchor" href="#version-2-1-4-21-july-2020"></a>Version 2.1.4 (21 July 2020)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-1-4-21-july-2020"><a class="anchor" href="#version-2-1-4-21-july-2020"></a>Version 2.1.4 (21 July 2020)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.1.4 is a maintenance release for the Go SDK 2.1.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.1.4?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-25"><a class="anchor" href="#new-features-and-behavioral-changes-25"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-20"><a class="anchor" href="#new-features-and-behavioral-changes-20"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1588,8 +1378,8 @@ Adjusted the default max idle http connection timeout to be 4.5s from unlimited.
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-28"><a class="anchor" href="#fixed-issues-28"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-23"><a class="anchor" href="#fixed-issues-23"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1621,16 +1411,18 @@ Fixed issue where xattrs were being reordered when being moved to the front of t
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-1-3-1-july-2020"><a class="anchor" href="#version-2-1-3-1-july-2020"></a>Version 2.1.3 (1 July 2020)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-1-3-1-july-2020"><a class="anchor" href="#version-2-1-3-1-july-2020"></a>Version 2.1.3 (1 July 2020)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.1.3 is an off-cadence release for the Go SDK 2.1.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.1.3?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-29"><a class="anchor" href="#fixed-issues-29"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-24"><a class="anchor" href="#fixed-issues-24"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1641,16 +1433,18 @@ Fixed issue where <code>WaitUntilReady</code> at the <code>Cluster</code> level 
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-1-2-16-june-2020"><a class="anchor" href="#version-2-1-2-16-june-2020"></a>Version 2.1.2 (16 June 2020)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-1-2-16-june-2020"><a class="anchor" href="#version-2-1-2-16-june-2020"></a>Version 2.1.2 (16 June 2020)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.1.2 is a maintenance release for the Go SDK 2.1.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.1.2?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-26"><a class="anchor" href="#new-features-and-behavioral-changes-26"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-21"><a class="anchor" href="#new-features-and-behavioral-changes-21"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1668,8 +1462,8 @@ Updated const declarations to add types to improve API reference.</p>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-30"><a class="anchor" href="#fixed-issues-30"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-25"><a class="anchor" href="#fixed-issues-25"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1703,8 +1497,10 @@ Fixed issue where operations using named collections could be sent with an incor
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="known-issues-2"><a class="anchor" href="#known-issues-2"></a>Known issues</h3>
+</div>
+<div class="sect1">
+<h2 id="known-issues"><a class="anchor" href="#known-issues"></a>Known issues</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -1716,16 +1512,18 @@ The workaround for this is to not use the <code>Cluster</code> level <code>WaitU
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-1-1-19-may-2020"><a class="anchor" href="#version-2-1-1-19-may-2020"></a>Version 2.1.1 (19 May 2020)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-1-1-19-may-2020"><a class="anchor" href="#version-2-1-1-19-may-2020"></a>Version 2.1.1 (19 May 2020)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.1.1 is a maintenance release for the Go SDK 2.1.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.1.1?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-27"><a class="anchor" href="#new-features-and-behavioral-changes-27"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-22"><a class="anchor" href="#new-features-and-behavioral-changes-22"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1755,8 +1553,8 @@ Re-enabled HTTP dispatch traces.</p>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-31"><a class="anchor" href="#fixed-issues-31"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-26"><a class="anchor" href="#fixed-issues-26"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1778,8 +1576,8 @@ Fixed issue where <code>UpsertUser</code> sent an invalid request if a role was 
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="known-issues-3"><a class="anchor" href="#known-issues-3"></a>Known issues</h4>
+<div class="sect2">
+<h3 id="known-issues-2"><a class="anchor" href="#known-issues-2"></a>Known issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1802,8 +1600,10 @@ To mitigate this the <code>err := WaitUntilReady(time.Duration, WaitUntilReadyOp
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-1-0-21-april-2020"><a class="anchor" href="#version-2-1-0-21-april-2020"></a>Version 2.1.0 (21 April 2020)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-1-0-21-april-2020"><a class="anchor" href="#version-2-1-0-21-april-2020"></a>Version 2.1.0 (21 April 2020)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.1.0 is a maintenance release for the Go SDK 2.0.0.
 This release contains updating to a new major release of the core part of the SDK.</p>
@@ -1811,8 +1611,8 @@ This release contains updating to a new major release of the core part of the SD
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.1.0?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-28"><a class="anchor" href="#new-features-and-behavioral-changes-28"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-23"><a class="anchor" href="#new-features-and-behavioral-changes-23"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1829,20 +1629,17 @@ Add support for the <code>WaitForReady</code> operation, support waiting for the
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
-<h2 id="go-sdk-2-0-releases"><a class="anchor" href="#go-sdk-2-0-releases"></a>Go SDK 2.0 Releases</h2>
+<h2 id="version-2-0-4-21-april-2020"><a class="anchor" href="#version-2-0-4-21-april-2020"></a>Version 2.0.4 (21 April 2020)</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="version-2-0-4-21-april-2020"><a class="anchor" href="#version-2-0-4-21-april-2020"></a>Version 2.0.4 (21 April 2020)</h3>
 <div class="paragraph">
 <p>Version 2.0.4 is a maintenance release for the Go SDK 2.0.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.0.4?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-29"><a class="anchor" href="#new-features-and-behavioral-changes-29"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-24"><a class="anchor" href="#new-features-and-behavioral-changes-24"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1852,8 +1649,8 @@ Updated to the latest version of gocbconnstr.</p>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-32"><a class="anchor" href="#fixed-issues-32"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-27"><a class="anchor" href="#fixed-issues-27"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1876,16 +1673,18 @@ Fixed issue where search consistency options were not being set in the request p
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-0-3-17-march-2020"><a class="anchor" href="#version-2-0-3-17-march-2020"></a>Version 2.0.3 (17 March 2020)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-0-3-17-march-2020"><a class="anchor" href="#version-2-0-3-17-march-2020"></a>Version 2.0.3 (17 March 2020)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.0.3 is a maintenance release for the Go SDK 2.0.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.0.3?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-30"><a class="anchor" href="#new-features-and-behavioral-changes-30"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-25"><a class="anchor" href="#new-features-and-behavioral-changes-25"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1923,8 +1722,8 @@ Note that whilst this is a breaking change it was deemed best to break it and ma
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-33"><a class="anchor" href="#fixed-issues-33"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-28"><a class="anchor" href="#fixed-issues-28"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1939,16 +1738,18 @@ Fixed issue where opening a bucket with the same name twice led to incorrect beh
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-0-2-21-february-2020"><a class="anchor" href="#version-2-0-2-21-february-2020"></a>Version 2.0.2 (21 February 2020)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-0-2-21-february-2020"><a class="anchor" href="#version-2-0-2-21-february-2020"></a>Version 2.0.2 (21 February 2020)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.0.2 is an off-cycle release for the Go SDK 2.0.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.0.2?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-31"><a class="anchor" href="#new-features-and-behavioral-changes-31"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-26"><a class="anchor" href="#new-features-and-behavioral-changes-26"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1958,8 +1759,8 @@ Updated timeout behavior across the SDK to be consistent. If an operation level 
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-34"><a class="anchor" href="#fixed-issues-34"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-29"><a class="anchor" href="#fixed-issues-29"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1970,16 +1771,18 @@ Fixed issue with timeouts not being respected for HTTP requests, leading to them
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-0-1-19-february-2020"><a class="anchor" href="#version-2-0-1-19-february-2020"></a>Version 2.0.1 (19 February 2020)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-0-1-19-february-2020"><a class="anchor" href="#version-2-0-1-19-february-2020"></a>Version 2.0.1 (19 February 2020)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.0.1 is a maintenance release for the Go SDK 2.0.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.0.1?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-32"><a class="anchor" href="#new-features-and-behavioral-changes-32"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-27"><a class="anchor" href="#new-features-and-behavioral-changes-27"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1997,8 +1800,8 @@ Improve error messages for the UserManager GetUser function.</p>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-35"><a class="anchor" href="#fixed-issues-35"></a>Fixed Issues</h4>
+<div class="sect2">
+<h3 id="fixed-issues-30"><a class="anchor" href="#fixed-issues-30"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2053,16 +1856,18 @@ Fixed issue with cccp poller hanging if the get cluster config op timed out.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="version-2-0-0-18-january-2020"><a class="anchor" href="#version-2-0-0-18-january-2020"></a>Version 2.0.0 (18 January 2020)</h3>
+</div>
+<div class="sect1">
+<h2 id="version-2-0-0-18-january-2020"><a class="anchor" href="#version-2-0-0-18-january-2020"></a>Version 2.0.0 (18 January 2020)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Version 2.0.0 is the first release for the Go SDK 2.0.0.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://pkg.go.dev/github.com/couchbase/gocb/v2@v2.0.0?tab=doc">API Documentation</a></p>
 </div>
-<div class="sect3">
-<h4 id="new-features-and-behavioral-changes-33"><a class="anchor" href="#new-features-and-behavioral-changes-33"></a>New Features and Behavioral Changes</h4>
+<div class="sect2">
+<h3 id="new-features-and-behavioral-changes-28"><a class="anchor" href="#new-features-and-behavioral-changes-28"></a>New Features and Behavioral Changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2109,11 +1914,12 @@ Moved authenticator to ClusterOptions.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="pre-releases"><a class="anchor" href="#pre-releases"></a>Pre-releases</h3>
+</div>
+<div class="sect1">
+<h2 id="pre-releases"><a class="anchor" href="#pre-releases"></a>Pre-releases</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Numerous <em>Alpha</em> and <em>Beta</em> releases were made in the run-up to the 2.0 release, and although unsupported, the release notes and download links are retained for archive purposes <a href="3.0-pre-release-notes.html" class="xref page">here</a>.</p>
-</div>
 </div>
 </div>
 </div>
@@ -2198,7 +2004,7 @@ Moved authenticator to ClusterOptions.</p>
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -2215,6 +2021,7 @@ Moved authenticator to ClusterOptions.</p>
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

@@ -24,6 +24,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="dcterms.identifier" content="3.3">
 <meta name="page-url" content="/ruby-sdk/current/howtos/full-text-searching-with-sdk.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="ruby-sdk">
+<meta name="docsearch:component_title" content="Ruby SDK">
+<meta name="docsearch:cversion" content="3.3">
+<meta name="docsearch:component_version" content="ruby-sdk@3.3">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="Ruby SDK / Working with Data / Search">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,14 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="ruby-sdk">
-        <option value="3.3" data-url="full-text-searching-with-sdk.html" selected>3.3</option>
-        <option value="3.2" data-url="../../3.2/howtos/full-text-searching-with-sdk.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/howtos/full-text-searching-with-sdk.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/howtos/full-text-searching-with-sdk.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -115,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-ruby/edit/release/3.3/modules/howtos/pages/full-text-searching-with-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-ruby/modules/howtos/pages/full-text-searching-with-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -233,7 +254,7 @@ Full Text Search indexes can be <a href="#7.1@server:fts:fts-creating-indexes.ad
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="https://github.com/couchbase/docs-sdk-ruby/blob/70882f1e0ff06b07b48e5ee39f7b3f0445fd9882/modules/howtos/examples/search.rb#L11-L114">search_indexes = cluster.search_indexes.get_all_indexes
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-ruby/modules/howtos/examples/search.rb#L11-L114">search_indexes = cluster.search_indexes.get_all_indexes
 unless search_indexes.any? {|idx| idx.name == "my-index-name"}
   index = Management::SearchIndex.new
   index.type = "fulltext-index"
@@ -354,7 +375,7 @@ In older versions of Couchbase Server, even though executed at Cluster level, a 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="https://github.com/couchbase/docs-sdk-ruby/blob/70882f1e0ff06b07b48e5ee39f7b3f0445fd9882/modules/howtos/examples/search.rb#L118-L131">result = cluster.search_query(
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-ruby/modules/howtos/examples/search.rb#L118-L131">result = cluster.search_query(
     "my-index-name",
     Cluster::SearchQuery.query_string("hop beer")
 )
@@ -376,7 +397,7 @@ here it&#8217;s built on a search in the name field.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="https://github.com/couchbase/docs-sdk-ruby/blob/70882f1e0ff06b07b48e5ee39f7b3f0445fd9882/modules/howtos/examples/search.rb#L135-L152">options = Cluster::SearchOptions.new
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-ruby/modules/howtos/examples/search.rb#L135-L152">options = Cluster::SearchOptions.new
 options.fields = ["name"]
 result = cluster.search_query(
     "my-index-name",
@@ -415,7 +436,7 @@ and the total number of rows is taken from the <code>metrics</code> returned in 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="https://github.com/couchbase/docs-sdk-ruby/blob/70882f1e0ff06b07b48e5ee39f7b3f0445fd9882/modules/howtos/examples/search.rb#L206-L230">options = Cluster::SearchOptions.new
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-ruby/modules/howtos/examples/search.rb#L206-L230">options = Cluster::SearchOptions.new
 options.highlight_style = :html
 options.highlight_fields = ["description"]
 result = cluster.search_query(
@@ -447,7 +468,7 @@ puts "Reported total rows: #{result.meta_data.metrics.total_rows}"
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="https://github.com/couchbase/docs-sdk-ruby/blob/70882f1e0ff06b07b48e5ee39f7b3f0445fd9882/modules/howtos/examples/search.rb#L156-L173">options = Cluster::SearchOptions.new
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-ruby/modules/howtos/examples/search.rb#L156-L173">options = Cluster::SearchOptions.new
 options.skip = 4
 options.limit = 3
 result = cluster.search_query(
@@ -472,7 +493,7 @@ puts "Reported total rows: #{result.meta_data.metrics.total_rows}"
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="https://github.com/couchbase/docs-sdk-ruby/blob/70882f1e0ff06b07b48e5ee39f7b3f0445fd9882/modules/howtos/examples/search.rb#L234-L243">options = Cluster::SearchOptions.new
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-ruby/modules/howtos/examples/search.rb#L234-L243">options = Cluster::SearchOptions.new
 options.sort = [
     Cluster::SearchSort.score,
     Cluster::SearchSort.field("name"),
@@ -487,7 +508,7 @@ cluster.search_query(
 <div class="listingblock">
 <div class="title">Facets</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="https://github.com/couchbase/docs-sdk-ruby/blob/70882f1e0ff06b07b48e5ee39f7b3f0445fd9882/modules/howtos/examples/search.rb#L248-L256">options = Cluster::SearchOptions.new
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-ruby/modules/howtos/examples/search.rb#L248-L256">options = Cluster::SearchOptions.new
 categories_facet = Cluster::SearchFacet.term("category")
 categories_facet.size = 5
 options.facets = {"categories" =&gt; categories_facet}
@@ -509,7 +530,7 @@ ensuring results contain information from updated indexes:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="https://github.com/couchbase/docs-sdk-ruby/blob/70882f1e0ff06b07b48e5ee39f7b3f0445fd9882/modules/howtos/examples/search.rb#L178-L202">random_value = rand
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-ruby/modules/howtos/examples/search.rb#L178-L202">random_value = rand
 result = collection.upsert("cool-beer-#{random_value}", {
     "type" =&gt; "beer",
     "name" =&gt; "Random Beer ##{random_value}",
@@ -611,7 +632,7 @@ puts "Reported total rows: #{result.meta_data.metrics.total_rows}"
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -628,6 +649,7 @@ puts "Reported total rows: #{result.meta_data.metrics.total_rows}"
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

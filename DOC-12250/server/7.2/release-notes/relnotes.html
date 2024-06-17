@@ -23,6 +23,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="dcterms.identifier" content="7.2">
 <meta name="page-url" content="/server/7.2/release-notes/relnotes.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="server">
+<meta name="docsearch:component_title" content="server">
+<meta name="docsearch:cversion" content="7.2">
+<meta name="docsearch:component_version" content="server@7.2">
+<meta name="docsearch:module" content="release-notes">
+<meta name="docsearch:breadcrumbs" content="server / Release Notes &amp; Licenses / Release Notes">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="2">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -40,7 +54,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -61,19 +76,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item nav-item-selected">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -87,7 +117,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -104,9 +133,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <option value="7.2" data-url="relnotes.html" selected>7.2</option>
         <option value="7.1" data-url="../../7.1/index.html">7.1</option>
         <option value="7.0" data-url="../../7.0/index.html">7.0</option>
-        <option value="6.6" data-url="../../6.6/index.html">6.6</option>
-        <option value="6.5" data-url="../../6.5/index.html">6.5</option>
-        <option value="6.0" data-url="../../6.0/index.html">6.0</option>
       </select>
     </template>
   </div>
@@ -204,6 +230,63 @@ This maintenance release contains new features and fixes.</p>
 <div class="sect2">
 <h3 id="new-features-726"><a class="anchor" href="#new-features-726"></a>New Features and Enhancements</h3>
 <div class="sect3">
+<h4 id="cluster-manager"><a class="anchor" href="#cluster-manager"></a>Cluster Manager</h4>
+<table id="table-new-features-726-cluster-manager" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Feature</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61816">MB-61816</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>cm_rebalance_total</code>, <code>cm_failover_total</code>, and <code>cm_graceful_failover_total</code> stats have been added.</p>
+<p class="tableblock">Each stat contains a label named event
+ (<code>initiated</code>, <code>completed</code>,<code>failed</code>, and <code>stopped</code>) and the number of occurrences for the labeled event.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-62036">MB-62036</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The following stats have been added:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+cm_auto_failover_count
+</td>
+<td class="hdlist2">
+<p>The number of auto-failovers that have occurred.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+cm_auto_failover_enabled
+</td>
+<td class="hdlist2">
+<p>Indicates if auto-failover is enabled (1 = true, 0 = false)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+cm_auto_failover_max_count
+</td>
+<td class="hdlist2">
+<p>The maximum number of auto-failovers before being disabled</p>
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
 <h4 id="tools"><a class="anchor" href="#tools"></a>Tools</h4>
 <table id="table-new-features-726-tools" class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -288,6 +371,12 @@ Since the examples are also used by Capella users, the <code>cbq</code> tool is 
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61564">MB-61564</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Incorrect return code when attempting to create an index that already exists.
+The system returns the error: <code>200: index already exists</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The system will now return: <code>409: index already exists</code>.</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-62042">MB-62042</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">When the input to <code>STR_TO_TZ</code> has <code>'Z'</code> as the time zone, the output uses an hour-only format.
@@ -437,7 +526,7 @@ This issue could result in duplicate rows being added to indexes.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="cluster-manager"><a class="anchor" href="#cluster-manager"></a>Cluster Manager</h4>
+<h4 id="cluster-manager-2"><a class="anchor" href="#cluster-manager-2"></a>Cluster Manager</h4>
 <table id="table-fixed-issues-725-cluster-manager" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -543,7 +632,7 @@ The Erlang upgrade requires that users have installed Couchbase Server&#160;7.1.
 </div>
 </div>
 <div class="sect2">
-<h3 id="cluster-manager-2"><a class="anchor" href="#cluster-manager-2"></a>Cluster Manager</h3>
+<h3 id="cluster-manager-3"><a class="anchor" href="#cluster-manager-3"></a>Cluster Manager</h3>
 <table id="table-new-features-724-cluster-manager" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -1309,7 +1398,7 @@ See <a href="../manage/manage-xdcr/create-xdcr-replication.html#rebalance-inform
 </table>
 </div>
 <div class="sect3">
-<h4 id="cluster-manager-3"><a class="anchor" href="#cluster-manager-3"></a>Cluster Manager</h4>
+<h4 id="cluster-manager-4"><a class="anchor" href="#cluster-manager-4"></a>Cluster Manager</h4>
 <table id="table-fixed-issues-721-cluster-manager" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -1661,7 +1750,7 @@ See <a href="../rest-api/rest-auditing.html" class="xref page">Configure Auditin
 <ul>
 <li>
 <p>Power BI Connector version&#160;1.0 released.
-(<a href="#power-bi-connector:ROOT:index.adoc" class="xref unresolved">Power BI Connector documentation</a>)</p>
+(<a href="../../../power-bi-connector/current/index.html" class="xref page">Power BI Connector documentation</a>)</p>
 <div class="paragraph">
 <p>You can download the installation package from the following location:<br></p>
 </div>
@@ -1743,7 +1832,7 @@ See <a href="../learn/security/on-the-wire-security.html#min-tls-version" class=
 <p>This release contains the following fixes.</p>
 </div>
 <div class="sect3">
-<h4 id="cluster-manager-4"><a class="anchor" href="#cluster-manager-4"></a>Cluster Manager</h4>
+<h4 id="cluster-manager-5"><a class="anchor" href="#cluster-manager-5"></a>Cluster Manager</h4>
 <table id="table-fixed-issues-720-clustermanager" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.4725%;">
@@ -2221,6 +2310,7 @@ Such queries will still have valid plans and will execute correctly, but their p
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

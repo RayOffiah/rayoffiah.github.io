@@ -12,7 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Async &amp; Reactive APIs | Couchbase Docs</title>
+<title>Choosing an API | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/scala-sdk/current/howtos/concurrent-async-apis.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
@@ -21,9 +21,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="scala-sdk">
-<meta name="dcterms.identifier" content="1.4">
+<meta name="dcterms.identifier" content="1.3">
 <meta name="page-url" content="/scala-sdk/current/howtos/concurrent-async-apis.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="scala-sdk">
+<meta name="docsearch:component_title" content="Scala SDK">
+<meta name="docsearch:cversion" content="1.3">
+<meta name="docsearch:component_version" content="scala-sdk@1.3">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="Scala SDK / Advanced Data Operations / Async &amp; Reactive APIs">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,23 +128,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="scala-sdk">
-        <option value="1.4" data-url="concurrent-async-apis.html" selected>1.4</option>
-        <option value="1.3" data-url="../../1.3/howtos/concurrent-async-apis.html">1.3</option>
-        <option value="1.2" data-url="../../1.2/howtos/concurrent-async-apis.html">1.2</option>
-        <option value="1.1" data-url="../../1.1/howtos/concurrent-async-apis.html">1.1</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
       data-title="Contents"
-      data-levels="2">
+      data-levels="1">
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-scala/edit/release/1.4/modules/howtos/pages/concurrent-async-apis.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/pages/concurrent-async-apis.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -174,14 +195,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../hello-world/overview.html">Scala SDK</a></li>
-<li class="crumb">Further Data Ops</li>
+<li class="crumb">Advanced Data Operations</li>
 <li class="crumb"><a href="concurrent-async-apis.html">Async &amp; Reactive APIs</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Async &amp; Reactive APIs</h1>
+<h1 class="page">Choosing an API</h1>
 <div class="labels">
 <ul><li class="guide"><span><i class="far fa-check-square"></i> how-to</span></li>
 </ul>
@@ -227,7 +248,7 @@ A simple upsert example looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/MultipleAPIs.scala#L50-L52">val json = JsonObject("foo" -&gt; "bar", "baz" -&gt; "qux")
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/MultipleAPIs.scala#L50-L52">val json = JsonObject("foo" -&gt; "bar", "baz" -&gt; "qux")
 
 val result = collection.upsert("document-key", json)</code></pre>
 </div>
@@ -242,7 +263,7 @@ or a <code>Failure</code> containing a <em>Throwable</em> exception that derives
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/MultipleAPIs.scala#L58-L63">val json = JsonObject("foo" -&gt; "bar", "baz" -&gt; "qux")
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/MultipleAPIs.scala#L58-L63">val json = JsonObject("foo" -&gt; "bar", "baz" -&gt; "qux")
 
 collection.upsert("document-key", json) match {
   case Success(_) =&gt; println("Successfully upserted")
@@ -255,7 +276,7 @@ collection.upsert("document-key", json) match {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/MultipleAPIs.scala#L69-L94">// Create some initial JSON
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/MultipleAPIs.scala#L69-L94">// Create some initial JSON
 val json = JsonObject("status" -&gt; "awesome!")
 
 // Upsert it
@@ -289,7 +310,7 @@ Here, the call to <code>collection.get</code> will only be attempted if the call
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/MultipleAPIs.scala#L100-L110">val json = JsonObject("status" -&gt; "awesome!")
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/MultipleAPIs.scala#L100-L110">val json = JsonObject("status" -&gt; "awesome!")
 
 val result: Try[String] = collection.upsert("document-key", json)
   .flatMap(_ =&gt; collection.get("document-key"))
@@ -316,7 +337,7 @@ result match {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/MultipleAPIs.scala#L130-L137">val json = JsonObject("foo" -&gt; "bar", "baz" -&gt; "qux")
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/MultipleAPIs.scala#L130-L137">val json = JsonObject("foo" -&gt; "bar", "baz" -&gt; "qux")
 
 val result: Future[MutationResult] = collection.async.upsert("document-key", json)
 
@@ -335,7 +356,7 @@ Here&#8217;s how to create one that creates an unlimited thread-pool with named 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/MultipleAPIs.scala#L115-L124">val threadPool = Executors.newCachedThreadPool(new ThreadFactory {
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/MultipleAPIs.scala#L115-L124">val threadPool = Executors.newCachedThreadPool(new ThreadFactory {
   override def newThread(runnable: Runnable): Thread = {
     val thread = new Thread(runnable)
     // Make it a daemon thread so it doesn't block app exit
@@ -356,7 +377,7 @@ implicit val ec = ExecutionContext.fromExecutor(threadPool)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/MultipleAPIs.scala#L143-L156">val json = JsonObject("foo" -&gt; "bar", "baz" -&gt; "qux")
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/MultipleAPIs.scala#L143-L156">val json = JsonObject("foo" -&gt; "bar", "baz" -&gt; "qux")
 
 val result: Future[String]   = collection.async.upsert("document-key", json)
   .flatMap(_                =&gt; collection.async.get("document-key"))
@@ -395,7 +416,7 @@ These are compliant with the <a href="https://www.reactive-streams.org/">reactiv
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/MultipleAPIs.scala#L162-L167">val json = JsonObject("foo" -&gt; "bar", "baz" -&gt; "qux")
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/MultipleAPIs.scala#L162-L167">val json = JsonObject("foo" -&gt; "bar", "baz" -&gt; "qux")
 
 collection.reactive.upsert("document-key", json)
     .doOnError(err  =&gt; println(s"Error during upsert: ${err}"))
@@ -415,7 +436,7 @@ For instance, many web frameworks allow an endpoint to stream back a reactive re
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/MultipleAPIs.scala#L173-L178">val json = JsonObject("foo" -&gt; "bar", "baz" -&gt; "qux")
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/MultipleAPIs.scala#L173-L178">val json = JsonObject("foo" -&gt; "bar", "baz" -&gt; "qux")
 
 val result: MutationResult = collection.reactive.upsert("document-key", json)
   .doOnError(err =&gt; println(s"Error during upsert: ${err}"))
@@ -431,7 +452,7 @@ val result: MutationResult = collection.reactive.upsert("document-key", json)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/MultipleAPIs.scala#L184-L199">val json = JsonObject("foo" -&gt; "bar", "baz" -&gt; "qux")
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/MultipleAPIs.scala#L184-L199">val json = JsonObject("foo" -&gt; "bar", "baz" -&gt; "qux")
 
 // This example is written in a verbose style for clarity
 collection.reactive.upsert("document-key", json)
@@ -469,27 +490,6 @@ This is fine&#8201;&#8212;&#8201;the reactive code will capture it, and raise it
 </li>
 </ol>
 </div>
-<div class="sect2">
-<h3 id="bulk-operations"><a class="anchor" href="#bulk-operations"></a>Bulk Operations</h3>
-<div class="paragraph">
-<p>For bulk operations, and applying the golden rules above,
-call <code>flatMap</code> inside <code>SFlux</code>, as in the <code>upsert</code> example following:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala">val json = JsonObject("foo" -&gt; "bar", "baz" -&gt; "qux")
-val parallelism = 32
-
-val result: Seq[Either[Throwable, MutationResult]] = SFlux.fromIterable(Seq("doc1", "doc2", "doc3"))
-      .flatMap(docId =&gt; collection.reactive.upsert(docId, json)
-              .map(result =&gt; Right(result))
-              .onErrorResume(err =&gt; SMono.just(Left(err))),
-          parallelism)
-      .collectSeq()
-      .block()</code></pre>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -505,7 +505,7 @@ If you&#8217;re writing a web application that supports reactive streams, it may
 And you can use different APIs at different times.</p>
 </div>
 <div class="paragraph">
-<p>The most important thing to consider is when streaming back large queries from Query, Full Text Search, and Analytics.
+<p>The most important thing to consider is when streaming back large queries from N1QL, Full Text Search, and Analytics.
 Here, the reactive API will provide full backpressure:
 that is, if your application is processing rows slower than the service is returning them, then automatically fewer rows will be requested from the service to give the application time to catch up.
 The upshot of this is that few rows are ever buffered in-memory, and the application shouldn&#8217;t get out-of-memory exceptions.</p>
@@ -588,7 +588,7 @@ The upshot of this is that few rows are ever buffered in-memory, and the applica
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -605,6 +605,7 @@ The upshot of this is that few rows are ever buffered in-memory, and the applica
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

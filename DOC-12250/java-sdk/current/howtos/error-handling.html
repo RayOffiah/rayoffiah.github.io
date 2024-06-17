@@ -21,9 +21,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="java-sdk">
-<meta name="dcterms.identifier" content="3.4">
+<meta name="dcterms.identifier" content="3.3">
 <meta name="page-url" content="/java-sdk/current/howtos/error-handling.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="java-sdk">
+<meta name="docsearch:component_title" content="Java SDK">
+<meta name="docsearch:cversion" content="3.3">
+<meta name="docsearch:component_version" content="java-sdk@3.3">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="Java SDK / Errors &amp; Diagnostics / Handling Errors">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,15 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="java-sdk">
-        <option value="3.4" data-url="error-handling.html" selected>3.4</option>
-        <option value="3.3" data-url="../../3.3/howtos/error-handling.html">3.3</option>
-        <option value="3.2" data-url="../../3.2/howtos/error-handling.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/howtos/error-handling.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/howtos/error-handling.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -116,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-java/edit/release/3.4/modules/howtos/pages/error-handling.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/pages/error-handling.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -405,7 +425,7 @@ If you are certain that you are only selecting data you can manually tell the cl
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/ErrorHandling.java#L41-L44">QueryResult queryResult = cluster.query("SELECT * FROM `travel-sample`", queryOptions().readonly(true));
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/ErrorHandling.java#L41-L44">QueryResult queryResult = cluster.query("SELECT * FROM `travel-sample`", queryOptions().readonly(true));
 
 AnalyticsResult analyticsResult = cluster.analyticsQuery("SELECT * FROM `travel-sample`.inventory.airport",
     analyticsOptions().readonly(true));</code></pre>
@@ -469,7 +489,7 @@ In this case you can either propagate the <code>CouchbaseException</code> up you
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/ErrorHandling.java#L49-L57">// This will raise a `CouchbaseException` and propagate it
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/ErrorHandling.java#L49-L57">// This will raise a `CouchbaseException` and propagate it
 GetResult result = collection.get("my-document-id");
 
 // Rethrow with a custom exception type
@@ -486,7 +506,7 @@ In this case you can catch it explicitly and handle it, while re-throwing all ot
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/ErrorHandling.java#L63-L69">try {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/ErrorHandling.java#L63-L69">try {
   collection.get("my-document-id");
 } catch (DocumentNotFoundException ex) {
   createDocument("my-document-id");
@@ -507,7 +527,7 @@ As mentioned previously, the SDK will retry as much as it can, but in some cases
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/ErrorHandling.java#L75-L86">for (int i = 0; i &lt; 10; i++) {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/ErrorHandling.java#L75-L86">for (int i = 0; i &lt; 10; i++) {
   try {
     collection.upsert("docid", JsonObject.create().put("my", "value"));
     break;
@@ -560,7 +580,7 @@ If you are new to reactive programming in general (or with the reactor library s
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/ErrorHandling.java#L107-L125">collection.reactive().get("this-doc-does-not-exist").subscribe(new Subscriber&lt;GetResult&gt;() {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/ErrorHandling.java#L107-L125">collection.reactive().get("this-doc-does-not-exist").subscribe(new Subscriber&lt;GetResult&gt;() {
 
   @Override
   public void onError(Throwable throwable) {
@@ -607,7 +627,7 @@ Note that because <code>get</code> and <code>upsert</code> have different return
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/ErrorHandling.java#L131-L132">Mono&lt;JsonObject&gt; documentContent = collection.reactive().get("my-doc-id").map(GetResult::contentAsObject)
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/ErrorHandling.java#L131-L132">Mono&lt;JsonObject&gt; documentContent = collection.reactive().get("my-doc-id").map(GetResult::contentAsObject)
     .onErrorResume(DocumentNotFoundException.class, e -&gt; createDocumentReactive("my-doc-id"));</code></pre>
 </div>
 </div>
@@ -620,7 +640,7 @@ The retry spec is a builder-like API which allows you to define properties when,
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/ErrorHandling.java#L138-L139">collection.reactive().get("my-doc-id")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/ErrorHandling.java#L138-L139">collection.reactive().get("my-doc-id")
     .retryWhen(Retry.max(5).filter(t -&gt; t instanceof DocumentNotFoundException));</code></pre>
 </div>
 </div>
@@ -651,7 +671,7 @@ Do not confuse it with the <code>Retry</code> class in the <code>com.couchbase.c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/ErrorHandling.java#L93">ClusterEnvironment environment = ClusterEnvironment.builder().retryStrategy(myCustomStrategy).build();</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/ErrorHandling.java#L93">ClusterEnvironment environment = ClusterEnvironment.builder().retryStrategy(myCustomStrategy).build();</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -659,7 +679,7 @@ Do not confuse it with the <code>Retry</code> class in the <code>com.couchbase.c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/ErrorHandling.java#L101">collection.get("doc-id", getOptions().retryStrategy(myCustomStrategy));</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/ErrorHandling.java#L101">collection.get("doc-id", getOptions().retryStrategy(myCustomStrategy));</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -675,7 +695,7 @@ In practice, it should look something like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/ErrorHandling.java#L153-L164">class MyCustomRetryStrategy extends BestEffortRetryStrategy {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/ErrorHandling.java#L153-L164">class MyCustomRetryStrategy extends BestEffortRetryStrategy {
 
   @Override
   public CompletableFuture&lt;RetryAction&gt; shouldRetry(Request&lt;? extends Response&gt; request, RetryReason reason) {
@@ -697,7 +717,7 @@ In practice, it should look something like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/ErrorHandling.java#L168-L177">class MyCustomRetryStrategy2 extends BestEffortRetryStrategy {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/ErrorHandling.java#L168-L177">class MyCustomRetryStrategy2 extends BestEffortRetryStrategy {
   @Override
   public CompletableFuture&lt;RetryAction&gt; shouldRetry(Request&lt;? extends Response&gt; request, RetryReason reason) {
     if (reason == RetryReason.ENDPOINT_CIRCUIT_OPEN) {
@@ -938,7 +958,7 @@ Please note that we do not provide any stability guarantees on the names and val
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">service</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Contains a map of service-specific properties (i.e. the opaque for key value, the statement for a <a href="https://www.couchbase.com/products/n1ql">SQL++</a> query etc)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contains a map of service-specific properties (i.e. the opaque for key value, the statement for a N1QL query etc)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">timings</p></td>
@@ -1034,7 +1054,7 @@ Please note that we do not provide any stability guarantees on the names and val
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -1051,6 +1071,7 @@ Please note that we do not provide any stability guarantees on the names and val
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

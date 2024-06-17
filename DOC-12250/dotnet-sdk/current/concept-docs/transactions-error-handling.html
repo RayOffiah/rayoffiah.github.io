@@ -19,7 +19,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="description" content="Handling transaction errors with Couchbase.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
         <link rel="prev" href="transactions-cleanup.html">
-        <link rel="next" href="../howtos/subdocument-operations.html">
+        <link rel="next" href="../howtos/concurrent-async-apis.html">
 
 
 
@@ -28,9 +28,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         
 
 <meta name="dcterms.subject" content="dotnet-sdk">
-<meta name="dcterms.identifier" content="3.4">
+<meta name="dcterms.identifier" content="3.3">
 <meta name="page-url" content="/dotnet-sdk/current/concept-docs/transactions-error-handling.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="dotnet-sdk">
+<meta name="docsearch:component_title" content=".NET SDK">
+<meta name="docsearch:cversion" content="3.3">
+<meta name="docsearch:component_version" content="dotnet-sdk@3.3">
+<meta name="docsearch:module" content="concept-docs">
+<meta name="docsearch:breadcrumbs" content=".NET SDK / Transactions / Key Concepts / Error Handling">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -48,7 +62,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -69,19 +84,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -95,7 +125,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -106,15 +135,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="dotnet-sdk">
-        <option value="3.4" data-url="transactions-error-handling.html" selected>3.4</option>
-        <option value="3.3" data-url="../../3.3/concept-docs/transactions-error-handling.html">3.3</option>
-        <option value="3.2" data-url="../../3.2/hello-world/overview.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/hello-world/overview.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/hello-world/start-using-sdk.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -123,7 +143,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.4/modules/concept-docs/pages/transactions-error-handling.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/concept-docs/pages/transactions-error-handling.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -183,7 +203,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="crumb"><a href="../hello-world/overview.html">.NET SDK</a></li>
 <li class="crumb">Transactions</li>
-<li class="crumb"><a href="transactions.html">Transaction Concepts</a></li>
+<li class="crumb"><a href="transactions.html">Key Concepts</a></li>
 <li class="crumb"><a href="transactions-error-handling.html">Error Handling</a></li>
 </ul>
 </nav>
@@ -192,9 +212,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="page-heading-title">
 <h1 class="page">Error Handling</h1>
 <div class="labels">
-<ul>
-<li class="concept"><span><i class="far fa-lightbulb"></i> concept</span></li>
-</ul>
+<ul></ul>
 </div>
 
 
@@ -211,8 +229,7 @@ Handling transaction errors with Couchbase.
 </blockquote>
 </div>
 <div class="paragraph">
-<p>Couchbase transactions will attempt to resolve many errors for you, through a combination of retrying individual operations and the application&#8217;s lambda.
-This includes some transient server errors, and conflicts with other transactions.</p>
+<p>Unresolved include directive in modules/concept-docs/pages/transactions-error-handling.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 </div>
 </div>
@@ -220,133 +237,23 @@ This includes some transient server errors, and conflicts with other transaction
 <h2 id="transaction-errors"><a class="anchor" href="#transaction-errors"></a>Transaction Errors</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>There can be situations where total failure is indicated to the application via errors.
-These situations include:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Any error thrown by a transaction lambda, either deliberately or through an application logic bug.</p>
-</li>
-<li>
-<p>Attempting to insert a document that already exists.</p>
-</li>
-<li>
-<p>Calling <code>ctx.GetAsync()</code> on a document key that does not exist (if the resultant error is not caught).</p>
-</li>
-</ul>
+<p>Unresolved include directive in modules/concept-docs/pages/transactions-error-handling.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 <div class="paragraph">
-<p>Once one of these errors occurs, the current attempt is irrevocably failed (though the transaction may retry the lambda to make a new attempt).
-It is not possible for the application to catch the failure and continue (with the exception of <code>ctx.GetAsync()</code> raising an error).
-Once a failure has occurred, all other operations tried in this attempt (including commit) will instantly fail.</p>
-</div>
-<div class="paragraph">
-<p>Transactions, as they are multi-stage and multi-document, also have a concept of partial success or failure.
-This is signalled to the application through the <code>TransactionResult.UnstagingComplete</code> property, described later.</p>
-</div>
-<div class="paragraph">
-<p>There are three errors that transactions can raise to an application:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>TransactionFailedException</code></p>
-</li>
-<li>
-<p><code>TransactionExpiredException</code></p>
-</li>
-<li>
-<p><code>TransactionCommitAmbiguousException</code></p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="transactionfailedexception-and-transactionexpiredexception"><a class="anchor" href="#transactionfailedexception-and-transactionexpiredexception"></a>TransactionFailedException and TransactionExpiredException</h3>
-<div class="paragraph">
-<p>The transaction definitely did not reach the commit point.
-<code>TransactionFailedException</code> indicates a fast-failure whereas <code>TransactionExpiredException</code> indicates that retries were made until the timeout was reached, but this distinction is not normally important to an application and generally <code>TransactionExpiredException</code> does not need to be handled individually.</p>
-</div>
-<div class="paragraph">
-<p>Either way, an attempt will have been made to rollback all changes.
-This attempt may or may not have been successful, but the results of this will have no impact on the protocol or other actors.
-No changes from the transaction will be visible, both to transactional and non-transactional actors.</p>
-</div>
-<div class="sect3">
-<h4 id="handling"><a class="anchor" href="#handling"></a>Handling</h4>
-<div class="paragraph">
-<p>Generally, debugging exactly why a given transaction failed requires review of the logs, so it is suggested that the application log these on failure.
-The application may want to try the transaction again later.
-Alternatively, if transaction completion time is not a priority, then transaction timeouts (which default to 15 seconds) can be extended across the board through <code>TransactionConfigBuilder</code>.</p>
+<p>Unresolved include directive in modules/concept-docs/pages/transactions-error-handling.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/howtos/examples/TransactionsExample.cs#L64-L66">Transactions transactions = Transactions.Create(_cluster, TransactionConfigBuilder.Create()
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/howtos/examples/TransactionsExample.cs#L64-L66">Transactions transactions = Transactions.Create(_cluster, TransactionConfigBuilder.Create()
     .ExpirationTime(TimeSpan.FromSeconds(120))
     .Build());</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This will allow the protocol more time to get past any transient failures (for example, those caused by a cluster rebalance).
-The tradeoff to consider with longer timeouts, is that documents that have been staged by a transaction are effectively locked from modification from other transactions, until the timeout has been reached.</p>
-</div>
-<div class="paragraph">
-<p>Note that the timeout is not guaranteed to be followed precisely.
-For example, if the application were to do a long blocking operation inside the lambda (which should be avoided), then timeout can only trigger after this finishes.
-Similarly, if the transaction attempts a key-value operation close to the timeout, and that key-value operation times out, then the transaction timeout may be exceeded.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="transactioncommitambiguousexception"><a class="anchor" href="#transactioncommitambiguousexception"></a>TransactionCommitAmbiguousException</h3>
-<div class="paragraph">
-<p>Each transaction has a 'single point of truth' that is updated atomically to reflect whether it is committed.</p>
-</div>
-<div class="paragraph">
-<p>However, it is not always possible for the protocol to become 100% certain that the operation was successful, before the transaction expires.
-This potential ambiguity is unavoidable in any distributed system; a classic example is a network failure happening just after an operation was sent from a client to a server.
-The client will not get a response back and cannot know if the server received and executed the operation.</p>
-</div>
-<div class="paragraph">
-<p>The ambiguity is particularly important at the point of the atomic commit, as the transaction may or may not have reached the commit point.  Couchbase transactions will raise <code>TransactionCommitAmbiguousException</code> to indicate this state.
-It should be rare to receive this error.</p>
-</div>
-<div class="paragraph">
-<p>If the transaction had in fact successfully reached the commit point, then the transaction will be fully completed ("unstaged") by the asynchronous cleanup process at some point in the future.
-With default settings this will usually be within a minute, but whatever underlying fault has caused the <code>TransactionCommitAmbiguousException</code> may lead to it taking longer.</p>
-</div>
-<div class="paragraph">
-<p>If the transaction had not in fact reached the commit point, then the asynchronous cleanup process will instead attempt to roll it back at some point in the future.</p>
-</div>
-<div class="sect3">
-<h4 id="handling-2"><a class="anchor" href="#handling-2"></a>Handling</h4>
-<div class="paragraph">
-<p>This error can be challenging for an application to handle.
-As with <code>TransactionFailedException</code> it is recommended that it at least writes any logs from the transaction, for future debugging.
-It may wish to retry the transaction at a later point, or extend transactional timeouts (as detailed above) to give the protocol additional time to resolve the ambiguity.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="transactionresult-unstagingcomplete"><a class="anchor" href="#transactionresult-unstagingcomplete"></a>TransactionResult.UnstagingComplete</h3>
-<div class="paragraph">
-<p>This boolean flag indicates whether all documents were able to be unstaged (committed).</p>
-</div>
-<div class="paragraph">
-<p>For most use-cases it is not an issue if it is false.
-All transactional actors will still read all the changes from this transaction, as though it had committed fully.
-The cleanup process is asynchronously working to complete the commit, so that it will be fully visible to non-transactional actors.</p>
-</div>
-<div class="paragraph">
-<p>The flag is provided for those rare use-cases where the application requires the commit to be fully visible to non-transactional actors, before it may continue.
-In this situation the application can raise an error here, or poll all documents involved until they reflect the mutations.</p>
-</div>
-<div class="paragraph">
-<p>If you regularly see this flag false, consider increasing the transaction timeout to reduce the possibility that the transaction times out during the commit.</p>
+<p>Unresolved include directive in modules/concept-docs/pages/transactions-error-handling.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 <div class="paragraph">
 <p>Similar to <code>TransactionResult</code>, <code>SingleQueryTransactionResult</code> also has an <code>UnstagingComplete</code> property.</p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="full-error-handling-example"><a class="anchor" href="#full-error-handling-example"></a>Full Error Handling Example</h3>
@@ -355,7 +262,7 @@ In this situation the application can raise an error here, or poll all documents
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/howtos/examples/TransactionsExample.cs#L385-L428">try
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/howtos/examples/TransactionsExample.cs#L385-L428">try
 {
     var result = await _transactions.RunAsync(async (ctx) =&gt; {
         // ... transactional code here ...
@@ -485,7 +392,7 @@ catch (TransactionFailedException err)
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -502,6 +409,7 @@ catch (TransactionFailedException err)
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

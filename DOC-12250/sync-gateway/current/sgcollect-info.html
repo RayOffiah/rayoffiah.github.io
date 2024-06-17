@@ -21,9 +21,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="sync-gateway">
-<meta name="dcterms.identifier" content="3.0">
+<meta name="dcterms.identifier" content="3.1">
 <meta name="page-url" content="/sync-gateway/current/sgcollect-info.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="sync-gateway">
+<meta name="docsearch:component_title" content="Sync Gateway">
+<meta name="docsearch:cversion" content="3.1">
+<meta name="docsearch:component_version" content="sync-gateway@3.1">
+<meta name="docsearch:module" content="">
+<meta name="docsearch:breadcrumbs" content="Sync Gateway / Manage / Logging and Troubleshooting / SG Collect Info">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item nav-item-selected">
                     <a class="nav-link" href="../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -101,14 +130,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="sync-gateway">
-        <option value="3.0" data-url="sgcollect-info.html" selected>3.0</option>
+        <option value="3.1" data-url="sgcollect-info.html" selected>3.1</option>
+        <option value="3.0" data-url="../3.0/sgcollect-info.html">3.0</option>
         <option value="2.8" data-url="../2.8/sgcollect-info.html">2.8</option>
-        <option value="2.7" data-url="../2.7/sgcollect-info.html">2.7</option>
-        <option value="2.6" data-url="../2.6/sgcollect-info.html">2.6</option>
-        <option value="2.5" data-url="../2.5/sgcollect-info.html">2.5</option>
-        <option value="2.1" data-url="../2.1/sgcollect-info.html">2.1</option>
-        <option value="2.0" data-url="../2.0/sgcollect-info.html">2.0</option>
-        <option value="1.5" data-url="../1.5/sgcollect-info.html">1.5</option>
       </select>
     </template>
   </div>
@@ -119,7 +143,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbaselabs/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/sgcollect-info.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="https://github.com/couchbaselabs/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/sgcollect-info.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -272,26 +296,26 @@ This tool must be run on each node individually, not on all simultaneously.</p>
 <div id="ex-collect" class="exampleblock">
 <div class="title">Example 1. Using sgcollect</div>
 <div class="content">
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset1_collect-and-save-locally"></a>Collect and Save Locally</p>
+<li id="tabs-1-collect-and-save-locally" class="tab">
+<p>Collect and Save Locally</p>
 </li>
-<li>
-<p><a id="tabset1_collect-and-upload-to-couchbase"></a>Collect and Upload to Couchbase</p>
+<li id="tabs-1-collect-and-upload-to-couchbase" class="tab">
+<p>Collect and Upload to Couchbase</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_collect-and-save-locally">
+<div id="tabs-1-collect-and-save-locally--panel" class="tabpanel" aria-labelledby="tabs-1-collect-and-save-locally">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./sgcollect_info /tmp/sgcollect_info.zip</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_collect-and-upload-to-couchbase">
+<div id="tabs-1-collect-and-upload-to-couchbase--panel" class="tabpanel" aria-labelledby="tabs-1-collect-and-upload-to-couchbase">
 <div class="paragraph">
 <p>Collect Sync Gateway diagnostics and upload them to Couchbase Support:</p>
 </div>
@@ -300,6 +324,9 @@ This tool must be run on each node individually, not on all simultaneously.</p>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./sgcollect_info \
   --sync-gateway-config=/path/to/config.json \
   --sync-gateway-executable=/usr/bin/sync_gateway \
+  --sync-gateway-username=Admin \
+  --sync-gateway-password=password \
+  --log-redaction-level=partial \
   --upload-host=uploads.couchbase.com \
   --customer=Acme \
   --ticket=123 \
@@ -325,7 +352,7 @@ This tool must be run on each node individually, not on all simultaneously.</p>
 <h2 id="zipfile-contents"><a class="anchor" href="#zipfile-contents"></a>Zipfile Contents</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The tool creates the following log files in the ouput file.</p>
+<p>The tool creates the following log files in the output file.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -605,7 +632,7 @@ Zipfile built: sgout.zip</code></pre>
 </footer>
 <script src="../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"2.8","sync-gateway":"3.0"}}
+{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.1","sync-gateway":"3.1"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -622,6 +649,7 @@ Zipfile built: sgout.zip</code></pre>
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../_/js/site.js"></script>
 <script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>

@@ -12,7 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Create a Working Branch | Couchbase Docs</title>
+<title>Create a New Working Branch | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/home/contribute/create-branches.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
@@ -23,6 +23,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="dcterms.identifier" content="master">
 <meta name="page-url" content="/home/contribute/create-branches.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="home">
+<meta name="docsearch:component_title" content="Couchbase Documentation">
+<meta name="docsearch:cversion" content="master">
+<meta name="docsearch:component_version" content="home@master">
+<meta name="docsearch:module" content="contribute">
+<meta name="docsearch:breadcrumbs" content=" / Contributing Workflow / Create a New Working Branch">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="0">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -40,7 +54,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -61,19 +76,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -87,7 +117,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -165,20 +194,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb">Contributing Workflow</li>
-<li class="crumb"><a href="create-branches.html">Create a Working Branch</a></li>
+<li class="crumb"><a href="create-branches.html">Create a New Working Branch</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Create a Working Branch</h1>
+<h1 class="page">Create a New Working Branch</h1>
 <div class="labels">
 <ul></ul>
-</div>
-<div class="labels">
-<ul>
-<li class="status"><span>OUT OF DATE</span></li>
-</ul>
 </div>
 
 
@@ -189,21 +213,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span  id="otherContributor"> + </span>
 </div><div id="preamble">
 <div class="sectionbody">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This documentation is out of date
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Before you start making any changes to the files in a <a href="repositories.html" class="xref page">Couchbase Documentation repository</a>, you must create a new branch for your work.</p>
 </div>
 <div class="paragraph">
-<p>Always make a new working branch for your work, no matter how small the change.
-You can create a working branch in Atom or from the command line.</p>
+<p>For a quick overview on some terminology and concepts related to GitHub repositories, see <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories" target="_blank" rel="noopener">About repositories in the GitHub Documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>You can create branches from:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The command line</p>
+</li>
+<li>
+<p><a href="install-git-and-editor.html#install-vs-code" class="xref page">VS Code</a></p>
+</li>
+<li>
+<p><a href="install-git-and-editor.html#install-github-desktop" class="xref page">GitHub Desktop</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>First, make sure you choose the right base branch for your work.</p>
 </div>
 </div>
 </div>
@@ -211,96 +244,162 @@ You can create a working branch in Atom or from the command line.</p>
 <h2 id="base-branch"><a class="anchor" href="#base-branch"></a>Choose the Right Base Branch</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A base branch contains the original source documentation.
-You create working branches from a base branch and send pull requests to a base branch for integration.
-A working branch isolates changes that solve a single issue.
-A pull request submitted from a working branch that only contains closely related changes is easier to test, review, and merge.</p>
+<p>The branch you choose as your base branch sets the source of truth for your new documentation.</p>
 </div>
 <div class="paragraph">
-<p>The Couchbase documentation repositories maintain two types of base branches: master and release.</p>
+<p>Every Couchbase Documentation repository has 1 or more configured base branches that we use to build the documentation.
+Usually, you should choose one of these configured base branches as your base branch for your working branch.</p>
 </div>
 <div class="paragraph">
-<p>For Couchbase Server, SDKs, and Mobile docs, the default branch will be the latest release&#8201;&#8212;&#8201;e.g. release/6.6.
-For other docs repos it will be master, which contains the documentation for the next, unreleased product version.
-New documentation for the next product version, its features, and non-bug related improvements should be based off of the master branch where it exists.
-For the others, look for a development branch with an incremented release number.
-This, and the current release branch, are the ones that you will most often base your working branch off of and submit pull requests to.</p>
+<p>For example, the Couchbase Capella documentation has a single base branch, <code>main</code>.
+Some other documentation repositories still use <code>master</code> as their base branch.
+Couchbase Server, Couchbase Mobile, and the Couchbase SDKs use <code>release/x.x</code> branches to organize the documentation according to the product version it describes.</p>
 </div>
 <div class="paragraph">
-<p>Release branches (<code>release/$.$</code>) contain the documentation specific to a stable product release.
-Fixes related to product bugs and documentation errors in stable releases are based off of a release branch <strong>only</strong> if that bug or error is <strong>only</strong> present in that release.
-For example, if a broken code snippet is discovered in the Server 5.1 documentation, but it isn&#8217;t present in the 5.5 and master branch documentation, then you&#8217;d base your working branch on the <code>release/5.1</code> branch.</p>
+<p>The single base branch or <code>release/x.x</code> branches for the latest few releases of a product are the only branches that get built into the main Couchbase Documentation site.</p>
 </div>
 <div class="paragraph">
-<p>If you&#8217;re unsure which branch to create your working branch from, check the associated issue&#8217;s <strong>Affects versions</strong> field, or, in its comment section, ask the Docs team for more information.
-Also note that some of the repositories use custom branch names, see <a href="repositories.html#repo-special" class="xref page">Repositories that Require Special Handling</a> for more information.</p>
+<p>We use working branches to keep changes separate and easier to reconcile, especially with multiple people working on the same files.
+Working branches should try to aim to solve a single issue at a time.</p>
+</div>
+<div class="paragraph">
+<p>Typically, you should:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Choose the <code>main</code>, <code>master</code>, or appropriate <code>release/x.x</code> branch for your changes.</p>
+<div class="paragraph">
+<p>For example, if an issue or a fix only relates to the 7.0 version of a product, then you should base your working branch on <code>release/7.0</code>.</p>
+</div>
+</li>
+<li>
+<p>Name your working branch based on the ticket number for the issue.</p>
+</li>
+<li>
+<p>Create a pull request (PR) for your working branch that targets your original base branch.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you&#8217;re ever unsure about the correct branch to use for an issue:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Look for the <strong>Affects versions</strong> field on your assigned ticket</p>
+</li>
+<li>
+<p>Ask another member of the Documentation team</p>
+</li>
+<li>
+<p>Check that the repository <a href="repositories.html#repo-special" class="xref page">does not require special handling</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="work-branch-atom"><a class="anchor" href="#work-branch-atom"></a>Create a Working Branch in Atom</h2>
+<h2 id="work-branch-vs-code"><a class="anchor" href="#work-branch-vs-code"></a>Create a Working Branch in VS Code</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>These instructions assume you&#8217;ve <a href="install-git-and-editor.html#install-atom" class="xref page">installed Atom</a> and <a href="set-up-repository.html" class="xref page">forked, cloned, and configured the upstream and origin remotes</a> of a documentation repository.</p>
+<p>Before you can create a new working branch in VS Code, make sure you have:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="install-git-and-editor.html#gh-account" class="xref page">Created a GitHub account</a></p>
+</li>
+<li>
+<p><a href="install-git-and-editor.html#install-git" class="xref page">Installed Git</a></p>
+</li>
+<li>
+<p><a href="install-git-and-editor.html#install-vs-code" class="xref page">Installed VS Code</a></p>
+</li>
+<li>
+<p><a href="set-up-repository.html" class="xref page">Set up the correct Documentation repository</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To create a new working branch in VS Code:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Start Atom.</p>
+<p>Start VS Code.</p>
 </li>
 <li>
-<p>If this is the first time you&#8217;ve worked on a repository, it may not appear in Atom&#8217;s <strong>Project</strong> panel.
-Go to <span class="menuseq"><b class="menu">File</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Add Project Folder</b></span> and add the folder containing your local repository.</p>
+<p>On the <strong>Welcome</strong> tab, click <b class="button">Open Folder</b>.</p>
 </li>
 <li>
-<p>Select the <span class="image icon"><img src="_images/repo.svg" alt="repo" width="16"></span> repository directory that contains the files you want to edit.</p>
-<div class="imageblock text-left">
-<div class="content">
-<img src="_images/project-panel.png" alt="project panel" width="300">
-</div>
-</div>
+<p>Select the folder on your computer where you <a href="set-up-repository.html" class="xref page">cloned the Documentation repository</a>.</p>
 </li>
 <li>
-<p><a href="#base-branch">Choose the right branch</a> to base your changes on.
-Click the <span class="image icon"><img src="_images/git-branch.svg" alt="git branch" width="16"></span> branch icon at the bottom of the editor.
-In the modal window, select the desired base branch from the dropdown menu.</p>
-<div class="imageblock text-left">
-<div class="content">
-<img src="_images/select-base-branch.png" alt="select base branch" width="380">
-</div>
-</div>
+<p>Click <b class="button">Select Folder</b>.</p>
 </li>
 <li>
-<p>Pull the latest changes from the upstream repository.
-Click the <span class="image icon"><img src="_images/arrow-small-down.svg" alt="arrow small down" width="16"></span><span class="image icon"><img src="_images/arrow-small-up.svg" alt="arrow small up" width="16"></span> arrow icons at the bottom of the editor, then press <b class="button">Pull</b>.</p>
-<div class="imageblock text-left">
-<div class="content">
-<img src="_images/pull-base-branch.png" alt="pull base branch" width="380">
-</div>
-</div>
-</li>
-<li>
-<p>Create a new working branch from the base branch.
-Click the <span class="image icon"><img src="_images/git-branch.svg" alt="git branch" width="16"></span> branch icon.
-In the modal window, click <b class="button">New Branch</b>, and enter the name of the new working branch in the form field.</p>
-<div class="openblock">
-<div class="content">
-<div class="imageblock text-left">
-<div class="content">
-<img src="_images/new-branch.png" alt="new branch" width="380">
-</div>
-</div>
+<p>Click <span class="image"><img src="_images/source-control.png" alt="The Source Control icon from the VS Code editor. It shows a forked line." width="20"></span> <b class="button">Source Control</b>.</p>
 <div class="paragraph">
-<p>The name of a working branch should pair it with the issue it resolves.
-For example, if you&#8217;re resolving DOC issue #6500, you&#8217;d name the working branch <code>DOC-6500</code>.</p>
+<p>VS Code might prompt you that the repository has been marked as unsafe:</p>
+</div>
+<div class="imageblock text-left">
+<div class="content">
+<img src="_images/unsafe-repo-1.png" alt="The Source Control panel, which displays a warning that the detected Git repository is unsafe." width="500">
 </div>
 </div>
+</li>
+<li>
+<p>Click <b class="button">Manage Unsafe Repositories</b> and select the repository to continue:</p>
+<div class="imageblock text-left">
+<div class="content">
+<img src="_images/unsafe-repo-2.png" alt="The Command Palette in VS code, which lets the user select the repository they want to mark as safe.">
 </div>
+</div>
+</li>
+<li>
+<p>Point to the <strong>Source Control</strong> label and click <b class="button">&#8230;&#8203;</b> (<strong>More Actions&#8230;&#8203;</strong>):</p>
+<div class="paragraph">
+<p><span class="image"><img src="_images/more-actions.png" alt="The Source Control panel in VS Code. The user has pointed to the top of the panel and brought up the additional context menu, and the More Actions button is highlighted."></span></p>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Checkout to&#8230;&#8203;</b>.</p>
+</li>
+<li>
+<p><a href="#base-branch">Choose the correct base branch for your new working branch</a>.</p>
+<div class="paragraph">
+<p>You can select it from the list of branches or type to search for the correct branch.
+If this is the first time you&#8217;re choosing your base branch, the branch name must be prefixed with <code>origin/</code>.</p>
+</div>
+</li>
+<li>
+<p>To get the latest copy of any changes on your base branch, click <b class="button">Sync Changes</b>.</p>
+</li>
+<li>
+<p>Point to the <strong>Source Control</strong> label again and click <b class="button">&#8230;&#8203;</b> (<strong>More Actions&#8230;&#8203;</strong>).</p>
+</li>
+<li>
+<p>Go to <span class="menuseq"><b class="menu">Branch</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Create Branch&#8230;&#8203;</b></span>.</p>
+</li>
+<li>
+<p>Enter a name for your new working branch.</p>
+<div class="paragraph">
+<p>Start with the name of your ticket, if you have one.
+Provide a few words, separated by dashes (<code>-</code>) to describe the changes on the branch.
+Try to stick to 3-5 words.</p>
+</div>
+</li>
+<li>
+<p>Press <kbd>Enter</kbd>.</p>
+</li>
+<li>
+<p>Click <b class="button">Publish Branch</b>.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Now you&#8217;re ready to <a href="#next-steps">write or edit documentation</a>.</p>
+<p>Now you can <a href="#next-steps">add or edit new pages in your new branch</a>.</p>
 </div>
 </div>
 </div>
@@ -308,51 +407,71 @@ For example, if you&#8217;re resolving DOC issue #6500, you&#8217;d name the wor
 <h2 id="work-branch-cli"><a class="anchor" href="#work-branch-cli"></a>Create a Working Branch from the Command Line</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>These instructions assume you&#8217;ve <a href="set-up-repository.html" class="xref page">forked, cloned, and configured the upstream and origin remotes</a> of a documentation repository.</p>
+<p>Before you can create a new working branch using the command line, make sure you have:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="install-git-and-editor.html#gh-account" class="xref page">Created a GitHub account</a></p>
+</li>
+<li>
+<p><a href="install-git-and-editor.html#install-git" class="xref page">Installed Git</a></p>
+</li>
+<li>
+<p><a href="set-up-repository.html" class="xref page">Set up the correct Documentation repository</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To create a new working branch from the command line:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a terminal and change into the repository directory that contains the files you want to edit.</p>
-<div class="literalblock">
+<p>Open your terminal.</p>
+</li>
+<li>
+<p>Navigate into the directory on your computer that contains the Documentation repository you want to work with:</p>
+<div class="listingblock">
 <div class="content">
-<pre>$ cd path/to/repository-folder</pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ cd &lt;path/to/repository&gt;</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p><a href="#base-branch">Choose the right branch</a> to base your changes on and check it out.</p>
-<div class="literalblock">
+<p><a href="#base-branch">Choose the correct base branch for your new working branch</a>.
+After you know the correct branch name, enter the following command to check out the branch:</p>
+<div class="listingblock">
 <div class="content">
-<pre>$ git checkout name-of-base-branch</pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ git checkout &lt;name-of-base-branch&gt;</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Download the latest changes from the upstream repository.</p>
-<div class="literalblock">
+<p>Run a pull to make sure you have downloaded the latest changes from the branch:</p>
+<div class="listingblock">
 <div class="content">
-<pre>$ git pull upstream name-of-base-branch</pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ git pull upstream &lt;name-of-base-branch&gt;</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Create a working branch from the base branch and checkout the working branch.</p>
-<div class="openblock">
+<p>Use the same checkout command with the <code>-b</code> flag to create a new branch from the base branch and check it out:</p>
+<div class="listingblock">
 <div class="content">
-<div class="literalblock">
-<div class="content">
-<pre>$ git checkout -b DOC-$$$$</pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ git checkout -b &lt;name-of-new-working-branch&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The name of a working branch should pair it with the issue it resolves.
-For example, if you&#8217;re resolving DOC issue #6500, you&#8217;d name the working branch <code>DOC-6500</code>.</p>
-</div>
-</div>
+<p>Start your branch name with the name of your ticket, if you have one.
+Provide a few words, separated by dashes (<code>-</code>) to describe the changes on the branch.
+Try to stick to 3-5 words.</p>
 </div>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>Now you can <a href="#next-steps">add or edit new pages in your new branch</a>.</p>
 </div>
 </div>
 </div>
@@ -362,10 +481,7 @@ For example, if you&#8217;re resolving DOC issue #6500, you&#8217;d name the wor
 <div class="ulist">
 <ul>
 <li>
-<p><a href="edit-pages.html" class="xref page">Edit existing documentation using Atom</a>.</p>
-</li>
-<li>
-<p><a href="edit-pages.html#edit-server" class="xref page">Step through editing a page in the Server Component</a>.</p>
+<p><a href="edit-pages.html" class="xref page">Edit existing documentation using VS Code</a>.</p>
 </li>
 <li>
 <p><a href="add-pages.html" class="xref page">Add new documentation pages</a>.</p>
@@ -447,7 +563,7 @@ For example, if you&#8217;re resolving DOC issue #6500, you&#8217;d name the wor
 </footer>
 <script src="../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Home","components":["home"],"latestVersions":{"home":"master"}}
+{"title":"Contribute","components":["home","styleguide","ui-ux","pendo"],"latestVersions":{"home":"master","styleguide":"","ui-ux":"","pendo":""}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -464,6 +580,7 @@ For example, if you&#8217;re resolving DOC issue #6500, you&#8217;d name the wor
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../_/js/site.js"></script>
 <script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>

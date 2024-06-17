@@ -12,7 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Transaction Concepts | Couchbase Docs</title>
+<title>Distributed ACID Transactions | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/dotnet-sdk/current/concept-docs/transactions.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
@@ -30,9 +30,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="dotnet-sdk">
-<meta name="dcterms.identifier" content="3.4">
+<meta name="dcterms.identifier" content="3.3">
 <meta name="page-url" content="/dotnet-sdk/current/concept-docs/transactions.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="dotnet-sdk">
+<meta name="docsearch:component_title" content=".NET SDK">
+<meta name="docsearch:cversion" content="3.3">
+<meta name="docsearch:component_version" content="dotnet-sdk@3.3">
+<meta name="docsearch:module" content="concept-docs">
+<meta name="docsearch:breadcrumbs" content=".NET SDK / Transactions / Key Concepts">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -50,7 +64,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -71,19 +86,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -97,7 +127,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -108,15 +137,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="dotnet-sdk">
-        <option value="3.4" data-url="transactions.html" selected>3.4</option>
-        <option value="3.3" data-url="../../3.3/concept-docs/transactions.html">3.3</option>
-        <option value="3.2" data-url="../../3.2/hello-world/overview.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/hello-world/overview.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/hello-world/start-using-sdk.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -125,7 +145,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.4/modules/concept-docs/pages/transactions.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/concept-docs/pages/transactions.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -185,17 +205,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="crumb"><a href="../hello-world/overview.html">.NET SDK</a></li>
 <li class="crumb">Transactions</li>
-<li class="crumb"><a href="transactions.html">Transaction Concepts</a></li>
+<li class="crumb"><a href="transactions.html">Key Concepts</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Transaction Concepts</h1>
+<h1 class="page">Distributed ACID Transactions</h1>
 <div class="labels">
-<ul>
-<li class="concept"><span><i class="far fa-lightbulb"></i> concept</span></li>
-</ul>
+<ul></ul>
 </div>
 
 
@@ -212,7 +230,7 @@ A high-level overview of Distributed ACID Transactions with Couchbase.
 </blockquote>
 </div>
 <div class="paragraph">
-<p>For a practical guide, see <a href="../howtos/distributed-acid-transactions-from-the-sdk.html" class="xref page">Using Couchbase Transactions</a>.</p>
+<p>For a practical guide, see <a href="../howtos/distributed-acid-transactions-from-the-sdk.html" class="xref page">Distributed ACID Transactions from the .NET SDK</a>.</p>
 </div>
 </div>
 </div>
@@ -220,8 +238,7 @@ A high-level overview of Distributed ACID Transactions with Couchbase.
 <h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase Distributed <a href="#7.1@server:learn:data/transactions.adoc#overview" class="xref unresolved">ACID (atomic, consistent, isolated, and durable)</a> Transactions allow applications to perform a series of database operations as a single unit&#8201;&#8212;&#8201;meaning operations are either committed together or all undone.
-Transactions are distributed and work across multiple documents, buckets, scopes, and collections, which can reside on multiple nodes.</p>
+<p>Unresolved include directive in modules/concept-docs/pages/transactions.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 </div>
 </div>
@@ -230,7 +247,7 @@ Transactions are distributed and work across multiple documents, buckets, scopes
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/howtos/examples/TransactionsExample.cs#L87-L95">await _transactions.RunAsync(async (ctx) =&gt;
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/howtos/examples/TransactionsExample.cs#L87-L95">await _transactions.RunAsync(async (ctx) =&gt;
 {
     await ctx.InsertAsync(_collection, "doc-1", doc1Content).ConfigureAwait(false);
 
@@ -242,74 +259,7 @@ Transactions are distributed and work across multiple documents, buckets, scopes
 </div>
 </div>
 <div class="paragraph">
-<p>A core idea of Couchbase transactions is that an application supplies the logic for the transaction inside a <code>lambda</code>, including any conditional logic required, and the transaction is then automatically committed.
-If a transient error occurs, such as a temporary conflict with another transaction, then the transaction will rollback what has been done so far and run the lambda again.
-The application does not have to do these retries and error handling itself.</p>
-</div>
-<div class="paragraph">
-<p>Each run of the lambda is called an <code>attempt</code>, inside an overall <code>transaction</code>.</p>
-</div>
-<div class="sect2">
-<h3 id="active-transaction-record-entries"><a class="anchor" href="#active-transaction-record-entries"></a>Active Transaction Record Entries</h3>
-<div class="paragraph">
-<p>The first mechanic is that each of these attempts adds an entry to a metadata document in the Couchbase cluster.
-These metadata documents:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Are named Active Transaction Records, or ATRs.</p>
-</li>
-<li>
-<p>Are created and maintained automatically.</p>
-</li>
-<li>
-<p>Begin with <code>_txn:atr-</code>.</p>
-</li>
-<li>
-<p>Each contain entries for multiple attempts.</p>
-</li>
-<li>
-<p>Are viewable, and <em>should not be modified externally</em>.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Each such ATR entry stores some metadata and, crucially, whether the attempt has committed or not.
-In this way, the entry acts as the single point of truth for the transaction, which is essential for providing an 'atomic commit' during reads.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="staged-mutations"><a class="anchor" href="#staged-mutations"></a>Staged Mutations</h3>
-<div class="paragraph">
-<p>The second mechanic is that mutating a document inside a transaction, does not directly change the body of the document.
-Instead, the post-transaction version of the document is staged alongside the document (technically in its <a href="xattr.html" class="xref page">extended attributes (XATTRs)</a>).
-In this way, all changes are invisible to all parts of Couchbase until the commit point is reached.</p>
-</div>
-<div class="paragraph">
-<p>These staged document changes effectively act as a lock against other transactions trying to modify the document, preventing write-write conflicts.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="cleanup"><a class="anchor" href="#cleanup"></a>Cleanup</h3>
-<div class="paragraph">
-<p>There are safety mechanisms to ensure that leftover staged changes from a failed transaction cannot block live transactions indefinitely.
-These include an asynchronous cleanup process that is started with the creation of the <code>Transactions</code> object, and scans for expired transactions created by any application, on all buckets.</p>
-</div>
-<div class="paragraph">
-<p>The cleanup process is detailed in the <a href="transactions-cleanup.html" class="xref page">Cleanup</a> page.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="committing"><a class="anchor" href="#committing"></a>Committing</h3>
-<div class="paragraph">
-<p>Only once the lambda has successfully run to conclusion, will the attempt be committed.
-This updates the ATR entry, which is used as a signal by transactional actors to use the post-transaction version of a document from its XATTRs.
-Hence, updating the ATR entry is an 'atomic commit' switch for the transaction.</p>
-</div>
-<div class="paragraph">
-<p>After this commit point is reached, the individual documents will be committed (or "unstaged").
-This provides an eventually consistent commit for non-transactional actors.</p>
+<p>Unresolved include directive in modules/concept-docs/pages/transactions.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -322,7 +272,6 @@ Committing is automatic: if there is no explicit call to <code>ctx.CommitAsync()
 </td>
 </tr>
 </table>
-</div>
 </div>
 <div class="sect2">
 <h3 id="rollback"><a class="anchor" href="#rollback"></a>Rollback</h3>
@@ -340,7 +289,7 @@ But if the transaction is trying to get a document that does not exist, it will 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/howtos/examples/TransactionsExample.cs#L357-L378">try
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/howtos/examples/TransactionsExample.cs#L357-L378">try
 {
     await _transactions.RunAsync(async ctx =&gt;
     {
@@ -368,7 +317,7 @@ catch (TransactionFailedException e)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/howtos/examples/TransactionsExample.cs#L339-L347">await _transactions.RunAsync(async (ctx) =&gt; {
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/howtos/examples/TransactionsExample.cs#L339-L347">await _transactions.RunAsync(async (ctx) =&gt; {
     var customer = await ctx.GetAsync(_collection, "customer-name").ConfigureAwait(false);
 
     if (customer.ContentAs&lt;dynamic&gt;().balance &lt; costOfItem)
@@ -392,54 +341,7 @@ catch (TransactionFailedException e)
 <h2 id="transaction-operations"><a class="anchor" href="#transaction-operations"></a>Transaction Operations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase transactions can be initiated programmatically through a library, or by using the Query service directly with <code>BEGIN TRANSACTION</code>.
-The latter is intended for those using Query via the REST API, or using the Couchbase UI, and it is strongly recommended that application writers instead use the transactions library.
-This provides these benefits:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>It automatically handles errors and retrying.</p>
-</li>
-<li>
-<p>It allows key-value operations and queries to be freely mixed.</p>
-</li>
-<li>
-<p>It takes care of issuing <code>BEGIN TRANSACTION</code>, <code>END TRANSACTION</code>, <code>COMMIT</code> and <code>ROLLBACK</code> automatically.
-These become an implementation detail, and you should not use these statements inside the lambda.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The standard key-value operations are supported by the SDK: <code>Insert</code>, <code>Get</code>, <code>Replace</code>, <code>Remove</code>.</p>
-</div>
-<div class="paragraph">
-<p>Similarly, the majority of SQL++ (formerly N1QL) DML statements are permitted within a transaction.<br>
-Specifically: <code>INSERT</code>, <code>UPSERT</code>, <code>DELETE</code>, <code>UPDATE</code>, <code>MERGE</code>, <code>SELECT</code>.</p>
-</div>
-<div class="paragraph">
-<p>DDL statements such as <code>CREATE INDEX</code>, are not supported.</p>
-</div>
-<div class="sect2">
-<h3 id="query-performance-advice"><a class="anchor" href="#query-performance-advice"></a>Query Performance Advice</h3>
-<div class="paragraph">
-<p>This section is optional reading, and only for those looking to maximize transactions performance.</p>
-</div>
-<div class="paragraph">
-<p>After the first query statement in a transaction, subsequent Key-Value operations in the lambda are converted into SQL++ and executed by the Query service rather than the Key-Value data service.
-The operation will behave identically, and this implementation detail can largely be ignored, except for these two caveats:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>These converted key-value operations are likely to be slightly slower, as the Query service is optimized for statements involving multiple documents.
-Those looking for the maximum possible performance are recommended to put key-value operations before the first query in the lambda, if possible.</p>
-</li>
-<li>
-<p>Those using non-blocking mechanisms to achieve concurrency should be aware that the converted key-value operations are subject to the same parallelism restrictions mentioned above, e.g. they will not be executed in parallel by the Query service.</p>
-</li>
-</ul>
-</div>
+<p>Unresolved include directive in modules/concept-docs/pages/transactions.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 </div>
 </div>
@@ -447,51 +349,18 @@ Those looking for the maximum possible performance are recommended to put key-va
 <h2 id="custom-metadata-collections"><a class="anchor" href="#custom-metadata-collections"></a>Custom Metadata Collections</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As described earlier, transactions automatically create and use metadata documents.
-By default, these are created in the default collection of the bucket of the first mutated document in the transaction.
-Optionally, you can instead specify a collection to store the metadata documents.
-Most users will not need to use this functionality, and can continue to use the default behavior.
-They are provided for these use-cases:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The metadata documents contain, for documents involved in each transaction, the document&#8217;s key and the name of the bucket, scope and collection it exists on.
-In some deployments this may be sensitive data.</p>
-</li>
-<li>
-<p>You wish to remove the default collections.
-Before doing this, you should ensure that all existing transactions using metadata documents in the default collections have finished.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Custom metadata collections are enabled with:</p>
+<p>Unresolved include directive in modules/concept-docs/pages/transactions.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/howtos/examples/TransactionsExample.cs#L670-L673">// Replace with your own metadata collection.
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/howtos/examples/TransactionsExample.cs#L670-L673">// Replace with your own metadata collection.
 ICouchbaseCollection metadataCollection = null;
 Transactions transactionsWithCustomMetadataCollection = Transactions.Create(cluster,
         TransactionConfigBuilder.Create().MetadataCollection(metadataCollection));</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>When specified:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Any transactions created from this <code>Transactions</code> object, will create and use metadata in that collection.</p>
-</li>
-<li>
-<p>The asynchronous cleanup started by this <code>Transactions</code> object will be looking for expired transactions only in this collection.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>You need to ensure that this application has RBAC data read and write privileges to it, and should not delete the collection subsequently as it can interfere with existing transactions.
-You can use an existing collection or create a new one.</p>
+<p>Unresolved include directive in modules/concept-docs/pages/transactions.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 </div>
 </div>
@@ -576,7 +445,7 @@ You can use an existing collection or create a new one.</p>
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -593,6 +462,7 @@ You can use an existing collection or create a new one.</p>
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

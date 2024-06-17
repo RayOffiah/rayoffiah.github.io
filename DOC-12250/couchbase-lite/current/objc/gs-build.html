@@ -22,9 +22,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="couchbase-lite">
-<meta name="dcterms.identifier" content="2.8">
+<meta name="dcterms.identifier" content="3.1">
 <meta name="page-url" content="/couchbase-lite/current/objc/gs-build.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="couchbase-lite">
+<meta name="docsearch:component_title" content="Couchbase Lite">
+<meta name="docsearch:cversion" content="3.1">
+<meta name="docsearch:component_version" content="couchbase-lite@3.1">
+<meta name="docsearch:module" content="objc">
+<meta name="docsearch:breadcrumbs" content="Couchbase Lite / Objective-C / Start Here! / Build and Run">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -42,7 +56,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -63,19 +78,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item nav-item-selected">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -89,7 +119,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -100,15 +129,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+    <template id="page-versions" style="display: none">
+      <select class="version_list" data-component="couchbase-lite">
+        <option value="3.1" data-url="gs-build.html" selected>3.1</option>
+        <option value="3.0" data-url="../../3.0/objc/gs-build.html">3.0</option>
+        <option value="2.8" data-url="../../2.8/objc/gs-build.html">2.8</option>
+      </select>
+    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
       data-title="Contents"
-      data-levels="1">
+      data-levels="2">
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/objc/pages/gs-build.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="https://github.com/couchbaselabs/docs-couchbase-lite/edit/release/3.1/modules/objc/pages/gs-build.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -198,78 +234,121 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="sect1">
-<h2 id="starter-code"><a class="anchor" href="#starter-code"></a>Starter code</h2>
+<h2 id="quick-steps"><a class="anchor" href="#quick-steps"></a>Quick Steps</h2>
 <div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Within XCode, create a new Objective-C app project</p>
+</li>
+<li>
+<p>Within the <strong>ViewController.m</strong> file, replace the boilerplate codein with that shown in <a href="#ex-starter-code">Example 1</a>.
+Note you can also get this from github.</p>
+</li>
+<li>
+<p>Build and Run the code.<br>
+You should see the document ID and property printed to the console, indicating that the document was successfully persisted to the database as shown in <a href="#img-starter-code">Figure 1</a></p>
+</li>
+</ol>
+</div>
+<div id="img-starter-code" class="imageblock">
+<div class="content">
+<img src="_images/getting-started-ios.png" alt="getting started ios">
+</div>
+<div class="title">Figure 1. Console log output</div>
+</div>
+<div id="ex-starter-code" class="exampleblock">
+<div class="title">Example 1. Get Started code example</div>
+<div class="content">
 <div class="paragraph">
-<p>Open <strong>ViewController.m</strong> in Xcode and copy the following code in the <code>viewDidLoad</code> method.
-This snippet demonstrates how to run basic CRUD operations, a simple Query and running bi-directional replications with Sync Gateway.</p>
+<p>This snippet demonstrates how to run basic CRUD operations, a simple Query and running bi-directional replications with Sync Gateway.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/objc/examples/code_snippets/SampleCodeTest.m#L1085-L1138">// Get the database (and create it if it doesn’t exist).
-NSError *error;
-CBLDatabase *database = [[CBLDatabase alloc] initWithName:@"mydb" error:&amp;error];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc">//
+//  GettingStarted.m
+//  threeBeta01prod
+//
+//  Created by Ian Bridge on 04/10/2021.
+//
 
-// Create a new document (i.e. a record) in the database.
-CBLMutableDocument *mutableDoc = [[CBLMutableDocument alloc] init];
-[mutableDoc setFloat:2.0 forKey:@"version"];
-[mutableDoc setString:@"SDK" forKey:@"type"];
+#import "GettingStarted.h"
+#import &lt;CouchbaseLite/CouchbaseLite.h&gt;
 
-// Save it to the database.
-[database saveDocument:mutableDoc error:&amp;error];
+@implementation GettingStarted
 
-// Update a document.
-CBLMutableDocument *mutableDoc2 = [[database documentWithID:mutableDoc.id] toMutable];
-[mutableDoc2 setString:@"Swift" forKey:@"language"];
-[database saveDocument:mutableDoc2 error:&amp;error];
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    // Get the database (and create it if it doesn’t exist).
 
-CBLDocument *document = [database documentWithID:mutableDoc2.id];
-// Log the document ID (generated by the database)
-// and properties
-NSLog(@"Document ID :: %@", document.id);
-NSLog(@"Learning %@", [document stringForKey:@"language"]);
+    bool *testReplication;
+    testReplication = false;
 
-// Create a query to fetch documents of type SDK.
-CBLQueryExpression *type = [[CBLQueryExpression property:@"type"] equalTo:[CBLQueryExpression string:@"SDK"]];
-CBLQuery *query = [CBLQueryBuilder select:@[[CBLQuerySelectResult all]]
-                                      from:[CBLQueryDataSource database:database]
-                                     where:type];
+    NSError *error;
+    CBLDatabase *database = [[CBLDatabase alloc] initWithName:@"mydb" error:&amp;error];
 
-// Run the query
-CBLQueryResultSet *result = [query execute:&amp;error];
-NSLog(@"Number of rows :: %lu", (unsigned long)[[result allResults] count]);
+    // Create a new document (i.e. a record) in the database.
+    CBLMutableDocument *mutableDoc = [[CBLMutableDocument alloc] init];
+    [mutableDoc setFloat:2.0 forKey:@"version"];
+    [mutableDoc setString:@"SDK" forKey:@"type"];
 
-// Create replicators to push and pull changes to and from the cloud.
-NSURL *url = [[NSURL alloc] initWithString:@"ws://localhost:4984/getting-started-db"];
-CBLURLEndpoint *targetEndpoint = [[CBLURLEndpoint alloc] initWithURL:url];
-CBLReplicatorConfiguration *replConfig = [[CBLReplicatorConfiguration alloc] initWithDatabase:database target:targetEndpoint];
-replConfig.replicatorType = kCBLReplicatorTypePushAndPull;
+    // Save it to the database.
+    [database saveDocument:mutableDoc error:&amp;error];
 
-// Add authentication.
-replConfig.authenticator = [[CBLBasicAuthenticator alloc] initWithUsername:@"john" password:@"pass"];
+    // Update a document.
+    CBLMutableDocument *mutableDoc2 = [[database documentWithID:mutableDoc.id] toMutable];
+    [mutableDoc2 setString:@"Objective-C" forKey:@"language"];
+    [database saveDocument:mutableDoc2 error:&amp;error];
 
-// Create replicator (make sure to add an instance or static variable named _replicator)
-_replicator = [[CBLReplicator alloc] initWithConfig:replConfig];
+    CBLDocument *document = [database documentWithID:mutableDoc2.id];
+    // Log the document ID (generated by the database)
+    // and properties
+    NSLog(@"Document ID :: %@", document.id);
+    NSLog(@"Learning %@", [document stringForKey:@"language"]);
 
-// Listen to replicator change events.
-[_replicator addChangeListener:^(CBLReplicatorChange *change) {
-    if (change.status.error) {
-        NSLog(@"Error code: %ld", change.status.error.code);
+    // Create a query to fetch documents of type SDK.
+    CBLQueryExpression *type = [[CBLQueryExpression property:@"type"] equalTo:[CBLQueryExpression string:@"SDK"]];
+    CBLQuery *query = [CBLQueryBuilder select:@[[CBLQuerySelectResult all]]
+                                          from:[CBLQueryDataSource database:database]
+                                         where:type];
+
+    // Run the query
+    CBLQueryResultSet *result = [query execute:&amp;error];
+    NSLog(@"Number of rows :: %lu", (unsigned long)[[result allResults] count]);
+
+    if (testReplication) {
+
+        // Create replicators to push and pull changes to and from the cloud.
+        NSURL *url = [[NSURL alloc] initWithString:@"ws://localhost:4984/getting-started-db"];
+        CBLURLEndpoint *targetEndpoint = [[CBLURLEndpoint alloc] initWithURL:url];
+        CBLReplicatorConfiguration *replConfig = [[CBLReplicatorConfiguration alloc] initWithDatabase:database target:targetEndpoint];
+        replConfig.replicatorType = kCBLReplicatorTypePushAndPull;
+
+        // Add authentication.
+        replConfig.authenticator = [[CBLBasicAuthenticator alloc] initWithUsername:@"john" password:@"pass"];
+
+        // Create replicator (make sure to add an instance or static variable named _replicator)
+        CBLReplicator *_replicator = [CBLReplicator alloc];
+        _replicator = [[CBLReplicator alloc] initWithConfig:replConfig];
+
+        // Listen to replicator change events.
+        [_replicator addChangeListener:^(CBLReplicatorChange *change) {
+            if (change.status.error) {
+                NSLog(@"Error code: %ld", change.status.error.code);
+            }
+        }];
+
+        // Start replication
+        [_replicator start];
+
     }
-}];
+}
 
-// Start replication
-[_replicator start];</code></pre>
+
+@end</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Build and run.
-You should see the document ID and property printed to the console.
-The document was successfully persisted to the database.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/getting-started-ios.png" alt="getting started ios">
 </div>
 </div>
 <div class="paragraph">
@@ -282,7 +361,7 @@ In the Xcode navigator, right-click on <strong>Info.plist</strong> and open it a
 </div>
 </div>
 <div class="paragraph">
-<p>Append the following inside of the <code>&lt;dict&gt;</code> XML tags to disable ATS.</p>
+<p>Append the following inside of the <code>&lt;dict&gt;</code> XML tags to disable Application Transport Security (ATS). The ATS must be disabled because the sample code snippet uses the WebSocket protocol (WS://) over the unencrypted HTTP protocol — and would conflict with ATS&#8217;s security requirements.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -293,7 +372,7 @@ In the Xcode navigator, right-click on <strong>Info.plist</strong> and open it a
 </div>
 </div>
 <div class="paragraph">
-<p>See: <a href="gs-install.html" class="xref page">Install</a></p>
+<p>See: <a href="../../../sync-gateway/current/get-started-install.html" class="xref page">Install Sync Gateway</a></p>
 </div>
 </div>
 </div>
@@ -333,7 +412,7 @@ In the Xcode navigator, right-click on <strong>Info.plist</strong> and open it a
 <p><a href="blob.html" class="xref page">Blobs</a></p>
 </li>
 <li>
-<p><a href="replication.html" class="xref page">Remote Sync using Sync Gateway</a></p>
+<p><a href="replication.html" class="xref page">Remote Sync Gateway</a></p>
 </li>
 <li>
 <p><a href="conflict.html" class="xref page">Handling Data Conflicts</a></p>
@@ -343,13 +422,11 @@ In the Xcode navigator, right-click on <strong>Info.plist</strong> and open it a
 </div>
 <div class="sect5 column">
 <h6 id="-3"><a class="anchor" href="#-3"></a></h6>
-<div class="ulist">
+<div class="paragraph">
 <div class="title">Dive Deeper . . .</div>
-<ul>
-<li>
-<p><a href="https://forums.couchbase.com/c/mobile/14">Forum</a> <strong>|</strong> <a href="https://blog.couchbase.com/">Blog</a> <strong>|</strong> <a href="https://docs.couchbase.com/tutorials/index.html">Tutorials</a></p>
-</li>
-</ul>
+<p><a href="https://forums.couchbase.com/c/mobile/14">Mobile Forum</a> |
+<a href="https://blog.couchbase.com/">Blog</a> |
+<a href="https://docs.couchbase.com/tutorials/">Tutorials</a></p>
 </div>
 </div>
 </div>
@@ -428,7 +505,7 @@ In the Xcode navigator, right-click on <strong>Info.plist</strong> and open it a
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"2.8","sync-gateway":"3.0"}}
+{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.1","sync-gateway":"3.1"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -445,6 +522,7 @@ In the Xcode navigator, right-click on <strong>Info.plist</strong> and open it a
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

@@ -18,19 +18,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="Discover how to program interactions with the Couchbase Server via the data, query, and search services -- using the Travel Sample Application with the built-in Travel Sample data Bucket.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
-        <link rel="prev" href="../howtos/distributed-acid-transactions-from-the-sdk.html">
-        <link rel="next" href="../howtos/json.html">
 
-
-
-                    <link rel="prev" href="../howtos/distributed-acid-transactions-from-the-sdk.html">
-
-        
 
 <meta name="dcterms.subject" content="scala-sdk">
-<meta name="dcterms.identifier" content="1.4">
+<meta name="dcterms.identifier" content="1.3">
 <meta name="page-url" content="/scala-sdk/current/hello-world/sample-application.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="scala-sdk">
+<meta name="docsearch:component_title" content="Scala SDK">
+<meta name="docsearch:cversion" content="1.3">
+<meta name="docsearch:component_version" content="scala-sdk@1.3">
+<meta name="docsearch:module" content="hello-world">
+<meta name="docsearch:breadcrumbs" content="Scala SDK / Getting Started / Sample Application">
+<meta name="docsearch:topic_type" content="tutorial">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -48,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -69,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -95,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -106,14 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="scala-sdk">
-        <option value="1.4" data-url="sample-application.html" selected>1.4</option>
-        <option value="1.3" data-url="../../1.3/hello-world/sample-application.html">1.3</option>
-        <option value="1.2" data-url="../../1.2/hello-world/sample-application.html">1.2</option>
-        <option value="1.1" data-url="../../1.1/hello-world/sample-application.html">1.1</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -122,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-scala/edit/release/1.4/modules/hello-world/pages/sample-application.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/hello-world/pages/sample-application.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -202,79 +216,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span  id="otherContributor"> + </span>
 </div><div id="preamble">
 <div class="sectionbody">
-<div class="quoteblock abstract">
-<blockquote>
-Discover how to program interactions with the Couchbase Server via the data, query, and search services&#8201;&#8212;&#8201;using the Travel Sample Application with the built-in Travel Sample data Bucket.
-Discover how to program interactions with Couchbase Server 7.X via the Data, Query, and Search services&#8201;&#8212;&#8201;using the Travel Sample Application with the built-in Travel Sample data Bucket.
-</blockquote>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="quick-start"><a class="anchor" href="#quick-start"></a>Quick Start</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Fetch the <a href="https://github.com/couchbaselabs/try-cb-scala">Couchbase Scala SDK travel-sample Application REST Backend</a> from github:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">git clone https://github.com/couchbaselabs/try-cb-scala.git
-cd try-cb-scala</code></pre>
-</div>
+<p>Unresolved include directive in modules/hello-world/pages/sample-application.adoc - include::7.1@sdk:shared:partial$sample-application.adoc[]</p>
 </div>
 <div class="paragraph">
-<p>With <a href="https://docs.docker.com/get-docker/">Docker</a> installed, you should now be able to run a bare-bones copy of Couchbase Server, load the travel-sample, add indexes, install the sample-application and its frontend, all by running a single command:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">docker-compose --profile local up</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="running-the-code-against-your-own-development-couchbase-server"><a class="anchor" href="#running-the-code-against-your-own-development-couchbase-server"></a>Running the code against your own development Couchbase server.</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>For Couchbase Server 7.1, make sure that you have at least one node each of data; query; index; and search.
-For a development box, mixing more than one of these on a single node (given enough memory resources) is perfectly acceptable.</p>
+<p>Unresolved include directive in modules/hello-world/pages/sample-application.adoc - include::7.1@sdk:shared:partial$sample-application.adoc[]</p>
 </div>
 <div class="paragraph">
-<p>If you have yet to install Couchbase Server in your development environment
-<a href="#7.1@server:getting-started:do-a-quick-install.adoc" class="xref unresolved">start here</a>.</p>
+<p>Unresolved include directive in modules/hello-world/pages/sample-application.adoc - include::7.1@sdk:shared:partial$sample-application.adoc[]</p>
 </div>
 <div class="paragraph">
-<p>Then load up the Travel Sample Bucket, using either the
-<a href="#7.1@server:manage:manage-settings/install-sample-buckets.adoc#install-sample-buckets-with-the-ui" class="xref unresolved">Web interface</a>
-or the
-<a href="#7.1@server:manage:manage-settings/install-sample-buckets.adoc#install-sample-buckets-with-the-cli" class="xref unresolved">command line</a>.
-You will also need to
-<a href="#7.1@server:fts:fts-searching-from-the-ui.adoc#create-an-index" class="xref unresolved">create a Search Index</a>&#8201;&#8212;&#8201;Query indexes are taken care of by the Sample Bucket.</p>
-</div>
-<div class="paragraph">
-<p>See the README at <a href="https://github.com/couchbaselabs/try-cb-scala" class="bare">https://github.com/couchbaselabs/try-cb-scala</a> for full details of how to run and tweak the Scala SDK travel-sample app.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="using-the-sample-app"><a class="anchor" href="#using-the-sample-app"></a>Using the Sample App</h2>
-<div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../../../sdk/current/shared/_images/Travel-Sample-Register.png" alt="Travel Sample Register">
-</div>
-</div>
-<div class="paragraph">
-<p>Give yourself a username and password and click <strong>Register</strong>.</p>
-</div>
-<div class="paragraph">
-<p>You can now try out searching for flights, booking flights, and searching for hotels.
-You can see which Couchbase SDK operations are being executed by clicking the red bar at the bottom of the screen:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../../../sdk/current/shared/_images/Couchbase-Query-Bar.png" alt="Couchbase Query Bar">
-</div>
+<p>Unresolved include directive in modules/hello-world/pages/sample-application.adoc - include::7.1@sdk:shared:partial$sample-application.adoc[]</p>
 </div>
 </div>
 </div>
@@ -286,27 +238,17 @@ You can see which Couchbase SDK operations are being executed by clicking the re
 but also how to plug together all of the elements and build an application with Couchbase Server and the Scala SDK.</p>
 </div>
 <div class="paragraph">
-<p>The <a href="https://github.com/couchbaselabs/try-cb-scala/tree/HEAD/app"><code>app</code> directory</a> contains the various components, classes and functions for handling users, registration, and SQL++ (formerly N1QL) queries.</p>
+<p>The <a href="https://github.com/couchbaselabs/try-cb-scala/tree/HEAD/app"><code>app</code> directory</a> contains the various components, classes and functions for handling users, registration, and N1QL queries.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="data-model"><a class="anchor" href="#data-model"></a>Data Model</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>See the <a href="../ref/travel-app-data-model.html" class="xref page">Travel App Data Model</a> reference page for more information about the sample data set used.</p>
+<p>Unresolved include directive in modules/hello-world/pages/sample-application.adoc - include::7.1@sdk:shared:partial$sample-application.adoc[]</p>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/hello-world/pages/sample-application.adoc - include::7.1@sdk:shared:partial$sample-application.adoc[]</p>
 </div>
 </div>
 </div>
-
-        <nav class="pagination">
-
-                    <span class="prev"><a href="../howtos/distributed-acid-transactions-from-the-sdk.html">ACID Transactions</a></span>
-
-
-                <span>&nbsp;</span>
-            </nav>
-        </article>
+</article>
 </main>
 </div>
 <footer class="footer">
@@ -379,7 +321,7 @@ but also how to plug together all of the elements and build an application with 
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -396,6 +338,7 @@ but also how to plug together all of the elements and build an application with 
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

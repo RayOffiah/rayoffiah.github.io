@@ -22,9 +22,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="couchbase-lite">
-<meta name="dcterms.identifier" content="2.8">
+<meta name="dcterms.identifier" content="3.1">
 <meta name="page-url" content="/couchbase-lite/current/swift/gs-prereqs.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="couchbase-lite">
+<meta name="docsearch:component_title" content="Couchbase Lite">
+<meta name="docsearch:cversion" content="3.1">
+<meta name="docsearch:component_version" content="couchbase-lite@3.1">
+<meta name="docsearch:module" content="swift">
+<meta name="docsearch:breadcrumbs" content="Couchbase Lite / Swift / Start Here! / Prerequisites">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -42,7 +56,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -63,19 +78,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item nav-item-selected">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -89,7 +119,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -100,15 +129,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+    <template id="page-versions" style="display: none">
+      <select class="version_list" data-component="couchbase-lite">
+        <option value="3.1" data-url="gs-prereqs.html" selected>3.1</option>
+        <option value="3.0" data-url="../../3.0/swift/gs-prereqs.html">3.0</option>
+        <option value="2.8" data-url="../../2.8/swift/gs-prereqs.html">2.8</option>
+      </select>
+    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
       data-title="Contents"
-      data-levels="1">
+      data-levels="2">
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/swift/pages/gs-prereqs.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="https://github.com/couchbaselabs/docs-couchbase-lite/edit/release/3.1/modules/swift/pages/gs-prereqs.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -201,176 +237,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 id="couchbase-lite-framework-size"><a class="anchor" href="#couchbase-lite-framework-size"></a>Couchbase Lite Framework Size</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Although the size of the Couchbase Lite framework that is downloaded is around 50MB, note that the framework would add only around 3.5MB to the size of the app when it is installed from the App Store.
-This is because when the user installs your app from the App Store, only the bits that are relevant to the device architecture are delivered.</p>
+<p>Couchbase Lite for Swift is provided as an <code>xcframework</code>.</p>
 </div>
-<div class="sect2">
-<h3 id="why-is-the-original-size-so-large"><a class="anchor" href="#why-is-the-original-size-so-large"></a>Why is the original size so large?</h3>
 <div class="paragraph">
-<p>The Couchbase Lite framework  includes a "fat" binary that contains slices for both device (<code>armv7</code>, <code>arm64</code>) and simulator (<code>i386</code> and <code>x86_64</code>) CPU architectures.
-The fat binary allows you to link your app to the same framework and run your app on the simulator or a real device.
-In addition, the bitcode that is included with the framework contributes to the majority of the download size.
+<p>The xcframework download size is between 100 and 140 MB.
+This include includes a "fat" binary that contains slices for both device (<code>armv7</code>, <code>arm64</code>) and simulator (<code>i386</code> and <code>x86_64</code>) CPU architectures.
+The fat binary allows you to link your app to the same xcframework and run your app on the simulator or a real device.</p>
+</div>
+<div class="paragraph">
+<p>In addition, the bitcode that is included contributes to the majority of the download size.
 <a href="https://help.apple.com/xcode/mac/current/#/devbbdc5ce4f">Bitcode</a> is an intermediate code representation that allows Apple to recompile the app after App submission and to deliver a thin version of the app specific to the device architecture.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="architecture-stripping"><a class="anchor" href="#architecture-stripping"></a>Architecture Stripping</h3>
 <div class="paragraph">
-<p>When submitting a build of your application to the App Store you must ensure that it doesn&#8217;t contain any simulator architecture otherwise the upload will fail with the error message "Unsupported Architecture.
-Your executable contains unsupported architecture '[x86_64, i386]'."</p>
+<p>Although you can disable bitcode within your app and strip away bitcode from the Couchbase Lite framework, it is not necessary to do so. In fact, it is probably best to leave it enabled to be future proof. This is because the bitcode is never downloaded by the user even though it is uploaded during App submission.</p>
 </div>
 <div class="paragraph">
-<p>The steps to remove the simulator architecture (x86_64) from <strong>CouchbaseLite.framework</strong> are outlined below in <a href="#ex-rmvsimarc">[ex-rmvsimarc]</a>.
-They depend on the method you chose to install Couchbase Lite:</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_frameworks"></a>Frameworks</p>
-</li>
-<li>
-<p><a id="tabset1_carthage"></a>Carthage</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_frameworks">
-<div class="paragraph">
-<p>The Couchbase Lite framework available on the <a href="https://www.couchbase.com/downloads/?family=mobile">Couchbase Downloads page</a> contains a build for both the simulator (x86_64) and iOS devices (ARM).
-The following steps describe how to set up a build phase in Xcode to do this automatically.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>In Xcode, open the <strong>Build Phases</strong> tab, then select the <strong>+</strong> &gt; <strong>Add Run Script Build Phase</strong> option.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/run-script-phase.png" alt="run script phase">
-</div>
-</div>
-</li>
-<li>
-<p>Copy the contents of <a href="https://raw.githubusercontent.com/couchbase/couchbase-lite-ios/master/Scripts/strip_frameworks.sh">strip_framework.sh</a> in the <strong>Run Script</strong> editor window.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/run-script-copy.png" alt="run script copy">
-</div>
-</div>
-</li>
-</ol>
+<p>More information on App size is available on this <a href="https://developer.apple.com/library/archive/qa/qa1795/_index.html">Apple Q&amp;A</a> page.</p>
 </div>
 <div class="paragraph">
-<p>That&#8217;s it, now every time you build and run your application, Xcode will remove binary architectures that do not match the target&#8217;s architecture type (emulator or device).</p>
+<p>See also: <a href="supported-os.html" class="xref page">Supported Versions</a></p>
 </div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_carthage">
-<div class="paragraph">
-<p>The <a href="https://github.com/Carthage/Carthage/blob/5fd867c4895b4f59d70181dec169a1644f4430e3/README.md#adding-frameworks-to-an-application">following link</a> describes how to set up a build phase in Xcode and run a Carthage script in order to remove the simulator architecture (x86_64).</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="lbl-tgtinterr"><a class="anchor" href="#lbl-tgtinterr"></a>Target Integrity Error</h3>
-<div class="paragraph">
-<p>You may encounter a <code>Target Integrity Error</code> when building for iOS Simulator(or iOS).
-This is because the embedded framework <code>CouchbaseLiteSwift.framework</code> was built for iOS + iOS Simulator.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Using XCFrameworks will ensure that the binaries used have the right architectures for the different platforms you target.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>As a workaround, you are recommended to strip the unnecessary architecture from the fat binary as described in <a href="#ex-wkaround">Example 1</a></p>
-</div>
-<div id="ex-wkaround" class="exampleblock">
-<div class="title">Example 1. Thinning the Framework</div>
-<div class="content">
-<div class="paragraph">
-<p>Within the folder containing the framework, use the <code>lipo</code> command to convert the universal binary to a single architecture file.</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_simulator"></a>Simulator</p>
-</li>
-<li>
-<p><a id="tabset2_device"></a>Device</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_simulator">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">lipo CouchbaseLiteSwift.framework/CouchbaseLiteSwift -thin x86_64 -output  CouchbaseLiteSwift.framework/CouchbaseLiteSwift</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_device">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">lipo CouchbaseLiteSwift.framework/CouchbaseLiteSwift -thin arm64 -output  CouchbaseLiteSwift.framework/CouchbaseLiteSwift</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="should-you-disable-bitcode"><a class="anchor" href="#should-you-disable-bitcode"></a>Should you disable bitcode?</h3>
-<div class="paragraph">
-<p>Although you can disable bitcode within your app and strip away bitcode from the Couchbase Lite framework, it is not necessary to do so.
-In fact, it is probably best to leave it enabled to be future proof.
-This is because the bitcode is never downloaded by the user even though it is uploaded during App submission.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="other-resource-to-reduce-the-size-of-your-app"><a class="anchor" href="#other-resource-to-reduce-the-size-of-your-app"></a>Other resource to reduce the size of your app</h3>
-<div class="paragraph">
-<p>More information is available on this <a href="https://developer.apple.com/library/archive/qa/qa1795/_index.html">Apple Q&amp;A</a> page.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="supported-versions"><a class="anchor" href="#supported-versions"></a>Supported Versions</h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all fit-content stretch">
-<colgroup>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Platform</th>
-<th class="tableblock halign-left valign-top">Minimum OS version</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">iOS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>10.0</strong> (9.0&#8201;&#8212;&#8201;DEPRECATED)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>10.11</strong> (10.9 and 10.10&#8201;&#8212;&#8201;DEPRECATED)</p></td>
-</tr>
-</tbody>
-</table>
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -382,33 +268,8 @@ This is because the bitcode is never downloaded by the user even though it is up
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Support for Mac OS 10.9 and 10.10
-was deprecated in release 2.5
-and will be removed in
- release 2.8</p>
-</div>
-<div class="paragraph">
-<p><em>Action:</em> Please plan to migrate your apps to use an appropriate alternative version.</p>
-</div>
-</div>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="title">Deprecation Notice&#8201;&#8212;&#8201;Apple iOS</div>
-<div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>Support for iOS 9
-was deprecated in release 2.6
+<p>Support for Mac OS 10.12
+was deprecated in release 3.0
 and will be removed in
  a future release</p>
 </div>
@@ -459,7 +320,7 @@ and will be removed in
 <p><a href="blob.html" class="xref page">Blobs</a></p>
 </li>
 <li>
-<p><a href="replication.html" class="xref page">Remote Sync using Sync Gateway</a></p>
+<p><a href="replication.html" class="xref page">Remote Sync Gateway</a></p>
 </li>
 <li>
 <p><a href="conflict.html" class="xref page">Handling Data Conflicts</a></p>
@@ -469,13 +330,11 @@ and will be removed in
 </div>
 <div class="sect5 column">
 <h6 id="-3"><a class="anchor" href="#-3"></a></h6>
-<div class="ulist">
+<div class="paragraph">
 <div class="title">Dive Deeper . . .</div>
-<ul>
-<li>
-<p><a href="https://forums.couchbase.com/c/mobile/14">Forum</a> <strong>|</strong> <a href="https://blog.couchbase.com/">Blog</a> <strong>|</strong> <a href="https://docs.couchbase.com/tutorials/index.html">Tutorials</a></p>
-</li>
-</ul>
+<p><a href="https://forums.couchbase.com/c/mobile/14">Mobile Forum</a> |
+<a href="https://blog.couchbase.com/">Blog</a> |
+<a href="https://docs.couchbase.com/tutorials/">Tutorials</a></p>
 </div>
 </div>
 </div>
@@ -554,7 +413,7 @@ and will be removed in
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"2.8","sync-gateway":"3.0"}}
+{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.1","sync-gateway":"3.1"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -571,6 +430,7 @@ and will be removed in
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

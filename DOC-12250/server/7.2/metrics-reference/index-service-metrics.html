@@ -24,6 +24,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="dcterms.identifier" content="7.2">
 <meta name="page-url" content="/server/7.2/metrics-reference/index-service-metrics.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="server">
+<meta name="docsearch:component_title" content="server">
+<meta name="docsearch:cversion" content="7.2">
+<meta name="docsearch:component_version" content="server@7.2">
+<meta name="docsearch:module" content="metrics-reference">
+<meta name="docsearch:breadcrumbs" content="server / Reference / Metrics Reference / Index Service Metrics">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="2">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item nav-item-selected">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -105,9 +134,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <option value="7.2" data-url="index-service-metrics.html" selected>7.2</option>
         <option value="7.1" data-url="../../7.1/index.html">7.1</option>
         <option value="7.0" data-url="../../7.0/index.html">7.0</option>
-        <option value="6.6" data-url="../../6.6/index.html">6.6</option>
-        <option value="6.5" data-url="../../6.5/index.html">6.5</option>
-        <option value="6.0" data-url="../../6.0/index.html">6.0</option>
       </select>
     </template>
   </div>
@@ -204,11 +230,6 @@ A list of the metrics provided by the Index Service.
 <div class="paragraph">
 <p>The following Index-Service metrics can be queried by means of the REST APIs described in <a href="../rest-api/rest-statistics.html" class="xref page">Statistics</a>.</p>
 </div>
-<div class="openblock template">
-<div class="content">
-<div class="paragraph">
-<p>{{! Template to display Couchbase Server metrics }}</p>
-</div>
 <style>
 /* for doc.css */
 .doc .admonitionblock.tip.key td.content::before {
@@ -219,7 +240,7 @@ A list of the metrics provided by the Index Service.
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<div class="title">Tip</div>
 </td>
 <td class="content">
 <div class="ulist">
@@ -229,7 +250,7 @@ A list of the metrics provided by the Index Service.
 </li>
 <li>
 <p>The <span class="status">type / unit</span> badge shows shows the Prometheus
-<a href="https://prometheus.io/docs/tutorials/understanding_metric_types/">type</a> and 
+<a href="https://prometheus.io/docs/tutorials/understanding_metric_types/">type</a> and
 <a href="https://prometheus.io/docs/practices/naming/#base-units">unit</a> (if present).</p>
 </li>
 </ul>
@@ -244,23 +265,287 @@ A list of the metrics provided by the Index Service.
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{{#each this}}
-{{#if (ne stability "internal")}}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_avg_disk_bps</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">Sum of disk bytes written per second, of all indexes, located on this node</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{@key}}</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_avg_drain_rate</code>
 &#160;&#160;&#160;
-<span class="edition">{{or added "7.0.0"}}</span>
-<span class="status">{{or type "unknown"}}{{#if unit}} / {{unit}}{{/if}}</span></p>
-<p class="tableblock">{{help}}</p>
-<p class="tableblock">{{!notes}} {{! uncomment the <code>!</code> to add the notes field}}</p>
-<p class="tableblock">{{/if}}
-{{/each}}</p></td>
+<span class="edition">7.0.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">Average number of documents indexed per second, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_avg_item_size</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">Average size of the indexed items, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_avg_mutation_rate</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">Sum of mutation rates of all indexes, located on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_avg_resident_percent</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">Average resident percent across all indexes, located on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_avg_scan_latency</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge / Nanoseconds</span></p>
+<p class="tableblock">Average latency observed by the index scans, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_cache_hits</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Number of times the required index page is found in memory, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_cache_misses</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Number of times the required index page is NOT found in memory, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_data_size</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">The approximate size of the valid uncompressed index data, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_data_size_on_disk</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">The size of the valid compressed index data, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_disk_size</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">Total disk space taken up by this index, after compression. This includes index data files, checkpoints etc.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_frag_percent</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">Percentage of invalid index data, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_items_count</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">The actual number of items present in the latest index snapshot, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_log_space_on_disk</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">The size of the index data files - including garbage, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_memory_quota</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">Configured memory quota for the index service nodes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_memory_rss</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">Resident set size of the indexer process, running on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_memory_total_storage</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">Amount of memory used by the index memory allocator, on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_memory_used</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">The memory used by this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_memory_used_storage</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">Amount of memory used by underlying index storage, on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_memory_used_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">Total memory used by the indexer process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_docs_indexed</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Number of document updates (of type insert, modify, delete) observed by this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_docs_pending</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">Number of pending updates that are yet to be received by index service, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_docs_queued</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">Number of updates queued (but not yet processed) by index service, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_indexes</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">Total number of indexes, located on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_requests</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Number of scan requests received by the index service, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_rows_returned</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Number of rows/index entries returned as the scan result during index scans, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_rows_scanned</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Number of rows/index entries read during the index scans, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_storage_instances</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">Total number of storage instances, located on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_raw_data_size</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">Encoded, uncompressed size of the index data, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_recs_in_mem</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">Number of index entries cached in memory, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_recs_on_disk</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">Number of index entries stored on disk, which are not cached in memory, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_resident_percent</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">Ratio of records in memory to total records, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_scan_bytes_read</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter / bytes</span></p>
+<p class="tableblock">Number of bytes read from the index storage during index scans, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_data_size</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">Sum of data size of all indexes, located on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_disk_size</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">Sum of disk size of all indexes, located on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_drain_rate</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">Sum of drain rate of all indexes, located on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_requests</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Sum of number of requests received by all indexes, located on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_rows_returned</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Sum of number of rows returned during index scan across all indexes, located on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_rows_scanned</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Sum of number of rows scanned during index scans across all indexes, located on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_scan_duration</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter / Nanoseconds</span></p>
+<p class="tableblock">Total time taken by the scans requests, for this index</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 </article>
 </main>
 </div>
@@ -351,6 +636,7 @@ A list of the metrics provided by the Index Service.
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

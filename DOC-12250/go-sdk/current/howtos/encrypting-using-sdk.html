@@ -12,7 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Encrypting Your Data | Couchbase Docs</title>
+<title>Field Level Encryption from the Go SDK | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/go-sdk/current/howtos/encrypting-using-sdk.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
@@ -21,9 +21,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="go-sdk">
-<meta name="dcterms.identifier" content="2.6">
+<meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/go-sdk/current/howtos/encrypting-using-sdk.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="go-sdk">
+<meta name="docsearch:component_title" content="Go SDK">
+<meta name="docsearch:cversion" content="2.5">
+<meta name="docsearch:component_version" content="go-sdk@2.5">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="Go SDK / Advanced Data Operations / Encrypting Your Data">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="Enterprise Edition">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,17 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="go-sdk">
-        <option value="2.6" data-url="encrypting-using-sdk.html" selected>2.6</option>
-        <option value="2.5" data-url="../../2.5/howtos/encrypting-using-sdk.html">2.5</option>
-        <option value="2.4" data-url="../../2.4/howtos/encrypting-using-sdk.html">2.4</option>
-        <option value="2.3" data-url="../../2.3/howtos/encrypting-using-sdk.html">2.3</option>
-        <option value="2.2" data-url="../../2.2/howtos/encrypting-using-sdk.html">2.2</option>
-        <option value="2.1" data-url="../../2.1/howtos/encrypting-using-sdk.html">2.1</option>
-        <option value="2.0" data-url="../../2.0/howtos/encrypting-using-sdk.html">2.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -118,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-go/edit/release/2.6/modules/howtos/pages/encrypting-using-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/howtos/pages/encrypting-using-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -177,14 +195,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../hello-world/overview.html">Go SDK</a></li>
-<li class="crumb">Further Data Ops</li>
+<li class="crumb">Advanced Data Operations</li>
 <li class="crumb"><a href="encrypting-using-sdk.html">Encrypting Your Data</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Encrypting Your Data</h1>
+<h1 class="page">Field Level Encryption from the Go SDK</h1>
 <div class="labels">
 <ul><li class="guide"><span><i class="far fa-check-square"></i> how-to</span></li>
 </ul>
@@ -209,7 +227,7 @@ A practical guide for getting started with Field-Level Encryption, showing how t
 </blockquote>
 </div>
 <div class="paragraph">
-<p>For a high-level overview of this feature, see <a href="../concept-docs/encryption.html" class="xref page">Field Level Encryption</a>.</p>
+<p>For a high-level overview of this feature, see <a href="../concept-docs/encryption.html" class="xref page">concept-docs:encryption.adoc</a>.</p>
 </div>
 </div>
 </div>
@@ -218,7 +236,7 @@ A practical guide for getting started with Field-Level Encryption, showing how t
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Go SDK works together with the <a href="https://github.com/couchbase/gocbencryption" target="_blank" rel="noopener">Go Couchbase Encryption</a> library to provide support for encryption and decryption of JSON fields.
-This library makes use of the cryptographic algorithms available on your platform, and provides a framework for implementing your own crypto components.</p>
+This library includes cryptographic algorithms you can use out of the box, and provides a framework for implementing your own crypto components.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -258,7 +276,7 @@ To use the encryption library, you have to explicitly include this dependency in
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/fle.go#L35-L52">	keyB := []byte{0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/fle.go#L35-L52">	keyB := []byte{0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,
 		0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f,
 		0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2a, 0x2b, 0x2c, 0x2d, 0x2e, 0x2f,
 		0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x3f, 0x3f, 0x3f, 0x3f, 0x3d, 0x3e, 0x3f,
@@ -285,7 +303,7 @@ At this point we also create <code>CryptoManager</code> and register our encrypt
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/fle.go#L56-L94">	// Create a provider.
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/fle.go#L56-L94">	// Create a provider.
 	// AES-256 authenticated with HMAC SHA-512. Requires a 64-byte key.
 	provider := gocbfieldcrypt.NewAeadAes256CbcHmacSha512Provider(keyring)
 
@@ -332,7 +350,7 @@ Once created we need to register the <code>Transcoder</code> with the SDK.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/fle.go#L98-L110">	// Create our transcoder, not setting a base transcoder will cause it to fallback to the
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/fle.go#L98-L110">	// Create our transcoder, not setting a base transcoder will cause it to fallback to the
 	// SDK JSON transcoder.
 	transcoder := gocbfieldcrypt.NewTranscoder(nil, mgr)
 
@@ -360,7 +378,7 @@ Once created we need to register the <code>Transcoder</code> with the SDK.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/fle.go#L12-L25">type PersonAddress struct {
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/fle.go#L12-L25">type PersonAddress struct {
 	HouseName  string `json:"houseName" encrypted:"one"`
 	StreetName string `json:"streetName"`
 }
@@ -380,7 +398,7 @@ type Person struct {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/fle.go#L114-L137">	bucket := cluster.Bucket("travel-sample")
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/fle.go#L114-L137">	bucket := cluster.Bucket("travel-sample")
 	collection := bucket.Scope("inventory").Collection("airport")
 
 	person := Person{
@@ -411,7 +429,7 @@ type Person struct {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/fle.go#L141-L152">	res, err := collection.Get("p1", nil)
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/fle.go#L141-L152">	res, err := collection.Get("p1", nil)
 	if err != nil {
 		panic(err)
 	}
@@ -447,7 +465,7 @@ type Person struct {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/fle.go#L156-L167">	personRes, err := collection.Get("p1", nil)
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/fle.go#L156-L167">	personRes, err := collection.Get("p1", nil)
 	if err != nil {
 		panic(err)
 	}
@@ -507,13 +525,13 @@ In SDK 2, the default prefix is <code>encrypted$</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/fle.go#L173-L175">	mgr := gocbfieldcrypt.NewDefaultCryptoManager(&amp;gocbfieldcrypt.DefaultCryptoManagerOptions{
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/fle.go#L173-L175">	mgr := gocbfieldcrypt.NewDefaultCryptoManager(&amp;gocbfieldcrypt.DefaultCryptoManagerOptions{
 		EncryptedFieldPrefix: "__crypt",
 	})</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Alternatively, you can <a href="https://forums.couchbase.com/t/replacing-field-name-prefix/28786">rename the existing fields using a SQL++ statement</a>.</p>
+<p>Alternatively, you can <a href="https://forums.couchbase.com/t/replacing-field-name-prefix/28786">rename the existing fields using a N1QL statement</a>.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -524,7 +542,7 @@ In SDK 2, the default prefix is <code>encrypted$</code>.</p>
 <td class="content">
 In SDK 1, only top-level fields could be encrypted.
 SDK 2 allows encrypting fields at any depth.
-If you decide to rename the existing fields, make sure to do so <em>before</em> writing any encrypted fields below the top level, otherwise it may be difficult to rename the nested fields using a generic SQL++ statement.
+If you decide to rename the existing fields, make sure to do so <em>before</em> writing any encrypted fields below the top level, otherwise it may be difficult to rename the nested fields using a generic N1QL statement.
 </td>
 </tr>
 </table>
@@ -538,7 +556,7 @@ To enable decrypting fields written by SDK 1, register the legacy decrypters wit
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/fle.go#L181-L193">	// NewLegacyAes256CryptoDecrypter takes a function parameter so that the single decrypter can support multiple
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/fle.go#L181-L193">	// NewLegacyAes256CryptoDecrypter takes a function parameter so that the single decrypter can support multiple
 	// keys. The function accepts a public key name and returns the corresponding private key name.
 	decrypter := gocbfieldcrypt.NewLegacyAes256CryptoDecrypter(keyring, func(s string) (string, error) {
 		if s == "mykey" {
@@ -629,7 +647,7 @@ To enable decrypting fields written by SDK 1, register the legacy decrypters wit
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -646,6 +664,7 @@ To enable decrypting fields written by SDK 1, register the legacy decrypters wit
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

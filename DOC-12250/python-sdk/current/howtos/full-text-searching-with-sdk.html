@@ -12,27 +12,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Search | Couchbase Docs</title>
+<title>Full Text Search using the SDK | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/python-sdk/current/howtos/full-text-searching-with-sdk.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
-        <link rel="prev" href="n1ql-queries-with-sdk.html">
-        <link rel="next" href="../hello-world/sample-application.html">
-
-
-
-                    <link rel="prev" href="n1ql-queries-with-sdk.html">
-
-
-                    <link rel="next" href="../hello-world/sample-application.html">
 
 
 <meta name="dcterms.subject" content="python-sdk">
-<meta name="dcterms.identifier" content="4.1">
+<meta name="dcterms.identifier" content="4.0">
 <meta name="page-url" content="/python-sdk/current/howtos/full-text-searching-with-sdk.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="python-sdk">
+<meta name="docsearch:component_title" content="Python SDK">
+<meta name="docsearch:cversion" content="4.0">
+<meta name="docsearch:component_version" content="python-sdk@4.0">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="Python SDK / Working with Data / Full Text Search">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -50,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -71,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -97,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -108,15 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="python-sdk">
-        <option value="4.1" data-url="full-text-searching-with-sdk.html" selected>4.1</option>
-        <option value="4.0" data-url="../../4.0/howtos/full-text-searching-with-sdk.html">4.0</option>
-        <option value="3.2" data-url="../../3.2/howtos/full-text-searching-with-sdk.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/howtos/full-text-searching-with-sdk.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/howtos/full-text-searching-with-sdk.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -125,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-python/edit/release/4.1/modules/howtos/pages/full-text-searching-with-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/pages/full-text-searching-with-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -184,14 +195,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../hello-world/overview.html">Python SDK</a></li>
-<li class="crumb">Getting Started</li>
-<li class="crumb"><a href="full-text-searching-with-sdk.html">Search</a></li>
+<li class="crumb">Working with Data</li>
+<li class="crumb"><a href="full-text-searching-with-sdk.html">Full Text Search</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Search</h1>
+<h1 class="page">Full Text Search using the SDK</h1>
 <div class="labels">
 <ul><li class="guide"><span><i class="far fa-check-square"></i> how-to</span></li>
 </ul>
@@ -229,22 +240,21 @@ The reason for this is that a search row ("hit") has more metadata associated wi
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/search_ops.py#L6-L32">from couchbase.cluster import Cluster
-from couchbase.options import ClusterOptions, SearchOptions
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/search_ops.py#L6-L31">from couchbase.cluster import Cluster, ClusterOptions
 from couchbase.auth import PasswordAuthenticator
 from couchbase.exceptions import CouchbaseException
 import couchbase.search as search
 
 
 cluster = Cluster.connect(
-    "couchbase://your-ip",
+    "couchbase://localhost",
     ClusterOptions(PasswordAuthenticator("Administrator", "password")))
 bucket = cluster.bucket("travel-sample")
 collection = bucket.default_collection()
 
 try:
     result = cluster.search_query(
-        "travel-sample-index", search.QueryStringQuery("Paris"))
+        "travel-sample-index", search.QueryStringQuery("swanky"))
 
     for row in result.rows():
         print("Found row: {}".format(row))
@@ -391,7 +401,7 @@ You can combine them with <code>conjuncts</code> and <code>disjuncts</code> resp
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/search_ops.py#L36-L44">result = cluster.search_query(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/search_ops.py#L35-L43">result = cluster.search_query(
     "travel-sample-index", search.PrefixQuery("swim"), SearchOptions(fields=["description"]))
 
 for row in result.rows():
@@ -529,7 +539,7 @@ If you want to skip the first N records it can be done with the <code>skip</code
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/search_ops.py#L48-L49">result = cluster.search_query(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/search_ops.py#L47-L48">result = cluster.search_query(
     "travel-sample-index", search.TermQuery("downtown"), SearchOptions(limit=4, skip=3))</code></pre>
 </div>
 </div>
@@ -548,14 +558,14 @@ The way to make sure that recently written documents show up in the rfc works as
 <div class="listingblock">
 <div class="title">Scan consistency example:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/search_ops.py#L53-L54">result = cluster.search_query(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/search_ops.py#L52-L53">result = cluster.search_query(
     "travel-sample-index", search.TermQuery("downtown"), SearchOptions(scan_consistency=SearchScanConsistency.NOT_BOUNDED))</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">ConsistentWith consistency example:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/search_ops.py#L58-L74">new_airline = {
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/search_ops.py#L57-L73">new_airline = {
     "callsign": None,
     "country": "United States",
     "iata": "TX",
@@ -584,7 +594,7 @@ The following snippet uses HTML formatting for two fields:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/search_ops.py#L78-L79">result = cluster.search_query(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/search_ops.py#L77-L78">result = cluster.search_query(
     "travel-sample-index", search.TermQuery("downtown"), SearchOptions(highlight_style=HighlightStyle.Html, highlight_fields=["description", "name"]))</code></pre>
 </div>
 </div>
@@ -597,31 +607,22 @@ This behavior can be modified by providing a different sorting order which can a
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/search_ops.py#L86-L87">result = cluster.search_query(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/search_ops.py#L85-L86">result = cluster.search_query(
     "travel-sample-index", search.TermQuery("downtown"), SearchOptions(sort=["_score", "description"]))</code></pre>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="facets"><a class="anchor" href="#facets"></a>Facets</h3>
 <div class="paragraph">
 <p>Facets are aggregate information collected on a result set and are useful when it comes to categorization of result data.
 The SDK allows you to provide many different facet configurations to the Search Engine, the following example shows how to create a facet based on a term.
 Other possible facets include numeric and date ranges.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="facets"><a class="anchor" href="#facets"></a>Facets</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/search_ops.py#L91-L101">facet_name = 'activity'
-facet = TermFacet('activity')
-query = TermQuery('home')
-q_res = cluster.search_query('travel-sample-index',
-                            query,
-                            SearchOptions(limit=10, facets={facet_name: facet}))
-
-for row in q_res.rows():
-    print(f'Found row: {row}')
-
-print(f'facets: {q_res.facets()}')</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/search_ops.py#L90-L91">result = cluster.search_query(
+    "travel-sample-index", search.QueryStringQuery("north"), SearchOptions(facets={"types": TermFacet("type", 5)}))</code></pre>
 </div>
 </div>
 </div>
@@ -632,7 +633,7 @@ print(f'facets: {q_res.facets()}')</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/search_ops.py#L105-L106">result = cluster.search_query(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/search_ops.py#L98-L99">result = cluster.search_query(
     "travel-sample-index", search.TermQuery("swanky"), SearchOptions(fields=["name", "description"]))</code></pre>
 </div>
 </div>
@@ -647,7 +648,7 @@ print(f'facets: {q_res.facets()}')</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/search_ops.py#L110-L111">result = cluster.search_query(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/search_ops.py#L103-L104">result = cluster.search_query(
     "travel-sample-index", search.TermQuery("downtown"), SearchOptions(collections=["hotel", "airport"]))</code></pre>
 </div>
 </div>
@@ -667,8 +668,8 @@ If you are in doubt of which API to use, we recommend looking at the asyncio API
 <div class="listingblock">
 <div class="title">ACouchbase</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/acouchbase_search_ops.py#L2-L35">from acouchbase.cluster import Cluster, get_event_loop
-from couchbase.options import ClusterOptions
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/acouchbase_search_ops.py#L2-L35">from acouchbase.cluster import Cluster, get_event_loop
+from couchbase.cluster import ClusterOptions
 from couchbase.auth import PasswordAuthenticator
 from couchbase.exceptions import CouchbaseException
 import couchbase.search as search
@@ -676,7 +677,7 @@ import couchbase.search as search
 
 async def get_couchbase():
     cluster = Cluster(
-        "couchbase://your-ip",
+        "couchbase://localhost",
         ClusterOptions(PasswordAuthenticator("Administrator", "password")))
     bucket = cluster.bucket("travel-sample")
     await bucket.on_connect()
@@ -684,7 +685,7 @@ async def get_couchbase():
 
     return cluster, bucket, collection
 
-# NOTE: the travel-sample-index search index might need to be created
+
 async def simple_query(cluster):
     try:
         result = cluster.search_query(
@@ -705,12 +706,10 @@ loop.run_until_complete(simple_query(cluster))</code></pre>
 <div class="listingblock">
 <div class="title">TxCouchbase</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="https://github.com/couchbase/docs-sdk-python/blob/d253c4e8871f46c0822704f292c0c06ba721fcd1/modules/howtos/examples/txcouchbase_search_ops.py#L2-L44"># **IMPORTANT** need to do this import prior to importing the reactor (new to the Python 4.x SDK)
-import txcouchbase
-from twisted.internet import reactor
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-python/modules/howtos/examples/txcouchbase_search_ops.py#L2-L28">from twisted.internet import reactor
 
 from txcouchbase.cluster import TxCluster
-from couchbase.options import ClusterOptions
+from couchbase.cluster import ClusterOptions
 from couchbase.auth import PasswordAuthenticator
 import couchbase.search as search
 
@@ -718,48 +717,26 @@ import couchbase.search as search
 def handle_query_results(result):
     for r in result.rows():
         print("query row: {}".format(r))
-    print("loop finished")
+
     reactor.stop()
 
 
-def on_streaming_error(error):
-    print("Streaming operation had an error.\nError: {}".format(error))
-    reactor.stop()
-
-# NOTE: the travel-sample-index search index might need to be created
-def on_connect_ok(result, cluster):
-    # create a bucket object
-    bucket = cluster.bucket("travel-sample")
-    # create a collection object
-    cb = bucket.default_collection()
-
-    d = cluster.search_query("travel-sample-index", search.QueryStringQuery("swanky"))
-    d.addCallback(handle_query_results).addErrback(on_streaming_error)
-
-
-def on_connect_err(error):
-    print(f"Unable to connect.\n{error}")
-
-
-cluster = TxCluster("couchbase://your-ip",
+cluster = TxCluster("couchbase://localhost",
                     ClusterOptions(PasswordAuthenticator("Administrator", "password")))
 
-# wait for connect
-cluster.on_connect().addCallback(on_connect_ok, cluster).addErrback(on_connect_err)
+# create a bucket object
+bucket = cluster.bucket("travel-sample")
+# create a collection object
+cb = bucket.default_collection()
+
+d = cluster.search_query("travel-sample-index", search.QueryStringQuery("swanky"))
+d.addCallback(handle_query_results)
 
 reactor.run()</code></pre>
 </div>
 </div>
 </div>
 </div>
-
-        <nav class="pagination">
-
-                    <span class="prev"><a href="n1ql-queries-with-sdk.html">Query</a></span>
-
-
-                    <span class="next"><a href="../hello-world/sample-application.html">Sample Application</a></span>
-
 </article>
 </main>
 </div>
@@ -833,7 +810,7 @@ reactor.run()</code></pre>
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -850,6 +827,7 @@ reactor.run()</code></pre>
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

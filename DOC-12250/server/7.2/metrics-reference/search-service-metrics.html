@@ -24,6 +24,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="dcterms.identifier" content="7.2">
 <meta name="page-url" content="/server/7.2/metrics-reference/search-service-metrics.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="server">
+<meta name="docsearch:component_title" content="server">
+<meta name="docsearch:cversion" content="7.2">
+<meta name="docsearch:component_version" content="server@7.2">
+<meta name="docsearch:module" content="metrics-reference">
+<meta name="docsearch:breadcrumbs" content="server / Reference / Metrics Reference / Search Service Metrics">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="2">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item nav-item-selected">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -105,9 +134,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <option value="7.2" data-url="search-service-metrics.html" selected>7.2</option>
         <option value="7.1" data-url="../../7.1/index.html">7.1</option>
         <option value="7.0" data-url="../../7.0/index.html">7.0</option>
-        <option value="6.6" data-url="../../6.6/index.html">6.6</option>
-        <option value="6.5" data-url="../../6.5/index.html">6.5</option>
-        <option value="6.0" data-url="../../6.0/index.html">6.0</option>
       </select>
     </template>
   </div>
@@ -204,11 +230,6 @@ A list of the metrics provided by the Search Service.
 <div class="paragraph">
 <p>The following Search Service metrics can be queried by means of the REST APIs described in <a href="../rest-api/rest-statistics.html" class="xref page">Statistics</a>.</p>
 </div>
-<div class="openblock template">
-<div class="content">
-<div class="paragraph">
-<p>{{! Template to display Couchbase Server metrics }}</p>
-</div>
 <style>
 /* for doc.css */
 .doc .admonitionblock.tip.key td.content::before {
@@ -219,7 +240,7 @@ A list of the metrics provided by the Search Service.
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<div class="title">Tip</div>
 </td>
 <td class="content">
 <div class="ulist">
@@ -229,7 +250,7 @@ A list of the metrics provided by the Search Service.
 </li>
 <li>
 <p>The <span class="status">type / unit</span> badge shows shows the Prometheus
-<a href="https://prometheus.io/docs/tutorials/understanding_metric_types/">type</a> and 
+<a href="https://prometheus.io/docs/tutorials/understanding_metric_types/">type</a> and
 <a href="https://prometheus.io/docs/practices/naming/#base-units">unit</a> (if present).</p>
 </li>
 </ul>
@@ -244,23 +265,392 @@ A list of the metrics provided by the Search Service.
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{{#each this}}
-{{#if (ne stability "internal")}}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_avg_grpc_queries_latency</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge / milliseconds</span></p>
+<p class="tableblock">Average latency per query, using gRPC for streaming, for an index</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{@key}}</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_avg_internal_queries_latency</code>
 &#160;&#160;&#160;
-<span class="edition">{{or added "7.0.0"}}</span>
-<span class="status">{{or type "unknown"}}{{#if unit}} / {{unit}}{{/if}}</span></p>
-<p class="tableblock">{{help}}</p>
-<p class="tableblock">{{!notes}} {{! uncomment the <code>!</code> to add the notes field}}</p>
-<p class="tableblock">{{/if}}
-{{/each}}</p></td>
+<span class="edition">7.0.0</span>
+<span class="status">gauge / milliseconds</span></p>
+<p class="tableblock">Average latency of inter-node queries per unit time for an index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_avg_queries_latency</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge / milliseconds</span></p>
+<p class="tableblock">Average latency of queries per unit time for an index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_batch_bytes_added</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter / bytes</span></p>
+<p class="tableblock">Total number of bytes from batches yet to be indexed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_batch_bytes_removed</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter / bytes</span></p>
+<p class="tableblock">Total number of bytes from batches which have been indexed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_curr_batches_blocked_by_herder</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">The difference between the number of batches that have been indexed and the number of batches yet to be indexed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_doc_count</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Number of documents in the index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_num_batches_introduced</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of batches introduced as part of indexing.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_num_bytes_used_disk</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">The number of bytes used on disk by the index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_num_bytes_used_disk_by_root</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">The number of bytes used on disk by the root segment</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_num_bytes_used_ram</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">The number of bytes used in memory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_num_files_on_disk</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">The number of files on disk for an index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_num_mutations_to_index</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">DCP sequence numbers yet to be indexed for an index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_num_pindexes_actual</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">Total number of pindexes currently</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_num_pindexes_target</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">Planned/expected number of pindexes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_num_recs_to_persist</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">The number of entries (terms, records, dictionary rows, etc) by Bleve not yet persisted to storage</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_num_root_filesegments</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">The number of file segments in the root segment</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_num_root_memorysegments</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">The number of memory segments in the root segment</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_pct_cpu_gc</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge / percent</span></p>
+<p class="tableblock">The percentage of CPU time spent by an index in garbage collection</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_batches_flushed_on_maxops</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of batches executed due to the batch size being greater than the maximum number of operations per batch</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_batches_flushed_on_timer</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of batches executed at regular intervals</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_bleve_dest_closed</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of times Bleve destinations closed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_bleve_dest_opened</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">The number of times Bleve destinations opened</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_grpc_listeners_closed</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of gRPC listeners closed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_grpc_listeners_opened</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of gRPC listeners opened</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_grpc_queryreject_on_memquota</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of gRPC queries rejected due to the memory quota being lesser than the estimated memory required for merging search results from all partitions from the query</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_grpcs_listeners_closed</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of gRPC SSL listeners closed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_grpcs_listeners_opened</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of gRPC SSL listeners opened</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_http_limitlisteners_closed</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of HTTP limit listeners closed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_http_limitlisteners_opened</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of HTTP limit listeners opened</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_https_limitlisteners_closed</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of HTTPS limit listeners closed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_https_limitlisteners_opened</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of HTTPS limit listeners opened</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_queryreject_on_memquota</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of queries rejected due to the memory quota being lesser than the estimated memory required for merging search results from all partitions from the query</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_remote_grpc</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of remote(i.e. different node) gRPC requests</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_remote_grpc_tls</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of remote(i.e. different node) gRPC SSL requests when adding clients.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_remote_http</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of remote(i.e. different node) HTTP requests</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_tot_remote_http2</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total number of remote(i.e. different node) HTTP SSL requests</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_bytes_indexed</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge</span></p>
+<p class="tableblock">Rate of bytes indexed for an index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_bytes_query_results</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter / bytes</span></p>
+<p class="tableblock">Size of results coming back from full text queries for search results, including the entire size of the JSON sent</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_compaction_written_bytes</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter / bytes</span></p>
+<p class="tableblock">Number of bytes written to disk as a result of compaction</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_gc</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">The number of garbage collection events triggered</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_grpc_internal_queries</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">The number of internal gRPC requests from the co-ordinating node for the query to other nodes, for an index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_grpc_queries</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">The total number of queries, using gRPC for streaming, for an index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_grpc_queries_error</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">The number of queries that resulted in an error, using gRPC for streaming, for an index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_grpc_queries_slow</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">The number of queries in the slow query log, using gRPC for streaming, for an index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_grpc_queries_timeout</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">The number of queries that exceeded the timeout, using gRPC for streaming, for an index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_internal_queries</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">The number of internal queries from the co-ordinating node to other nodes, per unit time for an index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_queries</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">The number of full text queries per second for an index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_queries_error</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">The number of FTS queries for an index that resulted in an error</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_queries_rejected_by_herder</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">The number of queries rejected by the app herder when the memory used exceeds the application&#x27;s query quota</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_queries_slow</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">The number of FTS queries in the slow query log</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_queries_timeout</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">The number of FTS queries for an index that exceeded the timeout</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_request_time</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter / nanoseconds</span></p>
+<p class="tableblock">Total time spent processing query requests for an index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_term_searchers</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Number of bleve term searchers</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fts_total_term_searchers_finished</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Total term searchers that have finished serving a query</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 </article>
 </main>
 </div>
@@ -351,6 +741,7 @@ A list of the metrics provided by the Search Service.
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

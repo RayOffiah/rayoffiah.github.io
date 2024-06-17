@@ -24,6 +24,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="dcterms.identifier" content="7.2">
 <meta name="page-url" content="/server/7.2/metrics-reference/backup-service-metrics.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="server">
+<meta name="docsearch:component_title" content="server">
+<meta name="docsearch:cversion" content="7.2">
+<meta name="docsearch:component_version" content="server@7.2">
+<meta name="docsearch:module" content="metrics-reference">
+<meta name="docsearch:breadcrumbs" content="server / Reference / Metrics Reference / Backup Service Metrics">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="2">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item nav-item-selected">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -105,9 +134,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <option value="7.2" data-url="backup-service-metrics.html" selected>7.2</option>
         <option value="7.1" data-url="../../7.1/index.html">7.1</option>
         <option value="7.0" data-url="../../7.0/index.html">7.0</option>
-        <option value="6.6" data-url="../../6.6/index.html">6.6</option>
-        <option value="6.5" data-url="../../6.5/index.html">6.5</option>
-        <option value="6.0" data-url="../../6.0/index.html">6.0</option>
       </select>
     </template>
   </div>
@@ -204,11 +230,6 @@ A list of the metrics provided by the Backup Service.
 <div class="paragraph">
 <p>The following Backup Service metrics can be queried by means of the REST APIs described in <a href="../rest-api/rest-statistics.html" class="xref page">Statistics</a>.</p>
 </div>
-<div class="openblock template">
-<div class="content">
-<div class="paragraph">
-<p>{{! Template to display Couchbase Server metrics }}</p>
-</div>
 <style>
 /* for doc.css */
 .doc .admonitionblock.tip.key td.content::before {
@@ -219,7 +240,7 @@ A list of the metrics provided by the Backup Service.
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<div class="title">Tip</div>
 </td>
 <td class="content">
 <div class="ulist">
@@ -229,7 +250,7 @@ A list of the metrics provided by the Backup Service.
 </li>
 <li>
 <p>The <span class="status">type / unit</span> badge shows shows the Prometheus
-<a href="https://prometheus.io/docs/tutorials/understanding_metric_types/">type</a> and 
+<a href="https://prometheus.io/docs/tutorials/understanding_metric_types/">type</a> and
 <a href="https://prometheus.io/docs/practices/naming/#base-units">unit</a> (if present).</p>
 </li>
 </ul>
@@ -244,23 +265,49 @@ A list of the metrics provided by the Backup Service.
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{{#each this}}
-{{#if (ne stability "internal")}}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backup_data_size</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">gauge / bytes</span></p>
+<p class="tableblock">Repository backed up data size</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{@key}}</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backup_dispatched</code>
 &#160;&#160;&#160;
-<span class="edition">{{or added "7.0.0"}}</span>
-<span class="status">{{or type "unknown"}}{{#if unit}} / {{unit}}{{/if}}</span></p>
-<p class="tableblock">{{help}}</p>
-<p class="tableblock">{{!notes}} {{! uncomment the <code>!</code> to add the notes field}}</p>
-<p class="tableblock">{{/if}}
-{{/each}}</p></td>
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Number of tasks dispatched to be run</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backup_location_check</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Number of location checks performed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backup_task_duration_seconds</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">histogram</span></p>
+<p class="tableblock">Histogram of the task duration</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backup_task_orphaned</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Number of tasks that were triggered to run but the status is unknown</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backup_task_run</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span>
+<span class="status">counter</span></p>
+<p class="tableblock">Number of tasks run</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 </article>
 </main>
 </div>
@@ -351,6 +398,7 @@ A list of the metrics provided by the Backup Service.
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

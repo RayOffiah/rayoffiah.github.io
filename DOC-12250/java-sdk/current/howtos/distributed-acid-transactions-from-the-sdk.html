@@ -12,13 +12,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Using Couchbase Transactions | Couchbase Docs</title>
+<title>Distributed ACID Transactions from the Java SDK | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/java-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="A practical guide on using Couchbase Distributed ACID transactions, via the Java SDK.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
-        <link rel="prev" href="../hello-world/spring-data-sample-application.html">
+        <link rel="prev" href="view-queries-with-sdk.html">
         <link rel="next" href="transactions-single-query.html">
 
 
@@ -28,9 +28,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         
 <meta name="dcterms.subject" content="java-sdk">
-<meta name="dcterms.identifier" content="3.4">
+<meta name="dcterms.identifier" content="3.3">
 <meta name="page-url" content="/java-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="java-sdk">
+<meta name="docsearch:component_title" content="Java SDK">
+<meta name="docsearch:cversion" content="3.3">
+<meta name="docsearch:component_version" content="java-sdk@3.3">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="Java SDK / Transactions / How-to Guide">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -48,7 +62,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -69,19 +84,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -95,7 +125,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -106,15 +135,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="java-sdk">
-        <option value="3.4" data-url="distributed-acid-transactions-from-the-sdk.html" selected>3.4</option>
-        <option value="3.3" data-url="../../3.3/howtos/distributed-acid-transactions-from-the-sdk.html">3.3</option>
-        <option value="3.2" data-url="../../3.2/howtos/distributed-acid-transactions-from-the-sdk.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/howtos/distributed-acid-transactions-from-the-sdk.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/howtos/distributed-acid-transactions-from-the-sdk.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -123,7 +143,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-java/edit/release/3.4/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -183,13 +203,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="crumb"><a href="../hello-world/overview.html">Java SDK</a></li>
 <li class="crumb">Transactions</li>
-<li class="crumb"><a href="distributed-acid-transactions-from-the-sdk.html">Using Couchbase Transactions</a></li>
+<li class="crumb"><a href="distributed-acid-transactions-from-the-sdk.html">How-to Guide</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Using Couchbase Transactions</h1>
+<h1 class="page">Distributed ACID Transactions from the Java SDK</h1>
 <div class="labels">
 <ul><li class="guide"><span><i class="far fa-check-square"></i> how-to</span></li>
 </ul>
@@ -225,26 +245,26 @@ Users of the transactions library are recommended to follow the <a href="../proj
 <p>This guide will show you examples of how to perform multi-document ACID (atomic, consistent, isolated, and durable) database transactions within your application, using the Couchbase Java SDK.</p>
 </div>
 <div class="paragraph">
-<p>Refer to the <a href="../concept-docs/transactions.html" class="xref page">Transaction Concepts</a> page for a high-level overview.</p>
+<p>Refer to the <a href="../concept-docs/transactions.html" class="xref page">Distributed ACID Transactions</a> concept material for a high-level overview.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
 <div class="sectionbody">
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset1_couchbase-capella"></a>Couchbase Capella</p>
+<li id="tabs-1-couchbase-capella" class="tab">
+<p>Couchbase Capella</p>
 </li>
-<li>
-<p><a id="tabset1_couchbase-server"></a>Couchbase Server</p>
+<li id="tabs-1-couchbase-server" class="tab">
+<p>Couchbase Server</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_couchbase-capella">
+<div id="tabs-1-couchbase-capella--panel" class="tabpanel" aria-labelledby="tabs-1-couchbase-capella">
 <div class="ulist">
 <ul>
 <li>
@@ -255,7 +275,7 @@ Users of the transactions library are recommended to follow the <a href="../proj
 </li>
 <li>
 <p>Your application should have the relevant roles and permissions on the required buckets, scopes, and collections, to perform transactional operations.
-Refer to the <a href="#cloud:organizations:organization-projects-overview.adoc" class="xref unresolved">Organizations &amp; Access</a> page for more details.</p>
+Refer to the <a href="../../../cloud/organizations/organization-projects-overview.html" class="xref page">Organizations &amp; Access</a> page for more details.</p>
 </li>
 <li>
 <p>If your application is using <a href="../concept-docs/xattr.html" class="xref page">extended attributes (XATTRs)</a>, you should avoid using the XATTR field <code>txn</code>&#8201;&#8212;&#8201;this is reserved for Couchbase use.</p>
@@ -263,7 +283,7 @@ Refer to the <a href="#cloud:organizations:organization-projects-overview.adoc" 
 </ul>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_couchbase-server">
+<div id="tabs-1-couchbase-server--panel" class="tabpanel" aria-labelledby="tabs-1-couchbase-server">
 <div class="ulist">
 <ul>
 <li>
@@ -287,39 +307,8 @@ Refer to the <a href="#7.1@server:learn:security/roles.adoc" class="xref unresol
 </div>
 </div>
 </div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-<div class="title">Single Node Cluster</div>
 <div class="paragraph">
-<p>When using a single node cluster (for example, during development), the default number of replicas for a newly created bucket is <strong>1</strong>.
-If left at this default, all key-value writes performed with durability will fail with a <code>DurabilityImpossibleException</code>.
-In turn, this will cause all transactions (which perform all key-value writes durably) to fail.
-This setting can be changed via:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#cloud:clusters:data-service/manage-buckets.adoc#add-bucket" class="xref unresolved">Capella UI</a></p>
-</li>
-<li>
-<p><a href="#7.1@server:manage:manage-buckets/create-bucket.adoc#couchbase-bucket-settings" class="xref unresolved">Couchbase Server UI</a></p>
-</li>
-<li>
-<p><a href="#7.1@server:cli:cbcli/couchbase-cli-bucket-create.adoc#options" class="xref unresolved">Command Line</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>If the bucket already exists, then the server needs to be rebalanced for the setting to take effect.</p>
-</div>
-</td>
-</tr>
-</table>
+<p>Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 </div>
 </div>
@@ -327,26 +316,24 @@ This setting can be changed via:</p>
 <h2 id="creating-a-transaction"><a class="anchor" href="#creating-a-transaction"></a>Creating a Transaction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To create a transaction, an application must supply its logic inside a <code>lambda</code>, including any conditional logic required.
-Once the lambda has successfully run to conclusion, the transaction will be automatically committed.
-If at any point an error occurs, the transaction will rollback and the lambda may run again.</p>
+<p>Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 <div class="paragraph">
 <p>You can create transactions either <em>synchronously</em> or <em>asynchronously</em> (using the <a href="https://projectreactor.io/">Project Reactor</a> reactive library).</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div id="tabs-2" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset2_synchronous-api"></a>Synchronous API</p>
+<li id="tabs-2-synchronous-api" class="tab">
+<p>Synchronous API</p>
 </li>
-<li>
-<p><a id="tabset2_asynchronous-api"></a>Asynchronous API</p>
+<li id="tabs-2-asynchronous-api" class="tab">
+<p>Asynchronous API</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_synchronous-api">
+<div id="tabs-2-synchronous-api--panel" class="tabpanel" aria-labelledby="tabs-2-synchronous-api">
 <div class="paragraph">
 <p>The synchronous mode is the easiest to write and understand.</p>
 </div>
@@ -356,7 +343,7 @@ By invoking <code>Cluster.transactions()</code>, we can access the <code>Transac
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L188-L223">Scope inventory = cluster.bucket("travel-sample").scope("inventory");
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L194-L229">Scope inventory = cluster.bucket("travel-sample").scope("inventory");
 
 try {
     TransactionResult result = cluster.transactions().run((ctx) -&gt; {
@@ -395,7 +382,7 @@ try {
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset2_asynchronous-api">
+<div id="tabs-2-asynchronous-api--panel" class="tabpanel" aria-labelledby="tabs-2-asynchronous-api">
 <div class="paragraph">
 <p>The asynchronous mode allows you to build your application in a reactive style, which can help you scale with excellent efficiency.</p>
 </div>
@@ -405,7 +392,7 @@ By invoking <code>Cluster.reactive().transactions()</code>, we can access the <c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L229-L271">ReactiveScope inventory = cluster.bucket("travel-sample").scope("inventory").reactive();
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L235-L277">ReactiveScope inventory = cluster.bucket("travel-sample").scope("inventory").reactive();
 
 Mono&lt;TransactionResult&gt; result = cluster.reactive().transactions().run((ctx) -&gt; {
     // Inserting a doc:
@@ -453,53 +440,33 @@ result.block();</code></pre>
 </div>
 </div>
 </div>
-<div id="lambda-ops" class="paragraph">
-<p>The transaction lambda gets passed a <code>TransactionAttemptContext</code> object&#8201;&#8212;&#8201;generally referred to as <code>ctx</code> in these examples.
-Since the lambda could be rerun multiple times, it is important that it does not contain any side effects.
-In particular, you should never perform regular operations on a <code>Collection</code>, such as <code>collection.insert()</code>, inside the lambda.
-Such operations may be performed multiple times, and will not be performed transactionally.
-Instead, you should perform these operations through the <code>ctx</code> object, e.g. <code>ctx.insert()</code>.</p>
+<div class="paragraph">
+<p>Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 <div class="paragraph">
-<p>The result of a transaction is represented by a <code>TransactionResult</code> object, which can be used to expose debugging and logging information to help track what happened during a transaction.</p>
-</div>
-<div class="paragraph">
-<p>In the event that a transaction fails, your application could run into the following errors:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>TransactionCommitAmbiguousException</code></p>
-</li>
-<li>
-<p><code>TransactionFailedException</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Refer to <a href="../concept-docs/transactions-error-handling.html#transaction_errors" class="xref page">Error Handling</a> for more details on these.</p>
+<p>Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 <div class="sect2">
 <h3 id="logging"><a class="anchor" href="#logging"></a>Logging</h3>
 <div class="paragraph">
 <p>To aid troubleshooting, each transaction maintains a list of log entries, which can be logged on failure like this:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div id="tabs-3" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset3_synchronous-api"></a>Synchronous API</p>
+<li id="tabs-3-synchronous-api" class="tab">
+<p>Synchronous API</p>
 </li>
-<li>
-<p><a id="tabset3_asynchronous-api"></a>Asynchronous API</p>
+<li id="tabs-3-asynchronous-api" class="tab">
+<p>Asynchronous API</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_synchronous-api">
+<div id="tabs-3-synchronous-api--panel" class="tabpanel" aria-labelledby="tabs-3-synchronous-api">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L141-L145">} catch (TransactionCommitAmbiguousException e) {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L147-L151">} catch (TransactionCommitAmbiguousException e) {
     throw logCommitAmbiguousError(e);
 } catch (TransactionFailedException e) {
     throw logFailure(e);
@@ -507,10 +474,10 @@ Instead, you should perform these operations through the <code>ctx</code> object
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset3_asynchronous-api">
+<div id="tabs-3-asynchronous-api--panel" class="tabpanel" aria-labelledby="tabs-3-asynchronous-api">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L171-L177">}).doOnError(err -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L177-L183">}).doOnError(err -&gt; {
     if (err instanceof TransactionCommitAmbiguousException) {
         throw logCommitAmbiguousError((TransactionCommitAmbiguousException) err);
     } else if (err instanceof TransactionFailedException) {
@@ -527,7 +494,7 @@ Instead, you should perform these operations through the <code>ctx</code> object
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L631-L651">public static RuntimeException logCommitAmbiguousError(TransactionCommitAmbiguousException err) {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L642-L662">public static RuntimeException logCommitAmbiguousError(TransactionCommitAmbiguousException err) {
     // This example will intentionally not compile: the application needs to use
     // its own logging system to replace `logger`.
     logger.warning("Transaction possibly reached the commit point");
@@ -561,7 +528,7 @@ public static RuntimeException logFailure(TransactionFailedException err) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L152-L156">TransactionResult result = cluster.transactions().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L158-L162">TransactionResult result = cluster.transactions().run((ctx) -&gt; {
     // Your transaction logic
 });
 
@@ -612,22 +579,22 @@ result.logs().forEach(message -&gt; logger.info(message.toString()));</code></pr
 <div class="paragraph">
 <p>To insert a document within a transaction lambda, simply call <code>ctx.insert()</code>.</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div id="tabs-4" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset4_synchronous-api"></a>Synchronous API</p>
+<li id="tabs-4-synchronous-api" class="tab">
+<p>Synchronous API</p>
 </li>
-<li>
-<p><a id="tabset4_asynchronous-api"></a>Asynchronous API</p>
+<li id="tabs-4-asynchronous-api" class="tab">
+<p>Asynchronous API</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset4_synchronous-api">
+<div id="tabs-4-synchronous-api--panel" class="tabpanel" aria-labelledby="tabs-4-synchronous-api">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L278-L282">cluster.transactions().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L284-L288">cluster.transactions().run((ctx) -&gt; {
     String docId = "docId";
 
     ctx.insert(collection, docId, JsonObject.create());
@@ -635,10 +602,10 @@ result.logs().forEach(message -&gt; logger.info(message.toString()));</code></pr
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset4_asynchronous-api">
+<div id="tabs-4-asynchronous-api--panel" class="tabpanel" aria-labelledby="tabs-4-asynchronous-api">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L288-L290">cluster.reactive().transactions().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L294-L296">cluster.reactive().transactions().run((ctx) -&gt; {
     return ctx.insert(collection.reactive(), "docId", JsonObject.create());
 }).block();</code></pre>
 </div>
@@ -654,7 +621,7 @@ result.logs().forEach(message -&gt; logger.info(message.toString()));</code></pr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L309-L311">cluster.transactions().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L315-L317">cluster.transactions().run((ctx) -&gt; {
     TransactionGetResult doc = ctx.get(collection, "a-doc");
 });</code></pre>
 </div>
@@ -667,7 +634,7 @@ result.logs().forEach(message -&gt; logger.info(message.toString()));</code></pr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L296-L303">cluster.transactions().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L302-L309">cluster.transactions().run((ctx) -&gt; {
     try {
         TransactionGetResult doc = ctx.get(collection, "a-doc");
     }
@@ -682,7 +649,7 @@ result.logs().forEach(message -&gt; logger.info(message.toString()));</code></pr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L317-L323">cluster.transactions().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L323-L329">cluster.transactions().run((ctx) -&gt; {
     String docId = "docId";
 
     ctx.insert(collection, docId, JsonObject.create());
@@ -701,22 +668,22 @@ result.logs().forEach(message -&gt; logger.info(message.toString()));</code></pr
 <p>Replacing a document requires a <code>ctx.get()</code> call first.
 This is necessary so the SDK can check that the document is not involved in another transaction, and take appropriate action if so.</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div id="tabs-5" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset5_synchronous-api"></a>Synchronous API</p>
+<li id="tabs-5-synchronous-api" class="tab">
+<p>Synchronous API</p>
 </li>
-<li>
-<p><a id="tabset5_asynchronous-api"></a>Asynchronous API</p>
+<li id="tabs-5-asynchronous-api" class="tab">
+<p>Asynchronous API</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset5_synchronous-api">
+<div id="tabs-5-synchronous-api--panel" class="tabpanel" aria-labelledby="tabs-5-synchronous-api">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L329-L334">cluster.transactions().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L335-L340">cluster.transactions().run((ctx) -&gt; {
     TransactionGetResult doc = ctx.get(collection, "doc-id");
     JsonObject content = doc.contentAs(JsonObject.class);
     content.put("transactions", "are awesome");
@@ -725,10 +692,10 @@ This is necessary so the SDK can check that the document is not involved in anot
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset5_asynchronous-api">
+<div id="tabs-5-asynchronous-api--panel" class="tabpanel" aria-labelledby="tabs-5-asynchronous-api">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L340-L346">cluster.reactive().transactions().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L346-L352">cluster.reactive().transactions().run((ctx) -&gt; {
     return ctx.get(collection.reactive(), "doc-id").flatMap(doc -&gt; {
         JsonObject content = doc.contentAs(JsonObject.class);
         content.put("transactions", "are awesome");
@@ -746,32 +713,32 @@ This is necessary so the SDK can check that the document is not involved in anot
 <div class="paragraph">
 <p>As with replaces, removing a document requires a <code>ctx.get()</code> call first.</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div id="tabs-6" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset6_synchronous-api"></a>Synchronous API</p>
+<li id="tabs-6-synchronous-api" class="tab">
+<p>Synchronous API</p>
 </li>
-<li>
-<p><a id="tabset6_asynchronous-api"></a>Asynchronous API</p>
+<li id="tabs-6-asynchronous-api" class="tab">
+<p>Asynchronous API</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset6_synchronous-api">
+<div id="tabs-6-synchronous-api--panel" class="tabpanel" aria-labelledby="tabs-6-synchronous-api">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L352-L355">cluster.transactions().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L358-L361">cluster.transactions().run((ctx) -&gt; {
     TransactionGetResult doc = ctx.get(collection, "doc-id");
     ctx.remove(doc);
 });</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset6_asynchronous-api">
+<div id="tabs-6-asynchronous-api--panel" class="tabpanel" aria-labelledby="tabs-6-asynchronous-api">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L361-L364">cluster.reactive().transactions().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L367-L370">cluster.reactive().transactions().run((ctx) -&gt; {
     return ctx.get(collection.reactive(), "anotherDoc")
             .flatMap(doc -&gt; ctx.remove(doc));
 });</code></pre>
@@ -825,7 +792,7 @@ A query returns a <code>TransactionQueryResult</code> that is very similar to th
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L552-L560">Bucket travelSample = cluster.bucket("travel-sample");
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L563-L571">Bucket travelSample = cluster.bucket("travel-sample");
 Scope inventory = travelSample.scope("inventory");
 
 cluster.transactions().run((ctx) -&gt; {
@@ -841,7 +808,7 @@ cluster.transactions().run((ctx) -&gt; {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L564-L572">String hotelChain = "http://marriot%";
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L575-L583">String hotelChain = "http://marriot%";
 String country = "United States";
 
 cluster.transactions().run((ctx) -&gt; {
@@ -857,7 +824,7 @@ cluster.transactions().run((ctx) -&gt; {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L576-L590">cluster.transactions().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L587-L601">cluster.transactions().run((ctx) -&gt; {
     // Find all hotels of the chain
     var qr = ctx.query(inventory, "SELECT reviews FROM hotel WHERE url LIKE $1 AND country = $2",
             TransactionQueryOptions.queryOptions()
@@ -884,7 +851,7 @@ This example shows inserting a document and then selecting it again:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L600-L607">cluster.transactions().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L611-L618">cluster.transactions().run((ctx) -&gt; {
     ctx.query("INSERT INTO `default` VALUES ('doc', {'hello':'world'})");  <i class="conum" data-value="1"></i><b>(1)</b>
 
     // Performing a 'Read Your Own Write'
@@ -914,7 +881,7 @@ Other transactions, and other non-transactional actors, will not be able to see 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L692-L695">cluster.transactions().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L703-L706">cluster.transactions().run((ctx) -&gt; {
     ctx.query("INSERT INTO `default` VALUES ('doc', {'hello':'world'})",
             TransactionQueryOptions.queryOptions().profile(QueryProfile.TIMINGS));
 });</code></pre>
@@ -1003,7 +970,7 @@ In this example we insert a document with a key-value operation, and read it wit
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L679-L686">cluster.transactions().run((ctx) -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L690-L697">cluster.transactions().run((ctx) -&gt; {
     ctx.insert(collection, "doc", JsonObject.create().put("hello", "world")); <i class="conum" data-value="1"></i><b>(1)</b>
 
     // Performing a 'Read Your Own Write'
@@ -1025,22 +992,8 @@ In this example we insert a document with a key-value operation, and read it wit
 </tr>
 </table>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="title">Query Mode</div>
 <div class="paragraph">
-<p>When a transaction executes a query statement, the transaction enters <strong>query mode</strong>, which means that the query is executed with the user&#8217;s query permissions.
-Any <strong>key-value</strong> operations which are executed by the transaction <em>after</em> the query statement are <em>also</em> executed with the user&#8217;s query permissions.
-These may or may not be different to the user&#8217;s data permissions; if they are different, you may get unexpected results.</p>
-</div>
-</td>
-</tr>
-</table>
+<p>Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 </div>
 </div>
@@ -1055,7 +1008,7 @@ These may or may not be different to the user&#8217;s data permissions; if they 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L498-L513">List&lt;String&gt; docIds = Arrays.asList("doc1", "doc2", "doc3", "doc4", "doc5");
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L509-L524">List&lt;String&gt; docIds = Arrays.asList("doc1", "doc2", "doc3", "doc4", "doc5");
 int concurrency = 100; // This many operations will be in-flight at once
 
 var result = cluster.reactive().transactions().run((ctx) -&gt; {
@@ -1073,19 +1026,8 @@ var result = cluster.reactive().transactions().run((ctx) -&gt; {
 }).block();</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="title">Query Concurrency</div>
-Only one query statement will be performed by the Query service at a time.
-Non-blocking mechanisms can be used to perform multiple concurrent query statements, but this may result internally in some added network traffic due to retries, and is unlikely to provide any increased performance.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 <div class="sect2">
 <h3 id="non-transactional-writes"><a class="anchor" href="#non-transactional-writes"></a>Non-Transactional Writes</h3>
@@ -1098,9 +1040,10 @@ These events are raised when a non-transactional write has been detected and ove
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L418-L422">cluster.environment().eventBus().subscribe(event -&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L424-L429">cluster.environment().eventBus().subscribe(event -&gt; {
     if (event instanceof IllegalDocumentStateEvent) {
         // log this event for review
+        log(((TransactionEvent) event).logs());
     }
 });</code></pre>
 </div>
@@ -1124,7 +1067,7 @@ As usual with <code>Cluster</code> configuration, you can either explicitly crea
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L79-L93">ClusterEnvironment env = ClusterEnvironment.builder()
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L85-L99">ClusterEnvironment env = ClusterEnvironment.builder()
         .transactionsConfig(TransactionsConfig.durabilityLevel(DurabilityLevel.PERSIST_TO_MAJORITY)
                 .cleanupConfig(TransactionsCleanupConfig.cleanupWindow(Duration.ofSeconds(30)))
                 .queryConfig(TransactionsQueryConfig.scanConsistency(QueryScanConsistency.NOT_BOUNDED)))
@@ -1146,7 +1089,7 @@ env.shutdown();</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/TransactionsExample.java#L99-L110">Cluster cluster = Cluster.connect("localhost", ClusterOptions.clusterOptions("username", "password")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/TransactionsExample.java#L105-L116">Cluster cluster = Cluster.connect("localhost", ClusterOptions.clusterOptions("username", "password")
         .environment(env -&gt; env.transactionsConfig(TransactionsConfig
                 .durabilityLevel(DurabilityLevel.PERSIST_TO_MAJORITY)
                 .cleanupConfig(TransactionsCleanupConfig
@@ -1161,22 +1104,7 @@ cluster.disconnect();</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The default configuration will perform all writes with the durability setting <code>Majority</code>, ensuring that each write is available in-memory on the majority of replicas before the transaction continues.
-There are two higher durability settings available that will additionally wait for all mutations to be written to physical storage on either the active or the majority of replicas, before continuing.
-This further increases safety, at a cost of additional latency.</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-A level of <code>None</code> is present but its use is discouraged and unsupported.
-If durability is set to <code>None</code>, then ACID semantics are not guaranteed.
-</td>
-</tr>
-</table>
+<p>Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.1@sdk:shared:partial$acid-transactions.adoc[]</p>
 </div>
 </div>
 </div>
@@ -1275,7 +1203,7 @@ If durability is set to <code>None</code>, then ACID semantics are not guarantee
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -1292,6 +1220,7 @@ If durability is set to <code>None</code>, then ACID semantics are not guarantee
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

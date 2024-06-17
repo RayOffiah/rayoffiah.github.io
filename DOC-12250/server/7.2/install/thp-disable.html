@@ -24,6 +24,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="dcterms.identifier" content="7.2">
 <meta name="page-url" content="/server/7.2/install/thp-disable.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="server">
+<meta name="docsearch:component_title" content="server">
+<meta name="docsearch:cversion" content="7.2">
+<meta name="docsearch:component_version" content="server@7.2">
+<meta name="docsearch:module" content="install">
+<meta name="docsearch:breadcrumbs" content="server / Install &amp; Upgrade / Deployment Guidelines / Disable THP">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="2">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item nav-item-selected">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -105,9 +134,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <option value="7.2" data-url="thp-disable.html" selected>7.2</option>
         <option value="7.1" data-url="../../7.1/index.html">7.1</option>
         <option value="7.0" data-url="../../7.0/index.html">7.0</option>
-        <option value="6.6" data-url="../../6.6/index.html">6.6</option>
-        <option value="6.5" data-url="../../6.5/index.html">6.5</option>
-        <option value="6.0" data-url="../../6.0/index.html">6.0</option>
       </select>
     </template>
   </div>
@@ -290,36 +316,36 @@ esac</code></pre>
 </li>
 <li>
 <p>Configure the OS to run the script on boot.</p>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset1_red-hat-centos-amp-amazon-linux"></a>Red Hat, CentOS, &amp; Amazon Linux</p>
+<li id="tabs-1-red-hat-centos-amazon-linux" class="tab">
+<p>Red Hat, CentOS, &amp; Amazon Linux</p>
 </li>
-<li>
-<p><a id="tabset1_ubuntu-amp-debian"></a>Ubuntu &amp; Debian</p>
+<li id="tabs-1-ubuntu-debian" class="tab">
+<p>Ubuntu &amp; Debian</p>
 </li>
-<li>
-<p><a id="tabset1_suse"></a>SUSE</p>
+<li id="tabs-1-suse" class="tab">
+<p>SUSE</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_red-hat-centos-amp-amazon-linux">
+<div id="tabs-1-red-hat-centos-amazon-linux--panel" class="tabpanel" aria-labelledby="tabs-1-red-hat-centos-amazon-linux">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">sudo chkconfig --add disable-thp</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_ubuntu-amp-debian">
+<div id="tabs-1-ubuntu-debian--panel" class="tabpanel" aria-labelledby="tabs-1-ubuntu-debian">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">sudo update-rc.d disable-thp defaults</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_suse">
+<div id="tabs-1-suse--panel" class="tabpanel" aria-labelledby="tabs-1-suse">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">sudo insserv /etc/init.d/disable-thp</code></pre>
@@ -349,16 +375,16 @@ When they are in use on a system, they can be used to enable and disable THP.</p
 <div class="paragraph">
 <p>To disable THP in <code>tuned</code> and <code>ktune</code>, you need to edit or create a new <em>profile</em> that sets THP to <code>never</code>.</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div id="tabs-2" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset2_red-hat-centos-7"></a>Red Hat/CentOS 7</p>
+<li id="tabs-2-red-hatcentos-7" class="tab">
+<p>Red Hat/CentOS 7</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_red-hat-centos-7">
+<div id="tabs-2-red-hatcentos-7--panel" class="tabpanel" aria-labelledby="tabs-2-red-hatcentos-7">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -544,6 +570,7 @@ transparent_hugepages=never</code></pre>
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

@@ -12,26 +12,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Data Operations | Couchbase Docs</title>
+<title>Key Value Operations | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/nodejs-sdk/current/howtos/kv-operations.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
-        <link rel="prev" href="../hello-world/start-using-ottoman.html">
-        <link rel="next" href="n1ql-queries-with-sdk.html">
-
-
-
-                    <link rel="prev" href="../hello-world/start-using-ottoman.html">
-
-
-                    <link rel="next" href="n1ql-queries-with-sdk.html">
 
 
 <meta name="dcterms.subject" content="nodejs-sdk">
-<meta name="dcterms.identifier" content="4.2">
+<meta name="dcterms.identifier" content="4.1">
 <meta name="page-url" content="/nodejs-sdk/current/howtos/kv-operations.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="nodejs-sdk">
+<meta name="docsearch:component_title" content="Node.js SDK">
+<meta name="docsearch:cversion" content="4.1">
+<meta name="docsearch:component_version" content="nodejs-sdk@4.1">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="Node.js SDK / Working with Data / Key Value Operations">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -49,7 +54,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -70,19 +76,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -96,7 +117,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -107,16 +127,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="nodejs-sdk">
-        <option value="4.2" data-url="kv-operations.html" selected>4.2</option>
-        <option value="4.1" data-url="../../4.1/howtos/kv-operations.html">4.1</option>
-        <option value="4.0" data-url="../../4.0/howtos/kv-operations.html">4.0</option>
-        <option value="3.2" data-url="../../3.2/howtos/kv-operations.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/howtos/kv-operations.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/howtos/kv-operations.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -125,7 +135,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-nodejs/edit/release/4.2/modules/howtos/pages/kv-operations.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-nodejs/modules/howtos/pages/kv-operations.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -184,14 +194,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <nav class="crumbs" aria-label="breadcrumbs">
 <ul>
 <li class="crumb"><a href="../hello-world/overview.html">Node.js SDK</a></li>
-<li class="crumb">Getting Started</li>
-<li class="crumb"><a href="kv-operations.html">Data Operations</a></li>
+<li class="crumb">Working with Data</li>
+<li class="crumb"><a href="kv-operations.html">Key Value Operations</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Data Operations</h1>
+<h1 class="page">Key Value Operations</h1>
 <div class="labels">
 <ul><li class="guide"><span><i class="far fa-check-square"></i> how-to</span></li>
 </ul>
@@ -227,7 +237,7 @@ Here is the <em>Insert</em> operation at its simplest:</p>
 <div class="listingblock">
 <div class="title">Insert</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/94cb734bb8a85fae9eb01b066c0c2d814b34b22a/modules/devguide/examples/nodejs/kv-operations.js#L144">const result = await collection.insert(key, document);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-nodejs/modules/devguide/examples/nodejs/kv-operations.js#L144">const result = await collection.insert(key, document);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -236,7 +246,7 @@ Here is the <em>Insert</em> operation at its simplest:</p>
 <div class="listingblock">
 <div class="title">Insert (with options)</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/94cb734bb8a85fae9eb01b066c0c2d814b34b22a/modules/devguide/examples/nodejs/kv-operations.js#L159-L161">const result = await collection.insert(key, document,
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-nodejs/modules/devguide/examples/nodejs/kv-operations.js#L159-L161">const result = await collection.insert(key, document,
     { timeout: 10000 } // 10 seconds
 );</code></pre>
 </div>
@@ -253,7 +263,7 @@ for the <em>Replace</em> example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/94cb734bb8a85fae9eb01b066c0c2d814b34b22a/modules/devguide/examples/nodejs/kv-operations.js#L175-L178">const result = await collection.replace(key,
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-nodejs/modules/devguide/examples/nodejs/kv-operations.js#L175-L178">const result = await collection.replace(key,
     document,
     { cas: cas, expiry: 60, timeout: 5000 }
 );</code></pre>
@@ -272,7 +282,7 @@ For a discussion of item (Document) <em>vs</em> Bucket expiration, see the
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/94cb734bb8a85fae9eb01b066c0c2d814b34b22a/modules/devguide/examples/nodejs/kv-operations.js#L192-L199">let result = await collection.upsert(key, document,
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-nodejs/modules/devguide/examples/nodejs/kv-operations.js#L192-L199">let result = await collection.upsert(key, document,
     {
         expiry: 60,
         persist_to: 1,
@@ -315,7 +325,7 @@ These trade offs, as well as which settings may be tuned, are discussed in the <
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/94cb734bb8a85fae9eb01b066c0c2d814b34b22a/modules/devguide/examples/nodejs/kv-operations.js#L213-L219">let result = await collection.upsert(key, document,
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-nodejs/modules/devguide/examples/nodejs/kv-operations.js#L213-L219">let result = await collection.upsert(key, document,
     {
         expiry: 60,  // 60 seconds,
         durabilityLevel: couchbase.DurabilityLevel.None, // Majority etc.
@@ -354,7 +364,7 @@ Where the number of operations or other circumstances make bandwidth a significa
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/94cb734bb8a85fae9eb01b066c0c2d814b34b22a/modules/devguide/examples/nodejs/kv-operations.js#L113-L114">const result = await collection.get(key);
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-nodejs/modules/devguide/examples/nodejs/kv-operations.js#L113-L114">const result = await collection.get(key);
 document = result.value;</code></pre>
 </div>
 </div>
@@ -364,7 +374,7 @@ document = result.value;</code></pre>
 <div class="listingblock">
 <div class="title">Get (with options)</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/94cb734bb8a85fae9eb01b066c0c2d814b34b22a/modules/devguide/examples/nodejs/kv-operations.js#L128-L129">const result = await collection.get(key, { timeout: 1000 });
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-nodejs/modules/devguide/examples/nodejs/kv-operations.js#L128-L129">const result = await collection.get(key, { timeout: 1000 });
 document = result.value;</code></pre>
 </div>
 </div>
@@ -379,7 +389,7 @@ document = result.value;</code></pre>
 <div class="listingblock">
 <div class="title">Remove (with options)</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/94cb734bb8a85fae9eb01b066c0c2d814b34b22a/modules/devguide/examples/nodejs/kv-operations.js#L236-L243">const result = await collection.remove(key,
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-nodejs/modules/devguide/examples/nodejs/kv-operations.js#L236-L243">const result = await collection.remove(key,
     {
         cas: cas,
         persist_to: 0,  // non-zero gives "not implemented"
@@ -400,7 +410,7 @@ Using <code>touch()</code>, you can set expiration values on documents to handle
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/94cb734bb8a85fae9eb01b066c0c2d814b34b22a/modules/devguide/examples/nodejs/kv-operations.js#L258">const result = await collection.touch(key, 100); // 100 seconds</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-nodejs/modules/devguide/examples/nodejs/kv-operations.js#L258">const result = await collection.touch(key, 100); // 100 seconds</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -408,24 +418,13 @@ Using <code>touch()</code>, you can set expiration values on documents to handle
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/94cb734bb8a85fae9eb01b066c0c2d814b34b22a/modules/devguide/examples/nodejs/kv-operations.js#L271-L273">const result = await collection.touch(key, 100,  // 100 seconds
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-nodejs/modules/devguide/examples/nodejs/kv-operations.js#L271-L273">const result = await collection.touch(key, 100,  // 100 seconds
     { timeout: 5000 } // 5 seconds
 );</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the absolute value of the expiry is less than 30 days (such as <code>60 * 60 * 24 * 30</code>), it is considered an <em>offset</em>.
-If the value is greater, it is considered an <em>absolute time stamp</em>.
-For more on expiration see the <a href="../concept-docs/documents.html#setting-document-expiration" class="xref page">expiration section</a> of our documents discussion doc.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::7.1@sdk:shared:partial$documents.adoc[]</p>
 </div>
 </div>
 </div>
@@ -434,6 +433,42 @@ For more on expiration see the <a href="../concept-docs/documents.html#setting-d
 <div class="sectionbody">
 <div class="paragraph">
 <p>The value of a document can be increased or decreased atomically using <code>binary().increment()</code> and <code>binary().decrement()</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Increment</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-nodejs/modules/devguide/examples/nodejs/kv-operations.js#L284-L285">// increment binary value by 1
+const result = await collection.binary().increment(binValKey, 1);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Increment (with options)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-nodejs/modules/devguide/examples/nodejs/kv-operations.js#L293-L297">// increment binary value by 1, if binValKey doesn’t exist, seed it at 1000
+const result = await collection.binary().increment(binValKey, 1, {
+    initial: 1000,
+    timeout: 5000
+});</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Decrement</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-nodejs/modules/devguide/examples/nodejs/kv-operations.js#L309-L310">// decrement binary value by 1
+const result = await collection.binary().decrement(binValKey, 1);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Decrement (with options)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-nodejs/modules/devguide/examples/nodejs/kv-operations.js#L322-L328">// decrement binary value by 1, if binValKey doesn’t exist, seed it at 1000
+const result = await collection.binary().decrement(binValKey, 1,
+    {
+        initial: 1000,
+        timeout: 5000
+    },
+);</code></pre>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -447,64 +482,8 @@ Increment &amp; Decrement are considered part of the ‘binary’ API and as suc
 </tr>
 </table>
 </div>
-<div class="listingblock">
-<div class="title">Increment</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/94cb734bb8a85fae9eb01b066c0c2d814b34b22a/modules/devguide/examples/nodejs/kv-operations.js#L284-L285">// increment binary value by 1
-const result = await collection.binary().increment(binValKey, 1);</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Increment (with options)</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/94cb734bb8a85fae9eb01b066c0c2d814b34b22a/modules/devguide/examples/nodejs/kv-operations.js#L293-L297">// increment binary value by 1, if binValKey doesn’t exist, seed it at 1000
-const result = await collection.binary().increment(binValKey, 1, {
-    initial: 1000,
-    timeout: 5000
-});</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Decrement</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/94cb734bb8a85fae9eb01b066c0c2d814b34b22a/modules/devguide/examples/nodejs/kv-operations.js#L309-L310">// decrement binary value by 1
-const result = await collection.binary().decrement(binValKey, 1);</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Decrement (with options)</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript" data-source-url="https://github.com/couchbase/docs-sdk-nodejs/blob/94cb734bb8a85fae9eb01b066c0c2d814b34b22a/modules/devguide/examples/nodejs/kv-operations.js#L322-L328">// decrement binary value by 1, if binValKey doesn’t exist, seed it at 1000
-const result = await collection.binary().decrement(binValKey, 1,
-    {
-        initial: 1000,
-        timeout: 5000
-    },
-);</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method&#8201;&#8212;&#8201;to do this during an increment, use with the <code>Touch()</code> method.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="atomicity-across-data-centers"><a class="anchor" href="#atomicity-across-data-centers"></a>Atomicity Across Data Centers</h3>
 <div class="paragraph">
-<p>If you are using <a href="#7.1@server:manage:manage-xdcr/xdcr-management-overview.adoc" class="xref unresolved">Cross Data Center Replication</a> (XDCR), be sure to avoid modifying the same counter in more than one datacenter.
-If the same counter is modified in multiple datacenters between replications, the counter will no longer be atomic, and its value can change in unspecified ways.</p>
-</div>
-<div class="paragraph">
-<p>A counter must be incremented or decremented by only a single datacenter.
-Each datacenter must have its own set of counters that it uses&#8201;&#8212;&#8201;a possible implementation would be including a datacenter name in the counter document ID.</p>
-</div>
+<p>Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::7.1@sdk:shared:partial$atomic.adoc[]</p>
 </div>
 </div>
 </div>
@@ -525,7 +504,7 @@ const sampleBucket = sampleCluster.bucket("travel-sample");
 const sampleScope = sampleBucket.scope("tenant_agent_00");
 sampleColl = sampleScope.collection("users");
 
-[data-source-url=https://github.com/couchbase/docs-sdk-nodejs/blob/94cb734bb8a85fae9eb01b066c0c2d814b34b22a/modules/devguide/examples/nodejs/kv-operations.js#L514-L515]
+[data-source-url=file:///Users/rayoffiah/projects/couchbase/docs-sdk-nodejs/modules/devguide/examples/nodejs/kv-operations.js#L514-L515]
 let collDocument = { name: 'John Doe', preferred_email: 'johndoe111@test123.test' };
 result = await sampleColl.upsert(user, collDocument);</code></pre>
 </div>
@@ -545,18 +524,10 @@ result = await sampleColl.upsert(user, collDocument);</code></pre>
 <p>As well as various <a href="../concept-docs/data-model.html" class="xref page">Formats</a> of JSON, Couchbase can work directly with <a href="../concept-docs/nonjson.html" class="xref page">arbitary bytes, or binary format</a>.</p>
 </div>
 <div class="paragraph">
-<p>Our <a href="n1ql-queries-with-sdk.html" class="xref page">Query Engine</a> enables retrieval using SQL++ (formerly N1QL).</p>
+<p>Our <a href="n1ql-queries-with-sdk.html" class="xref page">Query Engine</a> enables retrieval of information using the SQL-like syntax of N1QL.</p>
 </div>
 </div>
 </div>
-
-        <nav class="pagination">
-
-                    <span class="prev"><a href="../hello-world/start-using-ottoman.html">Start Using the Ottoman ODM</a></span>
-
-
-                    <span class="next"><a href="n1ql-queries-with-sdk.html">Query</a></span>
-
 </article>
 </main>
 </div>
@@ -630,7 +601,7 @@ result = await sampleColl.upsert(user, collDocument);</code></pre>
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -647,6 +618,7 @@ result = await sampleColl.upsert(user, collDocument);</code></pre>
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

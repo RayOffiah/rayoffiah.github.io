@@ -12,27 +12,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Start Using the .NET SDK | Couchbase Docs</title>
+<title>Install and Start Using the .NET SDK with Couchbase Server | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/dotnet-sdk/current/hello-world/start-using-sdk.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="The Couchbase .NET SDK enables you to interact with a Couchbase Server cluster from .NET using C# and other .NET languages.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
-        <link rel="prev" href="overview.html">
-        <link rel="next" href="platform-help.html">
-
-
-
-                    <link rel="prev" href="overview.html">
-
-
-                    <link rel="next" href="platform-help.html">
 
 
 <meta name="dcterms.subject" content="dotnet-sdk">
-<meta name="dcterms.identifier" content="3.4">
+<meta name="dcterms.identifier" content="3.3">
 <meta name="page-url" content="/dotnet-sdk/current/hello-world/start-using-sdk.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="dotnet-sdk">
+<meta name="docsearch:component_title" content=".NET SDK">
+<meta name="docsearch:cversion" content="3.3">
+<meta name="docsearch:component_version" content="dotnet-sdk@3.3">
+<meta name="docsearch:module" content="hello-world">
+<meta name="docsearch:breadcrumbs" content=".NET SDK / Getting Started / Start Using the .NET SDK">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -50,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -71,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -97,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -108,15 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="dotnet-sdk">
-        <option value="3.4" data-url="start-using-sdk.html" selected>3.4</option>
-        <option value="3.3" data-url="../../3.3/hello-world/start-using-sdk.html">3.3</option>
-        <option value="3.2" data-url="../../3.2/hello-world/start-using-sdk.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/hello-world/start-using-sdk.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/hello-world/start-using-sdk.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -125,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.4/modules/hello-world/pages/start-using-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/hello-world/pages/start-using-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -191,10 +202,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Start Using the .NET SDK</h1>
+<h1 class="page">Install and Start Using the .NET SDK with Couchbase Server</h1>
 <div class="labels">
-<ul><li class="tutorial"><span><i class="fas fa-book-reader"></i> tutorial</span></li>
-</ul>
+<ul></ul>
 </div>
 
 
@@ -215,49 +225,31 @@ It offers an asynchronous API based on the <a href="https://docs.microsoft.com/e
 <p>The Couchbase .NET client allows applications to connect to Couchbase Server using any Common Language Runtime (CLR) language, including C#, F#, and VB.NET.
 The SDK is written in C#, and some of its idiomatic patterns reflect that choice.</p>
 </div>
-<div class="paragraph">
-<p>In this guide, you will learn:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>How to <a href="#connect">connect to Couchbase Capella or Couchbase Server</a>.</p>
-</li>
-<li>
-<p>How to <a href="#add-and-retrieve-documents">add and retrieve Documents</a>.</p>
-</li>
-<li>
-<p>How to <a href="#sql-lookup">lookup documents</a> with the <a href="https://www.couchbase.com/products/n1ql">SQL++ (formerly N1QL)</a> query language.</p>
-</li>
-</ul>
-</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="hello-couchbase"><a class="anchor" href="#hello-couchbase"></a>Hello Couchbase</h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p>On this page we show you how to quickly get up and running&#8201;&#8212;&#8201;installing the Couchbase .NET SDK, and trying out the C# <em>Hello World</em> code example against Couchbase Capella, or against a local Couchbase cluster.</p>
+</div>
+<div class="paragraph">
 <p>We will go through the code sample step by step, but for those in a hurry to see it, here it is:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_couchbase-capella-sample"></a>Couchbase Capella Sample</p>
-</li>
-<li>
-<p><a id="tabset1_local-couchbase-server"></a>Local Couchbase Server</p>
-</li>
-</ul>
-</div>
+<div class="exampleblock">
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_couchbase-capella-sample">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Couchbase Capella Sample</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
 <p>If you are connecting to <a href="https://docs.couchbase.com/cloud/index.html">Couchbase Capella</a>, be sure to get the correct endpoint as well as user, password&#8201;&#8212;&#8201;and see the <a href="#cloud-connections">Cloud section</a>, below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/devguide/examples/dotnet/Cloud/Cloud.cs">using System;
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/devguide/examples/dotnet/Cloud/Cloud.cs">using System;
 using System.Threading.Tasks;
 using Couchbase;
 
@@ -267,23 +259,15 @@ class CloudExample
 {
     public async Task Main()
     {
-        var options = new ClusterOptions
-        {
-            // Update these credentials for your Capella instance
-            UserName = "username",
-            Password = "Password!123",
-        };
-
-        // Sets a pre-configured profile called "wan-development" to help avoid latency issues
-        // when accessing Capella from a different Wide Area Network
-        // or Availability Zone (e.g. your laptop).
-        options.ApplyProfile("wan-development");
-
         var cluster = await Cluster.ConnectAsync(
-            // Update these credentials for your Capella instance
-            "couchbases://cb.&lt;your-endpoint&gt;.cloud.couchbase.com",
-            options
-        );
+            // Update these credentials for your Capella instance!
+            "couchbases://cb.njg8j7mwqnvwjqah.cloud.couchbase.com",
+            new ClusterOptions
+            {
+                UserName = "username",
+                Password = "Password!123",
+                KvTimeout = TimeSpan.FromSeconds(10)
+            });
 
         // get a bucket reference
         var bucket = await cluster.BucketAsync("travel-sample");
@@ -298,9 +282,8 @@ class CloudExample
 
         Console.WriteLine(getResult.ContentAs&lt;dynamic&gt;());
 
-        // Call the QueryAsync() function on the scope object and store the result.
-        var inventoryScope = bucket.Scope("inventory");
-        var queryResult = await inventoryScope.QueryAsync&lt;dynamic&gt;("SELECT * FROM airline WHERE id = 10");
+        // Call the QueryAsync() function on the cluster object and store the result.
+        var queryResult = await cluster.QueryAsync&lt;dynamic&gt;("select \"Hello World\" as greeting");
         
         // Iterate over the rows to access result data and print to the terminal.
         await foreach (var row in queryResult) {
@@ -314,52 +297,61 @@ class CloudExample
 <p>The Couchbase Capella free trial version comes with the Travel Sample Bucket, and its Query indexes, loaded and ready.</p>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_local-couchbase-server">
+</div>
+</dd>
+<dt class="hdlist1">Local Couchbase Server</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="listingblock try-it">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/hello-world/examples/StartUsing.csx">#r "nuget: CouchbaseNetClient, 3.4.8"
-
-using System;
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/hello-world/examples/StartUsing.cs">using System;
 using System.Threading.Tasks;
 using Couchbase;
 
-await new StartUsing().ExampleUsing();
-class StartUsing
+namespace examples
 {
-    public async Task ExampleUsing()
+    class StartUsing
     {
+        static async Task Main(string[] args)
+        {
 
-        var cluster = await Cluster.ConnectAsync(
-            // Update these credentials for your Local Couchbase instance!
-            "couchbase://your-ip",
-            "Administrator",
-            "password");
+            var cluster = await Cluster.ConnectAsync(
+                // Update these credentials for your Local Couchbase instance!
+                "couchbase://localhost",
+                "username",
+                "password");
 
-        // get a bucket reference
-        var bucket = await cluster.BucketAsync("travel-sample");
+            // get a bucket reference
+            var bucket = await cluster.BucketAsync("travel-sample");
 
-        // get a user-defined collection reference
-        var scope = await bucket.ScopeAsync("tenant_agent_00");
-        var collection = await scope.CollectionAsync("users");
+            // get a user-defined collection reference
+            var scope = await bucket.ScopeAsync("tenant_agent_00");
+            var collection = await scope.CollectionAsync("users");
 
-        // Upsert Document
-        var upsertResult = await collection.UpsertAsync("my-document-key", new { Name = "Ted", Age = 31 });
-        var getResult = await collection.GetAsync("my-document-key");
+            // Upsert Document
+            var upsertResult = await collection.UpsertAsync("my-document-key", new { Name = "Ted", Age = 31 });
+            var getResult = await collection.GetAsync("my-document-key");
 
-        Console.WriteLine(getResult.ContentAs&lt;dynamic&gt;());
+            Console.WriteLine(getResult.ContentAs&lt;dynamic&gt;());
 
-        // Call the QueryAsync() function on the scope object and store the result.
-        var inventoryScope = bucket.Scope("inventory");
-        var queryResult = await inventoryScope.QueryAsync&lt;dynamic&gt;("SELECT * FROM airline WHERE id = 10");
-        
-        // Iterate over the rows to access result data and print to the terminal.
-        await foreach (var row in queryResult) {
-            Console.WriteLine(row);
+            // Call the QueryAsync() function on the cluster object and store the result.
+            var queryResult = await cluster.QueryAsync&lt;dynamic&gt;("select \"Hello World\" as greeting");
+            
+            // Iterate over the rows to access result data and print to the terminal.
+            await foreach (var row in queryResult) {
+                Console.WriteLine(row);
+            }
+
         }
-
     }
 }</code></pre>
 </div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
 <p>As well as the .NET SDK (see below), and a running instance of Couchbase Server, you will need to load up the Travel Sample Bucket
@@ -370,19 +362,21 @@ or the <a href="#7.1@server:manage:manage-settings/install-sample-buckets.adoc#i
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
 <h2 id="installing-the-sdk"><a class="anchor" href="#installing-the-sdk"></a>Installing the SDK</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="requirements"><a class="anchor" href="#requirements"></a>Requirements</h3>
 <div class="paragraph">
-<p>The Couchbase .NET SDK is compatible with <a href="https://docs.microsoft.com/en-us/dotnet/standard/net-standard">.NET Standard</a> 2.0 and .NET Standard 2.1, which means that it&#8217;s compatible with .NET Framework 4.6.2+, .NET 5.0, .NET 6.0, and .NET Core 3.1.
+<p>The Couchbase .NET SDK is compatible with <a href="https://docs.microsoft.com/en-us/dotnet/standard/net-standard">.NET Standard</a> 2.0 and .NET Standard 2.1, which means that it is compatible with .NET Framework 4.6.2+, .NET 5.0, .NET 6.0, and .NET Core 3.1.
 The <a href="https://docs.microsoft.com/en-us/dotnet/standard/net-standard">.NET Standard documentation</a> and
 <a href="https://dotnet.microsoft.com/platform/dotnet-standard#versions">.NET Standard version chart</a> may be useful to help understand other available options.</p>
 </div>
 <div class="paragraph">
-<p>Couchbase strongly recommends using the latest version of .NET that&#8217;s officially supported by both Microsoft and Couchbase.
-Other .NET implementations may work, but aren&#8217;t tested, and are outside the scope of technical support.
+<p>We strongly recommend using the latest version of .NET that is officially supported by Microsoft.
+Other .NET implementations might work but are not tested and are outside of the scope for technical support.
 See the <a href="../project-docs/compatibility.html#dotnet-compatibility" class="xref page">Compatibility</a> section for more details.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="quick-installation"><a class="anchor" href="#quick-installation"></a>Quick Installation</h3>
@@ -421,236 +415,159 @@ See the <a href="../project-docs/compatibility.html#dotnet-compatibility" class=
 </div>
 </div>
 <div class="sect1">
-<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following code samples assume:</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_couchbase-capella"></a>Couchbase Capella</p>
-</li>
-<li>
-<p><a id="tabset2_local-couchbase-server"></a>Local Couchbase Server</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_couchbase-capella">
-<div class="ulist">
-<ul>
-<li>
-<p>You have signed up to <a href="https://cloud.couchbase.com/sign-up">Couchbase Capella</a>.</p>
-</li>
-<li>
-<p>You have created your own bucket, or loaded the Travel Sample dataset.
-Note, the Travel Sample dataset is installed automatically by the Capella free trial.</p>
-</li>
-<li>
-<p>A user is created with permissions to access the cluster (at least Application Access permissions).
-See the <a href="#cloud:get-started:cluster-and-data.adoc#credentials" class="xref unresolved">Capella connection page</a> for more details.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Couchbase Capella uses <a href="#cloud:organizations:organization-projects-overview.adoc" class="xref unresolved">Roles</a> to control user access to database resources.
-For the purposes of this guide, you can use the <strong>Organization Owner</strong> role automatically assigned to your account during installation of the Capella cluster.
-In a production scenario, we strongly recommend setting up users with more granular access roles as a best practice.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_local-couchbase-server">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#7.1@server:getting-started/do-a-quick-install.adoc" class="xref unresolved">Couchbase Server</a> is installed and accessible locally.</p>
-</li>
-<li>
-<p>You have created your own bucket, or loaded the Travel Sample dataset using the <a href="#7.1@server:manage:manage-settings/install-sample-buckets.adoc#install-sample-buckets-with-the-ui" class="xref unresolved">Web interface</a>.</p>
-</li>
-<li>
-<p>A user is created with permissions to access your cluster (at least Application Access permissions).
-See <a href="#7.1@server:manage:manage-security/manage-users-and-roles.adoc" class="xref unresolved">Manage Users, Groups and Roles</a> for more details.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Couchbase Server uses <a href="#7.1@server:learn:security/roles.adoc" class="xref unresolved">Role Based Access Control (RBAC)</a> to control access to resources.
-In this guide we suggest using the <strong>Full Admin</strong> role created during setup of your local Couchbase Server cluster.
-For production client code, you will want to use more appropriate, restrictive settings.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="step-by-step"><a class="anchor" href="#step-by-step"></a>Step by Step</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Start a new console project (in Visual Studio or VS Code, etc).
 Go to our <a href="platform-help.html" class="xref page">Platform Introduction</a> if you don&#8217;t already have an editor or IDE setup for working in .NET&#8201;&#8212;&#8201;e.g. you are evaluating the .NET SDK, but .NET is not your normal platform.</p>
 </div>
+<div class="sect2">
+<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
+<div class="paragraph">
+<p>Install the latest 3.3 <a href="https://www.nuget.org/packages/CouchbaseNetClient/" target="_blank" rel="noopener">CouchbaseNetClient</a> NuGet package&#8201;&#8212;&#8201;see <a href="#quick-install">above</a>.</p>
+</div>
+<div class="paragraph">
+<p>The following code samples assume:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Couchbase <a href="../../../cloud/index.html" class="xref page">Capella</a> cluster, or Couchbase Server is installed and accessible locally (<a href="#server:getting-started:do-a-quick-install.adoc" class="xref unresolved">Do a Quick Install</a> if you don&#8217;t already have Couchbase Server installed).</p>
+</li>
+<li>
+<p>You have create a bucket (perhaps using the <a href="#7.1@server:manage:manage-settings/install-sample-buckets.adoc" class="xref unresolved">travel-sample dataset</a>, or by creating a new bucket).
+Note, the Travel Sample bucket is installed automatically by the Capella free trial.</p>
+</li>
+<li>
+<p>You have created a Couchbase user named "username" [change as appropriate] with permissions to access the cluster (at least Application Access permissions).</p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p>Firstly, you will need to have a few <code>using</code> statements at the top of <strong>Program.cs</strong> in your console program:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/hello-world/examples/StartUsing.csx#L5-L6">using System.Threading.Tasks;
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/hello-world/examples/StartUsing.cs#L3-L4">using System.Threading.Tasks;
 using Couchbase;</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="connect"><a class="anchor" href="#connect"></a>Connect</h3>
-<div class="paragraph">
-<p>Connect to your cluster by calling the <code>Cluster.ConnectAsync()</code> method and pass it your connection details.
-The basic connection details that you’ll need are given below&#8201;&#8212;&#8201;for more background information, see <a href="../howtos/managing-connections.html" class="xref page">Managing Connections</a>.</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div class="sect2">
+<h3 id="connection"><a class="anchor" href="#connection"></a>Connection</h3>
+<div class="paragraph">
+<p>Then you can connect to the cluster:</p>
+</div>
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset3_capella-connection"></a>Capella Connection</p>
+<li id="tabs-1-capella-connection" class="tab">
+<p>Capella Connection</p>
 </li>
-<li>
-<p><a id="tabset3_local-server-connection"></a>Local Server Connection</p>
+<li id="tabs-1-local-server-connection" class="tab">
+<p>Local Server Connection</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_capella-connection">
-<div class="paragraph">
-<p>From version 3.3, the .NET SDK includes Capella&#8217;s standard certificates by default, so you do not need to additional configuration.
-You do need to enable TLS, which can be done by simply using <code>couchbases://</code> in the connection string as in this example.</p>
-</div>
+<div id="tabs-1-capella-connection--panel" class="tabpanel" aria-labelledby="tabs-1-capella-connection">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/devguide/examples/dotnet/Cloud/Cloud.cs#L14-L30">var options = new ClusterOptions
-{
-    // Update these credentials for your Capella instance
-    UserName = "username",
-    Password = "Password!123",
-};
-
-// Sets a pre-configured profile called "wan-development" to help avoid latency issues
-// when accessing Capella from a different Wide Area Network
-// or Availability Zone (e.g. your laptop).
-options.ApplyProfile("wan-development");
-
-var cluster = await Cluster.ConnectAsync(
-    // Update these credentials for your Capella instance
-    "couchbases://cb.&lt;your-endpoint&gt;.cloud.couchbase.com",
-    options
-);</code></pre>
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/devguide/examples/dotnet/Cloud/Cloud.cs#L14-L22">var cluster = await Cluster.ConnectAsync(
+    // Update these credentials for your Capella instance!
+    "couchbases://cb.njg8j7mwqnvwjqah.cloud.couchbase.com",
+    new ClusterOptions
+    {
+        UserName = "username",
+        Password = "Password!123",
+        KvTimeout = TimeSpan.FromSeconds(10)
+    });</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>When accessing Capella from a different Wide Area Network or Availability Zone, you may experience latency issues with the default connection settings.
-SDK 3.4 introduces a <code>wan-development</code> Configuration Profile, which provides pre-configured timeout settings suitable for working in high latency environments.
-Basic usage is shown in the example above, but if you want to learn more see <a href="../ref/client-settings.html#constrained-network-environments" class="xref page">Constrained Network Environments</a>.</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-The Configuration Profiles feature is currently a <a href="../project-docs/compatibility.html#interface-stability" class="xref page">Volatile API</a> and may be subject to change.
-</td>
-</tr>
-</table>
+<p>From 3.3, the .NET SDK includes Capella&#8217;s standard certificates by default, so you do not need to additional configuration.
+You do need to enable TLS, which can be done by simply using <code>couchbases:</code> in the Connection String as in this example.</p>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset3_local-server-connection">
+<div id="tabs-1-local-server-connection--panel" class="tabpanel" aria-labelledby="tabs-1-local-server-connection">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/hello-world/examples/StartUsing.csx#L16-L20">var cluster = await Cluster.ConnectAsync(
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/hello-world/examples/StartUsing.cs#L15-L19">var cluster = await Cluster.ConnectAsync(
     // Update these credentials for your Local Couchbase instance!
-    "couchbase://your-ip",
-    "Administrator",
+    "couchbase://localhost",
+    "username",
     "password");</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For developing locally on the same machine as Couchbase Server, your URI can be <code>couchbase://localhost</code>.
-For production deployments, you will want to use a secure server, with <code>couchbases://</code>.</p>
+<p>For developing locally on the same machine as the Couchbase Server, your URI can be <em>couchbase://localhost</em> as here. But for Production deployments, you will want to use a secure server,
+with <code>couchbases://</code>.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>Following successful authentication, add this code snippet to access your <code>Bucket</code>:</p>
+<p>See <a href="../howtos/managing-connections.html" class="xref page">Managing Connections</a> for full configuration details.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/hello-world/examples/StartUsing.csx#L24-L25">// get a bucket reference
-var bucket = await cluster.BucketAsync("travel-sample");</code></pre>
-</div>
+<div class="paragraph">
+<p>Couchbase uses <a href="#server:learn:security/roles.adoc" class="xref unresolved">Role Based Access Control (RBAC)</a> to control access to resources.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-and-retrieve-documents"><a class="anchor" href="#add-and-retrieve-documents"></a>Add and Retrieve Documents</h3>
+<h3 id="bucket-scopes-and-collections"><a class="anchor" href="#bucket-scopes-and-collections"></a>Bucket, Scopes, and Collections</h3>
+<div class="paragraph">
+<p>Open the bucket:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/hello-world/examples/StartUsing.cs#L23-L24">// get a bucket reference
+var bucket = await cluster.BucketAsync("travel-sample");</code></pre>
+</div>
+</div>
 <div class="paragraph">
 <p>Collections allow Documents to be grouped by purpose or theme, according to specified <em>Scope</em>.
 Our Travel Sample bucket has separate scopes for inventory (flights, etc.), and for tenants (different travel agents).</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/devguide/examples/dotnet/Cloud/Cloud.cs#L39-L41">// get a user-defined collection reference
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/hello-world/examples/StartUsing.cs#L28-L30">// get a user-defined collection reference
 var scope = await bucket.ScopeAsync("tenant_agent_00");
 var collection = await scope.CollectionAsync("users");</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p><a href="../howtos/kv-operations.html" class="xref page">Data operations</a>, like storing and retrieving documents, can be done using simple methods on the <code>Collection</code> class such as <code>Collection.GetAsync()</code> and <code>Collection.UpsertAsync()</code>.</p>
 </div>
 <div class="paragraph">
 <p>To get you started the following code creates a new document in a custom scope and collection and then fetches it again, printing the result.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/hello-world/examples/StartUsing.csx#L35-L39">// Upsert Document
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/hello-world/examples/StartUsing.cs#L34-L38">// Upsert Document
 var upsertResult = await collection.UpsertAsync("my-document-key", new { Name = "Ted", Age = 31 });
 var getResult = await collection.GetAsync("my-document-key");
 
 Console.WriteLine(getResult.ContentAs&lt;dynamic&gt;());</code></pre>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="sql-lookup"><a class="anchor" href="#sql-lookup"></a>SQL++ Lookup</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Couchbase SQL++ queries can be performed at the <code>Cluster</code> or <code>Scope</code> level by invoking <code>Cluster.QueryAsync()</code> or <code>Scope.QueryAsync()</code>.</p>
+<p>Other possible key/value CRUD Operations are described in detail on the <a href="../howtos/kv-operations.html" class="xref page">KV Operations page</a>.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Cluster level queries require you to specify the fully qualified keyspace each time (e.g. <code>travel-sample.inventory.airline</code>).
-However, with a Scope level query you only need to specify the Collection name&#8201;&#8212;&#8201;which in this case is <code>airline</code>:</p>
+<p>You can also perform a N1QL query with the cluster object:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="https://github.com/couchbase/docs-sdk-dotnet/blob/eaeb4183bf28c56b06e4e7bac05b3ca28a2cd8da/modules/devguide/examples/dotnet/Cloud/Cloud.cs#L53-L60">// Call the QueryAsync() function on the scope object and store the result.
-var inventoryScope = bucket.Scope("inventory");
-var queryResult = await inventoryScope.QueryAsync&lt;dynamic&gt;("SELECT * FROM airline WHERE id = 10");
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-dotnet/modules/hello-world/examples/StartUsing.cs#L42-L48">// Call the QueryAsync() function on the cluster object and store the result.
+var queryResult = await cluster.QueryAsync&lt;dynamic&gt;("select \"Hello World\" as greeting");
 
 // Iterate over the rows to access result data and print to the terminal.
 await foreach (var row in queryResult) {
@@ -659,7 +576,7 @@ await foreach (var row in queryResult) {
 </div>
 </div>
 <div class="paragraph">
-<p>You can learn more about SQL++ queries on the <a href="../howtos/n1ql-queries-with-sdk.html" class="xref page">Query page</a>.</p>
+<p>You can learn more about N1QL queries on the <a href="../howtos/n1ql-queries-with-sdk.html" class="xref page">Query page</a>.</p>
 </div>
 </div>
 </div>
@@ -679,7 +596,7 @@ await foreach (var row in queryResult) {
 <p>Explore <a href="../howtos/kv-operations.html" class="xref page">Key Value Operations</a> against a document database;</p>
 </li>
 <li>
-<p>Or <a href="../howtos/n1ql-queries-with-sdk.html" class="xref page">Query</a> with our SQL-based SQL++ query language;</p>
+<p>Or <a href="../howtos/n1ql-queries-with-sdk.html" class="xref page">Query</a> with our SQL-based N1QL language;</p>
 </li>
 <li>
 <p>Or read up on <a href="../concept-docs/data-services.html" class="xref page">which service fits your use case</a>.</p>
@@ -725,14 +642,6 @@ If you&#8217;re running the SDK on your laptop against a Capella cluster, see fu
 </div>
 </div>
 </div>
-
-        <nav class="pagination">
-
-                    <span class="prev"><a href="overview.html">.NET SDK</a></span>
-
-
-                    <span class="next"><a href="platform-help.html">Platform Introduction</a></span>
-
 </article>
 </main>
 </div>
@@ -806,7 +715,7 @@ If you&#8217;re running the SDK on your laptop against a Capella cluster, see fu
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -823,6 +732,7 @@ If you&#8217;re running the SDK on your laptop against a Capella cluster, see fu
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

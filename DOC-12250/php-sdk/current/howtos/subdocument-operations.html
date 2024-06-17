@@ -24,6 +24,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="dcterms.identifier" content="4.0">
 <meta name="page-url" content="/php-sdk/current/howtos/subdocument-operations.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="php-sdk">
+<meta name="docsearch:component_title" content="PHP SDK">
+<meta name="docsearch:cversion" content="4.0">
+<meta name="docsearch:component_version" content="php-sdk@4.0">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="PHP SDK / Working with Data / Sub-Document Operations">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,14 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="php-sdk">
-        <option value="4.0" data-url="subdocument-operations.html" selected>4.0</option>
-        <option value="3.2" data-url="../../3.2/howtos/subdocument-operations.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/howtos/subdocument-operations.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/howtos/subdocument-operations.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -115,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-php/edit/release/4.0/modules/howtos/pages/subdocument-operations.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/pages/subdocument-operations.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -276,7 +297,7 @@ The latter saves even more bandwidth by not retrieving the contents of the path 
 <div class="listingblock">
 <div class="title">Retrieve sub-document value</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-lookupin.php#L17-L22">$result = $collection-&gt;lookupIn("customer123", [
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-lookupin.php#L17-L22">$result = $collection-&gt;lookupIn("customer123", [
     new \Couchbase\LookupGetSpec("addresses.delivery.country")
 ]);
 $country = $result-&gt;content(0);
@@ -287,7 +308,7 @@ printf("%s\n", $country);
 <div class="listingblock">
 <div class="title">Check existence of sub-document path</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-lookupin.php#L26-L30">$result = $collection-&gt;lookupIn("customer123", [
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-lookupin.php#L26-L30">$result = $collection-&gt;lookupIn("customer123", [
     new \Couchbase\LookupExistsSpec("purchases.pending[-1]")
 ]);
 printf("Path exists? %s\n", $result-&gt;exists(0) ? "true" : "false");
@@ -300,7 +321,7 @@ printf("Path exists? %s\n", $result-&gt;exists(0) ? "true" : "false");
 <div class="listingblock">
 <div class="title">Combine multiple lookup operations</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-lookupin.php#L34-L41">$result = $collection-&gt;lookupIn("customer123", [
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-lookupin.php#L34-L41">$result = $collection-&gt;lookupIn("customer123", [
     new \Couchbase\LookupGetSpec("addresses.delivery.country"),
     new \Couchbase\LookupExistsSpec("purchases.pending[-1]")
 ]);
@@ -322,7 +343,7 @@ The simplest of these operations is <em>subdoc-upsert</em>, which, similar to th
 <div class="listingblock">
 <div class="title">Upserting a new sub-document</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-mutatein.php#L17-L19">$result = $collection-&gt;mutateIn("customer123", [
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-mutatein.php#L17-L19">$result = $collection-&gt;mutateIn("customer123", [
     new \Couchbase\MutateUpsertSpec("fax", "311-555-0151")
 ]);</code></pre>
 </div>
@@ -333,7 +354,7 @@ The simplest of these operations is <em>subdoc-upsert</em>, which, similar to th
 <div class="listingblock">
 <div class="title">Inserting a sub-document</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-mutatein.php#L23-L26">$result = $collection-&gt;mutateIn("customer123", [
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-mutatein.php#L23-L26">$result = $collection-&gt;mutateIn("customer123", [
     new \Couchbase\MutateInsertSpec("purchases.complete", [42, true, "None"])
 ]);
 // SubdocPathExistsError</code></pre>
@@ -345,7 +366,7 @@ Here&#8217;s an example of one which replaces one path and removes another.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-mutatein.php#L30-L33">$result = $collection-&gt;mutateIn("customer123", [
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-mutatein.php#L30-L33">$result = $collection-&gt;mutateIn("customer123", [
     new \Couchbase\MutateRemoveSpec("addresses.billing"),
     new \Couchbase\MutateReplaceSpec("email", "dougr96@hotmail.com")
 ]);</code></pre>
@@ -375,7 +396,7 @@ Unlike fulldoc <em>append</em>/<em>prepend</em> operations (which simply concate
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-mutatein-arrays.php#L18-L21">$result = $collection-&gt;MutateIn("customer123", [
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-mutatein-arrays.php#L18-L21">$result = $collection-&gt;MutateIn("customer123", [
     new \Couchbase\MutateArrayAppendSpec("purchases.complete", [777])
 ]);
 // purchases.complete is now [339, 976, 442, 666, 777]</code></pre>
@@ -383,7 +404,7 @@ Unlike fulldoc <em>append</em>/<em>prepend</em> operations (which simply concate
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-mutatein-arrays.php#L25-L28">$result = $collection-&gt;MutateIn("customer123", [
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-mutatein-arrays.php#L25-L28">$result = $collection-&gt;MutateIn("customer123", [
     new \Couchbase\MutateArrayPrependspec("purchases.abandoned", [18])
 ]);
 // purchases.abandoned is now [18, 157, 49, 999]</code></pre>
@@ -396,7 +417,7 @@ Simply initialize the document with an empty array and then use the empty path f
 <div class="listingblock">
 <div class="title">Creating and populating an array document</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-mutatein-arrays.php#L32-L36">$result = $collection-&gt;upsert("my_array", []);
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-mutatein-arrays.php#L32-L36">$result = $collection-&gt;upsert("my_array", []);
 $result = $collection-&gt;mutateIn("my_array", [
     new \Couchbase\MutateArrayAppendSpec("", ["some element"])
 ]);
@@ -410,7 +431,7 @@ Be sure to know the difference between passing a collection of multiple elements
 <div class="listingblock">
 <div class="title">Add multiple elements to an array</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-mutatein-arrays.php#L40-L43">$result = $collection-&gt;mutateIn("my_array", [
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-mutatein-arrays.php#L40-L43">$result = $collection-&gt;mutateIn("my_array", [
     new \Couchbase\MutateArrayAppendSpec("", ["elem1", "elem2", "elem3"])
 ]);
 // the document my_array is now ["some_element", "elem1", "elem2", "elem3"]</code></pre>
@@ -419,7 +440,7 @@ Be sure to know the difference between passing a collection of multiple elements
 <div class="listingblock">
 <div class="title">Add single array as element to existing array</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-mutatein-arrays.php#L47-L50">$result = $collection-&gt;mutateIn("my_array", [
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-mutatein-arrays.php#L47-L50">$result = $collection-&gt;mutateIn("my_array", [
     new \Couchbase\MutateArrayAppendSpec("", [["elem1", "elem2", "elem3"]])
 ]);
 // the document my_array is now ["some_element", ["elem1", "elem2", "elem3"]]</code></pre>
@@ -431,7 +452,7 @@ Be sure to know the difference between passing a collection of multiple elements
 <div class="listingblock">
 <div class="title">Adding multiple elements to array (slow)</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-mutatein-arrays.php#L54-L58">$result = $collection-&gt;mutateIn("my_array", [
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-mutatein-arrays.php#L54-L58">$result = $collection-&gt;mutateIn("my_array", [
     new \Couchbase\MutateArrayAppendSpec("", ["elem1"]),
     new \Couchbase\MutateArrayAppendSpec("", ["elem2"]),
     new \Couchbase\MutateArrayAppendSpec("", ["elem3"]),
@@ -443,7 +464,7 @@ Be sure to know the difference between passing a collection of multiple elements
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-mutatein-arrays.php#L62-L64">$result = $collection-&gt;mutateIn("customer123", [
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-mutatein-arrays.php#L62-L64">$result = $collection-&gt;mutateIn("customer123", [
     new \Couchbase\MutateArrayAppendSpec("some.array", ["Hello", "World"], false, true)
     ]);</code></pre>
 </div>
@@ -459,7 +480,7 @@ This will do a check to determine if the given value exists or not before actual
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-mutatein-arrays.php#L68-L76">$result = $collection-&gt;mutateIn("customer123", [
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-mutatein-arrays.php#L68-L76">$result = $collection-&gt;mutateIn("customer123", [
     new \Couchbase\MutateArrayAddUniqueSpec("purchases.complete", 95)
 ]);
 // =&gt; Success
@@ -490,7 +511,7 @@ For example, to insert <code>"cruel"</code> as the second element in the array <
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-mutatein-arrays.php#L80-L83">$result = $collection-&gt;upsert("array", ["Hello", "world"]);
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-mutatein-arrays.php#L80-L83">$result = $collection-&gt;upsert("array", ["Hello", "world"]);
 $result = $collection-&gt;mutateIn("array", [
     new \Couchbase\MutateArrayInsertSpec("[1]", ["cruel"])
 ]);</code></pre>
@@ -511,7 +532,7 @@ These operations are logically similar to the <em>counter</em> operation on an e
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-counters.php#L17-L21">$result = $collection-&gt;mutateIn("customer123", [
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-counters.php#L17-L21">$result = $collection-&gt;mutateIn("customer123", [
     new \Couchbase\MutateCounterSpec("logins", 1)
 ]);
 
@@ -524,7 +545,7 @@ The new value is returned.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-counters.php#L25-L31">$result = $collection-&gt;upsert("player432", ["gold" =&gt; 1000]);
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-counters.php#L25-L31">$result = $collection-&gt;upsert("player432", ["gold" =&gt; 1000]);
 
 $result = $collection-&gt;mutateIn("player432", [
     new \Couchbase\MutateCounterSpec("gold", -150)
@@ -621,7 +642,7 @@ In this case, the <em>create-path</em> option may be used.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-mutatein.php#L37-L41">$result = $collection-&gt;mutateIn("customer123", [
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-mutatein.php#L37-L41">$result = $collection-&gt;mutateIn("customer123", [
     new \Couchbase\MutateUpsertSpec("level_0.level_1.foo.bar.phone",
                                     ["num" =&gt; "311-555-0101", "ext" =&gt; 16],
                                     false, true)
@@ -640,7 +661,7 @@ For example the following two operations can execute concurrently without any ri
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-concurrent.php#L16-L45">$operations = [new \Couchbase\MutateArrayAppendSpec("purchases.complete", [999]), new \Couchbase\MutateArrayAppendSpec("purchases.complete", [998])];
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-concurrent.php#L16-L45">$operations = [new \Couchbase\MutateArrayAppendSpec("purchases.complete", [999]), new \Couchbase\MutateArrayAppendSpec("purchases.complete", [998])];
 $pids = [];
 
 for ($i = 0; $i &lt; count($operations); $i++) {
@@ -682,7 +703,7 @@ If CAS is required then it can be provided like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-mutatein.php#L45-L51">$doc = $collection-&gt;get("customer123");
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-mutatein.php#L45-L51">$doc = $collection-&gt;get("customer123");
 $options = new \Couchbase\MutateInOptions();
 $options-&gt;cas($doc-&gt;cas());
 
@@ -701,7 +722,7 @@ $res = $collection-&gt;mutatein("customer123", [
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="https://github.com/couchbase/docs-sdk-php/blob/9ed78795d7a9ef0d885db8921d8a07882275abac/modules/howtos/examples/subdoc-mutatein-durability.php#L17-L21">$options = new \Couchbase\MutateInOptions();
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/howtos/examples/subdoc-mutatein-durability.php#L17-L21">$options = new \Couchbase\MutateInOptions();
 $options-&gt;durabilityLevel(\Couchbase\DurabilityLevel::MAJORITY);
 $result = $collection-&gt;mutateIn("customer123", [
     new \Couchbase\MutateUpsertSpec("name", "dave")
@@ -817,15 +838,8 @@ Currently, paths cannot exceed 1024 characters, and cannot be more than 32 level
 </tr>
 </table>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="extended-attributes"><a class="anchor" href="#extended-attributes"></a>Extended Attributes</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Extended Attributes (also known as XATTRs), built upon the Sub-Document API, allow developers to define application-specific metadata that will only be visible to those applications that request it or attempt to modify it.
-This might be, for example, meta-data specific to a programming framework that should be hidden by default from other frameworks or libraries, or possibly from other versions of the same framework.
-They are not intended for use in general applications, and data stored there cannot be accessed easily by some Couchbase services, such as Search.</p>
+<p>Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::7.1@sdk:shared:partial$sdk-xattr-overview.adoc[]</p>
 </div>
 </div>
 </div>
@@ -911,7 +925,7 @@ Sub-documents are only replicated as part of the full document.</p>
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -928,6 +942,7 @@ Sub-documents are only replicated as part of the full document.</p>
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

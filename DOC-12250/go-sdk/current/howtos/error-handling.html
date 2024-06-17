@@ -21,9 +21,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="go-sdk">
-<meta name="dcterms.identifier" content="2.6">
+<meta name="dcterms.identifier" content="2.5">
 <meta name="page-url" content="/go-sdk/current/howtos/error-handling.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="go-sdk">
+<meta name="docsearch:component_title" content="Go SDK">
+<meta name="docsearch:cversion" content="2.5">
+<meta name="docsearch:component_version" content="go-sdk@2.5">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="Go SDK / Errors &amp; Diagnostics / Handling Errors">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,17 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="go-sdk">
-        <option value="2.6" data-url="error-handling.html" selected>2.6</option>
-        <option value="2.5" data-url="../../2.5/howtos/error-handling.html">2.5</option>
-        <option value="2.4" data-url="../../2.4/howtos/error-handling.html">2.4</option>
-        <option value="2.3" data-url="../../2.3/howtos/error-handling.html">2.3</option>
-        <option value="2.2" data-url="../../2.2/howtos/error-handling.html">2.2</option>
-        <option value="2.1" data-url="../../2.1/howtos/error-handling.html">2.1</option>
-        <option value="2.0" data-url="../../2.0/howtos/error-handling.html">2.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -118,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-go/edit/release/2.6/modules/howtos/pages/error-handling.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/howtos/pages/error-handling.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -216,11 +234,32 @@ Errors are inevitable. The developer’s job is to be prepared for whatever is l
 Of course, you can also just log them and fail the operation.</p>
 </div>
 <div class="paragraph">
-<p>You can use <code>errors.Is</code> as follows:</p>
+<p>The first way to use the information embedded into these errors (each error type contains different information) is to use <code>errors.As</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/error-handling.go#L42-L49">	_, err := collection.Get("does-not-exist", nil)
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/error-handling.go#L43-L55">	_, err := collection.Get("key", nil)
+	if err != nil {
+		var kvError *gocb.KeyValueError
+		if errors.As(err, &amp;kvError) {
+			fmt.Println(kvError.StatusCode) // the memcached error code
+			fmt.Println(kvError.Opaque)     // the unique identifier for the operation
+			if kvError.StatusCode == 0x01 {
+				fmt.Println("Document could not be found") // maybe do something like return a 404 to your user
+			}
+		} else {
+			fmt.Printf("An unknown error occurred: %v", err)
+		}
+	}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This approach can be difficult to use as you need to know the Status Code for the error that you want to find.
+Another approach for the most common errors that you are likely to encounter is to use <code>errors.Is</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/error-handling.go#L61-L68">	_, err := collection.Get("does-not-exist", nil)
 	if err != nil {
 		if errors.Is(err, gocb.ErrDocumentNotFound) {
 			fmt.Println("Document could not be found")
@@ -231,7 +270,8 @@ Of course, you can also just log them and fail the operation.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>You can, of course, just log or print out the error as usual and the SDK will try to include as much information as it can in the error message logged (via the usual <code>err.Error()</code>).</p>
+<p>This approach requires far less knowledge about the low level information within the Go SDK.
+You can, of course, just log or print out the error as usual and the SDK will try to include as much information as it can in the error message logged (via the usual <code>err.Error()</code>).</p>
 </div>
 <div class="paragraph">
 <p>The type of operation will influence the type of the underlying error returned.
@@ -250,7 +290,7 @@ The primary error types are listed below, this is not an exhaustive list of the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/error-handling.go#L55-L63">	doc := struct{ Foo string }{Foo: "baz"}
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/error-handling.go#L74-L82">	doc := struct{ Foo string }{Foo: "baz"}
 	_, err := collection.Replace("does-not-exist", doc, nil)
 	if err != nil {
 		if errors.Is(err, gocb.ErrDocumentNotFound) {
@@ -263,7 +303,7 @@ The primary error types are listed below, this is not an exhaustive list of the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/error-handling.go#L42-L49">	_, err := collection.Get("does-not-exist", nil)
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/error-handling.go#L61-L68">	_, err := collection.Get("does-not-exist", nil)
 	if err != nil {
 		if errors.Is(err, gocb.ErrDocumentNotFound) {
 			fmt.Println("Document could not be found")
@@ -278,7 +318,7 @@ The primary error types are listed below, this is not an exhaustive list of the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/error-handling.go#L69-L77">	doc := struct{ Foo string }{Foo: "baz"}
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/error-handling.go#L88-L96">	doc := struct{ Foo string }{Foo: "baz"}
 	_, err := collection.Insert("does-already-exist", doc, nil)
 	if err != nil {
 		if errors.Is(err, gocb.ErrDocumentExists) {
@@ -299,7 +339,7 @@ If it has, it returns <code>ErrCasMismatch</code>, and the most appropriate resp
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/error-handling.go#L84-L105">	var doOperation func(maxAttempts int) (*gocb.MutationResult, error)
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/error-handling.go#L103-L124">	var doOperation func(maxAttempts int) (*gocb.MutationResult, error)
 	doOperation = func(maxAttempts int) (*gocb.MutationResult, error) {
 		doc, err := collection.Get("doc", nil)
 		if err != nil {
@@ -347,7 +387,7 @@ This similarly indicates that the operation may or may not have succeeded: thoug
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/error-handling.go#L111-L144">	var doInsert func(docId string, doc []byte, maxAttempts int) (string, error)
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/error-handling.go#L130-L163">	var doInsert func(docId string, doc []byte, maxAttempts int) (string, error)
 	doInsert = func(docId string, doc []byte, maxAttempts int) (string, error) {
 		_, err := collection.Insert(docId, doc, &amp;gocb.InsertOptions{
 			DurabilityLevel: gocb.DurabilityLevelMajority,
@@ -394,7 +434,7 @@ This similarly indicates that the operation may or may not have succeeded: thoug
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/error-handling.go#L150-L186">	var doInsertReal func(docId string, doc []byte, maxAttempts int, delay time.Duration) (string, error)
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/error-handling.go#L169-L205">	var doInsertReal func(docId string, doc []byte, maxAttempts int, delay time.Duration) (string, error)
 	doInsertReal = func(docId string, doc []byte, maxAttempts int, delay time.Duration) (string, error) {
 		_, err := collection.Insert(docId, doc, &amp;gocb.InsertOptions{DurabilityLevel: gocb.DurabilityLevelMajority})
 		if err != nil {
@@ -470,11 +510,11 @@ For those that aren&#8217;t, such as a Sub-Document <code>arrayAppend</code> cal
 <h2 id="query-and-analytics-errors"><a class="anchor" href="#query-and-analytics-errors"></a>Query and Analytics Errors</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A <a href="https://www.couchbase.com/products/n1ql">SQL++ (formerly N1QL)</a> query either returns results or <code>QueryError</code>, like so:</p>
+<p>A N1QL query either returns results or <code>QueryError</code>, like so:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="https://github.com/couchbase/docs-sdk-go/blob/5cdff1be38f4431fe590cc5c132cc2542e924e59/modules/devguide/examples/go/error-handling.go#L192-L201">	_, err := cluster.Query("select * from `someotherbucket`", nil)
+<pre class="highlightjs highlight"><code class="language-golang hljs" data-lang="golang" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-go/modules/devguide/examples/go/error-handling.go#L211-L220">	_, err := cluster.Query("select * from `someotherbucket`", nil)
 	if err != nil {
 		var queryErr *gocb.QueryError
 		if errors.As(err, &amp;queryErr) {
@@ -584,7 +624,7 @@ We offer <a href="collecting-information-and-logging.html" class="xref page">rec
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -601,6 +641,7 @@ We offer <a href="collecting-information-and-logging.html" class="xref page">rec
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

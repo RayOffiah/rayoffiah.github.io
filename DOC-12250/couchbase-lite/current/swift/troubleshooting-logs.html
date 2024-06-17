@@ -21,9 +21,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="couchbase-lite">
-<meta name="dcterms.identifier" content="2.8">
+<meta name="dcterms.identifier" content="3.1">
 <meta name="page-url" content="/couchbase-lite/current/swift/troubleshooting-logs.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="couchbase-lite">
+<meta name="docsearch:component_title" content="Couchbase Lite">
+<meta name="docsearch:cversion" content="3.1">
+<meta name="docsearch:component_version" content="couchbase-lite@3.1">
+<meta name="docsearch:module" content="swift">
+<meta name="docsearch:breadcrumbs" content="Couchbase Lite / Swift / Troubleshooting / Using Logs">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item nav-item-selected">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,15 +128,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+    <template id="page-versions" style="display: none">
+      <select class="version_list" data-component="couchbase-lite">
+        <option value="3.1" data-url="troubleshooting-logs.html" selected>3.1</option>
+        <option value="3.0" data-url="../../3.0/swift/troubleshooting-logs.html">3.0</option>
+        <option value="2.8" data-url="../../2.8/swift/troubleshooting-logs.html">2.8</option>
+      </select>
+    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
       data-title="Contents"
-      data-levels="1">
+      data-levels="2">
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/swift/pages/troubleshooting-logs.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="https://github.com/couchbaselabs/docs-couchbase-lite/edit/release/3.1/modules/swift/pages/troubleshooting-logs.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -168,7 +204,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="crumb"><a href="../index.html">Couchbase Lite</a></li>
 <li class="crumb"><a href="quickstart.html">Swift</a></li>
 <li class="crumb">Troubleshooting</li>
-<li class="crumb"><a href="troubleshooting-logs.html">Logs</a></li>
+<li class="crumb"><a href="troubleshooting-logs.html">Using Logs</a></li>
 </ul>
 </nav>
 </div>
@@ -224,7 +260,7 @@ If you are using a Couchbase Lite release prior to 2.5 see <a href="#pre-2x5-log
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase Lite provides a robust Logging API <sup class="footnote" id="_footnote_fn-2x5">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>&#8201;&#8212;&#8201;see: API References for <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/Log.html">Log</a>, <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/FileLogger.html">FileLogger</a> and <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/LogFileConfiguration.html">LogFileConfiguration</a>&#8201;&#8212;&#8201;which make debugging and troubleshooting easier during development and in production.
+<p>Couchbase Lite provides a robust Logging API <sup class="footnote" id="_footnote_fn-2x5">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>&#8201;&#8212;&#8201;see: API References for <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/Log.html">Log</a>, <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/FileLogger.html">FileLogger</a> and <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/LogFileConfiguration.html">LogFileConfiguration</a>&#8201;&#8212;&#8201;which make debugging and troubleshooting easier during development and in production.
 It delivers flexibility in terms of how logs are generated and retained, whilst also maintaining the level of logging required by Couchbase Support for investigation of issues.</p>
 </div>
 <div class="paragraph">
@@ -254,7 +290,7 @@ With console logging, you can fine-tune diagnostic output to suit specific debug
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>For greater flexibility you can implement a custom logging class using the <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/Logger.html">Logger</a> interface.</p>
+<p>For greater flexibility you can implement a custom logging class using the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/Logger.html">Logger</a> interface.</p>
 </div>
 </div>
 </div>
@@ -262,7 +298,7 @@ With console logging, you can fine-tune diagnostic output to suit specific debug
 </ul>
 </div>
 <div class="paragraph">
-<p>In all instances, you control what is logged and at what level using the <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/Log.html">Log</a> class.</p>
+<p>In all instances, you control what is logged and at what level using the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/Log.html">Log</a> class.</p>
 </div>
 </div>
 </div>
@@ -279,10 +315,10 @@ You can easily fine-tune their diagnostic content to meet the needs of a particu
 <div class="paragraph">
 <p>Changes to console logging are independent of file logging, so you can make change without compromising any files logging streams.
 It is enabled by default.
-To change default settings use database&#8217;s <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/Log.html">Log</a> method to set the required values&#8201;&#8212;&#8201;see <a href="#eg-cons-log">Example 1</a></p>
+To change default settings use database&#8217;s <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/Log.html">Log</a> method to set the required values&#8201;&#8212;&#8201;see <a href="#eg-cons-log">Example 1</a></p>
 </div>
 <div class="paragraph">
-<p>You will primarily use <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/Log.html#/s:18CouchbaseLiteSwift3LogC7consoleAA13ConsoleLoggerCvp">log.console</a> and <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/ConsoleLogger.html">ConsoleLogger</a> to control console logging.</p>
+<p>You will primarily use <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/Log.html#/s:18CouchbaseLiteSwift3LogC7consoleAA13ConsoleLoggerCvp">log.console</a> and <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/ConsoleLogger.html">ConsoleLogger</a> to control console logging.</p>
 </div>
 <div id="eg-cons-log" class="exampleblock">
 <div class="title">Example 1. Change Console Logging Settings</div>
@@ -292,32 +328,32 @@ To change default settings use database&#8217;s <a href="http://docs.couchbase.c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/swift/examples/code_snippets/SampleCodeTest.swift#L72-L74">Database.log.console.domains = .all <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift">Database.log.console.domains = .all <i class="conum" data-value="1"></i><b>(1)</b>
 Database.log.console.level = .verbose <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Define the required domain ; here we turn on logging for all available domains&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/ConsoleLogger.html#/s:18CouchbaseLiteSwift13ConsoleLoggerC7domainsAA10LogDomainsVvp">log.console.domains</a> and enum <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Enums/LogDomain.html">LogDomain</a></td>
+<td>Define the required domain ; here we turn on logging for all available domains&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/ConsoleLogger.html#/s:18CouchbaseLiteSwift13ConsoleLoggerC7domainsAA10LogDomainsVvp">log.console.domains</a> and enum <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Enums/LogDomain.html">LogDomain</a></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Here we turn on the most verbose log level&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/ConsoleLogger.html#/s:18CouchbaseLiteSwift13ConsoleLoggerC5levelAA8LogLevelOvp">log.console.level</a> and enum <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Enums/LogLevel.html">LogLevel</a>.<br>
-To disable logging for the specified <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Enums/LogDomain.html">LogDomain</a> set the <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Enums/LogLevel.html">LogLevel</a> to <code>None</code>.</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
+<td>Here we turn on the most verbose log level&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/ConsoleLogger.html#/s:18CouchbaseLiteSwift13ConsoleLoggerC5levelAA8LogLevelOvp">log.console.level</a> and enum <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Enums/LogLevel.html">LogLevel</a>.<br>
+To disable logging for the specified <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Enums/LogDomain.html">LogDomain</a> set the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Enums/LogLevel.html">LogLevel</a> to <code>None</code>.
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Related</dt>
 <dd>
-<p><a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/Log.html">Log</a> | <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/Log.html#/s:18CouchbaseLiteSwift3LogC7consoleAA13ConsoleLoggerCvp">log.console</a> | <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/ConsoleLogger.html">ConsoleLogger</a></p>
+<p><a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/Log.html">Log</a> | <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/Log.html#/s:18CouchbaseLiteSwift3LogC7consoleAA13ConsoleLoggerCvp">log.console</a> | <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/ConsoleLogger.html">ConsoleLogger</a></p>
 </dd>
 </dl>
+</div></td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -328,7 +364,7 @@ To disable logging for the specified <a href="http://docs.couchbase.com/mobile/2
 <p>File based logging is disabled by default&#8201;&#8212;&#8201; see: <a href="#eg-file-log">Example 2</a> for how to enable it.</p>
 </div>
 <div class="paragraph">
-<p>You will primarily use <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/Log.html#/s:18CouchbaseLiteSwift3LogC4fileAA10FileLoggerCvp">log.file</a> and <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/FileLogger.html">FileLogger</a> to control file-based logging.</p>
+<p>You will primarily use <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/Log.html#/s:18CouchbaseLiteSwift3LogC4fileAA10FileLoggerCvp">log.file</a> and <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/FileLogger.html">FileLogger</a> to control file-based logging.</p>
 </div>
 <div class="sect2">
 <h3 id="formats"><a class="anchor" href="#formats"></a>Formats</h3>
@@ -352,10 +388,10 @@ To disable logging for the specified <a href="http://docs.couchbase.com/mobile/2
 <div class="sect2">
 <h3 id="configuration"><a class="anchor" href="#configuration"></a>Configuration</h3>
 <div class="paragraph">
-<p>As with console logging you can set the log level&#8201;&#8212;&#8201;see:  the <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/FileLogger.html">FileLogger</a> class.</p>
+<p>As with console logging you can set the log level&#8201;&#8212;&#8201;see:  the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/FileLogger.html">FileLogger</a> class.</p>
 </div>
 <div class="paragraph">
-<p>With file based logging you can also use the <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/LogFileConfiguration.html">LogFileConfiguration</a> class&#8217;s properties to specify the:</p>
+<p>With file based logging you can also use the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/LogFileConfiguration.html">LogFileConfiguration</a> class&#8217;s properties to specify the:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -379,17 +415,16 @@ You can over ride that where necessary and output a plain text log.</p>
 <div id="eg-file-log" class="exampleblock">
 <div class="title">Example 2. Enabling file logging</div>
 <div class="content">
-<div class="paragraph">
-<p>This example enables file based logging.</p>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let tempFolder = NSTemporaryDirectory().appending("cbllog")
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift">let tempFolder = NSTemporaryDirectory().appending("cbllog")
 let config = LogFileConfiguration(directory: tempFolder) <i class="conum" data-value="1"></i><b>(1)</b>
 config.usePlainText = true <i class="conum" data-value="2"></i><b>(2)</b>
 config.maxSize = 1024 <i class="conum" data-value="3"></i><b>(3)</b>
 Database.log.file.config = config <i class="conum" data-value="4"></i><b>(4)</b>
 Database.log.file.level = .info <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="colist arabic">
@@ -413,24 +448,22 @@ Database.log.file.level = .info <i class="conum" data-value="5"></i><b>(5)</b></
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Here we increase the log output level from the default (<em>warnings</em>) to <em>info</em>&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/FileLogger.html#/s:18CouchbaseLiteSwift10FileLoggerC5levelAA8LogLevelOvp">log.file.level: LogLevel</a>
+<td>Here we increase the log output level from the default (<em>warnings</em>) to <em>info</em>&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/FileLogger.html#/s:18CouchbaseLiteSwift10FileLoggerC5levelAA8LogLevelOvp">log.file.level: LogLevel</a>
 <div class="paragraph">
-<p><strong>Note</strong> that the use of <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/Database.html#/s:18CouchbaseLiteSwift8DatabaseC11setLogLevel_6domainyAA0fG0O_AA0F6DomainOtFZ">Database.setLogLevel()</a> is now deprecated.
+<p><strong>Note</strong> that the use of <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/Database.html#/s:18CouchbaseLiteSwift8DatabaseC11setLogLevel_6domainyAA0fG0O_AA0F6DomainOtFZ">Database.setLogLevel()</a> is now deprecated.
 Further, you can no longer set a log level for a specific domain.</p>
-</div></td>
-</tr>
-</table>
-</div>
-</div>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Related</dt>
 <dd>
-<p> <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/Log.html">Log</a> |
-<a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/Log.html#/s:18CouchbaseLiteSwift3LogC4fileAA10FileLoggerCvp">log.file</a> | <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/FileLogger.html">FileLogger</a></p>
+<p> <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/Log.html">Log</a> |
+<a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/Log.html#/s:18CouchbaseLiteSwift3LogC4fileAA10FileLoggerCvp">log.file</a> | <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/FileLogger.html">FileLogger</a></p>
 </dd>
 </dl>
+</div></td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -442,26 +475,30 @@ Further, you can no longer set a log level for a specific domain.</p>
 <p>Couchbase Lite allows for the registration of a callback function to receive Couchbase Lite log messages, which may be logged using any external logging framework.</p>
 </div>
 <div class="paragraph">
-<p>To do this, apps must implement the <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/Logger.html">Logger</a> interface&#8201;&#8212;&#8201;see <a href="#eg-impl-log">Example 3</a>&#8201;&#8212;&#8201;and enable custom logging using <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/Log.html#/s:18CouchbaseLiteSwift3LogC6customAA6Logger_pSgvp">log.custom</a>&#8201;&#8212;&#8201;see <a href="#eg-cust-log">Example 4</a>.</p>
+<p>To do this, apps must implement the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/Logger.html">Logger</a> interface&#8201;&#8212;&#8201;see <a href="#eg-impl-log">Example 3</a>&#8201;&#8212;&#8201;and enable custom logging using <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/Log.html#/s:18CouchbaseLiteSwift3LogC6customAA6Logger_pSgvp">log.custom</a>&#8201;&#8212;&#8201;see <a href="#eg-cust-log">Example 4</a>.</p>
 </div>
 <div id="eg-impl-log" class="exampleblock">
 <div class="title">Example 3. Implementing logger interface</div>
 <div class="content">
 <div class="paragraph">
-<p>Here we introduce the code that implements the <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/Logger.html">Logger</a> interface.</p>
+<p>Here we introduce the code that implements the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/Logger.html">Logger</a> interface.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/swift/examples/code_snippets/SampleCodeTest.swift#L1191-L1201">fileprivate class LogTestLogger: Logger {
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift">class LogTestLogger: Logger {
 
     // set the log level
     var level: LogLevel = .none
+
+    // constructor for easiness
+    init(_ level: LogLevel) {
+        self.level = level
+    }
 
     func log(level: LogLevel, domain: LogDomain, message: String) {
         // handle the message, for example piping it to
         // a third party framework
     }
-
 }</code></pre>
 </div>
 </div>
@@ -471,11 +508,14 @@ Further, you can no longer set a log level for a specific domain.</p>
 <div class="title">Example 4. Enabling custom logging</div>
 <div class="content">
 <div class="paragraph">
-<p>This example show how to enable the custom logger from <a href="#eg-impl-log">Example 3</a>.</p>
+<p>This example show how to enable the custom logger from <<eg-impl-log>>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/swift/examples/code_snippets/SampleCodeTest.swift#L96">Database.log.custom = LogTestLogger(.warning) <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift">let logger = LogTestLogger(.warning)
+Database.log.custom =  logger <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="colist arabic">
@@ -483,19 +523,17 @@ Further, you can no longer set a log level for a specific domain.</p>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>Here we set the custom logger with a level of 'warning'.
-The custom logger is called with every log and may choose to filter it, using its configured level.</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
+The custom logger is called with every log and may choose to filter it, using its configured level.
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Related</dt>
 <dd>
-<p><a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/Log.html">Log</a> | <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/Log.html#/s:18CouchbaseLiteSwift3LogC6customAA6Logger_pSgvp">log.custom</a> | <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes/Logger.html">Logger</a></p>
+<p><a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/Log.html">Log</a> | <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/Log.html#/s:18CouchbaseLiteSwift3LogC6customAA6Logger_pSgvp">log.custom</a> | <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift/Classes/Logger.html">Logger</a></p>
 </dd>
 </dl>
+</div></td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -508,28 +546,28 @@ The custom logger is called with every log and may choose to filter it, using it
 <div id="eg-cbl-log" class="exampleblock">
 <div class="title">Example 5. Using the cbl-log tool</div>
 <div class="content">
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset1_macos"></a>macOS</p>
+<li id="tabs-1-macos" class="tab">
+<p>macOS</p>
 </li>
-<li>
-<p><a id="tabset1_centos"></a>CentOS</p>
+<li id="tabs-1-centos" class="tab">
+<p>CentOS</p>
 </li>
-<li>
-<p><a id="tabset1_windows"></a>Windows</p>
+<li id="tabs-1-windows" class="tab">
+<p>Windows</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_macos">
+<div id="tabs-1-macos--panel" class="tabpanel" aria-labelledby="tabs-1-macos">
 <div class="paragraph">
 <p>Download the <strong>cbl-log</strong> tool using <code>wget</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">wget https://packages.couchbase.com/releases/couchbase-lite-log/2.8.0/couchbase-lite-log-2.8.0-macos.zip</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">wget https://packages.couchbase.com/releases/couchbase-lite-log/3.1.1/couchbase-lite-log-3.1.1-macos.zip</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -541,13 +579,13 @@ The custom logger is called with every log and may choose to filter it, using it
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_centos">
+<div id="tabs-1-centos--panel" class="tabpanel" aria-labelledby="tabs-1-centos">
 <div class="paragraph">
 <p>Download the <strong>cbl-log</strong> tool using <code>wget</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">wget https://packages.couchbase.com/releases/couchbase-lite-log/2.8.0/couchbase-lite-log-2.8.0-centos.zip</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">wget https://packages.couchbase.com/releases/couchbase-lite-log/3.1.1/couchbase-lite-log-3.1.1-centos.zip</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -559,13 +597,13 @@ The custom logger is called with every log and may choose to filter it, using it
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_windows">
+<div id="tabs-1-windows--panel" class="tabpanel" aria-labelledby="tabs-1-windows">
 <div class="paragraph">
 <p>Download the <strong>cbl-log</strong> tool using PowerShell.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-powershell hljs" data-lang="powershell">Invoke-WebRequest https://packages.couchbase.com/releases/couchbase-lite-log/2.8.0/couchbase-lite-log-2.8.0-windows.zip -OutFile couchbase-lite-log-2.8.0-windows.zip</code></pre>
+<pre class="highlightjs highlight"><code class="language-powershell hljs" data-lang="powershell">Invoke-WebRequest https://packages.couchbase.com/releases/couchbase-lite-log/3.1.1/couchbase-lite-log-3.1.1-windows.zip -OutFile couchbase-lite-log-3.1.1-windows.zip</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -576,6 +614,46 @@ The custom logger is called with every log and may choose to filter it, using it
 <pre class="highlightjs highlight"><code class="language-powershell hljs" data-lang="powershell">$ .\cbl-log.exe logcat LOGFILE &lt;OUTPUT_PATH&gt;</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pre-2x5-logging"><a class="anchor" href="#pre-2x5-logging"></a>Logging functionality prior to Release 2.5</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Deprecation</div>
+The pre-Couchbase Lite 2.5 logging functionality is deprecated.
+It was superseded by an enhanced Logging API in that release.
+This information is included for completeness only.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The log messages are split into different domains (<code>LogDomains</code>) which can be tuned to different log levels.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 6. Enable verbose logging on a domain</div>
+<div class="content">
+<div class="paragraph">
+<p>The following example enables `verbose` logging for the `replicator` and `query` domains.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift">// verbose / replicator
+Database.log.console.level = .verbose
+Database.log.console.domains = .replicator
+
+// verbose / query
+Database.log.console.level = .verbose
+Database.log.console.domains = .query</code></pre>
 </div>
 </div>
 </div>
@@ -593,13 +671,13 @@ The custom logger is called with every log and may choose to filter it, using it
 <div class="title">How to . . .</div>
 <ul>
 <li>
-<p><a href="querybuilder.html" class="xref page">Queries</a></p>
+<p><a href="querybuilder.html" class="xref page">QueryBuilder</a></p>
 </li>
 <li>
-<p><a href="query-live.html" class="xref page">Live Query</a></p>
+<p><a href="query-n1ql-mobile.html" class="xref page">SQL++ for Mobile</a></p>
 </li>
 <li>
-<p><a href="query-predictive.html" class="xref page">Predictive Query</a></p>
+<p><a href="query-live.html" class="xref page">Live Queries</a></p>
 </li>
 <li>
 <p><a href="fts.html" class="xref page">Full Text Search</a></p>
@@ -612,6 +690,21 @@ The custom logger is called with every log and may choose to filter it, using it
 <div class="ulist">
 <div class="title">Learn more . . .</div>
 <ul>
+<li>
+<p><a href="query-n1ql-mobile-querybuilder-diffs.html" class="xref page">SQL++ Mobile - Querybuilder  Differences</a></p>
+</li>
+<li>
+<p><a href="query-n1ql-mobile-server-diffs.html" class="xref page">SQL++ Mobile - SQL++ Server Differences</a></p>
+</li>
+<li>
+<p><a href="query-resultsets.html" class="xref page">Query Resultsets</a></p>
+</li>
+<li>
+<p><a href="query-troubleshooting.html" class="xref page">Query Troubleshooting</a></p>
+</li>
+<li>
+<p><a href="query-live.html" class="xref page">Live Queries</a></p>
+</li>
 <li>
 <p><a href="database.html" class="xref page">Databases</a></p>
 </li>
@@ -626,13 +719,11 @@ The custom logger is called with every log and may choose to filter it, using it
 </div>
 <div class="sect5 column">
 <h6 id="-3"><a class="anchor" href="#-3"></a></h6>
-<div class="ulist">
+<div class="paragraph">
 <div class="title">Dive Deeper . . .</div>
-<ul>
-<li>
-<p><a href="https://forums.couchbase.com/c/mobile/14">Forum</a> <strong>|</strong> <a href="https://blog.couchbase.com/">Blog</a> <strong>|</strong> <a href="https://docs.couchbase.com/tutorials/index.html">Tutorials</a></p>
-</li>
-</ul>
+<p><a href="https://forums.couchbase.com/c/mobile/14">Mobile Forum</a> |
+<a href="https://blog.couchbase.com/">Blog</a> |
+<a href="https://docs.couchbase.com/tutorials/">Tutorials</a></p>
 </div>
 </div>
 </div>
@@ -717,7 +808,7 @@ The custom logger is called with every log and may choose to filter it, using it
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"2.8","sync-gateway":"3.0"}}
+{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.1","sync-gateway":"3.1"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -734,6 +825,7 @@ The custom logger is called with every log and may choose to filter it, using it
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

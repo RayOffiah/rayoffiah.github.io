@@ -12,7 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Authentication | Couchbase Docs</title>
+<title>Authenticating against Couchbase Server | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/java-sdk/current/howtos/sdk-authentication.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
@@ -21,9 +21,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="java-sdk">
-<meta name="dcterms.identifier" content="3.4">
+<meta name="dcterms.identifier" content="3.3">
 <meta name="page-url" content="/java-sdk/current/howtos/sdk-authentication.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="java-sdk">
+<meta name="docsearch:component_title" content="Java SDK">
+<meta name="docsearch:cversion" content="3.3">
+<meta name="docsearch:component_version" content="java-sdk@3.3">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="Java SDK / Managing Couchbase / Managing Connections / Authentication">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="Enterprise Edition">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,15 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="java-sdk">
-        <option value="3.4" data-url="sdk-authentication.html" selected>3.4</option>
-        <option value="3.3" data-url="../../3.3/howtos/sdk-authentication.html">3.3</option>
-        <option value="3.2" data-url="../../3.2/howtos/sdk-authentication.html">3.2</option>
-        <option value="3.1" data-url="../../3.1/howtos/sdk-authentication.html">3.1</option>
-        <option value="3.0" data-url="../../3.0/howtos/sdk-authentication.html">3.0</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -116,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-java/edit/release/3.4/modules/howtos/pages/sdk-authentication.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/pages/sdk-authentication.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -183,7 +203,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Authentication</h1>
+<h1 class="page">Authenticating against Couchbase Server</h1>
 <div class="labels">
 <ul><li class="guide"><span><i class="far fa-check-square"></i> how-to</span></li>
 </ul>
@@ -220,7 +240,7 @@ As well as Role-Based Access Control (RBAC), Couchbase offers connection with Ce
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Auth.java#L34">Cluster cluster = Cluster.connect("127.0.0.1", "Administrator", "password");</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Auth.java#L32">Cluster cluster = Cluster.connect("127.0.0.1", "Administrator", "password");</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -228,7 +248,7 @@ As well as Role-Based Access Control (RBAC), Couchbase offers connection with Ce
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Auth.java#L40">Cluster cluster = Cluster.connect("127.0.0.1", clusterOptions("Administrator", "password"));</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Auth.java#L38">Cluster cluster = Cluster.connect("127.0.0.1", clusterOptions("Administrator", "password"));</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -236,7 +256,7 @@ As well as Role-Based Access Control (RBAC), Couchbase offers connection with Ce
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Auth.java#L46-L51">PasswordAuthenticator authenticator = PasswordAuthenticator.builder().username("Administrator")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Auth.java#L44-L49">PasswordAuthenticator authenticator = PasswordAuthenticator.builder().username("Administrator")
     .password("password")
     // enables only the PLAIN authentication mechanism, used with LDAP
     .onlyEnablePlainSaslMechanism().build();
@@ -248,32 +268,10 @@ Cluster cluster = Cluster.connect("127.0.0.1", clusterOptions(authenticator));</
 <p>In this example, the <code>PLAIN</code> authentication mechanism is enabled as well, which is needed if LDAP is enabled on the server side and no TLS encrypted connection is used.</p>
 </div>
 <div class="paragraph">
-<p>Couchbase uses Role Base Access Control (RBAC), and has since Server 5.0 was released.
-For a general overview of Couchbase-Server authorization, see <a href="#7.1@server:learn:security/authorization-overview.adoc" class="xref unresolved">Authorization</a>.
-For a list of available roles and corresponding privileges, see <a href="#7.1@server:learn:security/roles.adoc" class="xref unresolved">Roles</a>.</p>
+<p>Unresolved include directive in modules/howtos/pages/sdk-authentication.adoc - include::7.1@sdk:shared:partial$auth-overview.adoc[]</p>
 </div>
 <div class="paragraph">
-<p>In the SDK docs, many examples will use the full <em>Administrator</em> role for convenience, but this is rarely a good idea on a production machine, so reference the above links to find best practice for the needs of your application.
-RBAC is also implemented by the Community Edition of Couchbase Server, but with fewer roles&#8201;&#8212;&#8201;see the <a href="#7.1@server:learn:security/roles.adoc" class="xref unresolved">Roles overview</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="certificate-authentication"><a class="anchor" href="#certificate-authentication"></a>Certificate Authentication</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Couchbase Server supports the use of X.509 certificates to authenticate clients (only available in the Enterprise Edition, not the Community Edition).
-This allows authenticated users to access specific resources by means of the data service, in Couchbase Server 5.1 and up, and all other services in more recent releases of Couchbase Data Platform.</p>
-</div>
-<div class="paragraph">
-<p>The process relies on a certificate authority, for the issuing of certificates that validate identities.
-A certificate includes information such as the name of the entity it identifies, an expiration date, the name of the authority that issued the certificate, and the digital signature of the authority.
-A client attempting to access Couchbase Server can present a certificate to the server, allowing the server to check the validity of the certificate.
-If the certificate is valid, the user under whose identity the client is running, and the roles assigned that user, are verified.
-If the assigned roles are appropriate for the level of access requested to the specified resource, access is granted.</p>
-</div>
-<div class="paragraph">
-<p>For a more detailed conceptual description of using certificates, see <a href="#7.1@server:learn:security/certificates.adoc" class="xref unresolved">Certificates</a>.</p>
+<p>Unresolved include directive in modules/howtos/pages/sdk-authentication.adoc - include::7.1@sdk:shared:partial$auth-overview.adoc[]</p>
 </div>
 </div>
 </div>
@@ -281,85 +279,28 @@ If the assigned roles are appropriate for the level of access requested to the s
 <h2 id="authenticating-the-java-client-by-certificate"><a class="anchor" href="#authenticating-the-java-client-by-certificate"></a>Authenticating the Java Client by Certificate</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To learn how to generate and deploy certificates, see <a href="#7.1@server:manage:manage-security/manage-certificates.adoc" class="xref unresolved">Manage Certificates</a>.
-The rest of this section assumes you followed those processes, or did something similar.</p>
-</div>
-<div class="paragraph">
-<p>For the following example, you will need a client certificate and the associated private key.
-These must be stored together in the same Java KeyStore file or pkcs12 bundle.</p>
-</div>
-<div class="paragraph">
-<p>If your cluster&#8217;s root certificate does not come from a well-known Certificate Authority (CA), you must tell the client to trust the cluster&#8217;s root certificate.
-This example assumes the cluster&#8217;s root certificate is available in a file called <code>ca-cert.pem</code>.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-To trust multiple root certificates, put them all in the same <code>ca-certs.pem</code> file.
-</td>
-</tr>
-</table>
+<p>For sample procedures whereby certificates can be generated and deployed, see <a href="#7.1@server:manage:manage-security/manage-certificates.adoc" class="xref unresolved">Manage Certificates</a>.
+The rest of this document assumes that the processes there, or something similar, have been followed.
+That is, a cluster certificate has been created and installed on the server, a client certificate has been created, and it is stored in a JVM keystore along with the cluster&#8217;s certificate.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Auth.java#L58-L78">// Replace the following line with code that gets your actual key store.
-// The key store contains the client's certificate and private key.
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Auth.java#L56-L60">// should be replaced with your actual KeyStore
 KeyStore keyStore = loadKeyStore();
 
-Authenticator authenticator = CertificateAuthenticator.fromKeyStore(
-    keyStore,
-    "keyStorePassword"
-);
-
-Cluster cluster = Cluster.connect(
-    "couchbases://127.0.0.1",
-    clusterOptions(authenticator)
-        .environment(env -&gt; env
-            .securityConfig(security -&gt; security
-                // Tell the client to trust the cluster's root certificate.
-                // If your cluster's root certificate is from a well-known
-                // Certificate Authority (CA), you can skip this.
-                .trustCertificate(Paths.get("/path/to/ca-cert.pem"))
-            )
-        )
-);</code></pre>
+CertificateAuthenticator authenticator = CertificateAuthenticator.fromKeyStore(keyStore, "keyStorePassword");
+Cluster cluster = Cluster.connect("127.0.0.1", clusterOptions(authenticator));</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>CertificateAuthenticator</code> has several static factory methods.
-If you prefer not to load your own <code>KeyStore</code> object, you can create a <code>CertificateAuthenticator</code> from a <code>Path</code> to a key store file, or from an in-memory certificate &amp; key.
-For maximum flexibility, you can even provide your own <code>KeyManagerFactory</code>.
-Please see the <a href="https://docs.couchbase.com/sdk-api/couchbase-core-io/com/couchbase/client/core/env/CertificateAuthenticator.html">API documentation</a> for the <code>CertificateAuthenticator</code> for more details.</p>
+<p>In addition to providing the initialized <code>KeyStore</code> directly, the <code>CertificateAuthenticator</code> can also be initialized from a key store path, a key directly or a <code>KeyManagerFactory</code> for maximum flexibility. Please see the API documentation for the <code>CertificateAuthenticator</code> for more details.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="ldap"><a class="anchor" href="#ldap"></a>LDAP</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>If you are on a network where access is controlled by LDAP, the SDK will work transparently with it.
-Please pay attention to the following important note on secure connection.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-If <a href="#7.1@server:manage:manage-security/configure-ldap.adoc#understanding-ldap-authentication" class="xref unresolved">LDAP</a> is enabled, Couchbase Server will only allow PLAIN sasl authentication which by default, for good security, the SDK will not allow.
-Although this can be overridden in a development environment, by explicitly enabling PLAIN in the password authenticator, <em>the secure solution</em> is <a href="managing-connections.html#ssl" class="xref page">to use TLS</a>.
-</td>
-</tr>
-</table>
+<p>Unresolved include directive in modules/howtos/pages/sdk-authentication.adoc - include::7.1@sdk:shared:partial$auth-overview.adoc[]</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="https://github.com/couchbase/docs-sdk-java/blob/2a67e4a97cf9607eb03657292a54138f30514329/modules/howtos/examples/Auth.java#L46-L51">PasswordAuthenticator authenticator = PasswordAuthenticator.builder().username("Administrator")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-java/modules/howtos/examples/Auth.java#L44-L49">PasswordAuthenticator authenticator = PasswordAuthenticator.builder().username("Administrator")
     .password("password")
     // enables only the PLAIN authentication mechanism, used with LDAP
     .onlyEnablePlainSaslMechanism().build();
@@ -445,7 +386,7 @@ Cluster cluster = Cluster.connect("127.0.0.1", clusterOptions(authenticator));</
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -462,6 +403,7 @@ Cluster cluster = Cluster.connect("127.0.0.1", clusterOptions(authenticator));</
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

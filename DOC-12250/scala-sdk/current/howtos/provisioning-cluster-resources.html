@@ -21,9 +21,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="scala-sdk">
-<meta name="dcterms.identifier" content="1.4">
+<meta name="dcterms.identifier" content="1.3">
 <meta name="page-url" content="/scala-sdk/current/howtos/provisioning-cluster-resources.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="scala-sdk">
+<meta name="docsearch:component_title" content="Scala SDK">
+<meta name="docsearch:cversion" content="1.3">
+<meta name="docsearch:component_version" content="scala-sdk@1.3">
+<meta name="docsearch:module" content="howtos">
+<meta name="docsearch:breadcrumbs" content="Scala SDK / Managing Couchbase / Provisioning Cluster Resources">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -41,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -62,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -88,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -99,14 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="scala-sdk">
-        <option value="1.4" data-url="provisioning-cluster-resources.html" selected>1.4</option>
-        <option value="1.3" data-url="../../1.3/howtos/provisioning-cluster-resources.html">1.3</option>
-        <option value="1.2" data-url="../../1.2/howtos/provisioning-cluster-resources.html">1.2</option>
-        <option value="1.1" data-url="../../1.1/howtos/provisioning-cluster-resources.html">1.1</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -115,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-scala/edit/release/1.4/modules/howtos/pages/provisioning-cluster-resources.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/pages/provisioning-cluster-resources.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -201,9 +222,7 @@ Common use cases are outlined here, less common use cases are covered in the <a 
 </blockquote>
 </div>
 <div class="paragraph">
-<p>The primary means for managing clusters is through the Couchbase Web UI which provides an easy to use interface for adding, removing, monitoring and modifying buckets.
-In some instances you may wish to have a programmatic interface.
-For example, if you wish to manage a cluster from a setup script, or if you are setting up buckets in test scaffolding.</p>
+<p>Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::7.1@sdk:shared:partial$flush-info-pars.adoc[]</p>
 </div>
 <div class="paragraph">
 <p>The Scala SDK also comes with some convenience functionality for common Couchbase management requests.</p>
@@ -260,18 +279,8 @@ When using a Couchbase version earlier than 6.5, you must create a valid Bucket 
 <p>The <code>CreateBucketSettings</code> and <code>BucketSettings</code> classes are used for creating and updating buckets.
 <code>BucketSettings</code> is also used for exposing information about existing buckets.</p>
 </div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Note that any property that is not explicitly set when building the bucket settings will use the default value.
-In the case of the update, this is not necessarily the currently configured value, so you should be careful to set all properties to their correct expected values when updating an existing bucket configuration.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::7.1@sdk:shared:partial$flush-info-pars.adoc[]</p>
 </div>
 <div class="paragraph">
 <p>Here is the list of parameters available for <code>CreateBucketSettings</code> and <code>BucketSettings</code>.
@@ -360,7 +369,7 @@ The "Updatable" column indicates whether the parameter may only be specified whe
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/ClusterResources.scala#L49-L62">val bucketManager: BucketManager = cluster.buckets
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/ClusterResources.scala#L49-L62">val bucketManager: BucketManager = cluster.buckets
 
 val result: Try[Unit] = bucketManager.create(
   CreateBucketSettings("hello", ramQuotaMB = 1024)
@@ -381,7 +390,7 @@ result match {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/ClusterResources.scala#L70-L76">val result: Try[Unit] = bucketManager.getBucket("hello")
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/ClusterResources.scala#L70-L76">val result: Try[Unit] = bucketManager.getBucket("hello")
   .flatMap((bucket: BucketSettings) =&gt; {
     val updated = bucket.toCreateBucketSettings.flushEnabled(true)
     bucketManager.updateBucket(updated)
@@ -395,7 +404,7 @@ result match {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/ClusterResources.scala#L85-L87">val result: Try[Unit] = bucketManager.dropBucket("hello")
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/ClusterResources.scala#L85-L87">val result: Try[Unit] = bucketManager.dropBucket("hello")
 
 // Result error-checking omitted for brevity</code></pre>
 </div>
@@ -403,17 +412,14 @@ result match {
 <div class="sect2">
 <h3 id="flushing-buckets"><a class="anchor" href="#flushing-buckets"></a>Flushing Buckets</h3>
 <div class="paragraph">
-<p>When a bucket is flushed, all content is removed.
-Because this operation is potentially dangerous it is disabled by default for each bucket.
-Bucket flushing may be useful in test environments where it becomes a simpler alternative to removing and creating a test bucket.
-You may enable bucket flushing on a per-bucket basis using the Couchbase Web Console or when creating a bucket.</p>
+<p>Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::7.1@sdk:shared:partial$flush-info-pars.adoc[]</p>
 </div>
 <div class="paragraph">
 <p>You can flush a bucket in the SDK by using the <code>Flush</code> method:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/ClusterResources.scala#L95-L102">val result: Try[Unit] = bucketManager.flushBucket("hello")
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/ClusterResources.scala#L95-L102">val result: Try[Unit] = bucketManager.flushBucket("hello")
 
 result match {
   case Success(_) =&gt;
@@ -437,7 +443,7 @@ for further details.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/CollectionManagerExample.scala#L62">val collectionMgr = bucket.collections;</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/CollectionManagerExample.scala#L62">val collectionMgr = bucket.collections;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -445,7 +451,7 @@ for further details.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/CollectionManagerExample.scala#L67-L74">collectionMgr.createScope("example-scope") match {
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/CollectionManagerExample.scala#L67-L74">collectionMgr.createScope("example-scope") match {
   case Success(_) =&gt;
     println("Created scope OK")
   case Failure(err: ScopeExistsException) =&gt;
@@ -460,7 +466,7 @@ for further details.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/CollectionManagerExample.scala#L79-L90">val spec = CollectionSpec("example-collection", "example-scope");
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/CollectionManagerExample.scala#L79-L90">val spec = CollectionSpec("example-collection", "example-scope");
 
 collectionMgr.createCollection(spec)  match {
   case Success(_) =&gt;
@@ -491,7 +497,7 @@ match {
     println(err)
 }
 
-[data-source-url=https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/CollectionManagerExample.scala#L110-L118]
+[data-source-url=file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/CollectionManagerExample.scala#L110-L118]
 collectionMgr.dropScope("example-scope")
 match {
   case Success(_) =&gt;
@@ -513,7 +519,7 @@ along with <a href="#server:learn:security/roles.adoc#data-reader" class="xref u
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/CollectionManagerExample.scala#L46-L52">val users = cluster.users
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/CollectionManagerExample.scala#L46-L52">val users = cluster.users
 val user = User("scopeAdmin")
   .password("password")
   .roles(
@@ -528,27 +534,7 @@ users.upsertUser(user).get</code></pre>
 <h2 id="index-management"><a class="anchor" href="#index-management"></a>Index Management</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In general, you will rarely need to work with Index Managers from the SDK.
-For those occasions when you do, index management operations can be performed with the following interfaces:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>QueryIndexManager&#8201;&#8212;&#8201;<a href="https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/Cluster.html#queryIndexes:com.couchbase.client.scala.manager.query.QueryIndexManager"><code>Cluster.queryIndexes</code></a></p>
-</li>
-<li>
-<p>AnalyticsIndexManager&#8201;&#8212;&#8201;<a href="https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/Cluster.html#analyticsIndexes:com.couchbase.client.scala.manager.analytics.AnalyticsIndexManager"><code>Cluster.analyticsIndexes</code></a></p>
-</li>
-<li>
-<p>SearchIndexManager&#8201;&#8212;&#8201;<a href="https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/Cluster.html#searchIndexes:com.couchbase.client.scala.manager.search.SearchIndexManager"><code>Cluster.searchIndexes</code></a></p>
-</li>
-<li>
-<p> ViewIndexManager&#8201;&#8212;&#8201;<a href="https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/Bucket.html#viewIndexes:com.couchbase.client.scala.manager.view.ViewIndexManager"><code>Bucket.viewIndexes</code></a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>You will find some of these described in the following section.</p>
+<p>Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::7.1@sdk:shared:partial$flush-info-pars.adoc[]</p>
 </div>
 <div class="sect2">
 <h3 id="queryindexmanager"><a class="anchor" href="#queryindexmanager"></a>QueryIndexManager</h3>
@@ -558,35 +544,12 @@ It can be accessed via <code>Cluster.queryIndexes</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/QueryIndexManagerExample.scala#L10-L11">val cluster = Cluster.connect("localhost", "Administrator", "password").get
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/QueryIndexManagerExample.scala#L10-L11">val cluster = Cluster.connect("localhost", "Administrator", "password").get
 val queryIndexMgr = cluster.queryIndexes</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Applications can use this manager to perform operations such as creating, deleting, and fetching <em>primary</em> or <em>secondary</em> indexes:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A <em>Primary</em> index is built from a document&#8217;s key and is mostly suited for simple queries.</p>
-</li>
-<li>
-<p>A <em>Secondary</em> index is the most commonly used type, and is suited for complex queries that require filtering on document fields.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-To perform query index operations, the provided user must either be an <em>Admin</em> or assigned the <em>Query Manage Index</em> role.
-See the <a href="#server:learn:security/roles.adoc#query-manage-index" class="xref unresolved">Roles</a> page for more information.
-</td>
-</tr>
-</table>
+<p>Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::7.1@sdk:shared:partial$flush-info-pars.adoc[]</p>
 </div>
 <div class="paragraph">
 <p>The example below shows how to create a simple primary index, restricted to a named scope and collection, by calling the <code>createPrimaryIndex()</code> method.
@@ -595,7 +558,7 @@ Note that you cannot provide a named scope or collection separately, both must b
 <div class="listingblock">
 <div class="title">Creating a primary index</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/QueryIndexManagerExample.scala#L17-L28">val result: Try[Unit] = queryIndexMgr.createPrimaryIndex(
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/QueryIndexManagerExample.scala#L17-L28">val result: Try[Unit] = queryIndexMgr.createPrimaryIndex(
   "travel-sample",
   // Set this if you wish to use a custom name
   // indexName = Option("custom_name"),
@@ -623,7 +586,7 @@ When set to <code>true</code>, this optional argument ensures that an error is n
 <div class="listingblock">
 <div class="title">Creating a secondary index</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/QueryIndexManagerExample.scala#L35-L46">val result: Try[Unit] = queryIndexMgr.createIndex(
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/QueryIndexManagerExample.scala#L35-L46">val result: Try[Unit] = queryIndexMgr.createIndex(
   "travel-sample",
   "tenant_agent_01_users_email",
   Array("preferred_email"),
@@ -649,7 +612,7 @@ To achieve this we can use the <code>deferred</code> boolean option, and set it 
 <div class="listingblock">
 <div class="title">Deferring index creation</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/QueryIndexManagerExample.scala#L53-L91">// Create a deferred index
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/QueryIndexManagerExample.scala#L53-L91">// Create a deferred index
 var result: Try[Unit] = queryIndexMgr.createIndex(
   "travel-sample",
   "tenant_agent_01_users_phone",
@@ -697,7 +660,7 @@ Which one you use depends on the type of query index you wish to drop from the d
 <div class="listingblock">
 <div class="title">Deleting an index</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/QueryIndexManagerExample.scala#L98-L119"> // Drop a primary index
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/QueryIndexManagerExample.scala#L98-L119"> // Drop a primary index
  var result: Try[Unit] = queryIndexMgr.dropPrimaryIndex(
    "travel-sample",
    scopeName = Option("tenant_agent_01"),
@@ -728,11 +691,7 @@ result = queryIndexMgr.dropIndex(
 <h2 id="view-management"><a class="anchor" href="#view-management"></a>View Management</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Views are stored in design documents.
-The SDK provides convenient methods to create, retrieve, and remove design documents.
-To set up views, you create design documents that contain one or more view definitions, and then insert the design documents into a bucket.
-Each view in a design document is represented by a name and a set of MapReduce functions.
-The mandatory map function describes how to select and transform the data from the bucket, and the optional reduce function describes how to aggregate the results.</p>
+<p>Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::7.1@sdk:shared:partial$flush-info-pars.adoc[]</p>
 </div>
 <div class="paragraph">
 <p>In the SDK, design documents are represented by the <code>DesignDocument</code> and <code>View</code> structs.
@@ -740,7 +699,7 @@ All operations on design documents are performed on the <code>ViewIndexManager</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/ClusterResources.scala#L117">val viewIndexManager: ViewIndexManager = bucket.viewIndexes</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/ClusterResources.scala#L117">val viewIndexManager: ViewIndexManager = bucket.viewIndexes</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -748,7 +707,7 @@ All operations on design documents are performed on the <code>ViewIndexManager</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/ClusterResources.scala#L121-L127">val view1 = View("function (doc, meta) { if (doc.type == 'landmark') { emit([doc.country, doc.city], null); } }")
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/ClusterResources.scala#L121-L127">val view1 = View("function (doc, meta) { if (doc.type == 'landmark') { emit([doc.country, doc.city], null); } }")
 val view2 = View("function (doc, meta) { if (doc.type == 'landmark') { emit(doc.activity, null); } }", reduce = Some("_count"))
 
 val designDoc = DesignDocument("landmarks",
@@ -757,26 +716,8 @@ val designDoc = DesignDocument("landmarks",
 viewIndexManager.upsertDesignDocument(designDoc, DesignDocumentNamespace.Development)</code></pre>
 </div>
 </div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
 <div class="paragraph">
-<p>When you want to update an existing document with a new view (or a modification of a view&#8217;s definition), you can use the <code>upsertDesignDocument</code> method.</p>
-</div>
-<div class="paragraph">
-<p>However, this method needs the list of views in the document to be exhaustive, meaning that if you just create the new view definition as previously and add it to a new design document that you upsert, all your other views will be erased!</p>
-</div>
-<div class="paragraph">
-<p>The solution is to perform a <code>getDesignDocument</code>, add your view definition to the DesignDocument&#8217;s views list, then upsert it.
-This also works with view modifications, provided the change is in the <code>map</code> or <code>reduce</code> functions (just reuse the same name for the modified view), or for deletion of one out of several views in the document.</p>
-</div>
-</td>
-</tr>
-</table>
+<p>Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::7.1@sdk:shared:partial$flush-info-pars.adoc[]</p>
 </div>
 <div class="paragraph">
 <p>Note the use of <code>DesignDocumentNamespace.Development</code>, the other option is <code>DesignDocumentNamespace.Production</code>.
@@ -787,7 +728,7 @@ This parameter specifies whether the design document should be created as develo
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/ClusterResources.scala#L135-L136">val designDoc: Try[DesignDocument] =
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/ClusterResources.scala#L135-L136">val designDoc: Try[DesignDocument] =
   viewIndexManager.getDesignDocument("landmarks", DesignDocumentNamespace.Development)</code></pre>
 </div>
 </div>
@@ -796,7 +737,7 @@ This parameter specifies whether the design document should be created as develo
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/ClusterResources.scala#L140-L142">val publishResult = viewIndexManager.publishDesignDocument("landmarks")
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/ClusterResources.scala#L140-L142">val publishResult = viewIndexManager.publishDesignDocument("landmarks")
 
 // Result error-handling omitted for brevity</code></pre>
 </div>
@@ -806,7 +747,7 @@ This parameter specifies whether the design document should be created as develo
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/howtos/examples/ClusterResources.scala#L146-L147">val dropResult = viewIndexManager.dropDesignDocument("landmarks", DesignDocumentNamespace.Production)
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/howtos/examples/ClusterResources.scala#L146-L147">val dropResult = viewIndexManager.dropDesignDocument("landmarks", DesignDocumentNamespace.Production)
 // Result error-handling omitted for brevity</code></pre>
 </div>
 </div>
@@ -885,7 +826,7 @@ This parameter specifies whether the design document should be created as develo
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -902,6 +843,7 @@ This parameter specifies whether the design document should be created as develo
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

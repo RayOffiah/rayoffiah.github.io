@@ -12,25 +12,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Start Using the Scala SDK | Couchbase Docs</title>
+<title>Install and Start Using the Scala SDK with Couchbase Server | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/scala-sdk/current/hello-world/start-using-sdk.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="Get up and running quickly, installing the Couchbase Scala SDK, and running our Hello World example.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
-        <link rel="prev" href="overview.html">
-        <link rel="next" href="../howtos/kv-operations.html">
 
 
-
-
-                    <link rel="next" href="../howtos/kv-operations.html">
-
-        
 <meta name="dcterms.subject" content="scala-sdk">
-<meta name="dcterms.identifier" content="1.4">
+<meta name="dcterms.identifier" content="1.3">
 <meta name="page-url" content="/scala-sdk/current/hello-world/start-using-sdk.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="scala-sdk">
+<meta name="docsearch:component_title" content="Scala SDK">
+<meta name="docsearch:cversion" content="1.3">
+<meta name="docsearch:component_version" content="scala-sdk@1.3">
+<meta name="docsearch:module" content="hello-world">
+<meta name="docsearch:breadcrumbs" content="Scala SDK / Getting Started / Start Using the SDK">
+<meta name="docsearch:topic_type" content="howto">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -48,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -69,19 +77,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../../../home/mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -95,7 +118,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -106,14 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="scala-sdk">
-        <option value="1.4" data-url="start-using-sdk.html" selected>1.4</option>
-        <option value="1.3" data-url="../../1.3/hello-world/start-using-sdk.html">1.3</option>
-        <option value="1.2" data-url="../../1.2/hello-world/start-using-sdk.html">1.2</option>
-        <option value="1.1" data-url="../../1.1/hello-world/start-using-sdk.html">1.1</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -122,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/docs-sdk-scala/edit/release/1.4/modules/hello-world/pages/start-using-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/hello-world/pages/start-using-sdk.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -182,15 +196,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="crumb"><a href="overview.html">Scala SDK</a></li>
 <li class="crumb">Getting Started</li>
-<li class="crumb"><a href="start-using-sdk.html">Start Using the Scala SDK</a></li>
+<li class="crumb"><a href="start-using-sdk.html">Start Using the SDK</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Start Using the Scala SDK</h1>
+<h1 class="page">Install and Start Using the Scala SDK with Couchbase Server</h1>
 <div class="labels">
-<ul><li class="tutorial"><span><i class="fas fa-book-reader"></i> tutorial</span></li>
+<ul><li class="guide"><span><i class="far fa-check-square"></i> how-to</span></li>
 </ul>
 </div>
 
@@ -221,22 +235,22 @@ Get up and running quickly, installing the Couchbase Scala SDK, and running our 
 <div class="paragraph">
 <p>We will go through the code sample step by step, but for those in a hurry to see it, here it is:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset1_couchbase-capella-sample"></a>Couchbase Capella Sample</p>
+<li id="tabs-1-couchbase-capella-sample" class="tab">
+<p>Couchbase Capella Sample</p>
 </li>
-<li>
-<p><a id="tabset1_local-couchbase-server"></a>Local Couchbase Server</p>
+<li id="tabs-1-local-couchbase-server" class="tab">
+<p>Local Couchbase Server</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_couchbase-capella-sample">
+<div id="tabs-1-couchbase-capella-sample--panel" class="tabpanel" aria-labelledby="tabs-1-couchbase-capella-sample">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/hello-world/examples/Cloud.scala">/*
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/hello-world/examples/Cloud.scala">/*
  * Copyright (c) 2022 Couchbase, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -273,7 +287,7 @@ object Cloud {
     // Update this to your cluster
     val endpoint = "cb.&lt;your-endpoint&gt;.cloud.couchbase.com"
     val username = "username"
-    val password = "Password!123"
+    val password = "Password123!"
     val bucketName = "travel-sample"
 
     val env = ClusterEnvironment.builder
@@ -281,10 +295,10 @@ object Cloud {
         SecurityConfig()
           .enableTls(true)
       )
-      // Sets a pre-configured profile called "wan-development" to help avoid latency issues
-      // when accessing Capella from a different Wide Area Network
-      // or Availability Zone (e.g. your laptop).
-      .applyProfile(ClusterEnvironment.WanDevelopmentProfile)
+      .timeoutConfig(
+        TimeoutConfig()
+          .kvTimeout(10.seconds)
+      )
       .build
       .get
 
@@ -378,10 +392,10 @@ object Cloud {
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_local-couchbase-server">
+<div id="tabs-1-local-couchbase-server--panel" class="tabpanel" aria-labelledby="tabs-1-local-couchbase-server">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/hello-world/examples/StartUsing.scala">/*
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/hello-world/examples/StartUsing.scala">/*
  * Copyright (c) 2022 Couchbase, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -425,13 +439,17 @@ object StartUsing {
       // .securityConfig(
       //   SecurityConfig()
       //     .enableTls(true)
+      //     .trustCertificate(Path.of("/path/to/cluster-root-certificate.pem"))
       // )
+      .timeoutConfig(
+        TimeoutConfig()
+          .kvTimeout(10.seconds)
+      )
       .build
       .get
 
     val cluster = Cluster
       .connect(
-        // For a secure cluster connection, use `couchbases://&lt;your-cluster-ip&gt;` instead.
         "couchbase://localhost",
         ClusterOptions
           .create(username, password)
@@ -530,39 +548,39 @@ object StartUsing {
 <div class="paragraph">
 <p>A more detailed guide in our <a href="../project-docs/sdk-full-installation.html" class="xref page">Installation page</a> covers every supported platform, but this section should be enough to get up and running in most cases.</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div id="tabs-2" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset2_sbt"></a>SBT</p>
+<li id="tabs-2-sbt" class="tab">
+<p>SBT</p>
 </li>
-<li>
-<p><a id="tabset2_gradle"></a>Gradle</p>
+<li id="tabs-2-gradle" class="tab">
+<p>Gradle</p>
 </li>
-<li>
-<p><a id="tabset2_maven"></a>Maven</p>
+<li id="tabs-2-maven" class="tab">
+<p>Maven</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_sbt">
+<div id="tabs-2-sbt--panel" class="tabpanel" aria-labelledby="tabs-2-sbt">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sbt hljs" data-lang="sbt">libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.4.11"</code></pre>
+<pre class="highlightjs highlight"><code class="language-sbt hljs" data-lang="sbt">libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.3.3"</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>This will automatically use the Scala 2.12 or 2.13 builds, as appropriate for your SBT project.</p>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset2_gradle">
+<div id="tabs-2-gradle--panel" class="tabpanel" aria-labelledby="tabs-2-gradle">
 <div class="paragraph">
 <p>It can be included in your <code>build.gradle</code> like this for 2.13:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_2.13', version: '1.4.11'
+    compile group: 'com.couchbase.client', name: 'scala-client_2.13', version: '1.3.3'
 }</code></pre>
 </div>
 </div>
@@ -570,7 +588,7 @@ object StartUsing {
 <p>For Scala 2.12, refer to the full <a href="../project-docs/sdk-full-installation.html" class="xref page">Installation page</a>.</p>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset2_maven">
+<div id="tabs-2-maven--panel" class="tabpanel" aria-labelledby="tabs-2-maven">
 <div class="paragraph">
 <p>It can be included in your Maven <code>pom.xml</code> like this for 2.13:</p>
 </div>
@@ -580,7 +598,7 @@ object StartUsing {
     &lt;dependency&gt;
         &lt;groupId&gt;com.couchbase.client&lt;/groupId&gt;
         &lt;artifactId&gt;scala-client_2.13&lt;/artifactId&gt;
-        &lt;version&gt;1.4.11&lt;/version&gt;
+        &lt;version&gt;1.3.3&lt;/version&gt;
     &lt;/dependency&gt;
 &lt;/dependencies&gt;</code></pre>
 </div>
@@ -594,100 +612,22 @@ object StartUsing {
 </div>
 </div>
 <div class="sect1">
-<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following code samples assume:</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset3_couchbase-capella"></a>Couchbase Capella</p>
-</li>
-<li>
-<p><a id="tabset3_local-couchbase-server"></a>Local Couchbase Server</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_couchbase-capella">
-<div class="ulist">
-<ul>
-<li>
-<p>You have signed up to <a href="https://cloud.couchbase.com/sign-up">Couchbase Capella</a>.</p>
-</li>
-<li>
-<p>You have created your own bucket, or loaded the Travel Sample dataset.
-Note, the Travel Sample dataset is installed automatically by the Capella free trial.</p>
-</li>
-<li>
-<p>A user is created with permissions to access the cluster (at least Application Access permissions).
-See the <a href="#cloud:get-started:cluster-and-data.adoc#credentials" class="xref unresolved">Capella connection page</a> for more details.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Couchbase Capella uses <a href="#cloud:organizations:organization-projects-overview.adoc" class="xref unresolved">Roles</a> to control user access to database resources.
-For the purposes of this guide, you can use the <strong>Organization Owner</strong> role automatically assigned to your account during installation of the Capella cluster.
-In a production scenario, we strongly recommend setting up users with more granular access roles as a best practice.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset3_local-couchbase-server">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#7.1@server:getting-started/do-a-quick-install.adoc" class="xref unresolved">Couchbase Server</a> is installed and accessible locally.</p>
-</li>
-<li>
-<p>You have created your own bucket, or loaded the Travel Sample dataset using the <a href="#7.1@server:manage:manage-settings/install-sample-buckets.adoc#install-sample-buckets-with-the-ui" class="xref unresolved">Web interface</a>.</p>
-</li>
-<li>
-<p>A user is created with permissions to access your cluster (at least Application Access permissions).
-See <a href="#7.1@server:manage:manage-security/manage-users-and-roles.adoc" class="xref unresolved">Manage Users, Groups and Roles</a> for more details.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Couchbase Server uses <a href="#7.1@server:learn:security/roles.adoc" class="xref unresolved">Role Based Access Control (RBAC)</a> to control access to resources.
-In this guide we suggest using the <strong>Full Admin</strong> role created during setup of your local Couchbase Server cluster.
-For production client code, you will want to use more appropriate, restrictive settings.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="step-by-step"><a class="anchor" href="#step-by-step"></a>Step by Step</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Here&#8217;s the above Hello World example, broken down into individual actions.</p>
+</div>
+<div class="sect2">
+<h3 id="connecting-to-a-cluster"><a class="anchor" href="#connecting-to-a-cluster"></a>Connecting to a Cluster</h3>
+<div class="paragraph">
+<p>Now you have the Scala client installed, try out the following to connect to a Couchbase cluster.</p>
 </div>
 <div class="paragraph">
 <p>First pull in all the imports we&#8217;ll be using:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/hello-world/examples/Cloud.scala#L18-L32">import com.couchbase.client.scala.durability.Durability
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/hello-world/examples/Cloud.scala#L18-L32">import com.couchbase.client.scala.durability.Durability
 import com.couchbase.client.scala.env.{
   ClusterEnvironment,
   SecurityConfig,
@@ -704,27 +644,27 @@ import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="connect"><a class="anchor" href="#connect"></a>Connect</h3>
 <div class="paragraph">
-<p>Now that you have the Scala client installed, try out the following to connect to a Couchbase cluster.
-The basic connection details that you&#8217;ll need are given below&#8201;&#8212;&#8201;for more background information, refer to the <a href="../howtos/managing-connections.html#connection-strings" class="xref page">Managing Connections page</a>.</p>
+<p>The basic connection details that you&#8217;ll need are given below&#8201;&#8212;&#8201;for more background information, refer to the <a href="../howtos/managing-connections.html#connection-strings" class="xref page">Managing Connections page</a>.</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div class="paragraph">
+<p>Now we can connect to the cluster:</p>
+</div>
+<div id="tabs-3" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><a id="tabset4_couchbase-capella"></a>Couchbase Capella</p>
+<li id="tabs-3-couchbase-capella" class="tab">
+<p>Couchbase Capella</p>
 </li>
-<li>
-<p><a id="tabset4_local-couchbase-server"></a>Local Couchbase Server</p>
+<li id="tabs-3-local-couchbase-server" class="tab">
+<p>Local Couchbase Server</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset4_couchbase-capella">
+<div id="tabs-3-couchbase-capella--panel" class="tabpanel" aria-labelledby="tabs-3-couchbase-capella">
 <div class="paragraph">
-<p>You connect to a <a href="https://docs.couchbase.com/cloud/index.html">Couchbase Capella</a> cluster the same as any other cluster, except that the use of TLS is mandatory, and the <code>couchbases://</code> connection string prefix should be used to allow DNS SRV lookup.</p>
+<p>You connect to a <a href="https://docs.couchbase.com/cloud/index.html">Couchbase Capella</a> cluster the same as any other cluster, except that the use of TLS and a certificate is mandatory, and the "couchbases://" connection string prefix should be used to allow DNS SRV lookup.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -740,10 +680,10 @@ As of Scala SDK version 1.3.0, the standard certificate required to connect to a
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/hello-world/examples/Cloud.scala#L38-L63">// Update this to your cluster
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/hello-world/examples/Cloud.scala#L38-L63">// Update this to your cluster
 val endpoint = "cb.&lt;your-endpoint&gt;.cloud.couchbase.com"
 val username = "username"
-val password = "Password!123"
+val password = "Password123!"
 val bucketName = "travel-sample"
 
 val env = ClusterEnvironment.builder
@@ -751,10 +691,10 @@ val env = ClusterEnvironment.builder
     SecurityConfig()
       .enableTls(true)
   )
-  // Sets a pre-configured profile called "wan-development" to help avoid latency issues
-  // when accessing Capella from a different Wide Area Network
-  // or Availability Zone (e.g. your laptop).
-  .applyProfile(ClusterEnvironment.WanDevelopmentProfile)
+  .timeoutConfig(
+    TimeoutConfig()
+      .kvTimeout(10.seconds)
+  )
   .build
   .get
 
@@ -769,27 +709,19 @@ val cluster = Cluster
 </div>
 </div>
 <div class="paragraph">
-<p>When accessing Capella from a different Wide Area Network or Availability Zone, you may experience latency issues with the default connection settings.
-SDK 1.4 introduces a <code>wan-development</code> Configuration Profile, which provides pre-configured timeout settings suitable for working in high latency environments.
-Basic usage is shown in the example above, but if you want to learn more see <a href="../ref/client-settings.html#constrained-network-environments" class="xref page">Constrained Network Environments</a>.</p>
+<p>Couchbase Capella uses <a href="../../../cloud/organizations/organization-projects-overview.html" class="xref page">Roles</a> to control user access to database resources.
+For the purposes of this example, we can use the <em>Organization Owner</em> role automatically assigned to a user account during installation of the Capella cluster.
+This role grants full access to a Capella organization, including full data access to all projects and clusters.
+In a production scenario, we strongly recommend setting up users with more granular access roles as a best practice.</p>
 </div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-The Configuration Profiles feature is currently a <a href="../project-docs/compatibility.html#interface-stability" class="xref page">Volatile API</a> and may be subject to change.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>For the SDK client to access cluster data, you will need to set up credentials for your database by <a href="../../../cloud/get-started/run-first-queries.html#credentials" class="xref page">following these steps</a>.</p>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset4_local-couchbase-server">
+<div id="tabs-3-local-couchbase-server--panel" class="tabpanel" aria-labelledby="tabs-3-local-couchbase-server">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/hello-world/examples/StartUsing.scala#L36-L58">// Update this to your cluster
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/hello-world/examples/StartUsing.scala#L36-L62">// Update this to your cluster
 val username = "Administrator"
 val password = "password"
 val bucketName = "travel-sample"
@@ -799,13 +731,17 @@ val env = ClusterEnvironment.builder
   // .securityConfig(
   //   SecurityConfig()
   //     .enableTls(true)
+  //     .trustCertificate(Path.of("/path/to/cluster-root-certificate.pem"))
   // )
+  .timeoutConfig(
+    TimeoutConfig()
+      .kvTimeout(10.seconds)
+  )
   .build
   .get
 
 val cluster = Cluster
   .connect(
-    // For a secure cluster connection, use `couchbases://&lt;your-cluster-ip&gt;` instead.
     "couchbase://localhost",
     ClusterOptions
       .create(username, password)
@@ -815,8 +751,11 @@ val cluster = Cluster
 </div>
 </div>
 <div class="paragraph">
-<p>For developing locally on the same machine as Couchbase Server, your URI can be <code>couchbase://localhost</code> as shown here.
-For production deployments, you will want to use a secure server, with <code>couchbases://</code>.</p>
+<p>Couchbase uses <a href="#7.1@server:learn:security/roles.adoc" class="xref unresolved">Role Based Access Control (RBAC)</a> to control access to resources.
+For the purposes of this example, we are connecting to Couchbase using the <em>Full Admin</em> role created during the installation of our Couchbase Server.</p>
+</div>
+<div class="paragraph">
+<p>Couchbase RBAC is fully described in the <a href="#7.1@server:manage:manage-security/manage-users-and-roles.adoc" class="xref unresolved">Manage Users, Groups, and Roles</a> page.</p>
 </div>
 </div>
 </div>
@@ -839,9 +778,22 @@ You&#8217;ll see examples later of how to better handle a <code>Try</code>, but 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/hello-world/examples/Cloud.scala#L67-L68">val bucket = cluster.bucket(bucketName)
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/hello-world/examples/Cloud.scala#L67-L68">val bucket = cluster.bucket(bucketName)
 bucket.waitUntilReady(30.seconds).get</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We are working with the <a href="#7.1@server:manage:manage-settings/install-sample-buckets.adoc" class="xref unresolved">travel-sample</a> data bucket.
+If you are not, update the <code>bucketName</code> variable used in the example with your own.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p><code>waitUntilReady</code> is an optional call.
@@ -857,7 +809,7 @@ Here we will use the <code>users</code> collection within the <code>tenant_agent
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/hello-world/examples/Cloud.scala#L72-L75">// get a reference to the default collection, required for Couchbase server 6.5 or earlier
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/hello-world/examples/Cloud.scala#L72-L75">// get a reference to the default collection, required for Couchbase server 6.5 or earlier
 // val collection = bucket.defaultCollection
 
 val collection = bucket.scope("inventory").collection("airport")</code></pre>
@@ -888,7 +840,7 @@ The philosophy behind this library is to provide a very easy-to-use API and the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/hello-world/examples/Cloud.scala#L79">val json = JsonObject("status" -&gt; "awesome")</code></pre>
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/hello-world/examples/Cloud.scala#L79">val json = JsonObject("status" -&gt; "awesome")</code></pre>
 </div>
 </div>
 </div>
@@ -900,7 +852,7 @@ We need to provide a unique ID for the JSON, and we&#8217;ll use a UUID here:</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/hello-world/examples/Cloud.scala#L83-L87">val docId = UUID.randomUUID().toString
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/hello-world/examples/Cloud.scala#L83-L87">val docId = UUID.randomUUID().toString
 collection.upsert(docId, json) match {
   case Success(result)    =&gt;
   case Failure(exception) =&gt; println("Error: " + exception)
@@ -917,7 +869,7 @@ The easiest way to handle a single operation is with pattern matching, as shown 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/hello-world/examples/Cloud.scala#L91-L105">// Get a document
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/hello-world/examples/Cloud.scala#L91-L105">// Get a document
 collection.get(docId) match {
   case Success(result) =&gt;
     // Convert the content to a JsonObjectSafe
@@ -946,7 +898,7 @@ One way to improve on this is by using flatMap, like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/hello-world/examples/Cloud.scala#L125-L133">val result: Try[String] = collection
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/hello-world/examples/Cloud.scala#L125-L133">val result: Try[String] = collection
   .get(docId)
   .flatMap(_.contentAs[JsonObjectSafe])
   .flatMap(_.str("status"))
@@ -962,7 +914,7 @@ result match {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/hello-world/examples/Cloud.scala#L110-L119">val result: Try[String] = for {
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/hello-world/examples/Cloud.scala#L110-L119">val result: Try[String] = for {
   result &lt;- collection.get(docId)
   json &lt;- result.contentAs[JsonObjectSafe]
   status &lt;- json.str("status")
@@ -987,7 +939,7 @@ For instance:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/hello-world/examples/Cloud.scala#L139-L148">collection.replace(
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/hello-world/examples/Cloud.scala#L139-L148">collection.replace(
   docId,
   json,
   ReplaceOptions()
@@ -1007,7 +959,7 @@ For instance:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="https://github.com/couchbase/docs-sdk-scala/blob/cc653e7a4d1c8ffa67fb3ba2f80b95e58d087242/modules/hello-world/examples/Cloud.scala#L154-L157">collection.replace(docId, json, durability = Durability.Majority) match {
+<pre class="highlightjs highlight"><code class="language-scala hljs" data-lang="scala" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-sdk-scala/modules/hello-world/examples/Cloud.scala#L154-L157">collection.replace(docId, json, durability = Durability.Majority) match {
   case Success(status) =&gt;
   case Failure(err)    =&gt; println("Error: " + err)
 }</code></pre>
@@ -1031,7 +983,7 @@ For instance:</p>
 <p>Explore <a href="../howtos/kv-operations.html" class="xref page">Key Value Operations</a> (CRUD) against a document database;</p>
 </li>
 <li>
-<p>Or <a href="../howtos/n1ql-queries-with-sdk.html" class="xref page">Query</a> with our SQL-based SQL++ query language;</p>
+<p>Or <a href="../howtos/n1ql-queries-with-sdk.html" class="xref page">Query</a> with our SQL-based N1QL language;</p>
 </li>
 <li>
 <p>Try longer-running queries with our <a href="../howtos/analytics-using-sdk.html" class="xref page">Analytics Service</a>;</p>
@@ -1088,13 +1040,6 @@ If you&#8217;re running the SDK on your laptop against a Capella cluster, see fu
 </div>
 </div>
 </div>
-
-        <nav class="pagination">
-
-                <span>&nbsp;</span>
-        
-                    <span class="next"><a href="../howtos/kv-operations.html">Data Operations</a></span>
-
 </article>
 </main>
 </div>
@@ -1168,7 +1113,7 @@ If you&#8217;re running the SDK on your laptop against a Capella cluster, see fu
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","kotlin-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","cxx-txns","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","sdk-extensions"],"latestVersions":{"dotnet-sdk":"3.4","c-sdk":"3.3","go-sdk":"2.6","java-sdk":"3.4","kotlin-sdk":"1.1","nodejs-sdk":"4.2","php-sdk":"4.0","python-sdk":"4.1","ruby-sdk":"3.3","scala-sdk":"1.4","cxx-txns":"1.0","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.3","tableau-connector":"1.x","sdk-extensions":"master"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.1","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -1185,6 +1130,7 @@ If you&#8217;re running the SDK on your laptop against a Capella cluster, see fu
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>

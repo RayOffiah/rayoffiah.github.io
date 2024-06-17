@@ -23,6 +23,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="dcterms.identifier" content="master">
 <meta name="page-url" content="/home/contribute/edit-pages.html">
 <meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="home">
+<meta name="docsearch:component_title" content="Couchbase Documentation">
+<meta name="docsearch:cversion" content="master">
+<meta name="docsearch:component_version" content="home@master">
+<meta name="docsearch:module" content="contribute">
+<meta name="docsearch:breadcrumbs" content=" / Contributing Workflow / Edit Existing Documentation">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="0">
+
+
 <meta name="generator" content="Antora 3.1.7">
 <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
@@ -40,7 +54,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="https://docs.couchbase.com/home/index.html">
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
                     <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
                     <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
                   </a>
@@ -61,19 +76,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
               <div class="navbar-collapse collapse" id="navbar2">
                 <ul class="navbar-nav w-100 justify-content-start">
-                  <li class="nav-item">
+
+                  <li class="nav-item "">
                     <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
                       <i class="fas fa-home"></i>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../server.html">
                       Server
+                      
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item ">
                     <a class="nav-link" href="../mobile.html">
                       Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../sdk.html">
+                      SDKs
+                      
                     </a>
                   </li>
                 </ul>
@@ -87,7 +117,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
-
               </div>
 
         </nav>
@@ -175,11 +204,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="labels">
 <ul></ul>
 </div>
-<div class="labels">
-<ul>
-<li class="status"><span>OUT OF DATE</span></li>
-</ul>
-</div>
 
 
 </div>
@@ -189,254 +213,157 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span  id="otherContributor"> + </span>
 </div><div id="preamble">
 <div class="sectionbody">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This documentation is out of date
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-we currently recommend to install VS Code
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Use the following as a reference for how to edit documentation using VS Code.
+You can choose to write AsciiDoc in a plain text editor, or whichever integrated development environment (IDE) you prefer.</p>
 </div>
 <div class="paragraph">
-<p>The following sections describe the document editing process using the Atom editor; however, you can write AsciiDoc in the plain text editor or integrated development environment (IDE) of your choice.</p>
+<p>The Documentation team recommends VS Code due to the extensions available, such as Vale, for running automated checks on your documentation.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+See the <a href="https://code.visualstudio.com/docs/getstarted/userinterface" target="_blank" rel="noopener">VS Code documentation</a> for an overview of the user interface, and to get more familiar with how to work in VS Code.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="general-editing-steps-using-atom"><a class="anchor" href="#general-editing-steps-using-atom"></a>General Editing Steps Using Atom</h2>
+<h2 id="general-editing-steps-using-vs-code"><a class="anchor" href="#general-editing-steps-using-vs-code"></a>General Editing Steps Using VS Code</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>In general, to edit an existing page of the documentation in VS Code:</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Make sure you&#8217;ve added the repository directory to the <strong>Project</strong> panel, <a href="create-branches.html" class="xref page">created a working branch</a>, and switched to it.
-The name of your working branch is displayed next to the <span class="image icon"><img src="_images/git-branch.svg" alt="git branch" width="16"></span> branch icon at the bottom of the editor.</p>
+<p>Start VS Code.</p>
 </li>
 <li>
-<p>In the project panel, expand the repository to view its folders and files.
-Locate the page, partial, or example file you want to edit and double click on it to open it in an editor pane.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>If you&#8217;re not familiar with the structure of a documentation component, see <a href="repositories.html#dir-structure" class="xref page">Directory Structure and Key Files</a>.</p>
+<p>On the <strong>Welcome</strong> tab, click <b class="button">Open Folder</b>.</p>
 </li>
-</ol>
+<li>
+<p>Select the folder on your computer where you <a href="set-up-repository.html" class="xref page">cloned the documentation repository</a>.</p>
+</li>
+<li>
+<p>Click <b class="button">Select Folder</b>.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you enabled the <strong>Open with Code</strong> context menu action when you installed VS Code, you can quickly open a repository from your file explorer instead of following these steps.
+Open the folder in the file explorer, and from the top level of the repository&#8217;s directory, right-click and click <strong>Open with Code</strong>.
+</td>
+</tr>
+</table>
 </div>
 </li>
 <li>
-<p>Edit the content.
-The <a href="#edit-server">next section</a> steps through an editing scenario.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>For AsciiDoc tips and help, see <a href="basics.html" class="xref page">AsciiDoc Basics</a>.</p>
+<p><a href="create-branches.html" class="xref page">Create a new working branch</a> for your documentation changes.</p>
 </li>
-</ol>
+<li>
+<p>Click <span class="image"><img src="_images/explorer.png" alt="The Explorer icon from the VS Code editor. It shows 2 overlapping pieces of paper." width="20"></span> <b class="button">Explorer</b>.</p>
+</li>
+<li>
+<p>In the Explorer pane, locate the file for the page, partial, or example you want to edit.</p>
+</li>
+<li>
+<p>Double-click the file to open it in an editor pane.</p>
+</li>
+<li>
+<p>Make edits to the content.</p>
+<div class="paragraph">
+<p>For AsciiDoc help, see <a href="basics.html" class="xref page">AsciiDoc Basics</a>.
+For style conventions, see <a href="#styleguide:index.adoc" class="xref unresolved">styleguide:index.adoc</a>.</p>
 </div>
 </li>
 <li>
-<p>If you installed the <a href="install-git-and-editor.html#adoc-packages" class="xref page">AsciiDoc Preview package</a>, go to <span class="menuseq"><b class="menu">Packages</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">AsciiDoc Preview</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Toggle Preview</b></span>.
-A basic preview of the rendered document is displayed in an adjacent pane.</p>
+<p>Do one of the following:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Press <span class="keyseq"><kbd>CTRL</kbd>+<kbd>S</kbd></span> to save the file.</p>
 </li>
 <li>
-<p>Press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>S</kbd></span> to save the file.</p>
+<p>Go to <span class="menuseq"><b class="menu">File</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Auto Save</b></span> to toggle auto-save for your editor.</p>
+</li>
+</ol>
+</div>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>When your edits are complete, you&#8217;re ready to <a href="test-site.html" class="xref page">configure a local playbook</a> to use your changes and build the site on your device.</p>
+<p>To check your edits, <a href="test-site.html" class="xref page">configure and build a local test site</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="edit-server"><a class="anchor" href="#edit-server"></a>Editing a Page in the Server Component</h2>
+<h2 id="use-find-and-replace"><a class="anchor" href="#use-find-and-replace"></a>Use Find and Replace</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s step through editing a Server component page using Atom.
-Now that the documentation has been converted from DITA, you can use all of the features of AsciiDoc to enhance the content and structure of the pages.
-The syntax changes described in this section represent some of the improvements you can make.</p>
-</div>
-<div class="sect2">
-<h3 id="1-open-the-file"><a class="anchor" href="#1-open-the-file"></a>1. Open the File</h3>
-<div class="paragraph">
-<p>In the project panel, in the <span class="image icon"><img src="_images/repo.svg" alt="repo" width="16"></span> docs-server repository, go to <span class="menuseq"><b class="menu">modules</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">backup-restore</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">pages</b></span>.
-Double click on <em>backup-restore.adoc</em> to open the AsciiDoc file in the editor pane.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/edit-page-in-atom.png" alt="edit page in atom">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="2-set-and-reference-an-attribute"><a class="anchor" href="#2-set-and-reference-an-attribute"></a>2. Set and Reference an Attribute</h3>
-<div class="paragraph">
-<p>The built-in AsciiDoc <code>abstract</code> style is the <em>Summary</em> displayed on the published pages.
-The Docs team wants to use this text in the page&#8217;s HTML description meta tag.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/add-description.png" alt="add description">
-</div>
+<p>To speed up making edits to multiple instances of a word, attribute, link, or other text in a file, use VS Code&#8217;s <strong>Find and Replace</strong> feature.</p>
 </div>
 <div class="paragraph">
-<p>Set the <code>description</code> attribute in the <a href="pages.html#doc-title" class="xref page">header of the document</a>.</p>
+<p>To use Find and Replace:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">= Backup and Restore
-:description:
-
-[abstract]
-In a production environment, as part of an overall Disaster Recovery plan, you must [...]</code></pre>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Click <span class="image"><img src="_images/search.png" alt="The Search icon from the VS Code editor. It shows a magnifying glass." width="20"></span> <b class="button">Search</b>.</p>
+</li>
+<li>
+<p>In the <strong>Search</strong> field, enter the term you want to find and press <kbd>Enter</kbd> to search.</p>
+</li>
+<li>
+<p>Click the caret (<code>&gt;</code>) next to the text field to show the <strong>Replace</strong> field.</p>
+</li>
+<li>
+<p>Enter the term you want to use to replace your search term.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If your search term appears in different casing that you want to preserve through your search results, you can click <b class="button">AB (Preserve Case)</b> on the <strong>Replace</strong> field to keep the original casing in your replacement.
+</td>
+</tr>
+</table>
 </div>
+</li>
+<li>
+<p>Do one of the following:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>To replace every instance in your search results, next to the <strong>Replace</strong> field, click <b class="button">Replace All</b>.</p>
+</li>
+<li>
+<p>To replace every instance in a specific file in your search results, point to a filename in your results, and next to the file path, click <b class="button">Replace All</b> when it appears.</p>
+</li>
+<li>
+<p>To replace individual instances in your search results, point to a result, and click <b class="button">Replace</b> when it appears.</p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>Cut ( <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>X</kbd></span> ) the paragraph under <code>[abstract]</code> and paste ( <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>V</kbd></span> ) it into the value of <code>description</code>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">= Backup and Restore
-:description: In a production environment, as part of an overall Disaster Recovery plan, you must plan to back up your entire cluster periodically.
-This helps ensure that you do not lose information in the event of a serious failure and minimizes data inconsistency when a restore is required.
-
-[abstract]
-
-Couchbase provides multiple [...]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>To keep the paragraph as <a href="pages.html#ventilate" class="xref page">ventilated prose (aka sentence per line)</a> and not break the header, enter a space after the end of the first sentence, then a <code>\</code>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">= Backup and Restore
-:description: In a production environment, as part of an overall Disaster Recovery plan, you must plan to back up your entire cluster periodically. \
-This helps ensure that you do not lose information in the event of a serious failure and minimizes data inconsistency when a restore is required.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>To display the description text in the <em>Summary</em>, reference the <code>description</code> attribute.
-An attribute is referenced when its name is enclosed by a set of curly brackets (<code>{}</code>).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">= Backup and Restore
-:description: In a production environment, as part of an overall Disaster Recovery plan, you must plan to back up your entire cluster periodically. \
-This helps ensure that you do not lose information in the event of a serious failure and minimizes data inconsistency when a restore is required.
-
-[abstract]
-{description}
-
-Couchbase provides multiple means to facilitate backup and restore.</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="3-replace-list-items-with-section-headings-and-paragraphs"><a class="anchor" href="#3-replace-list-items-with-section-headings-and-paragraphs"></a>3. Replace List Items with Section Headings and Paragraphs</h3>
-<div class="paragraph">
-<p>This page doesn&#8217;t have any section headings, and therefore no <strong>On This Page</strong> sidebar.
-It does have two multi-paragraph bulleted list items that look like good candidates for section headings and section paragraphs.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/bulleted-list-items.png" alt="bulleted list items">
-</div>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Remove each list marker (<code>*</code>) and replace it with two equals signs (<code>==</code>).
-This turns the content on those lines into <a href="pages.html#document-sections" class="xref page">heading 2 section titles</a>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">== Using [.cmd]`cbbackupmgr` Tool
-+
-Couchbase Backup Manager is an enterprise-grade backup and restore utility that is [...]
-
-== Using [.cmd]`cbbackup` and [.cmd]`cbrestore` Tools
-+
-The [.cmd]`cbbackup` and [.cmd]`cbrestore` tools provide simple yet effective backup and restore capabilities to Couchbase Server.
-+
-The cbbackup tool enables you to backup a single node [...]</code></pre>
-</div>
+<p>VS Code&#8217;s Find and Replace supports case and whole word matching, as well as regular expressions.</p>
 </div>
 <div class="paragraph">
-<p>Since the content is no longer structured as a list, remove the list continuation (<code>+</code>) markup between the paragraphs.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">== Using [.cmd]`cbbackupmgr` Tool
-
-Couchbase Backup Manager is an enterprise-grade backup and restore utility that is [...]
-
-== Using [.cmd]`cbbackup` and [.cmd]`cbrestore` Tools
-
-The [.cmd]`cbbackup` and [.cmd]`cbrestore` tools provide simple yet effective backup and restore capabilities to Couchbase Server.
-
-The cbbackup tool enables you to backup a single node [...]</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="4-find-and-replace-the-cmd-role"><a class="anchor" href="#4-find-and-replace-the-cmd-role"></a>4. Find and Replace the <code>cmd</code> Role</h3>
-<div class="paragraph">
-<p>In the original DITA files, there were lots of inline roles (<code>cmd</code>, <code>ui</code>, <code>param</code>, etc.).
-Some of these roles were mapped to built-in AsciiDoc syntax.
-For instance, when <code>ui</code> was assigned to dropdown menu text, it was replaced with the <a href="basics.html#ui-macros" class="xref page">menu UI macro</a>.
-Other roles were simply carried forward, like <code>cmd</code>, but weren&#8217;t associated with any custom styles in the final UI.
-You can clean up the document by deleting the unused roles.</p>
-</div>
-<div class="paragraph">
-<p>Press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>F</kbd></span> to open the Find and Replace panel.
-Enter <code>[.cmd]</code> in the <strong>Find</strong> field and leave the <strong>Replace</strong> field empty.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/find-and-replace.png" alt="find and replace">
-</div>
-</div>
-<div class="paragraph">
-<p>Click <b class="button">Replace All</b> to delete all of the instances of <code>[.cmd]</code>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="5-preview-and-save-the-file"><a class="anchor" href="#5-preview-and-save-the-file"></a>5. Preview and Save the File</h3>
-<div class="paragraph">
-<p>If you installed the  <a href="install-git-and-editor.html#adoc-packages" class="xref page">AsciiDoc Preview package</a>, go to <span class="menuseq"><b class="menu">Packages</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">AsciiDoc Preview</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Toggle Preview</b></span>.
-A basic preview of the rendered document is displayed in an adjacent pane.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/preview.png" alt="preview">
-</div>
-</div>
-<div class="paragraph">
-<p>Press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>S</kbd></span> to save the file.
-In the project panel, the file name will change color, indicating it&#8217;s unstaged.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/unstaged.png" alt="unstaged">
-</div>
-</div>
-<div class="paragraph">
-<p>Before staging your edits, you need to <a href="test-site.html" class="xref page">configure a local playbook</a> to use your changes and build the site on your device.</p>
-</div>
+<p>You can also click <b class="button">&#8230;&#8203; (Toggle Search Details)</b> to add or remove directories or individual files from your search results.</p>
 </div>
 </div>
 </div>
@@ -528,7 +455,7 @@ In the project panel, the file name will change color, indicating it&#8217;s uns
 </footer>
 <script src="../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Home","components":["home"],"latestVersions":{"home":"master"}}
+{"title":"Contribute","components":["home","styleguide","ui-ux","pendo"],"latestVersions":{"home":"master","styleguide":"","ui-ux":"","pendo":""}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
@@ -545,6 +472,7 @@ In the project panel, the file name will change color, indicating it&#8217;s uns
   <iframe class="run-code-output" name="run-code-output"></iframe>
 </div>
 </template>
+<script id="site-script" src="../../_/js/vendor/chatbox-ui.js"></script>
 <script id="site-script" src="../../_/js/site.js"></script>
 <script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
 <script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
