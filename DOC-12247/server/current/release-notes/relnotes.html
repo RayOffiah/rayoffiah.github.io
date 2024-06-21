@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:page_rank" content="50">
 
 
-<meta name="generator" content="Antora 3.1.7">
+<meta name="generator" content="Antora 3.1.4">
 <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
 </head>
@@ -222,6 +222,302 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul id="contributorList"></ul>
 <span  id="otherContributor"> + </span>
 </div><div class="sect1">
+<h2 id="release-7-6-2-june-2024"><a class="anchor" href="#release-7-6-2-june-2024"></a>Release 7.6.2 (June 2024)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Couchbase Server 7.6.2 was released in June 2024. This maintenance release contains new features and fixes several known issues.</p>
+</div>
+<div class="paragraph">
+<p>For detailed information on new features and enhancements, please see <a href="../introduction/whats-new.html" class="xref page">What&#8217;s New in Version 7.6</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="new-features-762"><a class="anchor" href="#new-features-762"></a>New Features and Enhancements</h3>
+<div class="sect3">
+<h4 id="cluster-manager"><a class="anchor" href="#cluster-manager"></a>Cluster Manager</h4>
+<table id="table-new-features-762-cluster-manager" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Feature</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-57610">MB-57610</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Added metrics to allow exposing the rebalance progress via the Stats and Prometheus endpoints.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="backup-service"><a class="anchor" href="#backup-service"></a>Backup Service</h4>
+<table id="table-new-features-762-backup-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Feature</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-54433">MB-54433</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In the Backup Service, the users cannot control the number of threads <code>cbbackupmgr</code> runs with.
+  There have been cases where the automatically chosen number of threads for <code>cbbackupmgr</code> have not been optimal, and users would like to be able to choose the number of threads for the backup jobs.</p>
+<p class="tableblock">Users can now assign the number of threads per node in the backup service using the REST API.<br>
+The is done by setting a map with nodeUUID key and a thread value, which will allow the backup service to use the thread value for the scheduled job.<br>
+Users can also assign zero threads to a node which will correspond to <code>cbbackupmgr</code> dynamically choosing the number of threads based on node configuration.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61072">MB-61072</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read-only admins cannot see any part of the Backup Service in the UI or run any of the Backup Service APIs.
+ This was not acceptable to many customers, as read-only administrative users often monitor clusters and check that backups have been completed.</p>
+<p class="tableblock">Now, Users with the read-only admin role can now access the backup service. They can now view tasks that have run, their statuses, what repositories and plans there are, but cannot inspect data or run backups, restores, or merges.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="search-service"><a class="anchor" href="#search-service"></a>Search Service</h4>
+<table id="table-new-features-762-search-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Feature</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61216">MB-61216</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A user had to set the <code>query</code> attribute to <code>match_none</code> alongside the <code>knn</code> attribute within the search request when the user wanted to do a pure kNN search. This behavior will still work.</p>
+<p class="tableblock">A user can now  optionally choose to drop the <code>query</code> attribute entirely when coupling with <code>knn</code> and this will automatically resolve to "match_none" behind the scenes.</p>
+<p class="tableblock">In a mixed cluster, the user will see a search request free of the <code>query</code> attribute complain on a 7.6 node, while a 7.6.2 node will allow the request.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="fixed-issues-762"><a class="anchor" href="#fixed-issues-762"></a>Fixed Issues</h3>
+<div class="paragraph">
+<p>This release contains the following fixes:</p>
+</div>
+<div class="sect3">
+<h4 id="cluster-manager-2"><a class="anchor" href="#cluster-manager-2"></a>Cluster Manager</h4>
+<table id="table-fixed-issues-762-cluster-manager" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-60621">MB-60621</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>sys_cpu_cgroup_seconds_total{mode="usage"}</code> stat also included the amount of time for <code>sys_cpu_cgroup_seconds_total{mode="user"}</code> and <code>sys_cpu_cgroup_seconds_total{mode="sys"}</code>. As a result, using certain functions e.g. <code>sum(sys_cgroup_seconds_total)</code> would double the <code>user</code> count and <code>sys</code> time.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">To prevent this, the <code>sys_cpu_cgroup_seconds_total{mode="usage"}</code>  is no longer returned and is replaced with <code>sys_cpu_cgroup_usage_seconds_total</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-60883">MB-60883</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The Cache Miss Ratio metric showed the number of background fetch operations over the total number of read operations.
+However, the implementation meant that:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>the value did not represent a meaningful quantity to the user in all configurations.</p>
+</li>
+<li>
+<p>the meaning of the value changed between different bucket types and eviction policies.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The value could also show as being greater than 100%, as it did not account for all cases of background fetch.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The metric now shows the ratio between the number of read operations which failed due to the key not being present, and all read operations:</p>
+<p class="tableblock"><code>kv_ops{op="get", result="miss"} / kv_ops{op="get"}</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="storage-engine"><a class="anchor" href="#storage-engine"></a>Storage Engine</h4>
+<table id="table-fixed-issues-762-storage-engine" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-60879">MB-60879</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HashTable resizing can be avoided by setting the minimum size to be large enough, but there was no metric to indicate what that should be.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Added <code>kv_vb_ht_avg_size</code> and <code>kv_vb_ht_max_size</code> which summarizes the current HT sizes across vBuckets.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61525">MB-61525</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">when a Consumer node enters an OOM phase, the <code>DCP Consumer</code> starts buffering incoming messaged into Checkpoints. For those messages we don&#8217;t, (and we can&#8217;t) enforce the CheckpointQuota by design, as consumers are allowed to process and buffer DCP messages up to limits defined by the <code>dcp_consumer_buffer_ratio</code> config param.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We now expose the real <code>checkpoint mem-usage</code> limit, which is <code>(checkpoint_memory_ratio + dcp_consumer_buffer_ratio)</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="eventing-service"><a class="anchor" href="#eventing-service"></a>Eventing Service</h4>
+<table id="table-fixed-issues-762-eventing-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61488">MB-61488</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When performing a subdocument mutation through eventing the sub-document api(<code>couchbase.mutateIn</code>), the operation would sometimes fail with the error code <code>LCB_ERR_SUBDOC_XATTR_UNKNOWN_MACRO</code> and cause exceptions in the JavaScript code.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fixed in 7.6.2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="search-service-2"><a class="anchor" href="#search-service-2"></a>Search Service</h4>
+<table id="table-fixed-issues-762-search-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-60719">MB-60719</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Running a query with <code>score:none</code> results in response containing <code>score:0</code>. The score is incorrectly added to the response.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If a user runs a query with <code>score:none</code> then the query response will no longer contain <code>score:0</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61043">MB-61043</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A skewed cluster won&#8217;t be corrected because we early exit rebalance if there is no topology change, and there are no missing actives or replicas.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Now, the system updates the <code>rebalance early exit code</code> to check for such a skewed partition count.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61310">MB-61310</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">During rebalance, when moving partitions around, we track the progress of movement and then check the seq numbers the partition has  caught up relative to the view of the partition on source node and also the <code>KV</code>’s view.<br>
+This progress monitoring procedure  was only for active partitions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">You can now optionally monitor the replicas as well</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="tools"><a class="anchor" href="#tools"></a>Tools</h4>
+<table id="table-fixed-issues-762-tools" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-60630">MB-60630</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Moving a cloud backup archive in a normal GCP bucket to a locked GCP bucket (which allows creating new files but prohibits modifying or deleting pre-existing objects) and then performing  a restore from that bucket.<br>
+The restore didn&#8217;t fail, which would be the expected behavior; instead, the restore hangs.</p>
+<p class="tableblock">The problem occurs because <code>cbbackupmgr</code> always retries on 403s responses when using a GCP client, since it considered them intermittent.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cbbackupmgr</code> no longer considers 403s as temporary errors,
+and will not always retry when receiving them.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61630">MB-61630</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Previously it was not possible to import an encrypted backup repository into the backup service as we did not accept the KMS parameters.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Both the UI and REST API now allow users to specify the KMS and its authentication parameters so an encrypted repository can successfully be imported.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61631">MB-61631</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Previously, passing a relative path to <code>cbbackupmgr</code> as <code>--obj-staging-dir</code>, the backup or restore would fail with an empty object name.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fixed: passing a relative path no longer fails.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="known-issues-760"><a class="anchor" href="#known-issues-760"></a>Known Issues</h3>
+<div class="paragraph">
+<p>This release contains the following known issues:</p>
+</div>
+<div class="sect3">
+<h4 id="index-service"><a class="anchor" href="#index-service"></a>Index Service</h4>
+<table id="table-known-issues-762-index-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Workaround</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-62220">MB-62220</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dropped replicas are not rebuilt during swap rebalance</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Drop and then recreate the indexes.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="release-7-6-1-april-2024"><a class="anchor" href="#release-7-6-1-april-2024"></a>Release 7.6.1 (April 2024)</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -236,7 +532,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>This release contains the following fixes:</p>
 </div>
 <div class="sect3">
-<h4 id="storage-engine"><a class="anchor" href="#storage-engine"></a>Storage Engine</h4>
+<h4 id="storage-engine-2"><a class="anchor" href="#storage-engine-2"></a>Storage Engine</h4>
 <table id="table-fixed-issues-761-storage-engine" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -260,7 +556,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </table>
 </div>
 <div class="sect3">
-<h4 id="tools"><a class="anchor" href="#tools"></a>Tools</h4>
+<h4 id="tools-2"><a class="anchor" href="#tools-2"></a>Tools</h4>
 <table id="table-fixed-issues-761-tools" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -290,7 +586,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>This release contains the following known issue:</p>
 </div>
 <div class="sect3">
-<h4 id="search-service"><a class="anchor" href="#search-service"></a>Search Service</h4>
+<h4 id="search-service-3"><a class="anchor" href="#search-service-3"></a>Search Service</h4>
 <table id="table-known-issues-761-search-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -321,7 +617,7 @@ This is a breaking change due to a change in the response payload.</p></td>
 <h2 id="release-7-6-0-march-2024"><a class="anchor" href="#release-7-6-0-march-2024"></a>Release 7.6.0 (March 2024)</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="new-features"><a class="anchor" href="#new-features"></a>New Features and Enhancements</h3>
+<h3 id="new-features-760"><a class="anchor" href="#new-features-760"></a>New Features and Enhancements</h3>
 <div class="paragraph">
 <p>For detailed information on new features and enhancements, please see <a href="../introduction/whats-new.html" class="xref page">What&#8217;s New in Version 7.6</a>.</p>
 </div>
@@ -404,7 +700,7 @@ or <a href="../install/ubuntu-debian-install.html#install-using-apt" class="xref
 <p>This release contains the following fixes.</p>
 </div>
 <div class="sect3">
-<h4 id="cluster-manager"><a class="anchor" href="#cluster-manager"></a>Cluster Manager</h4>
+<h4 id="cluster-manager-3"><a class="anchor" href="#cluster-manager-3"></a>Cluster Manager</h4>
 <table id="table-fixed-issues-76-cluster-manager" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -563,7 +859,7 @@ stats were computed using the number of processors configured for the entire sys
 </table>
 </div>
 <div class="sect3">
-<h4 id="index-service"><a class="anchor" href="#index-service"></a>Index Service</h4>
+<h4 id="index-service-2"><a class="anchor" href="#index-service-2"></a>Index Service</h4>
 <table id="table-fixed-issues-76-index-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -587,7 +883,7 @@ stats were computed using the number of processors configured for the entire sys
 </table>
 </div>
 <div class="sect3">
-<h4 id="search-service-2"><a class="anchor" href="#search-service-2"></a>Search Service</h4>
+<h4 id="search-service-4"><a class="anchor" href="#search-service-4"></a>Search Service</h4>
 <table id="table-fixed-issues-76-search-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -653,7 +949,7 @@ The user will now be able to run queries via SQL++ without having to run the key
 </table>
 </div>
 <div class="sect3">
-<h4 id="tools-2"><a class="anchor" href="#tools-2"></a>Tools</h4>
+<h4 id="tools-3"><a class="anchor" href="#tools-3"></a>Tools</h4>
 <table id="table-fixed-issues-76-tools" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -756,7 +1052,7 @@ For more information on the auto-failover settings, see the documentation.</p></
 </table>
 </div>
 <div class="sect3">
-<h4 id="tools-3"><a class="anchor" href="#tools-3"></a>Tools</h4>
+<h4 id="tools-4"><a class="anchor" href="#tools-4"></a>Tools</h4>
 <table id="table-known-issues-760-tools" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -780,7 +1076,7 @@ For more information on the auto-failover settings, see the documentation.</p></
 </table>
 </div>
 <div class="sect3">
-<h4 id="storage-engine-2"><a class="anchor" href="#storage-engine-2"></a>Storage Engine</h4>
+<h4 id="storage-engine-3"><a class="anchor" href="#storage-engine-3"></a>Storage Engine</h4>
 <table id="table-known-issues-760-storage-engine" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -804,7 +1100,7 @@ For more information on the auto-failover settings, see the documentation.</p></
 </table>
 </div>
 <div class="sect3">
-<h4 id="search-service-3"><a class="anchor" href="#search-service-3"></a>Search Service</h4>
+<h4 id="search-service-5"><a class="anchor" href="#search-service-5"></a>Search Service</h4>
 <table id="table-known-issues-760-search-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
