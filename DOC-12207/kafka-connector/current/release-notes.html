@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
+<title>Release Notes | Couchbase Docs</title>
+<link rel="canonical" href="https://docs.couchbase.com/kafka-connector/current/release-notes.html">
+<link rel="stylesheet" href="../../_/css/site.css">
+<script src="../../_/js/vendor/jquery.js"></script>
+<link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+
+
+<meta name="dcterms.subject" content="kafka-connector">
+<meta name="dcterms.identifier" content="4.2">
+<meta name="page-url" content="/kafka-connector/current/release-notes.html">
+<meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="kafka-connector">
+<meta name="docsearch:component_title" content="Kafka Connector">
+<meta name="docsearch:cversion" content="4.2">
+<meta name="docsearch:component_version" content="kafka-connector@4.2">
+<meta name="docsearch:module" content="">
+<meta name="docsearch:breadcrumbs" content=" / Kafka Connector / Release Notes">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
+<meta name="generator" content="Antora 3.1.4">
+<link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
+</head>
+<body class="article">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="header fixed-top">
+  <div class="header-top-row">
+      <div class="container">
+          <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
+              <ul class="navbar-brand-list">
+                <li class="brand-logo">
+                  <a class="navbar-brand" href="https://www.couchbase.com">
+                    <img src="../../_/img/couchbase-logo.svg" alt="Couchbase" />
+                  </a>
+                </li>
+                <li>
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
+                    <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
+                    <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  </a>
+                </li>
+              </ul>
+              <button class="navbar-burger" data-target="topbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+          </nav>
+      </div>
+  </div>
+  <div class="header-bottom-row" id="topbar-menu">
+    <div class="container">
+        <nav  class="navbar navbar-new-bottom">
+
+              <div class="navbar-collapse collapse" id="navbar2">
+                <ul class="navbar-nav w-100 justify-content-start">
+
+                  <li class="nav-item "">
+                    <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
+                      <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../home/server.html">
+                      Server
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../home/mobile.html">
+                      Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../home/sdk.html">
+                      SDKs
+                      
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="primary-action">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                  Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
+                </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+              </div>
+
+        </nav>
+    </div>
+   </div>
+</header>
+<div class="body container">
+<aside class="nav left-sidebar">
+  <div class="nav-container">
+    <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+  </div>
+</aside>
+<aside class="toc sidebar"
+      data-title="Contents"
+      data-levels="1">
+  <div class="sidebar-box">
+    <div class="tools" role="navigation">
+<ul>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/kafka-connect-couchbase/docs/modules/ROOT/pages/release-notes.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+</ul>
+</div>
+    <div class="toc-menu"></div>
+    <div class="is-this-helpful-box">
+      <h4> Is this page helpful?</h4>
+      <div class="btn-row">
+        <a href="#" class="like-btn helpful-btn" id="yesBtn" data-page-rating="like" >
+                <i class="far fa-thumbs-up"></i>
+            Yes
+
+            </a>
+        <a href="#" class="dislike-btn helpful-btn" id="noBtn"  data-page-rating="dislike"> <i class="far fa-thumbs-down"></i> No</a>
+      </div>
+      <div class="any-feedback">
+        <a href="#" class="btn any-feedback-btn" id="myCustomTrigger">Leave Additional Feedback? </a>
+      </div>
+      <div class="dialog-box" id="dialogBox">
+        <form>
+            <div class="form-group " id="additionalFeedbackBox">
+              <textarea class="input-control feed-back-msg" rows="8" placeholder="Any Additonal Feedback?"></textarea>
+
+              <div class="action-btn-row ">
+                <a href="#" class="skip-btn" id="skipBtnMsg">Skip</a>
+                  <button class="submit-btn btn blue-btn disabled" > Submit  </button>
+                  <a href="#" class="info-btn"><i class="fas fa-info-circle"></i></a>
+              </div>
+
+
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="feedback-modal modal-popup">
+  <div class="modal-popup-dialogue">
+    <div class="popup-header">
+      <a href="#" class="close-popup"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="popup-content">
+      <p>
+        Please use the form below to provide your feedback. Because your feedback is valuable to us,
+         the information you submit in this form is recorded in our issue tracking system (JIRA), which is publicly available.
+        You can track the status of your feedback using the ticket number displayed in the dialog once you submit the form.
+      </p>
+    </div>
+  </div>
+</div>
+
+<main class="article" data-ceiling="topbar">
+<div class="article-header">
+<nav class="crumbs" aria-label="breadcrumbs">
+<ul>
+<li class="crumb"><a href="index.html">Kafka Connector</a></li>
+<li class="crumb"><a href="release-notes.html">Release Notes</a></li>
+</ul>
+</nav>
+</div>
+<article class="doc">
+<div class="page-heading-title">
+<h1 class="page">Release Notes</h1>
+<div class="labels">
+<ul></ul>
+</div>
+
+
+</div>
+<div class="contributor-list-box">
+<span class="last-commit-date" id="commitdate">    </span>
+<ul id="contributorList"></ul>
+<span  id="otherContributor"> + </span>
+</div><div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock abstract">
+<blockquote>
+Release notes, installation instructions, and download archive for the Couchbase Kafka Connector.
+</blockquote>
+</div>
+<div class="paragraph">
+<p>This page covers version 4.x of the Couchbase Kafka Connector.
+For earlier versions, please see the <a href="#3.4@release-notes.adoc" class="xref unresolved">3.x Release Notes</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installation"><a class="anchor" href="#installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Scroll down to the version you want, then click the "Download" link to get the full connector distribution.
+Refer to the <a href="quickstart.html" class="xref page">Quickstart Guide</a> for detailed installation instructions.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, Confluent Platform users can <a href="https://www.confluent.io/hub/couchbase/kafka-connect-couchbase">install the connector via Confluent Hub</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="java-api-maven-coordinates"><a class="anchor" href="#java-api-maven-coordinates"></a>Java API Maven Coordinates</h3>
+<div class="paragraph">
+<p>You can optionally extend the connector&#8217;s functionality by writing custom components.
+When developing a custom component, include the connector&#8217;s Java API in your Maven project by adding this dependency to your POM:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;com.couchbase.client&lt;/groupId&gt;
+    &lt;artifactId&gt;kafka-connect-couchbase&lt;/artifactId&gt;
+    &lt;version&gt;&lt;!-- connector version --&gt;&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.2.2"><a class="anchor" href="#v4.2.2"></a>Version 4.2.2 (16 Apr 2024)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.2.2/couchbase-kafka-connect-couchbase-4.2.2.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This maintenance release updates the Couchbase Java SDK to the most recent version.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements"><a class="anchor" href="#enhancements"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-340">KAFKAC-340</a>:
+Upgrade Couchbase Java SDK from <code>3.5.2</code> to <code>3.6.1</code>.</p>
+<div class="paragraph">
+<p>Notably:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/JVMCBC-1499">JVMCBC-1499</a>
+Disabled DNS SRV caching.
+The connector now responds quicker to DNS changes in dynamic environments like Kubernetes.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.2.1"><a class="anchor" href="#v4.2.1"></a>Version 4.2.1 (26 Feb 2024)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.2.1/couchbase-kafka-connect-couchbase-4.2.1.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This maintenance release fixes an issue that sometimes prevented the connector from starting successfully.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-2"><a class="anchor" href="#enhancements-2"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-337">KAFKAC-337</a>:
+<strong>Sink</strong> The connector no longer logs <code>TooManyInstancesDetectedEvent</code> warnings on startup.
+These warnings were harmless, but annoying.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-334">KAFKAC-334</a>:
+Upgrade Couchbase DCP client from <code>0.48.0</code> to <code>0.49.0</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes"><a class="anchor" href="#bug-fixes"></a>Bug Fixes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-333">KAFKAC-333</a>:
+Fixed a race condition that could cause the connector to fail at startup with a <code>ConcurrentModificationException</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.2.0"><a class="anchor" href="#v4.2.0"></a>Version 4.2.0 (26 Jan 2024)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.2.0/couchbase-kafka-connect-couchbase-4.2.0.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>With this minor version bump, the sink connector can now write documents to different buckets depending on the Kafka topic they were received from.</p>
+</div>
+<div class="paragraph">
+<p>This release also improves the robustness of the source connector in certain conditions.</p>
+</div>
+<div class="paragraph">
+<p>Apache Kafka 2.8 and Confluent Platform 6.2 are now the minimum supported versions.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-3"><a class="anchor" href="#enhancements-3"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-327">KAFKAC-327</a>:
+<strong>Sink</strong> The <code>couchbase.default.collection</code> and <code>couchbase.topic.to.collection</code>  config properties now support qualifying the collection with a bucket name, like <code>my-bucket.my-scope.my-collection</code>.
+This lets a single instance of the sink connector write to different buckets.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-332">KAFKAC-332</a>:
+The following connector config options, which were added in previous versions as "uncommitted" API, are now part of the "committed" (stable) API:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>couchbase.retry.timeout</code></p>
+</li>
+<li>
+<p><code>couchbase.black.hole.topic</code></p>
+</li>
+<li>
+<p><code>couchbase.enable.dcp.trace</code></p>
+</li>
+<li>
+<p><code>couchbase.dcp.trace.document.id.regex</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-331">KAFKAC-331</a>:
+Upgrade Couchbase Java SDK from <code>3.4.7</code> to <code>3.5.2</code>.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-330">KAFKAC-330</a>:
+Upgrade Couchbase DCP client from <code>0.47.0</code> to <code>0.48.0</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes-2"><a class="anchor" href="#bug-fixes-2"></a>Bug Fixes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/JDCP-239">JDCP-239</a>:
+<strong>Source</strong> Improved reliability of initial startup during a Couchbase Server cluster rebalance, or before a newly-created bucket is ready.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/JDCP-240">JDCP-240</a>:
+<strong>Source</strong> When <code>couchbase.stream.from</code> is set to <code>NOW</code> or <code>SAVED_OFFSET_OR_NOW</code> and there is an inactive partition when the connector starts up, the connector now waits for the partition to become active, instead of starting from the beginning for that partition.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/JDCP-241">JDCP-241</a>:
+<strong>Source</strong> Improved handling of an edge case that could cause the connector to stop streaming for a partition.
+If a DCP socket connection is lost after receiving a snapshot marker for a partition and before receiving the first item in the snapshot, the connector now recovers instead of failing to resume streaming for that partition.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.1.14"><a class="anchor" href="#v4.1.14"></a>Version 4.1.14 (3 Oct 2023)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.1.14/couchbase-kafka-connect-couchbase-4.1.14.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This maintenance release improves how the source connector resolves DNS SRV addresses.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-4"><a class="anchor" href="#enhancements-4"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-307">KAFKAC-307</a>:
+<strong>Source</strong> Instead of resolving a DNS SRV address just once when the connector starts up, the connector now passes the DNS SRV address along to the DCP client, so the DCP client can re-resolve it if necessary.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.1.13"><a class="anchor" href="#v4.1.13"></a>Version 4.1.13 (21 Jun 2023)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.1.13/couchbase-kafka-connect-couchbase-4.1.13.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This maintenance release fixes a memory leak that could occur if the source connector failed to establish the initial DCP connection to Couchbase Server.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-5"><a class="anchor" href="#enhancements-5"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-323">KAFKAC-323</a>:
+<strong>Source</strong> If the initial DCP connection fails, the connector no longer throws <code>RejectedExecutionException</code> and no longer leaks memory.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-325">KAFKAC-325</a>:
+Upgraded Couchbase DCP client from 0.46.0 to 0.47.0.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-324">KAFKAC-324</a>:
+Upgraded Couchbase Java SDK from 3.4.6 to 3.4.7.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.1.12"><a class="anchor" href="#v4.1.12"></a>Version 4.1.12 (17 May 2023)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.1.12/couchbase-kafka-connect-couchbase-4.1.12.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>If the connector is stopped for an extended period of time, it can now resume from where it left off, without having to roll back to zero.
+This behavior requires Couchbase Server 7.2 or later.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-6"><a class="anchor" href="#enhancements-6"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-319">KAFKAC-319</a>:
+When resuming from an old checkpoint (where the connector&#8217;s sequence number is lower than Couchbase Server&#8217;s purge sequence number), the connector no longer rolls back to zero.
+This behavior requires Couchbase Server 7.2 or later.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-322">KAFKAC-322</a>:
+Upgraded Couchbase DCP client from 0.44.0 to 0.46.0.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-321">KAFKAC-321</a>:
+Upgraded Couchbase Java SDK from 3.4.3 to 3.4.6.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.1.11"><a class="anchor" href="#v4.1.11"></a>Version 4.1.11 (17 February 2023)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.1.11/couchbase-kafka-connect-couchbase-4.1.11.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>The source connector now takes advantage of the new history preservation feature in Couchbase Server 7.2.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-7"><a class="anchor" href="#enhancements-7"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-311">KAFKAC-311</a>:
+<strong>Source</strong> If the source bucket is configured to preserve history, the connector publishes every version of a document it sees within the history window, not just the latest version.
+See <a href="delivery-guarantees.html" class="xref page">Delivery Guarantees</a> for details.
+Requires Couchbase Server 7.2 or later.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-316">KAFKAC-316</a>:
+Upgraded Couchbase DCP client from <code>0.43.0</code> to <code>0.44.0</code>.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-317">KAFKAC-317</a>:
+Upgraded Couchbase Java SDK from <code>3.4.1</code> to <code>3.4.3</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.1.10"><a class="anchor" href="#v4.1.10"></a>Version 4.1.10 (20 December 2022)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.1.10/couchbase-kafka-connect-couchbase-4.1.10.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>Dependency updates and source connector improvements.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-8"><a class="anchor" href="#enhancements-8"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-303">KAFKAC-303</a>:
+<strong>Source</strong> The connector now includes DCP snapshot boundaries in its source offsets.
+This improves the reliability of resuming from saved offsets.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-302">KAFKAC-302</a>:
+<strong>Source</strong> The connector now logs more diagnostic information about lifecycle milestones.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-301">KAFKAC-301</a>:
+Upgraded Couchbase DCP client from <code>0.42.0</code> to <code>0.43.0</code>.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-305">KAFKAC-305</a>:
+Upgraded Couchbase Java SDK from <code>3.3.4</code> to <code>3.4.1</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes-3"><a class="anchor" href="#bug-fixes-3"></a>Bug Fixes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/JDCP-232">JDCP-232</a>:
+Fixed a race condition that sometimes caused the connector to fail on startup with the message:
+<code>java.lang.IllegalStateException: Tried to add duplicate channel</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.1.9"><a class="anchor" href="#v4.1.9"></a>Version 4.1.9 (21 October 2022)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.1.9/couchbase-kafka-connect-couchbase-4.1.9.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>You can now authenticate with Couchbase as an LDAP user, as long as secure connections are enabled.</p>
+</div>
+<div class="sect2">
+<h3 id="breaking-changes"><a class="anchor" href="#breaking-changes"></a>Breaking Changes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The Couchbase <code>dcp-client</code> library no longer includes a repackaged version of Jackson.
+If you have written your own custom <code>Filter</code>, <code>SourceHandler</code>, or <code>SinkHandler</code> component that depends on the DCP client&#8217;s repackaged Jackson, search for:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import com.couchbase.client.dcp.deps.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and replace with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import com.couchbase.client.core.deps.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>to use the version in the Couchbase <code>core-io</code> library instead.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancements-9"><a class="anchor" href="#enhancements-9"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/JDCP-224">JDCP-224</a>:
+Use SASL mechanism <code>PLAIN</code> when authenticating with Couchbase on a secure connection.
+<code>PLAIN</code> is the fastest mechanism, and the only one that works with LDAP users.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/JDCP-217">JDCP-217</a>:
+Support Couchbase clusters that advertise only TLS ports.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-299">KAFKAC-299</a>:
+Upgrade Couchbase DCP client from <code>0.41.0</code> to <code>0.42.0</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.1.8"><a class="anchor" href="#v4.1.8"></a>Version 4.1.8 (20 September 2022)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.1.8/couchbase-kafka-connect-couchbase-4.1.8.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This version improves support for scopes &amp; collections, adds an experimental <code>AnalyticsSinkHandler</code>, and adds a new feature that may reduce rollbacks by telling the Kafka Connect framework about the source offsets of ignored Couchbase events.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-10"><a class="anchor" href="#enhancements-10"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-295">KAFKAC-295</a>
+<strong>Source</strong> The new <code>couchbase.collection.to.topic</code> config property lets you specify an arbitrary mapping from Couchbase scope &amp; collection to Kafka topic.
+This is useful when the <code>couchbase.topic</code> property is not sufficient because the desired topic name differs from the collection name.
+Thanks to Shahrzad Haji Amin Shirazi.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-293">KAFKAC-293</a>
+<strong>Sink</strong> <code>N1qlSinkHandler</code> now honors the configured destination scope &amp; collection.
+Thanks to Shahrzad Haji Amin Shirazi.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-294">KAFKAC-294</a>
+<strong>Sink</strong> The new experimental <code>AnalyticsSinkHandler</code> sends documents directly to the Analytics service.
+Thanks to Shahrzad Haji Amin Shirazi.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-296">KAFKAC-296</a>
+<strong>Source</strong> In extremely low-traffic environments that ignore a majority of Couchbase events, the new <code>couchbase.black.hole.topic</code> config property may reduce the occurrence of rollback to zero.
+If a topic is specified, the connector sends a tiny record to this topic for each ignored event, to inform Kafka Connect about the event&#8217;s source offset.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-297">KAFKAC-297</a>:
+Upgraded Couchbase Java SDK from 3.3.0 to 3.3.4.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-298">KAFKAC-298</a>:
+Upgraded DCP client from 0.40.0 to 0.41.0</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.1.7"><a class="anchor" href="#v4.1.7"></a>Version 4.1.7 (17 May 2022)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.1.7/couchbase-kafka-connect-couchbase-4.1.7.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This version makes it easier to connect to Capella.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-11"><a class="anchor" href="#enhancements-11"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-290">KAFKAC-290</a>
+When connecting to Capella, it is no longer necessary to configure the Certificate Authority certificate.
+All you need to do is enable TLS.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-288">KAFKAC-288</a>:
+Upgraded Couchbase Java SDK from 3.2.5 to 3.3.0.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.1.6"><a class="anchor" href="#v4.1.6"></a>Version 4.1.6 (15 Feb 2022)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.1.6/couchbase-kafka-connect-couchbase-4.1.6.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>Recommended for all users, this version fixes a memory leak when the connector stops.</p>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes-4"><a class="anchor" href="#bug-fixes-4"></a>Bug Fixes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-283">KAFKAC-283</a>:
+The connector no longer leaks JMX MBeans on shutdown.
+The leak was a regression in version 4.0.2.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancements-12"><a class="anchor" href="#enhancements-12"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-284">KAFKAC-284</a>
+<strong>Source</strong> Added a new <code>couchbase.enable.dcp.trace</code> config option for enabling a DCP protocol trace to assist with diagnosing connector issues.
+Also added <code>couchbase.dcp.trace.document.id.regex</code> to narrow the scope of the trace.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-286">KAFKAC-286</a>:
+Upgraded Couchbase Java SDK from 3.2.4 to 3.2.5.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-287">KAFKAC-287</a>:
+Upgraded Couchbase DCP Client from 0.39.0 to 0.40.0.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.1.5"><a class="anchor" href="#v4.1.5"></a>Version 4.1.5 (18 Jan 2022)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.1.5/couchbase-kafka-connect-couchbase-4.1.5.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This version upgrades the Couchbase clients and other dependencies.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-13"><a class="anchor" href="#enhancements-13"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-279">KAFKAC-279</a>:
+Upgraded Couchbase DCP Client from 0.37.0 to 0.39.0:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/JDCP-208">JDCP-208</a>
+Improved the error message when the Couchbase user has insufficient permissions.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/JDCP-210">JDCP-210</a>
+Authentication no longer fails when credentials have non-ASCII characters and the system default encoding is not UTF-8.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-281">KAFKAC-281</a>:
+Upgraded Couchbase Java SDK from 3.2.3 to <a href="https://docs.couchbase.com/java-sdk/current/project-docs/sdk-release-notes.html#version-3-2-4-9-december-2021">3.2.4</a>.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-282">KAFKAC-282</a>:
+Upgraded other dependencies to latest versions.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.1.4"><a class="anchor" href="#v4.1.4"></a>Version 4.1.4 (16 Nov 2021)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.1.4/couchbase-kafka-connect-couchbase-4.1.4.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This version adds a new configuration options for making the connector resilient to more kinds of transient failures.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-14"><a class="anchor" href="#enhancements-14"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-275">KAFKAC-275</a>:
+<strong>Sink</strong> Added the <code>couchbase.retry.timeout</code> config property.
+If non-zero, the connector retries write failures until the timeout expires.
+This is better than simply extending the KV timeout; see <a href="sink-configuration-options.html#couchbase.retry.timeout" class="xref page">the documentation</a> for details.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-276">KAFKAC-276</a>:
+Upgraded Couchbase Java SDK from 3.2.0 to 3.2.3.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.1.3"><a class="anchor" href="#v4.1.3"></a>Version 4.1.3 (19 Oct 2021)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.1.3/couchbase-kafka-connect-couchbase-4.1.3.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This version reduces the default flow control buffer size to a more reasonable value and improves DCP diagnostics.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-15"><a class="anchor" href="#enhancements-15"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-271">KAFKAC-271</a>:
+<strong>Source</strong> The default flow control buffer size is now 16 MB instead of 128 MB.
+This makes it less likely the source connector will run out of memory under heavy load with the default heap size.
+The documentation now describes how the <a href="https://docs.couchbase.com/kafka-connector/current/source-configuration-options.html#couchbase.flow.control.buffer">couchbase.flow.control.buffer</a> config property affects the Kafka Connect worker&#8217;s memory requirements.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-272">KAFKAC-272</a>:
+<strong>Source</strong> Upgraded DCP client from 0.36.0 to 0.37.0.
+This upgrade adds a workaround for <a href="https://issues.couchbase.com/browse/MB-48655">MB-48655</a> so all versions of Couchbase now correctly log DCP diagnostic messages from the source connector.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.1.2"><a class="anchor" href="#v4.1.2"></a>Version 4.1.2 (24 Sep 2021)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.1.2/couchbase-kafka-connect-couchbase-4.1.2.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This release upgrades the jsoup library to address <a href="https://github.com/jhy/jsoup/security/advisories/GHSA-m72m-mhq2-9p6c">CVE-2021-37714</a>.
+That vulnerability does not affect the Kafka connector, since we don&#8217;t parse untrusted XML or HTML.
+You can skip this version unless your goal is to pacify a vulnerability scanner.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-16"><a class="anchor" href="#enhancements-16"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-269">KAFKAC-269</a>:
+Upgraded the jsoup library from 1.13.1 to 1.14.2</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.1.1"><a class="anchor" href="#v4.1.1"></a>Version 4.1.1 (19 Aug 2021)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.1.1/couchbase-kafka-connect-couchbase-4.1.1.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This release makes the Source connector compatible with Couchbase Server 7.0.2.</p>
+</div>
+<div class="paragraph">
+<p>If you are currently using an earlier 4.x version of the connector, please upgrade to 4.1.1 or later before upgrading Couchbase Server beyond 7.0.1.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-17"><a class="anchor" href="#enhancements-17"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-266">KAFKAC-266</a>:
+<strong>Source</strong> Upgraded DCP client from 0.35.0 to 0.36.0 for compatibility with Couchbase Server 7.0.2.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.1.0"><a class="anchor" href="#v4.1.0"></a>Version 4.1.0 (22 July 2021)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.1.0/couchbase-kafka-connect-couchbase-4.1.0.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This release stabilizes the configuration options for working with Couchbase 7 Scopes and Collections.
+All previously "uncommitted" options are promoted to "committed" status.</p>
+</div>
+<div class="paragraph">
+<p>There&#8217;s also a new <code>SinkHandler</code> extension point, and bug fixes for the Subdocument and N1QL modes of operation.</p>
+</div>
+<div class="sect2">
+<h3 id="breaking-changes-2"><a class="anchor" href="#breaking-changes-2"></a>Breaking Changes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Apache Kafka 2.4.0 is now the minimum required version.
+For Confluent Platform users, this corresponds to Confluent version 5.4.0.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancements-18"><a class="anchor" href="#enhancements-18"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The config options for working with Couchbase 7 Scopes and Collections are now part of the "committed" API.</p>
+</li>
+<li>
+<p>All other "uncommitted" config options are promoted to "committed" status as well.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-257">KAFKAC-257</a>:
+<strong>Sink</strong> The connector&#8217;s behavior is now completely customizable by implementing the <code>SinkHandler</code> interface.
+The new <a href="sink-configuration-options.html#couchbase.sink.handler" class="xref page">couchbase.sink.handler</a> config option specifies the class to use.
+See the <a href="https://github.com/couchbase/kafka-connect-couchbase/tree/master/examples/custom-extensions">custom extensions example code</a> to see how to implement your own handler.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <a href="sink-configuration-options.html#couchbase.document.mode" class="xref page">couchbase.document.mode</a> config option is now <strong>DEPRECATED</strong>.
+Instead, please use <a href="sink-configuration-options.html#couchbase.sink.handler" class="xref page">couchbase.sink.handler</a> to specify one of the built-in handler classes.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-263">KAFKAC-263</a>:
+<strong>Source</strong> Upgraded DCP client from 0.34.0 to 0.35.0.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-258">KAFKAC-258</a>:
+<strong>Sink</strong> Upgraded Couchbase Java SDK from 3.1.3 to 3.2.0.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes-5"><a class="anchor" href="#bug-fixes-5"></a>Bug Fixes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-261">KAFKAC-261</a>:
+<strong>Sink</strong> A connector configured to use SUBDOCUMENT mode with an operation of <code>ARRAY_PREPEND</code> or <code>ARRAY_PREPEND</code> could mistakenly ignore updates if Kafka records targeting the same document arrive in rapid succession.
+This is now fixed.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-262">KAFKAC-262</a>:
+<strong>Sink</strong> A connector configured to use N1QL mode could mistakenly ignore updates if Kafka records targeting the same document(s) arrive in rapid succession.
+This is now fixed.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.0.6"><a class="anchor" href="#v4.0.6"></a>Version 4.0.6 (20 April 2021)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.0.6/couchbase-kafka-connect-couchbase-4.0.6.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This release adds new Sink configuration options, and addresses a long-standing issue that caused the Source connector to fail when a rollback occurred in Couchbase.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-19"><a class="anchor" href="#enhancements-19"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-250">KAFKAC-250</a>:
+<strong>Sink</strong> You can now <a href="sink-configuration-options.html#couchbase.env" class="xref page">configure Couchbase Java SDK Settings</a> in the connector config file.
+This includes KV timeout durations, Response Time Observability settings, and lots more.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-251">KAFKAC-251</a>:
+<strong>Source</strong> Upgraded DCP client from 0.33.0 to 0.34.0.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes-6"><a class="anchor" href="#bug-fixes-6"></a>Bug Fixes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-211">KAFKAC-211</a>:
+<strong>Source</strong> A rollback in Couchbase no longer causes the connector to fail.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.0.5"><a class="anchor" href="#v4.0.5"></a>Version 4.0.5 (16 March 2021)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.0.5/couchbase-kafka-connect-couchbase-4.0.5.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This release improves diagnostic logging and simplifies Couchbase Capella configuration.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-20"><a class="anchor" href="#enhancements-20"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-234">KAFKAC-234</a>:
+The Couchbase root CA certificate can now be read directly from a PEM file; it&#8217;s no longer necessary to add it to a Java keystore first.
+The new <code>couchbase.trust.certificate.path</code> config property points to the PEM file.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-242">KAFKAC-242</a>:
+<strong>Source</strong> When the new <code>couchbase.log.document.lifecycle</code> config property is set to true, the connector writes detailed log entries as each document flows through the connector.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-245">KAFKAC-245</a>:
+<strong>Sink</strong> Upgraded Couchbase client from 3.1.2 to <a href="https://docs.couchbase.com/java-sdk/3.1/project-docs/sdk-release-notes.html#version-3-1-3-2-march-2021">3.1.3</a>.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-246">KAFKAC-246</a>:
+<strong>Source</strong> Upgraded DCP client from 0.32.0 to 0.33.0.
+OBSERVE_SEQNO events are now logged at TRACE level instead of DEBUG.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.0.4"><a class="anchor" href="#v4.0.4"></a>Version 4.0.4 (17 February 2021)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.0.4/couchbase-kafka-connect-couchbase-4.0.4.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This release adds uncommitted support for client certificate authentication (mTLS), adds hostname verification for secure DCP connections, and improves the stability of the connector.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-21"><a class="anchor" href="#enhancements-21"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-241">KAFKAC-241</a>:
+When secure connections are enabled, it is now possible to authenticate with Couchbase using an X.509 certificate instead of a username &amp; password.
+See <a href="https://docs.couchbase.com/kafka-connector/4.0/source-configuration-options.html#couchbase.client.certificate.path">couchbase.client.certificate.path</a>
+and <a href="https://docs.couchbase.com/kafka-connector/4.0/source-configuration-options.html#couchbase.client.certificate.password">couchbase.client.certificate.password</a>
+for details. (This feature is added as "uncommitted", meaning it may change without notice.)</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-238">KAFKAC-238</a>:
+<strong>Sink</strong> Upgraded Couchbase client from 3.0.9 to 3.1.2.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-239">KAFKAC-239</a>:
+<strong>Source</strong> Upgraded DCP client from 0.31.0 to 0.32.0.
+Previously, TLS hostname verification was done only for the Couchbase Java client connection; now the DCP client connection is verified as well.
+If for some reason you need to disable TLS hostname verification, this is now possible by setting the
+<a href="https://docs.couchbase.com/kafka-connector/4.0/source-configuration-options.html#couchbase.enable.hostname.verification">couchbase.enable.hostname.verification</a> config property to <code>false</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes-7"><a class="anchor" href="#bug-fixes-7"></a>Bug Fixes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/JDCP-183">JDCP-183</a>:
+If an invalid stream offset is detected, the connector will now fail fast instead of potentially corrupting the saved checkpoint.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/JDCP-184">JDCP-184</a>:
+Resolved an issue that could cause a flow control deadlock when streaming from a subset of a bucket&#8217;s collections or scopes.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.0.3"><a class="anchor" href="#v4.0.3"></a>Version 4.0.3</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Not released.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.0.2"><a class="anchor" href="#v4.0.2"></a>Version 4.0.2 (17 November 2020)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.0.2/couchbase-kafka-connect-couchbase-4.0.2.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>In this release, the connector publishes metrics via JMX to facilitate monitoring.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-22"><a class="anchor" href="#enhancements-22"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-152">KAFKAC-152</a>:
+<strong>Documentation</strong> - Added a "Monitoring" page which refers users to the Kafka Connect framework documentation for monitoring connectors via JMX.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-232">KAFKAC-232</a>:
+<strong>Source</strong> - Metrics specific to the Couchbase source connector are now exposed via JMX under the <code>kafka.connect.couchbase</code> domain.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-110">KAFKAC-110</a>:
+<strong>Source</strong> - Added a gauge that reports the Couchbase connection status.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-231">KAFKAC-231</a>:
+<strong>Source</strong> - Upgrade DCP client from 0.30.0 to 0.31.0</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.0.1"><a class="anchor" href="#v4.0.1"></a>Version 4.0.1 (20 October 2020)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.0.1/couchbase-kafka-connect-couchbase-4.0.1.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This release improves compatibility with Couchbase Capella, and exposes extended attributes (XATTRS) to custom components.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-23"><a class="anchor" href="#enhancements-23"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-227">KAFKAC-227</a>:
+<strong>Source</strong> - Added config property <code>couchbase.xattrs</code> (boolean, defaults to false).
+If set to true, a custom <code>Filter</code> or <code>SourceHandler</code> may inspect a document&#8217;s extended attributes by calling <code>DocumentEvent.xattrs()</code>.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-226">KAFKAC-226</a>:
+Renamed the ZIP archive from <code>couchbaseinc-kafka-connect-couchbase</code> to <code>couchbase-kafka-connect-couchbase</code> (removed the "inc" from "couchbaseinc").
+This made it easier to publish the connector on <a href="https://www.confluent.io/hub/couchbase/kafka-connect-couchbase">Confluent Hub</a>.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-228">KAFKAC-228</a>:
+Upgraded the Couchbase Java SDK from 3.0.6 to 3.0.9.
+Bootstrap performance is improved when specifying custom ports, and the connector no longer logs spurious warnings about being unable to fetch collections manifests.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-229">KAFKAC-229</a>:
+Upgraded the DCP client from 0.29.0 to 0.30.0, adding support for XATTRs.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes-8"><a class="anchor" href="#bug-fixes-8"></a>Bug Fixes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-225">KAFKAC-225</a>:
+Fixed a regression in version 4.0.0 that broke alternate address resolution.
+The connector now handles DNS SRV and alternate addresses correctly, and can connect to Couchbase Capella or other network environments that use alternate addresses.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.0.0"><a class="anchor" href="#v4.0.0"></a>Version 4.0.0 (18 August 2020)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.0.0/couchbaseinc-kafka-connect-couchbase-4.0.0.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>Version 4.0 is a major update that changes how you configure and extend the connector.
+If you are upgrading from a previous version of the connector, be sure to read the <a href="migration.html" class="xref page">Migration Guide</a> which will help with the upgrade process.</p>
+</div>
+<div class="paragraph">
+<p>The leap to 4.0 brings many new features, most notably:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Enhanced durability options (requires Couchbase 6.5)</p>
+</li>
+<li>
+<p>Better workload distribution</p>
+</li>
+<li>
+<p>More flexible API for extensions</p>
+</li>
+<li>
+<p>Option to omit document contents</p>
+</li>
+<li>
+<p>Support for Couchbase collections and scopes (planned for Couchbase 7.0)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The notes below describe these features, and more.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The new configuration properties related to Couchbase scopes and collections are "uncommitted" and may change without notice in a patch release.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="enhancements-24"><a class="anchor" href="#enhancements-24"></a>Enhancements</h3>
+<div class="quoteblock abstract">
+<blockquote>
+Complete list of changes since version 3.4.8
+</blockquote>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-192">KAFKAC-192</a>:
+Renamed the connector config properties to follow the standard Kafka naming convention ("lowercase.with.dots.between.words").
+See the <a href="migration.html" class="xref page">Migration Guide</a> for a comprehensive list of changes, and a shell script that can help upgrade your 3.x config files to use the new property names.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-157">KAFKAC-157</a>:
+The connector is now packaged as a Confluent Hub component.
+Confluent Platform users can easily install the connector using the <code>confluent-hub install</code> command.
+The <a href="quickstart.html" class="xref page">Quickstart Guide</a> has been updated to show how Apache Kafka users can install the connector.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-167">KAFKAC-167</a>:
+You can now specify custom ports in the list of Couchbase seed nodes.
+If you specify a port, it must be the port of the Key/Value service (which defaults to 11210 for unencrypted connections).</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-207">KAFKAC-207</a>:
+<strong>Sink</strong> - You can now specify an "enhanced durability" requirement with the new <code>couchbase.durability</code> config property.
+Enhanced durability requires Couchbase Server 6.5 or later.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-197">KAFKAC-197</a>:
+<strong>Sink</strong> - Added config property <code>couchbase.topic.to.collection</code> which maps Kafka topics to Couchbase collections.
+Added config property <code>couchbase.default.collection</code> which is used when a message&#8217;s topic is not present in the map.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-209">KAFKAC-209</a>:
+<strong>Source</strong> - The connector now evenly distributes the workload among all tasks, instead of trying to minimize the total number of Couchbase connections.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-177">KAFKAC-177</a>:
+<strong>Source</strong> - The example config files now use <code>RawJsonSourceHandler</code> and publish Kafka messages whose contents are the same as the Couchbase documents.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-212">KAFKAC-212</a>:
+<strong>Source</strong> - If you don&#8217;t care about the content of the Couchbase document, you can set the new <code>couchbase.no.value</code> config property to <code>true</code>, and the connector will omit the document content from Kafka messages.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-194">KAFKAC-194</a>:
+<strong>Source</strong> - A custom <code>SourceHandler</code> can now set headers on the Kafka record.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-223">KAFKAC-223</a>:
+<strong>Source</strong> - The connector is now more responsive to "pause" requests.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-220">KAFKAC-220</a>:
+<strong>Source</strong> - Custom <code>Filter</code> and <code>SourceHandler</code> components can now access connector configuration properties.
+These interfaces now have an <code>init(Map&lt;String, String&gt;)</code> method.
+The connector config is passed to this method when the component is created.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-222">KAFKAC-222</a>:
+The <code>custom-extensions</code> example project now includes a <code>CustomFilter</code> class that demonstrates how to read properties from the connector config.
+This example filter accepts or rejects documents based on a field of the document.
+The target field and the list of acceptable values are both configurable.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-196">KAFKAC-196</a>:
+<strong>Source</strong> - Added <code>couchbase.scope</code> and <code>couchbase.collection</code> config properties that let you stream from a specific scope or set of collections.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-195">KAFKAC-195</a>:
+<strong>Source</strong> - Modified the <code>couchbase.topic</code> config property to be a format string that supports <code>${bucket}</code>, <code>${scope}</code>, and <code>${collection}</code> placeholders.
+This makes it easy to publish to different Kafka topics depending on the Couchbase document&#8217;s parent collection.
+The default value is <code>${bucket}.${scope}.${collection}</code>.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-171">KAFKAC-171</a>:
+The <code>couchbase.password</code> config property (previously called <code>connection.password</code>) no longer defaults to an empty string.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-175">KAFKAC-175</a>:
+APIs deprecated in version 3.x have been removed.</p>
+</li>
+<li>
+<p>Upgraded Kafka Connect API from 1.0.2 to 2.5.0.</p>
+</li>
+<li>
+<p>Upgraded Couchbase client from 2.7.13 to 3.0.6.</p>
+</li>
+<li>
+<p>Upgraded DCP client from 0.26.0 to 0.29.0.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes-9"><a class="anchor" href="#bug-fixes-9"></a>Bug Fixes</h3>
+<div class="quoteblock abstract">
+<blockquote>
+Complete list of changes since version 3.4.8
+</blockquote>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-169">KAFKAC-169</a>:
+<strong>Sink</strong> - If two Kafka messages with the same key arrive in rapid succession, it&#8217;s no longer theoretically possible for them to be written to Couchbase in the wrong order.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changes-since-4-0-0-dp-3"><a class="anchor" href="#changes-since-4-0-0-dp-3"></a>Changes since 4.0.0-dp.3</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-220">KAFKAC-220</a>:
+<strong>Source</strong> - Custom <code>Filter</code> and <code>SourceHandler</code> components can now access connector configuration properties.
+These interfaces now have an <code>init(Map&lt;String, String&gt;)</code> method.
+The connector config is passed to this method when the component is created.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-222">KAFKAC-222</a>:
+The <code>custom-extensions</code> example project now includes a <code>CustomFilter</code> class that demonstrates how to read properties from the connector config.
+This example filter accepts or rejects documents based on a field of the document.
+The target field and the list of acceptable values are both configurable.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.0.0-dp.3"><a class="anchor" href="#v4.0.0-dp.3"></a>Version 4.0.0-dp.3 (21 July 2020)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.0.0-dp.3/couchbaseinc-kafka-connect-couchbase-4.0.0-dp.3.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>In this developer preview, both the Sink and Source connector now support Couchbase collections.
+This preview also brings a handful of fixes and new features, including support for enhanced durability, and optionally omitting document contents.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The new features in this pre-release version should be considered "volatile" and may change before the 4.0.0 GA release.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="enhancements-25"><a class="anchor" href="#enhancements-25"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-197">KAFKAC-197</a>:
+<strong>Sink</strong> - Added config property <code>couchbase.topic.to.collection</code> which maps Kafka topics to Couchbase collections.
+Added config property <code>couchbase.default.collection</code> which is used when a message&#8217;s topic is not present in the map.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-207">KAFKAC-207</a>:
+<strong>Sink</strong> - You can now specify an "enhanced durability" requirement with the new <code>couchbase.durability</code> config property.
+Enhanced durability requires Couchbase Server 6.5 or later.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-206">KAFKAC-206</a>:
+<strong>Source</strong> - Config property <code>couchbase.connector.name.in.offsets</code> now defaults to false again.
+This property doesn&#8217;t do anything useful, and should only be set to <code>true</code> if you previously had <code>compat.connector_name_in_offsets</code> set to <code>true</code>.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-177">KAFKAC-177</a>:
+<strong>Source</strong> - The example config files now use <code>RawJsonSourceHandler</code> and publish Kafka messages whose contents are the same as the Couchbase documents.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-209">KAFKAC-209</a>:
+<strong>Source</strong> - The connector now evenly distributes the workload among all tasks, instead of trying to minimize the total number of Couchbase connections.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-212">KAFKAC-212</a>:
+<strong>Source</strong> - If you don&#8217;t care about the content of the Couchbase document, you can set the new <code>couchbase.no.value</code> config property to <code>true</code>, and the connector will omit the document content from Kafka messages.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-205">KAFKAC-205</a>:
+Removed the unused <code>couchbase.force.ipv4</code> config property.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes-10"><a class="anchor" href="#bug-fixes-10"></a>Bug Fixes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-169">KAFKAC-169</a>:
+<strong>Sink</strong> - If two Kafka messages with the same key arrive in rapid succession, it&#8217;s no longer theoretically possible for them to be written to Couchbase in the wrong order.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-214">KAFKAC-214</a>:
+<strong>Sink</strong> - The Couchbase Java SDK has been updated from 3.0.5 to 3.0.6.
+As a result, setting <code>couchbase.document.expiration</code> to longer than 30 days now works correctly instead of causing immediate expiration.
+(This was a regression in 4.0.0-dp.1.)</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-203">KAFKAC-203</a>:
+<strong>Source</strong> - The 3.x &#8594; 4.0 migration script now properly converts the old <code>couchbase.flow_control_buffer</code> property to the new name: <code>couchbase.flow.control.buffer.size</code>.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-204">KAFKAC-204</a>:
+<strong>Source</strong> - Fixed the invalid value for <code>couchbase.bootstrap.timeout</code> in the <code>quickstart-couchbase-source.json</code> example config file.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.0.0-dp.1"><a class="anchor" href="#v4.0.0-dp.1"></a>Version 4.0.0-dp.1 (17 June 2020)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/kafka/4.0.0-dp.1/couchbaseinc-kafka-connect-couchbase-4.0.0-dp.1.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This developer preview version offers a sneak peek at some features coming in version 4.0.0 of the Couchbase Kafka connector, including support for Couchbase Collections and Scopes.</p>
+</div>
+<div class="paragraph">
+<p>Version 4.0 is a major update that changes how you configure and extend the connector.
+If you are upgrading from a previous version of the connector, be sure to read the <a href="migration.html" class="xref page">Migration Guide</a> which will help you with the upgrade process.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The new features in this pre-release version should be considered "volatile" and may change before the 4.0.0 GA release.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="enhancements-26"><a class="anchor" href="#enhancements-26"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-182">KAFKAC-182</a>:
+Upgraded Kafka Connect API from 1.0.2 to 2.5.0.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-188">KAFKAC-188</a>:
+Upgraded Couchbase client from 2.7.13 to 3.0.5.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-189">KAFKAC-189</a>:
+Upgraded DCP client from 0.26.0 to 0.28.0.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-192">KAFKAC-192</a>:
+Renamed the connector config properties to follow the standard Kafka naming convention ("lowercase.with.dots.between.words").
+See the <a href="migration.html" class="xref page">Migration Guide</a> for a comprehensive list of changes, and a shell script that can help upgrade your 3.x config files to use the new property names.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-196">KAFKAC-196</a>:
+Source: Added <code>couchbase.scope</code> and <code>couchbase.collection</code> config properties that let you stream from a specific scope or set of collections.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-195">KAFKAC-195</a>:
+Source: Modified the <code>couchbase.topic</code> config property to be a format string that supports <code>${bucket}</code>, <code>${scope}</code>, and <code>${collection}</code> placeholders.
+This makes it easy to publish to different Kafka topics depending on the Couchbase document&#8217;s parent collection.
+The default value is <code>${bucket}.${scope}.${collection}</code>.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-194">KAFKAC-194</a>:
+Source: A custom <code>SourceHandler</code> can now set headers on the Kafka record.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-157">KAFKAC-157</a>:
+The connector is now packaged as a Confluent Hub component.
+Confluent Platform users can easily install the connector using the <code>confluent-hub install</code> command.
+The <a href="quickstart.html" class="xref page">Quickstart Guide</a> has been updated to show how Apache Kafka users can install the connector.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-167">KAFKAC-167</a>:
+You can now specify custom ports in the list of Couchbase seed nodes.
+If you specify a port, it must be the port of the Key/Value service (which defaults to 11210 for unencrypted connections).</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-171">KAFKAC-171</a>:
+The <code>couchbase.password</code> config property (previously called <code>connection.password</code>) no longer defaults to an empty string.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-173">KAFKAC-173</a>:
+The <code>couchbase.connector.name.in.offsets</code> config property (previously called <code>compat.connector_name_in_offsets</code>) now defaults to <code>true</code>.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/KAFKAC-175">KAFKAC-175</a>:
+APIs deprecated in version 3.x have been removed.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="older-releases"><a class="anchor" href="#older-releases"></a>Older Releases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Although <a href="https://www.couchbase.com/support-policy/enterprise-software">no longer supported</a>, documentation for older releases continues to be available in our <a href="https://docs-archive.couchbase.com/home/index.html">docs archive</a>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Parent topic:</strong> <a href="index.html" class="xref page">Kafka Connector</a></p>
+</div>
+<div class="paragraph">
+<p><strong>Previous topic:</strong> <a href="streams-sample.html" class="xref page">Couchbase Sample with Kafka Streams</a></p>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <div class="col">
+        <div class="footer-logo">
+          <a href="https://www.couchbase.com" class="icon">
+            <img src="../../_/img/couchbase-logo.svg" alt="Couchbase">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://docs.couchbase.com" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://forums.couchbase.com" target="_blank" rel="noopener">Forums</a></li>
+          <li><a href="https://support.couchbase.com" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://developer.couchbase.com" target="_blank" rel="noopener">Developer Portal</a></li>
+          <li><a href="https://blog.couchbase.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://www.couchbase.com/resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://www.couchbase.com/get-started-developing-nosql">Get Started</a></li>
+          <li><a href="https://www.couchbase.com/downloads">Downloads</a></li>
+          <li><a href="https://learn.couchbase.com/store?utf8=%E2%9C%93&ss=1&ct=78327&commit=Filter" target="_blank" rel="noopener">Training</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="social-icons">
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32.1 26.1"> <path id="twitter" class="cls-1" d="M32,7.1a11.836,11.836,0,0,1-3.8,1,6.462,6.462,0,0,0,2.9-3.6,12.606,12.606,0,0,1-4.2,1.6A6.492,6.492,0,0,0,22.1,4a6.594,6.594,0,0,0-6.6,6.6,7.719,7.719,0,0,0,.2,1.5A18.458,18.458,0,0,1,2.2,5.2a6.294,6.294,0,0,0-.9,3.3A6.765,6.765,0,0,0,4.2,14a6.109,6.109,0,0,1-3-.8v.1a6.543,6.543,0,0,0,5.3,6.4,4.678,4.678,0,0,1-1.7.2,4.869,4.869,0,0,1-1.2-.1,6.679,6.679,0,0,0,6.1,4.6,12.917,12.917,0,0,1-8.2,2.8,9.151,9.151,0,0,1-1.6-.1,18.438,18.438,0,0,0,10.1,3c12.1,0,18.7-10,18.7-18.7v-.8A13.336,13.336,0,0,0,32,7.2Z" transform="translate(0.1 -4)"/></svg>
+            <a href="https://twitter.com/couchbase" class="icon">
+              Twitter
+            </a>
+          </li>
+          <li>
+          <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="linkedin" class="cls-1" d="M29,0H3A3.076,3.076,0,0,0,0,3V29a3.009,3.009,0,0,0,3,3H29a2.946,2.946,0,0,0,3-3V3A3.009,3.009,0,0,0,29,0ZM12,26H8V12h4ZM10,10a2,2,0,1,1,2-2A2.006,2.006,0,0,1,10,10ZM26,26H22V18a2,2,0,0,0-4,0v8H14V12h4v2.5c.8-1.1,2.1-2.5,3.5-2.5A4.736,4.736,0,0,1,26,17Z"/></svg>
+              <a href="https://www.linkedin.com/company/couchbase" class="icon">
+             Linkedin
+            </a>
+          </li>
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="facebook" class="cls-1" d="M29,0H3A2.652,2.652,0,0,0,0,3V29a2.652,2.652,0,0,0,3,3H16V18H12V14h4V12a6.452,6.452,0,0,1,6-6h4v4H22a2.151,2.151,0,0,0-2,2v2h6l-1,4H20V32h9a2.652,2.652,0,0,0,3-3V3A2.652,2.652,0,0,0,29,0Z"/></svg>
+            <a href="https://www.facebook.com/Couchbase" class="icon">
+            Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-terms">
+      <div class="footer-terms-copyright">
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+      </div>
+      <div class="footer-terms-links">
+        <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
+        <a href="https://www.couchbase.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.couchbase.com/cookie-policy">Cookie Policy</a>
+        <a href="https://www.couchbase.com/support-policy">Support Policy</a>
+        <a href="https://info.couchbase.com/unsubscribe-or-manage-preferences.html" target="_blank" rel="noopener">Marketing Preference Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../../_/js/site-navigation-data.js"></script>
+<script id="page-navigation-group" type="application/json">
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.2","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
+</script>
+<template id="run-code-panel">
+<div class="action-panel">
+  <form class="action-panel-control" method="POST" action="https://couchbase.live/run" target="run-code-output">
+    <input type="hidden" name="lang">
+    <input type="hidden" name="code">
+    <input type="hidden" name="from" value="docs">
+    <div class="controls">
+      <button class="control-button rerun" type="submit"><i class="fas fa-redo"></i></button>
+      <span class="shell-name control-label">Output</span>
+      <button class="control-button close"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </form>
+  <iframe class="run-code-output" name="run-code-output"></iframe>
+</div>
+</template>
+<script id="site-script" src="../../_/js/vendor/chatbox-ui.js"></script>
+<script id="site-script" src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
+<script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+</body>
+</html>
