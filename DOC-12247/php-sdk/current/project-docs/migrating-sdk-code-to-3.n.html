@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
+<title>Migrating from SDK API 2 to SDK API 3 | Couchbase Docs</title>
+<link rel="canonical" href="https://docs.couchbase.com/php-sdk/current/project-docs/migrating-sdk-code-to-3.n.html">
+<link rel="stylesheet" href="../../../_/css/site.css">
+<script src="../../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="The SDK API 3 (used in PHP SDK 3.x and 4.x) introduces breaking changes to the previous SDK API 2 APIs (used in PHP SDK 2.x) in order to provide a number of improvements. Collections and Scopes are introduced.">
+<link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+
+
+<meta name="dcterms.subject" content="php-sdk">
+<meta name="dcterms.identifier" content="4.0">
+<meta name="page-url" content="/php-sdk/current/project-docs/migrating-sdk-code-to-3.n.html">
+<meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="php-sdk">
+<meta name="docsearch:component_title" content="PHP SDK">
+<meta name="docsearch:cversion" content="4.0">
+<meta name="docsearch:component_version" content="php-sdk@4.0">
+<meta name="docsearch:module" content="project-docs">
+<meta name="docsearch:breadcrumbs" content="PHP SDK / Project Docs / Compatibility / Migrating to SDK 3 API">
+<meta name="docsearch:topic_type" content="concept">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
+<meta name="generator" content="Antora 3.1.7">
+<link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
+</head>
+<body class="article">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="header fixed-top">
+  <div class="header-top-row">
+      <div class="container">
+          <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
+              <ul class="navbar-brand-list">
+                <li class="brand-logo">
+                  <a class="navbar-brand" href="https://www.couchbase.com">
+                    <img src="../../../_/img/couchbase-logo.svg" alt="Couchbase" />
+                  </a>
+                </li>
+                <li>
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
+                    <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
+                    <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  </a>
+                </li>
+              </ul>
+              <button class="navbar-burger" data-target="topbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+          </nav>
+      </div>
+  </div>
+  <div class="header-bottom-row" id="topbar-menu">
+    <div class="container">
+        <nav  class="navbar navbar-new-bottom">
+
+              <div class="navbar-collapse collapse" id="navbar2">
+                <ul class="navbar-nav w-100 justify-content-start">
+
+                  <li class="nav-item "">
+                    <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
+                      <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/server.html">
+                      Server
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/mobile.html">
+                      Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="primary-action">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                  Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
+                </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+              </div>
+
+        </nav>
+    </div>
+   </div>
+</header>
+<div class="body container">
+<aside class="nav left-sidebar">
+  <div class="nav-container">
+    <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+  </div>
+</aside>
+<aside class="toc sidebar"
+      data-title="Contents"
+      data-levels="1">
+  <div class="sidebar-box">
+    <div class="tools" role="navigation">
+<ul>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-sdk-php/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+</ul>
+</div>
+    <div class="toc-menu"></div>
+    <div class="is-this-helpful-box">
+      <h4> Is this page helpful?</h4>
+      <div class="btn-row">
+        <a href="#" class="like-btn helpful-btn" id="yesBtn" data-page-rating="like" >
+                <i class="far fa-thumbs-up"></i>
+            Yes
+
+            </a>
+        <a href="#" class="dislike-btn helpful-btn" id="noBtn"  data-page-rating="dislike"> <i class="far fa-thumbs-down"></i> No</a>
+      </div>
+      <div class="any-feedback">
+        <a href="#" class="btn any-feedback-btn" id="myCustomTrigger">Leave Additional Feedback? </a>
+      </div>
+      <div class="dialog-box" id="dialogBox">
+        <form>
+            <div class="form-group " id="additionalFeedbackBox">
+              <textarea class="input-control feed-back-msg" rows="8" placeholder="Any Additonal Feedback?"></textarea>
+
+              <div class="action-btn-row ">
+                <a href="#" class="skip-btn" id="skipBtnMsg">Skip</a>
+                  <button class="submit-btn btn blue-btn disabled" > Submit  </button>
+                  <a href="#" class="info-btn"><i class="fas fa-info-circle"></i></a>
+              </div>
+
+
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="feedback-modal modal-popup">
+  <div class="modal-popup-dialogue">
+    <div class="popup-header">
+      <a href="#" class="close-popup"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="popup-content">
+      <p>
+        Please use the form below to provide your feedback. Because your feedback is valuable to us,
+         the information you submit in this form is recorded in our issue tracking system (JIRA), which is publicly available.
+        You can track the status of your feedback using the ticket number displayed in the dialog once you submit the form.
+      </p>
+    </div>
+  </div>
+</div>
+
+<main class="article" data-ceiling="topbar">
+<div class="article-header">
+<nav class="crumbs" aria-label="breadcrumbs">
+<ul>
+<li class="crumb"><a href="../hello-world/overview.html">PHP SDK</a></li>
+<li class="crumb">Project Docs</li>
+<li class="crumb"><a href="compatibility.html">Compatibility</a></li>
+<li class="crumb"><a href="migrating-sdk-code-to-3.n.html">Migrating to SDK 3 API</a></li>
+</ul>
+</nav>
+</div>
+<article class="doc">
+<div class="page-heading-title">
+<h1 class="page">Migrating from SDK API 2 to SDK API 3</h1>
+<div class="labels">
+<ul>
+<li class="concept"><span><i class="far fa-lightbulb"></i> concept</span></li>
+</ul>
+</div>
+
+
+</div>
+<div class="contributor-list-box">
+<span class="last-commit-date" id="commitdate">    </span>
+<ul id="contributorList"></ul>
+<span  id="otherContributor"> + </span>
+</div><div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock abstract">
+<blockquote>
+The SDK API 3 (used in PHP SDK 3.x and 4.x) introduces breaking changes to the previous SDK API 2 APIs (used in PHP SDK 2.x) in order to provide a number of improvements. Collections and Scopes are introduced.
+The Document class and structure has been completely removed from the API, and the returned value is now <code>Result</code>.
+Retry behaviour is more proactive, and lazy bootstrapping moves all error handling to a single place.
+</blockquote>
+</div>
+<div class="paragraph">
+<p>The current PHP SDK 4.0 is also based on the <a href="compatibility.html#sdk3.3" class="xref page">SDK API 3.3 specification</a>, and offers an entirely new backend (Couchbase++) with better support for new features like Distributed ACID Transactions.
+We have increased the major version to reflect the importance of this implementation change as per <a href="https://semver.org/">semantic versioning</a>.</p>
+</div>
+<div class="paragraph">
+<p>The intent of this migration guide is to provide detail information on the changes and what to look for while upgrading the SDK.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For the most part, migration from SDK API 2.<em>x</em> versions remains the same.
+The few 4.0-specific changes can be found at the end of this document.
+If you are an existing PHP SDK 3.<em>x</em> user considering migrating to SDK 4.0,
+you may wish to skip to the <a href="#sdk4-specifics">SDK 4.0 specifics</a> below.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc - include::7.1@sdk:shared:partial$api-version.adoc[]</p>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc - include::7.1@sdk:shared:partial$migration.adoc[]</p>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc - include::7.1@sdk:shared:partial$migration.adoc[]</p>
+</div>
+<div class="paragraph">
+<p>As an example here is a KeyValue document fetch:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">$getResult = $collection-&gt;get("key", (new GetOptionsl())-&gt;timeout(3000000));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Compare this to a N1QL query:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">$queryResult = $cluster-&gt;query("select 1=1", (new QueryOptions())-&gt;timeout(3000000));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc - include::7.1@sdk:shared:partial$migration.adoc[]</p>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc - include::7.1@sdk:shared:partial$migration.adoc[]</p>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc - include::7.1@sdk:shared:partial$migration.adoc[]</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="installation-and-configuration"><a class="anchor" href="#installation-and-configuration"></a>Installation and Configuration</h3>
+<div class="paragraph">
+<p>The primary source of artifacts is <a href="#installation.adoc" class="xref unresolved">the installation page</a>,
+where we publish links to pre-built binaries, as well as to source tarballs.</p>
+</div>
+<div class="paragraph">
+<p>From 3.0 onwards, binaries are available for Windows with the OpenSSL dependency.
+Note, that OpenSSL DLLs are not distributed in the archive and must be installed separately (see the <a href="https://wiki.openssl.org/index.php/Binaries">official OpenSSL page</a> for more details).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="connection-lifecycle"><a class="anchor" href="#connection-lifecycle"></a>Connection Lifecycle</h3>
+<div class="paragraph">
+<p>Bootstrapping the SDK is staged now, so the application has to create a Cluster object first, and then open the Bucket and
+Collection if necessary.</p>
+</div>
+<div class="paragraph">
+<p>As in SDK API 2.x there is no explicit shutdown, and all underlying connections still kept in the cache, for reusing in
+future requests.
+The connection idle time is controlled by the <code>couchbase.pool.max_idle_time_sec</code> PHP INI setting.</p>
+</div>
+<div class="paragraph">
+<p>SDK API 3.x allows the performance of Queries on the Cluster level, so it is not necessary to open a bucket anymore.</p>
+</div>
+<div class="paragraph">
+<p>SDK API 3.x does not allow the use of SASL PLAIN mechanism by default, instead it restricts to <code>SCRAM-SHA{1,256,512}</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exception-handling"><a class="anchor" href="#exception-handling"></a>Exception Handling</h3>
+<div class="paragraph">
+<p>SDK API 3.x actively uses <code>Exceptions</code> to signal errors.
+Instead of using single <code>\Couchbase\Exception</code>, as in SDK API 2.x, now we use a hierarchy of exceptions, which allows the handling of errors in a more reliable way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">try {
+  $collection-&gt;get("foo");
+} catch (\Couchbase\KeyNotFoundException $ex) {
+  $collection-&gt;upsert("foo", ["bar" =&gt; 42]);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Instead of SDK API 2&#8217;s:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">try {
+  $bucket-&gt;get("foo");
+} catch (\Couchbase\Exception $ex) {
+  if ($ex-&gt;getCode() == COUCHBASE_KEYNOTFOUND) {
+    $bucket-&gt;upsert("foo", ["bar" =&gt; 42]);
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="serialization-and-transcoding"><a class="anchor" href="#serialization-and-transcoding"></a>Serialization and Transcoding</h3>
+<div class="paragraph">
+<p>SDK API 3.x still relies on native types and supports the <code>json_encode</code> API from the standard <code>json.so</code> module (therefore it still has to be loaded before <code>couchbase.so</code>).
+But the <code>igbinary.so</code> transcoder is no longer supported.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>json</code> module is a core extension from PHP 8.0.0.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="migrating-services"><a class="anchor" href="#migrating-services"></a>Migrating Services</h3>
+<div class="sect3">
+<h4 id="key-value"><a class="anchor" href="#key-value"></a>Key Value</h4>
+<div class="paragraph">
+<p>Most of the KV APIs have moved from bucket-level (in SDK API 2.x) to collection-level (in SDK API 3.x).
+For servers which don&#8217;t support collections, the application should obtain the default collection using the <code>bucket-&gt;defaultCollection()</code> function.</p>
+</div>
+<div class="paragraph">
+<p>The following table describes the mappings from SDK API 2 KV to those of SDK API 3:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. KV changes</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">SDK API 2</th>
+<th class="tableblock halign-left valign-top">SDK API 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bucket-&gt;upsert</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Collection-&gt;upsert</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bucket-&gt;get</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Collection-&gt;get</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Collection-&gt;exists</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bucket-&gt;getFromReplica</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Collection-&gt;getAnyReplica</code> and <code>Collection.getAllReplicas</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bucket-&gt;getAndLock</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Collection-&gt;getAndLock</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bucket-&gt;getAndTouch</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Collection-&gt;getAndTouch</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bucket-&gt;insert</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Collection-&gt;insert</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bucket-&gt;upsert</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Collection-&gt;upsert</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bucket-&gt;replace</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Collection-&gt;replace</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bucket-&gt;remove</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Collection-&gt;remove</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bucket-&gt;unlock</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Collection-&gt;unlock</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bucket-&gt;touch</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Collection-&gt;touch</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bucket-&gt;lookupIn</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Collection-&gt;lookupIn</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bucket-&gt;mutateIn</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Collection-&gt;mutateIn</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bucket-&gt;counter</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BinaryCollection-&gt;increment</code> and <code>BinaryCollection-&gt;decrement</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bucket-&gt;append</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BinaryCollection-&gt;append</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bucket-&gt;prepend</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BinaryCollection-&gt;prepend</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The <code>BinaryCollection</code> mentioned above could be retrieved from the regular collection object using the <code>$collection-&gt;binary()</code> method.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="query"><a class="anchor" href="#query"></a>Query</h4>
+<div class="paragraph">
+<p>In SDK 3.x, the API for Query was improved and now it is more consistent with other endpoints.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In particular, <code>&#8594;rows()</code> is now a method rather than a property,
+and returns an array of fields to index with <code>['field-name']</code> instead of
+an object with custom property names for each field.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">SDK API 2</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">$query = N1qlQuery::fromString('SELECT airportname FROM `travel-sample` WHERE city=$city AND type=$type');
+$query-&gt;namedParams(['city' =&gt; "Los Angeles", 'type' =&gt; "airport"]);
+$result = $bucket-&gt;query($query);
+foreach ($result-&gt;rows as $row) {
+  printf("%s\n", $row-&gt;airportname);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">SDK API 3</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">$options = new QueryOptions();
+$options-&gt;namedParameters(['city' =&gt; "Los Angeles", 'type' =&gt; "airport"]);
+$result = $cluster-&gt;query('SELECT airportname FROM `travel-sample` WHERE city=$city AND type=$airport', $options);
+foreach ($result-&gt;rows() as $row) {
+  printf("%s\n", $row['airportname']);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="analytics"><a class="anchor" href="#analytics"></a>Analytics</h4>
+<div class="paragraph">
+<p>Analytics queries in SDK API 3 have their own API entry point.</p>
+</div>
+<div class="listingblock">
+<div class="title">SDK API 2</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">$query = AnalyticsQuery::fromString('SELECT * FROM dataset WHERE type = $type');
+$query-&gt;namedParams(['type' =&gt; "airport"]);
+$result = $bucket-&gt;query($query);
+foreach ($result-&gt;rows as $row) {
+  printf("%s\n", $row-&gt;airportname);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">SDK API 3</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">$options = new AnalyticsQueryOptions();
+$options-&gt;namedParameters(['type' =&gt; "airport"]);
+$result = $cluster-&gt;analyticsQuery('SELECT * FROM dataset WHERE type = $type', $options);
+foreach ($result-&gt;rows() as $row) {
+  printf("%s\n", $row['airportname']);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="search"><a class="anchor" href="#search"></a>Search</h4>
+<div class="paragraph">
+<p>In SDK API 3, query options and index name has been extracted from the query object.</p>
+</div>
+<div class="listingblock">
+<div class="title">SDK API 2</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">$queryPart = SearchQuery::matchPhrase("hop beer");
+$query = new SearchQuery("beer-search", $queryPart);
+$query-&gt;limit(3)-&gt;fields("name");
+
+$result = $this-&gt;bucket-&gt;query($query);
+foreach ($result-&gt;hits() as $hit) {
+  printf("%s - %f\n", $hit-&gt;id, $hit-&gt;score);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">SDK API 3</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">$query = new MatchPhraseSearchQuery("hop beer");
+$options = new SearchOptions();
+$options-&gt;limit(3);
+$result = $cluster-&gt;search("beer-search", $query, $options);
+foreach ($result-&gt;rows() as $row) {
+  printf("%s - %f\n", $row['id'], $row['score']);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="views"><a class="anchor" href="#views"></a>Views</h4>
+<div class="paragraph">
+<p>The most noticeable change in the Views API for SDK API 3.x is the change of names for consistency control settings.</p>
+</div>
+<div class="listingblock">
+<div class="title">SDK API 2</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">$query = ViewQuery::from('design_name', 'test');
+$query-&gt;consistency(ViewQuery::UPDATE_BEFORE);
+$res = $bucket-&gt;query($query);
+foreach ($res-&gt;rows as $row) {
+  printf("%s\n", $row-&gt;id);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">SDK API 3</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">$options = new ViewOptions();
+$options-&gt;scanConsistency(ViewScanConsistency::REQUEST_PLUS);
+$res = $bucket-&gt;viewQuery('design_name', 'test', $options);
+foreach ($res-&gt;rows() as $row) {
+  printf("%s\n", $row-&gt;id());
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="batching-with-multi-get-multi-options"><a class="anchor" href="#batching-with-multi-get-multi-options"></a>Batching with Multi Get, Multi Options</h3>
+<div class="paragraph">
+<p>This feature of the SDK API 2 is not present in SDK API 3.
+See the <a href="../howtos/concurrent-async-apis.html" class="xref page">batching docs</a> for use of process forks.</p>
+</div>
+</div>
+<div class="sect1">
+<h2 id="management-apis"><a class="anchor" href="#management-apis"></a>Management APIs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In SDK API 2, the management APIs were centralized in the <code>ClusterManager</code> at the cluster level and the <code>BucketManager</code> at the bucket level.
+Since SDK API 3 provides more management APIs, they have been split up into their respective domains.
+For example, when in SDK API 2 you needed to remove a bucket you would call <code>ClusterManager.removeBucket</code>&#8201;&#8212;&#8201;you will now find it under <code>BucketManager.dropBucket</code>.
+And, creating a N1QL index now lives in the <code>QueryIndexManager</code>, which is accessible through the <code>Cluster</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following tables provide a mapping from the SDK API 2 management APIs to those of SDK API 3:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. <code>ClusterManager</code> changes</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">SDK API 2</th>
+<th class="tableblock halign-left valign-top">SDK API 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ClusterManager-&gt;info</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">removed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ClusterManager-&gt;listBuckets</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BucketManager-&gt;getAllBuckets</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BucketManager-&gt;getBucket</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ClusterManager-&gt;createBucket</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BucketManager-&gt;createBucket</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ClusterManager-&gt;removeBucket</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BucketManager-&gt;removeBucket</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ClusterManager-&gt;upsertUser</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>UserManager-&gt;upsertUser</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ClusterManager-&gt;removeUser</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>UserManager-&gt;dropUser</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ClusterManager-&gt;listUsers</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>UserManager-&gt;getAllUsers</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ClusterManager-&gt;getUser</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>UserManager-&gt;getUser</code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. <code>BucketManager</code> changes</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">SDK API 2</th>
+<th class="tableblock halign-left valign-top">SDK API 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BucketManager-&gt;info</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">removed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BucketManager-&gt;flush</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BucketManager-&gt;flushBucket</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BucketManager-&gt;listDesignDocuments</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ViewIndexManager-&gt;getAllDesignDocuments</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BucketManager-&gt;getDesignDocument</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ViewIndexManager-&gt;getDesignDocument</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BucketManager-&gt;removeDesignDocument</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ViewIndexManager-&gt;dropDesignDocument</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BucketManager-&gt;insertDesignDocument</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ViewIndexManager-&gt;upsertDesignDocument</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BucketManager-&gt;upsertDesignDocument</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ViewIndexManager-&gt;upsertDesignDocument</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BucketManager-&gt;listN1qlIndexes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>QueryIndexManager-&gt;getAllIndexes</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BucketManager-&gt;createN1qlIndex</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>QueryIndexManager-&gt;createIndex</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BucketManager-&gt;createN1qlPrimaryIndex</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>QueryIndexManager-&gt;createPrimaryIndex</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BucketManager-&gt;dropN1qlIndex</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>QueryIndexManager-&gt;dropIndex</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BucketManager-&gt;dropN1qlPrimaryIndex</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>QueryIndexManager-&gt;dropPrimaryIndex</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sdk4-specifics"><a class="anchor" href="#sdk4-specifics"></a>SDK 4.x specifics</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>PHP SDK 4.0 implements the SDK API 3 spec, so all the steps above also apply to a migration from a PHP SDK 2.x directly to PHP SDK 4.0.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, the PHP SDK 4.0 offers a new backend (Couchbase++) with support for
+<a href="../howtos/distributed-acid-transactions-from-the-sdk.html" class="xref page">multi-document ACID transactions</a>,
+as well as the capabilities required for upcoming features.
+You should be aware of the following considerations arising from this new backend implementation.</p>
+</div>
+<div class="paragraph">
+<p>The following features are unsupported in 4.0.
+They are available in 3.2, and will be available in a later 4.x release.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../concept-docs/response-time-observability.html" class="xref page">Response Time Availability</a></p>
+</li>
+<li>
+<p><a href="../concept-docs/durability-replication-failure-considerations.html#older-server-versions" class="xref page">Legacy durability</a></p>
+</li>
+<li>
+<p>Log forwarding</p>
+</li>
+<li>
+<p>Replica reads</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In addition:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>get</code> requests on locked documents now retry rather than fast-fail.</p>
+</li>
+<li>
+<p>The changes to <a href="../ref/client-settings.html" class="xref page">Client Settings</a> are not currently documented.</p>
+</li>
+<li>
+<p>The changes to <a href="../howtos/managing-connections.html#connection-strings" class="xref page">Connection Strings</a> are not currently documented.</p>
+</li>
+<li>
+<p>Because of the change to the backend Couchbase++ library, an Autoload is needed, as in <a href="../hello-world/start-using-sdk.html#imports" class="xref page">this imports example</a>.
+If you are managing your Autoloads with Composer, as recommended, this process should be trivial, and not require any additional manual addition of <code>require_once</code> statements throughout your codebase.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc - include::7.1@sdk:shared:partial$archive.adoc[]</p>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <div class="col">
+        <div class="footer-logo">
+          <a href="https://www.couchbase.com" class="icon">
+            <img src="../../../_/img/couchbase-logo.svg" alt="Couchbase">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://docs.couchbase.com" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://forums.couchbase.com" target="_blank" rel="noopener">Forums</a></li>
+          <li><a href="https://support.couchbase.com" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://developer.couchbase.com" target="_blank" rel="noopener">Developer Portal</a></li>
+          <li><a href="https://blog.couchbase.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://www.couchbase.com/resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://www.couchbase.com/get-started-developing-nosql">Get Started</a></li>
+          <li><a href="https://www.couchbase.com/downloads">Downloads</a></li>
+          <li><a href="https://learn.couchbase.com/store?utf8=%E2%9C%93&ss=1&ct=78327&commit=Filter" target="_blank" rel="noopener">Training</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="social-icons">
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32.1 26.1"> <path id="twitter" class="cls-1" d="M32,7.1a11.836,11.836,0,0,1-3.8,1,6.462,6.462,0,0,0,2.9-3.6,12.606,12.606,0,0,1-4.2,1.6A6.492,6.492,0,0,0,22.1,4a6.594,6.594,0,0,0-6.6,6.6,7.719,7.719,0,0,0,.2,1.5A18.458,18.458,0,0,1,2.2,5.2a6.294,6.294,0,0,0-.9,3.3A6.765,6.765,0,0,0,4.2,14a6.109,6.109,0,0,1-3-.8v.1a6.543,6.543,0,0,0,5.3,6.4,4.678,4.678,0,0,1-1.7.2,4.869,4.869,0,0,1-1.2-.1,6.679,6.679,0,0,0,6.1,4.6,12.917,12.917,0,0,1-8.2,2.8,9.151,9.151,0,0,1-1.6-.1,18.438,18.438,0,0,0,10.1,3c12.1,0,18.7-10,18.7-18.7v-.8A13.336,13.336,0,0,0,32,7.2Z" transform="translate(0.1 -4)"/></svg>
+            <a href="https://twitter.com/couchbase" class="icon">
+              Twitter
+            </a>
+          </li>
+          <li>
+          <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="linkedin" class="cls-1" d="M29,0H3A3.076,3.076,0,0,0,0,3V29a3.009,3.009,0,0,0,3,3H29a2.946,2.946,0,0,0,3-3V3A3.009,3.009,0,0,0,29,0ZM12,26H8V12h4ZM10,10a2,2,0,1,1,2-2A2.006,2.006,0,0,1,10,10ZM26,26H22V18a2,2,0,0,0-4,0v8H14V12h4v2.5c.8-1.1,2.1-2.5,3.5-2.5A4.736,4.736,0,0,1,26,17Z"/></svg>
+              <a href="https://www.linkedin.com/company/couchbase" class="icon">
+             Linkedin
+            </a>
+          </li>
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="facebook" class="cls-1" d="M29,0H3A2.652,2.652,0,0,0,0,3V29a2.652,2.652,0,0,0,3,3H16V18H12V14h4V12a6.452,6.452,0,0,1,6-6h4v4H22a2.151,2.151,0,0,0-2,2v2h6l-1,4H20V32h9a2.652,2.652,0,0,0,3-3V3A2.652,2.652,0,0,0,29,0Z"/></svg>
+            <a href="https://www.facebook.com/Couchbase" class="icon">
+            Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-terms">
+      <div class="footer-terms-copyright">
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+      </div>
+      <div class="footer-terms-links">
+        <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
+        <a href="https://www.couchbase.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.couchbase.com/cookie-policy">Cookie Policy</a>
+        <a href="https://www.couchbase.com/support-policy">Support Policy</a>
+        <a href="https://info.couchbase.com/unsubscribe-or-manage-preferences.html" target="_blank" rel="noopener">Marketing Preference Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../../../_/js/site-navigation-data.js"></script>
+<script id="page-navigation-group" type="application/json">
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.2","spark-connector":"3.2","tableau-connector":"1.x","power-bi-connector":"1.0"}}
+</script>
+<template id="run-code-panel">
+<div class="action-panel">
+  <form class="action-panel-control" method="POST" action="https://couchbase.live/run" target="run-code-output">
+    <input type="hidden" name="lang">
+    <input type="hidden" name="code">
+    <input type="hidden" name="from" value="docs">
+    <div class="controls">
+      <button class="control-button rerun" type="submit"><i class="fas fa-redo"></i></button>
+      <span class="shell-name control-label">Output</span>
+      <button class="control-button close"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </form>
+  <iframe class="run-code-output" name="run-code-output"></iframe>
+</div>
+</template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
+<script id="site-script" src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
+<script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+</body>
+</html>

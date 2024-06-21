@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
+<title>Configure CMOS for Kubernetes deployment | Couchbase Docs</title>
+<link rel="stylesheet" href="../../_/css/site.css">
+<script src="../../_/js/vendor/jquery.js"></script>
+<link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+
+
+<meta name="dcterms.subject" content="cmos">
+<meta name="dcterms.identifier" content="0.2">
+<meta name="page-url" content="/cmos/current/tutorial-kubernetes.html">
+<meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="cmos">
+<meta name="docsearch:component_title" content="Couchbase Monitoring and Observability Stack">
+<meta name="docsearch:cversion" content="0.2">
+<meta name="docsearch:component_version" content="cmos@0.2">
+<meta name="docsearch:module" content="">
+<meta name="docsearch:breadcrumbs" content="Couchbase Monitoring and Observability Stack / Tutorials / Kubernetes example">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="Developer Preview">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
+<meta name="generator" content="Antora 3.1.7">
+<link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
+</head>
+<body class="article">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="header fixed-top">
+  <div class="header-top-row">
+      <div class="container">
+          <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
+              <ul class="navbar-brand-list">
+                <li class="brand-logo">
+                  <a class="navbar-brand" href="https://www.couchbase.com">
+                    <img src="../../_/img/couchbase-logo.svg" alt="Couchbase" />
+                  </a>
+                </li>
+                <li>
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
+                    <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
+                    <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  </a>
+                </li>
+              </ul>
+              <button class="navbar-burger" data-target="topbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+          </nav>
+      </div>
+  </div>
+  <div class="header-bottom-row" id="topbar-menu">
+    <div class="container">
+        <nav  class="navbar navbar-new-bottom">
+
+              <div class="navbar-collapse collapse" id="navbar2">
+                <ul class="navbar-nav w-100 justify-content-start">
+
+                  <li class="nav-item "">
+                    <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
+                      <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../home/server.html">
+                      Server
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../home/mobile.html">
+                      Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../home/sdk.html">
+                      SDKs
+                      
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="primary-action">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                  Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
+                </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+              </div>
+
+        </nav>
+    </div>
+   </div>
+</header>
+<div class="body container">
+<aside class="nav left-sidebar">
+  <div class="nav-container">
+    <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+  </div>
+</aside>
+<aside class="toc sidebar"
+      data-title="Contents"
+      data-levels="1">
+  <div class="sidebar-box">
+    <div class="tools" role="navigation">
+<ul>
+<li class="tool edit"><a href="https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/tutorial-kubernetes.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+</ul>
+</div>
+    <div class="toc-menu"></div>
+    <div class="is-this-helpful-box">
+      <h4> Is this page helpful?</h4>
+      <div class="btn-row">
+        <a href="#" class="like-btn helpful-btn" id="yesBtn" data-page-rating="like" >
+                <i class="far fa-thumbs-up"></i>
+            Yes
+
+            </a>
+        <a href="#" class="dislike-btn helpful-btn" id="noBtn"  data-page-rating="dislike"> <i class="far fa-thumbs-down"></i> No</a>
+      </div>
+      <div class="any-feedback">
+        <a href="#" class="btn any-feedback-btn" id="myCustomTrigger">Leave Additional Feedback? </a>
+      </div>
+      <div class="dialog-box" id="dialogBox">
+        <form>
+            <div class="form-group " id="additionalFeedbackBox">
+              <textarea class="input-control feed-back-msg" rows="8" placeholder="Any Additonal Feedback?"></textarea>
+
+              <div class="action-btn-row ">
+                <a href="#" class="skip-btn" id="skipBtnMsg">Skip</a>
+                  <button class="submit-btn btn blue-btn disabled" > Submit  </button>
+                  <a href="#" class="info-btn"><i class="fas fa-info-circle"></i></a>
+              </div>
+
+
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="feedback-modal modal-popup">
+  <div class="modal-popup-dialogue">
+    <div class="popup-header">
+      <a href="#" class="close-popup"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="popup-content">
+      <p>
+        Please use the form below to provide your feedback. Because your feedback is valuable to us,
+         the information you submit in this form is recorded in our issue tracking system (JIRA), which is publicly available.
+        You can track the status of your feedback using the ticket number displayed in the dialog once you submit the form.
+      </p>
+    </div>
+  </div>
+</div>
+
+<main class="article" data-ceiling="topbar">
+<div class="article-header">
+<nav class="crumbs" aria-label="breadcrumbs">
+<ul>
+<li class="crumb"><a href="index.html">Couchbase Monitoring and Observability Stack</a></li>
+<li class="crumb">Tutorials</li>
+<li class="crumb"><a href="tutorial-kubernetes.html">Kubernetes example</a></li>
+</ul>
+</nav>
+</div>
+<article class="doc">
+<div class="page-heading-title">
+<h1 class="page">Configure CMOS for Kubernetes deployment</h1>
+<div class="labels">
+<ul></ul>
+</div>
+<div class="labels">
+<ul>
+<li class="status"><span>Developer Preview</span></li>
+</ul>
+</div>
+
+
+</div>
+<div class="contributor-list-box">
+<span class="last-commit-date" id="commitdate">    </span>
+<ul id="contributorList"></ul>
+<span  id="otherContributor"> + </span>
+</div><div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Tutorials are provided to demonstrate how a particular problem may be solved.
+Tutorials are accurate at the time of writing but rely heavily on third party software.
+The third party software is not directly supported by Couchbase.
+For further help in the event of a problem, contact the relevant software maintainer.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Couchbase Monitoring and Observability Stack (also known as CMOS) is a simple, out-of-the-box solution built using industry standard tooling to observe the state of a running Couchbase cluster.
+CMOS can be deployed to monitor the Couchbase clusters deployed via <a href="https://docs.couchbase.com/operator/current/overview.html" target="_blank" rel="noopener">Couchbase Autonomous Operator (CAO)</a> running on Kubernetes.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deploy-cmos"><a class="anchor" href="#deploy-cmos"></a>Deploy CMOS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>CMOS is deployed on Kubernetes platform using a standard set of resources like Deployment, Services etc.
+The following sections describe how to deploy these standard objects.
+They also include information on configuring these services.</p>
+</div>
+<div class="sect2">
+<h3 id="prometheus-configuration"><a class="anchor" href="#prometheus-configuration"></a>Prometheus Configuration</h3>
+<div class="paragraph">
+<p>The prometheus configuration file is a standard way of specifying the configuration for the prometheus server.
+Prometheus configuration can be externalized using a Kubernetes <code>ConfigMap</code>, which contains all the details including credentials, and targets to scrape metrics.
+By externalizing Prometheus configuration to a Kubernetes config map, you don’t have to build the Prometheus image whenever you need to add or remove a configuration.
+You simply need to update the config map and restart the Prometheus pods to apply the new configuration.</p>
+</div>
+<div class="paragraph">
+<p>The following is an example file that contains default configuration for CMOS prometheus to work out of the box.
+Run the below command in the console to create it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">mkdir -p ./prometheus/custom/alerting
+cat &lt;&lt;EOF &gt;./prometheus/custom/prometheus-k8s.yml
+# This is a template file we use so we can substitute environment variables at launch
+global:
+    scrape_interval: 30s
+    evaluation_interval: 30s
+  # scrape_timeout is set to the global default (10s).
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+    external_labels:
+        monitor: couchbase-observability-stack
+
+# Load and evaluate rules in this file every 'evaluation_interval' seconds.
+rule_files:
+  # All Couchbase default rules go here
+    - /etc/prometheus/alerting/couchbase/*.yaml
+    - /etc/prometheus/alerting/couchbase/*.yml
+  # All custom rules can go here: relative to this file
+    - alerting/*.yaml
+    - alerting/*.yml
+
+alerting:
+    alertmanagers:
+        - scheme: http
+    # tls_config:
+    #   ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+    # bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+          path_prefix: /alertmanager/
+    # Assumption is we always have AlertManager with Prometheus
+          static_configs:
+              - targets:
+                    - localhost:9093
+    # Discover alert manager instances using K8s service discovery
+    # kubernetes_sd_configs:
+    #   - role: pod
+    # relabel_configs:
+    # - source_labels: [__meta_kubernetes_namespace]
+    #   regex: monitoring
+    #   action: keep
+    # - source_labels: [__meta_kubernetes_pod_label_app]
+    #   regex: prometheus
+    #   action: keep
+    # - source_labels: [__meta_kubernetes_pod_label_component]
+    #   regex: alertmanager
+    #   action: keep
+    # - source_labels: [__meta_kubernetes_pod_container_port_number]
+    #   regex:
+    #   action: drop
+
+scrape_configs:
+    - job_name: prometheus
+      metrics_path: /prometheus/metrics
+      static_configs:
+          - targets: [localhost:9090]
+
+    - job_name: couchbase-grafana
+      file_sd_configs:
+          - files:
+                - /etc/prometheus/couchbase/monitoring/*.json
+            refresh_interval: 30s
+
+  # TODO: add unauthenticated endpoint
+    - job_name: couchbase-cluster-monitor
+      basic_auth:
+          username: admin
+          password: password
+      metrics_path: /api/v1/_prometheus
+    # For basic auth we cannot use file_sd
+      static_configs:
+          - targets: [localhost:7196]
+
+  # Used for kubernetes deployment as we can discover the end points to scrape from the API
+    - job_name: couchbase-kubernetes-pods
+      # Server 7 requires authentication
+      basic_auth:
+          username: admin
+          password: password
+      kubernetes_sd_configs:
+          - role: pod
+      relabel_configs:
+      # Scrape pods labelled with app=couchbase and then only port 8091 (server 7), 9091 (exporter) or 2020 (fluent bit)
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            action: keep
+            regex: couchbase
+          - source_labels: [__meta_kubernetes_pod_container_port_number]
+            action: keep
+            regex: (8091|9091|2020)
+          - action: labelmap
+            regex: __meta_kubernetes_pod_label_(.+)
+          - source_labels: [__meta_kubernetes_namespace]
+            action: replace
+            target_label: kubernetes_namespace
+          - source_labels: [__meta_kubernetes_pod_name]
+            action: replace
+            target_label: kubernetes_pod_name
+          - source_labels: [__meta_kubernetes_pod_label_couchbase_cluster]
+            action: replace
+            target_label: cluster
+
+  # Kube-state-metrics default service to scrape
+    - job_name: kube-state-metrics
+      static_configs:
+          - targets: [kube-state-metrics:8080]
+EOF</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>rule_files</code>: Prometheus is configured to load rules via rule_files.
+You can extend rules by adding rule_files under the <code>alerting/</code> directory.
+Note that the <code>alerting/</code> directory is a relative path to the prometheus configuration file.
+By default the complete path is <code>/etc/prometheus/custom/alerting/</code>.
+Refer to the <a href="#observability-stack">Observability Stack</a> section for volume mounts.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>alerting</code>: Alert manager is shipped and enabled by default in the CMOS.
+This section has various configurations of alert managers.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>scrape_configs</code>: All the targets to scrape metrics are defined here.
+This includes <code>prometheus</code>, <code>couchbase-grafana</code>, <code>couchbase-cluster-monitor</code>, <code>couchbase-kubernetes-pods</code> and <code>kube-state-metrics</code>.
+We try to discover the couchbase pods using labels.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Run the below command in kubernetes console to create the prometheus config map from the configuration file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">kubectl create configmap prometheus-config-cmos --from-file=./prometheus/custom/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="observability-stack"><a class="anchor" href="#observability-stack"></a>Observability Stack</h3>
+<div class="paragraph">
+<p>Kubernetes controls access to its resources using Role Based Access Control (RBAC).
+In order to monitor the Couchbase cluster, the CMOS deployment must communicate with the cluster and discover it.
+The example YAML file handles this for you.
+Create it by running the below command in the kubernetes console.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">cat &lt;&lt;EOF | kubectl apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+   name: monitoring-endpoints-role
+   labels:
+       rbac.couchbase.observability.com/aggregate-to-monitoring: 'true'
+rules:
+   - apiGroups: [''] <i class="conum" data-value="1"></i><b>(1)</b>
+     resources: [services, endpoints, pods, secrets]
+     verbs: [get, list, watch]
+   - apiGroups: [couchbase.com] <i class="conum" data-value="2"></i><b>(2)</b>
+     resources: [couchbaseclusters]
+     verbs: [get, list, watch]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+   name: monitoring-role-binding <i class="conum" data-value="3"></i><b>(3)</b>
+roleRef:
+   kind: ClusterRole
+   name: monitoring-endpoints-role
+   apiGroup: rbac.authorization.k8s.io
+subjects:
+   - kind: Group
+     name: system:serviceaccounts
+     apiGroup: rbac.authorization.k8s.io
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this configure file, you can see that the cluster role is defined by specifying the following permissions:</p>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Access to standard Kubernetes resources: CMOS requires get, list and watch permissions to <code>services, endpoints, pods, secrets</code> resources.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Couchbase Custom Resource Definition: CMOS requires get, list and watch permissions to <code>couchbaseclusters</code> resource.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>monitoring-role-binding</code>: This role binding is required to give the permissions created in ClusterRole to the service account of CMOS.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The actual CMOS workload runs as a Kubernetes deployment along with other supporting services.
+Create it by running the below command in the Kubernetes console.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">cat &lt;&lt;EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: couchbase-grafana
+spec:
+   selector:
+       matchLabels:
+           run: couchbase-grafana
+   replicas: 1
+   template:
+       metadata:
+           labels:
+               run: couchbase-grafana
+       spec:
+           containers:
+               - name: couchbase-grafana
+                 image: couchbase/observability-stack
+                 ports:
+                     - name: http
+                       containerPort: 8080
+                     - name: loki # So we can push logs to it
+                       containerPort: 3100
+                 env:
+                     - name: KUBERNETES_DEPLOYMENT
+                       value: 'true'
+                     - name: ENABLE_LOG_TO_FILE
+                       value: 'true'
+                     - name: PROMETHEUS_CONFIG_FILE
+                       value: /etc/prometheus/custom/prometheus-k8s.yml
+                     - name: PROMETHEUS_CONFIG_TEMPLATE_FILE
+                       value: ignore
+                   # - name: DISABLE_LOKI
+                   #   value: "true"
+                 volumeMounts:
+                     - name: prometheus-config-volume
+                       mountPath: /etc/prometheus/custom # keep /etc/prometheus for any defaults
+     # Now we watch for changes to the volumes and auto-reload the prometheus configuration if seen
+               - name: prometheus-config-watcher
+                 image: weaveworks/watch:master-9199bf5
+                 args: [-v, -t, -p=/etc/prometheus/custom, curl, -X, POST, --fail, -o, '-', -sS, http://localhost:8080/prometheus/-/reload]
+                 volumeMounts:
+                     - name: prometheus-config-volume
+                       mountPath: /etc/prometheus/custom
+           volumes:
+               - name: prometheus-config-volume
+                 configMap:
+                     name: prometheus-config-cmos
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After the observability dashboard is deployed, we need to create a service to access CMOS.
+Create it by running the below command in the kubernetes console.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">cat &lt;&lt;EOF | kubectl apply -f -
+apiVersion: v1
+kind: Service
+metadata:
+   name: couchbase-grafana-http
+   labels:
+       run: couchbase-grafana
+spec:
+   ports:
+       - port: 8080 <i class="conum" data-value="1"></i><b>(1)</b>
+         protocol: TCP
+   selector:
+       run: couchbase-grafana
+EOF</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The observability monitoring service runs on port 8080 by default.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Create a service for accessing Loki by running the below command in the kubernetes console.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">cat &lt;&lt;EOF | kubectl apply -f -
+apiVersion: v1
+kind: Service
+metadata:
+   name: loki
+   labels:
+       run: couchbase-grafana
+spec:
+   ports:
+       - port: 3100
+         protocol: TCP
+   selector:
+       run: couchbase-grafana
+EOF</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deploy-couchbase"><a class="anchor" href="#deploy-couchbase"></a>Deploy Couchbase</h3>
+<div class="paragraph">
+<p>The <a href="https://docs.couchbase.com/operator/current/helm-setup-guide.html" target="_blank" rel="noopener">Couchbase Helm chart</a> is used to deploy Couchbase Autonomous Operator and a default configuration for the Couchbase Server pods.</p>
+</div>
+<div class="paragraph">
+<p>It is easy to get started by using the default configuration values.
+However, if you want to modify any of the values to meet your specific requirements, please see the section below <a href="https://docs.couchbase.com/operator/current/helm-setup-guide.html#custom-installation" target="_blank" rel="noopener">Helm documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>We provide an example to show how to set up <a href="https://docs.couchbase.com/operator/current/howto-couchbase-log-forwarding.html" target="_blank" rel="noopener">log forwarding</a> to CMOS via Kubernetes annotations on the pod.</p>
+</div>
+<div class="paragraph">
+<p>Execute the below commands to create a helm values file with custom values.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">cat &lt;&lt;EOF &gt;custom-values.yaml
+cluster:
+   logging:
+       server:
+           enabled: true
+           sidecar:
+               image: couchbase/fluent-bit:1.2.2
+   monitoring:
+       prometheus:
+           enabled: false # We're using server 7 metrics directly
+           image: couchbase/exporter:1.0.6
+   security:
+       username: admin
+       password: password <i class="conum" data-value="1"></i><b>(1)</b>
+   servers:
+       # We use custom annotations to forward to CMOS Loki
+       default:
+           size: 3
+           pod:
+               metadata:
+                   annotations:
+                       # Match all logs
+                       fluentbit.couchbase.com/loki_match: "*"
+                       # Send to this SVC
+                       fluentbit.couchbase.com/loki_host: loki.default
+           volumeMounts:
+               default: couchbase
+   volumeClaimTemplates:
+       - metadata:
+             name: couchbase
+         spec:
+             resources:
+                 requests:
+                     storage: 1Gi
+EOF</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We recommend specifying a stronger password.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you already have the Couchbase operator deployed using helm or are considering a new deployment, the below command can be used with custom values to enable CMOS.
+If it is deployed using command line tools, you have to update the existing service using the  <a href="https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/" target="_blank" rel="noopener">kubectl patch</a> with custom values mentioned above.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>By using the command below, you can upgrade the existing version of an already deployed Couchbase operator.
+If the operator is not yet installed, it will install it.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Upgrades to an installed version of operator should be handled with extreme caution.
+Invalid <code>custom-values.yaml</code> can cause issues in the operator installation.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In the command below, the default values can in turn be overridden by a user-supplied values file specified using the --set parameters.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">helm repo add couchbase https://couchbase-partners.github.io/helm-charts/
+helm upgrade --install couchbase couchbase/couchbase-operator --set cluster.image=couchbase/server:7.0.2 --values=custom-values.yaml</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="accessing-cmos"><a class="anchor" href="#accessing-cmos"></a>Accessing CMOS</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="deploying-ingress"><a class="anchor" href="#deploying-ingress"></a>Deploying Ingress</h3>
+<div class="paragraph">
+<p>In order to access the cluster, we set up a Kubernetes <code>Ingress</code> to forward traffic from our <code>localhost</code> to the appropriate parts of the cluster.</p>
+</div>
+<div class="paragraph">
+<p>There are two aspects required here:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Provide an Ingress controller, which is Nginx in this case.</p>
+</li>
+<li>
+<p>Set up Ingress to forward to our CMOS service.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For a production system it is likely an <code>Ingress</code> controller will already be deployed with appropriate rules.</p>
+</div>
+<div class="paragraph">
+<p>Follow this <a href="https://kubernetes.github.io/ingress-nginx/deploy/" target="_blank" rel="noopener">Nginx Ingress Controller</a> guideline to setup it.</p>
+</div>
+<div class="paragraph">
+<p>As soon as the Ingress controller is installed and ready, the last step is to deploy the <code>Ingress</code> configuration as shown below :.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console"># Ingress to forward to our web server including sub-paths: we should just forward what we need but for local testing just sending it all.
+cat &lt;&lt;EOF | kubectl apply -f -
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+   name: couchbase-ingress
+   annotations:
+       kubernetes.io/ingress.class: nginx
+       nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+   rules:
+       - http:
+             paths:
+                 - path: /
+                   pathType: Prefix
+                   backend:
+                       service:
+                           name: couchbase-grafana-http
+                           port:
+                               number: 8080
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If everything is deployed properly, you should be able to access <a href="http://localhost" class="bare">http://localhost</a> (or whatever the Ingress* is for your deployment).</p>
+</div>
+<div class="paragraph">
+<p>You should see a landing page which includes links to documentation, cluster manager service and various other services of CMOS.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/cmos-landing.png" alt="cmos landing">
+</div>
+<div class="title">Figure 1. CMOS landing image</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="add-couchbase-cluster"><a class="anchor" href="#add-couchbase-cluster"></a>Add Couchbase Cluster</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can access the Couchbase cluster from the CMOS dashboard using the “Add Cluster” option.
+In this section, we need to enter a few details and then click on "Add Cluster".
+Enter the Couchbase Server hostname, username and password credentials.</p>
+</div>
+<div class="paragraph">
+<p>By default the username is “admin” and password is “password”.
+We recommend specifying a stronger password in the <code>custom-values.yaml</code> file during CMOS installation.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Remove the check from “Add to Prometheus” option, because prometheus scraping will be configured using service discovery.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/add-cluster-k8s.png" alt="add cluster k8s">
+</div>
+<div class="title">Figure 2. Add cluster image</div>
+</div>
+<div class="paragraph">
+<p>As soon as you add a cluster, you will see a Grafana URL where you can view inventory and metrics of Couchbase server clusters.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/couchbase-inventory-k8s.png" alt="couchbase inventory k8s">
+</div>
+<div class="title">Figure 3. Couchbase inventory image</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prometheus-targets"><a class="anchor" href="#prometheus-targets"></a>Prometheus Targets</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From the "Prometheus Targets" option, we can see the prometheus targets and their details.
+For instance, we can filter the targets to show all targets or unhealthy targets.
+The state information tells which prometheus targets are running.
+The last scrape value shows how long ago the target metrics were scraped.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/prometheus-target-k8s.png" alt="prometheus target k8s">
+</div>
+<div class="title">Figure 4. Prometheus target image</div>
+</div>
+<div class="paragraph">
+<p>Whilst the pods are coming up, some may report as failing but these will resolve once the pods are running.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/prometheus-target-failing-k8s.png" alt="prometheus target failing k8s">
+</div>
+<div class="title">Figure 5. Prometheus target failing image</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="grafana-dashboard"><a class="anchor" href="#grafana-dashboard"></a>Grafana Dashboard</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With Grafana, multiple dashboards for monitoring a Couchbase cluster are provided out of the box.
+You can list all the dashboards using the <a href="https://grafana.com/docs/grafana/latest/dashboards/search/#dashboard-search" target="_blank" rel="noopener">search dashboard option</a>.
+You may create <a href="https://grafana.com/docs/grafana/latest/getting-started/getting-started/#step-3-create-a-dashboard" target="_blank" rel="noopener">additional dashboards</a> as per your needs.
+The following are some out-of-the-box dashboards.</p>
+</div>
+<div class="sect2">
+<h3 id="couchbase-cluster-overview-metrics"><a class="anchor" href="#couchbase-cluster-overview-metrics"></a>Couchbase Cluster Overview Metrics</h3>
+<div class="paragraph">
+<p>Couchbase cluster overview metrics dashboard can be accessible on Grafana with name as: <code>single-cluster-overview</code>.
+This dashboard displays a number of items including Couchbase nodes, buckets available, version information, health check warnings, and which services are running.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/couchbase-cluster-overview-k8s.png" alt="couchbase cluster overview k8s">
+</div>
+<div class="title">Figure 6. Couchbase cluster overview image</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbase-node-overview-metrics"><a class="anchor" href="#couchbase-node-overview-metrics"></a>Couchbase Node Overview Metrics</h3>
+<div class="paragraph">
+<p>Couchbase node overview metrics dashboard can be accessible on Grafana with name as: <code>node-overview</code>.
+This dashboard displays from a node perspective, resource utilization, version, and health check warnings.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/couchbase-node-overview-k8s.png" alt="couchbase node overview k8s">
+</div>
+<div class="title">Figure 7. Couchbase node overview image</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="alerts"><a class="anchor" href="#alerts"></a>Alerts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>CMOS comes with pre-installed alert rules to monitor the Couchbase cluster.
+Navigate to Alertmanager, prometheus UI to check the alert rules and alerts.
+For more information check the prometheus and alerting configuration section.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/prometheus-alert-rules.png" alt="prometheus alert rules">
+</div>
+<div class="title">Figure 8. Alert rules image</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/prometheus-alerts.png" alt="prometheus alerts">
+</div>
+<div class="title">Figure 9. Alerts image</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="alertmanager"><a class="anchor" href="#alertmanager"></a>Alertmanager</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Alertmanager is shipped and enabled by default in the CMOS, which is accessible via “Alert Manager” options.
+You can view all the generated alerts in this dashboard.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/alert-manager.png" alt="alert manager">
+</div>
+<div class="title">Figure 10. Alertmanager image</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="loki"><a class="anchor" href="#loki"></a>Loki</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Loki, which is shipped with Grafana, allows access to logs of various components.
+You can configure it via Configuration &gt; Data sources &gt; Loki &gt; Explore</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/loki-explore-dashboard.png" alt="loki explore dashboard">
+</div>
+<div class="title">Figure 11. Loki explore dashboard image</div>
+</div>
+<div class="paragraph">
+<p>From the Log browser, you can enter a custom Loki query or select appropriate labels to see the logs.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/loki-log-browser.png" alt="loki log browser">
+</div>
+<div class="title">Figure 12. Loki log browser image</div>
+</div>
+<div class="paragraph">
+<p>After that select the “Show logs” to view logs.
+You can also build  <a href="https://grafana.com/docs/grafana/latest/getting-started/getting-started/#step-3-create-a-dashboard" target="_blank" rel="noopener">custom Grafana dashboards</a> based on your needs.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/loki-logs.png" alt="loki logs">
+</div>
+<div class="title">Figure 13. Loki logs image</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next steps</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="architecture.html" class="xref page">Architecture overview</a></p>
+</li>
+<li>
+<p><a href="deployment-microlith.html" class="xref page">Microlith container deployment</a></p>
+</li>
+<li>
+<p><a href="tutorial-onpremise.html" class="xref page">On-premise deployment</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <div class="col">
+        <div class="footer-logo">
+          <a href="https://www.couchbase.com" class="icon">
+            <img src="../../_/img/couchbase-logo.svg" alt="Couchbase">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://docs.couchbase.com" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://forums.couchbase.com" target="_blank" rel="noopener">Forums</a></li>
+          <li><a href="https://support.couchbase.com" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://developer.couchbase.com" target="_blank" rel="noopener">Developer Portal</a></li>
+          <li><a href="https://blog.couchbase.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://www.couchbase.com/resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://www.couchbase.com/get-started-developing-nosql">Get Started</a></li>
+          <li><a href="https://www.couchbase.com/downloads">Downloads</a></li>
+          <li><a href="https://learn.couchbase.com/store?utf8=%E2%9C%93&ss=1&ct=78327&commit=Filter" target="_blank" rel="noopener">Training</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="social-icons">
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32.1 26.1"> <path id="twitter" class="cls-1" d="M32,7.1a11.836,11.836,0,0,1-3.8,1,6.462,6.462,0,0,0,2.9-3.6,12.606,12.606,0,0,1-4.2,1.6A6.492,6.492,0,0,0,22.1,4a6.594,6.594,0,0,0-6.6,6.6,7.719,7.719,0,0,0,.2,1.5A18.458,18.458,0,0,1,2.2,5.2a6.294,6.294,0,0,0-.9,3.3A6.765,6.765,0,0,0,4.2,14a6.109,6.109,0,0,1-3-.8v.1a6.543,6.543,0,0,0,5.3,6.4,4.678,4.678,0,0,1-1.7.2,4.869,4.869,0,0,1-1.2-.1,6.679,6.679,0,0,0,6.1,4.6,12.917,12.917,0,0,1-8.2,2.8,9.151,9.151,0,0,1-1.6-.1,18.438,18.438,0,0,0,10.1,3c12.1,0,18.7-10,18.7-18.7v-.8A13.336,13.336,0,0,0,32,7.2Z" transform="translate(0.1 -4)"/></svg>
+            <a href="https://twitter.com/couchbase" class="icon">
+              Twitter
+            </a>
+          </li>
+          <li>
+          <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="linkedin" class="cls-1" d="M29,0H3A3.076,3.076,0,0,0,0,3V29a3.009,3.009,0,0,0,3,3H29a2.946,2.946,0,0,0,3-3V3A3.009,3.009,0,0,0,29,0ZM12,26H8V12h4ZM10,10a2,2,0,1,1,2-2A2.006,2.006,0,0,1,10,10ZM26,26H22V18a2,2,0,0,0-4,0v8H14V12h4v2.5c.8-1.1,2.1-2.5,3.5-2.5A4.736,4.736,0,0,1,26,17Z"/></svg>
+              <a href="https://www.linkedin.com/company/couchbase" class="icon">
+             Linkedin
+            </a>
+          </li>
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="facebook" class="cls-1" d="M29,0H3A2.652,2.652,0,0,0,0,3V29a2.652,2.652,0,0,0,3,3H16V18H12V14h4V12a6.452,6.452,0,0,1,6-6h4v4H22a2.151,2.151,0,0,0-2,2v2h6l-1,4H20V32h9a2.652,2.652,0,0,0,3-3V3A2.652,2.652,0,0,0,29,0Z"/></svg>
+            <a href="https://www.facebook.com/Couchbase" class="icon">
+            Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-terms">
+      <div class="footer-terms-copyright">
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+      </div>
+      <div class="footer-terms-links">
+        <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
+        <a href="https://www.couchbase.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.couchbase.com/cookie-policy">Cookie Policy</a>
+        <a href="https://www.couchbase.com/support-policy">Support Policy</a>
+        <a href="https://info.couchbase.com/unsubscribe-or-manage-preferences.html" target="_blank" rel="noopener">Marketing Preference Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../../_/js/site-navigation-data.js"></script>
+<script id="page-navigation-group" type="application/json">
+{"title":"CMOS","components":["cmos"],"latestVersions":{"cmos":"0.2"}}
+</script>
+<template id="run-code-panel">
+<div class="action-panel">
+  <form class="action-panel-control" method="POST" action="https://couchbase.live/run" target="run-code-output">
+    <input type="hidden" name="lang">
+    <input type="hidden" name="code">
+    <input type="hidden" name="from" value="docs">
+    <div class="controls">
+      <button class="control-button rerun" type="submit"><i class="fas fa-redo"></i></button>
+      <span class="shell-name control-label">Output</span>
+      <button class="control-button close"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </form>
+  <iframe class="run-code-output" name="run-code-output"></iframe>
+</div>
+</template>
+<script id="site-script" src="../../_/js/vendor/chatbox-ui.js"></script>
+<script id="site-script" src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
+<script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+</body>
+</html>

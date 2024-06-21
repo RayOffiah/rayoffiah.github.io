@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
+<title>Configure an Alert Integration | Couchbase Docs</title>
+<link rel="canonical" href="https://docs.couchbase.com/cloud/clusters/monitoring/alert-integration.html">
+<link rel="stylesheet" href="../../../_/css/site.css">
+<script src="../../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="If your organization uses a third-party tool to receive, assign, and monitor service issues, you can configure an alert integration to send notifications from Capella to that third-party tool automatically. You can then use workflows defined in the third-party tool to route information about metric-derived critical- and warning-level events when they occur in Capella.">
+<link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+
+
+<meta name="dcterms.subject" content="cloud">
+<meta name="dcterms.identifier" content="">
+<meta name="page-url" content="/cloud/clusters/monitoring/alert-integration.html">
+<meta name="page-nav-header-levels" content="1">
+
+<meta name="docsearch:component" content="cloud">
+<meta name="docsearch:component_title" content="Couchbase Capella">
+<meta name="docsearch:cversion" content="">
+<meta name="docsearch:component_version" content="cloud@">
+<meta name="docsearch:module" content="clusters">
+<meta name="docsearch:breadcrumbs" content="Couchbase Capella / Administer Capella / Configure Your Database / Monitor Databases / Configure an Alert Integration">
+<meta name="docsearch:topic_type" content="task">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
+<meta name="generator" content="Antora 3.1.7">
+<link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
+</head>
+<body class="article">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="header fixed-top">
+  <div class="header-top-row">
+      <div class="container">
+          <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
+              <ul class="navbar-brand-list">
+                <li class="brand-logo">
+                  <a class="navbar-brand" href="https://www.couchbase.com">
+                    <img src="../../../_/img/couchbase-logo.svg" alt="Couchbase" />
+                  </a>
+                </li>
+                <li>
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
+                    <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
+                    <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  </a>
+                </li>
+              </ul>
+              <button class="navbar-burger" data-target="topbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+          </nav>
+      </div>
+  </div>
+  <div class="header-bottom-row" id="topbar-menu">
+    <div class="container">
+        <nav  class="navbar navbar-new-bottom">
+
+              <div class="navbar-collapse collapse" id="navbar2">
+                <ul class="navbar-nav w-100 justify-content-start">
+
+                  <li class="nav-item "">
+                    <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
+                      <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/server.html">
+                      Server
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/mobile.html">
+                      Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item nav-item-selected">
+                    <a class="nav-link" href="../../index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="primary-action">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                  Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
+                </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+              </div>
+
+        </nav>
+    </div>
+   </div>
+</header>
+<div class="body container">
+<aside class="nav left-sidebar">
+  <div class="nav-container">
+    <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+  </div>
+</aside>
+<aside class="toc sidebar"
+      data-title="Contents"
+      data-levels="2">
+  <div class="sidebar-box">
+    <div class="tools" role="navigation">
+<ul>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-capella/modules/clusters/pages/monitoring/alert-integration.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+</ul>
+</div>
+    <div class="toc-menu"></div>
+    <div class="is-this-helpful-box">
+      <h4> Is this page helpful?</h4>
+      <div class="btn-row">
+        <a href="#" class="like-btn helpful-btn" id="yesBtn" data-page-rating="like" >
+                <i class="far fa-thumbs-up"></i>
+            Yes
+
+            </a>
+        <a href="#" class="dislike-btn helpful-btn" id="noBtn"  data-page-rating="dislike"> <i class="far fa-thumbs-down"></i> No</a>
+      </div>
+      <div class="any-feedback">
+        <a href="#" class="btn any-feedback-btn" id="myCustomTrigger">Leave Additional Feedback? </a>
+      </div>
+      <div class="dialog-box" id="dialogBox">
+        <form>
+            <div class="form-group " id="additionalFeedbackBox">
+              <textarea class="input-control feed-back-msg" rows="8" placeholder="Any Additonal Feedback?"></textarea>
+
+              <div class="action-btn-row ">
+                <a href="#" class="skip-btn" id="skipBtnMsg">Skip</a>
+                  <button class="submit-btn btn blue-btn disabled" > Submit  </button>
+                  <a href="#" class="info-btn"><i class="fas fa-info-circle"></i></a>
+              </div>
+
+
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="feedback-modal modal-popup">
+  <div class="modal-popup-dialogue">
+    <div class="popup-header">
+      <a href="#" class="close-popup"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="popup-content">
+      <p>
+        Please use the form below to provide your feedback. Because your feedback is valuable to us,
+         the information you submit in this form is recorded in our issue tracking system (JIRA), which is publicly available.
+        You can track the status of your feedback using the ticket number displayed in the dialog once you submit the form.
+      </p>
+    </div>
+  </div>
+</div>
+
+<main class="article" data-ceiling="topbar">
+<div class="article-header">
+<nav class="crumbs" aria-label="breadcrumbs">
+<ul>
+<li class="crumb"><a href="../../index.html">Couchbase Capella</a></li>
+<li class="crumb">Administer Capella</li>
+<li class="crumb"><a href="../databases.html">Configure Your Database</a></li>
+<li class="crumb"><a href="monitoring.html">Monitor Databases</a></li>
+<li class="crumb"><a href="alert-integration.html">Configure an Alert Integration</a></li>
+</ul>
+</nav>
+</div>
+<article class="doc">
+<div class="page-heading-title">
+<h1 class="page">Configure an Alert Integration</h1>
+<div class="labels">
+<ul></ul>
+</div>
+
+
+</div>
+<div class="contributor-list-box">
+<span class="last-commit-date" id="commitdate">    </span>
+<ul id="contributorList"></ul>
+<span  id="otherContributor"> + </span>
+</div><div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock abstract">
+<blockquote>
+If your organization uses a third-party tool to receive, assign, and monitor service issues, you can configure an alert integration to send notifications from Capella to that third-party tool automatically. You can then use workflows defined in the third-party tool to route information about metric-derived critical- and warning-level events when they occur in Capella.
+</blockquote>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Capella offers alert integration for databases and App Services on the paid Enterprise or Developer Pro subscription plans only.
+Capella does not support alert integration for the Basic plan.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="about-alert-integrations"><a class="anchor" href="#about-alert-integrations"></a>About Alert Integrations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A webhook is a user-defined HTTP callback mechanism.
+The webhook allows an application&#8212;&#8203;in this case Capella&#8212;&#8203;to send an HTTP request with a JSON alert payload to a previously configured URL.
+On the receiving end, you can customize the third-party tool to direct alert messages from Capella into appropriate workflows and recipients.</p>
+</div>
+<div class="paragraph">
+<p>The Capella alert integration feature is generic.
+You can configure alert integrations for any third-party tool that supports an incoming webhook.
+An alert integration requires the destination URL for the webhook and either basic or bearer token authentication and authorization.</p>
+</div>
+<div class="paragraph">
+<p>Couchbase has verified the use of <strong>ServiceNow</strong> with the Capella alert integration feature.
+Refer to <a href="https://www.servicenow.com/community/in-other-news/how-to-integrate-webhooks-into-servicenow/ba-p/2271745">How to Integrate Webhooks into ServiceNow</a> on the ServiceNow website for more information.</p>
+</div>
+<div class="paragraph">
+<p>To send alert notifications from Capella to this and other third-party tools automatically:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In your third-party tool of choice, set up the incoming webhook.
+You&#8217;ll need the URL and the authentication details.</p>
+</li>
+<li>
+<p>In Capella, add an alert integration to the project.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>You can also view alert notifications in the Capella UI and receive them by email.
+See <a href="alerts.html" class="xref page">Receive Alerts</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="key-features"><a class="anchor" href="#key-features"></a>Key Features</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">UI and API</dt>
+<dd>
+<p>Capella offers both a UI and a <a href="#management-api-reference:index.adoc#tag/alert-integration" class="xref unresolved">Capella Management API</a> for working with alert integrations.</p>
+</dd>
+<dt class="hdlist1">Project-level Definition</dt>
+<dd>
+<p>Rather than define alert integrations repetitively for every database, you configure alert integrations at the <a href="../../projects/projects.html" class="xref page">project</a> level.</p>
+</dd>
+<dt class="hdlist1">Metric-based Alerts</dt>
+<dd>
+<p>Alert integrations send metric-based alerts.
+The alert integration feature does not send alerts generated by operational failures.
+For a complete list of Capella alerts, see the <a href="../../reference/alert-reference.html" class="xref page">Alert Reference</a>.</p>
+</dd>
+<dt class="hdlist1">Filtering</dt>
+<dd>
+<p>You can limit the notifications that an alert integration sends for the project.
+You can exclude specific databases or App Services.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+By default, an alert integration sends notifications for all of a project&#8217;s databases and App Services that are on the paid Enterprise or Developer Pro plan.
+For databases or App Services that are on the paid Basic plan, alerts are delivered only in the UI or by email.
+</td>
+</tr>
+</table>
+</div>
+</dd>
+<dt class="hdlist1">Authentication and Authorization Options</dt>
+<dd>
+<p>You can use either basic or bearer token auth for messages posted by an alert integration.</p>
+</dd>
+<dt class="hdlist1">JSON Payload</dt>
+<dd>
+<p>The notification messages that an alert integration sends include a <a href="#payload">JSON payload</a>.
+The payload provides a structured framework for the message content, organizing its information into a set of easy-to-read JSON objects and key-value pairs.</p>
+</dd>
+<dt class="hdlist1">HTTP Headers</dt>
+<dd>
+<p>You can define up to 20 HTTP headers to include with notification messages.
+HTTP headers provide additional flexibility for defining what occurs when the third-party tool receives a Capella alert notification.
+For example, a header can include information that further authenticates the notification, or that triggers a particular action or event.</p>
+</dd>
+<dt class="hdlist1">Testing</dt>
+<dd>
+<p>Before you save an alert integration, you test the connection to the third-party tool to verify that its configuration is accurate.</p>
+</dd>
+<dt class="hdlist1">Audit Trail</dt>
+<dd>
+<p>The <a href="activity-log.html" class="xref page">activity log</a> records all add, edit, and delete events for alert integrations.
+In addition, the activity log records any connection failure events that occur for an alert integration.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="payload"><a class="anchor" href="#payload"></a>JSON Payload</h3>
+<div class="paragraph">
+<p>The alert notification messages posted to a third-party tool by an alert integration include a JSON payload.
+The JSON payload provides a reliable, structured framework for message content.</p>
+</div>
+<div class="paragraph">
+<p>When you configure workflow options for the incoming webhook, you can refer to the JSON payload to identify different actionable values.
+For example, the third-party tool might support the ability to route messages from Capella differently based on the project ID, severity, or resource identified in the JSON payload.</p>
+</div>
+<div class="paragraph">
+<p>The payload of each message consists of the following JSON objects and keys:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Object or Key</th>
+<th class="tableblock halign-left valign-top">Key</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">kind</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An abbreviated name for the alert.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The display name of the alert.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">severity</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identifies the alert as either "critical" or "warning".</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">summary</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A brief description of the alert.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A detailed description with potential causes and  solutions.
+For more detailed information, see the  <a href="../../reference/alert-reference.html" class="xref page">Alert Reference</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tenant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The unique identifier of the project&#8217;s tenant.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user-defined name of the tenant.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">project</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The unique identifier of the project that contains the affected database or App Service.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user-defined name of the project.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resource</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">kind</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identifies the affected entity as "cluster" for a database or "appService" for an App Service.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The unique identifier of the affected database or App Service.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user-defined name of the resource.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">createdAt</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When the event occurred: date and time in ISO 8601 format.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Example: Low Node Disk Storage</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-JSON hljs" data-lang="JSON">{
+    "details": {
+        "kind": "disk_usage_high",
+        "name": "Low Node Disk Storage",
+        "severity": "warning",
+        "summary": "A node has low disk storage.",
+        "description": "A cluster node has low disk storage. The addition of more documents could fill the database and result in a service interruption. This issue could be due to spikes in data usage or natural data growth. Consider expanding the storage to resolve the issue."
+    },
+    "tenant": {
+        "id": "b2e38a87-25a2-472a-ab10-e5f43862773d",
+        "name": "Organization ABC"
+    },
+    "project": {
+        "id": "13cfa96f-ade3-442e-ac37-eaa6ace76143",
+        "name": "Mega App OLTP"
+    },
+    "resource": {
+        "kind": "cluster",
+        "id": "b5d3f347-3bad-4c6a-ad12-cf2b1f06647b",
+        "name": "concavekonradzuse"
+
+    },
+    "createdAt": "2024-02-29T11:22:38.036547755Z"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example: App Service High Access Errors Warning</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-JSON hljs" data-lang="JSON">{
+    "details": {
+        "kind": "syncgateway_import_errors_high_warning",
+        "name": "App Service High Access Errors Warning",
+        "severity": "warning",
+        "summary": "In the last 5 minutes, more than 50 requests made to the App Endpoint failed to successfully authenticate.",
+        "description": "In the last 5 minutes, more than 50 requests made to the App Endpoint failed to successfully authenticate. A high volume of unsuccessful authentications may indicate malicious clients attempting to access the system."
+    },
+    "tenant": {
+        "id": "b5d3f347-472a-ade3-ad12-cf2b1f06647b",
+        "name": "Acme Company"
+    },
+    "project": {
+        "id": "b2e38a87-25a2-3bad-ab10-e5f43862773d",
+        "name": "Wiley Genius"
+    },
+    "resource": {
+        "kind": "appService",
+        "id": "13cfa96f-4c6a-442e-ac37-eaa6ace76143",
+        "name": "Platinum"
+    },
+    "createdAt": "2024-02-29T08:12:47.150356547Z"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For full access to Capella alert integrations, you must have one of the following roles:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Organization Owner</p>
+</li>
+<li>
+<p>Project Creator</p>
+</li>
+<li>
+<p>Project Owner</p>
+</li>
+<li>
+<p>Project Manager</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>See <a href="../../organizations/organization-user-roles.html" class="xref page">Organization roles</a> and <a href="../../projects/project-roles.html" class="xref page">Project roles</a>.</p>
+</div>
+<div class="paragraph">
+<p>In addition, users with the following roles have read-only access to Capella alert integrations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../../organizations/organization-user-roles.html" class="xref page">Organization Member</a> with Read access to the project</p>
+</li>
+<li>
+<p><a href="../../projects/project-roles.html" class="xref page">Project Reader</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When you add an alert integration, you must supply:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>An identifying name.</p>
+</li>
+<li>
+<p>The URL that uniquely identifies the destination for the alert integration&#8217;s notifications.</p>
+</li>
+<li>
+<p>An authentication and authorization method and credentials:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Basic auth requires a username and password.</p>
+</li>
+<li>
+<p>Bearer token auth requires an access token.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You use the third-party tool to obtain the URL and credentials.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="add"><a class="anchor" href="#add"></a>Adding an Alert Integration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To use the Capella Management API to create and configure an alert integration, see <a href="#management-api-reference:index.adoc#tag/alert-integration/operation/postAlertIntegration" class="xref unresolved">Create Alert Integration</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can add one alert integration for each project.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To add an alert integration using the Capella UI:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select a project from the project list.</p>
+</li>
+<li>
+<p>Select the <strong>Alerts</strong> tab.</p>
+</li>
+<li>
+<p>Select <b class="button">Add integrations</b>.</p>
+</li>
+<li>
+<p>Enter an identifying <strong>Display Name</strong>. The value can include the alphanumeric characters <code>A-Z</code>, <code>a-z</code>, and <code>0-9</code>, spaces, and the hyphen <code>-</code> and underscore <code>_</code> special characters only.</p>
+</li>
+<li>
+<p>Enter the destination <strong>Webhook URL</strong> for the notifications sent by this alert integration.
+Capella requires a secure connection, so the URL must begin with <code>https://</code>.
+You obtain this URL from the third-party tool.</p>
+</li>
+<li>
+<p>Specify an <strong>Authentication</strong> method:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Basic</strong>: supply the username and password established with the third-party tool.</p>
+</li>
+<li>
+<p><strong>Bearer Token</strong>: supply the access token generated by the third-party tool.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>To add HTTP headers or filtering, click <strong>Show Advanced Settings</strong>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>To add an HTTP header, select <b class="button">Add Custom HTTP Header</b> and then enter a <strong>Key</strong> and a <strong>Value</strong>.</p>
+<div class="paragraph">
+<p>Key names can include the alphanumeric characters <code>A-Z</code>, <code>a-z</code>, and <code>0-9</code>, and the hyphen <code>-</code> and underscore <code>_</code> special characters only.</p>
+</div>
+<div class="paragraph">
+<p>Values can include all of the characters that a key name can contain plus the following special characters: <code>: ; . , \ / " ' ? ! ( ) { } [ ] @ &lt; &gt; = + * # $ &amp; ` | ~ ^ %</code>.</p>
+</div>
+</li>
+<li>
+<p>To prevent the alert integration from sending messages for certain databases or App Services, use the drop-down lists to choose entities to exclude.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Test Connection</b>.
+You cannot save the alert integration until the URL destination and auth credentials are accurately configured and the connection test succeeds.</p>
+</li>
+<li>
+<p>Click <b class="button">Add Integration</b>.
+Capella adds and enables the alert integration.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="editing-an-alert-integration"><a class="anchor" href="#editing-an-alert-integration"></a>Editing an Alert Integration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To use the Capella Management API to edit an alert integration, see <a href="#management-api-reference:index.adoc#tag/alert-integration/operation/putAlertIntegration" class="xref unresolved">Update Alert Integration</a>.</p>
+</div>
+<div class="paragraph">
+<p>To edit an alert integration using the Capella UI:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select a project from the project list.</p>
+</li>
+<li>
+<p>Select the <strong>Alerts</strong> tab.</p>
+</li>
+<li>
+<p>Click the <strong>Name</strong> of the alert integration you want to edit.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>See the steps for <a href="#add">adding an alert integration</a> for information about the settings you can configure.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deleting-an-alert-integration"><a class="anchor" href="#deleting-an-alert-integration"></a>Deleting an Alert Integration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To use the Capella Management API to delete an alert integration, see <a href="#management-api-reference:index.adoc#tag/alert-integration/operation/deleteAlertIntegrationByID" class="xref unresolved">Delete Alert Integration</a>.</p>
+</div>
+<div class="paragraph">
+<p>To delete an alert integration using the Capella UI:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select a project from the project list.</p>
+</li>
+<li>
+<p>Select the <strong>Alerts</strong> tab.</p>
+</li>
+<li>
+<p>Locate the alert integration you want to delete.</p>
+</li>
+<li>
+<p>Use the Trash icon <span class="icon"><i class="fa fa-trash-alt"></i></span> at the end of the row to delete the alert integration.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Message Queuing and Delivery</p>
+<div class="paragraph">
+<p>Capella applies a first in/first out queue to send one alert notification at a time.
+Typically, Capella sends alert notifications within milliseconds of creation.
+After Capella sends a notification, the third-party tool controls queuing and the timing of delivery via the incoming webhook.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="see-also"><a class="anchor" href="#see-also"></a>See Also</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../../reference/alert-reference.html" class="xref page">Alert Reference</a></p>
+</li>
+<li>
+<p><a href="#management-api-reference:index.adoc#tag/alert-integration" class="xref unresolved">Capella Management API</a></p>
+</li>
+<li>
+<p><a href="alerts.html" class="xref page">Receive Alerts</a></p>
+</li>
+<li>
+<p><a href="../../security/auditing.html" class="xref page">Audit Events</a></p>
+</li>
+<li>
+<p><a href="activity-log.html" class="xref page">View Activity Logs</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <div class="col">
+        <div class="footer-logo">
+          <a href="https://www.couchbase.com" class="icon">
+            <img src="../../../_/img/couchbase-logo.svg" alt="Couchbase">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://docs.couchbase.com" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://forums.couchbase.com" target="_blank" rel="noopener">Forums</a></li>
+          <li><a href="https://support.couchbase.com" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://developer.couchbase.com" target="_blank" rel="noopener">Developer Portal</a></li>
+          <li><a href="https://blog.couchbase.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://www.couchbase.com/resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://www.couchbase.com/get-started-developing-nosql">Get Started</a></li>
+          <li><a href="https://www.couchbase.com/downloads">Downloads</a></li>
+          <li><a href="https://learn.couchbase.com/store?utf8=%E2%9C%93&ss=1&ct=78327&commit=Filter" target="_blank" rel="noopener">Training</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="social-icons">
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32.1 26.1"> <path id="twitter" class="cls-1" d="M32,7.1a11.836,11.836,0,0,1-3.8,1,6.462,6.462,0,0,0,2.9-3.6,12.606,12.606,0,0,1-4.2,1.6A6.492,6.492,0,0,0,22.1,4a6.594,6.594,0,0,0-6.6,6.6,7.719,7.719,0,0,0,.2,1.5A18.458,18.458,0,0,1,2.2,5.2a6.294,6.294,0,0,0-.9,3.3A6.765,6.765,0,0,0,4.2,14a6.109,6.109,0,0,1-3-.8v.1a6.543,6.543,0,0,0,5.3,6.4,4.678,4.678,0,0,1-1.7.2,4.869,4.869,0,0,1-1.2-.1,6.679,6.679,0,0,0,6.1,4.6,12.917,12.917,0,0,1-8.2,2.8,9.151,9.151,0,0,1-1.6-.1,18.438,18.438,0,0,0,10.1,3c12.1,0,18.7-10,18.7-18.7v-.8A13.336,13.336,0,0,0,32,7.2Z" transform="translate(0.1 -4)"/></svg>
+            <a href="https://twitter.com/couchbase" class="icon">
+              Twitter
+            </a>
+          </li>
+          <li>
+          <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="linkedin" class="cls-1" d="M29,0H3A3.076,3.076,0,0,0,0,3V29a3.009,3.009,0,0,0,3,3H29a2.946,2.946,0,0,0,3-3V3A3.009,3.009,0,0,0,29,0ZM12,26H8V12h4ZM10,10a2,2,0,1,1,2-2A2.006,2.006,0,0,1,10,10ZM26,26H22V18a2,2,0,0,0-4,0v8H14V12h4v2.5c.8-1.1,2.1-2.5,3.5-2.5A4.736,4.736,0,0,1,26,17Z"/></svg>
+              <a href="https://www.linkedin.com/company/couchbase" class="icon">
+             Linkedin
+            </a>
+          </li>
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="facebook" class="cls-1" d="M29,0H3A2.652,2.652,0,0,0,0,3V29a2.652,2.652,0,0,0,3,3H16V18H12V14h4V12a6.452,6.452,0,0,1,6-6h4v4H22a2.151,2.151,0,0,0-2,2v2h6l-1,4H20V32h9a2.652,2.652,0,0,0,3-3V3A2.652,2.652,0,0,0,29,0Z"/></svg>
+            <a href="https://www.facebook.com/Couchbase" class="icon">
+            Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-terms">
+      <div class="footer-terms-copyright">
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+      </div>
+      <div class="footer-terms-links">
+        <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
+        <a href="https://www.couchbase.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.couchbase.com/cookie-policy">Cookie Policy</a>
+        <a href="https://www.couchbase.com/support-policy">Support Policy</a>
+        <a href="https://info.couchbase.com/unsubscribe-or-manage-preferences.html" target="_blank" rel="noopener">Marketing Preference Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../../../_/js/site-navigation-data.js"></script>
+<script id="page-navigation-group" type="application/json">
+{"title":"Capella","components":["cloud"],"url":"/cloud/index.html","latestVersions":{"cloud":""}}
+</script>
+<template id="run-code-panel">
+<div class="action-panel">
+  <form class="action-panel-control" method="POST" action="https://couchbase.live/run" target="run-code-output">
+    <input type="hidden" name="lang">
+    <input type="hidden" name="code">
+    <input type="hidden" name="from" value="docs">
+    <div class="controls">
+      <button class="control-button rerun" type="submit"><i class="fas fa-redo"></i></button>
+      <span class="shell-name control-label">Output</span>
+      <button class="control-button close"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </form>
+  <iframe class="run-code-output" name="run-code-output"></iframe>
+</div>
+</template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
+<script id="site-script" src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
+<script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+</body>
+</html>
