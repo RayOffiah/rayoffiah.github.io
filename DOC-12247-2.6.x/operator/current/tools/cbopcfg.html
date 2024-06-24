@@ -1,0 +1,3019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
+<title>cbopcfg | Couchbase Docs</title>
+<link rel="canonical" href="https://docs.couchbase.com/operator/current/tools/cbopcfg.html">
+<link rel="stylesheet" href="../../../_/css/site.css">
+<script src="../../../_/js/vendor/jquery.js"></script>
+<link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+
+
+<meta name="dcterms.subject" content="operator">
+<meta name="dcterms.identifier" content="2.6">
+<meta name="page-url" content="/operator/current/tools/cbopcfg.html">
+<meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="operator">
+<meta name="docsearch:component_title" content="Autonomous Operator">
+<meta name="docsearch:cversion" content="2.6">
+<meta name="docsearch:component_version" content="operator@2.6">
+<meta name="docsearch:module" content="">
+<meta name="docsearch:breadcrumbs" content="Autonomous Operator / Reference / Tools / <code>cbopcfg</code>">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
+<meta name="generator" content="Antora 3.1.4">
+<link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon" sizes="any">
+</head>
+<body class="article">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="header fixed-top">
+  <div class="header-top-row">
+      <div class="container">
+          <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
+              <ul class="navbar-brand-list">
+                <li class="brand-logo">
+                  <a class="navbar-brand" href="https://www.couchbase.com">
+                    <img src="../../../_/img/couchbase-logo.svg" alt="Couchbase" />
+                  </a>
+                </li>
+                <li>
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
+                    <img src="../../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
+                    <img src="../../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  </a>
+                </li>
+              </ul>
+              <button class="navbar-burger" data-target="topbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+          </nav>
+      </div>
+  </div>
+  <div class="header-bottom-row" id="topbar-menu">
+    <div class="container">
+        <nav  class="navbar navbar-new-bottom">
+
+              <div class="navbar-collapse collapse" id="navbar2">
+                <ul class="navbar-nav w-100 justify-content-start">
+
+                  <li class="nav-item "">
+                    <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
+                      <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/server.html">
+                      Server
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/mobile.html">
+                      Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../../home/sdk.html">
+                      SDKs
+                      
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="primary-action">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                  Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
+                </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+              </div>
+
+        </nav>
+    </div>
+   </div>
+</header>
+<div class="body container">
+<aside class="nav left-sidebar">
+  <div class="nav-container">
+    <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+  </div>
+</aside>
+<aside class="toc sidebar"
+      data-title="Contents"
+      data-levels="1">
+  <div class="sidebar-box">
+    <div class="tools" role="navigation">
+<ul>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/couchbase-operator/docs/user/modules/ROOT/pages/tools/cbopcfg.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+</ul>
+</div>
+    <div class="toc-menu"></div>
+    <div class="is-this-helpful-box">
+      <h4> Is this page helpful?</h4>
+      <div class="btn-row">
+        <a href="#" class="like-btn helpful-btn" id="yesBtn" data-page-rating="like" >
+                <i class="far fa-thumbs-up"></i>
+            Yes
+
+            </a>
+        <a href="#" class="dislike-btn helpful-btn" id="noBtn"  data-page-rating="dislike"> <i class="far fa-thumbs-down"></i> No</a>
+      </div>
+      <div class="any-feedback">
+        <a href="#" class="btn any-feedback-btn" id="myCustomTrigger">Leave Additional Feedback? </a>
+      </div>
+      <div class="dialog-box" id="dialogBox">
+        <form>
+            <div class="form-group " id="additionalFeedbackBox">
+              <textarea class="input-control feed-back-msg" rows="8" placeholder="Any Additonal Feedback?"></textarea>
+
+              <div class="action-btn-row ">
+                <a href="#" class="skip-btn" id="skipBtnMsg">Skip</a>
+                  <button class="submit-btn btn blue-btn disabled" > Submit  </button>
+                  <a href="#" class="info-btn"><i class="fas fa-info-circle"></i></a>
+              </div>
+
+
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="feedback-modal modal-popup">
+  <div class="modal-popup-dialogue">
+    <div class="popup-header">
+      <a href="#" class="close-popup"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="popup-content">
+      <p>
+        Please use the form below to provide your feedback. Because your feedback is valuable to us,
+         the information you submit in this form is recorded in our issue tracking system (JIRA), which is publicly available.
+        You can track the status of your feedback using the ticket number displayed in the dialog once you submit the form.
+      </p>
+    </div>
+  </div>
+</div>
+
+<main class="article" data-ceiling="topbar">
+<div class="article-header">
+<nav class="crumbs" aria-label="breadcrumbs">
+<ul>
+<li class="crumb"><a href="../overview.html">Autonomous Operator</a></li>
+<li class="crumb">Reference</li>
+<li class="crumb">Tools</li>
+<li class="crumb"><a href="cbopcfg.html"><code>cbopcfg</code></a></li>
+</ul>
+</nav>
+</div>
+<article class="doc">
+<div class="page-heading-title">
+<h1 class="page">cbopcfg</h1>
+<div class="labels">
+<ul></ul>
+</div>
+
+
+</div>
+<div class="contributor-list-box">
+<span class="last-commit-date" id="commitdate">    </span>
+<ul id="contributorList"></ul>
+<span  id="otherContributor"> + </span>
+</div><div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>cbopcfg</code> binary is deprecated and will be removed in a later release.
+Please use the <a href="cao.html" class="xref page"><code>cao</code></a> binary that features all the same sub commands.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installation"><a class="anchor" href="#installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Make sure that you have downloaded the Operator <a href="https://www.couchbase.com/downloads" target="_blank" rel="noopener">package</a> and unpacked it.</p>
+</div>
+<div class="paragraph">
+<p>After you unpack the download, the resulting directory will be titled something like <code>couchbase-autonomous-operator-kubernetes_x.x.x-linux_x86_64</code>.</p>
+</div>
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-1-macos" class="tab">
+<p>macOS</p>
+</li>
+<li id="tabs-1-linux" class="tab">
+<p>Linux</p>
+</li>
+<li id="tabs-1-windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="tabs-1-macos--panel" class="tabpanel" aria-labelledby="tabs-1-macos">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a Terminal window and go to the directory where the <code>cbopcfg</code> binary is located:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ cd couchbase-autonomous-operator-kubernetes_x.x.x-macos_x86_64/bin/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Make the <code>cbopcfg</code> binary executable:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ chmod +x ./cbopcfg</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Move the binary into your PATH:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ sudo mv ./cbopcfg /usr/local/bin/cbopcfg</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+On newer versions of macOS, you may encounter errors such as <code>cannot execute binary file</code> when trying to use the tools included in the Autonomous Operator package.
+If you encounter such an error, you&#8217;ll need to update your security settings as outlined in Apple&#8217;s <a href="https://support.apple.com/en-us/HT202491" target="_blank" rel="noopener">support article on macOS Gatekeeper</a>.
+In System Preferences, click Security &amp; Privacy, then click General.
+Click the lock and enter your password to make changes.
+Select App Store and identified developers under the header “Allow apps downloaded from.”
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="tabs-1-linux--panel" class="tabpanel" aria-labelledby="tabs-1-linux">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a command prompt and go to the directory where the <code>cbopcfg</code> binary is located:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ cd couchbase-autonomous-operator-kubernetes_x.x.x-linux_x86_64/bin/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Make the <code>cbopcfg</code> binary executable:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ chmod +x ./cbopcfg</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Move the binary into your PATH:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ sudo mv ./cbopcfg /usr/local/bin/cbopcfg</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="tabs-1-windows--panel" class="tabpanel" aria-labelledby="tabs-1-windows">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a command prompt and go to the directory where the <code>cbopcfg</code> binary is located:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ cd couchbase-autonomous-operator-kubernetes_x.x.x-windows_x86_64\bin\</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the <code>cbopcfg</code> binary into your PATH.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cbopcfg"><a class="anchor" href="#cbopcfg"></a>cbopcfg</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Couchbase Autonomous Operator configuration utility.</p>
+</div>
+<div class="paragraph">
+<p>The cbopcfg tool is used to automate the life-cycle of the Autonomous
+Operator.  It is responsible for creation and deletion of Autonomous
+Operator components.  A typical installation involves installing the
+Couchbase custom resource definitions, then the Dynamic Admission
+Controller, and finally the Operator itself.</p>
+</div>
+<div class="paragraph">
+<p>Additional details for each component are documented under each
+sub-command.</p>
+</div>
+<div class="paragraph">
+<p>Alternative methods of life-cycle management are available in the form
+of Helm charts and the Couchbase Open Service Broker.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cbopcfg-create"><a class="anchor" href="#cbopcfg-create"></a>cbopcfg create</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Creates Couchbase Autonomous Operator components</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cbopcfg-create-admission-flags"><a class="anchor" href="#cbopcfg-create-admission-flags"></a>cbopcfg create admission [flags]</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Creates the dynamic admission controller.</p>
+</div>
+<div class="paragraph">
+<p>The DAC is designed to be deployed at the cluster scope (default).
+It monitors Couchbase resources as they are created and modified,
+accepting, or rejecting them, before they are persisted in etcd.</p>
+</div>
+<div class="paragraph">
+<p>Use of the DAC is encouraged as it will report any configuration
+errors that are specific to deployment of Couchbase resources that
+aren&#8217;t available by default in the Kubernetes API.  For example,
+this includes validating memory quotas are satisfiable, TLS
+certificates are correctly configured, and any resources referenced
+actually exist.</p>
+</div>
+<div class="sect2">
+<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console"># Create admission controller (recommended).
+cbopcfg create admission
+
+# Create admission controller scoped to a namespace.
+cbopcfg create admission --scope namespace --namespace-selector key=value
+
+# Create admission controller with custom image and secure image registry.
+cbopcfg create admission --image acme.corp/admission:1.0.0 --image-pull-secret secret-name
+
+# Create admission controller without secret access.
+cbopcfg create admission --validate-secrets=false
+
+# Create admission controller with debug logging.
+cbopcfg create admission --log-level debug</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="flags"><a class="anchor" href="#flags"></a>Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--cpu-limit</dt>
+<dd>
+<p><strong>Type</strong>: quantity</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 1</p>
+</div>
+<div class="paragraph">
+<p>CPU limit for constraining, only valid when used with --with-resources</p>
+</div>
+</dd>
+<dt class="hdlist1">--cpu-request</dt>
+<dd>
+<p><strong>Type</strong>: quantity</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 500m</p>
+</div>
+<div class="paragraph">
+<p>CPU requested for scheduling, only valid when used with --with-resources</p>
+</div>
+</dd>
+<dt class="hdlist1">--image</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: couchbase/admission-controller:</p>
+</div>
+<div class="paragraph">
+<p>Operator image to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--image-pull-policy</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: IfNotPresent</p>
+</div>
+<div class="paragraph">
+<p>Image pull policy to affect when the image is downloaded.</p>
+</div>
+</dd>
+<dt class="hdlist1">--image-pull-secret</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Image pull secret to allow access to the operator image</p>
+</div>
+</dd>
+<dt class="hdlist1">--log-level</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: info</p>
+</div>
+<div class="paragraph">
+<p>Log level to generate logs at.  "info", or "0", prints basic operations. "debug", or "1" prints extended information.</p>
+</div>
+</dd>
+<dt class="hdlist1">--memory-limit</dt>
+<dd>
+<p><strong>Type</strong>: quantity</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 200Mi</p>
+</div>
+<div class="paragraph">
+<p>Memory limit for constraining, only valid when used with --with-resources</p>
+</div>
+</dd>
+<dt class="hdlist1">--memory-request</dt>
+<dd>
+<p><strong>Type</strong>: quantity</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 100Mi</p>
+</div>
+<div class="paragraph">
+<p>Memory requested for scheduling, only valid when used with --with-resources</p>
+</div>
+</dd>
+<dt class="hdlist1">--namespace-selector</dt>
+<dd>
+<p><strong>Type</strong>: map</p>
+<div class="paragraph">
+<p>Required namespace selector to use when scope is set to 'namespace'.  Format label=value[,label=value].</p>
+</div>
+</dd>
+<dt class="hdlist1">--replicas</dt>
+<dd>
+<p><strong>Type</strong>: int</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 1</p>
+</div>
+<div class="paragraph">
+<p>The number of replicas in the deployment</p>
+</div>
+</dd>
+<dt class="hdlist1">--scope</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: cluster</p>
+</div>
+<div class="paragraph">
+<p>Whether to scope the Operator to a 'namespace' or to the 'cluster'.</p>
+</div>
+</dd>
+<dt class="hdlist1">--validate-secrets</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: true</p>
+</div>
+<div class="paragraph">
+<p>Validates secrets referenced by Couchbase resources, and their contents e.g. TLS configuration, for validity</p>
+</div>
+</dd>
+<dt class="hdlist1">--validate-storage-classes</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: true</p>
+</div>
+<div class="paragraph">
+<p>Validates storage classes referenced by Couchbase resources</p>
+</div>
+</dd>
+<dt class="hdlist1">--with-resources</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>Populates pod resource requests and limits</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inherited-flags"><a class="anchor" href="#inherited-flags"></a>Inherited Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--as</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Username to impersonate for the operation. User could be a regular user or a service account in a namespace.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-group</dt>
+<dd>
+<p><strong>Type</strong>: stringArray</p>
+<div class="paragraph">
+<p><strong>Default</strong>: []</p>
+</div>
+<div class="paragraph">
+<p>Group to impersonate for the operation, this flag can be repeated to specify multiple groups.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-uid</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>UID to impersonate for the operation.</p>
+</div>
+</dd>
+<dt class="hdlist1">--cache-dir</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: $HOME/.kube/cache</p>
+</div>
+<div class="paragraph">
+<p>Default cache directory</p>
+</div>
+</dd>
+<dt class="hdlist1">--certificate-authority</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a cert file for the certificate authority</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-certificate</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client certificate file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-key</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client key file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--cluster</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig cluster to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--context</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
+<dt class="hdlist1">--insecure-skip-tls-verify</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, the server&#8217;s certificate will not be checked for validity. This will make your HTTPS connections insecure</p>
+</div>
+</dd>
+<dt class="hdlist1">--kubeconfig</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to the kubeconfig file to use for CLI requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--namespace, -n</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>If present, the namespace scope for this CLI request</p>
+</div>
+</dd>
+<dt class="hdlist1">--request-timeout</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 0</p>
+</div>
+<div class="paragraph">
+<p>The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don&#8217;t timeout requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--server, -s</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The address and port of the Kubernetes API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--tls-server-name</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Server name to use for server certificate validation. If it is not provided, the hostname used to contact the server is used</p>
+</div>
+</dd>
+<dt class="hdlist1">--token</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Bearer token for authentication to the API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--user</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig user to use</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cbopcfg-create-backup-flags"><a class="anchor" href="#cbopcfg-create-backup-flags"></a>cbopcfg create backup [flags]</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Creates backup roles.</p>
+</div>
+<div class="sect2">
+<h3 id="flags-2"><a class="anchor" href="#flags-2"></a>Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--iam-role-arn</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Adds the IAM Role ARN to the backup service account&#8217;s annotation. e.g arn:aws:iam::&lt;ACCOUNT_ID&gt;:role/&lt;IAM_ROLE_NAME&gt;</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inherited-flags-2"><a class="anchor" href="#inherited-flags-2"></a>Inherited Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--as</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Username to impersonate for the operation. User could be a regular user or a service account in a namespace.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-group</dt>
+<dd>
+<p><strong>Type</strong>: stringArray</p>
+<div class="paragraph">
+<p><strong>Default</strong>: []</p>
+</div>
+<div class="paragraph">
+<p>Group to impersonate for the operation, this flag can be repeated to specify multiple groups.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-uid</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>UID to impersonate for the operation.</p>
+</div>
+</dd>
+<dt class="hdlist1">--cache-dir</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: $HOME/.kube/cache</p>
+</div>
+<div class="paragraph">
+<p>Default cache directory</p>
+</div>
+</dd>
+<dt class="hdlist1">--certificate-authority</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a cert file for the certificate authority</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-certificate</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client certificate file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-key</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client key file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--cluster</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig cluster to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--context</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
+<dt class="hdlist1">--insecure-skip-tls-verify</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, the server&#8217;s certificate will not be checked for validity. This will make your HTTPS connections insecure</p>
+</div>
+</dd>
+<dt class="hdlist1">--kubeconfig</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to the kubeconfig file to use for CLI requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--namespace, -n</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>If present, the namespace scope for this CLI request</p>
+</div>
+</dd>
+<dt class="hdlist1">--request-timeout</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 0</p>
+</div>
+<div class="paragraph">
+<p>The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don&#8217;t timeout requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--server, -s</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The address and port of the Kubernetes API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--tls-server-name</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Server name to use for server certificate validation. If it is not provided, the hostname used to contact the server is used</p>
+</div>
+</dd>
+<dt class="hdlist1">--token</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Bearer token for authentication to the API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--user</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig user to use</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cbopcfg-create-operator-flags"><a class="anchor" href="#cbopcfg-create-operator-flags"></a>cbopcfg create operator [flags]</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Creates the Couchbase Autonomous Operator.</p>
+</div>
+<div class="paragraph">
+<p>The Operator is designed to be run at the namespace scope (default).
+It watches for creation of CouchbaseCluster resources in that namespace
+and provides automated provisioning, management and disaster recovery
+of Couchbase Server.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console"># Create operator (recommended).
+cbopcfg create operator
+
+# Create operator scoped to the cluster.
+cbopcfg create operator --scope cluster
+
+# Create operator with a custom image and secure image registry.
+cbopcfg create operator --image acme.corp/operator:1.0.0 --image-pull-secret secret-name
+
+# Create operator with debug logging.
+cbopcfg create operator --log-level debug
+
+# Create operator with extended timeouts (for slow platforms).
+cbopcfg create operator --pod-creation-timeout 1h</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="flags-3"><a class="anchor" href="#flags-3"></a>Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--cpu-limit</dt>
+<dd>
+<p><strong>Type</strong>: quantity</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 1</p>
+</div>
+<div class="paragraph">
+<p>CPU limit for constraining</p>
+</div>
+</dd>
+<dt class="hdlist1">--cpu-request</dt>
+<dd>
+<p><strong>Type</strong>: quantity</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 500m</p>
+</div>
+<div class="paragraph">
+<p>CPU requested for scheduling</p>
+</div>
+</dd>
+<dt class="hdlist1">--image</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: couchbase/operator:</p>
+</div>
+<div class="paragraph">
+<p>Operator image to use.</p>
+</div>
+</dd>
+<dt class="hdlist1">--image-pull-policy</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: IfNotPresent</p>
+</div>
+<div class="paragraph">
+<p>Image pull policy to affect when the image is downloaded.</p>
+</div>
+</dd>
+<dt class="hdlist1">--image-pull-secret</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Image pull secret to allow access to the operator image.</p>
+</div>
+</dd>
+<dt class="hdlist1">--log-level</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: info</p>
+</div>
+<div class="paragraph">
+<p>Log level to generate logs at.  "info", or "0", prints basic operations. "debug", or "1" prints extended information and API calls. "2" prints very detailed logs, including full API payloads that may contain passwords and keys.</p>
+</div>
+</dd>
+<dt class="hdlist1">--memory-limit</dt>
+<dd>
+<p><strong>Type</strong>: quantity</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 400Mi</p>
+</div>
+<div class="paragraph">
+<p>Memory limit for constraining</p>
+</div>
+</dd>
+<dt class="hdlist1">--memory-request</dt>
+<dd>
+<p><strong>Type</strong>: quantity</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 200Mi</p>
+</div>
+<div class="paragraph">
+<p>Memory requested for scheduling</p>
+</div>
+</dd>
+<dt class="hdlist1">--pod-creation-timeout</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 10m0s</p>
+</div>
+<div class="paragraph">
+<p>How long to wait before declaring an error when provisioning a pod.</p>
+</div>
+</dd>
+<dt class="hdlist1">--pod-delete-delay</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 0s</p>
+</div>
+<div class="paragraph">
+<p>How long to wait before performing a delete on a failed pod.</p>
+</div>
+</dd>
+<dt class="hdlist1">--pod-readiness-delay</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 10s</p>
+</div>
+<div class="paragraph">
+<p>How long to wait before starting readiness probes on server pods.</p>
+</div>
+</dd>
+<dt class="hdlist1">--pod-readiness-period</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 20s</p>
+</div>
+<div class="paragraph">
+<p>How long to wait between readiness probes on server pods.</p>
+</div>
+</dd>
+<dt class="hdlist1">--scope</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: namespace</p>
+</div>
+<div class="paragraph">
+<p>Whether to scope the Operator to a 'namespace' or to the 'cluster'.</p>
+</div>
+</dd>
+<dt class="hdlist1">--with-resources</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>Populates pod resource requests and limits</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inherited-flags-3"><a class="anchor" href="#inherited-flags-3"></a>Inherited Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--as</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Username to impersonate for the operation. User could be a regular user or a service account in a namespace.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-group</dt>
+<dd>
+<p><strong>Type</strong>: stringArray</p>
+<div class="paragraph">
+<p><strong>Default</strong>: []</p>
+</div>
+<div class="paragraph">
+<p>Group to impersonate for the operation, this flag can be repeated to specify multiple groups.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-uid</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>UID to impersonate for the operation.</p>
+</div>
+</dd>
+<dt class="hdlist1">--cache-dir</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: $HOME/.kube/cache</p>
+</div>
+<div class="paragraph">
+<p>Default cache directory</p>
+</div>
+</dd>
+<dt class="hdlist1">--certificate-authority</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a cert file for the certificate authority</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-certificate</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client certificate file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-key</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client key file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--cluster</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig cluster to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--context</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
+<dt class="hdlist1">--insecure-skip-tls-verify</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, the server&#8217;s certificate will not be checked for validity. This will make your HTTPS connections insecure</p>
+</div>
+</dd>
+<dt class="hdlist1">--kubeconfig</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to the kubeconfig file to use for CLI requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--namespace, -n</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>If present, the namespace scope for this CLI request</p>
+</div>
+</dd>
+<dt class="hdlist1">--request-timeout</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 0</p>
+</div>
+<div class="paragraph">
+<p>The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don&#8217;t timeout requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--server, -s</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The address and port of the Kubernetes API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--tls-server-name</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Server name to use for server certificate validation. If it is not provided, the hostname used to contact the server is used</p>
+</div>
+</dd>
+<dt class="hdlist1">--token</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Bearer token for authentication to the API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--user</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig user to use</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cbopcfg-delete"><a class="anchor" href="#cbopcfg-delete"></a>cbopcfg delete</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Deletes Couchbase Autonomous Operator components</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cbopcfg-delete-admission-flags"><a class="anchor" href="#cbopcfg-delete-admission-flags"></a>cbopcfg delete admission [flags]</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Deletes the dynamic admission controller.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console"># Delete admission controller (recommended).
+cbopcfg delete admission
+
+# Delete admission controller scoped to a namespace.
+cbopcfg delete admission --scope namespace</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="flags-4"><a class="anchor" href="#flags-4"></a>Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--scope</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: cluster</p>
+</div>
+<div class="paragraph">
+<p>Whether to scope the Operator to a 'namespace' or to the 'cluster'.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inherited-flags-4"><a class="anchor" href="#inherited-flags-4"></a>Inherited Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--as</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Username to impersonate for the operation. User could be a regular user or a service account in a namespace.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-group</dt>
+<dd>
+<p><strong>Type</strong>: stringArray</p>
+<div class="paragraph">
+<p><strong>Default</strong>: []</p>
+</div>
+<div class="paragraph">
+<p>Group to impersonate for the operation, this flag can be repeated to specify multiple groups.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-uid</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>UID to impersonate for the operation.</p>
+</div>
+</dd>
+<dt class="hdlist1">--cache-dir</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: $HOME/.kube/cache</p>
+</div>
+<div class="paragraph">
+<p>Default cache directory</p>
+</div>
+</dd>
+<dt class="hdlist1">--certificate-authority</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a cert file for the certificate authority</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-certificate</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client certificate file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-key</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client key file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--cluster</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig cluster to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--context</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
+<dt class="hdlist1">--insecure-skip-tls-verify</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, the server&#8217;s certificate will not be checked for validity. This will make your HTTPS connections insecure</p>
+</div>
+</dd>
+<dt class="hdlist1">--kubeconfig</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to the kubeconfig file to use for CLI requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--namespace, -n</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>If present, the namespace scope for this CLI request</p>
+</div>
+</dd>
+<dt class="hdlist1">--request-timeout</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 0</p>
+</div>
+<div class="paragraph">
+<p>The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don&#8217;t timeout requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--server, -s</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The address and port of the Kubernetes API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--tls-server-name</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Server name to use for server certificate validation. If it is not provided, the hostname used to contact the server is used</p>
+</div>
+</dd>
+<dt class="hdlist1">--token</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Bearer token for authentication to the API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--user</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig user to use</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cbopcfg-delete-backup"><a class="anchor" href="#cbopcfg-delete-backup"></a>cbopcfg delete backup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Deletes backup roles.</p>
+</div>
+<div class="sect2">
+<h3 id="inherited-flags-5"><a class="anchor" href="#inherited-flags-5"></a>Inherited Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--as</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Username to impersonate for the operation. User could be a regular user or a service account in a namespace.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-group</dt>
+<dd>
+<p><strong>Type</strong>: stringArray</p>
+<div class="paragraph">
+<p><strong>Default</strong>: []</p>
+</div>
+<div class="paragraph">
+<p>Group to impersonate for the operation, this flag can be repeated to specify multiple groups.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-uid</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>UID to impersonate for the operation.</p>
+</div>
+</dd>
+<dt class="hdlist1">--cache-dir</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: $HOME/.kube/cache</p>
+</div>
+<div class="paragraph">
+<p>Default cache directory</p>
+</div>
+</dd>
+<dt class="hdlist1">--certificate-authority</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a cert file for the certificate authority</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-certificate</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client certificate file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-key</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client key file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--cluster</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig cluster to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--context</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
+<dt class="hdlist1">--insecure-skip-tls-verify</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, the server&#8217;s certificate will not be checked for validity. This will make your HTTPS connections insecure</p>
+</div>
+</dd>
+<dt class="hdlist1">--kubeconfig</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to the kubeconfig file to use for CLI requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--namespace, -n</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>If present, the namespace scope for this CLI request</p>
+</div>
+</dd>
+<dt class="hdlist1">--request-timeout</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 0</p>
+</div>
+<div class="paragraph">
+<p>The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don&#8217;t timeout requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--server, -s</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The address and port of the Kubernetes API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--tls-server-name</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Server name to use for server certificate validation. If it is not provided, the hostname used to contact the server is used</p>
+</div>
+</dd>
+<dt class="hdlist1">--token</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Bearer token for authentication to the API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--user</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig user to use</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cbopcfg-delete-operator-flags"><a class="anchor" href="#cbopcfg-delete-operator-flags"></a>cbopcfg delete operator [flags]</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Deletes the Couchbase Autonomous Operator.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console"># Delete operator (recommended).
+cbopcfg delete operator
+
+# Delete operator scoped to the cluster.
+cbopcfg delete operator --scope cluster</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="flags-5"><a class="anchor" href="#flags-5"></a>Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--scope</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: namespace</p>
+</div>
+<div class="paragraph">
+<p>Whether to scope the Operator to a 'namespace' or to the 'cluster'.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inherited-flags-6"><a class="anchor" href="#inherited-flags-6"></a>Inherited Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--as</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Username to impersonate for the operation. User could be a regular user or a service account in a namespace.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-group</dt>
+<dd>
+<p><strong>Type</strong>: stringArray</p>
+<div class="paragraph">
+<p><strong>Default</strong>: []</p>
+</div>
+<div class="paragraph">
+<p>Group to impersonate for the operation, this flag can be repeated to specify multiple groups.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-uid</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>UID to impersonate for the operation.</p>
+</div>
+</dd>
+<dt class="hdlist1">--cache-dir</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: $HOME/.kube/cache</p>
+</div>
+<div class="paragraph">
+<p>Default cache directory</p>
+</div>
+</dd>
+<dt class="hdlist1">--certificate-authority</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a cert file for the certificate authority</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-certificate</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client certificate file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-key</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client key file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--cluster</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig cluster to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--context</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
+<dt class="hdlist1">--insecure-skip-tls-verify</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, the server&#8217;s certificate will not be checked for validity. This will make your HTTPS connections insecure</p>
+</div>
+</dd>
+<dt class="hdlist1">--kubeconfig</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to the kubeconfig file to use for CLI requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--namespace, -n</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>If present, the namespace scope for this CLI request</p>
+</div>
+</dd>
+<dt class="hdlist1">--request-timeout</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 0</p>
+</div>
+<div class="paragraph">
+<p>The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don&#8217;t timeout requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--server, -s</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The address and port of the Kubernetes API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--tls-server-name</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Server name to use for server certificate validation. If it is not provided, the hostname used to contact the server is used</p>
+</div>
+</dd>
+<dt class="hdlist1">--token</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Bearer token for authentication to the API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--user</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig user to use</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cbopcfg-generate"><a class="anchor" href="#cbopcfg-generate"></a>cbopcfg generate</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Generates YAML manifests for various Operator components</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cbopcfg-generate-admission-flags"><a class="anchor" href="#cbopcfg-generate-admission-flags"></a>cbopcfg generate admission [flags]</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Generates YAML for the dynamic admission controller.</p>
+</div>
+<div class="paragraph">
+<p>The DAC is designed to be deployed at the cluster scope (default).
+It monitors Couchbase resources as they are created and modified,
+accepting, or rejecting them, before they are persisted in etcd.</p>
+</div>
+<div class="paragraph">
+<p>Use of the DAC is encouraged as it will report any configuration
+errors that are specific to deployment of Couchbase resources that
+aren&#8217;t available by default in the Kubernetes API.  For example,
+this includes validating memory quotas are satisfiable, TLS
+certificates are correctly configured, and any resources referenced
+actually exist.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console"># Create admission controller (recommended).
+cbopcfg generate admission
+
+# Create admission controller scoped to a namespace.
+cbopcfg generate admission --scope namespace --namespace-selector key=value
+
+# Create admission controller with custom image and secure image registry.
+cbopcfg generate admission --image acme.corp/admission:1.0.0 --image-pull-secret secret-name
+
+# Create admission controller without secret access.
+cbopcfg generate admission --validate-secrets=false
+
+# Create admission controller with debug logging.
+cbopcfg generate admission --log-level debug</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="flags-6"><a class="anchor" href="#flags-6"></a>Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--cpu-limit</dt>
+<dd>
+<p><strong>Type</strong>: quantity</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 1</p>
+</div>
+<div class="paragraph">
+<p>CPU limit for constraining, only valid when used with --with-resources</p>
+</div>
+</dd>
+<dt class="hdlist1">--cpu-request</dt>
+<dd>
+<p><strong>Type</strong>: quantity</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 500m</p>
+</div>
+<div class="paragraph">
+<p>CPU requested for scheduling, only valid when used with --with-resources</p>
+</div>
+</dd>
+<dt class="hdlist1">--image</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: couchbase/admission-controller:</p>
+</div>
+<div class="paragraph">
+<p>Operator image to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--image-pull-policy</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: IfNotPresent</p>
+</div>
+<div class="paragraph">
+<p>Image pull policy to affect when the image is downloaded.</p>
+</div>
+</dd>
+<dt class="hdlist1">--image-pull-secret</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Image pull secret to allow access to the operator image</p>
+</div>
+</dd>
+<dt class="hdlist1">--log-level</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: info</p>
+</div>
+<div class="paragraph">
+<p>Log level to generate logs at.  "info", or "0", prints basic operations. "debug", or "1" prints extended information.</p>
+</div>
+</dd>
+<dt class="hdlist1">--memory-limit</dt>
+<dd>
+<p><strong>Type</strong>: quantity</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 200Mi</p>
+</div>
+<div class="paragraph">
+<p>Memory limit for constraining, only valid when used with --with-resources</p>
+</div>
+</dd>
+<dt class="hdlist1">--memory-request</dt>
+<dd>
+<p><strong>Type</strong>: quantity</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 100Mi</p>
+</div>
+<div class="paragraph">
+<p>Memory requested for scheduling, only valid when used with --with-resources</p>
+</div>
+</dd>
+<dt class="hdlist1">--namespace-selector</dt>
+<dd>
+<p><strong>Type</strong>: map</p>
+<div class="paragraph">
+<p>Required namespace selector to use when scope is set to 'namespace'.  Format label=value[,label=value].</p>
+</div>
+</dd>
+<dt class="hdlist1">--replicas</dt>
+<dd>
+<p><strong>Type</strong>: int</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 1</p>
+</div>
+<div class="paragraph">
+<p>The number of replicas in the deployment</p>
+</div>
+</dd>
+<dt class="hdlist1">--scope</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: cluster</p>
+</div>
+<div class="paragraph">
+<p>Whether to scope the Operator to a 'namespace' or to the 'cluster'.</p>
+</div>
+</dd>
+<dt class="hdlist1">--validate-secrets</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: true</p>
+</div>
+<div class="paragraph">
+<p>Validates secrets referenced by Couchbase resources, and their contents e.g. TLS configuration, for validity</p>
+</div>
+</dd>
+<dt class="hdlist1">--validate-storage-classes</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: true</p>
+</div>
+<div class="paragraph">
+<p>Validates storage classes referenced by Couchbase resources</p>
+</div>
+</dd>
+<dt class="hdlist1">--with-resources</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>Populates pod resource requests and limits</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inherited-flags-7"><a class="anchor" href="#inherited-flags-7"></a>Inherited Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--as</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Username to impersonate for the operation. User could be a regular user or a service account in a namespace.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-group</dt>
+<dd>
+<p><strong>Type</strong>: stringArray</p>
+<div class="paragraph">
+<p><strong>Default</strong>: []</p>
+</div>
+<div class="paragraph">
+<p>Group to impersonate for the operation, this flag can be repeated to specify multiple groups.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-uid</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>UID to impersonate for the operation.</p>
+</div>
+</dd>
+<dt class="hdlist1">--cache-dir</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: $HOME/.kube/cache</p>
+</div>
+<div class="paragraph">
+<p>Default cache directory</p>
+</div>
+</dd>
+<dt class="hdlist1">--certificate-authority</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a cert file for the certificate authority</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-certificate</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client certificate file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-key</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client key file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--cluster</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig cluster to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--context</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
+<dt class="hdlist1">--insecure-skip-tls-verify</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, the server&#8217;s certificate will not be checked for validity. This will make your HTTPS connections insecure</p>
+</div>
+</dd>
+<dt class="hdlist1">--kubeconfig</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to the kubeconfig file to use for CLI requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--namespace, -n</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>If present, the namespace scope for this CLI request</p>
+</div>
+</dd>
+<dt class="hdlist1">--request-timeout</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 0</p>
+</div>
+<div class="paragraph">
+<p>The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don&#8217;t timeout requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--server, -s</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The address and port of the Kubernetes API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--tls-server-name</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Server name to use for server certificate validation. If it is not provided, the hostname used to contact the server is used</p>
+</div>
+</dd>
+<dt class="hdlist1">--token</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Bearer token for authentication to the API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--user</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig user to use</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cbopcfg-generate-backup-flags"><a class="anchor" href="#cbopcfg-generate-backup-flags"></a>cbopcfg generate backup [flags]</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Generates YAML for backup jobs.</p>
+</div>
+<div class="sect2">
+<h3 id="flags-7"><a class="anchor" href="#flags-7"></a>Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--iam-role-arn</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Adds the IAM Role ARN to the backup service account&#8217;s annotation. e.g arn:aws:iam::&lt;ACCOUNT_ID&gt;:role/&lt;IAM_ROLE_NAME&gt;</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inherited-flags-8"><a class="anchor" href="#inherited-flags-8"></a>Inherited Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--as</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Username to impersonate for the operation. User could be a regular user or a service account in a namespace.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-group</dt>
+<dd>
+<p><strong>Type</strong>: stringArray</p>
+<div class="paragraph">
+<p><strong>Default</strong>: []</p>
+</div>
+<div class="paragraph">
+<p>Group to impersonate for the operation, this flag can be repeated to specify multiple groups.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-uid</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>UID to impersonate for the operation.</p>
+</div>
+</dd>
+<dt class="hdlist1">--cache-dir</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: $HOME/.kube/cache</p>
+</div>
+<div class="paragraph">
+<p>Default cache directory</p>
+</div>
+</dd>
+<dt class="hdlist1">--certificate-authority</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a cert file for the certificate authority</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-certificate</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client certificate file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-key</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client key file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--cluster</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig cluster to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--context</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
+<dt class="hdlist1">--insecure-skip-tls-verify</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, the server&#8217;s certificate will not be checked for validity. This will make your HTTPS connections insecure</p>
+</div>
+</dd>
+<dt class="hdlist1">--kubeconfig</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to the kubeconfig file to use for CLI requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--namespace, -n</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>If present, the namespace scope for this CLI request</p>
+</div>
+</dd>
+<dt class="hdlist1">--request-timeout</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 0</p>
+</div>
+<div class="paragraph">
+<p>The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don&#8217;t timeout requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--server, -s</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The address and port of the Kubernetes API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--tls-server-name</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Server name to use for server certificate validation. If it is not provided, the hostname used to contact the server is used</p>
+</div>
+</dd>
+<dt class="hdlist1">--token</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Bearer token for authentication to the API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--user</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig user to use</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cbopcfg-generate-operator-flags"><a class="anchor" href="#cbopcfg-generate-operator-flags"></a>cbopcfg generate operator [flags]</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Generates YAML for the Couchbase Autonomous Operator.</p>
+</div>
+<div class="paragraph">
+<p>The Operator is designed to be run at the namespace scope (default).
+It watches for creation of CouchbaseCluster resources in that namespace
+and provides automated provisioning, management and disaster recovery
+of Couchbase Server.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console"># Create operator (recommended).
+cbopcfg generate operator
+
+# Create operator scoped to the cluster.
+cbopcfg generate operator --scope cluster
+
+# Create operator with a custom image and secure image registry.
+cbopcfg generate operator --image acme.corp/operator:1.0.0 --image-pull-secret secret-name
+
+# Create operator with debug logging.
+cbopcfg generate operator --log-level debug
+
+# Create operator with extended timeouts (for slow platforms).
+cbopcfg generate operator --pod-creation-timeout 1h</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="flags-8"><a class="anchor" href="#flags-8"></a>Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--cpu-limit</dt>
+<dd>
+<p><strong>Type</strong>: quantity</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 1</p>
+</div>
+<div class="paragraph">
+<p>CPU limit for constraining</p>
+</div>
+</dd>
+<dt class="hdlist1">--cpu-request</dt>
+<dd>
+<p><strong>Type</strong>: quantity</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 500m</p>
+</div>
+<div class="paragraph">
+<p>CPU requested for scheduling</p>
+</div>
+</dd>
+<dt class="hdlist1">--image</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: couchbase/operator:</p>
+</div>
+<div class="paragraph">
+<p>Operator image to use.</p>
+</div>
+</dd>
+<dt class="hdlist1">--image-pull-policy</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: IfNotPresent</p>
+</div>
+<div class="paragraph">
+<p>Image pull policy to affect when the image is downloaded.</p>
+</div>
+</dd>
+<dt class="hdlist1">--image-pull-secret</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Image pull secret to allow access to the operator image.</p>
+</div>
+</dd>
+<dt class="hdlist1">--log-level</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: info</p>
+</div>
+<div class="paragraph">
+<p>Log level to generate logs at.  "info", or "0", prints basic operations. "debug", or "1" prints extended information and API calls. "2" prints very detailed logs, including full API payloads that may contain passwords and keys.</p>
+</div>
+</dd>
+<dt class="hdlist1">--memory-limit</dt>
+<dd>
+<p><strong>Type</strong>: quantity</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 400Mi</p>
+</div>
+<div class="paragraph">
+<p>Memory limit for constraining</p>
+</div>
+</dd>
+<dt class="hdlist1">--memory-request</dt>
+<dd>
+<p><strong>Type</strong>: quantity</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 200Mi</p>
+</div>
+<div class="paragraph">
+<p>Memory requested for scheduling</p>
+</div>
+</dd>
+<dt class="hdlist1">--pod-creation-timeout</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 10m0s</p>
+</div>
+<div class="paragraph">
+<p>How long to wait before declaring an error when provisioning a pod.</p>
+</div>
+</dd>
+<dt class="hdlist1">--pod-delete-delay</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 0s</p>
+</div>
+<div class="paragraph">
+<p>How long to wait before performing a delete on a failed pod.</p>
+</div>
+</dd>
+<dt class="hdlist1">--pod-readiness-delay</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 10s</p>
+</div>
+<div class="paragraph">
+<p>How long to wait before starting readiness probes on server pods.</p>
+</div>
+</dd>
+<dt class="hdlist1">--pod-readiness-period</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 20s</p>
+</div>
+<div class="paragraph">
+<p>How long to wait between readiness probes on server pods.</p>
+</div>
+</dd>
+<dt class="hdlist1">--scope</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: namespace</p>
+</div>
+<div class="paragraph">
+<p>Whether to scope the Operator to a 'namespace' or to the 'cluster'.</p>
+</div>
+</dd>
+<dt class="hdlist1">--with-resources</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>Populates pod resource requests and limits</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inherited-flags-9"><a class="anchor" href="#inherited-flags-9"></a>Inherited Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--as</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Username to impersonate for the operation. User could be a regular user or a service account in a namespace.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-group</dt>
+<dd>
+<p><strong>Type</strong>: stringArray</p>
+<div class="paragraph">
+<p><strong>Default</strong>: []</p>
+</div>
+<div class="paragraph">
+<p>Group to impersonate for the operation, this flag can be repeated to specify multiple groups.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-uid</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>UID to impersonate for the operation.</p>
+</div>
+</dd>
+<dt class="hdlist1">--cache-dir</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: $HOME/.kube/cache</p>
+</div>
+<div class="paragraph">
+<p>Default cache directory</p>
+</div>
+</dd>
+<dt class="hdlist1">--certificate-authority</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a cert file for the certificate authority</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-certificate</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client certificate file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-key</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client key file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--cluster</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig cluster to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--context</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
+<dt class="hdlist1">--insecure-skip-tls-verify</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, the server&#8217;s certificate will not be checked for validity. This will make your HTTPS connections insecure</p>
+</div>
+</dd>
+<dt class="hdlist1">--kubeconfig</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to the kubeconfig file to use for CLI requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--namespace, -n</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>If present, the namespace scope for this CLI request</p>
+</div>
+</dd>
+<dt class="hdlist1">--request-timeout</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 0</p>
+</div>
+<div class="paragraph">
+<p>The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don&#8217;t timeout requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--server, -s</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The address and port of the Kubernetes API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--tls-server-name</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Server name to use for server certificate validation. If it is not provided, the hostname used to contact the server is used</p>
+</div>
+</dd>
+<dt class="hdlist1">--token</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Bearer token for authentication to the API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--user</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig user to use</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cbopcfg-update"><a class="anchor" href="#cbopcfg-update"></a>cbopcfg update</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Updates Couchbase Autonomous Operator components</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cbopcfg-update-webhook-flags"><a class="anchor" href="#cbopcfg-update-webhook-flags"></a>cbopcfg update webhook [flags]</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>refreshes the self signed certificate used by the validating webhook.</p>
+</div>
+<div class="sect2">
+<h3 id="flags-9"><a class="anchor" href="#flags-9"></a>Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--scope</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: cluster</p>
+</div>
+<div class="paragraph">
+<p>Whether to scope the Operator to a 'namespace' or to the 'cluster'.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inherited-flags-10"><a class="anchor" href="#inherited-flags-10"></a>Inherited Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--as</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Username to impersonate for the operation. User could be a regular user or a service account in a namespace.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-group</dt>
+<dd>
+<p><strong>Type</strong>: stringArray</p>
+<div class="paragraph">
+<p><strong>Default</strong>: []</p>
+</div>
+<div class="paragraph">
+<p>Group to impersonate for the operation, this flag can be repeated to specify multiple groups.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-uid</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>UID to impersonate for the operation.</p>
+</div>
+</dd>
+<dt class="hdlist1">--cache-dir</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: $HOME/.kube/cache</p>
+</div>
+<div class="paragraph">
+<p>Default cache directory</p>
+</div>
+</dd>
+<dt class="hdlist1">--certificate-authority</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a cert file for the certificate authority</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-certificate</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client certificate file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-key</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client key file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--cluster</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig cluster to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--context</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
+<dt class="hdlist1">--insecure-skip-tls-verify</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, the server&#8217;s certificate will not be checked for validity. This will make your HTTPS connections insecure</p>
+</div>
+</dd>
+<dt class="hdlist1">--kubeconfig</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to the kubeconfig file to use for CLI requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--namespace, -n</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>If present, the namespace scope for this CLI request</p>
+</div>
+</dd>
+<dt class="hdlist1">--request-timeout</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 0</p>
+</div>
+<div class="paragraph">
+<p>The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don&#8217;t timeout requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--server, -s</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The address and port of the Kubernetes API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--tls-server-name</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Server name to use for server certificate validation. If it is not provided, the hostname used to contact the server is used</p>
+</div>
+</dd>
+<dt class="hdlist1">--token</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Bearer token for authentication to the API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--user</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig user to use</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cbopcfg-version"><a class="anchor" href="#cbopcfg-version"></a>cbopcfg version</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Prints the command version</p>
+</div>
+<div class="sect2">
+<h3 id="inherited-flags-11"><a class="anchor" href="#inherited-flags-11"></a>Inherited Flags</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--as</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Username to impersonate for the operation. User could be a regular user or a service account in a namespace.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-group</dt>
+<dd>
+<p><strong>Type</strong>: stringArray</p>
+<div class="paragraph">
+<p><strong>Default</strong>: []</p>
+</div>
+<div class="paragraph">
+<p>Group to impersonate for the operation, this flag can be repeated to specify multiple groups.</p>
+</div>
+</dd>
+<dt class="hdlist1">--as-uid</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>UID to impersonate for the operation.</p>
+</div>
+</dd>
+<dt class="hdlist1">--cache-dir</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: $HOME/.kube/cache</p>
+</div>
+<div class="paragraph">
+<p>Default cache directory</p>
+</div>
+</dd>
+<dt class="hdlist1">--certificate-authority</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a cert file for the certificate authority</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-certificate</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client certificate file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--client-key</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to a client key file for TLS</p>
+</div>
+</dd>
+<dt class="hdlist1">--cluster</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig cluster to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--context</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig context to use</p>
+</div>
+</dd>
+<dt class="hdlist1">--disable-compression</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, opt-out of response compression for all requests to the server</p>
+</div>
+</dd>
+<dt class="hdlist1">--insecure-skip-tls-verify</dt>
+<dd>
+<p><strong>Type</strong>: bool</p>
+<div class="paragraph">
+<p><strong>Default</strong>: false</p>
+</div>
+<div class="paragraph">
+<p>If true, the server&#8217;s certificate will not be checked for validity. This will make your HTTPS connections insecure</p>
+</div>
+</dd>
+<dt class="hdlist1">--kubeconfig</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Path to the kubeconfig file to use for CLI requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--namespace, -n</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>If present, the namespace scope for this CLI request</p>
+</div>
+</dd>
+<dt class="hdlist1">--request-timeout</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p><strong>Default</strong>: 0</p>
+</div>
+<div class="paragraph">
+<p>The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don&#8217;t timeout requests.</p>
+</div>
+</dd>
+<dt class="hdlist1">--server, -s</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The address and port of the Kubernetes API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--tls-server-name</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Server name to use for server certificate validation. If it is not provided, the hostname used to contact the server is used</p>
+</div>
+</dd>
+<dt class="hdlist1">--token</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>Bearer token for authentication to the API server</p>
+</div>
+</dd>
+<dt class="hdlist1">--user</dt>
+<dd>
+<p><strong>Type</strong>: string</p>
+<div class="paragraph">
+<p>The name of the kubeconfig user to use</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <div class="col">
+        <div class="footer-logo">
+          <a href="https://www.couchbase.com" class="icon">
+            <img src="../../../_/img/couchbase-logo.svg" alt="Couchbase">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://docs.couchbase.com" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://forums.couchbase.com" target="_blank" rel="noopener">Forums</a></li>
+          <li><a href="https://support.couchbase.com" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://developer.couchbase.com" target="_blank" rel="noopener">Developer Portal</a></li>
+          <li><a href="https://blog.couchbase.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://www.couchbase.com/resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://www.couchbase.com/get-started-developing-nosql">Get Started</a></li>
+          <li><a href="https://www.couchbase.com/downloads">Downloads</a></li>
+          <li><a href="https://learn.couchbase.com/store?utf8=%E2%9C%93&ss=1&ct=78327&commit=Filter" target="_blank" rel="noopener">Training</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="social-icons">
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32.1 26.1"> <path id="twitter" class="cls-1" d="M32,7.1a11.836,11.836,0,0,1-3.8,1,6.462,6.462,0,0,0,2.9-3.6,12.606,12.606,0,0,1-4.2,1.6A6.492,6.492,0,0,0,22.1,4a6.594,6.594,0,0,0-6.6,6.6,7.719,7.719,0,0,0,.2,1.5A18.458,18.458,0,0,1,2.2,5.2a6.294,6.294,0,0,0-.9,3.3A6.765,6.765,0,0,0,4.2,14a6.109,6.109,0,0,1-3-.8v.1a6.543,6.543,0,0,0,5.3,6.4,4.678,4.678,0,0,1-1.7.2,4.869,4.869,0,0,1-1.2-.1,6.679,6.679,0,0,0,6.1,4.6,12.917,12.917,0,0,1-8.2,2.8,9.151,9.151,0,0,1-1.6-.1,18.438,18.438,0,0,0,10.1,3c12.1,0,18.7-10,18.7-18.7v-.8A13.336,13.336,0,0,0,32,7.2Z" transform="translate(0.1 -4)"/></svg>
+            <a href="https://twitter.com/couchbase" class="icon">
+              Twitter
+            </a>
+          </li>
+          <li>
+          <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="linkedin" class="cls-1" d="M29,0H3A3.076,3.076,0,0,0,0,3V29a3.009,3.009,0,0,0,3,3H29a2.946,2.946,0,0,0,3-3V3A3.009,3.009,0,0,0,29,0ZM12,26H8V12h4ZM10,10a2,2,0,1,1,2-2A2.006,2.006,0,0,1,10,10ZM26,26H22V18a2,2,0,0,0-4,0v8H14V12h4v2.5c.8-1.1,2.1-2.5,3.5-2.5A4.736,4.736,0,0,1,26,17Z"/></svg>
+              <a href="https://www.linkedin.com/company/couchbase" class="icon">
+             Linkedin
+            </a>
+          </li>
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="facebook" class="cls-1" d="M29,0H3A2.652,2.652,0,0,0,0,3V29a2.652,2.652,0,0,0,3,3H16V18H12V14h4V12a6.452,6.452,0,0,1,6-6h4v4H22a2.151,2.151,0,0,0-2,2v2h6l-1,4H20V32h9a2.652,2.652,0,0,0,3-3V3A2.652,2.652,0,0,0,29,0Z"/></svg>
+            <a href="https://www.facebook.com/Couchbase" class="icon">
+            Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-terms">
+      <div class="footer-terms-copyright">
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+      </div>
+      <div class="footer-terms-links">
+        <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
+        <a href="https://www.couchbase.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.couchbase.com/cookie-policy">Cookie Policy</a>
+        <a href="https://www.couchbase.com/support-policy">Support Policy</a>
+        <a href="https://info.couchbase.com/unsubscribe-or-manage-preferences.html" target="_blank" rel="noopener">Marketing Preference Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../../../_/js/site-navigation-data.js"></script>
+<script id="page-navigation-group" type="application/json">
+{"title":"Autonomous Operator","components":["operator"],"latestVersions":{"operator":"2.6"}}
+</script>
+<template id="run-code-panel">
+<div class="action-panel">
+  <form class="action-panel-control" method="POST" action="https://couchbase.live/run" target="run-code-output">
+    <input type="hidden" name="lang">
+    <input type="hidden" name="code">
+    <input type="hidden" name="from" value="docs">
+    <div class="controls">
+      <button class="control-button rerun" type="submit"><i class="fas fa-redo"></i></button>
+      <span class="shell-name control-label">Output</span>
+      <button class="control-button close"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </form>
+  <iframe class="run-code-output" name="run-code-output"></iframe>
+</div>
+</template>
+<script id="site-script" src="../../../_/js/vendor/chatbox-ui.js"></script>
+<script id="site-script" src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
+<script defer src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+</body>
+</html>
