@@ -20,14 +20,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.7">
+<meta name="dcterms.identifier" content="2.6">
 <meta name="page-url" content="/operator/current/tutorial-prometheus.html">
 <meta name="page-nav-header-levels" content="0">
 
 <meta name="docsearch:component" content="operator">
 <meta name="docsearch:component_title" content="Autonomous Operator">
-<meta name="docsearch:cversion" content="2.7">
-<meta name="docsearch:component_version" content="operator@2.7">
+<meta name="docsearch:cversion" content="2.6">
+<meta name="docsearch:component_version" content="operator@2.6">
 <meta name="docsearch:module" content="">
 <meta name="docsearch:breadcrumbs" content="Autonomous Operator / Tutorials / Monitoring / Quick Start with Prometheus Monitoring">
 <meta name="docsearch:topic_type" content="">
@@ -254,7 +254,7 @@ For further help in the event of a problem, contact the relevant software mainta
 </div>
 </div>
 <div class="paragraph">
-<p>Make sure you have a Kubernetes cluster running the Autonomous Operator with <a href="howto-prometheus.html" class="xref page">monitoring enabled</a> and follow the Prerequisites section in the <a href="https://github.com/prometheus-operator/kube-prometheus" target="_blank" rel="noopener"><code>kube-prometheus</code></a> documentation.</p>
+<p>Make sure you have a Kubernetes cluster running the Autonomous Operator with <a href="howto-prometheus.html" class="xref page">monitoring enabled</a> and follow the Prerequisites section in the <code>kube-prometheus</code> documentation.</p>
 </div>
 </div>
 </div>
@@ -267,7 +267,7 @@ run the Prometheus Operator. The Prometheus Operator creates our Prometheus depl
 We will be creating these manifests in a <a href="#Create-the-manifests">later step</a>.</p>
 </div>
 <div class="paragraph">
-<p>The Autonomous Operator, with monitoring enabled, exposes the Couchbase Prometheus metrics using Couchbase Server native support for metrics collection. Couchbase native support is available for Couchbase Server versions 7.0 or higher
+<p>The Autonomous Operator, with monitoring enabled, exposes the Couchbase Prometheus metrics on the sidecar containers running in each Couchbase Server pod.
 Our task is then to get Prometheus to discover and scrape these endpoints in order to monitor the overall cluster through the Prometheus UI and with custom Grafana dashboards.</p>
 </div>
 <div class="paragraph">
@@ -305,12 +305,11 @@ metadata:
 spec:
   ports:
   - name: metrics
-    port: 8091 <i class="conum" data-value="2"></i><b>(2)</b>
+    port: 9091 <i class="conum" data-value="2"></i><b>(2)</b>
     protocol: TCP
   selector:
     app: couchbase
-    couchbase_cluster: cb-example <i class="conum" data-value="3"></i><b>(3)</b>
-  sessionAffinity: ClientIP</code></pre>
+    couchbase_cluster: cb-example <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -321,7 +320,7 @@ spec:
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>When Couchbase Cluster has TLS enabled, port 18091 must be used.</td>
+<td>Keep this port as its default value of 9091 as this is the default port the Couchbase Exporter will be writing to.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -337,20 +336,11 @@ Adding the <code>couchbase_cluster: cb-example</code> selector will constrain th
 <div class="sect2">
 <h3 id="create-the-couchbase-servicemonitor"><a class="anchor" href="#create-the-couchbase-servicemonitor"></a>Create the Couchbase <code>ServiceMonitor</code></h3>
 <div class="paragraph">
-<p>The <code>ServiceMonitor</code> tells Prometheus to monitor the <code>Service</code> resource we just defined which then enables Prometheus to scrape for metrics provided by Couchbase Server.</p>
+<p>The <code>ServiceMonitor</code> tells Prometheus to monitor the <code>Service</code> resource we just defined which then enables Prometheus to scrape for metrics provided by the Couchbase exporter.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: Secret
-metadata:
-  name: cb-example-auth
-  namespace: default
-stringData:
-  username: &lt;my-cb-username&gt;
-  password: &lt;my-cb-password&gt;
----
-apiVersion: monitoring.coreos.com/v1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: couchbase
@@ -361,20 +351,15 @@ spec:
   endpoints:
   - port: metrics       <i class="conum" data-value="2"></i><b>(2)</b>
     interval: 5s        <i class="conum" data-value="3"></i><b>(3)</b>
-    basicAuth:          <i class="conum" data-value="4"></i><b>(4)</b>
-      password:
-        name: cb-example-auth
-        key: password
-      username:
-        name: cb-example-auth
-        key: username
-    tlsConfig: {}       <i class="conum" data-value="5"></i><b>(5)</b>
+    bearerTokenSecret:  <i class="conum" data-value="4"></i><b>(4)</b>
+      key: token <i class="conum" data-value="5"></i><b>(5)</b>
+      name: cb-metrics-token <i class="conum" data-value="6"></i><b>(6)</b>
   namespaceSelector:
     matchNames:
-    - default <i class="conum" data-value="6"></i><b>(6)</b>
+    - default <i class="conum" data-value="7"></i><b>(7)</b>
   selector:
     matchLabels:
-      app: couchbase <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
+      app: couchbase <i class="conum" data-value="8"></i><b>(8)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -394,20 +379,24 @@ For examples of this tutorial we have just left it in the <code>default</code> n
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Prometheus Operator can authenticate to Couchbase using the same username and password as the Couchbase Operator as long as the authentication Secret also exists in the same namespace as the ServiceMonitor resource.</td>
+<td>If it is specified in the <code>CouchbaseCluster</code> spec, by <a href="howto-prometheus.html#Configuration" class="xref page"><code>spec.monitoring.prometheus.authorizationSecret</code></a>, we then need to provide the correct <code>Secret</code> details in order for Prometheus to be able to gain access to the scrape endpoints.
+Please see <a href="howto-prometheus.html#Configuration" class="xref page">Configure Prometheus Metrics Collection</a> on how to create said <code>Secret</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>The <code>tlsConfig</code> is required when the metric target is exposed over TLS.
-Refer to the <a href="https://prometheus-operator.dev/docs/operator/api/#monitoring.coreos.com/v1.TLSConfig">TLS Configuration Reference</a> documentation for supported attributes.
-In production you should ensure that your client certificates are signed by the same root CA that is installed within the Couchbase Server.</td>
+<td>Pass in the value of the <code>key</code> field in the secret data.
+In this example the <code>key</code> value is <code>token</code> if we have the corresponding <code>Secret</code> with value <code>{data: {token: base64encodedTokenHere}}</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Here we want to match the namespace of the Couchbase Metrics <code>Service</code> we have just created.</td>
+<td><code>name</code> is simply the name of your <code>Secret</code> containing the bearer token.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Here we want to match the namespace of the Couchbase Metrics <code>Service</code> we have just created.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
 <td>Similar to the <code>namespaceSelector</code>, this is a simple <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/"><code>labelSelector</code></a> that will look for our <code>Service</code> through label discovery.</td>
 </tr>
 </table>
@@ -529,6 +518,162 @@ One you may run into is the <code>ServiceMonitor</code> reporting problems due t
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="working-with-the-prometheus-operator-helm-chart"><a class="anchor" href="#working-with-the-prometheus-operator-helm-chart"></a>Working with the Prometheus Operator Helm Chart</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is also possible to instead use the <a href="https://github.com/helm/charts/tree/master/stable/prometheus-operator" target="_blank" rel="noopener">Prometheus Operator Helm chart</a> which closely matches the <code>kube-prometheus</code> project.
+To do so we must make Prometheus aware of the additional Service Monitor to monitor our Couchbase metrics service.</p>
+</div>
+<div class="paragraph">
+<p>We use a YAML file to include in the <code>values</code> argument in <code>helm install</code> which will introduce additional configuration into the Helm Chart.
+The following example YAML is almost an exact replica of the Service Monitor YAML example in the <a href="#create-the-couchbase-servicemonitor">earlier section</a>, but with a few important differences.
+These differences exist due to the way that the Helm Chart structure has been defined.
+For further information see the defined <a href="https://github.com/helm/charts/tree/master/stable/prometheus-operator/values.yaml" target="_blank" rel="noopener"><code>values.yaml</code></a> in the Helm chart GitHub repository.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">prometheus:
+  prometheusSpec:
+    additionalServiceMonitors:
+      - name: couchbase
+        additionalLabels:
+          - app: couchbase
+        endpoints:
+          - port: metrics
+            interval: 5s
+             bearerTokenFile:
+               key: token
+               name: cb-metrics-token
+        namespaceSelector:
+          matchNames:
+            - default
+        selector:
+          matchLabels:
+            app: couchbase</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once this YAML file is created and saved, we can then deploy the Prometheus Operator with Helm using the following command.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">helm install prometheus-operator stable/prometheus-operator --values your-helm-config.yaml -n your-namespace</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To make sure the Helm chart will be deployed with the additional configuration, you can add the argument <code>--dry-run</code> to the command to view the intended configuration.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">helm install prometheus-operator stable/prometheus-operator --values your-helm-config.yaml -n your-namespace --dry-run</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you wish to deploy the Prometheus Operator in a separate namespace, make sure to create that namespace if it does not already exist.</p>
+</div>
+<div id="tabs-4" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-4-kubernetes" class="tab">
+<p>Kubernetes</p>
+</li>
+<li id="tabs-4-openshift" class="tab">
+<p>OpenShift</p>
+</li>
+</ul>
+</div>
+<div id="tabs-4-kubernetes--panel" class="tabpanel" aria-labelledby="tabs-4-kubernetes">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ kubectl create namespace your-namespace</code></pre>
+</div>
+</div>
+</div>
+<div id="tabs-4-openshift--panel" class="tabpanel" aria-labelledby="tabs-4-openshift">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ oc create namespace your-namespace</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Now all we need to do is make sure our Couchbase service and Service Monitor are deployed for the Prometheus Operator to recognize.
+However the Prometheus Operator Helm chart deployment requires an extra bit of configuration to the Service Monitor for the Service Monitor to show up in Prometheus.
+The Prometheus Operator has a <code>labelSelector</code> defined looking for the label <code>release: prometheus-operator</code> so we need to add this to our Couchbase Service Monitor.
+With this label added the Service Monitor will look something like the following.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: couchbase
+  namespace: default
+  labels:
+    app: couchbase
+    release: prometheus-operator
+spec:
+  endpoints:
+  - port: metrics
+    interval: 5s
+    bearerTokenSecret:
+      key: token
+      name: cb-metrics-token
+  namespaceSelector:
+    matchNames:
+    - default
+  selector:
+    matchLabels:
+      app: couchbase</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Deploy this slightly modified <code>ServiceMonitor</code> and the Couchbase metrics service.</p>
+</div>
+<div class="paragraph">
+<p>We can now use commands similar to the ones found in the <a href="https://github.com/coreos/kube-prometheus" target="_blank" rel="noopener"><code>kube-prometheus</code></a> documentation, to access Prometheus Server and Grafana.</p>
+</div>
+<div id="tabs-5" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-5-kubernetes" class="tab">
+<p>Kubernetes</p>
+</li>
+<li id="tabs-5-openshift" class="tab">
+<p>OpenShift</p>
+</li>
+</ul>
+</div>
+<div id="tabs-5-kubernetes--panel" class="tabpanel" aria-labelledby="tabs-5-kubernetes">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-console hljs" data-lang="console">$ kubectl port-forward -n your-namespace pod/prometheus-prometheus-operator-prometheus-0 9090:9090
+$ kubectl port-forward -n your-namespace deployment/prometheus-operator-grafana 3000:3000</code></pre>
+</div>
+</div>
+</div>
+<div id="tabs-5-openshift--panel" class="tabpanel" aria-labelledby="tabs-5-openshift">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ oc port-forward -n your-namespace pod/prometheus-prometheus-operator-prometheus-0 9090:9090
+$ oc port-forward -n your-namespace deployment/prometheus-operator-grafana 3000:3000</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>An important distinction however is that the Grafana default password will be different.
+At time of writing the default password is <code>prom-operator</code> rather than <code>admin</code> as it is in <code>kube-prometheus</code>.
+The default password can be discovered in the <code>prometheus-operator-grafana</code> secret through base64 decoding.</p>
+</div>
+</div>
+</div>
 </article>
 </main>
 </div>
@@ -602,7 +747,7 @@ One you may run into is the <code>ServiceMonitor</code> reporting problems due t
 </footer>
 <script src="../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Autonomous Operator","components":["operator"],"latestVersions":{"operator":"2.7"}}
+{"title":"Autonomous Operator","components":["operator"],"latestVersions":{"operator":"2.6"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">

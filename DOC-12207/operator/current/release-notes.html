@@ -12,7 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Release Notes for Couchbase Autonomous Operator 2.7 | Couchbase Docs</title>
+<title>Release Notes for Couchbase Autonomous Operator 2.6 | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/operator/current/release-notes.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
@@ -20,14 +20,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.7">
+<meta name="dcterms.identifier" content="2.6">
 <meta name="page-url" content="/operator/current/release-notes.html">
 <meta name="page-nav-header-levels" content="0">
 
 <meta name="docsearch:component" content="operator">
 <meta name="docsearch:component_title" content="Autonomous Operator">
-<meta name="docsearch:cversion" content="2.7">
-<meta name="docsearch:component_version" content="operator@2.7">
+<meta name="docsearch:cversion" content="2.6">
+<meta name="docsearch:component_version" content="operator@2.6">
 <meta name="docsearch:module" content="">
 <meta name="docsearch:breadcrumbs" content="Autonomous Operator / Release Notes / Release Notes">
 <meta name="docsearch:topic_type" content="">
@@ -201,7 +201,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Release Notes for Couchbase Autonomous Operator 2.7</h1>
+<h1 class="page">Release Notes for Couchbase Autonomous Operator 2.6</h1>
 <div class="labels">
 <ul></ul>
 </div>
@@ -215,7 +215,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Autonomous Operator 2.7 release is primarily focused on platform updates, feature parity with Couchbase Server, improvements to Pod Management and Security, as well as a number of minor fixes.</p>
+<p>Autonomous Operator 2.6 release is primarily focused on platform updates, feature parity with Couchbase Server, improvements to Pod Management and Security, as well as a number of minor fixes.</p>
 </div>
 <div class="paragraph">
 <p>Take a look at the <a href="whats-new.html" class="xref page">What&#8217;s New</a> page for a list of new features and improvements that are available in this release.</p>
@@ -241,7 +241,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="sect1">
-<h2 id="upgrading-to-autonomous-operator-2-7"><a class="anchor" href="#upgrading-to-autonomous-operator-2-7"></a>Upgrading to Autonomous Operator 2.7</h2>
+<h2 id="upgrading-to-autonomous-operator-2-6"><a class="anchor" href="#upgrading-to-autonomous-operator-2-6"></a>Upgrading to Autonomous Operator 2.6</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The necessary steps needed to upgrade to this release depend on which version of the Autonomous Operator you are upgrading from.</p>
@@ -258,7 +258,8 @@ Refer to the <a href="#2.4@operator::howto-operator-upgrade.adoc" class="xref un
 <h3 id="upgrading-from-2-2-2-3-2-4-or-2-5"><a class="anchor" href="#upgrading-from-2-2-2-3-2-4-or-2-5"></a>Upgrading from 2.2, 2.3, 2.4, or 2.5</h3>
 <div class="paragraph">
 <p>There are no additional upgrade steps when upgrading from these versions, and you may follow the <a href="howto-operator-upgrade.html" class="xref page">standard upgrade process</a>.
-However, due to <a href="https://issues.couchbase.com/browse/K8S-3097" target="_blank" rel="noopener">K8S-3097</a>, all users will encounter a mandatory upgrade cycle when upgrading from releases older than 2.5.0, to expose the missing Indexer HTTPS Port (see <a href="../../server/current/install/install-ports.html#detailed-port-description" class="xref page">Detailed Port Description</a> for network port requirements).</p>
+However, due to <a href="https://issues.couchbase.com/browse/K8S-3097" target="_blank" rel="noopener">K8S-3097</a>, all users will encounter a mandatory upgrade cycle when upgrading from a release older than 2.5.0, to versions 2.5.0, 2.5.1, or 2.6.0 through 2.6.3, to expose the missing Indexer HTTPS Port (see <a href="../../server/current/install/install-ports.html#detailed-port-description" class="xref page">Detailed Port Description</a> for network port requirements).
+This behavior has changed in version 2.5.2 and 2.6.4, and there is no mandatory upgrade cycle - the missing port is added the next time there is a regular maintenance activity that involves Pod creation.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -279,6 +280,251 @@ For large, production databases, ensure an adequate maintenance window is schedu
 </tr>
 </table>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="release-v264"><a class="anchor" href="#release-v264"></a>Release 2.6.4</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Couchbase Autonomous Operator 2.6.4 was released in June 2024.</p>
+</div>
+<div class="sect2">
+<h3 id="changes-in-behavior-v264"><a class="anchor" href="#changes-in-behavior-v264"></a>New Features and Behavioral Changes</h3>
+<div class="sect3">
+<h4 id="pod-lifecycle"><a class="anchor" href="#pod-lifecycle"></a>Pod Lifecycle</h4>
+<div class="paragraph">
+<p>The default value for the per-Pod <code>terminationGracePeriodSeconds</code> is 30 seconds (see <a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-termination" target="_blank" rel="noopener">Termination of Pods</a>).
+From Operator 2.6.4, any new Pods will be created with <code>terminationGracePeriodSeconds</code> set to 1200 seconds (20 minutes), to allow time for Couchbase Server to quiesce all connections and cleanly shut down.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="fixed-issues-v264"><a class="anchor" href="#fixed-issues-v264"></a>Fixed Issues</h3>
+<table id="table-fixed-issues-v264" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 27.4725%;">
+<col style="width: 72.5275%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://issues.couchbase.com/browse/K8S-3452" target="_blank" rel="noopener">K8S-3452</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Summary:</strong> Previously the Operator was triggering a mandatory upgrade cycle when upgrading from 2.4.x or earlier.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Various</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Summary:</strong> A number of further stability/reliability improvements around in-place upgrades (using Graceful Failover / Delta Recovery where applicable).</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="release-v263"><a class="anchor" href="#release-v263"></a>Release 2.6.3</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Couchbase Autonomous Operator 2.6.3 was released in April 2024.</p>
+</div>
+<div class="sect2">
+<h3 id="fixed-issues-v263"><a class="anchor" href="#fixed-issues-v263"></a>Fixed Issues</h3>
+<table id="table-fixed-issues-v263" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 27.4725%;">
+<col style="width: 72.5275%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://issues.couchbase.com/browse/K8S-3430" target="_blank" rel="noopener">K8S-3430</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Summary:</strong> Previously the Operator was not setting the correct recovery type for nodes without the Data Service.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="release-v262"><a class="anchor" href="#release-v262"></a>Release 2.6.2</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Couchbase Autonomous Operator 2.6.2 was released in March 2024.</p>
+</div>
+<div class="sect2">
+<h3 id="fixed-issues-v262"><a class="anchor" href="#fixed-issues-v262"></a>Fixed Issues</h3>
+<table id="table-fixed-issues-v262" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 27.4725%;">
+<col style="width: 72.5275%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://issues.couchbase.com/browse/K8S-3391" target="_blank" rel="noopener">K8S-3391</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Summary:</strong> Previously the Operator was not correctly deleting un-managed XDCR Remote Cluster References.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://issues.couchbase.com/browse/K8S-3392" target="_blank" rel="noopener">K8S-3392</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Summary:</strong> Previously the Operator was not using the correct failover mechanism for nodes without the Data or Index Service.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="release-v261"><a class="anchor" href="#release-v261"></a>Release 2.6.1</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Couchbase Autonomous Operator 2.6.1 was released in February 2024.</p>
+</div>
+<div class="sect2">
+<h3 id="changes-in-behavior-v261"><a class="anchor" href="#changes-in-behavior-v261"></a>New Features and Behavioral Changes</h3>
+<div class="sect3">
+<h4 id="cloud-native-gateway"><a class="anchor" href="#cloud-native-gateway"></a>Cloud Native Gateway</h4>
+<div class="paragraph">
+<p>The Couchbase <em>Cloud Native Gateway</em> (CNG), a new component that allows applications to access Couchbase through a set of RPC network endpoints based on <a href="https://grpc.io/">gRPC</a>, is now Generally Available.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="concept-cloud-native-gateway.html" class="xref page">Cloud Native Gateway</a> for details.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="miscellaneous-improvements"><a class="anchor" href="#miscellaneous-improvements"></a>Miscellaneous Improvements</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Diffs in the Operator&#8217;s "Resource Updated" logs are now human readable (<a href="https://issues.couchbase.com/browse/K8S-3268" target="_blank" rel="noopener">K8S-3268</a>).</p>
+</li>
+<li>
+<p>Added missing Magma-related Bucket settings (<a href="https://issues.couchbase.com/browse/K8S-3290" target="_blank" rel="noopener">K8S-3290</a>).</p>
+</li>
+<li>
+<p>When performing a Rolling Upgrade, upgrade the Couchbase Server Orchestrator node last to reduce time spent waiting on orchestrator elections (<a href="https://issues.couchbase.com/browse/K8S-3305" target="_blank" rel="noopener">K8S-3305</a>).</p>
+</li>
+<li>
+<p>Improved error reporting during Alternate Address setup (<a href="https://issues.couchbase.com/browse/K8S-3317" target="_blank" rel="noopener">K8S-3317</a>).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="fixed-issues-v261"><a class="anchor" href="#fixed-issues-v261"></a>Fixed Issues</h3>
+<table id="table-fixed-issues-v261" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 27.4725%;">
+<col style="width: 72.5275%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://issues.couchbase.com/browse/K8S-3264" target="_blank" rel="noopener">K8S-3264</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Summary:</strong> Previously the Operator was not correctly honouring the <code>useVirtualPath</code> setting in the <code>CouchbaseBackup</code> resource.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://issues.couchbase.com/browse/K8S-3282" target="_blank" rel="noopener">K8S-3282</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Summary:</strong> Previously the Operator was emitting an extraneous "unknown field" message to the logs.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://issues.couchbase.com/browse/K8S-3302" target="_blank" rel="noopener">K8S-3302</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Summary:</strong> Previously the Operator would raise a nil reference exception when a Cluster was defined with logging enabled, but a Server Group is added without a default or logging mount defined.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://issues.couchbase.com/browse/K8S-3331" target="_blank" rel="noopener">K8S-3331</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Summary:</strong> Previously the Operator was not performing a Graceful Failover during a Delta Recovery-based Rolling Upgrade.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://issues.couchbase.com/browse/K8S-3332" target="_blank" rel="noopener">K8S-3332</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Summary:</strong> Previously the Operator was failing to rotate Encrypted Private Keys with Couchbase Server 7.2.4 and later.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://issues.couchbase.com/browse/K8S-3358" target="_blank" rel="noopener">K8S-3358</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Summary:</strong> Previously there was a conflict between the Readiness Probe configurations of the Exporter and Cloud Native Gateway sidecars.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://issues.couchbase.com/browse/K8S-3365" target="_blank" rel="noopener">K8S-3365</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Summary:</strong> Previously the Delta Recovery upgrade test was using invalid parameters.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://issues.couchbase.com/browse/K8S-3374" target="_blank" rel="noopener">K8S-3374</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Summary:</strong> Previously the Operator was failing to pass the correct credentials to the Cloud Native Gateway sidecar.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -496,7 +742,7 @@ Couchbase is thankful to all of the individuals that have created these third-pa
 </footer>
 <script src="../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Autonomous Operator","components":["operator"],"latestVersions":{"operator":"2.7"}}
+{"title":"Autonomous Operator","components":["operator"],"latestVersions":{"operator":"2.6"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">

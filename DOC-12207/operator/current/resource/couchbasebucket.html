@@ -20,14 +20,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.7">
+<meta name="dcterms.identifier" content="2.6">
 <meta name="page-url" content="/operator/current/resource/couchbasebucket.html">
 <meta name="page-nav-header-levels" content="0">
 
 <meta name="docsearch:component" content="operator">
 <meta name="docsearch:component_title" content="Autonomous Operator">
-<meta name="docsearch:cversion" content="2.7">
-<meta name="docsearch:component_version" content="operator@2.7">
+<meta name="docsearch:cversion" content="2.6">
+<meta name="docsearch:component_version" content="operator@2.6">
 <meta name="docsearch:module" content="">
 <meta name="docsearch:breadcrumbs" content="Autonomous Operator / Reference / Resource Types / CouchbaseBucket Resource">
 <meta name="docsearch:topic_type" content="">
@@ -217,8 +217,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="sectionbody">
 <div class="paragraph">
 <p>The CouchbaseBucket resource defines a set of documents in Couchbase server.
-A Couchbase client connects to and operates on a bucket, which provides independent
-management of a set documents and a security boundary for role based access control.
+A Couchbase client connects to and operates on a bucket, which provides independent management of a set documents and a security boundary for role based access control.
 A CouchbaseBucket provides replication and persistence for documents contained by it.</p>
 </div>
 <div class="paragraph">
@@ -241,7 +240,6 @@ A CouchbaseBucket provides replication and persistence for documents contained b
   <a href="#couchbasebuckets-spec-memoryquota">memoryQuota</a>: 100Mi
   <a href="#couchbasebuckets-spec-minimumdurability">minimumDurability</a>: ""
   <a href="#couchbasebuckets-spec-name">name</a>: ""
-  <a href="#couchbasebuckets-spec-rank">rank</a>: 0
   <a href="#couchbasebuckets-spec-replicas">replicas</a>: 1
   <a href="#couchbasebuckets-spec-scopes">scopes</a>:
     <a href="#couchbasebuckets-spec-scopes-managed">managed</a>: false
@@ -267,8 +265,7 @@ A CouchbaseBucket provides replication and persistence for documents contained b
 <h3 id="description"><a class="anchor" href="#description"></a>Description</h3>
 <div class="paragraph">
 <p>APIVersion defines the versioned schema of this representation of an object.
-Servers should convert recognized schemas to the latest internal value, and
-may reject unrecognized values.
+Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values.
 More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources" class="bare">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</a>.</p>
 </div>
 </div>
@@ -419,8 +416,7 @@ Annotations are arbitrary, and not indexed, so cannot be used to select resource
 <div class="sect2">
 <h3 id="description-8"><a class="anchor" href="#description-8"></a>Description</h3>
 <div class="paragraph">
-<p>CouchbaseBucketSpec is the specification for a Couchbase bucket resource, and
-allows the bucket to be customized.</p>
+<p>CouchbaseBucketSpec is the specification for a Couchbase bucket resource, and allows the bucket to be customized.</p>
 </div>
 </div>
 <div class="sect2">
@@ -441,16 +437,11 @@ allows the bucket to be customized.</p>
 <h4 id="description-9"><a class="anchor" href="#description-9"></a>Description</h4>
 <div class="paragraph">
 <p>CompressionMode defines how Couchbase server handles document compression.
-When
-off, documents are stored in memory, and transferred to the client uncompressed.
-When passive, documents are stored compressed in memory, and transferred to the
-client compressed when requested.
-When active, documents are stored compresses
-in memory and when transferred to the client.
-This field must be "off", "passive"
-or "active", defaulting to "passive".
-Be aware "off" in YAML 1.2 is a boolean, so
-must be quoted as a string in configuration files.</p>
+When off, documents are stored in memory, and transferred to the client uncompressed.
+When passive, documents are stored compressed in memory, and transferred to the client compressed when requested.
+When active, documents are stored compresses in memory and when transferred to the client.
+This field must be "off", "passive" or "active", defaulting to "passive".
+Be aware "off" in YAML 1.2 is a boolean, so must be quoted as a string in configuration files.</p>
 </div>
 </div>
 </div>
@@ -472,12 +463,9 @@ must be quoted as a string in configuration files.</p>
 <h4 id="description-10"><a class="anchor" href="#description-10"></a>Description</h4>
 <div class="paragraph">
 <p>ConflictResolution defines how XDCR handles concurrent write conflicts.
-Sequence number
-based resolution selects the document with the highest sequence number as the most recent.
-Timestamp based resolution selects the document that was written to most recently as the
-most recent.
-This field must be "seqno" (sequence based), or "lww" (timestamp based),
-defaulting to "seqno".</p>
+Sequence number based resolution selects the document with the highest sequence number as the most recent.
+Timestamp based resolution selects the document that was written to most recently as the most recent.
+This field must be "seqno" (sequence based), or "lww" (timestamp based), defaulting to "seqno".</p>
 </div>
 </div>
 </div>
@@ -531,13 +519,9 @@ This field defaults to false.</p>
 <h4 id="description-13"><a class="anchor" href="#description-13"></a>Description</h4>
 <div class="paragraph">
 <p>EvictionPolicy controls how Couchbase handles memory exhaustion.
-Value only eviction
-flushes documents to disk but maintains document metadata in memory in order to improve
-query performance.
-Full eviction removes all data from memory after the document is
-flushed to disk.
-This field must be "valueOnly" or "fullEviction", defaulting to
-"valueOnly".</p>
+Value only eviction flushes documents to disk but maintains document metadata in memory in order to improve query performance.
+Full eviction removes all data from memory after the document is flushed to disk.
+This field must be "valueOnly" or "fullEviction", defaulting to "valueOnly".</p>
 </div>
 </div>
 </div>
@@ -560,8 +544,7 @@ This field must be "valueOnly" or "fullEviction", defaulting to
 <div class="paragraph">
 <p>IOPriority controls how many threads a bucket has, per pod, to process reads and writes.
 This field must be "low" or "high", defaulting to "low".
-Modification of this field will
-cause a temporary service disruption as threads are restarted.</p>
+Modification of this field will cause a temporary service disruption as threads are restarted.</p>
 </div>
 </div>
 </div>
@@ -576,21 +559,13 @@ cause a temporary service disruption as threads are restarted.</p>
 <div class="sect3">
 <h4 id="description-15"><a class="anchor" href="#description-15"></a>Description</h4>
 <div class="paragraph">
-<p>MaxTTL defines how long a document is permitted to exist for, without
-modification, until it is automatically deleted.
-This is a default and maximum
-time-to-live and may be set to a lower value by the client.
-If the client specifies
-a higher value, then it is truncated to the maximum durability.
-Documents are
-removed by Couchbase, after they have expired, when either accessed, the expiry
-pager is run, or the bucket is compacted.
-When set to 0, then documents are not
-expired by default.
-This field must be a duration in the range 0-2147483648s,
-defaulting to 0.
-More info:
-<a href="https://golang.org/pkg/time/#ParseDuration" class="bare">https://golang.org/pkg/time/#ParseDuration</a>.</p>
+<p>MaxTTL defines how long a document is permitted to exist for, without modification, until it is automatically deleted.
+This is a default and maximum time-to-live and may be set to a lower value by the client.
+If the client specifies a higher value, then it is truncated to the maximum durability.
+Documents are removed by Couchbase, after they have expired, when either accessed, the expiry pager is run, or the bucket is compacted.
+When set to 0, then documents are not expired by default.
+This field must be a duration in the range 0-2147483648s, defaulting to 0.
+More info: <a href="https://golang.org/pkg/time/#ParseDuration" class="bare">https://golang.org/pkg/time/#ParseDuration</a>.</p>
 </div>
 </div>
 </div>
@@ -612,14 +587,10 @@ More info:
 <h4 id="description-16"><a class="anchor" href="#description-16"></a>Description</h4>
 <div class="paragraph">
 <p>MemoryQuota is a memory limit to the size of a bucket.
-When this limit is exceeded,
-documents will be evicted from memory to disk as defined by the eviction policy.
-The
-memory quota is defined per Couchbase pod running the data service.
-This field defaults
-to, and must be greater than or equal to 100Mi.
-More info:
-<a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
+When this limit is exceeded, documents will be evicted from memory to disk as defined by the eviction policy.
+The memory quota is defined per Couchbase pod running the data service.
+This field defaults to, and must be greater than or equal to 100Mi.
+More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
 </div>
 </div>
 </div>
@@ -637,23 +608,13 @@ More info:
 <div class="sect3">
 <h4 id="description-17"><a class="anchor" href="#description-17"></a>Description</h4>
 <div class="paragraph">
-<p>MiniumumDurability defines how durable a document write is by default, and can
-be made more durable by the client.
+<p>MiniumumDurability defines how durable a document write is by default, and can be made more durable by the client.
 This feature enables ACID transactions.
-When none, Couchbase server will respond when the document is in memory, it will
-become eventually consistent across the cluster.
-When majority, Couchbase server will
-respond when the document is replicated to at least half of the pods running the
-data service in the cluster.
-When majorityAndPersistActive, Couchbase server will
-respond when the document is replicated to at least half of the pods running the
-data service in the cluster and the document has been persisted to disk on the
-document master pod.
-When persistToMajority, Couchbase server will respond when
-the document is replicated and persisted to disk on at least half of the pods running
-the data service in the cluster.
-This field must be either "none", "majority",
-"majorityAndPersistActive" or "persistToMajority", defaulting to "none".</p>
+When none, Couchbase server will respond when the document is in memory, it will become eventually consistent across the cluster.
+When majority, Couchbase server will respond when the document is replicated to at least half of the pods running the data service in the cluster.
+When majorityAndPersistActive, Couchbase server will respond when the document is replicated to at least half of the pods running the data service in the cluster and the document has been persisted to disk on the document master pod.
+When persistToMajority, Couchbase server will respond when the document is replicated and persisted to disk on at least half of the pods running the data service in the cluster.
+This field must be either "none", "majority", "majorityAndPersistActive" or "persistToMajority", defaulting to "none".</p>
 </div>
 </div>
 </div>
@@ -675,52 +636,17 @@ This field must be either "none", "majority",
 <h4 id="description-18"><a class="anchor" href="#description-18"></a>Description</h4>
 <div class="paragraph">
 <p>Name is the name of the bucket within Couchbase server.
-By default the Operator
-will use the <code>metadata.name</code> field to define the bucket name.
-The <code>metadata.name</code>
-field only supports a subset of the supported character set.
-When specified, this
-field overrides <code>metadata.name</code>.
-Legal bucket names have a maximum length of 100
-characters and may be composed of any character from "a-z", "A-Z", "0-9" and "-_%\.".</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="couchbasebuckets-spec-rank"><a class="anchor" href="#couchbasebuckets-spec-rank"></a>couchbasebuckets.spec.rank</h3>
-<div class="sect3">
-<h4 id="constraints-19"><a class="anchor" href="#constraints-19"></a>Constraints</h4>
-<div class="paragraph">
-<p><strong>Type</strong>: <code>integer</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Default</strong>: <code>0</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Minimum</strong>: <code>0</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Maximum</strong>: <code>1000</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="description-19"><a class="anchor" href="#description-19"></a>Description</h4>
-<div class="paragraph">
-<p>Rank determines the bucket’s place in the order in which the rebalance process
-handles the buckets on the cluster.
-The higher a bucket’s assigned integer
-(in relation to the integers assigned other buckets), the sooner in the
-rebalance process the bucket is handled.
-This assignment of rank allows a
-cluster’s most mission-critical data to be rebalanced with top priority.
-This option is only supported for Couchbase Server 7.6.0+.</p>
+By default the Operator will use the <code>metadata.name</code> field to define the bucket name.
+The <code>metadata.name</code> field only supports a subset of the supported character set.
+When specified, this field overrides <code>metadata.name</code>.
+Legal bucket names have a maximum length of 100 characters and may be composed of any character from "a-z", "A-Z", "0-9" and "-_%\.".</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="couchbasebuckets-spec-replicas"><a class="anchor" href="#couchbasebuckets-spec-replicas"></a>couchbasebuckets.spec.replicas</h3>
 <div class="sect3">
-<h4 id="constraints-20"><a class="anchor" href="#constraints-20"></a>Constraints</h4>
+<h4 id="constraints-19"><a class="anchor" href="#constraints-19"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>integer</code></p>
 </div>
@@ -735,87 +661,71 @@ This option is only supported for Couchbase Server 7.6.0+.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-20"><a class="anchor" href="#description-20"></a>Description</h4>
+<h4 id="description-19"><a class="anchor" href="#description-19"></a>Description</h4>
 <div class="paragraph">
 <p>Replicas defines how many copies of documents Couchbase server maintains.
-This directly
-affects how fault tolerant a Couchbase cluster is.
-With a single replica, the cluster
-can tolerate one data pod going down and still service requests without data loss.
-The
-number of replicas also affect memory use.
-With a single replica, the effective memory
-quota for documents is halved, with two replicas it is one third.
-The number of replicas
-must be between 0 and 3, defaulting to 1.</p>
+This directly affects how fault tolerant a Couchbase cluster is.
+With a single replica, the cluster can tolerate one data pod going down and still service requests without data loss.
+The number of replicas also affect memory use.
+With a single replica, the effective memory quota for documents is halved, with two replicas it is one third.
+The number of replicas must be between 0 and 3, defaulting to 1.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="couchbasebuckets-spec-scopes"><a class="anchor" href="#couchbasebuckets-spec-scopes"></a>couchbasebuckets.spec.scopes</h3>
 <div class="sect3">
-<h4 id="constraints-21"><a class="anchor" href="#constraints-21"></a>Constraints</h4>
+<h4 id="constraints-20"><a class="anchor" href="#constraints-20"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-21"><a class="anchor" href="#description-21"></a>Description</h4>
+<h4 id="description-20"><a class="anchor" href="#description-20"></a>Description</h4>
 <div class="paragraph">
-<p>Scopes defines whether the Operator manages scopes for the bucket or not, and
-the set of scopes defined for the bucket.</p>
+<p>Scopes defines whether the Operator manages scopes for the bucket or not, and the set of scopes defined for the bucket.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="couchbasebuckets-spec-scopes-managed"><a class="anchor" href="#couchbasebuckets-spec-scopes-managed"></a>couchbasebuckets.spec.scopes.managed</h3>
 <div class="sect3">
-<h4 id="constraints-22"><a class="anchor" href="#constraints-22"></a>Constraints</h4>
+<h4 id="constraints-21"><a class="anchor" href="#constraints-21"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-22"><a class="anchor" href="#description-22"></a>Description</h4>
+<h4 id="description-21"><a class="anchor" href="#description-21"></a>Description</h4>
 <div class="paragraph">
 <p>Managed defines whether scopes are managed for this bucket.
-This field is <code>false</code> by default, and the Operator will take no actions that
-will affect scopes and collections in this bucket.
-The default scope and
-collection will be present.
-When set to <code>true</code>, the Operator will manage
-user defined scopes, and optionally, their collections as defined by the
-<code>CouchbaseScope</code>, <code>CouchbaseScopeGroup</code>, <code>CouchbaseCollection</code> and
-<code>CouchbaseCollectionGroup</code> resource documentation.
-If this field is set to
-<code>false</code> while the  already managed, then the Operator will leave whatever
-configuration is already present.</p>
+This field is <code>false</code> by default, and the Operator will take no actions that will affect scopes and collections in this bucket.
+The default scope and collection will be present.
+When set to <code>true</code>, the Operator will manage user defined scopes, and optionally, their collections as defined by the <code>CouchbaseScope</code>, <code>CouchbaseScopeGroup</code>, <code>CouchbaseCollection</code> and <code>CouchbaseCollectionGroup</code> resource documentation.
+If this field is set to <code>false</code> while the  already managed, then the Operator will leave whatever configuration is already present.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="couchbasebuckets-spec-scopes-resources"><a class="anchor" href="#couchbasebuckets-spec-scopes-resources"></a>couchbasebuckets.spec.scopes.resources</h3>
 <div class="sect3">
-<h4 id="constraints-23"><a class="anchor" href="#constraints-23"></a>Constraints</h4>
+<h4 id="constraints-22"><a class="anchor" href="#constraints-22"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-23"><a class="anchor" href="#description-23"></a>Description</h4>
+<h4 id="description-22"><a class="anchor" href="#description-22"></a>Description</h4>
 <div class="paragraph">
-<p>Resources is an explicit list of named resources that will be considered
-for inclusion in this bucket.
-If a resource reference doesn&#8217;t
-match a resource, then no error conditions are raised due to undefined
-resource creation ordering and eventual consistency.</p>
+<p>Resources is an explicit list of named resources that will be considered for inclusion in this bucket.
+If a resource reference doesn&#8217;t match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="couchbasebuckets-spec-scopes-resources-kind"><a class="anchor" href="#couchbasebuckets-spec-scopes-resources-kind"></a>couchbasebuckets.spec.scopes.resources.kind</h3>
 <div class="sect3">
-<h4 id="constraints-24"><a class="anchor" href="#constraints-24"></a>Constraints</h4>
+<h4 id="constraints-23"><a class="anchor" href="#constraints-23"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
@@ -827,21 +737,18 @@ resource creation ordering and eventual consistency.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-24"><a class="anchor" href="#description-24"></a>Description</h4>
+<h4 id="description-23"><a class="anchor" href="#description-23"></a>Description</h4>
 <div class="paragraph">
 <p>Kind indicates the kind of resource that is being referenced.
-A scope
-can only reference <code>CouchbaseScope</code> and <code>CouchbaseScopeGroup</code>
-resource kinds.
-This field defaults to <code>CouchbaseScope</code> if not
-specified.</p>
+A scope can only reference <code>CouchbaseScope</code> and <code>CouchbaseScopeGroup</code> resource kinds.
+This field defaults to <code>CouchbaseScope</code> if not specified.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="couchbasebuckets-spec-scopes-resources-name"><a class="anchor" href="#couchbasebuckets-spec-scopes-resources-name"></a>couchbasebuckets.spec.scopes.resources.name</h3>
 <div class="sect3">
-<h4 id="constraints-25"><a class="anchor" href="#constraints-25"></a>Constraints</h4>
+<h4 id="constraints-24"><a class="anchor" href="#constraints-24"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -859,36 +766,33 @@ specified.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-25"><a class="anchor" href="#description-25"></a>Description</h4>
+<h4 id="description-24"><a class="anchor" href="#description-24"></a>Description</h4>
 <div class="paragraph">
 <p>Name is the name of the Kubernetes resource name that is being referenced.
-Legal scope names have a maximum length of 251
-characters and may be composed of any character from "a-z", "A-Z", "0-9" and "_-%".</p>
+Legal scope names have a maximum length of 251 characters and may be composed of any character from "a-z", "A-Z", "0-9" and "_-%".</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="couchbasebuckets-spec-scopes-selector"><a class="anchor" href="#couchbasebuckets-spec-scopes-selector"></a>couchbasebuckets.spec.scopes.selector</h3>
 <div class="sect3">
-<h4 id="constraints-26"><a class="anchor" href="#constraints-26"></a>Constraints</h4>
+<h4 id="constraints-25"><a class="anchor" href="#constraints-25"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-26"><a class="anchor" href="#description-26"></a>Description</h4>
+<h4 id="description-25"><a class="anchor" href="#description-25"></a>Description</h4>
 <div class="paragraph">
-<p>Selector allows resources to be implicitly considered for inclusion in this
-bucket.
-More info:
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta" class="bare">https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta</a>.</p>
+<p>Selector allows resources to be implicitly considered for inclusion in this bucket.
+More info: <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta" class="bare">https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="couchbasebuckets-spec-storagebackend"><a class="anchor" href="#couchbasebuckets-spec-storagebackend"></a>couchbasebuckets.spec.storageBackend</h3>
 <div class="sect3">
-<h4 id="constraints-27"><a class="anchor" href="#constraints-27"></a>Constraints</h4>
+<h4 id="constraints-26"><a class="anchor" href="#constraints-26"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
@@ -897,11 +801,12 @@ More info:
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-27"><a class="anchor" href="#description-27"></a>Description</h4>
+<h4 id="description-26"><a class="anchor" href="#description-26"></a>Description</h4>
 <div class="paragraph">
 <p>StorageBackend to be assigned to and used by the bucket.
 Only valid for Couchbase Server 7.0.0 onward.
 Two different backend storage mechanisms can be used - "couchstore" or "magma", defaulting to "couchstore".
+This cannot be edited after bucket creation.
 Note: "magma" is only valid for Couchbase Server 7.1.0 onward.</p>
 </div>
 </div>
@@ -981,7 +886,7 @@ Note: "magma" is only valid for Couchbase Server 7.1.0 onward.</p>
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Autonomous Operator","components":["operator"],"latestVersions":{"operator":"2.7"}}
+{"title":"Autonomous Operator","components":["operator"],"latestVersions":{"operator":"2.6"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">

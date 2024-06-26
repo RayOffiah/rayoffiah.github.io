@@ -20,14 +20,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.7">
+<meta name="dcterms.identifier" content="2.6">
 <meta name="page-url" content="/operator/current/resource/couchbasebackuprestore.html">
 <meta name="page-nav-header-levels" content="0">
 
 <meta name="docsearch:component" content="operator">
 <meta name="docsearch:component_title" content="Autonomous Operator">
-<meta name="docsearch:cversion" content="2.7">
-<meta name="docsearch:component_version" content="operator@2.7">
+<meta name="docsearch:cversion" content="2.6">
+<meta name="docsearch:component_version" content="operator@2.6">
 <meta name="docsearch:module" content="">
 <meta name="docsearch:breadcrumbs" content="Autonomous Operator / Reference / Resource Types / CouchbaseBackupRestore Resource">
 <meta name="docsearch:topic_type" content="">
@@ -216,8 +216,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>CouchbaseBackupRestore allows the restoration of all Couchbase cluster data from
-a CouchbaseBackup resource.</p>
+<p>CouchbaseBackupRestore allows the restoration of all Couchbase cluster data from a CouchbaseBackup resource.</p>
 </div>
 <div class="paragraph">
 <p>The following is an example resource, depicting the overall structure and any defaults (consult the field reference for valid values for "empty" values, such as empty strings etc.):</p>
@@ -311,8 +310,7 @@ a CouchbaseBackup resource.</p>
 <h3 id="description"><a class="anchor" href="#description"></a>Description</h3>
 <div class="paragraph">
 <p>APIVersion defines the versioned schema of this representation of an object.
-Servers should convert recognized schemas to the latest internal value, and
-may reject unrecognized values.
+Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values.
 More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources" class="bare">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</a>.</p>
 </div>
 </div>
@@ -463,10 +461,8 @@ Annotations are arbitrary, and not indexed, so cannot be used to select resource
 <div class="sect2">
 <h3 id="description-8"><a class="anchor" href="#description-8"></a>Description</h3>
 <div class="paragraph">
-<p>CouchbaseBackupRestoreSpec allows the specification of data restoration to be
-configured.
-This includes the backup and repository to restore data from, and
-the time range of data to be restored.</p>
+<p>CouchbaseBackupRestoreSpec allows the specification of data restoration to be configured.
+This includes the backup and repository to restore data from, and the time range of data to be restored.</p>
 </div>
 </div>
 <div class="sect2">
@@ -498,8 +494,7 @@ the time range of data to be restored.</p>
 <div class="sect3">
 <h4 id="description-10"><a class="anchor" href="#description-10"></a>Description</h4>
 <div class="paragraph">
-<p>The backup resource name associated with this restore, or the backup PVC
-name to restore from.</p>
+<p>The backup resource name associated with this restore, or the backup PVC name to restore from.</p>
 </div>
 </div>
 </div>
@@ -517,8 +512,7 @@ name to restore from.</p>
 <p><strong>DEPRECATED</strong> - by spec.data.</p>
 </div>
 <div class="paragraph">
-<p>Specific buckets can be explicitly included or excluded in the restore,
-as well as bucket mappings.
+<p>Specific buckets can be explicitly included or excluded in the restore, as well as bucket mappings.
 This field is now ignored.</p>
 </div>
 </div>
@@ -534,8 +528,7 @@ This field is now ignored.</p>
 <div class="sect3">
 <h4 id="description-12"><a class="anchor" href="#description-12"></a>Description</h4>
 <div class="paragraph">
-<p>Data allows control over what key-value/document data is included in the
-restore.
+<p>Data allows control over what key-value/document data is included in the restore.
 By default, all data is included.</p>
 </div>
 </div>
@@ -558,16 +551,12 @@ By default, all data is included.</p>
 <h4 id="description-13"><a class="anchor" href="#description-13"></a>Description</h4>
 <div class="paragraph">
 <p>Exclude defines the buckets, scopes or collections that are excluded from the backup.
-When this field is set, it implies that by default everything will be backed up,
-and data items can be explicitly excluded.
+When this field is set, it implies that by default everything will be backed up, and data items can be explicitly excluded.
 You may define an exclusion as a bucket&#8201;&#8212;&#8201;<code>my-bucket</code>, a scope&#8201;&#8212;&#8201;<code>my-bucket.my-scope</code>, or a collection&#8201;&#8212;&#8201;<code>my-bucket.my-scope.my-collection</code>.
-Buckets may contain periods, and therefore must be escaped&#8201;&#8212;&#8201;<code>my\.bucket.my-scope</code>, as
-period is the separator used to delimit scopes and collections.
-Excluded data cannot overlap
-e.g.
+Buckets may contain periods, and therefore must be escaped&#8201;&#8212;&#8201;<code>my\.bucket.my-scope</code>, as period is the separator used to delimit scopes and collections.
+Excluded data cannot overlap e.g.
 specifying <code>my-bucket</code> and <code>my-bucket.my-scope</code> is illegal.
-This field cannot
-be used at the same time as included items.</p>
+This field cannot be used at the same time as included items.</p>
 </div>
 </div>
 </div>
@@ -619,16 +608,12 @@ be used at the same time as included items.</p>
 <h4 id="description-16"><a class="anchor" href="#description-16"></a>Description</h4>
 <div class="paragraph">
 <p>Include defines the buckets, scopes or collections that are included in the restore.
-When this field is set, it implies that by default nothing will be restored,
-and data items must be explicitly included.
+When this field is set, it implies that by default nothing will be restored, and data items must be explicitly included.
 You may define an inclusion as a bucket&#8201;&#8212;&#8201;<code>my-bucket</code>, a scope&#8201;&#8212;&#8201;<code>my-bucket.my-scope</code>, or a collection&#8201;&#8212;&#8201;<code>my-bucket.my-scope.my-collection</code>.
-Buckets may contain periods, and therefore must be escaped&#8201;&#8212;&#8201;<code>my\.bucket.my-scope</code>, as
-period is the separator used to delimit scopes and collections.
-Included data cannot overlap
-e.g.
+Buckets may contain periods, and therefore must be escaped&#8201;&#8212;&#8201;<code>my\.bucket.my-scope</code>, as period is the separator used to delimit scopes and collections.
+Included data cannot overlap e.g.
 specifying <code>my-bucket</code> and <code>my-bucket.my-scope</code> is illegal.
-This field cannot
-be used at the same time as excluded items.</p>
+This field cannot be used at the same time as excluded items.</p>
 </div>
 </div>
 </div>
@@ -645,11 +630,9 @@ be used at the same time as excluded items.</p>
 <div class="paragraph">
 <p>Map allows data items in the restore to be remapped to a different named container.
 Buckets can be remapped to other buckets e.g.
-"source=target", scopes and collections
-can be remapped to other scopes and collections within the same bucket only e.g.
+"source=target", scopes and collections can be remapped to other scopes and collections within the same bucket only e.g.
 "bucket.scope=bucket.other" or "bucket.scope.collection=bucket.scope.other".
-Map
-sources may only be specified once, and may not overlap.</p>
+Map sources may only be specified once, and may not overlap.</p>
 </div>
 </div>
 </div>
@@ -670,8 +653,7 @@ sources may only be specified once, and may not overlap.</p>
 <div class="sect3">
 <h4 id="description-18"><a class="anchor" href="#description-18"></a>Description</h4>
 <div class="paragraph">
-<p>Source defines the data source of the mapping, this may be either
-a bucket, scope or collection.</p>
+<p>Source defines the data source of the mapping, this may be either a bucket, scope or collection.</p>
 </div>
 </div>
 </div>
@@ -692,9 +674,7 @@ a bucket, scope or collection.</p>
 <div class="sect3">
 <h4 id="description-19"><a class="anchor" href="#description-19"></a>Description</h4>
 <div class="paragraph">
-<p>Target defines the data target of the mapping, this may be either
-a bucket, scope or collection, and must refer to the same type
-as the restore source.</p>
+<p>Target defines the data target of the mapping, this may be either a bucket, scope or collection, and must refer to the same type as the restore source.</p>
 </div>
 </div>
 </div>
@@ -710,11 +690,8 @@ as the restore source.</p>
 <h4 id="description-20"><a class="anchor" href="#description-20"></a>Description</h4>
 <div class="paragraph">
 <p>End denotes the last backup to restore from.
-Omitting this field will only
-restore the backup referenced by start.
-This may be specified as
-an integer index (starting from 1), a string specifying a short date
-DD-MM-YYYY, the backup name, or one of either <code>start</code> or <code>oldest</code> keywords.</p>
+Omitting this field will only restore the backup referenced by start.
+This may be specified as an integer index (starting from 1), a string specifying a short date DD-MM-YYYY, the backup name, or one of either <code>start</code> or <code>oldest</code> keywords.</p>
 </div>
 </div>
 </div>
@@ -762,14 +739,7 @@ DD-MM-YYYY, the backup name, or one of either <code>start</code> or <code>oldest
 <div class="sect3">
 <h4 id="description-23"><a class="anchor" href="#description-23"></a>Description</h4>
 <div class="paragraph">
-<p>Forces data in the Couchbase cluster to be overwritten even if the data in the cluster is newer.
-By default, the system does not force updates,
-and all updates use Couchbase&#8217;s conflict resolution mechanism to ensure
-that if newer data exists on the cluster,
-older restored data does not overwrite it.
-However, if <code>couchbasebackuprestores.spec.forceUpdates</code> is true,
-then the backup record will <em>always</em> overwrite the cluster record,
-regardless of Couchbase&#8217;s conflict resolution.</p>
+<p>Forces data in the Couchbase cluster to be overwritten even if the data in the cluster is newer than the restore.</p>
 </div>
 </div>
 </div>
@@ -788,8 +758,7 @@ regardless of Couchbase&#8217;s conflict resolution.</p>
 <h4 id="description-24"><a class="anchor" href="#description-24"></a>Description</h4>
 <div class="paragraph">
 <p>Number of hours to hold restore script logs for, everything older will be deleted.
-More info:
-<a href="https://golang.org/pkg/time/#ParseDuration" class="bare">https://golang.org/pkg/time/#ParseDuration</a>.</p>
+More info: <a href="https://golang.org/pkg/time/#ParseDuration" class="bare">https://golang.org/pkg/time/#ParseDuration</a>.</p>
 </div>
 </div>
 </div>
@@ -820,8 +789,7 @@ More info:
 <h4 id="description-26"><a class="anchor" href="#description-26"></a>Description</h4>
 <div class="paragraph">
 <p>Endpoint contains the configuration for connecting to a custom Azure/S3/GCP compliant object store.
-If set will override <code>CouchbaseCluster.spec.backup.objectEndpoint</code>
-See <a href="https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores" class="bare">https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores</a>.</p>
+If set will override <code>CouchbaseCluster.spec.backup.objectEndpoint</code> See <a href="https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores" class="bare">https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores</a>.</p>
 </div>
 </div>
 </div>
@@ -836,8 +804,7 @@ See <a href="https://docs.couchbase.com/server/current/backup-restore/cbbackupmg
 <div class="sect3">
 <h4 id="description-27"><a class="anchor" href="#description-27"></a>Description</h4>
 <div class="paragraph">
-<p>The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpoint
-The secret must have the key with the name "tls.crt".</p>
+<p>The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpoint The secret must have the key with the name "tls.crt".</p>
 </div>
 </div>
 </div>
@@ -867,8 +834,7 @@ The secret must have the key with the name "tls.crt".</p>
 <div class="sect3">
 <h4 id="description-29"><a class="anchor" href="#description-29"></a>Description</h4>
 <div class="paragraph">
-<p>UseVirtualPath will force the AWS SDK to use the new virtual style paths
-which are often required by S3 compatible object stores.</p>
+<p>UseVirtualPath will force the AWS SDK to use the new virtual style paths which are often required by S3 compatible object stores.</p>
 </div>
 </div>
 </div>
@@ -884,8 +850,7 @@ which are often required by S3 compatible object stores.</p>
 <h4 id="description-30"><a class="anchor" href="#description-30"></a>Description</h4>
 <div class="paragraph">
 <p>ObjStoreSecret must contain two fields, access-key-id, secret-access-key and optionally either region or refresh-token.
-These correspond to the fields used by cbbackupmgr
-<a href="https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2" class="bare">https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2</a>.</p>
+These correspond to the fields used by cbbackupmgr <a href="https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2" class="bare">https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2</a>.</p>
 </div>
 </div>
 </div>
@@ -920,8 +885,7 @@ i.e s3://bucket, az://bucket or gs://bucket.</p>
 <div class="sect3">
 <h4 id="description-32"><a class="anchor" href="#description-32"></a>Description</h4>
 <div class="paragraph">
-<p>Whether to allow the backup SDK to attempt to authenticate
-using the instance metadata api.
+<p>Whether to allow the backup SDK to attempt to authenticate using the instance metadata api.
 If set, will override <code>CouchbaseCluster.spec.backup.useIAM</code>.</p>
 </div>
 </div>
@@ -938,8 +902,7 @@ If set, will override <code>CouchbaseCluster.spec.backup.useIAM</code>.</p>
 <h4 id="description-33"><a class="anchor" href="#description-33"></a>Description</h4>
 <div class="paragraph">
 <p>Repo is the backup folder to restore from.
-If no repository is specified,
-the backup container will choose the latest.</p>
+If no repository is specified, the backup container will choose the latest.</p>
 </div>
 </div>
 </div>
@@ -957,8 +920,7 @@ the backup container will choose the latest.</p>
 <div class="sect3">
 <h4 id="description-34"><a class="anchor" href="#description-34"></a>Description</h4>
 <div class="paragraph">
-<p><strong>DEPRECATED</strong> - by spec.objectStore.uri
-Name of S3 bucket to restore from.</p>
+<p><strong>DEPRECATED</strong> - by spec.objectStore.uri Name of S3 bucket to restore from.</p>
 </div>
 <div class="paragraph">
 <p>If non-empty this overrides local backup.</p>
@@ -998,8 +960,7 @@ Name of S3 bucket to restore from.</p>
 <h4 id="description-36"><a class="anchor" href="#description-36"></a>Description</h4>
 <div class="paragraph">
 <p>Analytics restores analytics datasets from the backup.
-This field
-defaults to true.</p>
+This field defaults to true.</p>
 </div>
 </div>
 </div>
@@ -1015,14 +976,9 @@ defaults to true.</p>
 <h4 id="description-37"><a class="anchor" href="#description-37"></a>Description</h4>
 <div class="paragraph">
 <p>BucketConfig restores all bucket configuration settings.
-If you are restoring to cluster with managed buckets, then this
-option may conflict with existing bucket settings, and the results
-are undefined, so avoid use.
-This option is intended for use
-with unmanaged buckets.
-Note that bucket durability settings are
-not restored in versions less than and equal to 1.1.0, and will
-need to be manually applied.
+If you are restoring to cluster with managed buckets, then this option may conflict with existing bucket settings, and the results are undefined, so avoid use.
+This option is intended for use with unmanaged buckets.
+Note that bucket durability settings are not restored in versions less than and equal to 1.1.0, and will need to be manually applied.
 This field defaults to false.</p>
 </div>
 </div>
@@ -1099,8 +1055,7 @@ This field defaults to <code>true</code>.</p>
 <h4 id="description-41"><a class="anchor" href="#description-41"></a>Description</h4>
 <div class="paragraph">
 <p>Data restores document data from the backup.
-This field defaults
-to true.</p>
+This field defaults to true.</p>
 </div>
 </div>
 </div>
@@ -1119,8 +1074,7 @@ to true.</p>
 <h4 id="description-42"><a class="anchor" href="#description-42"></a>Description</h4>
 <div class="paragraph">
 <p>Eventing restores eventing functions from the backup.
-This field
-defaults to true.</p>
+This field defaults to true.</p>
 </div>
 </div>
 </div>
@@ -1139,8 +1093,7 @@ defaults to true.</p>
 <h4 id="description-43"><a class="anchor" href="#description-43"></a>Description</h4>
 <div class="paragraph">
 <p>FTAlias restores full-text search aliases from the backup.
-This
-field defaults to true.</p>
+This field defaults to true.</p>
 </div>
 </div>
 </div>
@@ -1159,8 +1112,7 @@ field defaults to true.</p>
 <h4 id="description-44"><a class="anchor" href="#description-44"></a>Description</h4>
 <div class="paragraph">
 <p>FTIndex restores full-text search indexes from the backup.
-This
-field defaults to true.</p>
+This field defaults to true.</p>
 </div>
 </div>
 </div>
@@ -1179,8 +1131,7 @@ field defaults to true.</p>
 <h4 id="description-45"><a class="anchor" href="#description-45"></a>Description</h4>
 <div class="paragraph">
 <p>GSIIndex restores document indexes from the backup.
-This field
-defaults to true.</p>
+This field defaults to true.</p>
 </div>
 </div>
 </div>
@@ -1217,8 +1168,7 @@ This field defaults to true.</p>
 <div class="sect3">
 <h4 id="description-47"><a class="anchor" href="#description-47"></a>Description</h4>
 <div class="paragraph">
-<p>StagingVolume contains configuration related to the
-ephemeral volume used as staging when restoring from a cloud backup.</p>
+<p>StagingVolume contains configuration related to the ephemeral volume used as staging when restoring from a cloud backup.</p>
 </div>
 </div>
 </div>
@@ -1240,10 +1190,7 @@ ephemeral volume used as staging when restoring from a cloud backup.</p>
 <h4 id="description-48"><a class="anchor" href="#description-48"></a>Description</h4>
 <div class="paragraph">
 <p>Size allows the specification of a staging volume.
-More info:
-<a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>
-The ephemeral volume will only be used when restoring from a cloud provider,
-if the backup job was created using ephemeral storage.
+More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a> The ephemeral volume will only be used when restoring from a cloud provider, if the backup job was created using ephemeral storage.
 Otherwise the restore job will share a staging volume with the backup job.</p>
 </div>
 </div>
@@ -1275,9 +1222,7 @@ Otherwise the restore job will share a staging volume with the backup job.</p>
 <h4 id="description-50"><a class="anchor" href="#description-50"></a>Description</h4>
 <div class="paragraph">
 <p>Start denotes the first backup to restore from.
-This may be specified as
-an integer index (starting from 1), a string specifying a short date
-DD-MM-YYYY, the backup name, or one of either <code>start</code> or <code>oldest</code> keywords.</p>
+This may be specified as an integer index (starting from 1), a string specifying a short date DD-MM-YYYY, the backup name, or one of either <code>start</code> or <code>oldest</code> keywords.</p>
 </div>
 </div>
 </div>
@@ -1367,10 +1312,8 @@ DD-MM-YYYY, the backup name, or one of either <code>start</code> or <code>oldest
 <div class="sect2">
 <h3 id="description-55"><a class="anchor" href="#description-55"></a>Description</h3>
 <div class="paragraph">
-<p>CouchbaseBackupRestoreStatus provides status indications of a restore from
-backup.
-This includes whether or not the restore is running, whether the
-restore succeed or not, and the duration the restore took.</p>
+<p>CouchbaseBackupRestoreStatus provides status indications of a restore from backup.
+This includes whether or not the restore is running, whether the restore succeed or not, and the duration the restore took.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1399,8 +1342,7 @@ restore succeed or not, and the duration the restore took.</p>
 <div class="sect3">
 <h4 id="description-57"><a class="anchor" href="#description-57"></a>Description</h4>
 <div class="paragraph">
-<p>Backups gives us a full list of all backups
-and their respective repository locations.</p>
+<p>Backups gives us a full list of all backups and their respective repository locations.</p>
 </div>
 </div>
 </div>
@@ -1464,8 +1406,7 @@ and their respective repository locations.</p>
 <h4 id="description-61"><a class="anchor" href="#description-61"></a>Description</h4>
 <div class="paragraph">
 <p>Duration tells us how long the last restore took.
-More info:
-<a href="https://golang.org/pkg/time/#ParseDuration" class="bare">https://golang.org/pkg/time/#ParseDuration</a>.</p>
+More info: <a href="https://golang.org/pkg/time/#ParseDuration" class="bare">https://golang.org/pkg/time/#ParseDuration</a>.</p>
 </div>
 </div>
 </div>
@@ -1694,7 +1635,7 @@ More info:
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Autonomous Operator","components":["operator"],"latestVersions":{"operator":"2.7"}}
+{"title":"Autonomous Operator","components":["operator"],"latestVersions":{"operator":"2.6"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">

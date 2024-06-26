@@ -20,14 +20,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.7">
+<meta name="dcterms.identifier" content="2.6">
 <meta name="page-url" content="/operator/current/concept-upgrade.html">
 <meta name="page-nav-header-levels" content="0">
 
 <meta name="docsearch:component" content="operator">
 <meta name="docsearch:component_title" content="Autonomous Operator">
-<meta name="docsearch:cversion" content="2.7">
-<meta name="docsearch:component_version" content="operator@2.7">
+<meta name="docsearch:cversion" content="2.6">
+<meta name="docsearch:component_version" content="operator@2.6">
 <meta name="docsearch:module" content="">
 <meta name="docsearch:breadcrumbs" content="Autonomous Operator / Learn / Couchbase Cluster Concepts / Upgrade / Couchbase Upgrades">
 <meta name="docsearch:topic_type" content="">
@@ -301,6 +301,21 @@ The same pod names and networking settings will be retained when the pod is rest
 <p>You can balance time against risk by tailoring rolling updates with the <a href="resource/couchbasecluster.html#couchbaseclusters-spec-rollingupgrade" class="xref page"><code>couchbaseclusters.spec.rollingUpgrade</code></a> configuration parameter.
 This allows rolling upgrades to upgrade 2 pods at a time, or 20% of the cluster at a time, for example.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Delta  recovery is a volatile process that can lead to interruptions in service. It should not be used when there are less than 2 data nodes defined or data loss
+may occur.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="couchbase-server-upgrade-constraints"><a class="anchor" href="#couchbase-server-upgrade-constraints"></a>Couchbase Server Upgrade Constraints</h3>
 <div class="paragraph">
@@ -482,7 +497,7 @@ The Operator will detect a modification to the specification of a persistent vol
 </footer>
 <script src="../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Autonomous Operator","components":["operator"],"latestVersions":{"operator":"2.7"}}
+{"title":"Autonomous Operator","components":["operator"],"latestVersions":{"operator":"2.6"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
