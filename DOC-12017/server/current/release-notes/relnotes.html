@@ -299,6 +299,10 @@ Users can also assign zero threads to a node which will correspond to <code>cbba
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-60697">MB-60697</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vector Search is now supported over macOS and windows platforms</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61216">MB-61216</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A user had to set the <code>query</code> attribute to <code>match_none</code> alongside the <code>knn</code> attribute within the search request when the user wanted to do a pure kNN search. This behavior will still work.</p>
 <p class="tableblock">A user can now  optionally choose to drop the <code>query</code> attribute entirely when coupling with <code>knn</code> and this will automatically resolve to "match_none" behind the scenes.</p>
@@ -392,6 +396,35 @@ sure the memcached
 </table>
 </div>
 <div class="sect3">
+<h4 id="query-service"><a class="anchor" href="#query-service"></a>Query Service</h4>
+<table id="table-fixed-issues-762-query-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61171">MB-61171</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In rare circumstances with high-load Query, requests can fail to complete, blocking rebalance attempts.<br>
+Such requests don&#8217;t affect other regular processing beyond occupying a servicer, but a rebalance can&#8217;t complete until they do.
+ By the time it is an issue, it is likely that the client that submitted such a request has already terminated, and the request
+  is just stuck in Query processing.
+  Deleting such a request from <code>system:active_requests</code> using the REST API may release it.<br>
+  Forcibly restarting the Query service will clear the issue.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code corrected to prevent the situation from arising.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
 <h4 id="eventing-service"><a class="anchor" href="#eventing-service"></a>Eventing Service</h4>
 <table id="table-fixed-issues-762-eventing-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -411,6 +444,40 @@ sure the memcached
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61488">MB-61488</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">When performing a subdocument mutation through eventing the sub-document api(<code>couchbase.mutateIn</code>), the operation would sometimes fail with the error code <code>LCB_ERR_SUBDOC_XATTR_UNKNOWN_MACRO</code> and cause exceptions in the JavaScript code.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fixed in 7.6.2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="index-service"><a class="anchor" href="#index-service"></a>Index Service</h4>
+<table id="table-fixed-issues-762-index-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61387">MB-61387</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">To speed up the initial process of building the index, the index service has an optimization that skips checking for existing entries and directly adds new ones.
+This optimization is crucial for the initial build but should not be used for updates to existing indexes.
+Unfortunately, in a rare sequence of events, all indexes might be accidentally enabled for this optimization, leading to duplicate entries in the storage layer and causing incorrect results.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optimization is only enabled for those indexes that are undergoing the initial build process.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-62199">MB-62199</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">During restore, the index planning operation adds replicas for lost replicas of indexes in the plan.</p>
+<p class="tableblock">If multiple indexes exist with the same name, there are lost replicas, and there are not enough indexer nodes to hold all the
+index replicas in the plan, then extra replicas will not be removed from the plan, and can remain on the old node.<br>
+This causes restore operation failures.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issue resolved.</p></td>
 </tr>
 </tbody>
 </table>
@@ -500,7 +567,7 @@ and will not always retry when receiving them.</p></td>
 <p>This release contains the following known issues:</p>
 </div>
 <div class="sect3">
-<h4 id="index-service"><a class="anchor" href="#index-service"></a>Index Service</h4>
+<h4 id="index-service-2"><a class="anchor" href="#index-service-2"></a>Index Service</h4>
 <table id="table-known-issues-762-index-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -835,7 +902,7 @@ stats were computed using the number of processors configured for the entire sys
 </table>
 </div>
 <div class="sect3">
-<h4 id="query-service"><a class="anchor" href="#query-service"></a>Query Service</h4>
+<h4 id="query-service-2"><a class="anchor" href="#query-service-2"></a>Query Service</h4>
 <table id="table-fixed-issues-76-query-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -869,7 +936,7 @@ stats were computed using the number of processors configured for the entire sys
 </table>
 </div>
 <div class="sect3">
-<h4 id="index-service-2"><a class="anchor" href="#index-service-2"></a>Index Service</h4>
+<h4 id="index-service-3"><a class="anchor" href="#index-service-3"></a>Index Service</h4>
 <table id="table-fixed-issues-76-index-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
