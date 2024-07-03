@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv=content-security-policy content="default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https:; img-src 'self' data: https:; connect-src 'self' https:; worker-src blob:;">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+<!-- End Google Tag Manager -->
+<title>Couchbase Scheduling and Isolation | Couchbase Docs</title>
+<link rel="canonical" href="https://docs.couchbase.com/operator/current/concept-scheduling.html">
+<link rel="stylesheet" href="../../_/css/site.css">
+<script src="../../_/js/vendor/jquery.js"></script>
+<link rel="schema.dcterms" href="https://purl.org/dc/terms/">
+
+
+<meta name="dcterms.subject" content="operator">
+<meta name="dcterms.identifier" content="2.7">
+<meta name="page-url" content="/operator/current/concept-scheduling.html">
+<meta name="page-nav-header-levels" content="0">
+
+<meta name="docsearch:component" content="operator">
+<meta name="docsearch:component_title" content="Autonomous Operator">
+<meta name="docsearch:cversion" content="2.7">
+<meta name="docsearch:component_version" content="operator@2.7">
+<meta name="docsearch:module" content="">
+<meta name="docsearch:breadcrumbs" content="Autonomous Operator / Learn / Couchbase Cluster Concepts / Topology / Couchbase Scheduling and Isolation">
+<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="">
+<meta name="docsearch:edition" content="">
+<meta name="docsearch:page_rank" content="50">
+
+
+<meta name="generator" content="Antora 3.1.4">
+<link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon" sizes="any">
+</head>
+<body class="article">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="header fixed-top">
+  <div class="header-top-row">
+      <div class="container">
+          <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
+              <ul class="navbar-brand-list">
+                <li class="brand-logo">
+                  <a class="navbar-brand" href="https://www.couchbase.com">
+                    <img src="../../_/img/couchbase-logo.svg" alt="Couchbase" />
+                  </a>
+                </li>
+                <li>
+                  <a class="navbar-brand cb-documentation"
+                      href="https://docs.couchbase.com/home/index.html">
+                    <img src="../../_/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
+                    <img src="../../_/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  </a>
+                </li>
+              </ul>
+              <button class="navbar-burger" data-target="topbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+          </nav>
+      </div>
+  </div>
+  <div class="header-bottom-row" id="topbar-menu">
+    <div class="container">
+        <nav  class="navbar navbar-new-bottom">
+
+              <div class="navbar-collapse collapse" id="navbar2">
+                <ul class="navbar-nav w-100 justify-content-start">
+
+                  <li class="nav-item "">
+                    <a href="https://docs.couchbase.com/home/index.html" class="nav-link">
+                      <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../home/server.html">
+                      Server
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../home/mobile.html">
+                      Mobile
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../cloud/index.html">
+                      Capella
+                      
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="../../home/sdk.html">
+                      SDKs
+                      
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="primary-action">
+                <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
+                  Downloads
+                  <i class="far fa-arrow-to-bottom fa-fw"></i>
+                </a>
+                <a href="https://cloud.couchbase.com/sign-up" class="btn btn-primary" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Free Trial'});" >
+                  Start Free Trial
+                  <i class="far fa-cloud fa-fw"></i>
+                </a>
+              </div>
+
+        </nav>
+    </div>
+   </div>
+</header>
+<div class="body container">
+<aside class="nav left-sidebar">
+  <div class="nav-container">
+    <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
+  </div>
+</aside>
+<aside class="toc sidebar"
+      data-title="Contents"
+      data-levels="1">
+  <div class="sidebar-box">
+    <div class="tools" role="navigation">
+<ul>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/couchbase-operator/docs/user/modules/ROOT/pages/concept-scheduling.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+</ul>
+</div>
+    <div class="toc-menu"></div>
+    <div class="is-this-helpful-box">
+      <h4> Is this page helpful?</h4>
+      <div class="btn-row">
+        <a href="#" class="like-btn helpful-btn" id="yesBtn" data-page-rating="like" >
+                <i class="far fa-thumbs-up"></i>
+            Yes
+
+            </a>
+        <a href="#" class="dislike-btn helpful-btn" id="noBtn"  data-page-rating="dislike"> <i class="far fa-thumbs-down"></i> No</a>
+      </div>
+      <div class="any-feedback">
+        <a href="#" class="btn any-feedback-btn" id="myCustomTrigger">Leave Additional Feedback? </a>
+      </div>
+      <div class="dialog-box" id="dialogBox">
+        <form>
+            <div class="form-group " id="additionalFeedbackBox">
+              <textarea class="input-control feed-back-msg" rows="8" placeholder="Any Additonal Feedback?"></textarea>
+
+              <div class="action-btn-row ">
+                <a href="#" class="skip-btn" id="skipBtnMsg">Skip</a>
+                  <button class="submit-btn btn blue-btn disabled" > Submit  </button>
+                  <a href="#" class="info-btn"><i class="fas fa-info-circle"></i></a>
+              </div>
+
+
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="feedback-modal modal-popup">
+  <div class="modal-popup-dialogue">
+    <div class="popup-header">
+      <a href="#" class="close-popup"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="popup-content">
+      <p>
+        Please use the form below to provide your feedback. Because your feedback is valuable to us,
+         the information you submit in this form is recorded in our issue tracking system (JIRA), which is publicly available.
+        You can track the status of your feedback using the ticket number displayed in the dialog once you submit the form.
+      </p>
+    </div>
+  </div>
+</div>
+
+<main class="article" data-ceiling="topbar">
+<div class="article-header">
+<nav class="crumbs" aria-label="breadcrumbs">
+<ul>
+<li class="crumb"><a href="overview.html">Autonomous Operator</a></li>
+<li class="crumb">Learn</li>
+<li class="crumb">Couchbase Cluster Concepts</li>
+<li class="crumb">Topology</li>
+<li class="crumb"><a href="concept-scheduling.html">Couchbase Scheduling and Isolation</a></li>
+</ul>
+</nav>
+</div>
+<article class="doc">
+<div class="page-heading-title">
+<h1 class="page">Couchbase Scheduling and Isolation</h1>
+<div class="labels">
+<ul></ul>
+</div>
+
+
+</div>
+<div class="contributor-list-box">
+<span class="last-commit-date" id="commitdate">    </span>
+<ul id="contributorList"></ul>
+<span  id="otherContributor"> + </span>
+</div><div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock abstract">
+<blockquote>
+Scheduling Couchbase pods across a Kubernetes cluster in a predictable manner is essential to guarantee consistent performance.
+</blockquote>
+</div>
+<div class="paragraph">
+<p>For any application, it is desirable to have consistent and predictable performance characteristics.
+This aids in predictability of future workloads, resource requirements, and operational expenditures.</p>
+</div>
+<div class="paragraph">
+<p>This is especially relevant to stateful applications whose overall performance is limited by the slowest component.
+While Couchbase Server&#8217;s architecture is designed to implicitly load-balance client load across the cluster, in a cloud environment, outside influences may negatively affect overall performance characteristics.
+This section aims to define best practices to minimize undesirable and unpredictable variation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pod-isolation"><a class="anchor" href="#pod-isolation"></a>Pod Isolation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The simplest method of avoiding unpredictability in Couchbase Server performance is the <a href="resource/couchbasecluster.html#couchbaseclusters-spec-antiaffinity" class="xref page"><code>couchbaseclusters.spec.antiAffinity</code></a> parameter.
+This guarantees that Couchbase Server pods in the same cluster are unable to be scheduled by Kubernetes on the same node.</p>
+</div>
+<div class="paragraph">
+<p>If anti-affinity were not specified, consider a three-pod Couchbase cluster.
+If two pods were scheduled on the same Kubernetes node, and the third on another, then given the implicit load-balancing of Couchbase clients, the first two pods would only be able to handle half the throughput of the third.
+This would give rise to performance inconsistency.</p>
+</div>
+<div class="paragraph">
+<p>In a Kubernetes cluster dedicated to a single Couchbase cluster deployment, enabling anti-affinity would be sufficient to provide stable performance.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cluster-isolation"><a class="anchor" href="#cluster-isolation"></a>Cluster Isolation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Anti-affinity does not prevent distinct Couchbase clusters from being scheduled on the same Kubernetes nodes.
+Neither does it prevent Couchbase clusters from being scheduled alongside other applications that may interfere with them.</p>
+</div>
+<div class="paragraph">
+<p>The Autonomous Operator offers two parameters that can be used in concert to guarantee workload isolation.</p>
+</div>
+<div class="sect2">
+<h3 id="taints-and-tolerations"><a class="anchor" href="#taints-and-tolerations"></a>Taints and Tolerations</h3>
+<div class="paragraph">
+<p>The <a href="resource/couchbasecluster.html#couchbaseclusters-spec-servers-pod" class="xref page"><code>couchbaseclusters.spec.servers.pod.spec.tolerations</code></a> attribute allows Couchbase server pods exclusive access to a set of nodes.</p>
+</div>
+<div class="paragraph">
+<p>By <a href="https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/" target="_blank" rel="noopener">tainting</a> Kubernetes nodes with <code>NoSchedule</code>, you can guarantee that no other pods will be scheduled to run there unless they have a matching toleration.
+Couchbase Server pods can be configured with a toleration that will allow them to be scheduled on these nodes.
+Furthermore, taints and tolerations are key/value pairs that allow specific clusters to be scheduled on specific nodes if you so desire.</p>
+</div>
+<div class="paragraph">
+<p>This does not, however, prevent a Couchbase Server pod from being scheduled on a general purpose node that is not tainted, and therefore may still be subject to interference from other workloads.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/scheduling-Taints.png" alt="scheduling Taints">
+</div>
+<div class="title">Figure 1. Effect of Tainting Kubernetes Nodes and Couchbase Server Tolerations</div>
+</div>
+<div class="paragraph">
+<p>The diagram above shows the result of applying taints to Kubernetes nodes and an equal toleration to the Couchbase Server pods.
+Couchbase server can still be scheduled onto any node, however 3rd party pods are restricted to untainted nodes.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>NoSchedule</code> taint is not applied retroactively.
+Tainting nodes will not drain them of existing workloads.
+In order to free resources, first apply a <code>NoExecute</code> taint to evacuate existing pods.
+Then cordon with <code>NoSchedule</code>, before finally removing the <code>NoExecute</code> taint.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="node-selectors"><a class="anchor" href="#node-selectors"></a>Node Selectors</h3>
+<div class="paragraph">
+<p>Given Kubernetes nodes have now been cordoned off from other processes and are now earmarked for exclusive use by Couchbase pods, we need to ensure they are scheduled on them.
+The <a href="resource/couchbasecluster.html#couchbaseclusters-spec-servers-pod" class="xref page"><code>couchbaseclusters.spec.servers.pod.spec.nodeselector</code></a> attribute achieves this goal.</p>
+</div>
+<div class="paragraph">
+<p>A Kubernetes <a href="https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector" target="_blank" rel="noopener">node selector</a> forces a pod to be scheduled on a node only when it has a matching label.
+In this scenario you should label the nodes that have already been cordoned with a taint.
+Labels, like taints and tolerations, are key/value pairs, which allow them to be used to segregate individual Couchbase clusters from one another.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/scheduling-Labels.png" alt="scheduling Labels">
+</div>
+<div class="title">Figure 2. Effect of Labeling and Selecting Specific Kubernetes Nodes</div>
+</div>
+<div class="paragraph">
+<p>The diagram above shows the result of using both node selectors with taints and tolerations.
+Couchbase server pods are restricted only to their nodes, while other workloads cannot be scheduled there.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>It is possible to segregate workloads exclusively with node selectors.
+The downside is that all other workloads would need to be explicitly scheduled.
+It is therefore highly recommended that taints be used to implicitly schedule 3rd party workloads away from Couchbase server nodes.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quality-of-service"><a class="anchor" href="#quality-of-service"></a>Quality of Service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="#cluster-isolation">Cluster Isolation</a> provides guaranteed resources for Couchbase clusters to use.
+It is, however, relatively complex to plan and implement.
+It may be sufficient to ensure that Couchbase pods are scheduled and cannot be terminated by accident.</p>
+</div>
+<div class="paragraph">
+<p>By default, when Kubernetes schedules pods, it will place them on nodes with enough resource to accommodate them.
+It may also distribute pods across the cluster in order to spread the load.
+This may lead to a situation where there are no nodes capable of satisfying a Couchbase pod&#8217;s memory requests.
+Being a database, this may lead to the entire application stack not functioning.</p>
+</div>
+<div class="paragraph">
+<p>Kubernetes provides <a href="https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/" target="_blank" rel="noopener">priority classes</a> in order to avoid these deadlock situations.
+By default all pods created by the user are run with the same priority class.
+It is possible to run pods with an elevated priority.
+If a high priority pod cannot be scheduled then it is possible for it to preempt pods of a lower priority&#8201;&#8212;&#8201;evict them from a node so that the high priority pod may be scheduled.
+If designed correctly, your platform will be able to tolerate evictions as those lower priority pods will be stateless and part of a highly available deployment.</p>
+</div>
+<div class="paragraph">
+<p>Priority classes can be assigned to Couchbase server pods with the <a href="resource/couchbasecluster.html#couchbaseclusters-spec-servers-pod" class="xref page"><code>couchbaseclusters.spec.servers.pod.spec.priorityClassName</code></a> parameter.</p>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <div class="col">
+        <div class="footer-logo">
+          <a href="https://www.couchbase.com" class="icon">
+            <img src="../../_/img/couchbase-logo.svg" alt="Couchbase">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://docs.couchbase.com" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://forums.couchbase.com" target="_blank" rel="noopener">Forums</a></li>
+          <li><a href="https://support.couchbase.com" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://developer.couchbase.com" target="_blank" rel="noopener">Developer Portal</a></li>
+          <li><a href="https://blog.couchbase.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://www.couchbase.com/resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul>
+          <li><a href="https://www.couchbase.com/get-started-developing-nosql">Get Started</a></li>
+          <li><a href="https://www.couchbase.com/downloads">Downloads</a></li>
+          <li><a href="https://learn.couchbase.com/store?utf8=%E2%9C%93&ss=1&ct=78327&commit=Filter" target="_blank" rel="noopener">Training</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="social-icons">
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32.1 26.1"> <path id="twitter" class="cls-1" d="M32,7.1a11.836,11.836,0,0,1-3.8,1,6.462,6.462,0,0,0,2.9-3.6,12.606,12.606,0,0,1-4.2,1.6A6.492,6.492,0,0,0,22.1,4a6.594,6.594,0,0,0-6.6,6.6,7.719,7.719,0,0,0,.2,1.5A18.458,18.458,0,0,1,2.2,5.2a6.294,6.294,0,0,0-.9,3.3A6.765,6.765,0,0,0,4.2,14a6.109,6.109,0,0,1-3-.8v.1a6.543,6.543,0,0,0,5.3,6.4,4.678,4.678,0,0,1-1.7.2,4.869,4.869,0,0,1-1.2-.1,6.679,6.679,0,0,0,6.1,4.6,12.917,12.917,0,0,1-8.2,2.8,9.151,9.151,0,0,1-1.6-.1,18.438,18.438,0,0,0,10.1,3c12.1,0,18.7-10,18.7-18.7v-.8A13.336,13.336,0,0,0,32,7.2Z" transform="translate(0.1 -4)"/></svg>
+            <a href="https://twitter.com/couchbase" class="icon">
+              Twitter
+            </a>
+          </li>
+          <li>
+          <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="linkedin" class="cls-1" d="M29,0H3A3.076,3.076,0,0,0,0,3V29a3.009,3.009,0,0,0,3,3H29a2.946,2.946,0,0,0,3-3V3A3.009,3.009,0,0,0,29,0ZM12,26H8V12h4ZM10,10a2,2,0,1,1,2-2A2.006,2.006,0,0,1,10,10ZM26,26H22V18a2,2,0,0,0-4,0v8H14V12h4v2.5c.8-1.1,2.1-2.5,3.5-2.5A4.736,4.736,0,0,1,26,17Z"/></svg>
+              <a href="https://www.linkedin.com/company/couchbase" class="icon">
+             Linkedin
+            </a>
+          </li>
+          <li>
+            <svg  width="14" height="14" viewBox="0 0 32 32"> <path id="facebook" class="cls-1" d="M29,0H3A2.652,2.652,0,0,0,0,3V29a2.652,2.652,0,0,0,3,3H16V18H12V14h4V12a6.452,6.452,0,0,1,6-6h4v4H22a2.151,2.151,0,0,0-2,2v2h6l-1,4H20V32h9a2.652,2.652,0,0,0,3-3V3A2.652,2.652,0,0,0,29,0Z"/></svg>
+            <a href="https://www.facebook.com/Couchbase" class="icon">
+            Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-terms">
+      <div class="footer-terms-copyright">
+          <span>© 2024 Couchbase, Inc. Couchbase, Couchbase Lite and the Couchbase logo are registered trademarks of Couchbase, Inc.</span>
+      </div>
+      <div class="footer-terms-links">
+        <a href="https://www.couchbase.com/terms-of-use">Terms of Use</a>
+        <a href="https://www.couchbase.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.couchbase.com/cookie-policy">Cookie Policy</a>
+        <a href="https://www.couchbase.com/support-policy">Support Policy</a>
+        <a href="https://info.couchbase.com/unsubscribe-or-manage-preferences.html" target="_blank" rel="noopener">Marketing Preference Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../../_/js/site-navigation-data.js"></script>
+<script id="page-navigation-group" type="application/json">
+{"title":"Autonomous Operator","components":["operator"],"latestVersions":{"operator":"2.7"}}
+</script>
+<template id="run-code-panel">
+<div class="action-panel">
+  <form class="action-panel-control" method="POST" action="https://couchbase.live/run" target="run-code-output">
+    <input type="hidden" name="lang">
+    <input type="hidden" name="code">
+    <input type="hidden" name="from" value="docs">
+    <div class="controls">
+      <button class="control-button rerun" type="submit"><i class="fas fa-redo"></i></button>
+      <span class="shell-name control-label">Output</span>
+      <button class="control-button close"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </form>
+  <iframe class="run-code-output" name="run-code-output"></iframe>
+</div>
+</template>
+<script id="site-script" src="../../_/js/vendor/chatbox-ui.js"></script>
+<script id="site-script" src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="preferred-tab"></script>
+<script defer src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script defer src="../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+</body>
+</html>
