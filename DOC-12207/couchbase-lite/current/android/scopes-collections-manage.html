@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="android">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Android / Scopes and Collections">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:version_rank" content="2">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/android/scopes-collections-manage.html">3.2 Beta</option>
         <option value="3.1" data-url="scopes-collections-manage.html" selected>3.1</option>
         <option value="3.0" data-url="../../3.0/index.html">3.0</option>
         <option value="2.8" data-url="../../2.8/index.html">2.8</option>
@@ -335,7 +336,7 @@ Scope and collection names are case sensitive.
 <div id="tabs-1-kotlin--panel" class="tabpanel" aria-labelledby="tabs-1-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">// create the collection "Verlaine" in the default scope ("_default")
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">// create the collection "Verlaine" in the default scope ("_default")
 var collection1: Collection? = db.createCollection("Verlaine")
 // both of these retrieve collection1 created above
 collection1 = db.getCollection("Verlaine")
@@ -352,7 +353,7 @@ collection2 = db.getScope("Television")!!.getCollection("Verlaine")</code></pre>
 <div id="tabs-1-java--panel" class="tabpanel" aria-labelledby="tabs-1-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">// create the collection "Verlaine" in the default scope ("_default")
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">// create the collection "Verlaine" in the default scope ("_default")
 Collection collection1 = db.createCollection("Verlaine");
 // both of these retrieve collection1 created above
 collection1 = db.getCollection("Verlaine");
@@ -369,6 +370,29 @@ collection2 = db.getScope("Television").getCollection("Verlaine");</code></pre>
 </div>
 </div>
 </div>
+</div>
+<div class="paragraph">
+<p>In the example above, you can see that <code>db.createCollection()</code> can take two parameters.
+The first is the scope assigned to the created collection, if this parameter is omitted then a collection of the given name will be assigned to the <code>_default</code> scope. In this case, creating a collection called <code>Verlaine</code>.</p>
+</div>
+<div class="paragraph">
+<p>The second parameter is the name of the collection you want to create, in this case <code>Verlaine</code>.
+In the second section of the example you can see <code>db.createCollection("Television", "Verlaine")</code>.
+This creates the collection <code>Verlaine</code> and then checks to see if the scope <code>Television</code> exists.
+If the scope <code>Television</code> exists, the collection <code>Verlaine</code> is assigned to the scope <code>Television</code>. If not, a new scope, <code>Television</code> is created and then the collection <code>Verlaine</code> is assigned to it.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You cannot create an empty user-defined scope.
+A scope is implicitly created in the <code>db.createCollection()</code> method.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -393,7 +417,7 @@ collection2 = db.getScope("Television").getCollection("Verlaine");</code></pre>
 <div id="tabs-2-kotlin--panel" class="tabpanel" aria-labelledby="tabs-2-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">// Create an index named "nameIndex1" on the property "lastName" in the collection using the IndexBuilder
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">// Create an index named "nameIndex1" on the property "lastName" in the collection using the IndexBuilder
 collection.createIndex("nameIndex1", IndexBuilder.valueIndex(ValueIndexItem.property("lastName")))
 
 // Create a similar index named "nameIndex2" using and IndexConfiguration
@@ -410,7 +434,7 @@ indices.forEach { collection.deleteIndex(it) }</code></pre>
 <div id="tabs-2-java--panel" class="tabpanel" aria-labelledby="tabs-2-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">// Create an index named "nameIndex1" on the property "lastName" in the collection using the IndexBuilder
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">// Create an index named "nameIndex1" on the property "lastName" in the collection using the IndexBuilder
 collection.createIndex("nameIndex1", IndexBuilder.valueIndex(ValueIndexItem.property("lastName")));
 
 // Create a similar index named "nameIndex2" using and IndexConfiguration
@@ -451,7 +475,7 @@ for (String index: indices) { collection.deleteIndex(index); }</code></pre>
 <div id="tabs-3-kotlin--panel" class="tabpanel" aria-labelledby="tabs-3-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">db.getCollection(collectionName, scopeName)?.let {
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">db.getCollection(collectionName, scopeName)?.let {
     db.deleteCollection(it.name, it.scope.name)
 }</code></pre>
 </div>
@@ -460,7 +484,7 @@ for (String index: indices) { collection.deleteIndex(index); }</code></pre>
 <div id="tabs-3-java--panel" class="tabpanel" aria-labelledby="tabs-3-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Collection collection = db.getCollection(collectionName, scopeName);
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Collection collection = db.getCollection(collectionName, scopeName);
 if (collection != null) { db.deleteCollection(collection.getName(), collection.getScope().getName()); }</code></pre>
 </div>
 </div>
@@ -468,6 +492,19 @@ if (collection != null) { db.deleteCollection(collection.getName(), collection.g
 </div>
 </div>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+There is no need to drop a user-defined scope.
+User-defined scopes are dropped when the collections associated with them contain no documents.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -492,7 +529,7 @@ if (collection != null) { db.deleteCollection(collection.getName(), collection.g
 <div id="tabs-4-kotlin--panel" class="tabpanel" aria-labelledby="tabs-4-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">// List all of the collections in each of the scopes in the database
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">// List all of the collections in each of the scopes in the database
 db.scopes.forEach { scope -&gt;
     Logger.log("Scope :: " + scope.name)
     scope.collections.forEach {
@@ -505,7 +542,7 @@ db.scopes.forEach { scope -&gt;
 <div id="tabs-4-java--panel" class="tabpanel" aria-labelledby="tabs-4-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">final Set&lt;Scope&gt; scopes = db.getScopes();
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">final Set&lt;Scope&gt; scopes = db.getScopes();
 for (Scope scope: scopes) {
     Logger.log("Scope :: " + scope.getName());
     final Set&lt;Collection&gt; collections = scope.getCollections();

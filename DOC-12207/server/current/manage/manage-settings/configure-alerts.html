@@ -454,9 +454,10 @@ You can also select, by checking checkboxes, whether you wish the alert to be se
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Bucket memory on a node is entirely used for metadata</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">All the available RAM on a node is being used to store the metadata for the objects stored.
-This means that there is no memory available for caching values.
-With no memory left for storing metadata, further requests to store data will also fail.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A vBucket on a node has reached its memory quota.
+Couchbase Server automatically attempts to recover from this issue.</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ep_oom_errors</code></p></td>
 </tr>
 <tr>
@@ -507,14 +508,18 @@ The default warning period is 30 days.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Memory usage threshold exceeded</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">System memory use as a percentage of total available memory has exceeded a threshold.
-Note that a warning-level alert is issued when system memory, as a percentage of total available memory, exceeds the <em>warning</em> threshold (90% by default).
-A critical-level alert is issued when system memory exceeds the <em>critical</em> threshold (95% by default).</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>System memory use as a percentage of total available memory has exceeded a threshold.</p>
+</div>
+<div class="paragraph">
+<p>NOTE A warning-level alert is issued when system memory, as a percentage of total available memory, exceeds the warning threshold (90% by default).
+A critical-level alert is issued when system memory exceeds the critical threshold (95% by default).</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>memory_threshold</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">History size threshold exceeded</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The mutation history for a specified bucket is greater than an administrator-specified percentage of the administrator-specified change-history size, for a number of vbuckets.
+<td class="tableblock halign-left valign-top"><p class="tableblock">The mutation history for a specified bucket is greater than an administrator-specified percentage of the administrator-specified change-history size, for a number of vBuckets.
 The size of the change history may need to be increased.
 For information, on establishing change-history size, see <a href="../../rest-api/rest-bucket-create.html" class="xref page">Creating and Editing Buckets</a>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>history_size_warning</code></p></td>
@@ -522,7 +527,7 @@ For information, on establishing change-history size, see <a href="../../rest-ap
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Low Indexer Residence Percentage</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Warns that the Index Service is, on a given node, occupying a percentage of available memory that is below an established threshold, the default for which is <code>10</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lowIndexerResidentPerc</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>indexer_low_resident_percentage</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div id="memcached-alert" class="paragraph">
@@ -570,7 +575,7 @@ Note that every possible alert has a flag: if a flag is not specified, the corre
 </div>
 <div class="paragraph">
 <p>See <a href="#email-settings">Email Settings</a> and <a href="#available-alerts">Available Alerts</a>, above, for descriptions of settings and alerts.
-See <a href="#cli:cbcli/couchbase-cli-setting-alert.adoc" class="xref unresolved">setting-alert</a> for further information on using the CLI, including a full list of command-line parameters.</p>
+See <a href="../../cli/cbcli/couchbase-cli-setting-alert.html" class="xref page">setting-alert</a> for further information on using the CLI, including a full list of command-line parameters.</p>
 </div>
 </div>
 </div>

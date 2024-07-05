@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="objc">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Objective-C / Queries / Querybuilder">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="3">
+<meta name="docsearch:version_rank" content="4">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -131,6 +131,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/objc/querybuilder.html">3.2 Beta</option>
         <option value="3.1" data-url="../../current/objc/querybuilder.html">3.1</option>
         <option value="3.0" data-url="../../3.0/objc/querybuilder.html">3.0</option>
         <option value="2.8" data-url="querybuilder.html" selected>2.8</option>
@@ -368,7 +369,7 @@ See the <a href="../../current/objc/indexing.html" class="xref page">Indexing</a
 <div class="listingblock">
 <div class="title">Code to Create Index</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m#L354-L357">CBLValueIndexItem *type = [CBLValueIndexItem property:@"type"];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m#L354-L357">CBLValueIndexItem *type = [CBLValueIndexItem property:@"type"];
 CBLValueIndexItem *name = [CBLValueIndexItem property:@"name"];
 CBLIndex* index = [CBLIndexBuilder valueIndexWithItems:@[type, name]];
 [database createIndex:index withName:@"TypeNameIndex" error:&amp;error];</code></pre>
@@ -427,7 +428,7 @@ You can opt to retrieve entire documents, or just the specific properties you ne
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m#L383-L384">CBLQuery *query = [CBLQueryBuilder select:@[[CBLQuerySelectResult all]]
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m#L383-L384">CBLQuery *query = [CBLQueryBuilder select:@[[CBLQuerySelectResult all]]
                                      from:[CBLQueryDataSource database:database]];</code></pre>
 </div>
 </div>
@@ -589,7 +590,7 @@ In the example below, we use the <code>equalTo</code> operator to query document
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m#L421-L431">CBLQuery *query = [CBLQueryBuilder select:@[[CBLQuerySelectResult all]]
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m#L421-L431">CBLQuery *query = [CBLQueryBuilder select:@[[CBLQuerySelectResult all]]
                                      from:[CBLQueryDataSource database:database]
                                     where:[[CBLQueryExpression property:@"type"] equalTo:[CBLQueryExpression string:@"hotel"]]
                                   groupBy:nil having:nil orderBy:nil
@@ -624,7 +625,7 @@ for (CBLQueryResult *result in rs) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m#L454-L469">CBLQuerySelectResult *id = [CBLQuerySelectResult expression:[CBLQueryMeta id]];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m#L454-L469">CBLQuerySelectResult *id = [CBLQuerySelectResult expression:[CBLQueryMeta id]];
 CBLQuerySelectResult *name = [CBLQuerySelectResult property:@"name"];
 CBLQuerySelectResult *likes = [CBLQuerySelectResult property:@"public_likes"];
 
@@ -651,7 +652,7 @@ The following example looks for documents whose <code>first</code>, <code>last</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m#L477-L483">NSArray *values = @[[CBLQueryExpression property:@"first"],
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m#L477-L483">NSArray *values = @[[CBLQueryExpression property:@"first"],
                    [CBLQueryExpression property:@"last"],
                    [CBLQueryExpression property:@"username"]];
 
@@ -694,7 +695,7 @@ To perform case insensitive matching, use <code>Function.lower</code> or <code>F
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m#L492-L506">CBLQuerySelectResult *id = [CBLQuerySelectResult expression:[CBLQueryMeta id]];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m#L492-L506">CBLQuerySelectResult *id = [CBLQuerySelectResult expression:[CBLQueryMeta id]];
 CBLQuerySelectResult *country = [CBLQuerySelectResult property:@"country"];
 CBLQuerySelectResult *name = [CBLQuerySelectResult property:@"name"];
 
@@ -730,7 +731,7 @@ Notice that the matches may span word boundaries.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m#L514-L527">CBLQuerySelectResult *id = [CBLQuerySelectResult expression:[CBLQueryMeta id]];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m#L514-L527">CBLQuerySelectResult *id = [CBLQuerySelectResult expression:[CBLQueryMeta id]];
 CBLQuerySelectResult *country = [CBLQuerySelectResult property:@"country"];
 CBLQuerySelectResult *name = [CBLQuerySelectResult property:@"name"];
 
@@ -758,7 +759,7 @@ The following query will return "landmark" <code>type</code> documents with the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m#L537-L550">CBLQuerySelectResult *id = [CBLQuerySelectResult expression:[CBLQueryMeta id]];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m#L537-L550">CBLQuerySelectResult *id = [CBLQuerySelectResult expression:[CBLQueryMeta id]];
 CBLQuerySelectResult *country = [CBLQuerySelectResult property:@"country"];
 CBLQuerySelectResult *name = [CBLQuerySelectResult property:@"name"];
 
@@ -807,7 +808,7 @@ For more on the regex spec used by Couchbase Lite see <a href="http://www.cplusp
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m#L560-L572">CBLQuerySelectResult *id = [CBLQuerySelectResult expression:[CBLQueryMeta id]];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m#L560-L572">CBLQuerySelectResult *id = [CBLQuerySelectResult expression:[CBLQueryMeta id]];
 CBLQuerySelectResult *name = [CBLQuerySelectResult property:@"name"];
 
 CBLQueryExpression *type = [[CBLQueryExpression property:@"type"] equalTo:[CBLQueryExpression string:@"landmark"]];
@@ -874,7 +875,7 @@ CBLQuery* query = [CBLQueryBuilder select: @[[CBLQuerySelectResult expression:CB
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m#L582-L598">CBLQuerySelectResult *name = [CBLQuerySelectResult expression:[CBLQueryExpression property:@"name" from:@"airline"]];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m#L582-L598">CBLQuerySelectResult *name = [CBLQuerySelectResult expression:[CBLQueryExpression property:@"name" from:@"airline"]];
 CBLQuerySelectResult *callsign = [CBLQuerySelectResult expression:[CBLQueryExpression property:@"callsign" from:@"airline"]];
 CBLQuerySelectResult *dest = [CBLQuerySelectResult expression:[CBLQueryExpression property:@"destinationairport" from:@"route"]];
 CBLQuerySelectResult *stops = [CBLQuerySelectResult expression:[CBLQueryExpression property:@"stops" from:@"route"]];
@@ -925,7 +926,7 @@ The output (a count, $1) is grouped by country, within timezone.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m#L608-L619">CBLQuerySelectResult *count = [CBLQuerySelectResult expression:[CBLQueryFunction count:[CBLQueryExpression all]]];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m#L608-L619">CBLQuerySelectResult *count = [CBLQuerySelectResult expression:[CBLQueryFunction count:[CBLQueryExpression all]]];
 CBLQuerySelectResult *country = [CBLQuerySelectResult property:@"country"];
 CBLQuerySelectResult *tz = [CBLQuerySelectResult property:@"tz"];
 
@@ -969,7 +970,7 @@ The example below returns documents of type equal to "hotel" sorted in ascending
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m#L629-L635">CBLQuerySelectResult *id = [CBLQuerySelectResult expression:[CBLQueryMeta id]];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m#L629-L635">CBLQuerySelectResult *id = [CBLQuerySelectResult expression:[CBLQueryMeta id]];
 CBLQuerySelectResult *title = [CBLQuerySelectResult property:@"title"];
 
 CBLQuery *query = [CBLQueryBuilder select:@[id, title]
@@ -1316,7 +1317,7 @@ CBLQuerySelectResult *city = [CBLQuerySelectResult property:@"city"];
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m">CBLDatabase *db = [[CBLDatabase alloc] initWithName:@"hotels" error: &amp;error];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m">CBLDatabase *db = [[CBLDatabase alloc] initWithName:@"hotels" error: &amp;error];
 
 CBLQuery *listQuery;
 
@@ -1487,7 +1488,7 @@ Use the <code>limit</code> and <code>offset</code> feature, to return a defined 
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m">int thisOffset = 0;
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m">int thisOffset = 0;
 int thisLimit = 20;
 CBLDatabase *db = [[CBLDatabase alloc] initWithName:@"hotels" error: &amp;error];
 

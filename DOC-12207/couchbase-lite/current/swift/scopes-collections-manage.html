@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="swift">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Swift / Scopes and Collections">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:version_rank" content="2">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/swift/scopes-collections-manage.html">3.2 Beta</option>
         <option value="3.1" data-url="scopes-collections-manage.html" selected>3.1</option>
         <option value="3.0" data-url="../../3.0/index.html">3.0</option>
         <option value="2.8" data-url="../../2.8/index.html">2.8</option>
@@ -322,10 +323,33 @@ Scope and collection names are case sensitive.
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift">let collection = try database.createCollection(name: "myCollectionName", scope: "myScopeName")</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift">let collection = try database.createCollection(name: "myCollectionName", scope: "myScopeName")</code></pre>
 </div>
 </div>
 </div>
+</div>
+<div class="paragraph">
+<p>In the example above, you can see that <code>db.createCollection()</code> can take two parameters.
+The first is the scope assigned to the created collection, if this parameter is omitted then a collection of the given name will be assigned to the <code>_default</code> scope. In this case, creating a collection called <code>Verlaine</code>.</p>
+</div>
+<div class="paragraph">
+<p>The second parameter is the name of the collection you want to create, in this case <code>Verlaine</code>.
+In the second section of the example you can see <code>db.createCollection("Television", "Verlaine")</code>.
+This creates the collection <code>Verlaine</code> and then checks to see if the scope <code>Television</code> exists.
+If the scope <code>Television</code> exists, the collection <code>Verlaine</code> is assigned to the scope <code>Television</code>. If not, a new scope, <code>Television</code> is created and then the collection <code>Verlaine</code> is assigned to it.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You cannot create an empty user-defined scope.
+A scope is implicitly created in the <code>db.createCollection()</code> method.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -337,7 +361,7 @@ Scope and collection names are case sensitive.
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift">let config = FullTextIndexConfiguration(["overview"])
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift">let config = FullTextIndexConfiguration(["overview"])
 try collection.createIndex(withName: "overviewFTSIndex", config: config)</code></pre>
 </div>
 </div>
@@ -353,10 +377,23 @@ try collection.createIndex(withName: "overviewFTSIndex", config: config)</code><
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift">try database.deleteCollection(name: "myCollectionName", scope: "myScopeName")</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift">try database.deleteCollection(name: "myCollectionName", scope: "myScopeName")</code></pre>
 </div>
 </div>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+There is no need to drop a user-defined scope.
+User-defined scopes are dropped when the collections associated with them contain no documents.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -368,7 +405,7 @@ try collection.createIndex(withName: "overviewFTSIndex", config: config)</code><
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift">let scopes = try database.scopes()
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift">let scopes = try database.scopes()
 let collections = try database.collections(scope: "myScopeName")
 print("I have \(scopes.count) scopes and \(collections.count) collections")</code></pre>
 </div>

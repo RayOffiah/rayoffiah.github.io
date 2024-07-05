@@ -20,14 +20,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.6">
+<meta name="dcterms.identifier" content="2.7">
 <meta name="page-url" content="/operator/current/resource/couchbasebackup.html">
 <meta name="page-nav-header-levels" content="0">
 
 <meta name="docsearch:component" content="operator">
 <meta name="docsearch:component_title" content="Autonomous Operator">
-<meta name="docsearch:cversion" content="2.6">
-<meta name="docsearch:component_version" content="operator@2.6">
+<meta name="docsearch:cversion" content="2.7">
+<meta name="docsearch:component_version" content="operator@2.7">
 <meta name="docsearch:module" content="">
 <meta name="docsearch:breadcrumbs" content="Autonomous Operator / Reference / Resource Types / CouchbaseBackup Resource">
 <meta name="docsearch:topic_type" content="">
@@ -216,7 +216,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>CouchbaseBackup allows automatic backup of all data from a Couchbase cluster into persistent storage.</p>
+<p>CouchbaseBackup allows automatic backup of all data from a Couchbase cluster
+into persistent storage.</p>
 </div>
 <div class="paragraph">
 <p>The following is an example resource, depicting the overall structure and any defaults (consult the field reference for valid values for "empty" values, such as empty strings etc.):</p>
@@ -310,7 +311,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h3 id="description"><a class="anchor" href="#description"></a>Description</h3>
 <div class="paragraph">
 <p>APIVersion defines the versioned schema of this representation of an object.
-Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values.
+Servers should convert recognized schemas to the latest internal value, and
+may reject unrecognized values.
 More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources" class="bare">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</a>.</p>
 </div>
 </div>
@@ -461,7 +463,9 @@ Annotations are arbitrary, and not indexed, so cannot be used to select resource
 <div class="sect2">
 <h3 id="description-8"><a class="anchor" href="#description-8"></a>Description</h3>
 <div class="paragraph">
-<p>CouchbaseBackupSpec is allows the specification of how a Couchbase backup is configured, including when backups are performed, how long they are retained for, and where they are backed up to.</p>
+<p>CouchbaseBackupSpec is allows the specification of how a Couchbase backup is
+configured, including when backups are performed, how long they are retained
+for, and where they are backed up to.</p>
 </div>
 </div>
 <div class="sect2">
@@ -476,7 +480,8 @@ Annotations are arbitrary, and not indexed, so cannot be used to select resource
 <h4 id="description-9"><a class="anchor" href="#description-9"></a>Description</h4>
 <div class="paragraph">
 <p>AutoScaling allows the volume size to be dynamically increased.
-When specified, the backup volume will start with an initial size as defined by <code>spec.size</code>, and increase as required.</p>
+When specified, the backup volume will start with an initial size
+as defined by <code>spec.size</code>, and increase as required.</p>
 </div>
 </div>
 </div>
@@ -497,7 +502,8 @@ When specified, the backup volume will start with an initial size as defined by 
 <div class="sect3">
 <h4 id="description-10"><a class="anchor" href="#description-10"></a>Description</h4>
 <div class="paragraph">
-<p>IncrementPercent controls how much the volume is increased each time the threshold is exceeded, upto a maximum as defined by the limit.
+<p>IncrementPercent controls how much the volume is increased each time the
+threshold is exceeded, upto a maximum as defined by the limit.
 This field defaults to 20 if not specified.</p>
 </div>
 </div>
@@ -517,8 +523,10 @@ This field defaults to 20 if not specified.</p>
 <h4 id="description-11"><a class="anchor" href="#description-11"></a>Description</h4>
 <div class="paragraph">
 <p>Limit imposes a hard limit on the size we can autoscale to.
-When not specified no bounds are imposed.
-More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
+When not
+specified no bounds are imposed.
+More info:
+<a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
 </div>
 </div>
 </div>
@@ -543,8 +551,11 @@ More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-res
 <h4 id="description-12"><a class="anchor" href="#description-12"></a>Description</h4>
 <div class="paragraph">
 <p>ThresholdPercent determines the point at which a volume is autoscaled.
-This represents the percentage of free space remaining on the volume, when less than this threshold, it will trigger a volume expansion.
-For example, if the volume is 100Gi, and the threshold 20%, then a resize will be triggered when the used capacity exceeds 80Gi, and free space is less than 20Gi.
+This represents the percentage of free space remaining on the volume,
+when less than this threshold, it will trigger a volume expansion.
+For example, if the volume is 100Gi, and the threshold 20%, then a resize
+will be triggered when the used capacity exceeds 80Gi, and free space is
+less than 20Gi.
 This field defaults to 20 if not specified.</p>
 </div>
 </div>
@@ -583,7 +594,8 @@ Once it hits the BackoffLimit it will not run until the next scheduled job.</p>
 <h4 id="description-14"><a class="anchor" href="#description-14"></a>Description</h4>
 <div class="paragraph">
 <p>Number of hours to hold backups for, everything older will be deleted.
-More info: <a href="https://golang.org/pkg/time/#ParseDuration" class="bare">https://golang.org/pkg/time/#ParseDuration</a>.</p>
+More info:
+<a href="https://golang.org/pkg/time/#ParseDuration" class="bare">https://golang.org/pkg/time/#ParseDuration</a>.</p>
 </div>
 </div>
 </div>
@@ -598,9 +610,11 @@ More info: <a href="https://golang.org/pkg/time/#ParseDuration" class="bare">htt
 <div class="sect3">
 <h4 id="description-15"><a class="anchor" href="#description-15"></a>Description</h4>
 <div class="paragraph">
-<p>Data allows control over what key-value/document data is included in the backup.
+<p>Data allows control over what key-value/document data is included in the
+backup.
 By default, all data is included.
-Modifications to this field will only take effect on the next full backup.</p>
+Modifications
+to this field will only take effect on the next full backup.</p>
 </div>
 </div>
 </div>
@@ -622,12 +636,16 @@ Modifications to this field will only take effect on the next full backup.</p>
 <h4 id="description-16"><a class="anchor" href="#description-16"></a>Description</h4>
 <div class="paragraph">
 <p>Exclude defines the buckets, scopes or collections that are excluded from the backup.
-When this field is set, it implies that by default everything will be backed up, and data items can be explicitly excluded.
+When this field is set, it implies that by default everything will be backed up,
+and data items can be explicitly excluded.
 You may define an exclusion as a bucket&#8201;&#8212;&#8201;<code>my-bucket</code>, a scope&#8201;&#8212;&#8201;<code>my-bucket.my-scope</code>, or a collection&#8201;&#8212;&#8201;<code>my-bucket.my-scope.my-collection</code>.
-Buckets may contain periods, and therefore must be escaped&#8201;&#8212;&#8201;<code>my\.bucket.my-scope</code>, as period is the separator used to delimit scopes and collections.
-Excluded data cannot overlap e.g.
+Buckets may contain periods, and therefore must be escaped&#8201;&#8212;&#8201;<code>my\.bucket.my-scope</code>, as
+period is the separator used to delimit scopes and collections.
+Excluded data cannot overlap
+e.g.
 specifying <code>my-bucket</code> and <code>my-bucket.my-scope</code> is illegal.
-This field cannot be used at the same time as included items.</p>
+This field cannot
+be used at the same time as included items.</p>
 </div>
 </div>
 </div>
@@ -649,12 +667,16 @@ This field cannot be used at the same time as included items.</p>
 <h4 id="description-17"><a class="anchor" href="#description-17"></a>Description</h4>
 <div class="paragraph">
 <p>Include defines the buckets, scopes or collections that are included in the backup.
-When this field is set, it implies that by default nothing will be backed up, and data items must be explicitly included.
+When this field is set, it implies that by default nothing will be backed up,
+and data items must be explicitly included.
 You may define an inclusion as a bucket&#8201;&#8212;&#8201;<code>my-bucket</code>, a scope&#8201;&#8212;&#8201;<code>my-bucket.my-scope</code>, or a collection&#8201;&#8212;&#8201;<code>my-bucket.my-scope.my-collection</code>.
-Buckets may contain periods, and therefore must be escaped&#8201;&#8212;&#8201;<code>my\.bucket.my-scope</code>, as period is the separator used to delimit scopes and collections.
-Included data cannot overlap e.g.
+Buckets may contain periods, and therefore must be escaped&#8201;&#8212;&#8201;<code>my\.bucket.my-scope</code>, as
+period is the separator used to delimit scopes and collections.
+Included data cannot overlap
+e.g.
 specifying <code>my-bucket</code> and <code>my-bucket.my-scope</code> is illegal.
-This field cannot be used at the same time as excluded items.</p>
+This field cannot
+be used at the same time as excluded items.</p>
 </div>
 </div>
 </div>
@@ -675,7 +697,8 @@ This field cannot be used at the same time as excluded items.</p>
 <div class="sect3">
 <h4 id="description-18"><a class="anchor" href="#description-18"></a>Description</h4>
 <div class="paragraph">
-<p>DefaultRecoveryMethod specifies how cbbackupmgr should recover from broken backup/restore attempts.</p>
+<p>DefaultRecoveryMethod specifies how cbbackupmgr should
+recover from broken backup/restore attempts.</p>
 </div>
 </div>
 </div>
@@ -693,8 +716,10 @@ This field cannot be used at the same time as excluded items.</p>
 <div class="sect3">
 <h4 id="description-19"><a class="anchor" href="#description-19"></a>Description</h4>
 <div class="paragraph">
-<p>EphemeralVolume sets backup to use an ephemeral volume instead of a persistent volume.
-This is used when backing up to a remote cloud provider, where a persistent volume is not needed.</p>
+<p>EphemeralVolume sets backup to use an ephemeral volume instead
+of a persistent volume.
+This is used when backing up to a remote
+cloud provider, where a persistent volume is not needed.</p>
 </div>
 </div>
 </div>
@@ -802,7 +827,8 @@ Used in Full/Incremental backup strategies.</p>
 <h4 id="description-25"><a class="anchor" href="#description-25"></a>Description</h4>
 <div class="paragraph">
 <p>Number of hours to hold script logs for, everything older will be deleted.
-More info: <a href="https://golang.org/pkg/time/#ParseDuration" class="bare">https://golang.org/pkg/time/#ParseDuration</a>.</p>
+More info:
+<a href="https://golang.org/pkg/time/#ParseDuration" class="bare">https://golang.org/pkg/time/#ParseDuration</a>.</p>
 </div>
 </div>
 </div>
@@ -833,7 +859,8 @@ More info: <a href="https://golang.org/pkg/time/#ParseDuration" class="bare">htt
 <h4 id="description-27"><a class="anchor" href="#description-27"></a>Description</h4>
 <div class="paragraph">
 <p>Endpoint contains the configuration for connecting to a custom Azure/S3/GCP compliant object store.
-If set will override <code>CouchbaseCluster.spec.backup.objectEndpoint</code> See <a href="https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores" class="bare">https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores</a>.</p>
+If set will override <code>CouchbaseCluster.spec.backup.objectEndpoint</code>
+See <a href="https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores" class="bare">https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores</a>.</p>
 </div>
 </div>
 </div>
@@ -848,7 +875,8 @@ If set will override <code>CouchbaseCluster.spec.backup.objectEndpoint</code> Se
 <div class="sect3">
 <h4 id="description-28"><a class="anchor" href="#description-28"></a>Description</h4>
 <div class="paragraph">
-<p>The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpoint The secret must have the key with the name "tls.crt".</p>
+<p>The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpoint
+The secret must have the key with the name "tls.crt".</p>
 </div>
 </div>
 </div>
@@ -878,7 +906,8 @@ If set will override <code>CouchbaseCluster.spec.backup.objectEndpoint</code> Se
 <div class="sect3">
 <h4 id="description-30"><a class="anchor" href="#description-30"></a>Description</h4>
 <div class="paragraph">
-<p>UseVirtualPath will force the AWS SDK to use the new virtual style paths which are often required by S3 compatible object stores.</p>
+<p>UseVirtualPath will force the AWS SDK to use the new virtual style paths
+which are often required by S3 compatible object stores.</p>
 </div>
 </div>
 </div>
@@ -894,7 +923,8 @@ If set will override <code>CouchbaseCluster.spec.backup.objectEndpoint</code> Se
 <h4 id="description-31"><a class="anchor" href="#description-31"></a>Description</h4>
 <div class="paragraph">
 <p>ObjStoreSecret must contain two fields, access-key-id, secret-access-key and optionally either region or refresh-token.
-These correspond to the fields used by cbbackupmgr <a href="https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2" class="bare">https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2</a>.</p>
+These correspond to the fields used by cbbackupmgr
+<a href="https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2" class="bare">https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2</a>.</p>
 </div>
 </div>
 </div>
@@ -929,7 +959,8 @@ i.e s3://bucket, az://bucket or gs://bucket.</p>
 <div class="sect3">
 <h4 id="description-33"><a class="anchor" href="#description-33"></a>Description</h4>
 <div class="paragraph">
-<p>Whether to allow the backup SDK to attempt to authenticate using the instance metadata api.
+<p>Whether to allow the backup SDK to attempt to authenticate
+using the instance metadata api.
 If set, will override <code>CouchbaseCluster.spec.backup.useIAM</code>.</p>
 </div>
 </div>
@@ -948,7 +979,8 @@ If set, will override <code>CouchbaseCluster.spec.backup.useIAM</code>.</p>
 <div class="sect3">
 <h4 id="description-34"><a class="anchor" href="#description-34"></a>Description</h4>
 <div class="paragraph">
-<p><strong>DEPRECATED</strong> - by spec.objectStore.uri Name of S3 bucket to backup to.</p>
+<p><strong>DEPRECATED</strong> - by spec.objectStore.uri
+Name of S3 bucket to backup to.</p>
 </div>
 <div class="paragraph">
 <p>If non-empty this overrides local backup.</p>
@@ -971,7 +1003,8 @@ If set, will override <code>CouchbaseCluster.spec.backup.useIAM</code>.</p>
 <div class="paragraph">
 <p>Services allows control over what services are included in the backup.
 By default, all service data and metadata are included.
-Modifications to this field will only take effect on the next full backup.</p>
+Modifications
+to this field will only take effect on the next full backup.</p>
 </div>
 </div>
 </div>
@@ -1202,8 +1235,10 @@ This field defaults to <code>true</code>.</p>
 <div class="sect3">
 <h4 id="description-47"><a class="anchor" href="#description-47"></a>Description</h4>
 <div class="paragraph">
-<p>Size allows the specification of a backup persistent volume, when using volume based backup.
-More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
+<p>Size allows the specification of a backup persistent volume, when using
+volume based backup.
+More info:
+<a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
 </div>
 </div>
 </div>
@@ -1240,11 +1275,18 @@ More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-res
 <h4 id="description-49"><a class="anchor" href="#description-49"></a>Description</h4>
 <div class="paragraph">
 <p>Strategy defines how to perform backups.
-<code>full_only</code> will only perform full backups, and you must define a schedule in the <code>spec.full</code> field.
-<code>full_incremental</code> will perform periodic full backups, and incremental backups in between.
-You must define full and incremental schedules in the <code>spec.full</code> and <code>spec.incremental</code> fields respectively.
-Care should be taken to ensure full and incremental schedules do not overlap, taking into account the backup time, as this will cause failures as the jobs attempt to mount the same backup volume.
-To cause a backup to occur immediately use <code>immediate_incremental</code> or <code>immediate_full</code> for incremental or full backups respectively.
+<code>full_only</code> will only perform full
+backups, and you must define a schedule in the <code>spec.full</code> field.
+<code>full_incremental</code>
+will perform periodic full backups, and incremental backups in between.
+You must
+define full and incremental schedules in the <code>spec.full</code> and <code>spec.incremental</code> fields
+respectively.
+Care should be taken to ensure full and incremental schedules do not
+overlap, taking into account the backup time, as this will cause failures as the jobs
+attempt to mount the same backup volume.
+To cause a backup to occur immediately use <code>immediate_incremental</code>
+or <code>immediate_full</code> for incremental or full backups respectively.
 This field default to <code>full_incremental</code>.
 Info: <a href="https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-strategies.html" class="bare">https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-strategies.html</a>.</p>
 </div>
@@ -1325,7 +1367,9 @@ This field defaults to 1.</p>
 <div class="sect2">
 <h3 id="description-53"><a class="anchor" href="#description-53"></a>Description</h3>
 <div class="paragraph">
-<p>CouchbaseBackupStatus provides status notifications about the Couchbase backup including when the last backup occurred, whether is succeeded or not, the run time of the backup and the size of the backup.</p>
+<p>CouchbaseBackupStatus provides status notifications about the Couchbase backup
+including when the last backup occurred, whether is succeeded or not, the run
+time of the backup and the size of the backup.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1354,7 +1398,8 @@ This field defaults to 1.</p>
 <div class="sect3">
 <h4 id="description-55"><a class="anchor" href="#description-55"></a>Description</h4>
 <div class="paragraph">
-<p>Backups gives us a full list of all backups and their respective repository locations.</p>
+<p>Backups gives us a full list of all backups
+and their respective repository locations.</p>
 </div>
 </div>
 </div>
@@ -1421,7 +1466,8 @@ This field defaults to 1.</p>
 <h4 id="description-59"><a class="anchor" href="#description-59"></a>Description</h4>
 <div class="paragraph">
 <p>CapacityUsed tells us how much of the PVC we are using.
-More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
+More info:
+<a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes" class="bare">https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes</a>.</p>
 </div>
 </div>
 </div>
@@ -1455,7 +1501,8 @@ More info: <a href="https://kubernetes.io/docs/concepts/configuration/manage-res
 <h4 id="description-61"><a class="anchor" href="#description-61"></a>Description</h4>
 <div class="paragraph">
 <p>Duration tells us how long the last backup took.
-More info: <a href="https://golang.org/pkg/time/#ParseDuration" class="bare">https://golang.org/pkg/time/#ParseDuration</a>.</p>
+More info:
+<a href="https://golang.org/pkg/time/#ParseDuration" class="bare">https://golang.org/pkg/time/#ParseDuration</a>.</p>
 </div>
 </div>
 </div>
@@ -1684,7 +1731,7 @@ More info: <a href="https://golang.org/pkg/time/#ParseDuration" class="bare">htt
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Autonomous Operator","components":["operator"],"latestVersions":{"operator":"2.6"}}
+{"title":"Autonomous Operator","components":["operator"],"latestVersions":{"operator":"2.7"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">

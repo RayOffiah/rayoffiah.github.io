@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="c">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / C / Queries / Query Resultsets">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:version_rank" content="2">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -131,6 +131,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/c/query-resultsets.html">3.2 Beta</option>
         <option value="3.1" data-url="query-resultsets.html" selected>3.1</option>
         <option value="3.0" data-url="../../3.0/c/query-resultsets.html">3.0</option>
         <option value="2.8" data-url="../../2.8/index.html">2.8</option>
@@ -281,7 +282,7 @@ The properties are presented in the value as an array of key-value pairs (proper
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/c/examples/code_snippets/main.c">CBLResultSet* results = CBLQuery_Execute(query, &amp;err);
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/c/examples/code_snippets/main.c">CBLResultSet* results = CBLQuery_Execute(query, &amp;err);
 while(CBLResultSet_Next(results)) {
     FLDict dict = FLValue_AsDict(CBLResultSet_ValueForKey(results, FLSTR("_")));
 
@@ -335,7 +336,7 @@ You can add this dictionary to an array of returned matches, for processing else
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/c/examples/code_snippets/main.c">// NOTE: No error handling, for brevity (see getting started)
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/c/examples/code_snippets/main.c">// NOTE: No error handling, for brevity (see getting started)
 
 CBLResultSet* results = CBLQuery_Execute(query, &amp;err);
 while(CBLResultSet_Next(results)) {
@@ -370,7 +371,7 @@ while(CBLResultSet_Next(results)) {
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/c/examples/code_snippets/main.c">// NOTE: No error handling, for brevity (see getting started)
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/c/examples/code_snippets/main.c">// NOTE: No error handling, for brevity (see getting started)
 
 CBLError err;
 CBLQuery* query = CBLDatabase_CreateQuery(database, kCBLN1QLLanguage,
@@ -400,11 +401,11 @@ while(CBLResultSet_Next(results)) {
 <div class="title">Example 3. Using JSON Results</div>
 <div class="content">
 <div class="paragraph">
-<p>Use <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-c/C/html/group__json.html#ga3450acc0690101545d75986b91e4080">FLValue_ToJSON()</a> to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See <<ex-json>> for a working example.</p>
+<p>Use <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-c/C/html/group__json.html#ga3450acc0690101545d75986b91e4080">FLValue_ToJSON()</a> to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See <<ex-json>> for a working example.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/c/examples/code_snippets/main.c">CBLResultSet* results = CBLQuery_Execute(query, &amp;err);
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/c/examples/code_snippets/main.c">CBLResultSet* results = CBLQuery_Execute(query, &amp;err);
 while(CBLResultSet_Next(results)) {
     FLDict result = CBLResultSet_ResultDict(results);
     FLStringResult json = FLValue_ToJSON((FLValue)result);

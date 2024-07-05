@@ -31,7 +31,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="android">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Android / Upgrade">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:version_rank" content="2">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -129,6 +129,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/android/upgrade.html">3.2 Beta</option>
         <option value="3.1" data-url="upgrade.html" selected>3.1</option>
         <option value="3.0" data-url="../../3.0/android/upgrade.html">3.0</option>
         <option value="2.8" data-url="../../2.8/android/dep-upgrade.html">2.8</option>
@@ -239,7 +240,7 @@ This can result in a delay before the database is usable.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="3-1-1-upgrade"><a class="anchor" href="#3-1-1-upgrade"></a>3.1.1 Upgrade</h2>
+<h2 id="3-1-7-upgrade"><a class="anchor" href="#3-1-7-upgrade"></a>3.1.7 Upgrade</h2>
 <div class="sectionbody">
 <div class="admonitionblock note">
 <table>
@@ -257,13 +258,13 @@ This upgrade requires all 2.x databases be reindexed on initial open.
 <p>The action will take place automatically and can lead to some delay in the database becoming available for use in your application.</p>
 </div>
 <div class="paragraph">
-<p>In addition, if you are syncing with a 3.1.1 Sync Gateway, you should be aware of the significant configuration enhancements introduced and their impact.
+<p>In addition, if you are syncing with a 3.1.7 Sync Gateway, you should be aware of the significant configuration enhancements introduced and their impact.
 This is a one-way conversion.</p>
 </div>
 <div class="sect2">
 <h3 id="api-changes"><a class="anchor" href="#api-changes"></a>API Changes</h3>
 <div class="paragraph">
-<p>This content introduces the changes made to the Couchbase&#160;Lite for Android API for release 3.1.1.</p>
+<p>This content introduces the changes made to the Couchbase&#160;Lite for Android API for release 3.1.7.</p>
 </div>
 <div class="sect3">
 <h4 id="removed"><a class="anchor" href="#removed"></a>Removed</h4>
@@ -271,7 +272,7 @@ This is a one-way conversion.</p>
 <h5 id="resetcheckpoint"><a class="anchor" href="#resetcheckpoint"></a>ResetCheckpoint</h5>
 <div class="paragraph">
 <p>The method <a href="https://docs.couchbase.com/mobile/2.8.0/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#resetCheckpoint--">Replicator.resetCheckpoint()</a> has been removed.<br>
-Instead, use <a href="https://docs.couchbase.com/mobile/3.1.1/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#start-boolean-">Replicator.resetCheckpoint(boolean reset)</a>.</p>
+Instead, use <a href="https://docs.couchbase.com/mobile/3.1.7/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#start-boolean-">Replicator.resetCheckpoint(boolean reset)</a>.</p>
 </div>
 <div class="listingblock">
 <div class="title">Before</div>
@@ -323,7 +324,7 @@ Database.log.getFile().setDomains(LogLevel.DEBUG)</code></pre>
 <h5 id="database-compact"><a class="anchor" href="#database-compact"></a>Database.compact</h5>
 <div class="paragraph">
 <p>The <a href="https://docs.couchbase.com/mobile/2.8.0/couchbase-lite-android/com/couchbase/lite/Database.html#compact--">Database.compact()</a> method has been removed.<br>
-It is replaced by the new <a href="https://docs.couchbase.com/mobile/3.1.1/couchbase-lite-android/com/couchbase/lite/Database.html#performMaintenance-com.couchbase.lite.MaintenanceType-">Database.performMaintenance(MaintenanceType)</a> method, and the maintenance operations represented in the enum <a href="https://docs.couchbase.com/mobile/3.1.1/couchbase-lite-android/com/couchbase/lite/MaintenanceType.html">MaintenanceType</a></p>
+It is replaced by the new <a href="https://docs.couchbase.com/mobile/3.1.7/couchbase-lite-android/com/couchbase/lite/Database.html#performMaintenance-com.couchbase.lite.MaintenanceType-">Database.performMaintenance(MaintenanceType)</a> method, and the maintenance operations represented in the enum <a href="https://docs.couchbase.com/mobile/3.1.7/couchbase-lite-android/com/couchbase/lite/MaintenanceType.html">MaintenanceType</a></p>
 </div>
 <div class="listingblock">
 <div class="title">Before</div>
@@ -346,7 +347,7 @@ It is replaced by the new <a href="https://docs.couchbase.com/mobile/3.1.1/couch
 <div class="paragraph">
 <p>The class, <a href="https://docs.couchbase.com/mobile/2.8.0/couchbase-lite-android/com/couchbase/lite/FullTextExpression.html">FullTextExpression</a>
 has been deprecated.<br>
-Use <a href="https://docs.couchbase.com/mobile/3.1.1/couchbase-lite-android/com/couchbase/lite/FullTextFunction.html">FullTextFunction</a> instead.</p>
+Use <a href="https://docs.couchbase.com/mobile/3.1.7/couchbase-lite-android/com/couchbase/lite/FullTextFunction.html">FullTextFunction</a> instead.</p>
 </div>
 <div class="listingblock">
 <div class="title">Before</div>
@@ -440,13 +441,13 @@ They are replaced by these definitions:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.couchbase.com/mobile/3.1.1/couchbase-lite-android/com/couchbase/lite/ReplicatorActivityLevel.html">ReplicatorActivityLevel</a></p>
+<p><a href="https://docs.couchbase.com/mobile/3.1.7/couchbase-lite-android/com/couchbase/lite/ReplicatorActivityLevel.html">ReplicatorActivityLevel</a></p>
 </li>
 <li>
-<p><a href="https://docs.couchbase.com/mobile/3.1.1/couchbase-lite-android/com/couchbase/lite/ReplicatorProgress.html">ReplicatorProgress</a></p>
+<p><a href="https://docs.couchbase.com/mobile/3.1.7/couchbase-lite-android/com/couchbase/lite/ReplicatorProgress.html">ReplicatorProgress</a></p>
 </li>
 <li>
-<p><a href="https://docs.couchbase.com/mobile/3.1.1/couchbase-lite-android/com/couchbase/lite/ReplicatorStatus.html">ReplicatorStatus</a></p>
+<p><a href="https://docs.couchbase.com/mobile/3.1.7/couchbase-lite-android/com/couchbase/lite/ReplicatorStatus.html">ReplicatorStatus</a></p>
 </li>
 </ul>
 </div>
@@ -569,14 +570,14 @@ See <a href="#ex-get-att">Example 1</a> for how to retrieve an attachment that w
 <div id="tabs-1-kotlin--panel" class="tabpanel" aria-labelledby="tabs-1-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val content = document.getDictionary("_attachments")?.getBlob("avatar")?.content</code></pre>
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val content = document.getDictionary("_attachments")?.getBlob("avatar")?.content</code></pre>
 </div>
 </div>
 </div>
 <div id="tabs-1-java--panel" class="tabpanel" aria-labelledby="tabs-1-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Dictionary attachments = document.getDictionary("_attachments");
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Dictionary attachments = document.getDictionary("_attachments");
 Blob blob = attachments != null ? attachments.getBlob("avatar") : null;
 byte[] content = blob != null ? blob.getContent() : null;</code></pre>
 </div>

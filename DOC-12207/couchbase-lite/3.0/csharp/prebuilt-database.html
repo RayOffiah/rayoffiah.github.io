@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="csharp">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / .Net / Pre-built Database">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="2">
+<meta name="docsearch:version_rank" content="3">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/csharp/prebuilt-database.html">3.2 Beta</option>
         <option value="3.1" data-url="../../current/csharp/prebuilt-database.html">3.1</option>
         <option value="3.0" data-url="prebuilt-database.html" selected>3.0</option>
         <option value="2.8" data-url="../../2.8/csharp/prebuilt-database.html">2.8</option>
@@ -396,7 +397,7 @@ This is an <a href="https://www.couchbase.com/products/editions">Enterprise Edit
 </div>
 <div class="paragraph">
 <p>If you are using en encrypted database, note that
-<a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase_Lite_Database_Couchbase_Lite_Database_Copy_System_String_System_String_Couchbase_Lite_DatabaseConfiguration_">Database.Copy()</a>
+<a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase_Lite_Database_Couchbase_Lite_Database_Copy_System_String_System_String_Couchbase_Lite_DatabaseConfiguration_">Database.Copy()</a>
 does not change the encryption key.
 The encryption key specified in the config when opening the database is the encryption key used for both the original database and copied database.</p>
 </div>
@@ -406,13 +407,13 @@ The encryption key specified in the config when opening the database is the encr
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Provide the original encryption-key (if any) in the database copy&#8217;s configuration using <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html#Couchbase_Lite_DatabaseConfiguration_EncryptionKey">DatabaseConfiguration.EncryptionKey()</a></p>
+<p>Provide the original encryption-key (if any) in the database copy&#8217;s configuration using <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html#Couchbase_Lite_DatabaseConfiguration_EncryptionKey">DatabaseConfiguration.EncryptionKey()</a></p>
 </li>
 <li>
 <p>Open the database copy</p>
 </li>
 <li>
-<p>Use <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase_Lite_Database_ChangeEncryptionKey_Couchbase_Lite_EncryptionKey_">Database.ChangeEncryptionKey()</a> on the database copy to set the required encryption key.<br>
+<p>Use <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase_Lite_Database_ChangeEncryptionKey_Couchbase_Lite_EncryptionKey_">Database.ChangeEncryptionKey()</a> on the database copy to set the required encryption key.<br>
 NOTE: To remove encryption on the copy, provide a null encryption-key</p>
 </li>
 </ol>
@@ -433,7 +434,7 @@ NOTE: To remove encryption on the copy, provide a null encryption-key</p>
 <li>
 <p>Copy the pre-packaged database to the required location</p>
 <div class="paragraph">
-<p>Use the API&#8217;s <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase_Lite_Database_Couchbase_Lite_Database_Copy_System_String_System_String_Couchbase_Lite_DatabaseConfiguration_">Database.Copy()</a> method&#8201;&#8212;&#8201;see: <a href="#lbl-code">Example 1</a>; this ensures that a UUID is generated for each copy</p>
+<p>Use the API&#8217;s <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase_Lite_Database_Couchbase_Lite_Database_Copy_System_String_System_String_Couchbase_Lite_DatabaseConfiguration_">Database.Copy()</a> method&#8201;&#8212;&#8201;see: <a href="#lbl-code">Example 1</a>; this ensures that a UUID is generated for each copy</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -497,7 +498,7 @@ They can begin interacting with your app whilst any out-of-data data is being up
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/csharp/examples/code_snippets/Program.cs">// Note: Getting the path to a database is platform-specific.  For .NET Core / .NET Framework this
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/csharp/examples/code_snippets/Program.cs">// Note: Getting the path to a database is platform-specific.  For .NET Core / .NET Framework this
 // can be a simple filesystem path.  For UWP, you will need to get the path from your assets.  For
 // iOS you need to get the path from the main bundle.  For Android you need to extract it from your
 // assets to a temporary directory and then pass that path.

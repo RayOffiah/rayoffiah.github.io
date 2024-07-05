@@ -301,6 +301,24 @@ A list of the metrics provided by the Cluster Manager.
 <p class="tableblock">Total number of cbauth auth cache misses</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_auto_failover_count</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.2</span><span class="status">gauge</span></p>
+<p class="tableblock">Number of auto-failovers</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_auto_failover_enabled</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.2</span><span class="status">gauge</span></p>
+<p class="tableblock">Indicates if auto-failover is enabled (1 &#x3D; true, 0 &#x3D; false)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_auto_failover_max_count</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.2</span><span class="status">gauge</span></p>
+<p class="tableblock">Maximum number of auto-failovers before being disabled</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_build_streaming_info_total</code>
 &#160;&#160;&#160;
 <span class="edition">7.0.0</span><span class="status">counter</span></p>
@@ -355,10 +373,22 @@ A list of the metrics provided by the Cluster Manager.
 <p class="tableblock">The maximum number of processes that the erlang VM can use</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_failover_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.2</span><span class="status">counter</span></p>
+<p class="tableblock">Number of non-graceful failover results</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_gc_duration_seconds</code>
 &#160;&#160;&#160;
 <span class="edition">7.6.0</span><span class="status">histogram</span></p>
 <p class="tableblock">Time to perform erlang garbage collection</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_graceful_failover_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.2</span><span class="status">counter</span></p>
+<p class="tableblock">Number of graceful failover results</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_http_requests_seconds</code>
@@ -371,6 +401,12 @@ A list of the metrics provided by the Cluster Manager.
 &#160;&#160;&#160;
 <span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Total number of HTTP requests categorized</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_is_balanced</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.2</span><span class="status">gauge</span></p>
+<p class="tableblock">Indicates if cluster is balanced (1 &#x3D; true, 0 &#x3D; false). Only reported by the orchestrator node and only updated once every 30 seconds</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_logs_total</code>
@@ -455,6 +491,24 @@ A list of the metrics provided by the Cluster Manager.
 &#160;&#160;&#160;
 <span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Total number of outgoing HTTP requests</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_rebalance_in_progress</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.2</span><span class="status">gauge</span></p>
+<p class="tableblock">Indicates if a rebalance is running (1 &#x3D; true, 0 &#x3D; false). Only reported by the orchestrator node.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_rebalance_progress</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.2</span><span class="status">gauge / ratio</span></p>
+<p class="tableblock">Estimate of the rebalance progress (0 - 1) for each stage. Only reported by the orchestrator node.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_rebalance_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.2</span><span class="status">counter</span></p>
+<p class="tableblock">Number of rebalance results</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_request_hibernates_total</code>

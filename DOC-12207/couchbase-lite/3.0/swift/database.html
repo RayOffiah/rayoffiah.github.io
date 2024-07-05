@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="swift">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Swift / Databases">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="2">
+<meta name="docsearch:version_rank" content="3">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/swift/database.html">3.2 Beta</option>
         <option value="3.1" data-url="../../current/swift/database.html">3.1</option>
         <option value="3.0" data-url="database.html" selected>3.0</option>
         <option value="2.8" data-url="../../2.8/swift/database.html">2.8</option>
@@ -240,8 +241,8 @@ Related Content&#8201;&#8212;&#8201;<a href="blob.html" class="xref page">Blobs<
 <h2 id="open-db"><a class="anchor" href="#open-db"></a>Create or Open Database</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can create a new database and-or open an existing database, using the <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-swift/Classes/Database.html">Database</a> class.
-Just pass in a database name and optionally a <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-swift/Structs/DatabaseConfiguration.html">DatabaseConfiguration</a>&#8201;&#8212;&#8201;see <a href="#ex-dbopen">Example 1</a>.</p>
+<p>You can create a new database and-or open an existing database, using the <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-swift/Classes/Database.html">Database</a> class.
+Just pass in a database name and optionally a <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-swift/Structs/DatabaseConfiguration.html">DatabaseConfiguration</a>&#8201;&#8212;&#8201;see <a href="#ex-dbopen">Example 1</a>.</p>
 </div>
 <div class="paragraph">
 <p>Things to watch for include:</p>
@@ -252,7 +253,7 @@ Just pass in a database name and optionally a <a href="http://docs.couchbase.com
 <p>If the named database does not exist in the specified, or default, location then a new one is created</p>
 </li>
 <li>
-<p>The database is created in a default location unless you  specify a directory for it&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-swift/Structs/DatabaseConfiguration.html">DatabaseConfiguration</a> and <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-swift/Structs/DatabaseConfiguration.html#/s:18CouchbaseLiteSwift21DatabaseConfigurationC9directorySSvp">DatabaseConfiguration.directory()</a></p>
+<p>The database is created in a default location unless you  specify a directory for it&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-swift/Structs/DatabaseConfiguration.html">DatabaseConfiguration</a> and <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-swift/Structs/DatabaseConfiguration.html#/s:18CouchbaseLiteSwift21DatabaseConfigurationC9directorySSvp">DatabaseConfiguration.directory()</a></p>
 <div class="openblock">
 <div class="content">
 <div class="admonitionblock tip">
@@ -285,7 +286,7 @@ the application sandbox
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/swift/examples/code_snippets/SampleCodeTest.swift">do {
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/swift/examples/code_snippets/SampleCodeTest.swift">do {
     self.database = try Database(name: "my-database")
 } catch {
     print(error)
@@ -303,7 +304,7 @@ the application sandbox
 <p>You are advised to incorporate the closing of all open databases into your application workflow.</p>
 </div>
 <div class="paragraph">
-<p>Closing a database is simple, just use <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-swift/Classes/Database.html#/s:18CouchbaseLiteSwift8DatabaseC5closeyyKF">Database.close()</a>&#8201;&#8212;&#8201;see: <a href="#ex-dbclose">Example 2</a>.
+<p>Closing a database is simple, just use <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-swift/Classes/Database.html#/s:18CouchbaseLiteSwift8DatabaseC5closeyyKF">Database.close()</a>&#8201;&#8212;&#8201;see: <a href="#ex-dbclose">Example 2</a>.
 This also closes
 <sup class="footnote" id="_footnote_fn28">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>
 active replications, listeners and-or live queries connected to the database.</p>
@@ -338,7 +339,7 @@ Before closing, check that any attached listeners (query/replication/change) ind
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/swift/examples/code_snippets/SampleCodeTest.swift">do {
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/swift/examples/code_snippets/SampleCodeTest.swift">do {
     try self.database.close()
 }</code></pre>
 </div>
@@ -370,7 +371,7 @@ The algorithm used to encrypt the database is 256-bit AES.</p>
 <div class="sect2">
 <h3 id="enabling"><a class="anchor" href="#enabling"></a>Enabling</h3>
 <div class="paragraph">
-<p>To enable encryption, use <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-swift/Structs/DatabaseConfiguration.html#/s:18CouchbaseLiteSwift21DatabaseConfigurationV13encryptionKeyAA010EncryptionG0OSgvp">DatabaseConfiguration.encryptionKey()</a> to set the encryption key of your choice.
+<p>To enable encryption, use <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-swift/Structs/DatabaseConfiguration.html#/s:18CouchbaseLiteSwift21DatabaseConfigurationV13encryptionKeyAA010EncryptionG0OSgvp">DatabaseConfiguration.encryptionKey()</a> to set the encryption key of your choice.
 Provide this encryption key every time the database is opened&#8201;&#8212;&#8201;see <a href="#ex-sdb-encrypt">Example 3</a>.</p>
 </div>
 <div id="ex-sdb-encrypt" class="exampleblock">
@@ -378,7 +379,7 @@ Provide this encryption key every time the database is opened&#8201;&#8212;&#820
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/swift/examples/code_snippets/SampleCodeTest.swift">var config = DatabaseConfiguration()
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/swift/examples/code_snippets/SampleCodeTest.swift">var config = DatabaseConfiguration()
 config.encryptionKey = EncryptionKey.password("secretpassword")
 
 self.database = try Database(name: "my-database", config: config)</code></pre>
@@ -406,7 +407,7 @@ So a database encrypted using the Swift SDK, and then exported, is readable only
 <div class="sect2">
 <h3 id="changing"><a class="anchor" href="#changing"></a>Changing</h3>
 <div class="paragraph">
-<p>To change an existing encryption key, open the database using its existing encryption-key and use <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-swift/Classes/Database.html#/s:18CouchbaseLiteSwift8DatabaseC19changeEncryptionKeyyyAA0fG0OSgKF">Database.changeEncryptionKey()</a>
+<p>To change an existing encryption key, open the database using its existing encryption-key and use <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-swift/Classes/Database.html#/s:18CouchbaseLiteSwift8DatabaseC19changeEncryptionKeyyyAA0fG0OSgKF">Database.changeEncryptionKey()</a>
 to set the required new encryption-key value.</p>
 </div>
 </div>
@@ -414,7 +415,7 @@ to set the required new encryption-key value.</p>
 <h3 id="removing"><a class="anchor" href="#removing"></a>Removing</h3>
 <div class="paragraph">
 <p>To remove encryption, open the database using its existing encryption-key and use
-<a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-swift/Classes/Database.html#/s:18CouchbaseLiteSwift8DatabaseC19changeEncryptionKeyyyAA0fG0OSgKF">Database.changeEncryptionKey()</a>
+<a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-swift/Classes/Database.html#/s:18CouchbaseLiteSwift8DatabaseC19changeEncryptionKeyyyAA0fG0OSgKF">Database.changeEncryptionKey()</a>
 with a null value as the encryption key.</p>
 </div>
 </div>
@@ -442,8 +443,8 @@ with a null value as the encryption key.</p>
 compact the database file, removing unused documents and blobs no longer referenced by any documents.</p>
 </div>
 <div class="paragraph">
-<p>Couchbase Lite&#8217;s API provides the <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-swift/Classes/Database.html#/s:18CouchbaseLiteSwift8DatabaseC18performMaintenance4typeyAA0F4TypeO_tKF">Database.performMaintenance()</a> method.
-The available maintenance operations, including <code>compact</code> are as shown in the enum <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-swift/Enums/MaintenanceType.html">MaintenanceType</a> to accomplish this.</p>
+<p>Couchbase Lite&#8217;s API provides the <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-swift/Classes/Database.html#/s:18CouchbaseLiteSwift8DatabaseC18performMaintenance4typeyAA0F4TypeO_tKF">Database.performMaintenance()</a> method.
+The available maintenance operations, including <code>compact</code> are as shown in the enum <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-swift/Enums/MaintenanceType.html">MaintenanceType</a> to accomplish this.</p>
 </div>
 <div class="paragraph">
 <p>This is a resource intensive operation and is not performed automatically.
@@ -479,7 +480,7 @@ If the information in the default logging level is insufficient you can focus it
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/swift/examples/code_snippets/SampleCodeTest.swift">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/swift/examples/code_snippets/SampleCodeTest.swift">
 Database.log.console.domains = .database</code></pre>
 </div>
 </div>

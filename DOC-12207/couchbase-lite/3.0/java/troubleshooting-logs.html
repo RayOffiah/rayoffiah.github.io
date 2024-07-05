@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="java">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Java / Troubleshooting / Using Logs">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="2">
+<meta name="docsearch:version_rank" content="3">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/java/troubleshooting-logs.html">3.2 Beta</option>
         <option value="3.1" data-url="../../current/java/troubleshooting-logs.html">3.1</option>
         <option value="3.0" data-url="troubleshooting-logs.html" selected>3.0</option>
         <option value="2.8" data-url="../../2.8/java/troubleshooting-logs.html">2.8</option>
@@ -264,7 +265,7 @@ If you are using a Couchbase Lite release prior to 2.5 see <a href="#pre-2x5-log
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase Lite provides a robust Logging API <sup class="footnote" id="_footnote_fn-2x5">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>&#8201;&#8212;&#8201;see: API References for <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/Log.html">Log</a>, <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/FileLogger.html">FileLogger</a> and <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/LogFileConfiguration.html">LogFileConfiguration(String directory)</a>&#8201;&#8212;&#8201;which make debugging and troubleshooting easier during development and in production.
+<p>Couchbase Lite provides a robust Logging API <sup class="footnote" id="_footnote_fn-2x5">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>&#8201;&#8212;&#8201;see: API References for <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Log.html">Log</a>, <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/FileLogger.html">FileLogger</a> and <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/LogFileConfiguration.html">LogFileConfiguration(String directory)</a>&#8201;&#8212;&#8201;which make debugging and troubleshooting easier during development and in production.
 It delivers flexibility in terms of how logs are generated and retained, whilst also maintaining the level of logging required by Couchbase Support for investigation of issues.</p>
 </div>
 <div class="paragraph">
@@ -294,7 +295,7 @@ With console logging, you can fine-tune diagnostic output to suit specific debug
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>For greater flexibility you can implement a custom logging class using the <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/Logger.html">Logger</a> interface.</p>
+<p>For greater flexibility you can implement a custom logging class using the <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Logger.html">Logger</a> interface.</p>
 </div>
 </div>
 </div>
@@ -302,7 +303,7 @@ With console logging, you can fine-tune diagnostic output to suit specific debug
 </ul>
 </div>
 <div class="paragraph">
-<p>In all instances, you control what is logged and at what level using the <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/Log.html">Log</a> class.</p>
+<p>In all instances, you control what is logged and at what level using the <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Log.html">Log</a> class.</p>
 </div>
 </div>
 </div>
@@ -319,10 +320,10 @@ You can easily fine-tune their diagnostic content to meet the needs of a particu
 <div class="paragraph">
 <p>Changes to console logging are independent of file logging, so you can make change without compromising any files logging streams.
 It is enabled by default.
-To change default settings use database&#8217;s <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/Log.html">Log</a> method to set the required values&#8201;&#8212;&#8201;see <a href="#eg-cons-log">Example 1</a></p>
+To change default settings use database&#8217;s <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Log.html">Log</a> method to set the required values&#8201;&#8212;&#8201;see <a href="#eg-cons-log">Example 1</a></p>
 </div>
 <div class="paragraph">
-<p>You will primarily use <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/Log.html">log.getConsole()</a> and <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/ConsoleLogger.html">ConsoleLogger</a> to control console logging.</p>
+<p>You will primarily use <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Log.html">log.getConsole()</a> and <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/ConsoleLogger.html">ConsoleLogger</a> to control console logging.</p>
 </div>
 <div id="eg-cons-log" class="exampleblock">
 <div class="title">Example 1. Change Console Logging Settings</div>
@@ -332,7 +333,7 @@ To change default settings use database&#8217;s <a href="http://docs.couchbase.c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java">Database.log.getConsole().setDomain(LogDomain.ALL_DOMAINS); <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java">Database.log.getConsole().setDomain(LogDomain.ALL_DOMAINS); <i class="conum" data-value="1"></i><b>(1)</b>
 Database.log.getConsole().setLevel(LogLevel.VERBOSE); <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
@@ -342,17 +343,17 @@ Database.log.getConsole().setLevel(LogLevel.VERBOSE); <i class="conum" data-valu
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Define the required domain ; here we turn on logging for all available domains&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/ConsoleLogger.html#setDomains-java.util.EnumSet-">log.getConsole().setDomain()</a> and enum <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/LogDomain.html">LogDomain</a></td>
+<td>Define the required domain ; here we turn on logging for all available domains&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/ConsoleLogger.html#setDomains-java.util.EnumSet-">log.getConsole().setDomain()</a> and enum <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/LogDomain.html">LogDomain</a></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Here we turn on the most verbose log level&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/ConsoleLogger.html#setLevel-com.couchbase.lite.LogLevel-">log.getConsole().setLevel()</a> and enum <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/LogLevel.html">LogLevel</a>.<br>
-To disable logging for the specified <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/LogDomain.html">LogDomain</a> set the <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/LogLevel.html">LogLevel</a> to <code>None</code>.
+<td>Here we turn on the most verbose log level&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/ConsoleLogger.html#setLevel-com.couchbase.lite.LogLevel-">log.getConsole().setLevel()</a> and enum <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/LogLevel.html">LogLevel</a>.<br>
+To disable logging for the specified <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/LogDomain.html">LogDomain</a> set the <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/LogLevel.html">LogLevel</a> to <code>None</code>.
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Related</dt>
 <dd>
-<p><a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/Log.html">Log</a> | <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/Log.html">log.getConsole()</a> | <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/ConsoleLogger.html">ConsoleLogger</a></p>
+<p><a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Log.html">Log</a> | <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Log.html">log.getConsole()</a> | <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/ConsoleLogger.html">ConsoleLogger</a></p>
 </dd>
 </dl>
 </div></td>
@@ -368,7 +369,7 @@ To disable logging for the specified <a href="http://docs.couchbase.com/mobile/3
 <p>File based logging is disabled by default&#8201;&#8212;&#8201; see: <a href="#eg-file-log">Example 2</a> for how to enable it.</p>
 </div>
 <div class="paragraph">
-<p>You will primarily use <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/Log.html">log.getFile()</a> and <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/FileLogger.html">FileLogger</a> to control file-based logging.</p>
+<p>You will primarily use <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Log.html">log.getFile()</a> and <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/FileLogger.html">FileLogger</a> to control file-based logging.</p>
 </div>
 <div class="sect2">
 <h3 id="formats"><a class="anchor" href="#formats"></a>Formats</h3>
@@ -392,10 +393,10 @@ To disable logging for the specified <a href="http://docs.couchbase.com/mobile/3
 <div class="sect2">
 <h3 id="configuration"><a class="anchor" href="#configuration"></a>Configuration</h3>
 <div class="paragraph">
-<p>As with console logging you can set the log level&#8201;&#8212;&#8201;see:  the <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/FileLogger.html">FileLogger</a> class.</p>
+<p>As with console logging you can set the log level&#8201;&#8212;&#8201;see:  the <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/FileLogger.html">FileLogger</a> class.</p>
 </div>
 <div class="paragraph">
-<p>With file based logging you can also use the <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/LogFileConfiguration.html">LogFileConfiguration(String directory)</a> class&#8217;s properties to specify the:</p>
+<p>With file based logging you can also use the <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/LogFileConfiguration.html">LogFileConfiguration(String directory)</a> class&#8217;s properties to specify the:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -421,7 +422,7 @@ You can over ride that where necessary and output a plain text log.</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java">LogFileConfiguration LogCfg = new LogFileConfiguration(
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java">LogFileConfiguration LogCfg = new LogFileConfiguration(
     (System.getProperty("user.dir") + "/MyApp/logs")); <i class="conum" data-value="1"></i><b>(1)</b>
 LogCfg.setMaxSize(10240); <i class="conum" data-value="2"></i><b>(2)</b>
 LogCfg.setMaxRotateCount(5); <i class="conum" data-value="3"></i><b>(3)</b>
@@ -453,17 +454,17 @@ Database.log.getFile().setLevel(LogLevel.INFO); <i class="conum" data-value="5">
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Here we increase the log output level from the default (<em>warnings</em>) to <em>info</em>&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/FileLogger.html#setLevel-com.couchbase.lite.LogLevel-">log.getFile().setLevel()</a>
+<td>Here we increase the log output level from the default (<em>warnings</em>) to <em>info</em>&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/FileLogger.html#setLevel-com.couchbase.lite.LogLevel-">log.getFile().setLevel()</a>
 <div class="paragraph">
-<p><strong>Note</strong> that the use of <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/Database.html#setLogLevel-com.couchbase.lite.LogDomain-com.couchbase.lite.LogLevel-">Database.setLogLevel()</a> is now deprecated.
+<p><strong>Note</strong> that the use of <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Database.html#setLogLevel-com.couchbase.lite.LogDomain-com.couchbase.lite.LogLevel-">Database.setLogLevel()</a> is now deprecated.
 Further, you can no longer set a log level for a specific domain.</p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Related</dt>
 <dd>
-<p> <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/Log.html">Log</a> |
-<a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/Log.html">log.getFile()</a> | <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/FileLogger.html">FileLogger</a></p>
+<p> <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Log.html">Log</a> |
+<a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Log.html">log.getFile()</a> | <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/FileLogger.html">FileLogger</a></p>
 </dd>
 </dl>
 </div></td>
@@ -480,17 +481,17 @@ Further, you can no longer set a log level for a specific domain.</p>
 <p>Couchbase Lite allows for the registration of a callback function to receive Couchbase Lite log messages, which may be logged using any external logging framework.</p>
 </div>
 <div class="paragraph">
-<p>To do this, apps must implement the <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/Logger.html">Logger</a> interface&#8201;&#8212;&#8201;see <a href="#eg-impl-log">Example 3</a>&#8201;&#8212;&#8201;and enable custom logging using <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/Log.html">log.setCustom()</a>&#8201;&#8212;&#8201;see <a href="#eg-cust-log">Example 4</a>.</p>
+<p>To do this, apps must implement the <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Logger.html">Logger</a> interface&#8201;&#8212;&#8201;see <a href="#eg-impl-log">Example 3</a>&#8201;&#8212;&#8201;and enable custom logging using <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Log.html">log.setCustom()</a>&#8201;&#8212;&#8201;see <a href="#eg-cust-log">Example 4</a>.</p>
 </div>
 <div id="eg-impl-log" class="exampleblock">
 <div class="title">Example 3. Implementing logger interface</div>
 <div class="content">
 <div class="paragraph">
-<p>Here we introduce the code that implements the <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/Logger.html">Logger</a> interface.</p>
+<p>Here we introduce the code that implements the <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Logger.html">Logger</a> interface.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java">class LogTestLogger implements Logger {
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java">class LogTestLogger implements Logger {
     @NonNull
     private final LogLevel level;
 
@@ -517,7 +518,7 @@ Further, you can no longer set a log level for a specific domain.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java">Database.log.setCustom(new LogTestLogger(LogLevel.WARNING)); <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java">Database.log.setCustom(new LogTestLogger(LogLevel.WARNING)); <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 </div>
@@ -532,7 +533,7 @@ The custom logger is called with every log and may choose to filter it, using it
 <dl>
 <dt class="hdlist1">Related</dt>
 <dd>
-<p><a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/Log.html">Log</a> | <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/Log.html">log.getCustom()</a> | <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/com/couchbase/lite/Logger.html">Logger</a></p>
+<p><a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Log.html">Log</a> | <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Log.html">log.getCustom()</a> | <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/com/couchbase/lite/Logger.html">Logger</a></p>
 </dd>
 </dl>
 </div></td>
@@ -618,42 +619,6 @@ The custom logger is called with every log and may choose to filter it, using it
 <pre class="highlightjs highlight"><code class="language-powershell hljs" data-lang="powershell">$ .\cbl-log.exe logcat LOGFILE &lt;OUTPUT_PATH&gt;</code></pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="pre-2x5-logging"><a class="anchor" href="#pre-2x5-logging"></a>Logging functionality prior to Release 2.5</h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="title">Deprecation</div>
-The pre-Couchbase Lite 2.5 logging functionality is deprecated.
-It was superseded by an enhanced Logging API in that release.
-This information is included for completeness only.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The log messages are split into different domains (<code>LogDomains</code>) which can be tuned to different log levels.</p>
-</div>
-<div class="exampleblock">
-<div class="title">Example 6. Enable verbose logging on a domain</div>
-<div class="content">
-<div class="paragraph">
-<p>The following example enables `verbose` logging for the `replicator` and `query` domains.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java">// deprecated
-Database.setLogLevel(LogDomain.REPLICATOR, LogLevel.VERBOSE);
-Database.setLogLevel(LogDomain.QUERY, LogLevel.VERBOSE);</code></pre>
 </div>
 </div>
 </div>

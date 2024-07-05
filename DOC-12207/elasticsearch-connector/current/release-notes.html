@@ -135,7 +135,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbase/couchbase-elasticsearch-connector/edit/master/docs/modules/ROOT/pages/release-notes.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-elastic-search/modules/ROOT/pages/release-notes.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -230,6 +230,89 @@ Refer to <a href="getting-started.html" class="xref page">Getting Started</a> fo
 </div>
 </div>
 <div class="sect1">
+<h2 id="v4.4.8"><a class="anchor" href="#v4.4.8"></a>Version 4.4.8 (2024-04-16)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/connectors/elasticsearch/4.4.8/couchbase-elasticsearch-connector-4.4.8.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This maintenance release updates the Couchbase Java SDK to the most recent version.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements"><a class="anchor" href="#enhancements"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBES-308">CBES-308</a>:
+Upgrade Couchbase Java SDK from <code>3.5.2</code> to <code>3.6.1</code>.</p>
+<div class="paragraph">
+<p>Notably:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/JVMCBC-1499">JVMCBC-1499</a>
+Disabled DNS SRV caching.
+The connector now responds quicker to DNS changes in dynamic environments like Kubernetes.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v4.4.7"><a class="anchor" href="#v4.4.7"></a>Version 4.4.7 (2024-01-24)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://packages.couchbase.com/clients/connectors/elasticsearch/4.4.7/couchbase-elasticsearch-connector-4.4.7.zip">Download</a></p>
+</div>
+<div class="paragraph">
+<p>This maintenance release improves the robustness of the connector in certain conditions.</p>
+</div>
+<div class="paragraph">
+<p>Added Elasticsearch 8.12, OpenSearch 2.11, and Consul 1.17.1 to the compatibility matrix as supported versions.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements-2"><a class="anchor" href="#enhancements-2"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBES-305">CBES-305</a>:
+Upgrade Couchbase Java SDK from <code>3.4.6</code> to <code>3.5.2</code>.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBES-306">CBES-306</a>:
+Upgrade Couchbase DCP client from <code>0.46.0</code> to <code>0.48.0</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bug-fixes"><a class="anchor" href="#bug-fixes"></a>Bug Fixes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/JDCP-239">JDCP-239</a>:
+Improved reliability of initial startup during a Couchbase Server cluster rebalance, or before a newly-created bucket is ready.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/JDCP-240">JDCP-240</a>:
+When a partition is not active on any Couchbase Server node, the checkpoint management "catch up" command now waits for the partition to become active somewhere, instead of clearing the partition&#8217;s checkpoint.</p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/JDCP-241">JDCP-241</a>:
+Improved handling of an edge case that could cause the connector to stop streaming for a partition.
+If a DCP socket connection is lost after receiving a snapshot marker for a partition and before receiving the first item in the snapshot, the connector now recovers instead of failing to resume streaming for that partition.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="v4.4.6"><a class="anchor" href="#v4.4.6"></a>Version 4.4.6 (2023-05-17)</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -243,7 +326,7 @@ This behavior requires Couchbase Server 7.2 or later.</p>
 <p>Added Elasticsearch 8.7 and OpenSearch 2.7 to the compatibility matrix as supported versions.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements"><a class="anchor" href="#enhancements"></a>Enhancements</h3>
+<h3 id="enhancements-3"><a class="anchor" href="#enhancements-3"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -263,7 +346,7 @@ Upgrade Couchbase DCP client from <code>0.45.0</code> to <code>0.46.0</code>.</p
 </div>
 </div>
 <div class="sect2">
-<h3 id="bug-fixes"><a class="anchor" href="#bug-fixes"></a>Bug Fixes</h3>
+<h3 id="bug-fixes-2"><a class="anchor" href="#bug-fixes-2"></a>Bug Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -288,7 +371,7 @@ This typically has no functional impact, but the old behavior was generating noi
 If you&#8217;d like to share feedback on these features, please post in the <a href="https://forums.couchbase.com/c/elasticsearch-connector/36">Elasticsearch category</a> on the Couchbase Forum.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-2"><a class="anchor" href="#enhancements-2"></a>Enhancements</h3>
+<h3 id="enhancements-4"><a class="anchor" href="#enhancements-4"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -335,7 +418,7 @@ Upgrade Couchbase DCP client from <code>0.44.0</code> to <code>0.45.0</code>.</p
 <p>This maintenance release upgrades various dependencies, and adds Elasticsearch 8.6 to the compatibility matrix as a supported version.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-3"><a class="anchor" href="#enhancements-3"></a>Enhancements</h3>
+<h3 id="enhancements-5"><a class="anchor" href="#enhancements-5"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -358,7 +441,7 @@ Upgrade Couchbase DCP client from <code>0.43.0</code> to <code>0.44.0</code>.</p
 <p><a href="https://packages.couchbase.com/clients/connectors/elasticsearch/4.4.3/couchbase-elasticsearch-connector-4.4.3.zip">Download</a></p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-4"><a class="anchor" href="#enhancements-4"></a>Enhancements</h3>
+<h3 id="enhancements-6"><a class="anchor" href="#enhancements-6"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -377,7 +460,7 @@ Upgrade Couchbase Java SDK from <code>3.3.4</code> to <code>3.4.1</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="bug-fixes-2"><a class="anchor" href="#bug-fixes-2"></a>Bug Fixes</h3>
+<h3 id="bug-fixes-3"><a class="anchor" href="#bug-fixes-3"></a>Bug Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -405,7 +488,7 @@ Fixed a race condition that sometimes caused the connector to fail on startup wi
 <p>You can now authenticate with Couchbase as an LDAP user, as long as secure connections are enabled.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-5"><a class="anchor" href="#enhancements-5"></a>Enhancements</h3>
+<h3 id="enhancements-7"><a class="anchor" href="#enhancements-7"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -481,7 +564,7 @@ You can customize these behaviors in the connector&#8217;s Consul-specific confi
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhancements-6"><a class="anchor" href="#enhancements-6"></a>Enhancements</h3>
+<h3 id="enhancements-8"><a class="anchor" href="#enhancements-8"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -541,7 +624,7 @@ We&#8217;re investigating restoring support in a future version.
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhancements-7"><a class="anchor" href="#enhancements-7"></a>Enhancements</h3>
+<h3 id="enhancements-9"><a class="anchor" href="#enhancements-9"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -593,7 +676,7 @@ Specifying this property has no effect, since the concept of document types was 
 There are no new features or bug fixes.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-8"><a class="anchor" href="#enhancements-8"></a>Enhancements</h3>
+<h3 id="enhancements-10"><a class="anchor" href="#enhancements-10"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -623,7 +706,7 @@ In brief, no version of the Elasticsearch connector is vulnerable.</p>
 There are no new features or bug fixes.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-9"><a class="anchor" href="#enhancements-9"></a>Enhancements</h3>
+<h3 id="enhancements-11"><a class="anchor" href="#enhancements-11"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -650,7 +733,7 @@ Upgrade the Docker base image to the latest version of <code>ubi8/openjdk-11-run
 There are no new features or bug fixes.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-10"><a class="anchor" href="#enhancements-10"></a>Enhancements</h3>
+<h3 id="enhancements-12"><a class="anchor" href="#enhancements-12"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -676,7 +759,7 @@ Upgrade <code>ubi8/openjdk-11-runtime</code> base image from 1.11-2.1648459559 t
 <p>This release adds a new <code>/info</code> HTTP endpoint that displays information about the connector.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-11"><a class="anchor" href="#enhancements-11"></a>Enhancements</h3>
+<h3 id="enhancements-13"><a class="anchor" href="#enhancements-13"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -702,7 +785,7 @@ Upgrade Couchbase Java SDK from 3.2.4 to 3.2.6.</p>
 <p>This is a maintenance released focused on upgrading dependencies to the latest versions.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-12"><a class="anchor" href="#enhancements-12"></a>Enhancements</h3>
+<h3 id="enhancements-14"><a class="anchor" href="#enhancements-14"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -774,7 +857,7 @@ You may still wish to upgrade to avoid false positives from vulnerability scanne
 </table>
 </div>
 <div class="sect2">
-<h3 id="enhancements-13"><a class="anchor" href="#enhancements-13"></a>Enhancements</h3>
+<h3 id="enhancements-15"><a class="anchor" href="#enhancements-15"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -796,7 +879,7 @@ Upgrade Log4j from 2.17.0 to 2.17.1.</p>
 <p>This release makes it easier to <a href="kubernetes.html" class="xref page">deploy the connector in Kubernetes</a>, and upgrades Log4j from 2.15.0 to 2.17.0.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-14"><a class="anchor" href="#enhancements-14"></a>Enhancements</h3>
+<h3 id="enhancements-16"><a class="anchor" href="#enhancements-16"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -852,7 +935,7 @@ Upgraded Couchbase Java client from 3.2.0 to 3.2.4 to pick up the latest depende
 <p>This release upgrades Log4j from 2.15.0 to 2.17.0.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-15"><a class="anchor" href="#enhancements-15"></a>Enhancements</h3>
+<h3 id="enhancements-17"><a class="anchor" href="#enhancements-17"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -888,7 +971,7 @@ All versions of the connector are immune to CVE-2021-45046 and CVE-2021-45105 be
 All users should upgrade the connector to 4.3.3 (or 4.2.13) as soon as possible.</p>
 </div>
 <div class="sect2">
-<h3 id="bug-fixes-3"><a class="anchor" href="#bug-fixes-3"></a>Bug Fixes</h3>
+<h3 id="bug-fixes-4"><a class="anchor" href="#bug-fixes-4"></a>Bug Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -911,7 +994,7 @@ Upgrade Log4j 2 from 2.14.1 to 2.15.0 to address CVE-2021-44228.</p>
 All users should upgrade the connector to 4.2.13 (or 4.3.3 and later) as soon as possible.</p>
 </div>
 <div class="sect2">
-<h3 id="bug-fixes-4"><a class="anchor" href="#bug-fixes-4"></a>Bug Fixes</h3>
+<h3 id="bug-fixes-5"><a class="anchor" href="#bug-fixes-5"></a>Bug Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -933,7 +1016,7 @@ Upgrade Log4j 2 from 2.14.1 to 2.15.0 to address CVE-2021-44228.</p>
 <p>This version reduces the default flow control buffer size to a more reasonable value and improves DCP diagnostics.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-16"><a class="anchor" href="#enhancements-16"></a>Enhancements</h3>
+<h3 id="enhancements-18"><a class="anchor" href="#enhancements-18"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -970,7 +1053,7 @@ Prior to this change the log message always had a placeholder version of <code>9
 <p>If you are currently using a connector version between 4.2.2 and 4.3.0 inclusive, please upgrade to 4.3.1 or later before upgrading Couchbase Server beyond 7.0.1.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-17"><a class="anchor" href="#enhancements-17"></a>Enhancements</h3>
+<h3 id="enhancements-19"><a class="anchor" href="#enhancements-19"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -993,7 +1076,7 @@ Upgraded the DCP client from 0.35.0 to 0.36.0 for compatibility with Couchbase S
 All previously "uncommitted" options are promoted to "committed" status.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-18"><a class="anchor" href="#enhancements-18"></a>Enhancements</h3>
+<h3 id="enhancements-20"><a class="anchor" href="#enhancements-20"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1038,7 +1121,7 @@ As a replacement, please use the <code>cbes.backlog</code> metric which gives on
 <p>This release upgrades various dependencies to the latest versions and improves how permanent indexing failures are logged.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-19"><a class="anchor" href="#enhancements-19"></a>Enhancements</h3>
+<h3 id="enhancements-21"><a class="anchor" href="#enhancements-21"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1072,7 +1155,7 @@ Upgraded various dependencies to the latest versions.</p>
 <p>This release makes it easier for custom tools to parse config files that have environment variable placeholders.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-20"><a class="anchor" href="#enhancements-20"></a>Enhancements</h3>
+<h3 id="enhancements-22"><a class="anchor" href="#enhancements-22"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1097,7 +1180,7 @@ The connector resolves placeholders before parsing the TOML, so it doesn&#8217;t
 <p>This release brings minor improvements to monitoring and configurability.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-21"><a class="anchor" href="#enhancements-21"></a>Enhancements</h3>
+<h3 id="enhancements-23"><a class="anchor" href="#enhancements-23"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1132,7 +1215,7 @@ Upgraded the DCP client from 0.33.0 to 0.34.0.</p>
 <p>This release improves diagnostic logging and fixes an issue with scopes &amp; collections.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-22"><a class="anchor" href="#enhancements-22"></a>Enhancements</h3>
+<h3 id="enhancements-24"><a class="anchor" href="#enhancements-24"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1151,7 +1234,7 @@ Upgraded the DCP client from 0.32.0 to 0.33.0.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="bug-fixes-5"><a class="anchor" href="#bug-fixes-5"></a>Bug Fixes</h3>
+<h3 id="bug-fixes-6"><a class="anchor" href="#bug-fixes-6"></a>Bug Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1175,7 +1258,7 @@ With this fix, documents are never considered duplicates if they have different 
 <p>This release adds uncommitted support for client certificate authentication (mTLS), adds hostname verification for secure DCP connections, and improves the stability of the connector.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-23"><a class="anchor" href="#enhancements-23"></a>Enhancements</h3>
+<h3 id="enhancements-25"><a class="anchor" href="#enhancements-25"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1205,7 +1288,7 @@ Previously, TLS hostname verification was done only for the Couchbase Java clien
 </div>
 </div>
 <div class="sect2">
-<h3 id="bug-fixes-6"><a class="anchor" href="#bug-fixes-6"></a>Bug Fixes</h3>
+<h3 id="bug-fixes-7"><a class="anchor" href="#bug-fixes-7"></a>Bug Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1231,7 +1314,7 @@ Resolved an issue that could cause a flow control deadlock when streaming from a
 <p>For those running the connector in Autonomous Operations mode, this release improves compatibility with recent Consul versions.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-24"><a class="anchor" href="#enhancements-24"></a>Enhancements</h3>
+<h3 id="enhancements-26"><a class="anchor" href="#enhancements-26"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1254,7 +1337,7 @@ The list of tested and supported Consul versions now includes Consul 1.9.1.</p>
 <p>This release brings improvements to monitoring and adds an option for disabling TLS certificate hostname verification.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-25"><a class="anchor" href="#enhancements-25"></a>Enhancements</h3>
+<h3 id="enhancements-27"><a class="anchor" href="#enhancements-27"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1289,7 +1372,7 @@ Upgraded the Couchbase Java SDK from 3.0.9 to 3.1.0.</p>
 It also adds a new metric for monitoring the replication backlog.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-26"><a class="anchor" href="#enhancements-26"></a>Enhancements</h3>
+<h3 id="enhancements-28"><a class="anchor" href="#enhancements-28"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1307,7 +1390,7 @@ Upgraded the DCP client from 0.30.0 to 0.31.0.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="bug-fixes-7"><a class="anchor" href="#bug-fixes-7"></a>Bug Fixes</h3>
+<h3 id="bug-fixes-8"><a class="anchor" href="#bug-fixes-8"></a>Bug Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1329,7 +1412,7 @@ Fixed an issue that prevented the connector from establishing a secure connectio
 <p>This release improves compatibility with Couchbase Cloud, and fixes a few minor issues.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-27"><a class="anchor" href="#enhancements-27"></a>Enhancements</h3>
+<h3 id="enhancements-29"><a class="anchor" href="#enhancements-29"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1349,7 +1432,7 @@ Upgraded the DCP client from 0.28.0 to 0.30.0.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="bug-fixes-8"><a class="anchor" href="#bug-fixes-8"></a>Bug Fixes</h3>
+<h3 id="bug-fixes-9"><a class="anchor" href="#bug-fixes-9"></a>Bug Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1377,7 +1460,7 @@ You can now <code>unzip</code> the archive without being prompted about overwrit
 <p>This release adds "uncommitted" support for Collections and Scopes, a new feature planned for Couchbase Server 7.0.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-28"><a class="anchor" href="#enhancements-28"></a>Enhancements</h3>
+<h3 id="enhancements-30"><a class="anchor" href="#enhancements-30"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1435,7 +1518,7 @@ Instead of caching resolved hostnames, it now resolves hostnames prior to every 
 Elasticsearch versions prior to 6.6 are dropped due to end of life, with the exception of 5.6.16.</p>
 </div>
 <div class="sect2">
-<h3 id="bug-fixes-9"><a class="anchor" href="#bug-fixes-9"></a>Bug Fixes</h3>
+<h3 id="bug-fixes-10"><a class="anchor" href="#bug-fixes-10"></a>Bug Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1445,7 +1528,7 @@ Elasticsearch versions prior to 6.6 are dropped due to end of life, with the exc
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhancements-29"><a class="anchor" href="#enhancements-29"></a>Enhancements</h3>
+<h3 id="enhancements-31"><a class="anchor" href="#enhancements-31"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1487,7 +1570,7 @@ Elasticsearch versions prior to 6.6 are dropped due to end of life, with the exc
 <p>Metrics from the Couchbase DCP client are now included in the metrics report, along with gauges for CPU load.</p>
 </div>
 <div class="sect2">
-<h3 id="bug-fixes-10"><a class="anchor" href="#bug-fixes-10"></a>Bug Fixes</h3>
+<h3 id="bug-fixes-11"><a class="anchor" href="#bug-fixes-11"></a>Bug Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1500,7 +1583,7 @@ Elasticsearch versions prior to 6.6 are dropped due to end of life, with the exc
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhancements-30"><a class="anchor" href="#enhancements-30"></a>Enhancements</h3>
+<h3 id="enhancements-32"><a class="anchor" href="#enhancements-32"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1535,7 +1618,7 @@ Amazon credentials are obtained from the <a href="https://docs.aws.amazon.com/sd
 <p>On the version compatibility front, we&#8217;ve added support for Elasticsearch 7.4 and removed support for Elasticsearch 5.4 (which reached EOL on 2018-11-04).</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-31"><a class="anchor" href="#enhancements-31"></a>Enhancements</h3>
+<h3 id="enhancements-33"><a class="anchor" href="#enhancements-33"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1577,7 +1660,7 @@ The new <code>network</code> property in the <code>[couchbase]</code> section of
 <p>Finally, the range of supported Elasticsearch versions is extended to include 7.1, 7.2. and 7.3.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-32"><a class="anchor" href="#enhancements-32"></a>Enhancements</h3>
+<h3 id="enhancements-34"><a class="anchor" href="#enhancements-34"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1607,7 +1690,7 @@ The new <code>network</code> property in the <code>[couchbase]</code> section of
 <p>It also adds compatibility with the official Docker images for Elasticsearch 6.7.x and 7.0.x, and is the first version tested against OpenJDK 8 and OpenJDK 11.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-33"><a class="anchor" href="#enhancements-33"></a>Enhancements</h3>
+<h3 id="enhancements-35"><a class="anchor" href="#enhancements-35"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1623,7 +1706,7 @@ The new <code>network</code> property in the <code>[couchbase]</code> section of
 </div>
 </div>
 <div class="sect2">
-<h3 id="bug-fixes-11"><a class="anchor" href="#bug-fixes-11"></a>Bug Fixes</h3>
+<h3 id="bug-fixes-12"><a class="anchor" href="#bug-fixes-12"></a>Bug Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1644,7 +1727,7 @@ The new <code>network</code> property in the <code>[couchbase]</code> section of
 <p>This maintenance release improves the stability of the connector and adds new configuration options.</p>
 </div>
 <div class="sect2">
-<h3 id="enhancements-34"><a class="anchor" href="#enhancements-34"></a>Enhancements</h3>
+<h3 id="enhancements-36"><a class="anchor" href="#enhancements-36"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1663,7 +1746,7 @@ The new <code>network</code> property in the <code>[couchbase]</code> section of
 </div>
 </div>
 <div class="sect2">
-<h3 id="bug-fixes-12"><a class="anchor" href="#bug-fixes-12"></a>Bug Fixes</h3>
+<h3 id="bug-fixes-13"><a class="anchor" href="#bug-fixes-13"></a>Bug Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1820,7 +1903,7 @@ Please let us know if this feature is still relevant for your deployment.</p>
 </footer>
 <script src="../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.2","spark-connector":"3.2","tableau-connector":"1.1","power-bi-connector":"1.0"}}
+{"title":"SDKs","components":["dotnet-sdk","c-sdk","go-sdk","java-sdk","nodejs-sdk","php-sdk","python-sdk","ruby-sdk","scala-sdk","elasticsearch-connector","kafka-connector","spark-connector","tableau-connector","power-bi-connector"],"url":"/home/sdk.html","latestVersions":{"dotnet-sdk":"3.3","c-sdk":"3.3","go-sdk":"2.5","java-sdk":"3.3","nodejs-sdk":"4.1","php-sdk":"4.0","python-sdk":"4.0","ruby-sdk":"3.3","scala-sdk":"1.3","elasticsearch-connector":"4.4","kafka-connector":"4.2","spark-connector":"3.3","tableau-connector":"1.1","power-bi-connector":"1.0"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">

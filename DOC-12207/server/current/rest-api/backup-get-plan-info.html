@@ -12,11 +12,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Get Information on Plans | Couchbase Docs</title>
+<title>Get Backup Plan Information | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/server/current/rest-api/backup-get-plan-info.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="The Backup Service REST API allows information on plans to be retrieved.">
+<meta name="description" content="The Backup Service REST API lets you get information about backup plans.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -30,7 +30,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:cversion" content="7.6">
 <meta name="docsearch:component_version" content="server@7.6">
 <meta name="docsearch:module" content="rest-api">
-<meta name="docsearch:breadcrumbs" content="Couchbase Server / Reference / REST API Reference / Backup Service API / Get Information on Plans">
+<meta name="docsearch:breadcrumbs" content="Couchbase Server / Reference / REST API Reference / Backup Service API / Get Backup Plan Information">
 <meta name="docsearch:topic_type" content="">
 <meta name="docsearch:version_rank" content="1">
 <meta name="docsearch:status" content="">
@@ -206,13 +206,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="crumb">Reference</li>
 <li class="crumb"><a href="rest-intro.html">REST API Reference</a></li>
 <li class="crumb"><a href="backup-rest-api.html">Backup Service API</a></li>
-<li class="crumb"><a href="backup-get-plan-info.html">Get Information on Plans</a></li>
+<li class="crumb"><a href="backup-get-plan-info.html">Get Backup Plan Information</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Get Information on Plans</h1>
+<h1 class="page">Get Backup Plan Information</h1>
 <div class="labels">
 <ul></ul>
 </div>
@@ -227,7 +227,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-The Backup Service REST API allows information on plans to be retrieved.
+The Backup Service REST API lets you get information about backup plans.
 </blockquote>
 </div>
 </div>
@@ -235,22 +235,44 @@ The Backup Service REST API allows information on plans to be retrieved.
 <div class="sect1">
 <h2 id="http-methods-and-uris"><a class="anchor" href="#http-methods-and-uris"></a>HTTP Methods and URIs</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Get a list of all defined backup plans:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre>GET /plan
-
-GET /plan/&lt;plan-id&gt;</pre>
+<pre>GET /plan</pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="description"><a class="anchor" href="#description"></a>Description</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>The <code>GET /plan</code> http method and URI return an array of plans, currently defined for the cluster.
-The <code>GET /plan/&lt;plan-id&gt;</code> http method and URI return information on a single, specified plan.</p>
+<p>Get detailed information about a specific backup plan:</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre>GET /plan/{PLAN_NAME}</pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Path Parameters</caption>
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 42.8571%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PLAN_NAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of a backup plan.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
@@ -258,42 +280,77 @@ The <code>GET /plan/&lt;plan-id&gt;</code> http method and URI return informatio
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>curl -X GET http://&lt;backup-node-ip-address-or-domain-name&gt;:8097/plan
-  -u &lt;username&gt;:&lt;password&gt;
+<pre>curl -X GET http://$BACKUP_SERVICE_NODE:$BACKUP_SERVICE_PORT/plan
+  -u $USERNAME:$PASSWORD
 
-curl -X GET http://&lt;backup-node-ip-address-or-domain-name&gt;:8097/plan/&lt;plan-id&gt;
-  -u &lt;username&gt;:&lt;password&gt;</pre>
+curl -X GET http://$BACKUP_SERVICE_NODE:$BACKUP_SERVICE_PORT:8097/plan/$PLAN_NAME
+  -u $USERNAME:$PASSWORD</pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="required-permissions"><a class="anchor" href="#required-permissions"></a>Required Permissions</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>The <code>&lt;plan-id&gt;</code> must be the name of a plan currently defined for the cluster.
-The <code>username</code> and <code>password</code> must identify an administrator with the Full Admin role.</p>
+<p>Full Admin, Backup Full Admin, or Read-Only Admin roles.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="responses"><a class="anchor" href="#responses"></a>Responses</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>If a specified <code>plan-id</code> does not exist, <code>404 Object Not Found</code> is returned, with an object such as the following: <code>{"status":404,"msg":"requested plan not found"}</code>.</p>
-</div>
-<div class="paragraph">
-<p>Failure to authenticate returns <code>401 Unauthorized</code>.
-An incorrectly specified URI returns <code>404 Object Not Found</code>.</p>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>200 OK</code> and JSON array containing plan information depending on the specific endpoint.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Successful call.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>400</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Invalid parameter.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>401 Unauthorized</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Authorization failure due to incorrect username or password.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>403 Forbidden</code>, plus a JSON message explaining the minimum permissions.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The provided username has insufficient privileges to call this method.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>404 Object Not found</code> and the message <code>{"status":404,"msg":"requested plan not found"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The plan in the endpoint URI does not exist.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>500 Could not retrieve the requested repository</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error in Couchbase Server.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
 <h2 id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following call returns an array, each of whose members is an object containing information for a plan currently defined for the cluster.
-Note that the output is piped to the <a href="https://stedolan.github.io/jq" target="_blank" rel="noopener">jq</a> command, to facilitate readability:</p>
+<p>The following call returns an array each of whose members is an object containing information for a plan currently defined for the cluster.
+The command pipes the output to the <a href="https://stedolan.github.io/jq" target="_blank" rel="noopener"><code>jq</code></a> command to improve readability:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>curl -v -X GET http://127.0.0.1:8097/api/v1/api/v1/plan \
--u Administrator:password | jq '.'</pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">curl -v -X GET http://127.0.0.1:8097/api/v1/api/v1/plan \
+-u Administrator:password | jq '.'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -301,7 +358,7 @@ Note that the output is piped to the <a href="https://stedolan.github.io/jq" tar
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>[
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
   {
     "name": "BackupAndMergePlan",
     "description": "A plan for backing up and merging.",
@@ -345,7 +402,11 @@ Note that the output is piped to the <a href="https://stedolan.github.io/jq" tar
         "name": "BackupTask",
           .
           .
-          .</pre>
+          .
+      }
+    ]
+  }
+]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -358,8 +419,8 @@ Each task is listed with an account of its type and schedule.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>curl -v -X GET http://127.0.0.1:8091/_p/backup/api/v1/plan/testPlan2 \
--u Administrator:password | jq '.'</pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">curl -v -X GET http://127.0.0.1:8091/_p/backup/api/v1/plan/testPlan2 \
+-u Administrator:password | jq '.'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -367,7 +428,7 @@ Each task is listed with an account of its type and schedule.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>{
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "name": "testPlan2",
   "description": "A test plan.",
   "services": [
@@ -397,11 +458,11 @@ Each task is listed with an account of its type and schedule.</p>
       "full_backup": false
     }
   ]
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The object contains information on the specified plan.
+<p>The object contains information about the specified plan.
 The information includes confirmation of the services for which data is backed up by the plan; and the tasks that are performed for the plan.
 Each task is listed with an account of its type and schedule.</p>
 </div>
@@ -410,11 +471,21 @@ Each task is listed with an account of its type and schedule.</p>
 <div class="sect1">
 <h2 id="see-also"><a class="anchor" href="#see-also"></a>See Also</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>An overview of the Backup Service is provided in <a href="../learn/services-and-indexes/services/backup-service.html" class="xref page">Backup Service</a>.
-A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in <a href="../manage/manage-backup-and-restore/manage-backup-and-restore.html" class="xref page">Manage Backup and Restore</a>.
-For information on using the Backup Service REST API to create and edit plans, see <a href="backup-create-and-edit-plans.html" class="xref page">Create and Edit Plans</a>.
-For information on deleting plans, see <a href="backup-delete-plan.html" class="xref page">Delete a Plan</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For an overview of the Backup Service, see <a href="../learn/services-and-indexes/services/backup-service.html" class="xref page">Backup Service</a>.</p>
+</li>
+<li>
+<p>For a step-by-step guide to using Couchbase Server Web Console to configure and use the Backup Service, see <a href="../manage/manage-backup-and-restore/manage-backup-and-restore.html" class="xref page">Manage Backup and Restore</a>.</p>
+</li>
+<li>
+<p>For Information about using the Backup Service REST API to create a plan, see  <a href="backup-create-and-edit-plans.html" class="xref page">Create and Edit Plans</a>.</p>
+</li>
+<li>
+<p>For information about deleting plans, see <a href="backup-delete-plan.html" class="xref page">Delete a Plan</a>.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

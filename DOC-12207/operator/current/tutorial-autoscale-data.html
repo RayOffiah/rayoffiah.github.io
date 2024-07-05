@@ -20,14 +20,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="operator">
-<meta name="dcterms.identifier" content="2.6">
+<meta name="dcterms.identifier" content="2.7">
 <meta name="page-url" content="/operator/current/tutorial-autoscale-data.html">
 <meta name="page-nav-header-levels" content="0">
 
 <meta name="docsearch:component" content="operator">
 <meta name="docsearch:component_title" content="Autonomous Operator">
-<meta name="docsearch:cversion" content="2.6">
-<meta name="docsearch:component_version" content="operator@2.6">
+<meta name="docsearch:cversion" content="2.7">
+<meta name="docsearch:component_version" content="operator@2.7">
 <meta name="docsearch:module" content="">
 <meta name="docsearch:breadcrumbs" content="Autonomous Operator / Tutorials / Autoscaling / Autoscaling Couchbase Data Service">
 <meta name="docsearch:topic_type" content="">
@@ -774,7 +774,7 @@ To do this, we&#8217;ll be attempting to induce auto-scaling behavior by loading
 <h3 id="load-data"><a class="anchor" href="#load-data"></a>Load Data</h3>
 <div class="paragraph">
 <p>Let&#8217;s start loading some data into <code>travel-sample</code> bucket to increase memory usage towards the auto-scaling threshold.
-Run the following command to create a Kubernetes Job that runs the Couchbase <a href="#server:cli:cbtools/cbworkloadgen.adoc" class="xref unresolved"><code>cbworkloadgen</code></a> tool:</p>
+Run the following command to create a Kubernetes Job that runs the Couchbase <a href="../../server/current/cli/cbtools/cbworkloadgen.html" class="xref page"><code>cbworkloadgen</code></a> tool:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -789,7 +789,7 @@ spec:
     spec:
       containers:
       - name: doc-loader
-        image: couchbase/server:7.1.3
+        image: couchbase/server:7.6.0
         command: ["/opt/couchbase/bin/cbworkloadgen", "-n","scale-couchbase-cluster-0000.scale-couchbase-cluster.default.svc:8091", "-u", "developer", "-p", "password", "-t", "4", "-r", ".7", "-j", "-s", "1024","--prefix=wrote-a","-i", "2000000", "-b", "travel-sample"]
       restartPolicy: Never
 EOF</code></pre>
@@ -802,7 +802,7 @@ EOF</code></pre>
 <div class="sect2">
 <h3 id="verify-auto-scaling"><a class="anchor" href="#verify-auto-scaling"></a>Verify Auto-scaling</h3>
 <div class="paragraph">
-<p>Memory utilization of the <code>travel-sample</code> bucket should increase as <a href="#server:cli:cbtools/cbworkloadgen.adoc" class="xref unresolved"><code>cbworkloadgen</code></a> loads documents.
+<p>Memory utilization of the <code>travel-sample</code> bucket should increase as <a href="../../server/current/cli/cbtools/cbworkloadgen.html" class="xref page"><code>cbworkloadgen</code></a> loads documents.
 In the Couchbase Web Console, you should see the <a href="../../server/current/manage/manage-ui/manage-ui.html#console-buckets" class="xref page">RAM used/quota</a> increasing for the <code>travel-sample</code> bucket as <code>cbworkloadgen</code> loads documents.</p>
 </div>
 <div class="paragraph">
@@ -1011,7 +1011,7 @@ Refer to <a href="concept-couchbase-autoscaling-best-practices.html" class="xref
 </footer>
 <script src="../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Autonomous Operator","components":["operator"],"latestVersions":{"operator":"2.6"}}
+{"title":"Autonomous Operator","components":["operator"],"latestVersions":{"operator":"2.7"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">

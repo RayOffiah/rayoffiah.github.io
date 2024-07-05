@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="java">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Java / Data Sync / Peer-to-Peer / Integrate Custom Listener">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="2">
+<meta name="docsearch:version_rank" content="3">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/java/p2psync-custom.html">3.2 Beta</option>
         <option value="3.1" data-url="../../current/java/p2psync-custom.html">3.1</option>
         <option value="3.0" data-url="p2psync-custom.html" selected>3.0</option>
         <option value="2.8" data-url="../../2.8/java/p2psync-custom.html">2.8</option>
@@ -290,7 +291,7 @@ The <code>MessageEndpointListener</code> acts as as a listener for incoming conn
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2628-L2633">DatabaseConfiguration databaseConfiguration = new DatabaseConfiguration();
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2628-L2633">DatabaseConfiguration databaseConfiguration = new DatabaseConfiguration();
 Database database = new Database(DB_NAME, databaseConfiguration);
 MessageEndpointListenerConfiguration listenerConfiguration = new MessageEndpointListenerConfiguration(
     database,
@@ -336,7 +337,7 @@ This step includes inviting a peer to a session and peer authentication.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2534-L2542">DatabaseConfiguration databaseConfiguration = new DatabaseConfiguration(context);
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2534-L2542">DatabaseConfiguration databaseConfiguration = new DatabaseConfiguration(context);
 Database database = new Database(DB_NAME, databaseConfiguration);
 
 // The delegate must implement the `MessageEndpointDelegate` protocol.
@@ -387,7 +388,7 @@ There are two options.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2546-L2551">ReplicatorConfiguration config = new ReplicatorConfiguration(database, messageEndpointTarget);
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2546-L2551">ReplicatorConfiguration config = new ReplicatorConfiguration(database, messageEndpointTarget);
 
 // Create the replicator object.
 replicator = new Replicator(config);
@@ -401,7 +402,7 @@ When the application receives the callback, it must create an instance of <code>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2556-L2561">/* implementation of MessageEndpointDelegate */
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2556-L2561">/* implementation of MessageEndpointDelegate */
 @NonNull
 @Override
 public MessageEndpointConnection createConnection(@NonNull MessageEndpoint endpoint) {
@@ -414,7 +415,7 @@ public MessageEndpointConnection createConnection(@NonNull MessageEndpoint endpo
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2576-L2581">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2576-L2581">/* implementation of MessageEndpointConnection */
 @Override
 public void open(@NonNull ReplicatorConnection connection, @NonNull MessagingCompletion completion) {
     replicatorConnection = connection;
@@ -439,7 +440,7 @@ This tells the listener to accept incoming data from that peer.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2645-L2647">PassivePeerConnection connection = new PassivePeerConnection(context); /* implements
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2645-L2647">PassivePeerConnection connection = new PassivePeerConnection(context); /* implements
 MessageEndpointConnection */
 messageEndpointListener.accept(connection);</code></pre>
 </div>
@@ -452,7 +453,7 @@ messageEndpointListener.accept(connection);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2658-L2663">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2658-L2663">/* implementation of MessageEndpointConnection */
 @Override
 public void open(@NonNull ReplicatorConnection connection, @NonNull MessagingCompletion completion) {
     replicatorConnection = connection;
@@ -509,7 +510,7 @@ In the context of peer-to-peer syncing, the remote is another Couchbase Lite dat
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2595-L2602">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2595-L2602">/* implementation of MessageEndpointConnection */
 @Override
 public void send(@NonNull Message message, @NonNull MessagingCompletion completion) {
     /* send the data to the other peer */
@@ -529,7 +530,7 @@ If it is a recoverable error, the replicator will kick off a retry process which
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2607">replicatorConnection.receive(message);</code></pre>
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2607">replicatorConnection.receive(message);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -543,7 +544,7 @@ If it is a recoverable error, the replicator will kick off a retry process which
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2678-L2685">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2678-L2685">/* implementation of MessageEndpointConnection */
 @Override
 public void send(@NonNull Message message, @NonNull MessagingCompletion completion) {
     /* send the data to the other peer */
@@ -563,7 +564,7 @@ If it is a recoverable error, the replicator will kick off a retry process which
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2690">replicatorConnection.receive(message);</code></pre>
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2690">replicatorConnection.receive(message);</code></pre>
 </div>
 </div>
 </div>
@@ -592,7 +593,7 @@ We will cover each case below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2571">replicatorConnection.close(null);</code></pre>
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2571">replicatorConnection.close(null);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -600,7 +601,7 @@ We will cover each case below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2585-L2591">@Override
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2585-L2591">@Override
 public void close(Exception error, @NonNull MessagingCloseCompletion completion) {
     /* disconnect with communications framework */
     /* ... */
@@ -617,7 +618,7 @@ public void close(Exception error, @NonNull MessagingCloseCompletion completion)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2653">replicatorConnection.close(null);</code></pre>
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2653">replicatorConnection.close(null);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -625,7 +626,7 @@ public void close(Exception error, @NonNull MessagingCloseCompletion completion)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2667-L2674">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2667-L2674">/* implementation of MessageEndpointConnection */
 @Override
 public void close(Exception error, @NonNull MessagingCloseCompletion completion) {
     /* disconnect with communications framework */
@@ -651,7 +652,7 @@ public void close(Exception error, @NonNull MessagingCloseCompletion completion)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2639">messageEndpointListener.closeAll();</code></pre>
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2639">messageEndpointListener.closeAll();</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -659,7 +660,7 @@ public void close(Exception error, @NonNull MessagingCloseCompletion completion)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2667-L2674">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2667-L2674">/* implementation of MessageEndpointConnection */
 @Override
 public void close(Exception error, @NonNull MessagingCloseCompletion completion) {
     /* disconnect with communications framework */
@@ -677,7 +678,7 @@ public void close(Exception error, @NonNull MessagingCloseCompletion completion)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2571">replicatorConnection.close(null);</code></pre>
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2571">replicatorConnection.close(null);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -685,7 +686,7 @@ public void close(Exception error, @NonNull MessagingCloseCompletion completion)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java#L2585-L2591">@Override
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java#L2585-L2591">@Override
 public void close(Exception error, @NonNull MessagingCloseCompletion completion) {
     /* disconnect with communications framework */
     /* ... */
@@ -725,7 +726,7 @@ public void close(Exception error, @NonNull MessagingCloseCompletion completion)
 <p><a href="#java:landing-p2psync.adoc" class="xref unresolved">Peer-to-Peer Sync</a></p>
 </li>
 <li>
-<p><a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-java/">API References</a></p>
+<p><a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-java/">API References</a></p>
 </li>
 </ul>
 </div>

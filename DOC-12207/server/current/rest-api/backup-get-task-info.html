@@ -12,11 +12,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Get Information on Tasks | Couchbase Docs</title>
+<title>Get Backup Task History | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/server/current/rest-api/backup-get-task-info.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="The Backup Service REST API allows information to be retrieved on the task history of an active, imported, or archived repository.">
+<meta name="description" content="The Backup Service REST API lets you retrieve the task history of an active, imported, or archived repository.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -30,7 +30,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:cversion" content="7.6">
 <meta name="docsearch:component_version" content="server@7.6">
 <meta name="docsearch:module" content="rest-api">
-<meta name="docsearch:breadcrumbs" content="Couchbase Server / Reference / REST API Reference / Backup Service API / Get Information on Tasks">
+<meta name="docsearch:breadcrumbs" content="Couchbase Server / Reference / REST API Reference / Backup Service API / Get Backup Task History">
 <meta name="docsearch:topic_type" content="">
 <meta name="docsearch:version_rank" content="1">
 <meta name="docsearch:status" content="">
@@ -206,13 +206,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="crumb">Reference</li>
 <li class="crumb"><a href="rest-intro.html">REST API Reference</a></li>
 <li class="crumb"><a href="backup-rest-api.html">Backup Service API</a></li>
-<li class="crumb"><a href="backup-get-task-info.html">Get Information on Tasks</a></li>
+<li class="crumb"><a href="backup-get-task-info.html">Get Backup Task History</a></li>
 </ul>
 </nav>
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Get Information on Tasks</h1>
+<h1 class="page">Get Backup Task History</h1>
 <div class="labels">
 <ul></ul>
 </div>
@@ -223,12 +223,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span class="last-commit-date" id="commitdate">    </span>
 <ul id="contributorList"></ul>
 <span  id="otherContributor"> + </span>
-</div><div id="preamble">
+</div><div class="sect1">
+<h2 id="description"><a class="anchor" href="#description"></a>Description</h2>
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-The Backup Service REST API allows information to be retrieved on the task history of an active, imported, or archived repository.
+This HTTP method and URI return an array containing the entire task history for the repository specified by the <code>REPO_NAME</code> path-parameter.
 </blockquote>
+</div>
+<div class="paragraph">
+<p>The optional <code>TASK_SUBSET_PARAMETERS</code> let you select a subset of the tasks that you want the method to return.</p>
 </div>
 </div>
 </div>
@@ -237,24 +241,116 @@ The Backup Service REST API allows information to be retrieved on the task histo
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>GET /cluster/self/repository/&lt; "active" | "imported" | "archived" &gt;/&lt;repository-name&gt;/taskHistory
+<pre>GET /api/v1/cluster/self/repository/{REPO_STATUS}/{REPO_NAME}/taskHistory
 
-GET /cluster/self/repository/&lt; "active" | "imported" | "archived" &gt;/&lt;repository-name&gt;/taskHistory?&lt;task-subset-specification&gt;</pre>
+GET /api/v1/cluster/self/repository/{REPO_STATUS}/{REPO_NAME}/taskHistory?{TASK_SUBSET_PARAMETERS}</pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+These URIs are only available from the Backup Service port (8097 by default) on nodes running the Backup Service.
+</td>
+</tr>
+</table>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Path Parameters</caption>
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 42.8571%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>REPO_STATUS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The status of the backup repository.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Must be one of:</p>
 </div>
-<div class="sect1">
-<h2 id="description"><a class="anchor" href="#description"></a>Description</h2>
-<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>active</code></p>
+</li>
+<li>
+<p><code>imported</code></p>
+</li>
+<li>
+<p><code>archived</code></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>REPO_NAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the repository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>TASK_SUBSET_PARAMETERS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">One or more optional query parameters that filter the list of tasks this method returns.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#subset-spec">Task Subset Parameter String</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="subset-spec"><a class="anchor" href="#subset-spec"></a>Task Subset Parameter String</h3>
 <div class="paragraph">
-<p>The <code>GET /cluster/self/repository/active/&lt;repository-name&gt;/taskHistory</code> http method and URI return an array containing the entire task history for the repository specified by the <code>repository-name</code> path-parameter.</p>
+<p>You can filter the list of tasks this method returns using the optional task subset specification query string.
+You can supply one or more of the following parameters:</p>
 </div>
-<div class="paragraph">
-<p>The <code>GET /cluster/self/repository/active/&lt;repository-name&gt;/taskHistory?&lt;task-subset-specification&gt;</code> http method and URI return an array containing the task history for a subset of the tasks performed for the repository specified by the <code>repository-name</code> path-parameter.</p>
+<div class="listingblock">
+<div class="content">
+<pre>first={DATE}&amp;limit={COUNT}&amp;taskName={TASK_NAME}</pre>
 </div>
-<div class="paragraph">
-<p>In each case, the <code>repository-name</code> can be that of an active, imported, or archived repository.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Task Subset Query String Parameters</caption>
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 42.8571%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DATE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only returns tasks that started after the supplied date.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A datetime string in <a href="https://www.rfc-editor.org/rfc/rfc3339">RFC-3339</a> format</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>COUNT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of most recent tasks to return.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>TASK_NAME</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Only returns tasks whose name exactly matches <code>TASK_NAME</code> including case.
+Use this option to filter  when multiple tasks are writing to the same repository.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -263,59 +359,96 @@ GET /cluster/self/repository/&lt; "active" | "imported" | "archived" &gt;/&lt;re
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>curl -X GET http://&lt;backup-node-ip-address-or-domain-name&gt;:8097/cluster/self\
-/repository/&lt; "active" | "imported" | "archived" &gt;/&lt;repository-name&gt;\
-/taskHistory
--u &lt;username&gt;:&lt;password&gt;
+<pre>curl -X GET http://$BACKUP_SERVICE_NODE:$BACKUP_SERVICE_PORT/cluster/self\
+     /repository/$REPO_STATUS/$REPOSITORY_NAME/taskHistory \
+     -u $USERNAME:$PASSWORD
 
-curl -X GET http://&lt;backup-node-ip-address-or-domain-name&gt;:8097/cluster/self\
-/repository/&lt; "active" | "imported" | "archived" &gt;/&lt;repository-name&gt;\
-/taskHistory?&lt;task-subset-specification&gt;
--u &lt;username&gt;:&lt;password&gt;</pre>
+curl -G -X GET http://$BACKUP_SERVICE_NODE:$BACKUP_SERVICE_PORT/cluster/self\
+     /repository/$REPO_STATUS/$REPOSITORY_NAME/taskHistory
+     [-d 'first=$DATE'] [-d 'limit=$COUNT'] [-d 'taskName=$TASK_NAME']
+     -u $USERNAME:$PASSWORD</pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="required-permissions"><a class="anchor" href="#required-permissions"></a>Required Permissions</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>A subset of tasks to be returned is optionally determined by the <code>task-subset-specification</code>, whose syntax is as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>first=&lt;date&gt;&amp;limit=&lt;integer&gt;&amp;taskName=&lt;task-name&gt;</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The <code>date</code> specified as the value of the query parameter <code>first</code> is the earliest date for which tasks are included.
-The integer specified as the value of the query parameter <code>limit</code> is the maximum number of tasks to be returned.
-The string provided as the value of the optional query parameter <code>taskName</code> is the name of the single task to be returned.</p>
-</div>
-<div class="paragraph">
-<p>The <code>username</code> and <code>password</code> must identify an administrator with the Full Admin role.</p>
+<p>Full Admin, Backup Full Admin, or Read-Only Admin roles.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="responses"><a class="anchor" href="#responses"></a>Responses</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Successful execution returns <code>200 OK</code>, and an array each of whose members is an object containing information on a task discharged for the repository.
-If an invalid parameter is specified, <code>400</code> is returned.
-If the specified repository cannot be found, <code>404 Object Not Found</code> is returned.
-If an internal error prevents successful execution, <code>500 Internal Server Error</code> is returned.
-Failure to authenticate returns <code>401 Unauthorized</code>.
-An incorrectly specified URI returns <code>404 Object Not Found</code>.</p>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>200 OK</code> and JSON array containing the tasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Successful call.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>400</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Invalid parameter.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>400 Object Not found</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The repository in the endpoint URI does not exist.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>401 Unauthorized</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Authorization failure due to incorrect username or password.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>403 Forbidden</code>, plus a JSON message explaining the minimum permissions.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The provided username has insufficient privileges to call this method.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>404 Object Not Found</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error in the URI path.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>500 Internal Server Error</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error in Couchbase Server.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="example"><a class="anchor" href="#example"></a>Example</h2>
+<h2 id="example"><a class="anchor" href="#example"></a>Examples</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The following examples assume you are running the curl command from a node that is running the Backup Service.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>The following call returns the entire task history for the active repository <code>quarterHourBackups</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>curl -v -X GET http://127.0.0.1:8097/api/v1/cluster/self/\
-repository/active/quarterHourBackups/taskHistory \
--u Administrator:password</pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">curl -v -X GET http://127.0.0.1:8097/api/v1/cluster/self/\
+     repository/active/quarterHourBackups/taskHistory \
+     -u Administrator:password</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -323,7 +456,7 @@ repository/active/quarterHourBackups/taskHistory \
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>[
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
   {
     "task_name": "fifteenMinuteBackup",
     "status": "done",
@@ -380,22 +513,152 @@ repository/active/quarterHourBackups/taskHistory \
     "end": "2020-09-29T12:55:58.905212+01:00",
                 .
                 .
-                .</pre>
+                .
+  }
+]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The array thus includes objects for specific runs of the task <code>fifteenMinuteBackup</code>.
+<p>The array includes objects for specific runs of the task <code>fifteenMinuteBackup</code>.
 Each object incudes the <code>start</code> and <code>end</code> time of the task; and lists specific <code>node_runs</code>, with details on buckets whose data was backed up.</p>
+</div>
+<div class="paragraph">
+<p>The following example demonstrates using the <code>first</code> and <code>limit</code> query parameters to limit the results to two tasks that started after 14:24:22 on May 5th, 2024 GMT.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">curl -G -s -X GET http://127.0.0.1:8097/api/v1/cluster/self/repository/active/quarterHourBackups/taskHistory \
+     -d 'first=2024-05-06T14:24:22Z'
+     -d 'limit=2'
+     -u Administrator:password | jq</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A successful call returns a task list resembling the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+  {
+    "task_name": "fifteenMinuteBackup",
+    "status": "done",
+    "start": "2024-05-06T17:24:22.471826882Z",
+    "end": "2024-05-06T17:24:28.901488385Z",
+    "node_runs": [
+      {
+        "node_id": "1a41682a59f40d3932d2cf7b131a2312",
+        "status": "done",
+        "start": "2024-05-06T17:24:22.483698673Z",
+        "end": "2024-05-06T17:24:28.889650843Z",
+        "progress": 100,
+        "stats": {
+          "id": "36dfeb46-78b0-428a-b9d6-36b0169ac685",
+          "current_transfer": 1,
+          "total_transfers": 1,
+          "transfers": [
+            {
+              "description": "Backing up to 2024-05-06T17_24_22.886394673Z",
+              "stats": {
+                "started_at": 1715016262871131000,
+                "finished_at": 1715016268874403800,
+                "buckets": {
+                  "travel-sample": {
+                    "total_items": 63344,
+                    "total_vbuckets": 1024,
+                    "vbuckets_complete": 1024,
+                    "bytes_received": 28672,
+                    "failover_logs_received": 1024,
+                    "started_at": 1715016266774038500,
+                    "finished_at": 1715016268870321400,
+                    "complete": true
+                  }
+                },
+                "users": {},
+                "complete": true
+              },
+              "progress": 100,
+              "eta": "2024-05-06T17:24:28.878288801Z"
+            }
+          ],
+          "progress": 100,
+          "eta": "2024-05-06T17:24:28.878288801Z"
+        },
+        "error_code": 0
+      }
+    ],
+    "error_code": 0,
+    "type": "BACKUP"
+  },
+  {
+    "task_name": "fifteenMinuteBackup",
+    "status": "done",
+    "start": "2024-05-06T17:09:22.279129423Z",
+    "end": "2024-05-06T17:09:28.677706343Z",
+    "node_runs": [
+      {
+        "node_id": "1a41682a59f40d3932d2cf7b131a2312",
+        "status": "done",
+        "start": "2024-05-06T17:09:22.291632632Z",
+        "end": "2024-05-06T17:09:28.667370885Z",
+        "progress": 100,
+        "stats": {
+          "id": "7dabe789-0413-4ef2-b7d9-e942cab1da75",
+          "current_transfer": 1,
+          "total_transfers": 1,
+          "transfers": [
+            {
+              "description": "Backing up to 2024-05-06T17_09_22.690112298Z",
+              "stats": {
+                "started_at": 1715015362678973000,
+                "finished_at": 1715015368655166200,
+                "buckets": {
+                  "travel-sample": {
+                    "total_items": 63344,
+                    "total_vbuckets": 1024,
+                    "vbuckets_complete": 1024,
+                    "bytes_received": 28672,
+                    "failover_logs_received": 1024,
+                    "started_at": 1715015366548654800,
+                    "finished_at": 1715015368651093200,
+                    "complete": true
+                  }
+                },
+                "users": {},
+                "complete": true
+              },
+              "progress": 100,
+              "eta": "2024-05-06T17:09:28.658444968Z"
+            }
+          ],
+          "progress": 100,
+          "eta": "2024-05-06T17:09:28.658444968Z"
+        },
+        "error_code": 0
+      }
+    ],
+    "error_code": 0,
+    "type": "BACKUP"
+  }
+]</code></pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="see-also"><a class="anchor" href="#see-also"></a>See Also</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>An overview of the Backup Service is provided in <a href="../learn/services-and-indexes/services/backup-service.html" class="xref page">Backup Service</a>.
-A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in <a href="../manage/manage-backup-and-restore/manage-backup-and-restore.html" class="xref page">Manage Backup and Restore</a>.
-Information on using the Backup Service REST API to create a plan (and in so doing, define one or more tasks) is provided in <a href="backup-create-and-edit-plans.html" class="xref page">Create and Edit Plans</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For a an overview of the Backup Service, see <a href="../learn/services-and-indexes/services/backup-service.html" class="xref page">Backup Service</a>.</p>
+</li>
+<li>
+<p>For a step-by-step guide to configure and use the Backup Service using the Couchbase Server Web Console, see  <a href="../manage/manage-backup-and-restore/manage-backup-and-restore.html" class="xref page">Manage Backup and Restore</a>.</p>
+</li>
+<li>
+<p>For information about using the Backup Service REST API to create a plan, see <a href="backup-create-and-edit-plans.html" class="xref page">Create and Edit Plans</a>.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

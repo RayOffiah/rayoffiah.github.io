@@ -250,6 +250,9 @@ The operations are grouped in the following categories.</p>
 <li>
 <p><a href="#Prometheus">Prometheus</a></p>
 </li>
+<li>
+<p><a href="#Server">Server</a></p>
+</li>
 </ul>
 </div>
 <div class="sect2">
@@ -332,19 +335,22 @@ The operations are grouped in the following categories.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#get__metrics">Debugging/monitoring runtime stats in Prometheus Exposition format</a></p>
+<p><a href="#get_metrics">Debugging/monitoring runtime stats in Prometheus Exposition format</a></p>
+</li>
+<li>
+<p><a href="#get_metrics">Debugging/monitoring runtime stats in Prometheus Exposition format</a></p>
 </li>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="get__metrics"><a class="anchor" href="#get__metrics"></a>Debugging/monitoring runtime stats in Prometheus Exposition format</h4>
+<h4 id="get_metrics"><a class="anchor" href="#get_metrics"></a>Debugging/monitoring runtime stats in Prometheus Exposition format</h4>
 <div class="literalblock">
 <div class="content">
 <pre>GET /_metrics</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="get__metrics-description"><a class="anchor" href="#get__metrics-description"></a>Description</h5>
+<h5 id="get_metrics-description"><a class="anchor" href="#get_metrics-description"></a>Description</h5>
 <div class="openblock">
 <div class="content">
 <p>Returns Sync Gateway statistics and other runtime variables in Prometheus Exposition format.</p>
@@ -358,7 +364,7 @@ The operations are grouped in the following categories.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="get__metrics-produces"><a class="anchor" href="#get__metrics-produces"></a>Produces</h5>
+<h5 id="get_metrics-produces"><a class="anchor" href="#get_metrics-produces"></a>Produces</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -368,7 +374,7 @@ The operations are grouped in the following categories.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="get__metrics-responses"><a class="anchor" href="#get__metrics-responses"></a>Responses</h5>
+<h5 id="get_metrics-responses"><a class="anchor" href="#get_metrics-responses"></a>Responses</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -389,6 +395,174 @@ The operations are grouped in the following categories.</p>
 <p>Successfully returned stats</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">String</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="get_metrics"><a class="anchor" href="#get_metrics"></a>Debugging/monitoring runtime stats in Prometheus Exposition format</h4>
+<div class="literalblock">
+<div class="content">
+<pre>GET /metrics</pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="get_metrics-description"><a class="anchor" href="#get_metrics-description"></a>Description</h5>
+<div class="openblock">
+<div class="content">
+<p>Returns Sync Gateway statistics and other runtime variables in Prometheus Exposition format.</p>
+<p>Required Sync Gateway RBAC roles:</p>
+<ul>
+<li>Sync Gateway Architect</li>
+<li>Sync Gateway Dev Ops</li>
+<li>External Stats Reader</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="get_metrics-produces"><a class="anchor" href="#get_metrics-produces"></a>Produces</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>text/plain</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="get_metrics-responses"><a class="anchor" href="#get_metrics-responses"></a>Responses</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 60%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">HTTP Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Successfully returned stats</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">String</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Server"><a class="anchor" href="#Server"></a>Server</h3>
+<div class="paragraph">
+<p><strong>Table of Contents</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#get__ping">Check if API is available</a></p>
+</li>
+<li>
+<p><a href="#head__ping">Check if API is available</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="get__ping"><a class="anchor" href="#get__ping"></a>Check if API is available</h4>
+<div class="literalblock">
+<div class="content">
+<pre>GET /_ping</pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="get__ping-description"><a class="anchor" href="#get__ping-description"></a>Description</h5>
+<div class="openblock">
+<div class="content">
+<p>Returns OK status if API is available.</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="get__ping-produces"><a class="anchor" href="#get__ping-produces"></a>Produces</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>text/plain</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="get__ping-responses"><a class="anchor" href="#get__ping-responses"></a>Responses</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 60%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">HTTP Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returned status</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">String</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="head__ping"><a class="anchor" href="#head__ping"></a>Check if API is available</h4>
+<div class="literalblock">
+<div class="content">
+<pre>HEAD /_ping</pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="head__ping-description"><a class="anchor" href="#head__ping-description"></a>Description</h5>
+<div class="openblock">
+<div class="content">
+<p>Returns OK status if API is available.</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="head__ping-responses"><a class="anchor" href="#head__ping-responses"></a>Responses</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 60%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">HTTP Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Server is available</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>

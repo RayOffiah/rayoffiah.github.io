@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="objc">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Objective-C / Document">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="3">
+<meta name="docsearch:version_rank" content="4">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/objc/document.html">3.2 Beta</option>
         <option value="3.1" data-url="../../current/objc/document.html">3.1</option>
         <option value="3.0" data-url="../../3.0/objc/document.html">3.0</option>
         <option value="2.8" data-url="document.html" selected>2.8</option>
@@ -272,7 +273,7 @@ This method can be used to check if a document with a given ID already exists in
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m#L228-L232">CBLMutableDocument *newTask = [[CBLMutableDocument alloc] init];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m#L228-L232">CBLMutableDocument *newTask = [[CBLMutableDocument alloc] init];
 [newTask setString:@"task" forKey:@"task"];
 [newTask setString:@"todo" forKey:@"owner"];
 [newTask setString:@"task" forKey:@"createdAt"];
@@ -290,7 +291,7 @@ The <code>document.toMutable()</code> method should be used to create an instanc
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m#L241-L244">CBLDocument *document = [database documentWithID:@"xyz"];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m#L241-L244">CBLDocument *document = [database documentWithID:@"xyz"];
 CBLMutableDocument *mutableDocument = [document toMutable];
 [mutableDocument setString:@"apples" forKey:@"name"];
 [database saveDocument:mutableDocument error:&amp;error];</code></pre>
@@ -315,7 +316,7 @@ The following example sets the date on the <code>createdAt</code> property and r
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m#L252-L253">[newTask setValue:[NSDate date] forKey:@"createdAt"];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m#L252-L253">[newTask setValue:[NSDate date] forKey:@"createdAt"];
 NSDate *date = [newTask dateForKey:@"createdAt"];</code></pre>
 </div>
 </div>
@@ -336,7 +337,7 @@ The following example persists a few documents in batch.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m#L264-L272">[database inBatch:&amp;error usingBlock:^{
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m#L264-L272">[database inBatch:&amp;error usingBlock:^{
     for (int i = 0; i &lt; 10; i++) {
         CBLMutableDocument *doc = [[CBLMutableDocument alloc] init];
         [doc setValue:@"user" forKey:@"type"];
@@ -366,7 +367,7 @@ The purge will not be replicated to Sync Gateway.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/objc/examples/code_snippets/SampleCodeTest.m#L292-L307">// Purge the document one day from now
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/objc/examples/code_snippets/SampleCodeTest.m#L292-L307">// Purge the document one day from now
 NSDate* ttl = [[NSCalendar currentCalendar] dateByAddingUnit: NSCalendarUnitDay
                                                        value: 1
                                                       toDate: [NSDate date]

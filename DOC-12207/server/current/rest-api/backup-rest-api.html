@@ -236,9 +236,33 @@ The Backup Service API allows full and incremental data-backups to be planned an
 <h2 id="apis-in-this-section"><a class="anchor" href="#apis-in-this-section"></a>APIs in this Section</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Backup Service API provides endpoints categorized as follows: <em>Cluster</em>, <em>Configuration</em>, <em>Repository</em>, <em>Plan</em>, <em>Task</em>, and <em>Data</em>.
-For a conceptual overview of the Backup Service, see <a href="../learn/services-and-indexes/services/backup-service.html" class="xref page">Backup Service</a>.
-For information on using Couchbase Web Console to configure and use the Backup Service, see <a href="../manage/manage-backup-and-restore/manage-backup-and-restore.html" class="xref page">Manage Backup and Restore</a>.</p>
+<p>The Backup Service API endpoints can be grouped into several categories:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#cluster">Cluster</a></p>
+</li>
+<li>
+<p><a href="#configuration">Configuration</a></p>
+</li>
+<li>
+<p><a href="#repository">Repository</a></p>
+</li>
+<li>
+<p><a href="#plan">Plan</a></p>
+</li>
+<li>
+<p><a href="#task">Task</a></p>
+</li>
+<li>
+<p><a href="#data">Data</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For an overview of the Backup Service, see <a href="../learn/services-and-indexes/services/backup-service.html" class="xref page">Backup Service</a>.
+For information on using Couchbase Server Web Console to configure and use the Backup Service, see <a href="../manage/manage-backup-and-restore/manage-backup-and-restore.html" class="xref page">Manage Backup and Restore</a>.</p>
 </div>
 <div class="paragraph">
 <p>All calls require the Full Admin role, and use port <code>8097</code>.
@@ -266,7 +290,7 @@ Note that for all cluster references, in Couchbase Server Enterprise Edition Ver
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>GET</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-get-cluster-info.html" class="xref page">Get Information on the Cluster</a></p></td>
 </tr>
 </tbody>
@@ -290,18 +314,33 @@ Note that for all cluster references, in Couchbase Server Enterprise Edition Ver
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>GET</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/config</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/config</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-manage-config.html" class="xref page">Manage Backup Configuration</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/config</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/config</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-manage-config.html" class="xref page">Manage Backup Configuration</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>PUT</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/config</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/config</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-manage-config.html" class="xref page">Manage Backup Configuration</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>GET</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/nodesThreadsMap</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-node-threads.html" class="xref page">Manage Backup Service Threads</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PATCH</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/nodesThreadsMap</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-node-threads.html" class="xref page">Manage Backup Service Threads</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/nodesThreadsMap</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-node-threads.html" class="xref page">Manage Backup Service Threads</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -324,77 +363,77 @@ Note that for all cluster references, in Couchbase Server Enterprise Edition Ver
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>GET</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/&lt;'active'&#124;'archived'&#124;'imported'&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-get-repository-info.html" class="xref page">Get Information on Repositories</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/&lt;'active'&#124;'archived'&#124;'imported'&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-get-repository-info.html" class="xref page">Get Backup Repository Information</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>GET</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/active/&lt;repository-id&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-get-repository-info.html" class="xref page">Get Information on Repositories</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/active/&lt;repository-id&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-get-repository-info.html" class="xref page">Get Backup Repository Information</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>GET</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/&lt;'active'&#124;'archived'&#124;'imported'&gt;/&lt;repository-id&gt;/info</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-get-repository-info.html" class="xref page">Get Information on Repositories</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/&lt;'active'&#124;'archived'&#124;'imported'&gt;/&lt;repository-id&gt;/info</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-get-repository-info.html" class="xref page">Get Backup Repository Information</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/active/&lt;repository-id&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/active/&lt;repository-id&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-create-repository.html" class="xref page">Create a Repository</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/&lt;'archived'&#124;'imported'&gt;/&lt;repository-id&gt;/restore</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/&lt;'archived'&#124;'imported'&gt;/&lt;repository-id&gt;/restore</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-restore-data.html" class="xref page">Restore Data</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/import</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/import</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-import-repository.html" class="xref page">Import a Repository</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/&lt;'active'&#124;'archived'&#124;'imported'&gt;/&lt;repository-id&gt;/examine</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/&lt;'active'&#124;'archived'&#124;'imported'&gt;/&lt;repository-id&gt;/examine</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-examine-data.html" class="xref page">Examine Backed-Up Data</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/active/&lt;repository-id&gt;/backup</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/active/&lt;repository-id&gt;/backup</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-trigger-backup.html" class="xref page">Perform an Immediate Backup</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/active/&lt;repository-id&gt;/merge</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/active/&lt;repository-id&gt;/merge</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-trigger-merge.html" class="xref page">Perform an Immediate Merge</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/active/&lt;repository-id&gt;/archive</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/active/&lt;repository-id&gt;/archive</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-archive-a-repository.html" class="xref page">Archive a Repository</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/active/&lt;repository-id&gt;/pause</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/active/&lt;repository-id&gt;/pause</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-pause-and-resume-tasks.html" class="xref page">Pause and Resume Tasks</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/active/&lt;repository-id&gt;/resume</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/active/&lt;repository-id&gt;/resume</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-pause-and-resume-tasks.html" class="xref page">Pause and Resume Tasks</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DELETE</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/&lt;'archived'&#124;'imported'&gt;/&lt;repository-id&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/&lt;'archived'&#124;'imported'&gt;/&lt;repository-id&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-delete-repository.html" class="xref page">Delete a Repository</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DELETE</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/&lt;'archived'&#124;'imported'&gt;/&lt;repository-id&gt;?remove_repository</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/&lt;'archived'&#124;'imported'&gt;/&lt;repository-id&gt;?remove_repository</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-delete-repository.html" class="xref page">Delete a Repository</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DELETE</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/active/&lt;repository-id&gt;/backups/&lt;backup-id&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/active/&lt;repository-id&gt;/backups/&lt;backup-id&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-delete-backups.html" class="xref page">Delete a Backup</a></p></td>
 </tr>
 </tbody>
@@ -418,27 +457,27 @@ Note that for all cluster references, in Couchbase Server Enterprise Edition Ver
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>GET</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/plan</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-get-plan-info.html" class="xref page">Get Information on Plans</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/plan</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-get-plan-info.html" class="xref page">Get Backup Plan Information</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>GET</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/plan/&lt;plan-id&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-get-plan-info.html" class="xref page">Get Information on Plans</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/plan/&lt;plan-id&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-get-plan-info.html" class="xref page">Get Backup Plan Information</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/plan/&lt;plan-id&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/plan/&lt;plan-id&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-create-and-edit-plans.html" class="xref page">Create and Edit Plans</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>PUT</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/plan/&lt;existing-plan-id&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/plan/&lt;existing-plan-id&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-create-and-edit-plans.html" class="xref page">Create and Edit Plans</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DELETE</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/plan/&lt;plan-id&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/plan/&lt;plan-id&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-delete-plan.html" class="xref page">Delete a Plan</a></p></td>
 </tr>
 </tbody>
@@ -462,13 +501,13 @@ Note that for all cluster references, in Couchbase Server Enterprise Edition Ver
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>GET</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/&lt;'active'&#124;'archived'&#124;'imported'&gt;/&lt;repository-id&gt;/taskHistory</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-get-task-info.html" class="xref page">Get Information on Tasks</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/&lt;'active'&#124;'archived'&#124;'imported'&gt;/&lt;repository-id&gt;/taskHistory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-get-task-info.html" class="xref page">Get Backup Task History</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>GET</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/&lt;'active'&#124;'archived'&#124;'imported'&gt;/&lt;repository-id&gt;/taskHistory?&lt;task-subset-specification-string&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-get-task-info.html" class="xref page">Get Information on Tasks</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/&lt;'active'&#124;'archived'&#124;'imported'&gt;/&lt;repository-id&gt;/taskHistory?&lt;task-subset-specification-string&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-get-task-info.html" class="xref page">Get Backup Task History</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -491,7 +530,7 @@ Note that for all cluster references, in Couchbase Server Enterprise Edition Ver
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DELETE</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/cluster/self/repository/active/&lt;repository-id&gt;/backups/&lt;backup-id&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/cluster/self/repository/active/&lt;repository-id&gt;/backups/&lt;backup-id&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="backup-delete-backups.html" class="xref page">Delete Backups</a></p></td>
 </tr>
 </tbody>

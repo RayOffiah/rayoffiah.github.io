@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="swift">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Swift / Data Sync / Remote Sync Gateway">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="3">
+<meta name="docsearch:version_rank" content="4">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/swift/replication.html">3.2 Beta</option>
         <option value="3.1" data-url="../../current/swift/replication.html">3.1</option>
         <option value="3.0" data-url="../../3.0/swift/replication.html">3.0</option>
         <option value="2.8" data-url="replication.html" selected>2.8</option>
@@ -467,7 +468,7 @@ Here we say to provide <em>Basic Authentication</em> credentials. Other options 
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/p2psync-websocket.swift">let tgtUrl = URL(string: "wss://10.1.1.12:8092/travel-sample")!
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/p2psync-websocket.swift">let tgtUrl = URL(string: "wss://10.1.1.12:8092/travel-sample")!
 let targetEndpoint = URLEndpoint(url: tgtUrl)
 var config = ReplicatorConfiguration(database: actDb!, target: targetEndpoint) <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
@@ -730,7 +731,7 @@ The following example initiates a one-shot replication as the user <strong>usern
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L703-L709">let url = URL(string: "ws://localhost:4984/mydatabase")!
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L703-L709">let url = URL(string: "ws://localhost:4984/mydatabase")!
 let target = URLEndpoint(url: url)
 let config = ReplicatorConfiguration(database: database, target: target)
 config.authenticator = BasicAuthenticator(username: "john", password: "pass")
@@ -750,7 +751,7 @@ The following example initiates a one-shot replication with the session ID that 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L715-L721">let url = URL(string: "ws://localhost:4984/mydatabase")!
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L715-L721">let url = URL(string: "ws://localhost:4984/mydatabase")!
 let target = URLEndpoint(url: url)
 let config = ReplicatorConfiguration(database: database, target: target)
 config.authenticator = SessionAuthenticator(sessionID: "904ac010862f37c8dd99015a33ab5a3565fd8447")
@@ -773,7 +774,7 @@ As an example, this feature can be useful to pass additional credentials when th
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L803-L804">let config = ReplicatorConfiguration(database: database, target: target)
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L803-L804">let config = ReplicatorConfiguration(database: database, target: target)
 config.headers = ["CustomHeaderName": "Value"]</code></pre>
 </div>
 </div>
@@ -796,7 +797,7 @@ For instance, high-priority documents could be pushed first, or documents in a "
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L837-L849">let url = URL(string: "ws://localhost:4984/mydatabase")!
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L837-L849">let url = URL(string: "ws://localhost:4984/mydatabase")!
 let target = URLEndpoint(url: url)
 
 let config = ReplicatorConfiguration(database: database, target: target)
@@ -843,7 +844,7 @@ Sync Gateway <a href="../../../sync-gateway/current/channels.html" class="xref p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L855-L867">let url = URL(string: "ws://localhost:4984/mydatabase")!
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L855-L867">let url = URL(string: "ws://localhost:4984/mydatabase")!
 let target = URLEndpoint(url: url)
 
 let config = ReplicatorConfiguration(database: database, target: target)
@@ -986,7 +987,7 @@ However, if you do want to force the replication to start again from zero, use t
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L830-L831">self.replicator.resetCheckpoint()
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L830-L831">self.replicator.resetCheckpoint()
 self.replicator.start()</code></pre>
 </div>
 </div>
@@ -1217,7 +1218,7 @@ Stop the listener as shown in <a href="#ex-stop-doc-listener">Example 11</a>.</p
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L776-L790">let token = self.replicator.addDocumentReplicationListener { (replication) in
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L776-L790">let token = self.replicator.addDocumentReplicationListener { (replication) in
     print("Replication type :: \(replication.isPush ? "Push" : "Pull")")
     for document in replication.documents {
         if (document.error == nil) {
@@ -1409,7 +1410,7 @@ We can then remove any active <a href="#lbl-repl-chng">change listener</a>.</td>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift">self.replicator.addChangeListener { (change) in
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift">self.replicator.addChangeListener { (change) in
     if let error = change.status.error as NSError? {
         print("Error code :: \(error.code)")
     }
@@ -1512,7 +1513,7 @@ After completing this step, Sync Gateway is reachable over <code>https</code>/<c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L908-L916">let certURL = Bundle.main.url(forResource: "cert", withExtension: "cer")!
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L908-L916">let certURL = Bundle.main.url(forResource: "cert", withExtension: "cer")!
 let data = try! Data(contentsOf: certURL)
 let certificate = SecCertificateCreateWithData(nil, data as CFData)
 
@@ -1551,7 +1552,7 @@ You can increase the log output for activity related to replication with Sync Ga
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L694-L697">// Replicator
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L694-L697">// Replicator
 Database.setLogLevel(.verbose, domain: .replicator)
 // Network
 Database.setLogLevel(.verbose, domain: .network)</code></pre>

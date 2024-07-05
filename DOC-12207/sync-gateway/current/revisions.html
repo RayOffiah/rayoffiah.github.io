@@ -592,7 +592,7 @@ This content relates only to <a href="https://www.couchbase.com/products/edition
 </div>
 <div class="paragraph">
 <p>Storing backed up revision bodies for delta sync incurs additional bucket storage, the size of which equates to:<br>
-<code>(doc_size * updates_per_day * 86400) / rev_max_age_seconds</code>&#8201;&#8212;&#8201;see <a href="#ex-deltastor">Example 1</a>.</p>
+<code>(doc_size * updates_per_day * rev_max_age_seconds) / 86400</code>&#8201;&#8212;&#8201;see <a href="#ex-deltastor">Example 1</a>.</p>
 </div>
 <div id="ex-deltastor" class="exampleblock">
 <div class="title">Example 1. Calculating Additional Delta-Sync Storage</div>
@@ -603,13 +603,13 @@ This content relates only to <a href="https://www.couchbase.com/products/edition
 <div class="ulist">
 <ul>
 <li>
-<p>The default {<code>rev_max_age_seconds</code>} value</p>
-</li>
-<li>
 <p>An average document size of 4 KB</p>
 </li>
 <li>
 <p>100 writes/day</p>
+</li>
+<li>
+<p>The default {<code>rev_max_age_seconds</code>} value</p>
 </li>
 </ul>
 </div>

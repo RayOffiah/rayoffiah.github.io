@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="swift">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Swift / Queries / Querybuilder">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="3">
+<meta name="docsearch:version_rank" content="4">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -131,6 +131,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/swift/querybuilder.html">3.2 Beta</option>
         <option value="3.1" data-url="../../current/swift/querybuilder.html">3.1</option>
         <option value="3.0" data-url="../../3.0/swift/querybuilder.html">3.0</option>
         <option value="2.8" data-url="querybuilder.html" selected>2.8</option>
@@ -368,7 +369,7 @@ See the <a href="../../current/swift/indexing.html" class="xref page">Indexing</
 <div class="listingblock">
 <div class="title">Code to Create Index</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L253-L256">let index = IndexBuilder.valueIndex(items:
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L253-L256">let index = IndexBuilder.valueIndex(items:
     ValueIndexItem.expression(Expression.property("type")),
     ValueIndexItem.expression(Expression.property("name")))
 try database.createIndex(index, withName: "TypeNameIndex")</code></pre>
@@ -427,7 +428,7 @@ You can opt to retrieve entire documents, or just the specific properties you ne
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L307-L309">let query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L307-L309">let query = QueryBuilder
     .select(SelectResult.all())
     .from(DataSource.database(database))</code></pre>
 </div>
@@ -499,7 +500,7 @@ You can opt to retrieve entire documents, or just the specific properties you ne
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L284-L299">let query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L284-L299">let query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("type"),
@@ -605,7 +606,7 @@ In the example below, we use the <code>equalTo</code> operator to query document
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L342-L356">let query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L342-L356">let query = QueryBuilder
     .select(SelectResult.all())
     .from(DataSource.database(database))
     .where(Expression.property("type").equalTo(Expression.string("hotel")))
@@ -644,7 +645,7 @@ do {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L374-L389">let query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L374-L389">let query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("name"),
@@ -671,7 +672,7 @@ The following example looks for documents whose <code>first</code>, <code>last</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L397-L406">let values = [
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L397-L406">let values = [
     Expression.property("first"),
     Expression.property("last"),
     Expression.property("username")
@@ -717,7 +718,7 @@ To perform case insensitive matching, use <code>Function.lower</code> or <code>F
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L415-L431">let query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L415-L431">let query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("country"),
@@ -755,7 +756,7 @@ Notice that the matches may span word boundaries.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L439-L449">let query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L439-L449">let query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("country"),
@@ -780,7 +781,7 @@ The following query will return "landmark" <code>type</code> documents with the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L463-L473">let query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L463-L473">let query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("country"),
@@ -826,7 +827,7 @@ For more on the regex spec used by Couchbase Lite see <a href="http://www.cplusp
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L487-L496">let query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L487-L496">let query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("name")
@@ -891,7 +892,7 @@ let query = QueryBuilder
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L510-L532">let query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L510-L532">let query = QueryBuilder
     .select(
         SelectResult.expression(Expression.property("name").from("airline")),
         SelectResult.expression(Expression.property("callsign").from("airline")),
@@ -948,7 +949,7 @@ The output (a count, $1) is grouped by country, within timezone.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L546-L564">let query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L546-L564">let query = QueryBuilder
     .select(
         SelectResult.expression(Function.count(Expression.all())),
         SelectResult.property("country"),
@@ -999,7 +1000,7 @@ The example below returns documents of type equal to "hotel" sorted in ascending
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L572-L579">let query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L572-L579">let query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("title"))
@@ -1361,7 +1362,7 @@ You can add this dictionary to an array of returned matches, for processing else
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift">        let db = try! Database(name: "hotel")
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift">        let db = try! Database(name: "hotel")
         let listQuery = QueryBuilder.select(SelectResult.expression(Meta.id).as("metaId"))
                     .from(DataSource.database(db))</code></pre>
 </div>
@@ -1526,7 +1527,7 @@ Use the <code>limit</code> and <code>offset</code> feature, to return a defined 
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift">        let thisOffset = 0;
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift">        let thisOffset = 0;
         let thisLimit = 20;
         //
         let listQuery = QueryBuilder

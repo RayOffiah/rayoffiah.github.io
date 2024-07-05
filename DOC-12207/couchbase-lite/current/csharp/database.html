@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="csharp">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / .Net / Databases">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:version_rank" content="2">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/csharp/database.html">3.2 Beta</option>
         <option value="3.1" data-url="database.html" selected>3.1</option>
         <option value="3.0" data-url="../../3.0/csharp/database.html">3.0</option>
         <option value="2.8" data-url="../../2.8/csharp/database.html">2.8</option>
@@ -322,8 +323,8 @@ syncing data scope
 <h2 id="open-db"><a class="anchor" href="#open-db"></a>Create or Open Database</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can create a new database and-or open an existing database, using the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.Database.html">Database</a> class.
-Just pass in a database name and optionally a <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html">DatabaseConfiguration</a>&#8201;&#8212;&#8201;see <a href="#ex-dbopen">Example 1</a>.</p>
+<p>You can create a new database and-or open an existing database, using the <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.Database.html">Database</a> class.
+Just pass in a database name and optionally a <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html">DatabaseConfiguration</a>&#8201;&#8212;&#8201;see <a href="#ex-dbopen">Example 1</a>.</p>
 </div>
 <div class="paragraph">
 <p>Things to watch for include:</p>
@@ -334,7 +335,7 @@ Just pass in a database name and optionally a <a href="http://docs.couchbase.com
 <p>If the named database does not exist in the specified, or default, location then a new one is created</p>
 </li>
 <li>
-<p>The database is created in a default location unless you  specify a directory for it&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html">DatabaseConfiguration</a> and <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html#Couchbase_Lite_DatabaseConfiguration_directory">DatabaseConfiguration.Directory()</a></p>
+<p>The database is created in a default location unless you  specify a directory for it&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html">DatabaseConfiguration</a> and <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html#Couchbase_Lite_DatabaseConfiguration_directory">DatabaseConfiguration.Directory()</a></p>
 <div class="openblock">
 <div class="content">
 <div class="admonitionblock tip">
@@ -384,7 +385,7 @@ Note that this sandbox gets deleted sometimes when debugging from inside Visual 
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">var database = new Database("my-database");</code></pre>
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">var database = new Database("my-database");</code></pre>
 </div>
 </div>
 </div>
@@ -398,7 +399,7 @@ Note that this sandbox gets deleted sometimes when debugging from inside Visual 
 <p>You are advised to incorporate the closing of all open databases into your application workflow.</p>
 </div>
 <div class="paragraph">
-<p>To close a database, use <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase_Lite_Database_Close">Database.Close()</a>&#8201;&#8212;&#8201;see: <a href="#ex-dbclose">Example 2</a>.
+<p>To close a database, use <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase_Lite_Database_Close">Database.Close()</a>&#8201;&#8212;&#8201;see: <a href="#ex-dbclose">Example 2</a>.
 This also closes
 <sup class="footnote" id="_footnote_fn28">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>
 active replications, listeners and-or live queries connected to the database.</p>
@@ -433,7 +434,7 @@ Before closing, check that any attached listeners (query/replication/change) ind
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">database.Close();</code></pre>
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">database.Close();</code></pre>
 </div>
 </div>
 </div>
@@ -463,7 +464,7 @@ The algorithm used to encrypt the database is 256-bit AES.</p>
 <div class="sect2">
 <h3 id="enabling"><a class="anchor" href="#enabling"></a>Enabling</h3>
 <div class="paragraph">
-<p>To enable encryption, use <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html#Couchbase_Lite_DatabaseConfiguration_EncryptionKey">DatabaseConfiguration.EncryptionKey()</a> to set the encryption key of your choice.
+<p>To enable encryption, use <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.DatabaseConfiguration.html#Couchbase_Lite_DatabaseConfiguration_EncryptionKey">DatabaseConfiguration.EncryptionKey()</a> to set the encryption key of your choice.
 Provide this encryption key every time the database is opened&#8201;&#8212;&#8201;see <a href="#ex-sdb-encrypt">Example 3</a>.</p>
 </div>
 <div id="ex-sdb-encrypt" class="exampleblock">
@@ -471,7 +472,7 @@ Provide this encryption key every time the database is opened&#8201;&#8212;&#820
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">// Create a new, or open an existing database with encryption enabled
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">// Create a new, or open an existing database with encryption enabled
 var config = new DatabaseConfiguration
 {
     // Or, derive a key yourself and pass a byte array of the proper size
@@ -508,7 +509,7 @@ So a database encrypted using the C#.Net SDK, and then exported, is readable onl
 <div class="sect2">
 <h3 id="changing"><a class="anchor" href="#changing"></a>Changing</h3>
 <div class="paragraph">
-<p>To change an existing encryption key, open the database using its existing encryption-key and use <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase_Lite_Database_ChangeEncryptionKey_Couchbase_Lite_EncryptionKey_">Database.ChangeEncryptionKey()</a>
+<p>To change an existing encryption key, open the database using its existing encryption-key and use <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase_Lite_Database_ChangeEncryptionKey_Couchbase_Lite_EncryptionKey_">Database.ChangeEncryptionKey()</a>
 to set the required new encryption-key value.</p>
 </div>
 </div>
@@ -516,7 +517,7 @@ to set the required new encryption-key value.</p>
 <h3 id="removing"><a class="anchor" href="#removing"></a>Removing</h3>
 <div class="paragraph">
 <p>To remove encryption, open the database using its existing encryption-key and use
-<a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase_Lite_Database_ChangeEncryptionKey_Couchbase_Lite_EncryptionKey_">Database.ChangeEncryptionKey()</a>
+<a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase_Lite_Database_ChangeEncryptionKey_Couchbase_Lite_EncryptionKey_">Database.ChangeEncryptionKey()</a>
 with a null value as the encryption key.</p>
 </div>
 </div>
@@ -562,8 +563,8 @@ Note that this sandbox gets deleted sometimes when debugging from inside Visual 
 compact the database file, removing unused documents and blobs no longer referenced by any documents.</p>
 </div>
 <div class="paragraph">
-<p>Couchbase Lite&#8217;s API provides the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase_Lite_Database_PerformMaintenance-com.couchbase.lite.MaintenanceType-">Database.PerformMaintenance()</a> method.
-The available maintenance operations, including <code>compact</code> are as shown in the enum <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.MaintenanceType.html">MaintenanceType</a> to accomplish this.</p>
+<p>Couchbase Lite&#8217;s API provides the <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase_Lite_Database_PerformMaintenance-com.couchbase.lite.MaintenanceType-">Database.PerformMaintenance()</a> method.
+The available maintenance operations, including <code>compact</code> are as shown in the enum <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.MaintenanceType.html">MaintenanceType</a> to accomplish this.</p>
 </div>
 <div class="paragraph">
 <p>This is a resource intensive operation and is not performed automatically.
@@ -599,7 +600,7 @@ If the information in the default logging level is insufficient you can focus it
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">Database.Log.Console.Domains = LogDomain.Database;</code></pre>
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">Database.Log.Console.Domains = LogDomain.Database;</code></pre>
 </div>
 </div>
 </div>

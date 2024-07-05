@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="java">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Java / Handling Data Conflicts">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:version_rank" content="2">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/java/conflict.html">3.2 Beta</option>
         <option value="3.1" data-url="conflict.html" selected>3.1</option>
         <option value="3.0" data-url="../../3.0/java/conflict.html">3.0</option>
         <option value="2.8" data-url="../../2.8/java/conflict.html">2.8</option>
@@ -565,7 +566,7 @@ When the value is <code>null</code>, the default conflict resolution will be app
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/java/examples/codesnippet_collection.java">Replicator repl = new Replicator(
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/java/examples/codesnippet_collection.java">Replicator repl = new Replicator(
     new ReplicatorConfiguration(new URLEndpoint(targetUri))
         .addCollections(
             srcCollections,
@@ -605,7 +606,7 @@ Update conflicts can occur when you try to update a document that’s been updat
 <p>Another thread (perhaps the replicator) updates the document, creating a new revision with different properties.</p>
 </li>
 <li>
-<p>Your code updates the document with its modified properties, for example using <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-java/com/couchbase/lite/Database.html#save-com.couchbase.lite.MutableDocument-">database.save(MutableDocument document)</a>.</p>
+<p>Your code updates the document with its modified properties, for example using <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-java/com/couchbase/lite/Database.html#save-com.couchbase.lite.MutableDocument-">database.save(MutableDocument document)</a>.</p>
 </li>
 </ol>
 </div>
@@ -628,7 +629,7 @@ So in effect, the changes from step 2 would be overwritten and lost.</p>
 <dl>
 <dt class="hdlist1">Save operations</dt>
 <dd>
-<p><a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-java/com/couchbase/lite/Database.html#save-com.couchbase.lite.MutableDocument-com.couchbase.lite.ConcurrencyControl-">database.save(MutableDocument document, ConcurrencyControl concurrencyControl)</a>&#8201;&#8212;&#8201;attempts to save the document with a concurrency control.</p>
+<p><a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-java/com/couchbase/lite/Database.html#save-com.couchbase.lite.MutableDocument-com.couchbase.lite.ConcurrencyControl-">database.save(MutableDocument document, ConcurrencyControl concurrencyControl)</a>&#8201;&#8212;&#8201;attempts to save the document with a concurrency control.</p>
 <div class="paragraph">
 <p>The concurrency control parameter has two possible values:</p>
 </div>
@@ -652,10 +653,10 @@ So in effect, the changes from step 2 would be overwritten and lost.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-java/com/couchbase/lite/Database.html#delete-com.couchbase.lite.Document-">database.delete(Document document)</a>: The last write will win if there is a conflict.</p>
+<p><a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-java/com/couchbase/lite/Database.html#delete-com.couchbase.lite.Document-">database.delete(Document document)</a>: The last write will win if there is a conflict.</p>
 </li>
 <li>
-<p><a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-java/com/couchbase/lite/Database.html#delete-com.couchbase.lite.Document-com.couchbase.lite.ConcurrencyControl-">database.delete(Document document, ConcurrencyControl concurrencyControl)</a>: attempts to delete the document with a concurrency control.</p>
+<p><a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-java/com/couchbase/lite/Database.html#delete-com.couchbase.lite.Document-com.couchbase.lite.ConcurrencyControl-">database.delete(Document document, ConcurrencyControl concurrencyControl)</a>: attempts to delete the document with a concurrency control.</p>
 </li>
 </ul>
 </div>
@@ -685,7 +686,7 @@ In this case, the app can detect the error that is being thrown, and handle it b
 <p>Developers can hook a conflict handler when saving a document so they can easily handle the conflict in a single save method call.</p>
 </div>
 <div class="paragraph">
-<p>To implement custom conflict resolution when saving a document, apps must call the <code>save</code> method with a conflict handler block ( <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-java/com/couchbase/lite/Database.html#save-com.couchbase.lite.MutableDocument-com.couchbase.lite.ConflictHandler-">database.save(MutableDocument document, ConflictHandler conflictHandler)</a>).</p>
+<p>To implement custom conflict resolution when saving a document, apps must call the <code>save</code> method with a conflict handler block ( <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-java/com/couchbase/lite/Database.html#save-com.couchbase.lite.MutableDocument-com.couchbase.lite.ConflictHandler-">database.save(MutableDocument document, ConflictHandler conflictHandler)</a>).</p>
 </div>
 <div class="paragraph">
 <p>The following code snippet shows an example of merging properties from the existing document (<code>current</code>) into the one being saved (<code>new</code>).
@@ -696,7 +697,7 @@ In the event of conflicting keys, it will pick the key value from <code>new</cod
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/java/examples/codesnippet_collection.java">Document doc = collection.getDocument("xyz");
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/java/examples/codesnippet_collection.java">Document doc = collection.getDocument("xyz");
 if (doc == null) { return; }
 MutableDocument mutableDocument = doc.toMutable();
 mutableDocument.setString("name", "apples");
@@ -744,7 +745,7 @@ collection.save(
 <p><a href="#java:landing-p2psync.adoc" class="xref unresolved">Peer-to-Peer Sync</a></p>
 </li>
 <li>
-<p><a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-java/">API References</a></p>
+<p><a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-java/">API References</a></p>
 </li>
 </ul>
 </div>

@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="android">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Android / Queries / Querybuilder">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:version_rank" content="2">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -131,6 +131,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/android/querybuilder.html">3.2 Beta</option>
         <option value="3.1" data-url="querybuilder.html" selected>3.1</option>
         <option value="3.0" data-url="../../3.0/android/querybuilder.html">3.0</option>
         <option value="2.8" data-url="../../2.8/android/querybuilder.html">2.8</option>
@@ -390,7 +391,7 @@ You can opt to retrieve entire documents, or just the specific properties you ne
 <div id="tabs-1-kotlin--panel" class="tabpanel" aria-labelledby="tabs-1-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val queryAll = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val queryAll = QueryBuilder
     .select(SelectResult.all())
     .from(DataSource.collection(collection))
     .where(Expression.property("type").equalTo(Expression.string("hotel")))</code></pre>
@@ -400,7 +401,7 @@ You can opt to retrieve entire documents, or just the specific properties you ne
 <div id="tabs-1-java--panel" class="tabpanel" aria-labelledby="tabs-1-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
     .select(SelectResult.all())
     .from(DataSource.collection(collection))
     .where(Expression.property("type").equalTo(Expression.string("hotel")));</code></pre>
@@ -489,7 +490,7 @@ You can opt to retrieve entire documents, or just the specific properties you ne
 <div id="tabs-2-kotlin--panel" class="tabpanel" aria-labelledby="tabs-2-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("name"),
@@ -511,7 +512,7 @@ query.execute().use { rs -&gt;
 <div id="tabs-2-java--panel" class="tabpanel" aria-labelledby="tabs-2-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("name"),
@@ -598,7 +599,7 @@ You can chain any number of Expressions in order to implement sophisticated filt
 <div class="sect2">
 <h3 id="lbl-comp-ops"><a class="anchor" href="#lbl-comp-ops"></a>Comparison Operators</h3>
 <div class="paragraph">
-<p>The <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-android/com/couchbase/lite/Expression.html">Expression Comparators</a> can be used in the WHERE statement to specify on which property to match documents.
+<p>The <a href="http://docs.couchbase.com/mobile/3.1.8/couchbase-lite-android/com/couchbase/lite/Expression.html">Expression Comparators</a> can be used in the WHERE statement to specify on which property to match documents.
 In the example below, we use the <code>equalTo</code> operator to query documents where the <code>type</code> property equals "hotel".</p>
 </div>
 <div class="listingblock">
@@ -635,7 +636,7 @@ In the example below, we use the <code>equalTo</code> operator to query document
 <div id="tabs-3-kotlin--panel" class="tabpanel" aria-labelledby="tabs-3-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
     .select(SelectResult.all())
     .from(DataSource.collection(collection))
     .where(Expression.property("type").equalTo(Expression.string("hotel")))
@@ -655,7 +656,7 @@ query.execute().use { rs -&gt;
 <div id="tabs-3-java--panel" class="tabpanel" aria-labelledby="tabs-3-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
     .select(SelectResult.all())
     .from(DataSource.collection(collection))
     .where(Expression.property("type").equalTo(Expression.string("hotel")))
@@ -679,12 +680,12 @@ try (ResultSet resultSet = query.execute()) {
 <div class="sect2">
 <h3 id="lbl-coll-ops"><a class="anchor" href="#lbl-coll-ops"></a>Collection Operators</h3>
 <div class="paragraph">
-<p><a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-android/com/couchbase/lite/Query.htmlArrayFunction.html">ArrayFunction Collection Operators</a> are useful to check if a given value is present in an array.</p>
+<p><a href="http://docs.couchbase.com/mobile/3.1.8/couchbase-lite-android/com/couchbase/lite/Query.htmlArrayFunction.html">ArrayFunction Collection Operators</a> are useful to check if a given value is present in an array.</p>
 </div>
 <div class="sect3">
 <h4 id="contains-operator"><a class="anchor" href="#contains-operator"></a>CONTAINS Operator</h4>
 <div class="paragraph">
-<p>The following example uses the <code><a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-android/com/couchbase/lite/Query.htmlArrayFunction.html">ArrayFunction</a></code> to find documents where the <code>public_likes</code> array property contains a value equal to "Armani Langworth".</p>
+<p>The following example uses the <code><a href="http://docs.couchbase.com/mobile/3.1.8/couchbase-lite-android/com/couchbase/lite/Query.htmlArrayFunction.html">ArrayFunction</a></code> to find documents where the <code>public_likes</code> array property contains a value equal to "Armani Langworth".</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -710,7 +711,7 @@ try (ResultSet resultSet = query.execute()) {
 <div id="tabs-4-kotlin--panel" class="tabpanel" aria-labelledby="tabs-4-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("name"),
@@ -737,7 +738,7 @@ query.execute().use { rs -&gt;
 <div id="tabs-4-java--panel" class="tabpanel" aria-labelledby="tabs-4-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("name"),
@@ -778,7 +779,7 @@ The following example looks for documents whose <code>first</code>, <code>last</
 <div id="tabs-5-kotlin--panel" class="tabpanel" aria-labelledby="tabs-5-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder.select(SelectResult.all())
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder.select(SelectResult.all())
     .from(DataSource.collection(collection))
     .where(
         Expression.string("Armani").`in`(
@@ -799,7 +800,7 @@ query.execute().use { rs -&gt;
 <div id="tabs-5-java--panel" class="tabpanel" aria-labelledby="tabs-5-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Expression[] values = new Expression[] {
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Expression[] values = new Expression[] {
     Expression.property("first"),
     Expression.property("last"),
     Expression.property("username")
@@ -830,7 +831,7 @@ Query query = QueryBuilder.select(SelectResult.all())
 <div class="sect3">
 <h4 id="lbl-string-match"><a class="anchor" href="#lbl-string-match"></a>String Matching</h4>
 <div class="paragraph">
-<p>The <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-android/com/couchbase/lite/Expression.html#like-com.couchbase.lite.Expression-">Like()</a> operator can be used for string matching&#8201;&#8212;&#8201;see <a href="#ex-like-case-insensitive">Example 7</a></p>
+<p>The <a href="http://docs.couchbase.com/mobile/3.1.8/couchbase-lite-android/com/couchbase/lite/Expression.html#like-com.couchbase.lite.Expression-">Like()</a> operator can be used for string matching&#8201;&#8212;&#8201;see <a href="#ex-like-case-insensitive">Example 7</a></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -866,7 +867,7 @@ To perform case insensitive matching, use <code>Function.lower</code> or <code>F
 <div id="tabs-6-kotlin--panel" class="tabpanel" aria-labelledby="tabs-6-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("country"),
@@ -891,7 +892,7 @@ query.execute().use { rs -&gt;
 <div id="tabs-6-java--panel" class="tabpanel" aria-labelledby="tabs-6-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("country"),
@@ -948,7 +949,7 @@ Notice that the matches may span word boundaries.</p>
 <div id="tabs-7-kotlin--panel" class="tabpanel" aria-labelledby="tabs-7-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("country"),
@@ -973,7 +974,7 @@ query.execute().use { rs -&gt;
 <div id="tabs-7-java--panel" class="tabpanel" aria-labelledby="tabs-7-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("country"),
@@ -1022,7 +1023,7 @@ The query returns "landmark" type documents with names such as "Engineer", "engi
 <div id="tabs-8-kotlin--panel" class="tabpanel" aria-labelledby="tabs-8-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("country"),
@@ -1047,7 +1048,7 @@ query.execute().use { rs -&gt;
 <div id="tabs-8-java--panel" class="tabpanel" aria-labelledby="tabs-8-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("country"),
@@ -1108,7 +1109,7 @@ The <code>regex</code> operator is case sensitive, use <code>upper</code> or <co
 <div id="tabs-9-kotlin--panel" class="tabpanel" aria-labelledby="tabs-9-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("country"),
@@ -1133,7 +1134,7 @@ query.execute().use { rs -&gt;
 <div id="tabs-9-java--panel" class="tabpanel" aria-labelledby="tabs-9-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("country"),
@@ -1201,7 +1202,7 @@ For more on the regex spec used by Couchbase&#160;Lite see <a href="http://www.c
 <div id="tabs-10-kotlin--panel" class="tabpanel" aria-labelledby="tabs-10-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">// Query documents that have been deleted
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">// Query documents that have been deleted
 val query = QueryBuilder
     .select(SelectResult.expression(Meta.id))
     .from(DataSource.collection(collection))
@@ -1212,7 +1213,7 @@ val query = QueryBuilder
 <div id="tabs-10-java--panel" class="tabpanel" aria-labelledby="tabs-10-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">// Query documents that have been deleted
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">// Query documents that have been deleted
 Query query = QueryBuilder
     .select(SelectResult.expression(Meta.id))
     .from(DataSource.collection(collection))
@@ -1255,7 +1256,7 @@ For example to combine airline details with route details, linked by the airline
 <div id="tabs-11-kotlin--panel" class="tabpanel" aria-labelledby="tabs-11-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
     .select(
         SelectResult.expression(Expression.property("name").from("airline")),
         SelectResult.expression(Expression.property("callsign").from("airline")),
@@ -1293,7 +1294,7 @@ query.execute().use { rs -&gt;
 <div id="tabs-11-java--panel" class="tabpanel" aria-labelledby="tabs-11-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder.select(
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder.select(
         SelectResult.expression(Expression.property("name").from("airline")),
         SelectResult.expression(Expression.property("callsign").from("airline")),
         SelectResult.expression(Expression.property("destinationairport").from("route")),
@@ -1362,7 +1363,7 @@ try (ResultSet resultSet = query.execute()) {
 <div id="tabs-12-kotlin--panel" class="tabpanel" aria-labelledby="tabs-12-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
     .select(
         SelectResult.expression(Function.count(Expression.string("*"))),
         SelectResult.property("country"),
@@ -1394,7 +1395,7 @@ query.execute().use { rs -&gt;
 <div id="tabs-12-java--panel" class="tabpanel" aria-labelledby="tabs-12-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder.select(
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder.select(
         SelectResult.expression(Function.count(Expression.string("*"))),
         SelectResult.property("country"),
         SelectResult.property("tz"))
@@ -1465,7 +1466,7 @@ There are 123 airports on the America/Denver timezone located in United States a
 <div id="tabs-13-kotlin--panel" class="tabpanel" aria-labelledby="tabs-13-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("name")
@@ -1486,7 +1487,7 @@ query.execute().use { rs -&gt;
 <div id="tabs-13-java--panel" class="tabpanel" aria-labelledby="tabs-13-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Query query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
         SelectResult.property("name"))
@@ -1647,7 +1648,7 @@ To unpack these result sets you need to iterate this array.</p>
 <div id="tabs-14-kotlin--panel" class="tabpanel" aria-labelledby="tabs-14-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val listQuery = QueryBuilder.select(SelectResult.all())
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val listQuery = QueryBuilder.select(SelectResult.all())
     .from(DataSource.collection(collection))</code></pre>
 </div>
 </div>
@@ -1655,7 +1656,7 @@ To unpack these result sets you need to iterate this array.</p>
 <div id="tabs-14-java--panel" class="tabpanel" aria-labelledby="tabs-14-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Query listQuery = QueryBuilder.select(SelectResult.all())
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Query listQuery = QueryBuilder.select(SelectResult.all())
     .from(DataSource.collection(collection));</code></pre>
 </div>
 </div>
@@ -1742,7 +1743,7 @@ To unpack these result sets you need to iterate this array.</p>
 <div id="tabs-15-kotlin--panel" class="tabpanel" aria-labelledby="tabs-15-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val hotels = mutableMapOf&lt;String, Hotel&gt;()
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val hotels = mutableMapOf&lt;String, Hotel&gt;()
 listQuery.execute().use { rs -&gt;
     rs.allResults().forEach {
         // get the k-v pairs from the 'hotel' key's value into a dictionary
@@ -1770,7 +1771,7 @@ listQuery.execute().use { rs -&gt;
 <div id="tabs-15-java--panel" class="tabpanel" aria-labelledby="tabs-15-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Map&lt;String, Hotel&gt; hotels = new HashMap&lt;&gt;();
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Map&lt;String, Hotel&gt; hotels = new HashMap&lt;&gt;();
 try (ResultSet resultSet = listQuery.execute()) {
     for (Result result: resultSet) {
         // get the k-v pairs from the 'hotel' key's value into a dictionary
@@ -1838,7 +1839,7 @@ You can add this dictionary to an array of returned matches, for processing else
 <div id="tabs-16-kotlin--panel" class="tabpanel" aria-labelledby="tabs-16-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">
 val query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id),
@@ -1852,7 +1853,7 @@ val query = QueryBuilder
 <div id="tabs-16-java--panel" class="tabpanel" aria-labelledby="tabs-16-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">
 Query listQuery =
     QueryBuilder.select(
             SelectResult.expression(Meta.id),
@@ -1934,7 +1935,7 @@ Query listQuery =
 <div id="tabs-17-kotlin--panel" class="tabpanel" aria-labelledby="tabs-17-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">query.execute().use { rs -&gt;
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">query.execute().use { rs -&gt;
     rs.allResults().forEach {
         log("Hotel name -&gt; ${it.getString("name")}, in ${it.getString("country")}")
     }
@@ -1945,7 +1946,7 @@ Query listQuery =
 <div id="tabs-17-java--panel" class="tabpanel" aria-labelledby="tabs-17-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">HashMap&lt;String, Hotel&gt; hotels = new HashMap&lt;&gt;();
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">HashMap&lt;String, Hotel&gt; hotels = new HashMap&lt;&gt;();
 try (ResultSet resultSet = listQuery.execute()) {
     for (Result result: resultSet) {
 
@@ -2005,7 +2006,7 @@ try (ResultSet resultSet = listQuery.execute()) {
 <div id="tabs-18-kotlin--panel" class="tabpanel" aria-labelledby="tabs-18-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val query = QueryBuilder
     .select(
         SelectResult.expression(Meta.id).`as`("hotelId")
     )
@@ -2016,7 +2017,7 @@ try (ResultSet resultSet = listQuery.execute()) {
 <div id="tabs-18-java--panel" class="tabpanel" aria-labelledby="tabs-18-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Query listQuery =
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Query listQuery =
     QueryBuilder.select(SelectResult.expression(Meta.id).as("metaID"))
         .from(DataSource.collection(collection));</code></pre>
 </div>
@@ -2074,7 +2075,7 @@ Each result object has <code>id</code> as the key and the ID value as its value&
 <div id="tabs-19-kotlin--panel" class="tabpanel" aria-labelledby="tabs-19-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">query.execute().use { rs -&gt;
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">query.execute().use { rs -&gt;
     rs.allResults().forEach {
         log("hotel id -&gt;${it.getString("hotelId")}")
     }
@@ -2085,7 +2086,7 @@ Each result object has <code>id</code> as the key and the ID value as its value&
 <div id="tabs-19-java--panel" class="tabpanel" aria-labelledby="tabs-19-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">try (ResultSet rs = listQuery.execute()) {
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">try (ResultSet rs = listQuery.execute()) {
     for (Result result: rs.allResults()) {
 
         // get the ID form the result's k-v pair array
@@ -2137,7 +2138,7 @@ Each result object has <code>id</code> as the key and the ID value as its value&
 <div id="tabs-20-kotlin--panel" class="tabpanel" aria-labelledby="tabs-20-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">
 val query = QueryBuilder
     .select(
         SelectResult.expression(Function.count(Expression.string("*"))).`as`("mycount")
@@ -2149,7 +2150,7 @@ val query = QueryBuilder
 <div id="tabs-20-java--panel" class="tabpanel" aria-labelledby="tabs-20-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Query listQuery = QueryBuilder.select(
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Query listQuery = QueryBuilder.select(
         SelectResult.expression(Function.count(Expression.string("*"))).as("mycount")) <i class="conum" data-value="1"></i><b>(1)</b>
     .from(DataSource.collection(collection));</code></pre>
 </div>
@@ -2218,7 +2219,7 @@ The key is the count name, as defined using <code>SelectResult.as</code>&#8201;&
 <div id="tabs-21-kotlin--panel" class="tabpanel" aria-labelledby="tabs-21-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">query.execute().use { rs -&gt;
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">query.execute().use { rs -&gt;
     rs.allResults().forEach {
         log("name -&gt; ${it.getInt("mycount")}")
     }
@@ -2229,7 +2230,7 @@ The key is the count name, as defined using <code>SelectResult.as</code>&#8201;&
 <div id="tabs-21-java--panel" class="tabpanel" aria-labelledby="tabs-21-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">try (ResultSet resultSet = listQuery.execute()) {
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">try (ResultSet resultSet = listQuery.execute()) {
     for (Result result: resultSet) {
 
         // Retrieve count using key 'mycount'
@@ -2286,7 +2287,7 @@ Use the <code>limit</code> and <code>offset</code> feature, to return a defined 
 <div id="tabs-22-kotlin--panel" class="tabpanel" aria-labelledby="tabs-22-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val thisOffset = 0
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val thisOffset = 0
 val thisLimit = 20
 val listQuery = QueryBuilder
     .select(SelectResult.all())
@@ -2301,7 +2302,7 @@ val listQuery = QueryBuilder
 <div id="tabs-22-java--panel" class="tabpanel" aria-labelledby="tabs-22-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">
 int thisOffset = 0;
 int thisLimit = 20;
 
@@ -2352,7 +2353,7 @@ For more on using the QueryBuilder API, see our blog: <a href="https://blog.couc
 <div class="title">Example 28. Using JSON Results</div>
 <div class="content">
 <div class="paragraph">
-<p>Use <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-android/com/couchbase/lite/Result.html#toJSON--">Result.toJSON()</a> to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See <<ex-json>> for a working example.</p>
+<p>Use <a href="http://docs.couchbase.com/mobile/3.1.8/couchbase-lite-android/com/couchbase/lite/Result.html#toJSON--">Result.toJSON()</a> to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See <<ex-json>> for a working example.</p>
 </div>
 <div id="tabs-23" class="openblock tabs is-sync is-loading">
 <div class="content">
@@ -2369,7 +2370,7 @@ For more on using the QueryBuilder API, see our blog: <a href="https://blog.couc
 <div id="tabs-23-kotlin--panel" class="tabpanel" aria-labelledby="tabs-23-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">// Uses Jackson JSON processor
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">// Uses Jackson JSON processor
 val mapper = ObjectMapper()
 val hotels = mutableListOf&lt;Hotel&gt;()
 
@@ -2398,7 +2399,7 @@ listQuery.execute().use { rs -&gt;
 <div id="tabs-23-java--panel" class="tabpanel" aria-labelledby="tabs-23-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">        ObjectMapper mapper = new ObjectMapper();
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">        ObjectMapper mapper = new ObjectMapper();
         ArrayList&lt;Hotel&gt; hotels = new ArrayList&lt;&gt;();
         HashMap&lt;String, Object&gt; dictFromJSONstring;
 
@@ -2947,7 +2948,7 @@ Predictive Query is an <a href="https://www.couchbase.com/products/editions">Ent
 <div id="tabs-24-kotlin--panel" class="tabpanel" aria-labelledby="tabs-24-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">// tensorFlowModel is a fake implementation
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">// tensorFlowModel is a fake implementation
 object TensorFlowModel {
     fun predictImage(data: ByteArray?): Map&lt;String, Any?&gt; = TODO()
 }
@@ -2966,7 +2967,7 @@ object ImageClassifierModel : PredictiveModel {
 <div id="tabs-24-java--panel" class="tabpanel" aria-labelledby="tabs-24-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">class ImageClassifierModel implements PredictiveModel {
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">class ImageClassifierModel implements PredictiveModel {
     @Override
     public Dictionary predict(@NonNull Dictionary input) {
         Blob blob = input.getBlob("photo");
@@ -3085,14 +3086,14 @@ Therefore, the supported data type will be constrained by the data type that the
 <div id="tabs-25-kotlin--panel" class="tabpanel" aria-labelledby="tabs-25-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">Database.prediction.registerModel("ImageClassifier", ImageClassifierModel)</code></pre>
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">Database.prediction.registerModel("ImageClassifier", ImageClassifierModel)</code></pre>
 </div>
 </div>
 </div>
 <div id="tabs-25-java--panel" class="tabpanel" aria-labelledby="tabs-25-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Database.prediction.registerModel("ImageClassifier", new ImageClassifierModel());</code></pre>
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Database.prediction.registerModel("ImageClassifier", new ImageClassifierModel());</code></pre>
 </div>
 </div>
 </div>
@@ -3144,7 +3145,7 @@ When documents are added or updated, the index will call the prediction function
 <div id="tabs-26-kotlin--panel" class="tabpanel" aria-labelledby="tabs-26-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">collection.createIndex(
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">collection.createIndex(
     "value-index-image-classifier",
     IndexBuilder.valueIndex(ValueIndexItem.expression(Expression.property("label")))
 )</code></pre>
@@ -3154,7 +3155,7 @@ When documents are added or updated, the index will call the prediction function
 <div id="tabs-26-java--panel" class="tabpanel" aria-labelledby="tabs-26-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">collection.createIndex(
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">collection.createIndex(
     "value-index-image-classifier",
     IndexBuilder.valueIndex(ValueIndexItem.expression(Expression.property("label"))));</code></pre>
 </div>
@@ -3192,7 +3193,7 @@ It differs from the value index in that it caches the predictive results and cre
 <div id="tabs-27-kotlin--panel" class="tabpanel" aria-labelledby="tabs-27-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val inputMap: Map&lt;String, Any?&gt; = mutableMapOf("numbers" to Expression.property("photo"))
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val inputMap: Map&lt;String, Any?&gt; = mutableMapOf("numbers" to Expression.property("photo"))
 collection.createIndex(
     "predictive-index-image-classifier",
     IndexBuilder.predictiveIndex("ImageClassifier", Expression.map(inputMap), null)
@@ -3203,7 +3204,7 @@ collection.createIndex(
 <div id="tabs-27-java--panel" class="tabpanel" aria-labelledby="tabs-27-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Map&lt;String, Object&gt; inputMap = new HashMap&lt;&gt;();
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Map&lt;String, Object&gt; inputMap = new HashMap&lt;&gt;();
 inputMap.put("numbers", Expression.property("photo"));
 Expression input = Expression.map(inputMap);
 
@@ -3241,7 +3242,7 @@ collection.createIndex("predictive-index-image-classifier", index);</code></pre>
 <div id="tabs-28-kotlin--panel" class="tabpanel" aria-labelledby="tabs-28-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">val inputMap: Map&lt;String, Any?&gt; = mutableMapOf("photo" to Expression.property("photo"))
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val inputMap: Map&lt;String, Any?&gt; = mutableMapOf("photo" to Expression.property("photo"))
 val prediction: PredictionFunction = Function.prediction(
     ImageClassifierModel.name,
     Expression.map(inputMap) <i class="conum" data-value="1"></i><b>(1)</b>
@@ -3267,7 +3268,7 @@ query.execute().use {
 <div id="tabs-28-java--panel" class="tabpanel" aria-labelledby="tabs-28-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Map&lt;String, Object&gt; inputProperties = new HashMap&lt;&gt;();
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Map&lt;String, Object&gt; inputProperties = new HashMap&lt;&gt;();
 inputProperties.put("photo", Expression.property("photo"));
 Expression input = Expression.map(inputProperties);
 PredictionFunction prediction = Function.prediction("ImageClassifier", input); <i class="conum" data-value="1"></i><b>(1)</b>
@@ -3333,14 +3334,14 @@ The null value returned by the prediction method will be interpreted as MISSING 
 <div id="tabs-29-kotlin--panel" class="tabpanel" aria-labelledby="tabs-29-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.kt">Database.prediction.unregisterModel("ImageClassifier")</code></pre>
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">Database.prediction.unregisterModel("ImageClassifier")</code></pre>
 </div>
 </div>
 </div>
 <div id="tabs-29-java--panel" class="tabpanel" aria-labelledby="tabs-29-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/android/examples/codesnippet_collection.java">Database.prediction.unregisterModel("ImageClassifier");</code></pre>
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Database.prediction.unregisterModel("ImageClassifier");</code></pre>
 </div>
 </div>
 </div>

@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="java">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Java / Data Sync / Remote Sync Gateway">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="3">
+<meta name="docsearch:version_rank" content="4">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/java/replication.html">3.2 Beta</option>
         <option value="3.1" data-url="../../current/java/replication.html">3.1</option>
         <option value="3.0" data-url="../../3.0/java/replication.html">3.0</option>
         <option value="2.8" data-url="replication.html" selected>2.8</option>
@@ -462,7 +463,7 @@ Here we say to provide <em>Basic Authentication</em> credentials. Other options 
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/java/examples/code_snippets/p2psync-websocket.java">// initialize the replicator configuration
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/java/examples/code_snippets/p2psync-websocket.java">// initialize the replicator configuration
 final ReplicatorConfiguration thisConfig
     = new ReplicatorConfiguration(
       thisDB,
@@ -732,7 +733,7 @@ The following example initiates a one-shot replication as the user <strong>usern
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/java/examples/code_snippets/Examples.java#L1364-L1371">URLEndpoint target = new URLEndpoint(new URI("ws://localhost:4984/mydatabase"));
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/java/examples/code_snippets/Examples.java#L1364-L1371">URLEndpoint target = new URLEndpoint(new URI("ws://localhost:4984/mydatabase"));
 
 ReplicatorConfiguration config = new ReplicatorConfiguration(database, target);
 config.setAuthenticator(new BasicAuthenticator("username", "password"));
@@ -753,7 +754,7 @@ The following example initiates a one-shot replication with the session ID that 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/java/examples/code_snippets/Examples.java#L1377-L1384">URLEndpoint target = new URLEndpoint(new URI("ws://localhost:4984/mydatabase"));
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/java/examples/code_snippets/Examples.java#L1377-L1384">URLEndpoint target = new URLEndpoint(new URI("ws://localhost:4984/mydatabase"));
 
 ReplicatorConfiguration config = new ReplicatorConfiguration(database, target);
 config.setAuthenticator(new SessionAuthenticator("904ac010862f37c8dd99015a33ab5a3565fd8447"));
@@ -777,7 +778,7 @@ As an example, this feature can be useful to pass additional credentials when th
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/java/examples/code_snippets/Examples.java#L1546-L1549">ReplicatorConfiguration config = new ReplicatorConfiguration(database, endpoint);
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/java/examples/code_snippets/Examples.java#L1546-L1549">ReplicatorConfiguration config = new ReplicatorConfiguration(database, endpoint);
 Map&lt;String, String&gt; headers = new HashMap&lt;&gt;();
 headers.put("CustomHeaderName", "Value");
 config.setHeaders(headers);</code></pre>
@@ -802,7 +803,7 @@ For instance, high-priority documents could be pushed first, or documents in a "
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/java/examples/code_snippets/Examples.java#L1592-L1599">URLEndpoint target = new URLEndpoint(new URI("ws://localhost:4984/mydatabase"));
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/java/examples/code_snippets/Examples.java#L1592-L1599">URLEndpoint target = new URLEndpoint(new URI("ws://localhost:4984/mydatabase"));
 
 ReplicatorConfiguration config = new ReplicatorConfiguration(database, target);
 config.setPushFilter((document, flags) -&gt; flags.contains(DocumentFlag.DocumentFlagsDeleted)); <i class="conum" data-value="1"></i><b>(1)</b>
@@ -844,7 +845,7 @@ Sync Gateway <a href="../../../sync-gateway/current/channels.html" class="xref p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/java/examples/code_snippets/Examples.java#L1605-L1612">URLEndpoint target = new URLEndpoint(new URI("ws://localhost:4984/mydatabase"));
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/java/examples/code_snippets/Examples.java#L1605-L1612">URLEndpoint target = new URLEndpoint(new URI("ws://localhost:4984/mydatabase"));
 
 ReplicatorConfiguration config = new ReplicatorConfiguration(database, target);
 config.setPullFilter((document, flags) -&gt; "draft".equals(document.getString("type"))); <i class="conum" data-value="1"></i><b>(1)</b>
@@ -981,7 +982,7 @@ However, if you do want to force the replication to start again from zero, use t
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/java/examples/code_snippets/Examples.java#L1583-L1584">replicator.resetCheckpoint();
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/java/examples/code_snippets/Examples.java#L1583-L1584">replicator.resetCheckpoint();
 replicator.start();</code></pre>
 </div>
 </div>
@@ -1197,7 +1198,7 @@ Stop the listener as shown in <a href="#ex-stop-doc-listener">Example 11</a>.</p
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/java/examples/code_snippets/Examples.java#L1514-L1533">ListenerToken token = replicator.addDocumentReplicationListener(replication -&gt; {
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/java/examples/code_snippets/Examples.java#L1514-L1533">ListenerToken token = replicator.addDocumentReplicationListener(replication -&gt; {
 
     Log.i(TAG, "Replication type: " + ((replication.isPush()) ? "Push" : "Pull"));
     for (ReplicatedDocument document : replication.getDocuments()) {
@@ -1410,7 +1411,7 @@ We can then remove any active <a href="#lbl-repl-chng">change listener</a>.</td>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/java/examples/code_snippets/Examples.java">replicator.addChangeListener(change -&gt; {
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/java/examples/code_snippets/Examples.java">replicator.addChangeListener(change -&gt; {
     CouchbaseLiteException error = change.getStatus().getError();
     if (error != null) { Log.w(TAG, "Error code:: %d", error); }
 });
@@ -1513,7 +1514,7 @@ After completing this step, Sync Gateway is reachable over <code>https</code>/<c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/java/examples/code_snippets/Examples.java#L1561-L1568">InputStream is = getAsset("cert.cer");
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/java/examples/code_snippets/Examples.java#L1561-L1568">InputStream is = getAsset("cert.cer");
 byte[] cert = IOUtils.toByteArray(is);
 if (is != null) {
     try { is.close(); }
@@ -1551,7 +1552,7 @@ You can increase the log output for activity related to replication with Sync Ga
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/java/examples/code_snippets/Examples.java#L1358">Database.setLogLevel(LogDomain.REPLICATOR, LogLevel.VERBOSE);</code></pre>
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/java/examples/code_snippets/Examples.java#L1358">Database.setLogLevel(LogDomain.REPLICATOR, LogLevel.VERBOSE);</code></pre>
 </div>
 </div>
 </div>

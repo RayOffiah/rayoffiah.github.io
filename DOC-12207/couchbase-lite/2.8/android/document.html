@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="android">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Android / Document">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="3">
+<meta name="docsearch:version_rank" content="4">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/android/document.html">3.2 Beta</option>
         <option value="3.1" data-url="../../current/android/document.html">3.1</option>
         <option value="3.0" data-url="../../3.0/android/document.html">3.0</option>
         <option value="2.8" data-url="document.html" selected>2.8</option>
@@ -305,7 +306,7 @@ The <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/com/c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/android/examples/snippets/app/src/main/java/com/couchbase/code_snippets/Examples.java#L368-L375">Document document = database.getDocument("xyz");
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/android/examples/snippets/app/src/main/java/com/couchbase/code_snippets/Examples.java#L368-L375">Document document = database.getDocument("xyz");
 MutableDocument mutableDocument = document.toMutable();
 mutableDocument.setString("name", "apples");
 try {
@@ -338,7 +339,7 @@ The following example sets the date on the <code>createdAt</code> property and r
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/android/examples/snippets/app/src/main/java/com/couchbase/code_snippets/Examples.java#L384-L385">newTask.setValue("createdAt", new Date());
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/android/examples/snippets/app/src/main/java/com/couchbase/code_snippets/Examples.java#L384-L385">newTask.setValue("createdAt", new Date());
 Date date = newTask.getDate("createdAt");</code></pre>
 </div>
 </div>
@@ -363,7 +364,7 @@ The following example persists a few documents in batch.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/android/examples/snippets/app/src/main/java/com/couchbase/code_snippets/Examples.java#L392-L409">try {
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/android/examples/snippets/app/src/main/java/com/couchbase/code_snippets/Examples.java#L392-L409">try {
     database.inBatch(() -&gt; {
         for (int i = 0; i &lt; 10; i++) {
             MutableDocument doc = new MutableDocument();
@@ -398,7 +399,7 @@ The following example registers for changes to the document with ID <code>user.j
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/android/examples/snippets/app/src/main/java/com/couchbase/code_snippets/Examples.java#L434-L441">database.addDocumentChangeListener(
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/android/examples/snippets/app/src/main/java/com/couchbase/code_snippets/Examples.java#L434-L441">database.addDocumentChangeListener(
     "user.john",
     change -&gt; {
         Document doc = database.getDocument(change.getDocumentID());
@@ -423,7 +424,7 @@ The purge will not be replicated to Sync Gateway.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/android/examples/snippets/app/src/main/java/com/couchbase/code_snippets/Examples.java#L416-L428">// Purge the document one day from now
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/android/examples/snippets/app/src/main/java/com/couchbase/code_snippets/Examples.java#L416-L428">// Purge the document one day from now
 Instant ttl = Instant.now().plus(1, ChronoUnit.DAYS);
 database.setDocumentExpiration("doc123", new Date(ttl.toEpochMilli()));
 

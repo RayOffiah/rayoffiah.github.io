@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="csharp">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / C#.NET / Document">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="3">
+<meta name="docsearch:version_rank" content="4">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/csharp/document.html">3.2 Beta</option>
         <option value="3.1" data-url="../../current/csharp/document.html">3.1</option>
         <option value="3.0" data-url="../../3.0/csharp/document.html">3.0</option>
         <option value="2.8" data-url="document.html" selected>2.8</option>
@@ -303,7 +304,7 @@ The <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couch
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L466-L470">using(var document = db.GetDocument("xyz"))
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L466-L470">using(var document = db.GetDocument("xyz"))
 using (var mutableDocument = document.ToMutable()) {
     mutableDocument.SetString("name", "apples");
     db.Save(mutableDocument);
@@ -333,7 +334,7 @@ The following example sets the date on the <code>createdAt</code> property and r
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L478-L479">newTask.SetValue("createdAt", DateTimeOffset.UtcNow);
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L478-L479">newTask.SetValue("createdAt", DateTimeOffset.UtcNow);
 var date = newTask.GetDate("createdAt");</code></pre>
 </div>
 </div>
@@ -358,7 +359,7 @@ The following example persists a few documents in batch.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L490-L501">db.InBatch(() =&gt;
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L490-L501">db.InBatch(() =&gt;
 {
     for (var i = 0; i &lt; 10; i++) {
         using (var doc = new MutableDocument()) {
@@ -387,7 +388,7 @@ The following example registers for changes to the document with ID <code>user.j
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L510-L515">db.AddDocumentChangeListener("user.john", (sender, args) =&gt;
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L510-L515">db.AddDocumentChangeListener("user.john", (sender, args) =&gt;
 {
     using (var doc = Db.GetDocument(args.DocumentID)) {
         Console.WriteLine($"Status :: {doc.GetString("verified_account")}");
@@ -410,7 +411,7 @@ The purge will not be replicated to Sync Gateway.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L524-L536">// Purge the document one day from now
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L524-L536">// Purge the document one day from now
 var ttl = DateTimeOffset.UtcNow.AddDays(1);
 db.SetDocumentExpiration("doc123", ttl);
 

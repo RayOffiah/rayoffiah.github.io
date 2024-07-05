@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="objc">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Objective-C / Data Sync / Peer-to-Peer / Integrate Custom Listener">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:version_rank" content="2">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/objc/p2psync-custom.html">3.2 Beta</option>
         <option value="3.1" data-url="p2psync-custom.html" selected>3.1</option>
         <option value="3.0" data-url="../../3.0/objc/p2psync-custom.html">3.0</option>
         <option value="2.8" data-url="../../2.8/objc/p2psync-custom.html">2.8</option>
@@ -287,7 +288,7 @@ The <code>MessageEndpointListener</code> acts as a Listener for incoming connect
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2738-L2743">CBLDatabase *database = [[CBLDatabase alloc] initWithName:@"mydb" error:&amp;error];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2738-L2743">CBLDatabase *database = [[CBLDatabase alloc] initWithName:@"mydb" error:&amp;error];
 
 CBLMessageEndpointListenerConfiguration *config =
 [[CBLMessageEndpointListenerConfiguration alloc] initWithCollections:[NSArray arrayWithObject:[database defaultCollection:&amp;error]]
@@ -333,7 +334,7 @@ This step includes inviting a Peer to a session and Peer authentication.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2636-L2644">CBLDatabase *database = [[CBLDatabase alloc] initWithName:@"dbname" error:&amp;error];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2636-L2644">CBLDatabase *database = [[CBLDatabase alloc] initWithName:@"dbname" error:&amp;error];
 CBLCollection *collection = [database defaultCollection:&amp;error];
 
 // The delegate must implement the `CBLMessageEndpointDelegate` protocol.
@@ -384,7 +385,7 @@ There are two options.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2648-L2655">CBLReplicatorConfiguration *replConfig = [[CBLReplicatorConfiguration alloc]
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2648-L2655">CBLReplicatorConfiguration *replConfig = [[CBLReplicatorConfiguration alloc]
                                       initWithTarget:endpoint];
 [replConfig addCollection:collection config:nil];
 
@@ -400,7 +401,7 @@ When the application receives the callback, it must create an instance of <code>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2662-L2664">- (id&lt;CBLMessageEndpointConnection&gt;)createConnectionForEndpoint:(CBLMessageEndpoint *)endpoint {
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2662-L2664">- (id&lt;CBLMessageEndpointConnection&gt;)createConnectionForEndpoint:(CBLMessageEndpoint *)endpoint {
     return [[ActivePeerConnection alloc] init];
 }</code></pre>
 </div>
@@ -410,7 +411,7 @@ When the application receives the callback, it must create an instance of <code>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2681-L2685">/* implementation of CBLMessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2681-L2685">/* implementation of CBLMessageEndpointConnection */
 - (void)open:(nonnull id&lt;CBLReplicatorConnection&gt;)connection completion:(nonnull void (^)(BOOL, CBLMessagingError  *_Nullable))completion {
     _replicatorConnection = connection;
     completion(YES, nil);
@@ -434,7 +435,7 @@ This message tells the listener to accept incoming data from that Peer.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2755-L2756">PassivePeerConnection *connection = [[PassivePeerConnection alloc] init]; /* implements CBLMessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2755-L2756">PassivePeerConnection *connection = [[PassivePeerConnection alloc] init]; /* implements CBLMessageEndpointConnection */
 [_messageEndpointListener accept:connection];</code></pre>
 </div>
 </div>
@@ -446,7 +447,7 @@ This message tells the listener to accept incoming data from that Peer.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2767-L2771">/* implementation of CBLMessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2767-L2771">/* implementation of CBLMessageEndpointConnection */
 - (void)open:(nonnull id&lt;CBLReplicatorConnection&gt;)connection completion:(nonnull void (^)(BOOL, CBLMessagingError *_Nullable))completion {
     _replicatorConnection = connection;
     completion(YES, nil);
@@ -502,7 +503,7 @@ In Peer-to-Peer syncing, the remote is another Couchbase Lite database.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2689-L2697">/* implementation of CBLMessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2689-L2697">/* implementation of CBLMessageEndpointConnection */
 - (void)send:(nonnull CBLMessage *)message completion:(nonnull void (^)(BOOL, CBLMessagingError  *_Nullable))completion {
     NSData *data = [message toData];
     NSLog(@"%@", data);
@@ -523,7 +524,7 @@ If it is a recoverable error, the replicator will begin a retry process, creatin
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2702-L2703">CBLMessage *message = [CBLMessage fromData:data];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2702-L2703">CBLMessage *message = [CBLMessage fromData:data];
 [_replicatorConnection receive:message];</code></pre>
 </div>
 </div>
@@ -538,7 +539,7 @@ If it is a recoverable error, the replicator will begin a retry process, creatin
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2775-L2783">/* implementation of CBLMessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2775-L2783">/* implementation of CBLMessageEndpointConnection */
 - (void)send:(nonnull CBLMessage *)message completion:(nonnull void (^)(BOOL, CBLMessagingError *_Nullable))completion {
     NSData *data = [message toData];
     NSLog(@"%@", data);
@@ -559,7 +560,7 @@ If it is a recoverable error, the replicator will begin a retry process, creatin
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2788-L2789">CBLMessage *message = [CBLMessage fromData:data];
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2788-L2789">CBLMessage *message = [CBLMessage fromData:data];
 [_replicatorConnection receive:message];</code></pre>
 </div>
 </div>
@@ -589,7 +590,7 @@ We will cover each case below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2676">[_replicatorConnection close:nil];</code></pre>
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2676">[_replicatorConnection close:nil];</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -597,7 +598,7 @@ We will cover each case below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2708-L2714">/* implementation of CBLMessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2708-L2714">/* implementation of CBLMessageEndpointConnection */
 - (void)close:(nullable NSError *)error completion:(nonnull void (^)(void))completion {
     /* disconnect with communications framework */
     /* ... */
@@ -614,7 +615,7 @@ We will cover each case below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2762">[_replicatorConnection close:nil];</code></pre>
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2762">[_replicatorConnection close:nil];</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -622,7 +623,7 @@ We will cover each case below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2794-L2800">/* implementation of CBLMessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2794-L2800">/* implementation of CBLMessageEndpointConnection */
 - (void)close:(nullable NSError *)error completion:(nonnull void (^)(void))completion {
     /* disconnect with communications framework */
     /* ... */
@@ -647,7 +648,7 @@ We will cover each case below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2749">[_messageEndpointListener closeAll];</code></pre>
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2749">[_messageEndpointListener closeAll];</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -655,7 +656,7 @@ We will cover each case below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2794-L2800">/* implementation of CBLMessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2794-L2800">/* implementation of CBLMessageEndpointConnection */
 - (void)close:(nullable NSError *)error completion:(nonnull void (^)(void))completion {
     /* disconnect with communications framework */
     /* ... */
@@ -672,7 +673,7 @@ We will cover each case below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2676">[_replicatorConnection close:nil];</code></pre>
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2676">[_replicatorConnection close:nil];</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -680,7 +681,7 @@ We will cover each case below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/objc/examples/code_snippets/SampleCodeTest.m#L2708-L2714">/* implementation of CBLMessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-objc hljs" data-lang="objc" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/objc/examples/code_snippets/SampleCodeTest.m#L2708-L2714">/* implementation of CBLMessageEndpointConnection */
 - (void)close:(nullable NSError *)error completion:(nonnull void (^)(void))completion {
     /* disconnect with communications framework */
     /* ... */
@@ -720,7 +721,7 @@ We will cover each case below.</p>
 <p><a href="#objc:landing-p2psync.adoc" class="xref unresolved">Peer-to-Peer Sync</a></p>
 </li>
 <li>
-<p><a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-objc">API References</a></p>
+<p><a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-objc">API References</a></p>
 </li>
 </ul>
 </div>

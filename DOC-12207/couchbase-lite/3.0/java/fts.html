@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="java">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Java / Full Text Search">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="2">
+<meta name="docsearch:version_rank" content="3">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/java/fts.html">3.2 Beta</option>
         <option value="3.1" data-url="../../current/java/fts.html">3.1</option>
         <option value="3.0" data-url="fts.html" selected>3.0</option>
         <option value="2.8" data-url="../../2.8/java/fts.html">2.8</option>
@@ -265,7 +266,7 @@ They create and use an FTS index built from the hotel&#8217;s <code>Overview</co
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java">
 FullTextIndexConfiguration config = new FullTextIndexConfiguration("Overview").ignoreAccents(false)
 
 database.createIndex( config, "overviewFTSIndex")</code></pre>
@@ -294,7 +295,7 @@ See <a href="https://github.com/couchbasedeps/sqlite3-unicodesn/blob/HEAD/stopwo
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java">
 Query ftsQuery =
       database.createQuery(
       "SELECT _id, overview FROM _ WHERE MATCH(overviewFTSIndex, 'michigan') ORDER BY RANK(overviewFTSIndex)");
@@ -322,7 +323,7 @@ for (result in ftsQuery.execute().allResults()) {
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java">database.createIndex(
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java">database.createIndex(
     "overviewFTSIndex",
     IndexBuilder.fullTextIndex(FullTextIndexItem.property("overviewFTSIndex")).ignoreAccents(false));</code></pre>
 </div>
@@ -343,7 +344,7 @@ for (result in ftsQuery.execute().allResults()) {
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/java/examples/codesnippet_collection.java">
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/java/examples/codesnippet_collection.java">
 Expression whereClause = FullTextFunction.match("overviewFTSIndex", "'michigan'");
 Query ftsQuery =
         QueryBuilder.select(SelectResult.expression(Meta.id),

@@ -235,10 +235,10 @@ This API enables you to run SQL++ queries and set request-level parameters.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code><a href="http://node:8093/" class="bare">http://node:8093/</a></code></p>
+<p><a href="http://node:8093/" class="bare">http://node:8093/</a></p>
 </li>
 <li>
-<p><code><a href="https://node:18093/" class="bare">https://node:18093/</a></code> (for secure access)</p>
+<p><a href="https://node:18093/" class="bare">https://node:18093/</a> (for secure access)</p>
 </li>
 </ul>
 </div>
@@ -577,7 +577,7 @@ Alternatively, you can specify parameters in the request body using the <code>ap
 </div>
 </div>
 <div class="paragraph">
-<p>For further examples, refer to {section_srh_tlm_n1b}[].</p>
+<p>For further examples, refer to <a href="examplesrest.html" class="xref page">Examples</a>.</p>
 </div>
 </div>
 </div>
@@ -813,7 +813,7 @@ For URL-encoded parameters, the format is consistent with the syntax for variabl
 </div>
 </div>
 <div class="paragraph">
-<p>For further examples, refer to {section_srh_tlm_n1b}[].</p>
+<p>For further examples, refer to <a href="examplesrest.html" class="xref page">Examples</a>.</p>
 </div>
 </div>
 </div>
@@ -888,16 +888,14 @@ For URL-encoded parameters, the format is consistent with the syntax for variabl
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div id="args" class="paragraph">
-<p>Applicable if the statement has 1 or more positional parameters.</p>
+<p>Supplies the values for positional parameters in the statement.
+Applicable if the statement or prepared statement contains 1 or more positional parameters.</p>
 </div>
 <div class="paragraph">
-<p>An array of JSON values, one for each positional parameter in the statement.</p>
+<p>The value is an array of JSON values, one for each positional parameter in the statement.</p>
 </div>
 <div class="paragraph">
-<p>Note that positional parameters apply to <code>prepared</code> also.</p>
-</div>
-<div class="paragraph">
-<p>Refer to {section_srh_tlm_n1b}[] for details.<br>
+<p>Refer to <a href="/server/7.6/n1ql/n1ql-manage/query-settings.html#section_srh_tlm_n1b">Named Parameters and Positional Parameters</a> for details.<br>
 <strong>Example</strong> : <code>[ "LAX", 6 ]</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
@@ -910,16 +908,16 @@ For URL-encoded parameters, the format is consistent with the syntax for variabl
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div id="atrcollection_req" class="paragraph">
-<p>Specifies the collection where the {transactions-understanding-transactions}[active transaction record] (ATR) is stored.
+<p>Specifies the collection where the <a href="/server/7.6/learn/data/transactions.html#active-transaction-record-entries">active transaction record</a> (ATR) is stored.
 The collection must be present.
 If not specified, the ATR is stored in the default collection in the default scope in the bucket containing the first mutated document within the transaction.</p>
 </div>
 <div class="paragraph">
-<p>The value must be a string in the form <code>"bucket.scope.collection"</code> or <code>"namespace:bucket.scope.collection"</code>.
-If any part of the path contains a special character, that part of the path must be delimited in backticks <code>&grave;&grave;</code>.</p>
+<p>The value must be a string in the form <code>&quot;bucket.scope.collection&quot;</code> or <code>&quot;namespace:bucket.scope.collection&quot;</code>.
+If any part of the path contains a special character, that part of the path must be delimited in backticks &grave;&grave;.</p>
 </div>
 <div class="paragraph">
-<p>The {atrcollection-srv}[node-level] <code>atrcollection</code> setting specifies the default for this parameter for a single node.
+<p>The <a href="#atrcollection-srv">node-level</a> <code>atrcollection</code> setting specifies the default for this parameter for a single node.
 The request-level parameter overrides the node-level setting.<br>
 <strong>Example</strong> : <code>"default:&grave;travel-sample&grave;.transaction.test"</code></p>
 </div></div></td>
@@ -937,7 +935,7 @@ The request-level parameter overrides the node-level setting.<br>
 This saves you from having to make two separate requests in cases where you want to prepare a statement and execute it immediately.</p>
 </div>
 <div class="paragraph">
-<p>Refer to {prepare-auto-execute}[Auto-Execute] for more information.<br>
+<p>Refer to <a href="/server/7.6/n1ql/n1ql-language-reference/prepare.html#auto-execute">Auto-Execute</a> for more information.<br>
 <strong>Default</strong> : <code>false</code><br>
 <strong>Example</strong> : <code>true</code></p>
 </div></div></td>
@@ -960,7 +958,7 @@ SQL++ is agnostic about the content of this parameter; it is just echoed in the 
 <p>Maximum allowed size is 64 characters; all others will be cut.</p>
 </li>
 <li>
-<p>If it contains an escape character <code>/</code> or quote <code>"</code>, it will be rejected as error code 1110.</p>
+<p>If it contains an escape character <code>/</code> or quote <code>&quot;</code>, it will be rejected as error code 1110.</p>
 </li>
 </ul>
 </div></div></td>
@@ -1000,7 +998,7 @@ SQL++ is agnostic about the content of this parameter; it is just echoed in the 
 <p>If the request qualifies for caching, these values will also be cached in the <code>completed_requests</code> system keyspace.</p>
 </div>
 <div class="paragraph">
-<p>The {controls-srv}[node-level] <code>controls</code> setting specifies the default for this parameter for a single node.
+<p>The <a href="#controls-srv">node-level</a> <code>controls</code> setting specifies the default for this parameter for a single node.
 The request-level parameter overrides the node-level setting.<br>
 <strong>Example</strong> : <code>true</code></p>
 </div></div></td>
@@ -1041,23 +1039,23 @@ You can specify credentials for multiple identities.</p>
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div id="durability_level" class="paragraph">
-<p>The level of {durability}[durability] for mutations produced by the request.</p>
+<p>The level of <a href="/server/7.6/learn/data/durability.html">durability</a> for mutations produced by the request.</p>
 </div>
 <div class="paragraph">
-<p>If the request contains a <code>BEGIN TRANSACTION</code> statement, or a DML statement with the {tximplicit}[tximplicit] parameter set to <code>true</code>, the durability level is specified for all mutations within that transaction.</p>
+<p>If the request contains a <code>BEGIN TRANSACTION</code> statement, or a DML statement with the <a href="#tximplicit">tximplicit</a> parameter set to <code>true</code>, the durability level is specified for all mutations within that transaction.</p>
 </div>
 <div class="paragraph">
 <p>Durability is also supported for non-transactional DML statements.
 In this case, the <code>kvtimeout</code> parameter is used as the durability timeout.</p>
 </div>
 <div class="paragraph">
-<p>If not specified, the default durability level is <code>"majority"</code>.
-Set the durability level to <code>"none"</code> or <code>""</code> to specify no durability.<br>
+<p>If not specified, the default durability level is <code>&quot;majority&quot;</code>.
+Set the durability level to <code>&quot;none&quot;</code> or <code>&quot;&quot;</code> to specify no durability.<br>
 <strong>Default</strong> : <code>"majority"</code><br>
 <strong>Example</strong> : <code>"none"</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>enum ("", none, majority, majorityAndPersistActive, persistToMajority)</p>
+<p>enum (&quot;&quot;, none, majority, majorityAndPersistActive, persistToMajority)</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1112,8 +1110,11 @@ It is included for compatibility with previous versions of Couchbase Server.</p>
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div id="kvtimeout" class="paragraph">
-<p>The maximum time to wait for a KV operation before timing out.
-Only applies to statements within a transaction, or to non-transactional statements when the <code>durability_level</code> is set.</p>
+<p>The approximate time to wait for a KV get operation before timing out.
+This applies to statements within a transaction, and to non-transactional statements, whether <code>durability_level</code> is set or not.</p>
+</div>
+<div class="paragraph">
+<p>If <code>use_replica</code> is enabled for a query, then this parameter also specifies the approximate time to wait before fetching data from a replica vBucket when the active vBucket is inaccessible.</p>
 </div>
 <div class="paragraph">
 <p>The value for this parameter is a string.
@@ -1161,13 +1162,13 @@ When disabled, no timeout is applied and the KV operation runs for however long 
 <p>Specifies the maximum parallelism for the query.</p>
 </div>
 <div class="paragraph">
-<p>The {max-parallelism-srv}[node-level] <code>max-parallelism</code> setting specifies the ceiling for this parameter for a single node.
+<p>The <a href="#max-parallelism-srv">node-level</a> <code>max-parallelism</code> setting specifies the ceiling for this parameter for a single node.
 If the request-level parameter is zero or negative, the parallelism for the query is set to the node-level setting.
 If the request-level parameter is greater than zero and less than the node-level setting, the request-level parameter overrides the node-level setting.
 If the request-level parameter is greater than the node-level setting, the parallelism for the query is set to the node-level setting.</p>
 </div>
 <div class="paragraph">
-<p>In addition, the {queryMaxParallelism}[cluster-level] <code>queryMaxParallelism</code> setting specifies the ceiling for this parameter for the whole cluster.
+<p>In addition, the <a href="#queryMaxParallelism">cluster-level</a> <code>queryMaxParallelism</code> setting specifies the ceiling for this parameter for the whole cluster.
 When you change the cluster-level setting, the node-level setting is overwritten for all nodes in the cluster.</p>
 </div>
 <div class="paragraph">
@@ -1194,16 +1195,20 @@ When you change the cluster-level setting, the node-level setting is overwritten
 When disabled, there is no quota.</p>
 </div>
 <div class="paragraph">
-<p>Within a transaction, this parameter enforces the memory quota for the transaction.
-The transaction memory quota tracks only the delta table and the transaction log (approximately).</p>
+<p>This parameter enforces a ceiling on the memory used for the tracked documents required for processing a request.
+It does not take into account any other memory that might be used to process a request, such as the stack, the operators, or some intermediate values.</p>
 </div>
 <div class="paragraph">
-<p>The {memory-quota-srv}[node-level] <code>memory-quota</code> setting specifies the ceiling for this parameter for a single node.
+<p>Within a transaction, this setting enforces the memory quota for the transaction by tracking the
+delta table and the transaction log (approximately).</p>
+</div>
+<div class="paragraph">
+<p>The <a href="#memory-quota-srv">node-level</a> <code>memory-quota</code> setting specifies the ceiling for this parameter for a single node.
 If the node-level setting is zero (the default), the request-level parameter overrides the node-level setting.
 If the node-level setting is greater than zero, the request-level parameter is capped by the node-level setting.</p>
 </div>
 <div class="paragraph">
-<p>In addition, the {queryMemoryQuota}[cluster-level] <code>queryMemoryQuota</code> setting specifies the ceiling for this parameter for the whole cluster.
+<p>In addition, the <a href="#queryMemoryQuota">cluster-level</a> <code>queryMemoryQuota</code> setting specifies the ceiling for this parameter for the whole cluster.
 When you change the cluster-level setting, the node-level setting is overwritten for all nodes in the cluster.<br>
 <strong>Default</strong> : <code>0</code><br>
 <strong>Example</strong> : <code>4</code></p>
@@ -1232,7 +1237,7 @@ When you change the cluster-level setting, the node-level setting is overwritten
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><a id="namespace"></a> Specifies the namespace to use. Currently, only the <code>default</code> namespace is available.<br>
+<p>Specifies the namespace to use. Currently, only the <code>default</code> namespace is available.<br>
 <strong>Example</strong> : <code>"default"</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
@@ -1245,15 +1250,15 @@ When you change the cluster-level setting, the node-level setting is overwritten
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div id="numatrs_req" class="paragraph">
-<p>Specifies the total number of {transactions-understanding-transactions}[active transaction records].
+<p>Specifies the total number of <a href="/server/7.6/learn/data/transactions.html#active-transaction-record-entries">active transaction records</a>.
 Must be a positive integer.</p>
 </div>
 <div class="paragraph">
-<p>The {numatrs-srv}[node-level] <code>numatrs</code> setting specifies the default for this parameter for a single node.
+<p>The <a href="#numatrs-srv">node-level</a> <code>numatrs</code> setting specifies the default for this parameter for a single node.
 The request-level parameter overrides the node-level setting.</p>
 </div>
 <div class="paragraph">
-<p>In addition, the {queryNumAtrs}[cluster-level] <code>queryNumAtrs</code> setting specifies the default for this parameter for the whole cluster.
+<p>In addition, the <a href="#queryNumAtrs">cluster-level</a> <code>queryNumAtrs</code> setting specifies the default for this parameter for the whole cluster.
 When you change the cluster-level setting, the node-level setting is overwritten for all nodes in the cluster.<br>
 <strong>Default</strong> : <code>1024</code><br>
 <strong>Example</strong> : <code>512</code></p>
@@ -1271,11 +1276,11 @@ When you change the cluster-level setting, the node-level setting is overwritten
 <p>Controls the number of items execution operators can batch for Fetch from the KV.</p>
 </div>
 <div class="paragraph">
-<p>The {pipeline-batch-srv}[node-level] <code>pipeline-batch</code> setting specifies the default for this parameter for a single node.
+<p>The <a href="#pipeline-batch-srv">node-level</a> <code>pipeline-batch</code> setting specifies the default for this parameter for a single node.
 The request-level parameter overrides the node-level setting, but only if it is lower than the node-level setting.</p>
 </div>
 <div class="paragraph">
-<p>In addition, the {queryPipelineBatch}[cluster-level] <code>queryPipelineBatch</code> setting specifies the default for this parameter for the whole cluster.
+<p>In addition, the <a href="#queryPipelineBatch">cluster-level</a> <code>queryPipelineBatch</code> setting specifies the default for this parameter for the whole cluster.
 When you change the cluster-level setting, the node-level setting is overwritten for all nodes in the cluster.<br>
 <strong>Example</strong> : <code>64</code></p>
 </div></div></td>
@@ -1292,11 +1297,11 @@ When you change the cluster-level setting, the node-level setting is overwritten
 <p>Maximum number of items each execution operator can buffer between various operators.</p>
 </div>
 <div class="paragraph">
-<p>The {pipeline-cap-srv}[node-level] <code>pipeline-cap</code> setting specifies the default for this parameter for a single node.
+<p>The <a href="#pipeline-cap-srv">node-level</a> <code>pipeline-cap</code> setting specifies the default for this parameter for a single node.
 The request-level parameter overrides the node-level setting, but only if it is lower than the node-level setting.</p>
 </div>
 <div class="paragraph">
-<p>In addition, the {queryPipelineCap}[cluster-level] <code>queryPipelineCap</code> setting specifies the default for this parameter for the whole cluster.
+<p>In addition, the <a href="#queryPipelineCap">cluster-level</a> <code>queryPipelineCap</code> setting specifies the default for this parameter for the whole cluster.
 When you change the cluster-level setting, the node-level setting is overwritten for all nodes in the cluster.<br>
 <strong>Example</strong> : <code>1024</code></p>
 </div></div></td>
@@ -1314,7 +1319,7 @@ When you change the cluster-level setting, the node-level setting is overwritten
 </div>
 <div class="paragraph">
 <p>The name of the prepared SQL++ statement to be executed.
-Refer to {execute}[EXECUTE] for examples.</p>
+Refer to <a href="/server/7.6/n1ql/n1ql-language-reference/execute.html">EXECUTE</a> for examples.</p>
 </div>
 <div class="paragraph">
 <p>If both <code>prepared</code> and <code>statement</code> are present and non-empty, an error is returned.<br>
@@ -1357,7 +1362,7 @@ If the DML statement explicitly specifies the document expiration, the statement
 <p>Specifies the query results returned in pretty format.</p>
 </div>
 <div class="paragraph">
-<p>The {pretty-srv}[node-level] <code>pretty</code> setting specifies the default for this parameter for a single node.
+<p>The <a href="#pretty-srv">node-level</a> <code>pretty</code> setting specifies the default for this parameter for a single node.
 The request-level parameter overrides the node-level setting.<br>
 <strong>Example</strong> : <code>false</code></p>
 </div></div></td>
@@ -1374,29 +1379,28 @@ The request-level parameter overrides the node-level setting.<br>
 <p>Specifies if there should be a profile section returned with the request results.
 The valid values are:</p>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>off</code></dt>
-<dd>
-<p>No profiling information is added to the query response.</p>
-</dd>
-<dt class="hdlist1"><code>phases</code></dt>
-<dd>
-<p>The query response includes a profile section with stats and details about various phases of the query plan and execution.
+<div class="ulist">
+<ul>
+<li>
+<p><code>off</code> &mdash; No profiling information is added to the query response.</p>
+</li>
+<li>
+<p><code>phases</code> &mdash;
+The query response includes a profile section with stats and details about various phases of the query plan and execution.
 Three phase times will be included in the <code>system:active_requests</code> and <code>system:completed_requests</code> monitoring keyspaces.</p>
-</dd>
-<dt class="hdlist1"><code>timings</code></dt>
-<dd>
-<p>Besides the phase times, the profile section of the query response document will include a full query plan with timing and information about the number of processed documents at each phase.
+</li>
+<li>
+<p><code>timings</code> &mdash;
+Besides the phase times, the profile section of the query response document will include a full query plan with timing and information about the number of processed documents at each phase.
 This information will be included in the <code>system:active_requests</code> and <code>system:completed_requests</code> keyspaces.</p>
-</dd>
-</dl>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>If <code>profile</code> is not set as one of the above values, then the profile setting does not change.</p>
 </div>
 <div class="paragraph">
-<p>The {profile-srv}[node-level] <code>profile</code> setting specifies the default for this parameter for a single node.
+<p>The <a href="#profile-srv">node-level</a> <code>profile</code> setting specifies the default for this parameter for a single node.
 The request-level parameter overrides the node-level setting.<br>
 <strong>Example</strong> : <code>"phases"</code></p>
 </div></div></td>
@@ -1479,11 +1483,11 @@ This parameter controls when to use scan backfill.</p>
 Smaller values reduce GC, while larger values reduce indexer backfill.</p>
 </div>
 <div class="paragraph">
-<p>The {scan-cap-srv}[node-level] <code>scan-cap</code> setting specifies the default for this parameter for a single node.
+<p>The <a href="#scan-cap-srv">node-level</a> <code>scan-cap</code> setting specifies the default for this parameter for a single node.
 The request-level parameter overrides the node-level setting, but only if it is lower than the node-level setting.</p>
 </div>
 <div class="paragraph">
-<p>In addition, the {queryScanCap}[cluster-level] <code>queryScanCap</code> setting specifies the default for this parameter for the whole cluster.
+<p>In addition, the <a href="#queryScanCap">cluster-level</a> <code>queryScanCap</code> setting specifies the default for this parameter for the whole cluster.
 When you change the cluster-level setting, the node-level setting is overwritten for all nodes in the cluster.<br>
 <strong>Example</strong> : <code>1024</code></p>
 </div></div></td>
@@ -1500,35 +1504,33 @@ When you change the cluster-level setting, the node-level setting is overwritten
 <p>Specifies the consistency guarantee or constraint for index scanning.
 The valid values are:</p>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>not_bounded</code></dt>
-<dd>
-<p>No timestamp vector is used in the index scan.
+<div class="ulist">
+<ul>
+<li>
+<p><code>not_bounded</code> &mdash;
+No timestamp vector is used in the index scan.
 This is the fastest mode, because it avoids the costs of obtaining the vector and waiting for the index to catch up to the vector.</p>
-</dd>
-<dt class="hdlist1"><code>at_plus</code></dt>
-<dd>
-<p>This implements bounded consistency.
+</li>
+<li>
+<p><code>at_plus</code> &mdash;
+This implements bounded consistency.
 The request includes a <code>scan_vector</code> parameter and value, which is used as a lower bound.
 This can be used to implement read-your-own-writes (RYOW).</p>
-</dd>
-<dt class="hdlist1"><code>request_plus</code></dt>
-<dd>
-<p>This implements strong consistency per request.
+</li>
+<li>
+<p><code>request_plus</code> &mdash;
+This implements strong consistency per request.
 Before processing the request, a current vector is obtained.
 The vector is used as a lower bound for the statements in the request.
-If there are DML statements in the request, RYOW is also applied within the request.</p>
-<div class="paragraph">
-<p>If <code>request_plus</code> is specified in a query that runs during a failover of an index node, the query waits until the rebalance operation completes and the index data has rebalanced before returning a result.</p>
-</div>
-</dd>
-<dt class="hdlist1"><code>statement_plus</code></dt>
-<dd>
-<p>This implements strong consistency per statement.
+If there are DML statements in the request, RYOW is also applied within the request.
+(If <code>request_plus</code> is specified in a query that runs during a failover of an index node, the query waits until the rebalance operation completes and the index data has rebalanced before returning a result.)</p>
+</li>
+<li>
+<p><code>statement_plus</code> &mdash;
+This implements strong consistency per statement.
 Before processing each statement, a current vector is obtained and used as a lower bound for that statement.</p>
-</dd>
-</dl>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Values are case-insensitive.</p>
@@ -1538,8 +1540,8 @@ Before processing each statement, a current vector is obtained and used as a low
 If you want to disable RYOW within a request, add a separate <code>request_consistency</code> parameter that can be set to <code>not_bounded</code>.</p>
 </div>
 <div class="paragraph">
-<p>If the request contains a <code>BEGIN TRANSACTION</code> statement, or a DML statement with the {tximplicit}[tximplicit] parameter set to <code>true</code>, then this parameter sets the transactional scan consistency.
-Refer to {transactional-scan-consistency}[Transactional Scan Consistency] for details.<br>
+<p>If the request contains a <code>BEGIN TRANSACTION</code> statement, or a DML statement with the <a href="#tximplicit">tximplicit</a> parameter set to <code>true</code>, then this parameter sets the transactional scan consistency.
+Refer to <a href="/server/7.6/n1ql/n1ql-manage/query-settings.html#transactional-scan-consistency">Transactional Scan Consistency</a> for details.<br>
 <strong>Default</strong> : <code>"not_bounded"</code><br>
 <strong>Example</strong> : <code>"at_plus"</code></p>
 </div></div></td>
@@ -1559,15 +1561,15 @@ Refer to {transactional-scan-consistency}[Transactional Scan Consistency] for de
 <p>Specify the lower bound vector timestamp for one keyspace when using <code>at_plus</code> scan consistency.</p>
 </div>
 <div class="paragraph">
-<p>Scan vectors are built of two-element [<code class="var">value</code>, <code class="var">guard</code>] entries:</p>
+<p>Scan vectors are built of two-element [<code>value</code>, <code>guard</code>] entries:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code class="var">value</code>: a vBucket&#8217;s sequence number (a JSON number)</p>
+<p><code>value</code>: a vBucket&#8217;s sequence number (a JSON number)</p>
 </li>
 <li>
-<p><code class="var">guard</code>: a vBucket&#8217;s UUID (a string)</p>
+<p><code>guard</code>: a vBucket&#8217;s UUID (a string)</p>
 </li>
 </ul>
 </div>
@@ -1577,10 +1579,10 @@ Refer to {transactional-scan-consistency}[Transactional Scan Consistency] for de
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Full scan vector</strong>: an array of [<code class="var">value</code>, <code class="var">guard</code>] entries, giving an entry for every vBucket in the system.</p>
+<p>Full: an array of [<code>value</code>, <code>guard</code>] entries, giving an entry for every vBucket in the system.</p>
 </li>
 <li>
-<p><strong>Sparse scan vectors</strong>: an object providing entries for specific vBuckets, mapping a vBucket number (a string) to each [<code class="var">value</code>, <code class="var">guard</code>] entry.</p>
+<p>Sparse: an object providing entries for specific vBuckets, mapping a vBucket number (a string) to each [<code>value</code>, <code>guard</code>] entry.</p>
 </li>
 </ol>
 </div>
@@ -1690,7 +1692,7 @@ Valid units are:</p>
 <p><em>Required</em> if <code>prepared</code> not provided.</p>
 </div>
 <div class="paragraph">
-<p>Any valid SQL++ statement for a POST request, or a read-only SQL++ statement (SELECT, EXPLAIN) for a GET request.</p>
+<p>Any valid SQL statement for a POST request, or a read-only SQL statement (SELECT, EXPLAIN) for a GET request.</p>
 </div>
 <div class="paragraph">
 <p>If both <code>prepared</code> and <code>statement</code> are present and non-empty, an error is returned.</p>
@@ -1749,16 +1751,16 @@ Valid units are:</p>
 When disabled, no timeout is applied and the request runs for however long it takes.</p>
 </div>
 <div class="paragraph">
-<p>If {txid}[txid] or {tximplicit}[tximplicit] is set, this parameter is ignored.
+<p>If <a href="#tximplicit">tximplicit</a> or <a href="#txid">txid</a> is set, this parameter is ignored.
 The request inherits the remaining time of the transaction as timeout.</p>
 </div>
 <div class="paragraph">
-<p>The {timeout-srv}[node-level] <code>timeout</code> setting specifies the default for this parameter for a single node.
+<p>The <a href="#timeout-srv">node-level</a> <code>timeout</code> setting specifies the default for this parameter for a single node.
 The request-level parameter overrides the node-level setting.
 However, if the node-level setting is greater than 0, the timeout for the query is limited to the node-level setting.</p>
 </div>
 <div class="paragraph">
-<p>In addition, the {queryTimeout}[cluster-level] <code>queryTimeout</code> setting specifies the default for this parameter for the whole cluster.
+<p>In addition, the <a href="#queryTimeout">cluster-level</a> <code>queryTimeout</code> setting specifies the default for this parameter for the whole cluster.
 When you change the cluster-level setting, the node-level setting is overwritten for all nodes in the cluster.<br>
 <strong>Example</strong> : <code>"30m"</code></p>
 </div></div></td>
@@ -1815,7 +1817,7 @@ If execution is successful, the Query service commits the transaction; otherwise
 </div>
 <div class="paragraph">
 <p>The statement may not be part of an ongoing transaction.
-If the {txid}[txid] request-level parameter is set, the <code>tximplicit</code> parameter is ignored.<br>
+If the <a href="#txid">txid</a> request-level parameter is set, the <code>tximplicit</code> parameter is ignored.<br>
 <strong>Default</strong> : <code>false</code><br>
 <strong>Example</strong> : <code>true</code></p>
 </div></div></td>
@@ -1845,11 +1847,11 @@ If the transaction statement number is lower than the transaction statement numb
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div id="txtimeout_req" class="paragraph">
 <p>Maximum time to spend on a transaction before timing out.
-Only applies to <code>BEGIN TRANSACTION</code> statements, or DML statements for which {tximplicit}[tximplicit] is set.
+Only applies to <code>BEGIN TRANSACTION</code> statements, or DML statements for which <a href="#tximplicit">tximplicit</a> is set.
 For other statements, it is ignored.</p>
 </div>
 <div class="paragraph">
-<p>Within a transaction, the request-level {timeout_req}[timeout] parameter is ignored.
+<p>Within a transaction, the request-level <a href="#timeout_req">timeout</a> parameter is ignored.
 The transaction timeout clock starts when the <code>BEGIN WORK</code> statement is successful.
 Once the transaction timeout is reached, no statement is allowed to continue in the transaction.</p>
 </div>
@@ -1885,16 +1887,16 @@ Valid units are:</p>
 When disabled, the request-level timeout is set to the default.</p>
 </div>
 <div class="paragraph">
-<p>The {txtimeout-srv}[node-level] <code>txtimeout</code> setting specifies the default for this parameter for a single node.
+<p>The <a href="#txtimeout-srv">node-level</a> <code>txtimeout</code> setting specifies the default for this parameter for a single node.
 The request-level parameter overrides the node-level setting.
 However, if the node-level setting is greater than 0, the transaction timeout for the query is limited to the node-level setting.</p>
 </div>
 <div class="paragraph">
-<p>In addition, the {queryTxTimeout}[cluster-level] <code>queryTxTimeout</code> setting specifies the default for this parameter for the whole cluster.
+<p>In addition, the <a href="#queryTxTimeout">cluster-level</a> <code>queryTxTimeout</code> setting specifies the default for this parameter for the whole cluster.
 When you change the cluster-level setting, the node-level setting is overwritten for all nodes in the cluster.</p>
 </div>
 <div class="paragraph">
-<p>The default is <code>"15s"</code> for cbq files or scripts, <code>"2m"</code> for interactive cbq sessions or redirected input.<br>
+<p>The default is <code>&quot;15s&quot;</code> for cbq files or scripts, <code>&quot;2m&quot;</code> for interactive cbq sessions or redirected input.<br>
 <strong>Example</strong> : <code>"30m"</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
@@ -1910,11 +1912,11 @@ When you change the cluster-level setting, the node-level setting is overwritten
 <p>Specifies whether the cost-based optimizer is enabled.</p>
 </div>
 <div class="paragraph">
-<p>The {use-cbo-srv}[node-level] <code>use-cbo</code> setting specifies the default for this parameter for a single node.
+<p>The <a href="#use-cbo-srv">node-level</a> <code>use-cbo</code> setting specifies the default for this parameter for a single node.
 The request-level parameter overrides the node-level setting.</p>
 </div>
 <div class="paragraph">
-<p>In addition, the {queryUseCBO}[cluster-level] <code>queryUseCBO</code> setting specifies the default for this parameter for the whole cluster.
+<p>In addition, the <a href="#queryUseCBO">cluster-level</a> <code>queryUseCBO</code> setting specifies the default for this parameter for the whole cluster.
 When you change the cluster-level setting, the node-level setting is overwritten for all nodes in the cluster.<br>
 <strong>Example</strong> : <code>true</code></p>
 </div></div></td>
@@ -1928,7 +1930,7 @@ When you change the cluster-level setting, the node-level setting is overwritten
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div id="use_fts" class="paragraph">
-<p><span class="edition"><a href="https://www.couchbase.com/products/editions">ENTERPRISE EDITION</a></span></p>
+<p>&blacktriangleright; <a href="https://www.couchbase.com/products/editions">ENTERPRISE EDITION</a></p>
 </div>
 <div class="paragraph">
 <p>Specifies that the query should use a full-text index.</p>
@@ -1942,7 +1944,7 @@ If a qualified full-text index is available, it is selected for the query.
 If none of the available full-text indexes are qualified, the available GSI indexes are considered instead.</p>
 </div>
 <div class="paragraph">
-<p>Refer to {flex-indexes}[Flex Indexes] for more information.<br>
+<p>Refer to <a href="/server/7.6/n1ql/n1ql-language-reference/flex-indexes.html">Flex Indexes</a> for more information.<br>
 <strong>Default</strong> : <code>false</code><br>
 <strong>Example</strong> : <code>true</code></p>
 </div></div></td>
@@ -1952,33 +1954,81 @@ If none of the available full-text indexes are qualified, the available GSI inde
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><strong>$&lt;identifier&gt;</strong><br>
+<p><strong>use_replica</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div id="use_replica_req" class="paragraph">
+<p>Specifies whether a query can fetch data from a replica vBucket if active vBuckets are inaccessible.
+The possible values are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>off</code> &mdash; read from replica is disabled for this request.</p>
+</li>
+<li>
+<p><code>on</code> &mdash; read from replica is enabled for this request, unless it has been disabled for all requests at node level.</p>
+</li>
+<li>
+<p><code>unset</code> &mdash; read from replica is specified by the node-level setting.
+If the node-level setting is also <code>unset</code>, read from replica is disabled for this request.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <a href="#use-replica-srv">node-level</a> <code>use-replica</code> setting specifies the default for this property for a single node.
+The request-level parameter usually overrides the node-level setting.
+However, when the node-level setting is <code>off</code>, the request-level parameter cannot enable the property.</p>
+</div>
+<div class="paragraph">
+<p>In addition, the <a href="#queryUseReplica">cluster-level</a> <code>queryUseReplica</code> setting specifies the default for this property for the whole cluster.
+When you change the cluster-level setting, the node-level setting is overwritten for all nodes in the cluster.</p>
+</div>
+<div class="paragraph">
+<p>Do not enable read from replica when you require consistent results.
+Only SELECT queries that are not within a transaction can read from replica.</p>
+</div>
+<div class="paragraph">
+<p>Reading from replica is only possible if the cluster uses Couchbase Server 7.6.0 or later.</p>
+</div>
+<div class="paragraph">
+<p>Note that KV range scans cannot currently be started on a replica vBucket.
+If a query uses sequential scan and a data node becomes unavailable, the query might return an error, even if read from replica is enabled for the request.<br>
+<strong>Default</strong> : <code>"unset"</code><br>
+<strong>Example</strong> : <code>"true"</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>enum (off, on, unset)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><strong>&lt;symbol&gt;&lt;identifier&gt;</strong><br>
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div id="identifier" class="paragraph">
-<p>Applicable if the <code>statement</code> has 1 or more named parameters.</p>
+<p>Supplies the value for a named parameter in the statement.
+Applicable if the statement or prepared statement contains 1 or more named parameters.</p>
 </div>
 <div class="paragraph">
-<p>The name of a named parameter consists of two parts:</p>
+<p>The name of this property consists of two parts:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The $ character</p>
+<p>The <code>$</code> character or the <code>@</code> character.</p>
 </li>
 <li>
-<p>An identifier that starts with an alpha character followed by one or more alphanumeric characters.</p>
+<p>An identifier that specifies the name of the parameter.
+This must start with an alpha character, followed by one or more alphanumeric characters.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>The value of the named parameter is any JSON value.</p>
+<p>The value of the named parameter can be any JSON value.</p>
 </div>
 <div class="paragraph">
-<p>Named parameters apply to <code>prepared</code> also.</p>
-</div>
-<div class="paragraph">
-<p>Refer to {section_srh_tlm_n1b}[] for details.</p>
+<p>Refer to <a href="/server/7.6/n1ql/n1ql-manage/query-settings.html#section_srh_tlm_n1b">Named Parameters and Positional Parameters</a> for details.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string (any JSON value)</p>
@@ -2067,7 +2117,7 @@ If none of the available full-text indexes are qualified, the available GSI inde
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>The client context ID of the request, if one was supplied &mdash; see <code>client_context_id</code> in {request-parameters}[].</p>
+<p>The client context ID of the request, if one was supplied &mdash; see <code>client_context_id</code> in <a href="#_request_parameters">Request Parameters</a>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
@@ -2154,10 +2204,22 @@ If none of the available full-text indexes are qualified, the available GSI inde
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>An object containing runtime information provided along with the request. Present only if <code>controls</code> was set to true in the {request-parameters}[].</p>
+<p>An object containing runtime information provided along with the request. Present only if <code>controls</code> was set to true in the <a href="#_request_parameters">Request Parameters</a>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_controls">Controls</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><strong>profile</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>An object containing monitoring and profiling information about the request. Present only if <code>profile</code> was set to <code>&quot;phases&quot;</code> or <code>&quot;timings&quot;</code> in the <a href="#_request_parameters">Request Parameters</a>.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><a href="#_profile">Profile</a></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2351,7 +2413,7 @@ Clients and consumers of the REST API or the logs must accommodate any additiona
 <p>The number of objects that were sorted. Present only if the request includes <code>ORDER BY</code>.</p>
 </div>
 <div class="paragraph">
-<p>If a query includes ORDER BY, LIMIT, or OFFSET clauses, an application can use the <code>sortCount</code> value to give the overall number of results in a message such as <code>"page 1 of N"</code>.</p>
+<p>If a query includes ORDER BY, LIMIT, or OFFSET clauses, an application can use the <code>sortCount</code> value to give the overall number of results in a message such as <code>&quot;page 1 of N&quot;</code>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>integer (unsigned)</p>
@@ -2470,6 +2532,310 @@ Clients and consumers of the REST API or the logs must accommodate any additiona
 <div class="paragraph">
 <p>Additional elements not listed here might also be present.
 Clients and consumers of the REST API or the logs must accommodate any additional elements.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_profile"><a class="anchor" href="#_profile"></a>Profile</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><strong>requestTime</strong><br>
+<em>required</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>Timestamp when the query was received.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>string (date-time)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><strong>servicingHost</strong><br>
+<em>required</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>IP address and port number of the node where the query was executed.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>string</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><strong>phaseCounts</strong><br>
+<em>required</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>Count of documents processed at selective phases involved in the query execution, such as authorize, index scan, fetch, parse, plan, run, etc.<br>
+<strong>Example</strong> : <code>{
+  "fetch" : 16,
+  "indexScan" : 187
+}</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>object</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><strong>phaseOperators</strong><br>
+<em>required</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>Indicates the numbers of each kind of query operator involved in different phases of the query processing.</p>
+</div>
+<div class="paragraph">
+<p>For instance, a non-covering index path might involve one index scan and one fetch operator.
+A join would probably involve two or more fetches, one per keyspace.
+A union select would have twice as many operator counts, one per each branch of the union.</p>
+</div>
+<div class="paragraph">
+<p>This is in essence the count of all the operators in the <code>executionTimings</code> object.<br>
+<strong>Example</strong> : <code>{
+  "authorize" : 1,
+  "fetch" : 1,
+  "indexScan" : 2
+}</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>object</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><strong>phaseTimes</strong><br>
+<em>required</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>Cumulative execution times for various phases involved in the query execution, such as authorize, index scan, fetch, parse, plan, run, etc.<br>
+<strong>Example</strong> : <code>{
+  "authorize" : "823.631µs",
+  "fetch" : "656.873µs",
+  "indexScan" : "29.146543ms",
+  "instantiate" : "236.221µs",
+  "parse" : "826.382µs",
+  "plan" : "11.831101ms",
+  "run" : "16.892181ms"
+}</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>object</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><strong>executionTimings</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>Present only if <code>profile</code> was set to <code>&quot;timings&quot;</code> in the <a href="#_request_parameters">Request Parameters</a>.</p>
+</div>
+<div class="paragraph">
+<p>The execution details for various phases involved in the query execution, such as kernel and service execution times, number of documents processed at each query operator in each phase, and number of phase switches.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><a href="#_execution_timings">Execution Timings</a></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div id="_execution_timings" class="paragraph">
+<p><strong>Execution Timings</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><strong>#operator</strong><br>
+<em>required</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>Name of the operator.<br>
+<strong>Example</strong> : <code>"Fetch"</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>string</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><strong>#stats</strong><br>
+<em>required</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>Statistics collected for the operator.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><a href="#_statistics">Statistics</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><strong>~child</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>Further nested operators, each with their own execution timings.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>object</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div id="_statistics" class="paragraph">
+<p><strong>Statistics</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><strong>#itemsIn</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>Number of input documents to the operator.<br>
+<strong>Example</strong> : <code>187</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>integer (int32)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><strong>#itemsOut</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>Number of output documents after the operator processing.<br>
+<strong>Example</strong> : <code>16</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>integer (int32)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><strong>#phaseSwitches</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>Number of switches between executing, waiting for services, or waiting for the goroutine scheduler.<br>
+<strong>Example</strong> : <code>413</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>integer (int32)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><strong>execTime</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>Time spent executing the operator code inside SQL++ query engine.<br>
+<strong>Example</strong> : <code>"128.434µs"</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>string (duration)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><strong>kernTime</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>Time spent waiting to be scheduled for CPU time.<br>
+<strong>Example</strong> : <code>"15.027879ms"</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>string (duration)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><strong>servTime</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>Time spent waiting for another service, such as index or data.</p>
+</div>
+<div class="paragraph">
+<p>For index scan, it is time spent waiting for GSI/indexer.</p>
+</div>
+<div class="paragraph">
+<p>For fetch, it is time spent waiting on the KV store.<br>
+<strong>Example</strong> : <code>"1.590934ms"</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>string (duration)</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>kernTime</code>, <code>servTime</code>, and <code>execTime</code> statistics can be very helpful in troubleshooting query performance issues.
+For example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A high <code>servTime</code> for a low number of items processed is an indication that the indexer or KV store is stressed.</p>
+</li>
+<li>
+<p>A high <code>kernTime</code> means there is a downstream issue in the query plan or the query server having many requests to process, so the scheduled waiting time will be more for CPU time.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>

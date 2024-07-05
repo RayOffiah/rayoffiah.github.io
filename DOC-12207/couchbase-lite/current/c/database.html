@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="c">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / C / Databases">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:version_rank" content="2">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/c/database.html">3.2 Beta</option>
         <option value="3.1" data-url="database.html" selected>3.1</option>
         <option value="3.0" data-url="../../3.0/c/database.html">3.0</option>
         <option value="2.8" data-url="../../2.8/index.html">2.8</option>
@@ -322,8 +323,8 @@ syncing data scope
 <h2 id="open-db"><a class="anchor" href="#open-db"></a>Create or Open Database</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can create a new database and-or open an existing database, using the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-c/C/html/group__database.html">CBLDatabase</a> class.
-Just pass in a database name and optionally a <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-c/C/html/struct_c_b_l_database_configuration.html">DatabaseConfiguration</a>&#8201;&#8212;&#8201;see <a href="#ex-dbopen">Example 1</a>.</p>
+<p>You can create a new database and-or open an existing database, using the <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-c/C/html/group__database.html">CBLDatabase</a> class.
+Just pass in a database name and optionally a <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-c/C/html/struct_c_b_l_database_configuration.html">DatabaseConfiguration</a>&#8201;&#8212;&#8201;see <a href="#ex-dbopen">Example 1</a>.</p>
 </div>
 <div class="paragraph">
 <p>Things to watch for include:</p>
@@ -334,7 +335,7 @@ Just pass in a database name and optionally a <a href="http://docs.couchbase.com
 <p>If the named database does not exist in the specified, or default, location then a new one is created</p>
 </li>
 <li>
-<p>The database is created in a default location unless you  specify a directory for it&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-c/C/html/struct_c_b_l_database_configuration.html">DatabaseConfiguration</a> and <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-c/C/html/struct_c_b_l_database_configuration.html#a844a5e7d02dd4ceb072dff39c7e88591">CBLDatabaseConfiguration.directory()</a></p>
+<p>The database is created in a default location unless you  specify a directory for it&#8201;&#8212;&#8201;see: <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-c/C/html/struct_c_b_l_database_configuration.html">DatabaseConfiguration</a> and <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-c/C/html/struct_c_b_l_database_configuration.html#a844a5e7d02dd4ceb072dff39c7e88591">CBLDatabaseConfiguration.directory()</a></p>
 <div class="openblock">
 <div class="content">
 <div class="admonitionblock tip">
@@ -368,7 +369,7 @@ or current working directory
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/c/examples/code_snippets/main.c">// NOTE: No error handling, for brevity (see getting started)
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/c/examples/code_snippets/main.c">// NOTE: No error handling, for brevity (see getting started)
 
 CBLError err;
 CBLDatabase* db = CBLDatabase_Open(FLSTR("my-database"), NULL, &amp;err);</code></pre>
@@ -385,7 +386,7 @@ CBLDatabase* db = CBLDatabase_Open(FLSTR("my-database"), NULL, &amp;err);</code>
 <p>You are advised to incorporate the closing of all open databases into your application workflow.</p>
 </div>
 <div class="paragraph">
-<p>To close a database, use <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-c/C/html/group__database.html#ga4d448b2d6809d6f9633d810d3ac6dcfa">CBLDatabase_Close()</a>&#8201;&#8212;&#8201;see: <a href="#ex-dbclose">Example 2</a>.
+<p>To close a database, use <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-c/C/html/group__database.html#ga4d448b2d6809d6f9633d810d3ac6dcfa">CBLDatabase_Close()</a>&#8201;&#8212;&#8201;see: <a href="#ex-dbclose">Example 2</a>.
 This also closes
 active replications, listeners and-or live queries connected to the database.</p>
 </div>
@@ -406,7 +407,7 @@ Closing a database soon after starting a replication involving it can cause an e
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/c/examples/code_snippets/main.c">// NOTE: No error handling, for brevity (see getting started)
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/c/examples/code_snippets/main.c">// NOTE: No error handling, for brevity (see getting started)
 
 CBLError err;
 CBLDatabase_Close(db, &amp;err);</code></pre>
@@ -439,7 +440,7 @@ The algorithm used to encrypt the database is 256-bit AES.</p>
 <div class="sect2">
 <h3 id="enabling"><a class="anchor" href="#enabling"></a>Enabling</h3>
 <div class="paragraph">
-<p>To enable encryption, use <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-c/C/html/struct_c_b_l_database_configuration.html#aaab04fb9d092ff02693eea611efefc55">CBLDatabaseConfiguration.encryptionKey()</a> to set the encryption key of your choice.
+<p>To enable encryption, use <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-c/C/html/struct_c_b_l_database_configuration.html#aaab04fb9d092ff02693eea611efefc55">CBLDatabaseConfiguration.encryptionKey()</a> to set the encryption key of your choice.
 Provide this encryption key every time the database is opened&#8201;&#8212;&#8201;see <a href="#ex-sdb-encrypt">Example 3</a>.</p>
 </div>
 <div id="ex-sdb-encrypt" class="exampleblock">
@@ -447,7 +448,7 @@ Provide this encryption key every time the database is opened&#8201;&#8212;&#820
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/c/examples/code_snippets/main.c">// NOTE: No error handling, for brevity (see getting started)
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/c/examples/code_snippets/main.c">// NOTE: No error handling, for brevity (see getting started)
 
 CBLDatabaseConfiguration config = CBLDatabaseConfiguration_Default();
 
@@ -487,7 +488,7 @@ So a database encrypted using the C SDK, and then exported, is readable only by 
 <div class="sect2">
 <h3 id="changing"><a class="anchor" href="#changing"></a>Changing</h3>
 <div class="paragraph">
-<p>To change an existing encryption key, open the database using its existing encryption-key and use <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-c/C/html/group__database.html#ga76a603bc678ceae18c9610b8a8274a09">CBLDatabase_ChangeEncryptionKey()</a>
+<p>To change an existing encryption key, open the database using its existing encryption-key and use <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-c/C/html/group__database.html#ga76a603bc678ceae18c9610b8a8274a09">CBLDatabase_ChangeEncryptionKey()</a>
 to set the required new encryption-key value.</p>
 </div>
 </div>
@@ -495,7 +496,7 @@ to set the required new encryption-key value.</p>
 <h3 id="removing"><a class="anchor" href="#removing"></a>Removing</h3>
 <div class="paragraph">
 <p>To remove encryption, open the database using its existing encryption-key and use
-<a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-c/C/html/group__database.html#ga76a603bc678ceae18c9610b8a8274a09">CBLDatabase_ChangeEncryptionKey()</a>
+<a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-c/C/html/group__database.html#ga76a603bc678ceae18c9610b8a8274a09">CBLDatabase_ChangeEncryptionKey()</a>
 with a null value as the encryption key.</p>
 </div>
 </div>
@@ -523,8 +524,8 @@ with a null value as the encryption key.</p>
 compact the database file, removing unused documents and blobs no longer referenced by any documents.</p>
 </div>
 <div class="paragraph">
-<p>Couchbase Lite&#8217;s API provides the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-c/C/html/group__database.html#gaa4b06dcb7427cafeabde8486f5f03f10">CBLDatabase_PerformMaintenance()</a> method.
-The available maintenance operations, including <code>compact</code> are as shown in the enum <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-c/C/html/group__database.html#gaace029f966f053946a52f837c285f156">CBLMaintenanceType</a> to accomplish this.</p>
+<p>Couchbase Lite&#8217;s API provides the <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-c/C/html/group__database.html#gaa4b06dcb7427cafeabde8486f5f03f10">CBLDatabase_PerformMaintenance()</a> method.
+The available maintenance operations, including <code>compact</code> are as shown in the enum <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-c/C/html/group__database.html#gaace029f966f053946a52f837c285f156">CBLMaintenanceType</a> to accomplish this.</p>
 </div>
 <div class="paragraph">
 <p>This is a resource intensive operation and is not performed automatically.

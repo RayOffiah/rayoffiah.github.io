@@ -538,6 +538,28 @@ Therefore, if today is March 15, the time range is from March 11 to March 8, wit
 </div>
 </div>
 <div class="sect1">
+<h2 id="threads"><a class="anchor" href="#threads"></a>Thread Usage <span class="status">Couchbase Server 7.6.2</span></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, the Backup Service chooses the number of threads it uses based on the number of CPU cores in the node.
+The Backup Service creates one client connection per thread to connect in parallel to nodes when retrieving their data.
+The more threads the service uses, the faster it retrieves data.
+The formula for the number of threads it uses is \(\max(1, cpu\_cores \times 0.75)\)   (\(\frac{3}{4}\) the number of CPU cores in the system or 1, whichever is larger).</p>
+</div>
+<div class="paragraph">
+<p>In some cases, you may find that the default number of threads the Backup Service is using is too high.
+Depending on resources, a large number of threads can cause performance issues or out-of-memory errors.
+If your cluster is experiencing these issues during backup, you can change the number of threads a Backup Service node uses.
+You change this setting using the <code>nodesThreadsMap</code> REST API endpoint.
+See <a href="../../../rest-api/backup-node-threads.html" class="xref page">Manage Backup Service Threads</a> for details on setting the number of threads the Backup Service uses.</p>
+</div>
+<div class="paragraph">
+<p>Reducing the number of threads the Backup Service uses increases the time it takes to backup data.
+You may want to experiment with different thread settings to find a balance between resource use and backup duration for your cluster.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="see-also"><a class="anchor" href="#see-also"></a>See Also</h2>
 <div class="sectionbody">
 <div class="ulist">
@@ -654,5 +676,22 @@ Therefore, if today is March 15, the time range is from March 11 to March 8, wit
 <script defer src="../../../../../_/js/vendor/fontawesome-icon-defs.js"></script>
 <script defer src="../../../../../_/js/vendor/fontawesome.js" data-search-pseudo-elements="true"></script>
 <script async src="../../../../../_/js/vendor/highlight.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\\]"]], ignoreClass: "nostem|nolatexmath" },
+  asciimath2jax: { delimiters: [["\\$", "\\$"]], ignoreClass: "nostem|noasciimath" },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>

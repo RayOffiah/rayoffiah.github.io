@@ -259,7 +259,255 @@ This content describes the key features and changes implemented by release 3.1.0
 </div>
 </div>
 <div class="sect1">
-<h2 id="maint-latest"><a class="anchor" href="#maint-latest"></a>3.1.2&#8201;&#8212;&#8201;November 2023</h2>
+<h2 id="maint-latest"><a class="anchor" href="#maint-latest"></a>3.1.6&#8201;&#8212;&#8201;May 2024</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 3.1.6 of Sync Gateway delivers the following features and enhancements:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For an overview of the latest features offered in Sync Gateway 3.1, see <a href="whatsnew.html" class="xref page">New in 3.1</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="maint-3-1-6"><a class="anchor" href="#maint-3-1-6"></a>Fixed Issues</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3683">CBG-3683 -  Fixed PANIC error when closing channel cache after Mutation feed fails to start inside StartOnlineProcesses</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3828">CBG-3828 - Fixed sgcollect windows doesn&#8217;t collect stderr / stdout</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3845">CBG-3845 - Fixed updateSeq must happen after DCP callback invocation</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3878">CBG-3878 - Fixed UnmarshalDocumentSyncDataFromFeed doesn&#8217;t return any present user xattrs if sync data doesn&#8217;t exist on the doc</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3906">CBG-3906 - Fixed logging for GetDatabaseConfigs verbose and ambiguous</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancements"><a class="anchor" href="#enhancements"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3826">CBG-3826 - Warn if there is a large number of skipped sequences</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3860">CBG-3860 - Reduce EOF logging from go-blip</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3876">CBG-3876 - Tweak logging around import of JSON but not JSON object docs</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="known-issues"><a class="anchor" href="#known-issues"></a>Known Issues</h3>
+<div class="paragraph">
+<p>None for this release.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deprecations"><a class="anchor" href="#deprecations"></a>Deprecations</h3>
+<div class="paragraph">
+<p>None for this release.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="3-1-5april-2024"><a class="anchor" href="#3-1-5april-2024"></a>3.1.5&#8201;&#8212;&#8201;April 2024</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 3.1.5 of Sync Gateway delivers the following features and enhancements:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For an overview of the latest features offered in Sync Gateway 3.1, see <a href="whatsnew.html" class="xref page">New in 3.1</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>We have discovered a critical issue in release 3.1.4 impacting a few customers that utilize OIDC.
+This issue could lead to users losing access to channels, consequently resulting in document revocations.
+We suggest all users promptly upgrade to version 3.1.5.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="maint-3-1-5"><a class="anchor" href="#maint-3-1-5"></a>Fixed Issues</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3885">CBG-3885 - Fixed OIDC-auth causes admin_channels/admin_roles loss</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3887">CBG-3887 - Fixed sgcollect_info fails to upload to s3</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3029">CBG-3029 - Fixed sg_collect fails to get SGW config</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3611">CBG-3611 - Fixed PUT to _user/&lt;username&gt; does not override omitted fields</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3699">CBG-3699 - Fixed error from handleChangesResponse not handled correctly</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3723">CBG-3723 - Fixed TCP_NODELAY does not work for TLS connections</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3725">CBG-3725 - Fixed import DCP rollback unsuccessful in data migration cases</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3744">CBG-3744 - Fixed fetchAndLoadDatabase NewDatabaseContext race</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3760">CBG-3760 - Fixed sgcollect_info not collecting trace logging</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3761">CBG-3761 - Fixed user API Ignore read-only fields if values unchanged</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3774">CBG-3774 - Fixed incorrect log key used for log message inside DocChanged function</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3777">CBG-3777 - Fixed kv_pool_size on import feed can be non zero</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3793">CBG-3793 - Perform allow_dbconfig_env_vars check in getAuthScopeHandleCreateDB</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3812">CBG-3812 - Fixed sg_collect fails to get SGW config</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancements-2"><a class="anchor" href="#enhancements-2"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3682">CBG-3682 - sgcollect can upload zips in excess of 2GB</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3749">CBG-3749 - Better logging around config registry operations</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3762">CBG-3762 -  BLIP context ID now included in _blipsync response</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3776">CBG-3776 - There is now a configurable revs parallelism limit</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="known-issues-2"><a class="anchor" href="#known-issues-2"></a>Known Issues</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3614">CBG-3614 - DCP node list/alternate adddresses do not refresh after cluster topology change</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deprecations-2"><a class="anchor" href="#deprecations-2"></a>Deprecations</h3>
+<div class="paragraph">
+<p>None for this release.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="3-1-3december-2023"><a class="anchor" href="#3-1-3december-2023"></a>3.1.3&#8201;&#8212;&#8201;December 2023</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 3.1.3 of Sync Gateway delivers the following features and enhancements:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For an overview of the latest features offered in Sync Gateway 3.1, see <a href="whatsnew.html" class="xref page">New in 3.1</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="maint-3-1-3"><a class="anchor" href="#maint-3-1-3"></a>Fixed Issues</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3639">CBG-3639 - Fixed InjectJSONProperties not escaping string values.</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3643">CBG-3643 - Fix incorrect usage of PreserveExpiry with an expiry and no doc flags.</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3659">CBG-3659 - cbgt fix to avoid file system writes.</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancements-3"><a class="anchor" href="#enhancements-3"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3685">CBG-3685 - CORS max_age now configurable on a database level.</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="known-issues-3"><a class="anchor" href="#known-issues-3"></a>Known Issues</h3>
+<div class="paragraph">
+<p>None for this release.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deprecations-3"><a class="anchor" href="#deprecations-3"></a>Deprecations</h3>
+<div class="paragraph">
+<p>None for this release.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="3-1-2november-2023"><a class="anchor" href="#3-1-2november-2023"></a>3.1.2&#8201;&#8212;&#8201;November 2023</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Version 3.1.2 of Sync Gateway delivers the following features and enhancements:</p>
@@ -277,47 +525,7 @@ For an overview of the latest features offered in Sync Gateway 3.1, see <a href=
 </table>
 </div>
 <div class="sect2">
-<h3 id="maint-3-1-2"><a class="anchor" href="#maint-3-1-2"></a>Enhancements</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3557">CBG-3557 - Improve behavior when allocating sequence much lower than existing doc seq</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3509">CBG-3509 - Add opt-out for config env var expansion for db configs</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3495">CBG-3495 - Detect and provide metrics for duplicate database names in bootstrap polling</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3494">CBG-3494 - Enforce "bucket" field match in DbConfig</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3457">CBG-3457 - Prevent minor version downgrade</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3432">CBG-3432 - Move KeyDCP changes and cache logging to KeyChanges and Key Cache</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3430">CBG-3430 - Deterministic databsae/bucket bootstrapping</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3362">CBG-3362 - Silence metrics requests</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3361">CBG-3361 - Add basic ping/healthcheck endpointr</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3360">CBG-3360 - Tune console log collation buffer size when writing to a file</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3359">CBG-3359 - Per-db console log settins</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="fixed-issues"><a class="anchor" href="#fixed-issues"></a>Fixed Issues</h3>
+<h3 id="maint-3-1-2"><a class="anchor" href="#maint-3-1-2"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -376,11 +584,57 @@ For an overview of the latest features offered in Sync Gateway 3.1, see <a href=
 </li>
 </ul>
 </div>
-<div class="sect3">
-<h4 id="known-issues"><a class="anchor" href="#known-issues"></a>Known Issues</h4>
-<div class="paragraph">
-<p>None for this release</p>
 </div>
+<div class="sect2">
+<h3 id="enhancements-4"><a class="anchor" href="#enhancements-4"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3557">CBG-3557 - Improve behavior when allocating sequence much lower than existing doc seq</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3509">CBG-3509 - Add opt-out for config env var expansion for db configs</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3495">CBG-3495 - Detect and provide metrics for duplicate database names in bootstrap polling</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3494">CBG-3494 - Enforce "bucket" field match in DbConfig</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3457">CBG-3457 - Prevent minor version downgrade</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3432">CBG-3432 - Move KeyDCP changes and cache logging to KeyChanges and Key Cache</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3430">CBG-3430 - Deterministic databsae/bucket bootstrapping</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3362">CBG-3362 - Silence metrics requests</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3361">CBG-3361 - Add basic ping/healthcheck endpointr</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3360">CBG-3360 - Tune console log collation buffer size when writing to a file</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3359">CBG-3359 - Per-db console log settins</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="known-issues-4"><a class="anchor" href="#known-issues-4"></a>Known Issues</h3>
+<div class="paragraph">
+<p>None for this release.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deprecations-4"><a class="anchor" href="#deprecations-4"></a>Deprecations</h3>
+<div class="paragraph">
+<p>None for this release.</p>
 </div>
 </div>
 </div>
@@ -404,47 +658,7 @@ For an overview of the latest features offered in Sync Gateway 3.1, see <a href=
 </table>
 </div>
 <div class="sect2">
-<h3 id="maint-3-1-1"><a class="anchor" href="#maint-3-1-1"></a>Enhancements</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3147">CBG-3147 - Avoid unnecessary resync on upgrade to 3.1</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3118">CBG-3118 - Shared bucket access=false without autoimport=false explicitly specified will panic</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3109">CBG-3109 - Remove confusing log line about non SG indexes</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3042">CBG-3042 - Attachment compaction code erroneously sets failOnRollback</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3041">CBG-3041 - Streamline database creation when using many collections</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3040">CBG-3040 - Suppress OnFeedError logging on database close</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3038">CBG-3038 - cbgt importlistener leaves open a connection to a bucket after database is deleted</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3037">CBG-3037 - Retry to insert config when write fails</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3034">CBG-3034 - Improve handling for deleted collection</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3031">CBG-3031 - Allow one-shot replications to wait for DCP to catch up on changes feed</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-3023">CBG-3023 - cbgt cluster connection fails with HTTP polling enabled and TLS disabled</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="issues-and-resolutions"><a class="anchor" href="#issues-and-resolutions"></a>Issues and Resolutions</h3>
+<h3 id="maint-3-1-1"><a class="anchor" href="#maint-3-1-1"></a>Fixed Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -488,17 +702,57 @@ For an overview of the latest features offered in Sync Gateway 3.1, see <a href=
 </li>
 </ul>
 </div>
-<div class="sect3">
-<h4 id="fixed-issues-2"><a class="anchor" href="#fixed-issues-2"></a>Fixed Issues</h4>
+</div>
+<div class="sect2">
+<h3 id="enhancements-5"><a class="anchor" href="#enhancements-5"></a>Enhancements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3147">CBG-3147 - Avoid unnecessary resync on upgrade to 3.1</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3118">CBG-3118 - Shared bucket access=false without autoimport=false explicitly specified will panic</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3109">CBG-3109 - Remove confusing log line about non SG indexes</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3042">CBG-3042 - Attachment compaction code erroneously sets failOnRollback</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3041">CBG-3041 - Streamline database creation when using many collections</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3040">CBG-3040 - Suppress OnFeedError logging on database close</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3038">CBG-3038 - cbgt importlistener leaves open a connection to a bucket after database is deleted</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3037">CBG-3037 - Retry to insert config when write fails</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3034">CBG-3034 - Improve handling for deleted collection</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3031">CBG-3031 - Allow one-shot replications to wait for DCP to catch up on changes feed</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-3023">CBG-3023 - cbgt cluster connection fails with HTTP polling enabled and TLS disabled</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="known-issues-5"><a class="anchor" href="#known-issues-5"></a>Known Issues</h3>
 <div class="paragraph">
-<p>None for this release</p>
+<p>None for this release.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="known-issues-2"><a class="anchor" href="#known-issues-2"></a>Known Issues</h4>
+<div class="sect2">
+<h3 id="deprecations-5"><a class="anchor" href="#deprecations-5"></a>Deprecations</h3>
 <div class="paragraph">
-<p>None for this release</p>
-</div>
+<p>None for this release.</p>
 </div>
 </div>
 </div>
@@ -576,7 +830,65 @@ If you don&#8217;t specify a custom scope and collection, any documents you crea
 </div>
 </div>
 <div class="sect2">
-<h3 id="maint-3-1-0"><a class="anchor" href="#maint-3-1-0"></a>Enhancements</h3>
+<h3 id="maint-3-1-0"><a class="anchor" href="#maint-3-1-0"></a>Fixed Issues</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2731">CBG-2731 - AccessLock not being released when a PUSH replication is ongoing</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2556">CBG-2556 - Inefficient sequence parsing during ISGR checkpointing</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2248">CBG-2248 - Config admin API doesn't use Etags when config comes from JSON</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2247">CBG-2247 - Etags should be quoted</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2208">CBG-2208 - Index compaction failing due to not found handling</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2183">CBG-2183 - Revocation of non-existent role causes replication panic</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2174">CBG-2174 - Periodic high response times on REST API due to persistent config polling</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2134">CBG-2134 - Guest user is not initialised with access to public channel ("!")</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2119">CBG-2119 - Update DisablePasswordAuth to False does not work</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2102">CBG-2102 - Admin auth credentials not verified when using x.509 auth between SG and CBS</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2101">CBG-2101 - User endpoint: missing first user if name_only=false</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2065">CBG-2065 - Update golang.org/x/text to 0.3.3+ CVE-2020-14040 in SGW 2.8.x</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2059">CBG-2059 - HTTP logs incorrectly redact document name if the database name contains it</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2058">CBG-2058 - Compaction w/ import and xattrs enabled can panic</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2048">CBG-2048 - Update nhooyr.io/websocket gin-gonic/gin CVE-2020-28483</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2030">CBG-2030 - _user endpoint pagination causes query error</a></p>
+</li>
+<li>
+<p><a href="https://issues.couchbase.com/browse/CBG-2010">CBG-2010 - CBL revpos handling causes attachment fetch per write for docs with attachments</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancements-6"><a class="anchor" href="#enhancements-6"></a>Enhancements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -643,67 +955,7 @@ If you don&#8217;t specify a custom scope and collection, any documents you crea
 </div>
 </div>
 <div class="sect2">
-<h3 id="issues-and-resolutions-2"><a class="anchor" href="#issues-and-resolutions-2"></a>Issues and Resolutions</h3>
-<div class="sect3">
-<h4 id="fixed-issues-3"><a class="anchor" href="#fixed-issues-3"></a>Fixed Issues</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-2731">CBG-2731 - AccessLock not being released when a PUSH replication is ongoing</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-2556">CBG-2556 - Inefficient sequence parsing during ISGR checkpointing</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-2248">CBG-2248 - Config admin API doesn't use Etags when config comes from JSON</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-2247">CBG-2247 - Etags should be quoted</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-2208">CBG-2208 - Index compaction failing due to not found handling</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-2183">CBG-2183 - Revocation of non-existent role causes replication panic</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-2174">CBG-2174 - Periodic high response times on REST API due to persistent config polling</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-2134">CBG-2134 - Guest user is not initialised with access to public channel ("!")</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-2119">CBG-2119 - Update DisablePasswordAuth to False does not work</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-2102">CBG-2102 - Admin auth credentials not verified when using x.509 auth between SG and CBS</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-2101">CBG-2101 - User endpoint: missing first user if name_only=false</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-2065">CBG-2065 - Update golang.org/x/text to 0.3.3+ CVE-2020-14040 in SGW 2.8.x</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-2059">CBG-2059 - HTTP logs incorrectly redact document name if the database name contains it</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-2058">CBG-2058 - Compaction w/ import and xattrs enabled can panic</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-2048">CBG-2048 - Update nhooyr.io/websocket gin-gonic/gin CVE-2020-28483</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-2030">CBG-2030 - _user endpoint pagination causes query error</a></p>
-</li>
-<li>
-<p><a href="https://issues.couchbase.com/browse/CBG-2010">CBG-2010 - CBL revpos handling causes attachment fetch per write for docs with attachments</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="known-issues-3"><a class="anchor" href="#known-issues-3"></a>Known Issues</h4>
+<h3 id="known-issues-6"><a class="anchor" href="#known-issues-6"></a>Known Issues</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -711,6 +963,11 @@ If you don&#8217;t specify a custom scope and collection, any documents you crea
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="deprecations-6"><a class="anchor" href="#deprecations-6"></a>Deprecations</h3>
+<div class="paragraph">
+<p>None for this release.</p>
 </div>
 <div class="sect3">
 <h4 id="upgrading"><a class="anchor" href="#upgrading"></a>Upgrading</h4>

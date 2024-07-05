@@ -16,7 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="canonical" href="https://docs.couchbase.com/server/current/learn/security/roles.html">
 <link rel="stylesheet" href="../../../../_/css/site.css">
 <script src="../../../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="A Couchbase &lt;em&gt;role&lt;/em&gt; permits one or more &lt;em&gt;resources&lt;/em&gt; to be accessed according to defined &lt;em&gt;privileges&lt;/em&gt;.">
+<meta name="description" content="A Couchbase role permits one or more resources to be accessed according to defined privileges.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -227,7 +227,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-A Couchbase <em>role</em> permits one or more <em>resources</em> to be accessed according to defined <em>privileges</em>.
+A Couchbase role permits one or more resources to be accessed according to defined privileges.
 </blockquote>
 </div>
 </div>
@@ -236,7 +236,7 @@ A Couchbase <em>role</em> permits one or more <em>resources</em> to be accessed 
 <h2 id="roles-and-privileges"><a class="anchor" href="#roles-and-privileges"></a>Roles and Privileges</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Couchbase <em>roles</em> each have a fixed association with a set of one or more privileges.
+<p>Couchbase roles each have a fixed association with a set of one or more privileges.
 Each privilege is associated with a resource.
 Privileges are actions such as <strong>Read</strong>, <strong>Write</strong>, <strong>Execute</strong>, <strong>Manage</strong>, <strong>Flush</strong>, and <strong>List</strong>; or a combination of some or all of these.</p>
 </div>
@@ -246,25 +246,25 @@ Privileges are actions such as <strong>Read</strong>, <strong>Write</strong>, <s
 <div class="ulist">
 <ul>
 <li>
-<p><em>Administative</em>: Associated with cluster-wide privileges.
+<p>Administative: Associated with cluster-wide privileges.
 Some of these roles are for administrators; who might manage cluster-configurations; or read statistics; or enforce security.
 Others are for users and user-defined applications that require access to specific, cluster-wide resources.</p>
 </li>
 <li>
-<p><em>Bucket</em>: Associated with bucket administration, collection management, and application access.
+<p>Bucket: Associated with bucket administration, collection management, and application access.
 Roles in this category can each be applied to one, to multiple, or to all buckets on the cluster.</p>
 </li>
 <li>
-<p><em>Data</em>, <em>Views</em>, and <em>XDCR</em>: Associated with the Data Service.
-This includes the reading, writing, monitoring, backing-up, and restoring of data; the administration of Views; and the administration of <em>Cross Data-Center Replication</em> (XDCR).</p>
+<p>Data, Views, and XDCR: Associated with the Data Service.
+This includes the reading, writing, monitoring, backing-up, and restoring of data; the administration of Views; and the administration of Cross Data-Center Replication (XDCR).</p>
 </li>
 <li>
-<p><em>Other Services</em>: Roles for the administration of services other than the Data Service.
-These roles are organized under the following categories: <em>Query &amp; Index</em>, <em>Search</em>, <em>Analytics</em>, and <em>Backup</em>.
-(<em>Eventing</em> administration is covered within the <em>Administrative</em> category.)</p>
+<p>Other Services: Roles for the administration of services other than the Data Service.
+These roles are organized under the following categories: Query &amp; Index, Search, Analytics, and Backup.
+(Eventing administration is covered within the Administrative category.)</p>
 </li>
 <li>
-<p><em>Mobile</em>: Associated with the administration of <em>Sync Gateway</em>.</p>
+<p>Mobile: Associated with the administration of Sync Gateway.</p>
 </li>
 </ul>
 </div>
@@ -282,13 +282,13 @@ Permissions conveyed by bucket-related roles may be restricted in any of the fol
 <div class="ulist">
 <ul>
 <li>
-<p>By <em>Bucket</em>: Permissions apply to all data in the specified bucket: all scopes and collections are thus covered by the permissions.</p>
+<p>By Bucket: Permissions apply to all data in the specified bucket: all scopes and collections are thus covered by the permissions.</p>
 </li>
 <li>
-<p>By <em>Bucket</em> and <em>Scope</em>: Permissions apply only to the collections within the specified scope (or scopes), within the specified bucket.</p>
+<p>By Bucket and Scope: Permissions apply only to the collections within the specified scope (or scopes), within the specified bucket.</p>
 </li>
 <li>
-<p>By <em>Bucket</em>, <em>Scope</em>, and <em>Collection</em>: Permissions apply only to the data within the specified collection (or collections), within the specified scope (or scopes), within the specified bucket.</p>
+<p>By Bucket, Scope, and Collection: Permissions apply only to the data within the specified collection (or collections), within the specified scope (or scopes), within the specified bucket.</p>
 </li>
 </ul>
 </div>
@@ -299,13 +299,13 @@ Permissions conveyed by bucket-related roles may be restricted in any of the fol
 <div class="sect2">
 <h3 id="commonly-used-roles"><a class="anchor" href="#commonly-used-roles"></a>Commonly Used Roles</h3>
 <div class="paragraph">
-<p>Couchbase Server <em>users</em> can largely be categorized as <em>administrators</em>, <em>developers</em>, and <em>applications</em>.
+<p>Couchbase Server users can largely be categorized as administrators, developers, and applications.
 Each user-category is supported by a different subset of roles.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><em>Administrators</em>.
+<p>Administrators.
 Able to log into Couchbase Web Console and perform administrative tasks; but unable to read or write data.</p>
 <div class="paragraph">
 <p>The administrative tasks available are divided into multiple <code>admin</code> roles.
@@ -315,23 +315,23 @@ Note that depending on the administrator&#8217;s assigned roles, the content of 
 </div>
 </li>
 <li>
-<p><em>Applications</em>.
+<p>Applications.
 Able to read or write data; but unable to log into Couchbase Web Console, or in any way modify cluster-settings.
 For example, the <strong>Data Reader</strong> and <strong>Data Writer</strong> roles allows data to be respectively read and written to one or more collections, within one or more scopes, within one or more buckets.
 Other application-intended roles are <strong>Application Access</strong>, <strong>Data Writer</strong>, <strong>Data Backup &amp; Restore</strong>, and <strong>Data Monitor</strong>.
 See below for details on each.</p>
 </li>
 <li>
-<p><em>Developers</em>.
+<p>Developers.
 Can be given a selection of roles, allowing the right degree of data and console access.
 For example, the <strong>Read-Only Admin</strong> role allows the reading of cluster-statistics, while the <strong>Data Read</strong> and <strong>Data Write</strong> roles allow access to data on one or more buckets.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The following list contains all roles supported by Couchbase Server, <em>Enterprise Edition</em>.
+<p>The following list contains all roles supported by Couchbase Server, Enterprise Edition.
 Each role is explained by means of a description and (in most cases) a table: the table lists the privileges in association with resources.
-The header of each table states the role&#8217;s <strong>name</strong>, followed by its <em>alias name</em> in parentheses: alias names are used in commands and queries.
+The header of each table states the role&#8217;s <strong>name</strong>, followed by its alias name in parentheses: alias names are used in commands and queries.
 In each table-body, where a privilege is associated with a resource, this is indicated with a check-mark.
 Where a privilege is not associated with a resource (or where association would not be applicable), this is indicated with a cross.
 Resources not referred to in a particular table have no privileges associated with them in the context of the role being described.</p>
@@ -351,11 +351,11 @@ See <a href="../../manage/manage-logging/manage-logging.html" class="xref page">
 <h2 id="full-admin"><a class="anchor" href="#full-admin"></a>Full Admin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Full Admin</strong> role (an <em>Administrative</em> role) supports full access to all Couchbase-Server features and resources, including those of security.
+<p>The <strong>Full Admin</strong> role (an Administrative role) supports full access to all Couchbase-Server features and resources, including those of security.
 The role allows access to Couchbase Web Console, and allows the reading and writing of bucket-data.</p>
 </div>
 <div class="paragraph">
-<p>This role is also available in Couchbase Server <em>Community Edition</em>.</p>
+<p>This role is also available in Couchbase Server Community Edition.</p>
 </div>
 </div>
 </div>
@@ -363,7 +363,7 @@ The role allows access to Couchbase Web Console, and allows the reading and writ
 <h2 id="cluster-admin"><a class="anchor" href="#cluster-admin"></a>Cluster Admin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Cluster Admin</strong> role (an <em>Administrative</em> role) allows the management of all cluster features except security.
+<p>The <strong>Cluster Admin</strong> role (an Administrative role) allows the management of all cluster features except security.
 The role allows access to Couchbase Web Console, but does not permit the writing of data.</p>
 </div>
 <table id="table_cluster_admin_role" class="tableblock frame-all grid-all stretch">
@@ -426,7 +426,7 @@ The role allows access to Couchbase Web Console, but does not permit the writing
 <h2 id="local-user-security-admin"><a class="anchor" href="#local-user-security-admin"></a>Local User Security Admin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Local User Security Admin</strong> role (an <em>Administrative</em> role) allows the management of local user roles and the reading of all cluster statistics.
+<p>The <strong>Local User Security Admin</strong> role (an Administrative role) allows the management of local user roles and the reading of all cluster statistics.
 The role does not permit the granting of the <strong>Full Admin</strong>, the <strong>Read-Only Admin</strong>, the <strong>Local User Security Admin</strong>, or the <strong>External User Security Admin</strong> role; and does not permit the administrator to change their own role (which therefore remains <strong>Local User Security Admin</strong>).
 The role supports access to Couchbase Web Console, but does not support the reading of data.</p>
 </div>
@@ -490,7 +490,7 @@ The role supports access to Couchbase Web Console, but does not support the read
 <h2 id="external-user-security-admin"><a class="anchor" href="#external-user-security-admin"></a>External User Security Admin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>External User Security Admin</strong> role (an <em>Administrative</em> role) allows the management of external user roles and the reading of all cluster statistics.
+<p>The <strong>External User Security Admin</strong> role (an Administrative role) allows the management of external user roles and the reading of all cluster statistics.
 The role does not permit the granting of the <strong>Full Admin</strong>, the <strong>Read-Only Admin</strong>, the <strong>Local User Security Admin</strong>, or the <strong>External User Security Admin</strong> role; and does not permit the administrator to change their own role (which therefore remains <strong>External User Security Admin</strong>).
 The role supports access to Couchbase Web Console, but does not support the reading of data.</p>
 </div>
@@ -554,11 +554,13 @@ The role supports access to Couchbase Web Console, but does not support the read
 <h2 id="read-only-admin"><a class="anchor" href="#read-only-admin"></a>Read-Only Admin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Read-Only Admin</strong> role (an <em>Administrative</em> role) supports the reading of Couchbase Server-statistics: this includes registered usernames with roles and authentication domains, but excludes passwords.
-The role allows access to Couchbase Web Console.</p>
+<p>The <strong>Read-Only Admin</strong> role (an Administrative role) supports the reading of Couchbase Server statistics.
+This information includes registered usernames with roles and authentication domains, but excludes passwords.
+Since Couchbase Server version 7.6.2, users with this role can also read Backup Service data to monitor backup plans and tasks.
+The role allows access to Couchbase Server Web Console.</p>
 </div>
 <div class="paragraph">
-<p>This role is also available in Couchbase Server <em>Community Edition</em>.</p>
+<p>This role is also available in Couchbase Server Community Edition.</p>
 </div>
 <table id="table_read_only_admin_role" class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -612,6 +614,13 @@ The role allows access to Couchbase Web Console.</p>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="../_images/introduction/no.png" alt="no"></span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="../_images/introduction/no.png" alt="no"></span></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Backup Service (tasks and plans) <span class="status">Couchbase Server 7.6.2</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="../_images/introduction/yes.png" alt="yes"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="../_images/introduction/no.png" alt="no"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="../_images/introduction/no.png" alt="no"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="../_images/introduction/no.png" alt="no"></span></p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -620,7 +629,7 @@ The role allows access to Couchbase Web Console.</p>
 <h2 id="external-stats-reader"><a class="anchor" href="#external-stats-reader"></a>External Stats Reader</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>External Stats Reader</strong> role (an <em>Administrative</em> role) grants access to the <code>/metrics</code> and <code>/prometheus_sd_config</code> endpoints for <em>Prometheus</em> integration.
+<p>The <strong>External Stats Reader</strong> role (an Administrative role) grants access to the <code>/metrics</code> and <code>/prometheus_sd_config</code> endpoints for Prometheus integration.
 All statistics for all services can be read.
 The role does not allow access to Couchbase Web Console.</p>
 </div>
@@ -663,7 +672,7 @@ The role does not allow access to Couchbase Web Console.</p>
 <h2 id="xdcr-admin"><a class="anchor" href="#xdcr-admin"></a>XDCR Admin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>XDCR Admin</strong> role (an <em>XDCR</em> role) allows use of XDCR features, to create cluster references and replication streams.
+<p>The <strong>XDCR Admin</strong> role (an XDCR role) allows use of XDCR features, to create cluster references and replication streams.
 The role allows access to Couchbase Web Console and allows the reading of data.</p>
 </div>
 <table id="table_xdcr_admin_role" class="tableblock frame-all grid-all stretch">
@@ -740,7 +749,7 @@ The role allows access to Couchbase Web Console and allows the reading of data.<
 <h2 id="query-curl-access"><a class="anchor" href="#query-curl-access"></a>Query Curl Access</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Query Curl Access</strong> role (a <em>Query &amp; Index</em> role) allows the SQL++ CURL function to be executed by an externally authenticated user.
+<p>The <strong>Query Curl Access</strong> role (a Query &amp; Index role) allows the SQL++ CURL function to be executed by an externally authenticated user.
 The user can access Couchbase Web Console, but cannot read data, other than that returned by the SQL++ CURL function.</p>
 </div>
 <div class="paragraph">
@@ -812,7 +821,7 @@ The user can access Couchbase Web Console, but cannot read data, other than that
 <h2 id="query-system-catalog"><a class="anchor" href="#query-system-catalog"></a>Query System Catalog</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Query System Catalog</strong> role (a <em>Query &amp; Index</em> role) allows information to be looked up by means of SQL++ in the system catalog: this includes <code>system:indexes</code>, <code>system:prepareds</code>, and tables listing current and past queries.
+<p>The <strong>Query System Catalog</strong> role (a Query &amp; Index role) allows information to be looked up by means of SQL++ in the system catalog: this includes <code>system:indexes</code>, <code>system:prepareds</code>, and tables listing current and past queries.
 This role is designed for troubleshooters, who need to debug queries.
 The role allows access to Couchbase Web Console, but does not permit the reading of bucket-items.</p>
 </div>
@@ -890,7 +899,7 @@ The role allows access to Couchbase Web Console, but does not permit the reading
 <h2 id="manage-global-functions"><a class="anchor" href="#manage-global-functions"></a>Manage Global Functions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Manage Global Functions</strong> role (a <em>Query &amp; Index</em> role) allows global SQL++ functions to be managed.
+<p>The <strong>Manage Global Functions</strong> role (a Query &amp; Index role) allows global SQL++ functions to be managed.
 The user can access Couchbase Web Console, but cannot read data.</p>
 </div>
 <table id="table_manage_global_functions_role" class="tableblock frame-all grid-all stretch">
@@ -946,7 +955,7 @@ The user can access Couchbase Web Console, but cannot read data.</p>
 <h2 id="execute-global-functions"><a class="anchor" href="#execute-global-functions"></a>Execute Global Functions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Execute Global Functions</strong> role (a <em>Query &amp; Index</em> role) allows global SQL++ functions to be executed.
+<p>The <strong>Execute Global Functions</strong> role (a Query &amp; Index role) allows global SQL++ functions to be executed.
 The user can access Couchbase Web Console, but cannot read data.</p>
 </div>
 <table id="table_query_execute_global_functions_role" class="tableblock frame-all grid-all stretch">
@@ -1002,7 +1011,7 @@ The user can access Couchbase Web Console, but cannot read data.</p>
 <h2 id="manage-scope-functions"><a class="anchor" href="#manage-scope-functions"></a>Manage Scope Functions (Query and Index)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Manage Scope Functions</strong> role (a <em>Query &amp; Index</em> role) allows SQL++ and <em>user defined</em> functions to be managed for a given scope, given corresponding specification of <em>bucket</em>.
+<p>The <strong>Manage Scope Functions</strong> role (a Query &amp; Index role) allows SQL++ and user defined functions to be managed for a given scope, given corresponding specification of bucket.
 The user can access Couchbase Web Console, but cannot read data.</p>
 </div>
 <table id="table_manage_scope_functions_role" class="tableblock frame-all grid-all stretch">
@@ -1058,7 +1067,7 @@ The user can access Couchbase Web Console, but cannot read data.</p>
 <h2 id="execute-scope-functions"><a class="anchor" href="#execute-scope-functions"></a>Execute Scope Functions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Execute Scope Functions</strong> role (a <em>Query &amp; Index</em> role) allows SQL++ and <em>user defined</em> functions to be executed for a given scope, given corresponding specification of <em>bucket</em>.
+<p>The <strong>Execute Scope Functions</strong> role (a Query &amp; Index role) allows SQL++ and user defined functions to be executed for a given scope, given corresponding specification of bucket.
 The user can access Couchbase Web Console, but cannot read data.</p>
 </div>
 <table id="table_execute_scope_functions_role" class="tableblock frame-all grid-all stretch">
@@ -1114,7 +1123,7 @@ The user can access Couchbase Web Console, but cannot read data.</p>
 <h2 id="manage-global-external-functions"><a class="anchor" href="#manage-global-external-functions"></a>Manage Global External Functions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Manage Global External Functions</strong> role (a <em>Query &amp; Index</em> role) allows global external language functions to be managed.
+<p>The <strong>Manage Global External Functions</strong> role (a Query &amp; Index role) allows global external language functions to be managed.
 The user can access Couchbase Web Console, but cannot read data.</p>
 </div>
 <table id="table_manage_global_external_functions_role" class="tableblock frame-all grid-all stretch">
@@ -1170,7 +1179,7 @@ The user can access Couchbase Web Console, but cannot read data.</p>
 <h2 id="execute-global-external-functions"><a class="anchor" href="#execute-global-external-functions"></a>Execute Global External Functions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Execute Global External Functions</strong> role (a <em>Query &amp; Index</em> role) allows global SQL++ functions to be executed.
+<p>The <strong>Execute Global External Functions</strong> role (a Query &amp; Index role) allows global SQL++ functions to be executed.
 The user can access Couchbase Web Console, but cannot read data.</p>
 </div>
 <table id="table_execute_global_external_functions_role" class="tableblock frame-all grid-all stretch">
@@ -1226,7 +1235,7 @@ The user can access Couchbase Web Console, but cannot read data.</p>
 <h2 id="manage-scope-external-functions"><a class="anchor" href="#manage-scope-external-functions"></a>Manage Scope External Functions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Manage Scope External Functions</strong> role (a <em>Query &amp; Index</em> role) allows external language functions to be managed for a given scope, given corresponding specification of <em>bucket</em>.
+<p>The <strong>Manage Scope External Functions</strong> role (a Query &amp; Index role) allows external language functions to be managed for a given scope, given corresponding specification of bucket.
 The user can access Couchbase Web Console, but cannot read data.</p>
 </div>
 <table id="table_manage_external_functions_role" class="tableblock frame-all grid-all stretch">
@@ -1282,7 +1291,7 @@ The user can access Couchbase Web Console, but cannot read data.</p>
 <h2 id="execute-scope-external-functions"><a class="anchor" href="#execute-scope-external-functions"></a>Execute Scope External Functions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Execute Scope External Functions</strong> role (a <em>Query &amp; Index</em> role) allows external language functions to be executed for a given scope, given corresponding specification of <em>bucket</em>.
+<p>The <strong>Execute Scope External Functions</strong> role (a Query &amp; Index role) allows external language functions to be executed for a given scope, given corresponding specification of bucket.
 The user can access Couchbase Web Console, but cannot read data.</p>
 </div>
 <table id="table_execute_external_functions_role" class="tableblock frame-all grid-all stretch">
@@ -1338,7 +1347,7 @@ The user can access Couchbase Web Console, but cannot read data.</p>
 <h2 id="analytics-reader"><a class="anchor" href="#analytics-reader"></a>Analytics Reader</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Analytics Reader</strong> role (an <em>Analytics</em> role) allows querying of shadow data-sets.
+<p>The <strong>Analytics Reader</strong> role (an Analytics role) allows querying of shadow data-sets.
 The role allows access to Couchbase Web Console, and permits the reading of data.</p>
 </div>
 <table id="table_analytics_reader_role" class="tableblock frame-all grid-all stretch">
@@ -1394,7 +1403,7 @@ The role allows access to Couchbase Web Console, and permits the reading of data
 <h2 id="analytics-admin"><a class="anchor" href="#analytics-admin"></a>Analytics Admin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Analytics Admin</strong> role (an <em>Analytics</em> role) allows management of dataverses; management of all Analytics Service links; and management of all datasets.
+<p>The <strong>Analytics Admin</strong> role (an Analytics role) allows management of dataverses; management of all Analytics Service links; and management of all datasets.
 The role allows access to Couchbase Web Console, but does not permit the reading of data.</p>
 </div>
 <table id="table_analytics_admin_role" class="tableblock frame-all grid-all stretch">
@@ -1464,7 +1473,7 @@ The role allows access to Couchbase Web Console, but does not permit the reading
 <h2 id="bucket-admin"><a class="anchor" href="#bucket-admin"></a>Bucket Admin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Bucket Admin</strong> role (which is a <em>Bucket</em> role) allows the management of all <em>per bucket</em> features (including starting and stopping XDCR).
+<p>The <strong>Bucket Admin</strong> role (which is a Bucket role) allows the management of all per bucket features (including starting and stopping XDCR).
 The role allows access to Couchbase Web Console, but does not permit the reading or writing of data.</p>
 </div>
 <table id="table_bucket_admin_role" class="tableblock frame-all grid-all stretch">
@@ -1534,7 +1543,7 @@ The role allows access to Couchbase Web Console, but does not permit the reading
 <h2 id="manage-scopes"><a class="anchor" href="#manage-scopes"></a>Manage Scopes</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Manage Scopes</strong> role (a <em>Bucket</em> role) allows the creation and deletion of scopes, and the creation and deletion of collections <em>per scope</em>, given the corresponding specification of <em>bucket</em>.
+<p>The <strong>Manage Scopes</strong> role (a Bucket role) allows the creation and deletion of scopes, and the creation and deletion of collections per scope, given the corresponding specification of bucket.
 The role allows no access to data, and does not permit access to Couchbase Web Console.
 The role is intended for application use only.</p>
 </div>
@@ -1584,13 +1593,13 @@ The role is intended for application use only.</p>
 <h2 id="application-access"><a class="anchor" href="#application-access"></a>Application Access</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Application Access</strong> role (a <em>Bucket</em> role) provides read and write access to data, <em>per bucket</em>.
+<p>The <strong>Application Access</strong> role (a Bucket role) provides read and write access to data, per bucket.
 The role does not allow access to Couchbase Web Console: it is intended for applications, rather than users.
-Note that this role is also available in the <em>Community Edition</em> of Couchbase Server.</p>
+Note that this role is also available in the Community Edition of Couchbase Server.</p>
 </div>
 <div class="paragraph">
 <p>The role is provided in support of buckets that were created on versions of Couchbase Server prior to 5.0.
-Such buckets were accessed by specifying <em>bucket-name</em> and <em>bucket-password</em>: however, bucket-passwords are not recognized by Couchbase Server 5.0 and after.
+Such buckets were accessed by specifying bucket-name and bucket-password: however, bucket-passwords are not recognized by Couchbase Server 5.0 and after.
 Therefore, for each pre-existing bucket, the upgrade-process for 5.0 and after creates a new user, whose username is identical to the bucket-name; and whose password is identical to the former bucket-password, if one existed.
 If no bucket-password existed, the user is created with no password.
 This migration-process allows the same name-combination as before to be used in authentication.
@@ -1682,7 +1691,7 @@ Note that in versions of Couchbase Server prior to 5.5, this role was referred t
 <h2 id="xdcr-inbound"><a class="anchor" href="#xdcr-inbound"></a>XDCR Inbound</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>XDCR Inbound</strong> role (which is an <em>XDCR</em> role) allows the creation of inbound XDCR streams, <em>per bucket</em>.
+<p>The <strong>XDCR Inbound</strong> role (which is an XDCR role) allows the creation of inbound XDCR streams, per bucket.
 It does not allow access to Couchbase Web Console, and does not permit the reading of data.</p>
 </div>
 <div class="paragraph">
@@ -1748,7 +1757,7 @@ It does not allow access to Couchbase Web Console, and does not permit the readi
 <h2 id="sync-gateway"><a class="anchor" href="#sync-gateway"></a>Sync Gateway</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Sync Gateway</strong> role (which is a <em>Mobile</em> role) allows full access to data <em>per bucket</em>, as required by Sync Gateway.
+<p>The <strong>Sync Gateway</strong> role (which is a Mobile role) allows full access to data per bucket, as required by Sync Gateway.
 The role does not allow access to Couchbase Web Console.
 The user can, by means of Sync Gateway, read and write data, manage indexes and views, and read some cluster information.</p>
 </div>
@@ -1854,7 +1863,7 @@ The user can, by means of Sync Gateway, read and write data, manage indexes and 
 <h2 id="sync-gateway-configurator"><a class="anchor" href="#sync-gateway-configurator"></a>Sync Gateway Architect</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Sync Gateway Architect</strong> role (which is a <em>Mobile</em> role) allows management of Sync Gateway databases; and of Sync Gateway users and roles; and allows access to Sync Gateway&#8217;s <code>/metrics</code> endpoint.
+<p>The <strong>Sync Gateway Architect</strong> role (which is a Mobile role) allows management of Sync Gateway databases; and of Sync Gateway users and roles; and allows access to Sync Gateway&#8217;s <code>/metrics</code> endpoint.
 The role does not allow access to Couchbase Web Console; and does not allow reading of application data.
 For information on Sync Gateway users and roles, see <a href="http://docs.couchbase.com/sync-gateway/3.0/access-control-concepts.html" target="_blank" rel="noopener">Access Control Concepts</a>.</p>
 </div>
@@ -1918,7 +1927,7 @@ For information on Sync Gateway users and roles, see <a href="http://docs.couchb
 <h2 id="sync-gateway-app"><a class="anchor" href="#sync-gateway-app"></a>Sync Gateway Application</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Sync Gateway Application</strong> role (which is a <em>Mobile</em> role) allows management of Sync Gateway users and roles; and allows application data to be read and written through Sync Gateway.
+<p>The <strong>Sync Gateway Application</strong> role (which is a Mobile role) allows management of Sync Gateway users and roles; and allows application data to be read and written through Sync Gateway.
 The role does not allow access to Couchbase Web Console.
 For information on Sync Gateway users and roles, see <a href="http://docs.couchbase.com/sync-gateway/3.0/access-control-concepts.html" target="_blank" rel="noopener">Access Control Concepts</a>.</p>
 </div>
@@ -1975,7 +1984,7 @@ For information on Sync Gateway users and roles, see <a href="http://docs.couchb
 <h2 id="sync-gateway-application-read-only"><a class="anchor" href="#sync-gateway-application-read-only"></a>Sync Gateway Application Read Only</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Sync Gateway Application Read Only</strong> role (which is a <em>Mobile</em> role) allows reading of Sync Gateway users and roles; and allows application data to be read through Sync Gateway.
+<p>The <strong>Sync Gateway Application Read Only</strong> role (which is a Mobile role) allows reading of Sync Gateway users and roles; and allows application data to be read through Sync Gateway.
 The role does not allow access to Couchbase Web Console.
 For information on Sync Gateway users and roles, see <a href="http://docs.couchbase.com/sync-gateway/3.0/access-control-concepts.html" target="_blank" rel="noopener">Access Control Concepts</a>.</p>
 </div>
@@ -2032,7 +2041,7 @@ For information on Sync Gateway users and roles, see <a href="http://docs.couchb
 <h2 id="sync-gateway-replicator"><a class="anchor" href="#sync-gateway-replicator"></a>Sync Gateway Replicator</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Sync Gateway Replicator</strong> role (which is a <em>Mobile</em> role) allows management of Sync Gateway replications.
+<p>The <strong>Sync Gateway Replicator</strong> role (which is a Mobile role) allows management of Sync Gateway replications.
 The role does not allow access to Couchbase Web Console.</p>
 </div>
 <table id="table_sync_gateway_replicator_role" class="tableblock frame-all grid-all stretch">
@@ -2081,7 +2090,7 @@ The role does not allow access to Couchbase Web Console.</p>
 <h2 id="sync-gateway-dev-ops"><a class="anchor" href="#sync-gateway-dev-ops"></a>Sync Gateway Dev Ops</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Sync Gateway Dev Ops</strong> role (which is a <em>Mobile</em> role) allows management of Sync Gateway node-level configuration; and allows access to Syn Gateway&#8217;s <code>/metrics</code> endpoint, for Prometheus integration.
+<p>The <strong>Sync Gateway Dev Ops</strong> role (which is a Mobile role) allows management of Sync Gateway node-level configuration; and allows access to Syn Gateway&#8217;s <code>/metrics</code> endpoint, for Prometheus integration.
 The role does not allow access to Couchbase Web Console.</p>
 </div>
 <table id="table_sync_gateway_dev_ops_role" class="tableblock frame-all grid-all stretch">
@@ -2137,8 +2146,8 @@ The role does not allow access to Couchbase Web Console.</p>
 <h2 id="data-reader"><a class="anchor" href="#data-reader"></a>Data Reader</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Data Reader</strong> role (which is a <em>Data</em> role) allows data to be read <em>per collection</em>, given corresponding specifications for <em>bucket</em> and <em>scope</em>.
-Note that the role does <em>not</em> permit the running of SQL++ queries (such as SELECT) against data.
+<p>The <strong>Data Reader</strong> role (which is a Data role) allows data to be read per collection, given corresponding specifications for bucket and scope.
+Note that the role does not permit the running of SQL++ queries (such as SELECT) against data.
 The role does not allow access to Couchbase Web Console: it is intended to support applications, rather than users.</p>
 </div>
 <table id="table_data_reader_role" class="tableblock frame-all grid-all stretch">
@@ -2201,7 +2210,7 @@ The role does not allow access to Couchbase Web Console: it is intended to suppo
 <h2 id="data-writer"><a class="anchor" href="#data-writer"></a>Data Writer</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Data Writer</strong> role (which is a <em>Data</em> role) allows data to be written <em>per collection</em>, given corresponding specifications for <em>bucket</em> and <em>scope</em>.
+<p>The <strong>Data Writer</strong> role (which is a Data role) allows data to be written per collection, given corresponding specifications for bucket and scope.
 The role does not allow access to Couchbase Web Console: it is intended to support applications, rather than users.</p>
 </div>
 <table id="table_data_writer_role" class="tableblock frame-all grid-all stretch">
@@ -2257,7 +2266,7 @@ The role does not allow access to Couchbase Web Console: it is intended to suppo
 <h2 id="data-dcp-reader"><a class="anchor" href="#data-dcp-reader"></a>Data DCP Reader</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Data DCP Reader</strong> role (which is a <em>Data</em> role) allows DCP streams to be initiated <em>per collection</em>, given corresponding specifications for <em>bucket</em> and <em>scope</em>.
+<p>The <strong>Data DCP Reader</strong> role (which is a Data role) allows DCP streams to be initiated per collection, given corresponding specifications for bucket and scope.
 The role does not allow access to Couchbase Web Console: it is intended to support applications, rather than users.
 The role does allow the reading of data.</p>
 </div>
@@ -2328,12 +2337,12 @@ The role does allow the reading of data.</p>
 <h2 id="data-backup-and-restore"><a class="anchor" href="#data-backup-and-restore"></a>Data Backup &amp; Restore</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Data Backup &amp; Restore</strong> role (which is a <em>Data</em> role) allows data to be backed up and restored, <em>per bucket</em>.
+<p>The <strong>Data Backup &amp; Restore</strong> role (which is a Data role) allows data to be backed up and restored, per bucket.
 The role supports the reading of data.
 The role does not allow access to Couchbase Web Console: it is intended to support applications, rather than users.</p>
 </div>
 <div class="paragraph">
-<p>The privileges represented in this table are, from left to right, <em>Read</em>, <em>Write</em>, <em>Execute</em>, <em>Manage</em>, <em>Select</em>, <em>Backup</em>, <em>Create</em>, <em>List</em>, and <em>Build</em>.</p>
+<p>The privileges represented in this table are, from left to right, Read, Write, Execute, Manage, Select, Backup, Create, List, and Build.</p>
 </div>
 <table id="table_data_backup_role" class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -2497,7 +2506,7 @@ The role does not allow access to Couchbase Web Console: it is intended to suppo
 <h2 id="data-monitor"><a class="anchor" href="#data-monitor"></a>Data Monitor</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Data Monitor</strong> role (which is a <em>Data</em> role) allows statistics to be read for a given <em>bucket</em>, <em>scope</em>, or <em>collection</em>.
+<p>The <strong>Data Monitor</strong> role (which is a Data role) allows statistics to be read for a given bucket, scope, or collection.
 It does not allow access to Couchbase Web Console, and does not permit the reading of data.
 This role is intended to support application-access, rather than user-access.</p>
 </div>
@@ -2550,7 +2559,7 @@ This role is intended to support application-access, rather than user-access.</p
 <h2 id="views-admin"><a class="anchor" href="#views-admin"></a>Views Admin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Views Admin</strong> role (which is a <em>Views</em> role) allows the management of views, <em>per bucket</em>.
+<p>The <strong>Views Admin</strong> role (which is a Views role) allows the management of views, per bucket.
 The role allows access to Couchbase Web Console.</p>
 </div>
 <table id="table_views_admin_role" class="tableblock frame-all grid-all stretch">
@@ -2634,7 +2643,7 @@ The role allows access to Couchbase Web Console.</p>
 <h2 id="views-reader"><a class="anchor" href="#views-reader"></a>Views Reader</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Views Reader</strong> role (which is an <em>Administrative</em> role) allows data to be read from views, <em>per bucket</em>.
+<p>The <strong>Views Reader</strong> role (which is an Administrative role) allows data to be read from views, per bucket.
 This role does not allow access to Couchbase Web Console, and is intended to support applications, rather than users.</p>
 </div>
 <table id="table_views_reader_role" class="tableblock frame-all grid-all stretch">
@@ -2690,7 +2699,7 @@ This role does not allow access to Couchbase Web Console, and is intended to sup
 <h2 id="query-select"><a class="anchor" href="#query-select"></a>Query Select</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Query Select</strong> role (which is a <em>Query &amp; Index</em> role) allows the SELECT statement to be executed <em>per collection</em>, given corresponding specifications for <em>bucket</em> and <em>scope</em>.
+<p>The <strong>Query Select</strong> role (which is a Query &amp; Index role) allows the SELECT statement to be executed per collection, given corresponding specifications for bucket and scope.
 This role allows access to Couchbase Web Console; it also supports the reading of data, and of bucket settings.</p>
 </div>
 <table id="table_query_select_role" class="tableblock frame-all grid-all stretch">
@@ -2760,7 +2769,7 @@ This role allows access to Couchbase Web Console; it also supports the reading o
 <h2 id="query-update"><a class="anchor" href="#query-update"></a>Query Update</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Query Update</strong> role (which is a <em>Query &amp; Index</em> role) allows the UPDATE statement to be executed <em>per collection</em>, given corresponding specifications for <em>bucket</em> and <em>scope</em>.
+<p>The <strong>Query Update</strong> role (which is a Query &amp; Index role) allows the UPDATE statement to be executed per collection, given corresponding specifications for bucket and scope.
 The role supports access to Couchbase Web Console, and allows the writing (but not the reading) of data.
 It allows the reading of bucket settings.</p>
 </div>
@@ -2831,7 +2840,7 @@ It allows the reading of bucket settings.</p>
 <h2 id="query-insert"><a class="anchor" href="#query-insert"></a>Query Insert</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Query Insert</strong> role (which is a <em>Query &amp; Index</em> role) allows the INSERT statement to be executed <em>per collection</em>, given corresponding specifications for <em>bucket</em> and <em>scope</em>.
+<p>The <strong>Query Insert</strong> role (which is a Query &amp; Index role) allows the INSERT statement to be executed per collection, given corresponding specifications for bucket and scope.
 The role supports access to Couchbase Web Console, and allows the writing (but not the reading) of data.
 It allows the reading of bucket settings.</p>
 </div>
@@ -2902,7 +2911,7 @@ It allows the reading of bucket settings.</p>
 <h2 id="query-delete"><a class="anchor" href="#query-delete"></a>Query Delete</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Query Delete</strong> role (which is a <em>Query &amp; Index</em> role) allows the DELETE statement to be executed <em>per collection</em>, given corresponding specifications for <em>bucket</em> and <em>scope</em>.
+<p>The <strong>Query Delete</strong> role (which is a Query &amp; Index role) allows the DELETE statement to be executed per collection, given corresponding specifications for bucket and scope.
 The role supports access to Couchbase Server Web Console, and allows the deletion of data.
 It allows the reading of bucket settings.</p>
 </div>
@@ -3046,7 +3055,7 @@ Administrators' queries automatically have permission to perform sequential scan
 <h2 id="query-manage-index"><a class="anchor" href="#query-manage-index"></a>Query Manage Index</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Query Manage Index</strong> role (which is a <em>Query &amp; Index</em> role) allows indexes to be managed <em>per collection</em>, given corresponding specifications for <em>bucket</em> and <em>scope</em>.
+<p>The <strong>Query Manage Index</strong> role (which is a Query &amp; Index role) allows indexes to be managed per collection, given corresponding specifications for bucket and scope.
 The role allows access to Couchbase Web Console, but does not permit the reading of data.</p>
 </div>
 <table id="table_query_manage_index_role" class="tableblock frame-all grid-all stretch">
@@ -3123,7 +3132,7 @@ The role allows access to Couchbase Web Console, but does not permit the reading
 <h2 id="eventing-full-admin"><a class="anchor" href="#eventing-full-admin"></a>Eventing Full Admin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Eventing Full Admin</strong> role (which is an <em>Eventing</em> role) allows creation and management of eventing functions.
+<p>The <strong>Eventing Full Admin</strong> role (which is an Eventing role) allows creation and management of eventing functions.
 The role allows access to Couchbase Web Console.</p>
 </div>
 <table id="table_eventing_admin_role" class="tableblock frame-all grid-all stretch">
@@ -3193,7 +3202,7 @@ The role allows access to Couchbase Web Console.</p>
 <h2 id="eventing-manage-functions"><a class="anchor" href="#eventing-manage-functions"></a>Manage Scope Functions (Eventing)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Manage Scope Functions</strong> role (which is an <em>Eventing</em> role) allows eventing functions for a given scope to be managed.
+<p>The <strong>Manage Scope Functions</strong> role (which is an Eventing role) allows eventing functions for a given scope to be managed.
 The role allows access to Couchbase Web Console.</p>
 </div>
 <table id="table_eventing_manage_functions" class="tableblock frame-all grid-all stretch">
@@ -3249,7 +3258,7 @@ The role allows access to Couchbase Web Console.</p>
 <h2 id="backup-full-admin"><a class="anchor" href="#backup-full-admin"></a>Backup Full Admin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Backup Full Admin</strong> role (which is a <em>Backup</em> role) allows performance of backup-related tasks.
+<p>The <strong>Backup Full Admin</strong> role (which is a Backup role) allows performance of backup-related tasks.
 The role allows access to Couchbase Web Console.</p>
 </div>
 <table id="table_backup_admin_role" class="tableblock frame-all grid-all stretch">
@@ -3319,7 +3328,7 @@ The role allows access to Couchbase Web Console.</p>
 <h2 id="search-admin"><a class="anchor" href="#search-admin"></a>Search Admin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Search Admin</strong> role (which is a <em>Search</em> role) allows management of all features of the Search Service, <em>per bucket</em>.
+<p>The <strong>Search Admin</strong> role (which is a Search role) allows management of all features of the Search Service, per bucket.
 The role allows access to Couchbase Web Console.</p>
 </div>
 <div class="paragraph">
@@ -3399,7 +3408,7 @@ The role allows access to Couchbase Web Console.</p>
 <h2 id="search-reader"><a class="anchor" href="#search-reader"></a>Search Reader</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The role <strong>Search Reader</strong> (which is a <em>Search</em> role) allows <em>Full Text Search</em> indexes to be searched for <em>bucket</em>, <em>scope</em>, and <em>collection</em>.
+<p>The role <strong>Search Reader</strong> (which is a Search role) allows Full Text Search indexes to be searched for bucket, scope, and collection.
 The role allows access to Couchbase Web Console, and supports the reading of data.</p>
 </div>
 <div class="paragraph">
@@ -3465,7 +3474,7 @@ The role allows access to Couchbase Web Console, and supports the reading of dat
 <h2 id="analytics-select"><a class="anchor" href="#analytics-select"></a>Analytics Select</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Analytics Select</strong> role (which is an <em>Analytics</em> role) allows the querying of datasets  for <em>bucket</em>, <em>scope</em>. and <em>collection</em>.
+<p>The <strong>Analytics Select</strong> role (which is an Analytics role) allows the querying of datasets  for bucket, scope. and collection.
 The role allows access to Couchbase Web Console, and permits the reading of some data.</p>
 </div>
 <table id="table_analytics_select_role" class="tableblock frame-all grid-all stretch">
@@ -3521,7 +3530,7 @@ The role allows access to Couchbase Web Console, and permits the reading of some
 <h2 id="analytics-manager"><a class="anchor" href="#analytics-manager"></a>Analytics Manager</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>Analytics Manager</strong> role (which is an <em>Analytics</em> role) allows the management and querying of datasets created <em>per bucket</em>; and the management of Analytics Service local links.
+<p>The <strong>Analytics Manager</strong> role (which is an Analytics role) allows the management and querying of datasets created per bucket; and the management of Analytics Service local links.
 The role allows access to Couchbase Web Console, and permits the reading of some data.</p>
 </div>
 <table id="table_analytics_manager_role" class="tableblock frame-all grid-all stretch">

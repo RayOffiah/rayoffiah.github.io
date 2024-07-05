@@ -512,7 +512,7 @@ A successful match is made, and <code>airline_8838</code> is duly replicated to 
 <div class="paragraph">
 <p><em>Deletion filters</em> control whether the deletion of a document at source causes deletion of a replica document that exists on the replication-target.
 For the <a href="../../manage/manage-xdcr/filter-xdcr-replication.html#deletion-filters" class="xref page">UI</a> each filter is selected by means of a checkbox.
-For the <a href="#cli:cbcli/couchbase-cli-xdcr-replicate.adoc" class="xref unresolved">CLI</a> and <a href="../../rest-api/rest-xdcr-create-replication.html" class="xref page">REST API</a>, parameter-values must be specified.</p>
+For the <a href="../../cli/cbcli/couchbase-cli-xdcr-replicate.html" class="xref page">CLI</a> and <a href="../../rest-api/rest-xdcr-create-replication.html" class="xref page">REST API</a>, parameter-values must be specified.</p>
 </div>
 <div class="paragraph">
 <p>Examples of filtering are provided in <a href="../../manage/manage-xdcr/filter-xdcr-replication.html" class="xref page">Filter a Replication</a>.</p>
@@ -525,7 +525,7 @@ For the <a href="#cli:cbcli/couchbase-cli-xdcr-replicate.adoc" class="xref unres
 <div class="sect3">
 <h4 id="replication-of-expirations"><a class="anchor" href="#replication-of-expirations"></a>Replication of Expirations</h4>
 <div class="paragraph">
-<p>Configured through the <a href="../../manage/manage-xdcr/filter-xdcr-replication.html#deletion-filters" class="xref page">UI</a> with the <strong>Do not replicate document expirations</strong> checkbox; through the <a href="#cli:cbcli/couchbase-cli-xdcr-replicate.adoc" class="xref unresolved">CLI</a> with the <code>filter-expiration</code> flag; and through the <a href="../../rest-api/rest-xdcr-create-replication.html" class="xref page">REST API</a> with the <code>filterExpiration</code> flag.
+<p>Configured through the <a href="../../manage/manage-xdcr/filter-xdcr-replication.html#deletion-filters" class="xref page">UI</a> with the <strong>Do not replicate document expirations</strong> checkbox; through the <a href="../../cli/cbcli/couchbase-cli-xdcr-replicate.html" class="xref page">CLI</a> with the <code>filter-expiration</code> flag; and through the <a href="../../rest-api/rest-xdcr-create-replication.html" class="xref page">REST API</a> with the <code>filterExpiration</code> flag.
 Selecting this option means that if, having been replicated, the document at source expires and is deleted, the replicated copy of the document will <em>not</em> be deleted.
 Conversely, if this option is not selected or left <code>false</code> (which are the defaults), expirations at source are replicated; meaning that the replicated copy of the document <em>will</em> be deleted.</p>
 </div>
@@ -533,7 +533,7 @@ Conversely, if this option is not selected or left <code>false</code> (which are
 <div class="sect3">
 <h4 id="replication-of-deletions"><a class="anchor" href="#replication-of-deletions"></a>Replication of Deletions</h4>
 <div class="paragraph">
-<p>Configured through the <a href="../../manage/manage-xdcr/filter-xdcr-replication.html#deletion-filters" class="xref page">UI</a> with the <strong>Do not replicate DELETE operations</strong> checkbox; through the <a href="#cli:cbcli/couchbase-cli-xdcr-replicate.adoc" class="xref unresolved">CLI</a> with the <code>filter-deletion</code> flag; and through the <a href="../../rest-api/rest-xdcr-create-replication.html" class="xref page">REST API</a> with the <code>filterDeletion</code> flag.
+<p>Configured through the <a href="../../manage/manage-xdcr/filter-xdcr-replication.html#deletion-filters" class="xref page">UI</a> with the <strong>Do not replicate DELETE operations</strong> checkbox; through the <a href="../../cli/cbcli/couchbase-cli-xdcr-replicate.html" class="xref page">CLI</a> with the <code>filter-deletion</code> flag; and through the <a href="../../rest-api/rest-xdcr-create-replication.html" class="xref page">REST API</a> with the <code>filterDeletion</code> flag.
 Selecting this option determines that if, having been replicated, the document at source is deleted, the replicated copy of the document will <em>not</em> be deleted.
 Conversely, leaving this option unselected or <code>false</code> (which are the defaults) replicates deletions that occur at source, meaning that the replicated copy of the document <em>will</em> be deleted.</p>
 </div>
@@ -541,7 +541,7 @@ Conversely, leaving this option unselected or <code>false</code> (which are the 
 <div class="sect3">
 <h4 id="replication-of-ttl"><a class="anchor" href="#replication-of-ttl"></a>Replication of TTL</h4>
 <div class="paragraph">
-<p>Configured through the <a href="../../manage/manage-xdcr/filter-xdcr-replication.html#deletion-filters" class="xref page">UI</a> with the <strong>Remove TTL from replicated items</strong> checkbox; through the <a href="#cli:cbcli/couchbase-cli-xdcr-replicate.adoc" class="xref unresolved">CLI</a> with the <code>reset-expiry</code> flag; and with the <a href="../../rest-api/rest-xdcr-create-replication.html" class="xref page">REST API</a> with the <code>filterBypassExpiry</code> flag.
+<p>Configured through the <a href="../../manage/manage-xdcr/filter-xdcr-replication.html#deletion-filters" class="xref page">UI</a> with the <strong>Remove TTL from replicated items</strong> checkbox; through the <a href="../../cli/cbcli/couchbase-cli-xdcr-replicate.html" class="xref page">CLI</a> with the <code>reset-expiry</code> flag; and with the <a href="../../rest-api/rest-xdcr-create-replication.html" class="xref page">REST API</a> with the <code>filterBypassExpiry</code> flag.
 Selecting this option determines that the TTL that a document bears at source is <em>not</em> made part of the replicated copy of the document: instead, the TTL of the replicated copy is set to 0.
 Conversely, if this option is not selected or left <code>false</code> (which are the defaults), the TTL is made part of the replicated copy of the document, and may thereby determine when the replicated copy of the document expires.
 Note, however, that the TTL applied to the replicated document at the target may be that of either the collection or the bucket in which it resides: for information, see <a href="../data/expiration.html" class="xref page">Expiration</a>.</p>
@@ -717,7 +717,7 @@ Then, once the migration is deleted, delete source data as appropriate.</p>
 <h3 id="configuring-deletion-filters"><a class="anchor" href="#configuring-deletion-filters"></a>Configuring Deletion Filters</h3>
 <div class="paragraph">
 <p>For information on configuring deletion filters with the UI, see <a href="../../manage/manage-xdcr/filter-xdcr-replication.html#deletion-filters" class="xref page">Deletion Filters</a>;
-with the CLI, see <a href="#cli:cbcli/couchbase-cli-xdcr-replicate.adoc" class="xref unresolved">xdcr-replicate</a>;
+with the CLI, see <a href="../../cli/cbcli/couchbase-cli-xdcr-replicate.html" class="xref page">xdcr-replicate</a>;
 with the REST API, see <a href="../../rest-api/rest-xdcr-create-replication.html" class="xref page">Creating XDCR Replications</a>.</p>
 </div>
 </div>

@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="swift">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Swift / Data Sync / Peer-to-Peer / Integrate Custom Listener">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:version_rank" content="2">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/swift/p2psync-custom.html">3.2 Beta</option>
         <option value="3.1" data-url="p2psync-custom.html" selected>3.1</option>
         <option value="3.0" data-url="../../3.0/swift/p2psync-custom.html">3.0</option>
         <option value="2.8" data-url="../../2.8/swift/p2psync-custom.html">2.8</option>
@@ -286,7 +287,7 @@ The <code>MessageEndpointListener</code> acts as a Listener for incoming connect
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2467-L2469">let collection = try self.database.createCollection(name: "myCollection")
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2467-L2469">let collection = try self.database.createCollection(name: "myCollection")
 let config = MessageEndpointListenerConfiguration(collections: [collection], protocolType: .messageStream)
 messageEndpointListener = MessageEndpointListener(config: config)
 let collection = try database.createCollection(name: "myCollection")
@@ -332,7 +333,7 @@ This step includes inviting a Peer to a session and Peer authentication.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2670-L2673">let collection = try database.createCollection(name: "collectionName")
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2670-L2673">let collection = try database.createCollection(name: "collectionName")
 
 // The delegate must implement the `MessageEndpointDelegate` protocol.
 let messageEndpointTarget = MessageEndpoint(uid: "UID:123", target: id, protocolType: .messageStream, delegate: self)</code></pre>
@@ -378,7 +379,7 @@ There are two options.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2677-L2683">var config = ReplicatorConfiguration(target: messageEndpointTarget)
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2677-L2683">var config = ReplicatorConfiguration(target: messageEndpointTarget)
 config.addCollection(collection)
 
 // Create the replicator object.
@@ -393,7 +394,7 @@ When the application receives the callback, it must create an instance of <code>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2688-L2692">/* implementation of MessageEndpointDelegate */
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2688-L2692">/* implementation of MessageEndpointDelegate */
 func createConnection(endpoint: MessageEndpoint) -&gt; MessageEndpointConnection {
     let connection = ActivePeerConnection() /* implements MessageEndpointConnection */
     return connection
@@ -405,7 +406,7 @@ func createConnection(endpoint: MessageEndpoint) -&gt; MessageEndpointConnection
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2710-L2714">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2710-L2714">/* implementation of MessageEndpointConnection */
 func open(connection: ReplicatorConnection, completion: @escaping (Bool, MessagingError?) -&gt; Void) {
     replicatorConnection = connection
     completion(true, nil)
@@ -429,7 +430,7 @@ This message tells the listener to accept incoming data from that Peer.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2778-L2779">let connection = PassivePeerConnection() /* implements MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2778-L2779">let connection = PassivePeerConnection() /* implements MessageEndpointConnection */
 messageEndpointListener?.accept(connection: connection)</code></pre>
 </div>
 </div>
@@ -441,7 +442,7 @@ messageEndpointListener?.accept(connection: connection)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2790-L2794">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2790-L2794">/* implementation of MessageEndpointConnection */
 func open(connection: ReplicatorConnection, completion: @escaping (Bool, MessagingError?) -&gt; Void) {
     replicatorConnection = connection
     completion(true, nil)
@@ -497,7 +498,7 @@ In Peer-to-Peer syncing, the remote is another Couchbase Lite database.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2718-L2726">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2718-L2726">/* implementation of MessageEndpointConnection */
 func send(message: Message, completion: @escaping (Bool, MessagingError?) -&gt; Void) {
     let data = message.toData()
     print("&gt;&gt; send \(data.count) bytes of data ")
@@ -518,7 +519,7 @@ If it is a recoverable error, the replicator will begin a retry process, creatin
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2731-L2732">let message = Message.fromData(data)
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2731-L2732">let message = Message.fromData(data)
 replicatorConnection?.receive(message: message)</code></pre>
 </div>
 </div>
@@ -533,7 +534,7 @@ replicatorConnection?.receive(message: message)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2798-L2806">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2798-L2806">/* implementation of MessageEndpointConnection */
 func send(message: Message, completion: @escaping (Bool, MessagingError?) -&gt; Void) {
     var data = Data()
     data.append(message.toData())
@@ -554,7 +555,7 @@ If it is a recoverable error, the replicator will begin a retry process, creatin
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2811-L2812">let message = Message.fromData(data)
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2811-L2812">let message = Message.fromData(data)
 replicatorConnection?.receive(message: message)</code></pre>
 </div>
 </div>
@@ -584,7 +585,7 @@ We will cover each case below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2705">replicatorConnection?.close(error: nil)</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2705">replicatorConnection?.close(error: nil)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -592,7 +593,7 @@ We will cover each case below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2737-L2743">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2737-L2743">/* implementation of MessageEndpointConnection */
 func close(error: Error?, completion: @escaping () -&gt; Void) {
     /* disconnect with communications framework */
     /* ... */
@@ -609,7 +610,7 @@ func close(error: Error?, completion: @escaping () -&gt; Void) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2785">replicatorConnection?.close(error: nil)</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2785">replicatorConnection?.close(error: nil)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -617,7 +618,7 @@ func close(error: Error?, completion: @escaping () -&gt; Void) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2817-L2823">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2817-L2823">/* implementation of MessageEndpointConnection */
 func close(error: Error?, completion: @escaping () -&gt; Void) {
     /* disconnect with communications framework */
     /* ... */
@@ -642,7 +643,7 @@ func close(error: Error?, completion: @escaping () -&gt; Void) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2772">messageEndpointListener?.closeAll()</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2772">messageEndpointListener?.closeAll()</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -650,7 +651,7 @@ func close(error: Error?, completion: @escaping () -&gt; Void) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2817-L2823">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2817-L2823">/* implementation of MessageEndpointConnection */
 func close(error: Error?, completion: @escaping () -&gt; Void) {
     /* disconnect with communications framework */
     /* ... */
@@ -667,7 +668,7 @@ func close(error: Error?, completion: @escaping () -&gt; Void) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2705">replicatorConnection?.close(error: nil)</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2705">replicatorConnection?.close(error: nil)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -675,7 +676,7 @@ func close(error: Error?, completion: @escaping () -&gt; Void) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2737-L2743">/* implementation of MessageEndpointConnection */
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/swift/examples/code_snippets/SampleCodeTest.swift#L2737-L2743">/* implementation of MessageEndpointConnection */
 func close(error: Error?, completion: @escaping () -&gt; Void) {
     /* disconnect with communications framework */
     /* ... */
@@ -715,7 +716,7 @@ func close(error: Error?, completion: @escaping () -&gt; Void) {
 <p><a href="#swift:landing-p2psync.adoc" class="xref unresolved">Peer-to-Peer Sync</a></p>
 </li>
 <li>
-<p><a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-swift">API References</a></p>
+<p><a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-swift">API References</a></p>
 </li>
 </ul>
 </div>

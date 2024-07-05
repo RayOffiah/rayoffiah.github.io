@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="csharp">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / .Net / Documents">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:version_rank" content="2">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/csharp/document.html">3.2 Beta</option>
         <option value="3.1" data-url="document.html" selected>3.1</option>
         <option value="3.0" data-url="../../3.0/csharp/document.html">3.0</option>
         <option value="2.8" data-url="../../2.8/csharp/document.html">2.8</option>
@@ -400,7 +401,7 @@ All the CRUD examples in this document operate on a <code>collection</code> obje
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">// Get the database (and create it if it doesn’t exist).
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">// Get the database (and create it if it doesn’t exist).
 using var database = new Database("hoteldb");
 var collection = database.GetDefaultCollection();</code></pre>
 </div>
@@ -419,7 +420,7 @@ var collection = database.GetDefaultCollection();</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">// Create your new document
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">// Create your new document
 using var mutableDoc = new MutableDocument("hoteldoc");</code></pre>
 </div>
 </div>
@@ -437,7 +438,7 @@ using var mutableDoc = new MutableDocument("hoteldoc");</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">// Create and populate mutable dictionary
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">// Create and populate mutable dictionary
 var address = new MutableDictionaryObject();
 address.SetString("street", "1 Main st.");
 address.SetString("city", "San Francisco");
@@ -457,7 +458,7 @@ address.SetString("code", "90210");</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">// Create and populate mutable array
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">// Create and populate mutable array
 var phones = new MutableArrayObject();
 phones.AddString("650-000-0000");
 phones.AddString("650-000-0001");</code></pre>
@@ -475,7 +476,7 @@ Each data item is stored as a key-value pair.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">// Initialize and populate the document
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">// Initialize and populate the document
 
 // Add document type and hotel name as string
 mutableDoc.SetString("type", "hotel");
@@ -512,7 +513,7 @@ This will auto-generate the document id.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">collection.Save(mutableDoc);</code></pre>
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">collection.Save(mutableDoc);</code></pre>
 </div>
 </div>
 </div>
@@ -523,7 +524,7 @@ This will auto-generate the document id.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">database.Close();</code></pre>
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">database.Close();</code></pre>
 </div>
 </div>
 </div>
@@ -535,10 +536,10 @@ This will auto-generate the document id.</p>
 <div class="sect2">
 <h3 id="checking-a-documents-properties"><a class="anchor" href="#checking-a-documents-properties"></a>Checking a Document&#8217;s Properties</h3>
 <div class="paragraph">
-<p>To check whether a given property exists in the document, use the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.Document.html#Couchbase_Lite_Document_Contains_System_String_">Document.Contains(String key)</a> method.</p>
+<p>To check whether a given property exists in the document, use the <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.Document.html#Couchbase_Lite_Document_Contains_System_String_">Document.Contains(String key)</a> method.</p>
 </div>
 <div class="paragraph">
-<p>If you try to access a property which doesn&#8217;t exist in the document, the call will return the default value for that getter method (0 for <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.Document.html#Couchbase_Lite_Document_GetInt_System_String_">Document.GetInt()</a> 0.0 for <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.Document.html#Couchbase_Lite_Document_GetFloat_System_String_">Document.GetFloat()</a> etc.).</p>
+<p>If you try to access a property which doesn&#8217;t exist in the document, the call will return the default value for that getter method (0 for <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.Document.html#Couchbase_Lite_Document_GetInt_System_String_">Document.GetInt()</a> 0.0 for <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.Document.html#Couchbase_Lite_Document_GetFloat_System_String_">Document.GetFloat()</a> etc.).</p>
 </div>
 </div>
 <div class="sect2">
@@ -551,11 +552,11 @@ Dates are a common data type, but JSON doesn&#8217;t natively support them, so t
 <div class="title">Example 1. Date Getter</div>
 <div class="content">
 <div class="paragraph">
-<p>This example sets the date on the <code>createdAt</code> property and reads it back using the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.Document.html#Couchbase_Lite_Document_GetDate_System_String_">Document.GetDate()</a> accessor method.</p>
+<p>This example sets the date on the <code>createdAt</code> property and reads it back using the <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.Document.html#Couchbase_Lite_Document_GetDate_System_String_">Document.GetDate()</a> accessor method.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">mutableDoc.SetValue("createdAt", DateTimeOffset.UtcNow);
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">mutableDoc.SetValue("createdAt", DateTimeOffset.UtcNow);
 var date = mutableDoc.GetDate("createdAt");</code></pre>
 </div>
 </div>
@@ -568,10 +569,10 @@ var date = mutableDoc.GetDate("createdAt");</code></pre>
 <div class="title">API References</div>
 <ul>
 <li>
-<p><a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.DictionaryObject.html">DictionaryObject</a></p>
+<p><a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.DictionaryObject.html">DictionaryObject</a></p>
 </li>
 <li>
-<p><a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.MutableDictionaryObject.html">MutableDictionaryObject</a></p>
+<p><a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.MutableDictionaryObject.html">MutableDictionaryObject</a></p>
 </li>
 </ul>
 </div>
@@ -580,7 +581,7 @@ var date = mutableDoc.GetDate("createdAt");</code></pre>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">var doc = collection.GetDocument("doc1");
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">var doc = collection.GetDocument("doc1");
 
 // Getting a dictionary from the document's properties
 var dict = doc.GetDictionary("address");
@@ -604,7 +605,7 @@ var mutableDict = dict.ToMutable();</code></pre>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">// Create a new mutable dictionary and populate some keys/values
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">// Create a new mutable dictionary and populate some keys/values
 var mutableDict = new MutableDictionaryObject();
 mutableDict.SetString("street", "1 Main st.");
 mutableDict.SetString("city", "San Francisco");
@@ -624,10 +625,10 @@ collection.Save(mutableDoc);</code></pre>
 <div class="title">API References</div>
 <ul>
 <li>
-<p><a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.ArrayObject.html">ArrayObject</a></p>
+<p><a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.ArrayObject.html">ArrayObject</a></p>
 </li>
 <li>
-<p><a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.MutableArrayObject.html">MutableArrayObject</a></p>
+<p><a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.MutableArrayObject.html">MutableArrayObject</a></p>
 </li>
 </ul>
 </div>
@@ -636,7 +637,7 @@ collection.Save(mutableDoc);</code></pre>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">var document = collection.GetDocument("doc1");
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">var document = collection.GetDocument("doc1");
 
 // Getting a phones array from the document's properties
 var array = document.GetArray("phones");
@@ -663,7 +664,7 @@ var mutableArray = array.ToMutable();</code></pre>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">// Create a new mutable array and populate data into the array
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">// Create a new mutable array and populate data into the array
 var mutableArray = new MutableArrayObject();
 mutableArray.AddString("650-000-0000");
 mutableArray.AddString("650-000-0001");
@@ -694,13 +695,13 @@ collection.Save(mutableDoc);</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Use the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.MutableDocument.html#Couchbase_Lite_MutableDocument__ctor">MutableDocument()</a> initializer to create a new document where the document ID is randomly generated by the database.</p>
+<p>Use the <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.MutableDocument.html#Couchbase_Lite_MutableDocument__ctor">MutableDocument()</a> initializer to create a new document where the document ID is randomly generated by the database.</p>
 </li>
 <li>
-<p>Use the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.MutableDocument.html#Couchbase_Lite_MutableDocument_Item_System_String_">MutableDocument(String id)</a> initializer to create a new document with a specific ID.</p>
+<p>Use the <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.MutableDocument.html#Couchbase_Lite_MutableDocument_Item_System_String_">MutableDocument(String id)</a> initializer to create a new document with a specific ID.</p>
 </li>
 <li>
-<p>Use the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.Collection.html#Couchbase_Lite_Collection_GetDocument_System_String_">Collection.GetDocument()</a> method to get a document.
+<p>Use the <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.Collection.html#Couchbase_Lite_Collection_GetDocument_System_String_">Collection.GetDocument()</a> method to get a document.
 If the document doesn&#8217;t exist in the collection, the method will return <code>null</code>.
 You can use this behavior to check if a document with a given ID already exists in the collection.</p>
 </li>
@@ -714,7 +715,7 @@ You can use this behavior to check if a document with a given ID already exists 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">using var mutableDoc = new MutableDocument("xyz");
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">using var mutableDoc = new MutableDocument("xyz");
 mutableDoc.SetString("type", "task")
     .SetString("owner", "todo")
     .SetDate("createdAt", DateTimeOffset.UtcNow);
@@ -731,7 +732,7 @@ collection.Save(mutableDoc);</code></pre>
 <div class="sectionbody">
 <div class="paragraph">
 <p>By default, a document is immutable when it is read from the database.
-Use the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.Document.html#Couchbase_Lite_Document_ToMutable">Document.ToMutable()</a> to create an updatable instance of the document.</p>
+Use the <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.Document.html#Couchbase_Lite_Document_ToMutable">Document.ToMutable()</a> to create an updatable instance of the document.</p>
 </div>
 <div id="ex-update-doc" class="exampleblock">
 <div class="title">Example 7. Make a mutable document</div>
@@ -741,7 +742,7 @@ Use the <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/C
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">using var doc = collection.GetDocument("xyz");
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">using var doc = collection.GetDocument("xyz");
 using var mutableDoc = doc.ToMutable();
 mutableDoc.SetString("name", "apples");
 collection.Save(mutableDoc);</code></pre>
@@ -775,7 +776,7 @@ The following example persists a few documents in batch.</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">database.InBatch(() =&gt;
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">database.InBatch(() =&gt;
 {
     for (var i = 0; i &lt; 10; i++) {
         using var mutableDoc = new MutableDocument();
@@ -808,7 +809,7 @@ The following example registers for changes to the document with ID <code>user.j
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">collection.AddDocumentChangeListener("user.john", (sender, args) =&gt;
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">collection.AddDocumentChangeListener("user.john", (sender, args) =&gt;
 {
     using var doc = collection.GetDocument(args.DocumentID);
     Console.WriteLine($"Status :: {doc.GetString("verified_account")}");
@@ -835,7 +836,7 @@ The purge is not replicated to Sync Gateway.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">// Purge the document one day from now
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">// Purge the document one day from now
 var ttl = DateTimeOffset.UtcNow.AddDays(1);
 collection.SetDocumentExpiration("doc123", ttl);
 
@@ -958,7 +959,7 @@ This is done using the <code>init(json)</code> constructor&#8201;&#8212;&#8201;s
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">// JSON String -- an Array (3 elements. including embedded arrays)
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">// JSON String -- an Array (3 elements. including embedded arrays)
 var jsonString = "[{'id':'1000','type':'hotel','name':'Hotel Ted','city':'Paris','country':'France','description':'Undefined description for Hotel Ted'},{'id':'1001','type':'hotel','name':'Hotel Fred','city':'London','country':'England','description':'Undefined description for Hotel Fred'},                        {'id':'1002','type':'hotel','name':'Hotel Ned','city':'Balmain','country':'Australia','description':'Undefined description for Hotel Ned','features':['Cable TV','Toaster','Microwave']}]".Replace("'", "\"");
 
 // Get JSON Array from JSON String
@@ -1008,7 +1009,7 @@ var featuresJSON = extendedDoc.GetArray("features").ToJSON();</code></pre>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">// Initialize base document for blob from a JSON string
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">// Initialize base document for blob from a JSON string
 var docId = "1002";
 var jsonString = "{'ref':'hotel_1002','type':'hotel','name':'Hotel Ned'," +
     "'city':'Balmain','country':'Australia'," +
@@ -1080,7 +1081,7 @@ This is done using the <code>init(json)</code> constructor-- see: <a href="#ex-d
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">// Get dictionary from JSONstring
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">// Get dictionary from JSONstring
 var jsonString = "{'id':'1002','type':'hotel','name':'Hotel Ned','city':'Balmain','country':'Australia','description':'Undefined description for Hotel Ned','features':['Cable TV','Toaster','Microwave']}".Replace("'", "\"");
 var mutableDict = new MutableDictionaryObject(json: jsonString);
 
@@ -1121,7 +1122,7 @@ This is done using the <code>init(json)</code> or <code>init(id: json:)</code> c
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">// Get a document
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">// Get a document
 var doc = collection.GetDocument("hotel_10025");
 
 // Get document data as JSON String
@@ -1170,11 +1171,11 @@ Console.Write(retrievedDoc);</code></pre>
 <div class="title">Example 16. Using JSON Results</div>
 <div class="content">
 <div class="paragraph">
-<p>Use <a href="http://docs.couchbase.com/mobile/3.1.1/couchbase-lite-net/api/Couchbase.Lite.Query.Result.html#Couchbase_Lite_Query_Result_ToJson">Result.ToJson()</a> to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See <<ex-json>> for a working example.</p>
+<p>Use <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-net/api/Couchbase.Lite.Query.Result.html#Couchbase_Lite_Query_Result_ToJson">Result.ToJson()</a> to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See <<ex-json>> for a working example.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/c46306ac49587451adfd6b763036c5d25df51a72/modules/csharp/examples/code_snippets/Program.cs">foreach (var result in query.Execute()) {
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">foreach (var result in query.Execute()) {
 
     // get the result into a JSON String
     var docJSONString = result.ToJSON();

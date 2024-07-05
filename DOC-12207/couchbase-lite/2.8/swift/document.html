@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="swift">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Swift / Document">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="3">
+<meta name="docsearch:version_rank" content="4">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/swift/document.html">3.2 Beta</option>
         <option value="3.1" data-url="../../current/swift/document.html">3.1</option>
         <option value="3.0" data-url="../../3.0/swift/document.html">3.0</option>
         <option value="2.8" data-url="document.html" selected>2.8</option>
@@ -301,7 +302,7 @@ The <a href="http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-swift/Classes
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L133-L136">guard let document = database.document(withID: "xyz") else { return }
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L133-L136">guard let document = database.document(withID: "xyz") else { return }
 let mutableDocument = document.toMutable()
 mutableDocument.setString("apples", forKey: "name")
 try database.saveDocument(mutableDocument)</code></pre>
@@ -330,7 +331,7 @@ The following example sets the date on the <code>createdAt</code> property and r
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L144-L145">newTask.setValue(Date(), forKey: "createdAt")
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L144-L145">newTask.setValue(Date(), forKey: "createdAt")
 let date = newTask.date(forKey: "createdAt")</code></pre>
 </div>
 </div>
@@ -355,7 +356,7 @@ That&#8217;s often useful to pass the document contents as a plain object to ano
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L149">newTask.toDictionary() // returns a Dictionary&lt;String, Any&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L149">newTask.toDictionary() // returns a Dictionary&lt;String, Any&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -372,7 +373,7 @@ The following example persists a few documents in batch.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L157-L170">do {
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L157-L170">do {
     try database.inBatch {
         for i in 0...10 {
             let doc = MutableDocument()
@@ -403,7 +404,7 @@ The following example registers for changes to the document with ID <code>user.j
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L178-L182">database.addDocumentChangeListener(withID: "user.john") { (change) in
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L178-L182">database.addDocumentChangeListener(withID: "user.john") { (change) in
     if let document = self.database.document(withID: change.documentID) {
         print("Status :: \(document.string(forKey: "verified_account")!)")
     }
@@ -425,7 +426,7 @@ The purge will not be replicated to Sync Gateway.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/swift/examples/code_snippets/SampleCodeTest.swift#L190-L206">// Purge the document one day from now
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/swift/examples/code_snippets/SampleCodeTest.swift#L190-L206">// Purge the document one day from now
 let ttl = Calendar.current.date(byAdding: .day, value: 1, to: Date())
 try database.setDocumentExpiration(withID: "doc123", expiration: ttl)
 

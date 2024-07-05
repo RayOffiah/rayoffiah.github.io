@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="java">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Java / Start Here! / Install">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:version_rank" content="2">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -131,6 +131,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/java/gs-install.html">3.2 Beta</option>
         <option value="3.1" data-url="gs-install.html" selected>3.1</option>
         <option value="3.0" data-url="../../3.0/java/gs-install.html">3.0</option>
         <option value="2.8" data-url="../../2.8/java/gs-install.html">2.8</option>
@@ -239,14 +240,14 @@ Related Content&#8201;&#8212;&#8201;<a href="gs-install.html" class="xref page">
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><em>Couchbase&#160;Lite</em> on Java 3.1.1_ enables development and deployment of Couchbase&#160;Lite applications to a JVM environment.
+<p><em>Couchbase&#160;Lite</em> on Java 3.1.7_ enables development and deployment of Couchbase&#160;Lite applications to a JVM environment.
 You can deploy Standalone (Java Desktop/Console) apps or Web Apps (using, for example, Tomcat; including embedded Tomcat deployments).</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">Quick Steps</div>
 <div class="paragraph">
-<p>For experienced developers, this is all you need to add <em>Couchbase&#160;Lite for Java 3.1.1</em> to your application projects.</p>
+<p>For experienced developers, this is all you need to add <em>Couchbase&#160;Lite for Java 3.1.7</em> to your application projects.</p>
 </div>
 <div id="tabs-1" class="openblock tabs is-sync is-loading">
 <div class="content">
@@ -272,7 +273,7 @@ You can deploy Standalone (Java Desktop/Console) apps or Web Apps (using, for ex
 </li>
 <li>
 <p>The Couchbase&#160;Lite Enterprise Edition dependency:<br>
-<code>couchbase-lite-java-ee:3.1.1</code></p>
+<code>couchbase-lite-java-ee:3.1.7</code></p>
 </li>
 </ul>
 </div>
@@ -282,7 +283,7 @@ You can deploy Standalone (Java Desktop/Console) apps or Web Apps (using, for ex
 <ol class="arabic">
 <li>
 <p>Include the Couchbase&#160;Lite for Java dependency in your Gradle <code>build.gradle</code> or Maven <code>pom.xml</code> file, as appropriate:<br>
-<code>couchbase-lite-java:3.1.1</code></p>
+<code>couchbase-lite-java:3.1.7</code></p>
 </li>
 <li>
 <p>For Gradle:<br>
@@ -293,6 +294,18 @@ Maven automatically checks its own repo for dependencies.</p>
 </div>
 </div>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+for Linux, make sure you have followed the <a href="gs-prereqs.html#additional-steps-for-linux" class="xref page">additional steps required</a>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -341,7 +354,7 @@ Please install the Visual C&#43;&#43; Redistribution package from this link:
 <li>
 <p>Deploying to Linux?<br>
 You need to deploy the Couchbase&#160;Lite <code>support</code> library, which is available <em>only</em> on the zip download distributable.
-See the <em>Additional Steps for Linux</em> section in <a href="gs-prereqs.html" class="xref page">Prerequisites</a>.</p>
+See the <em>Additional Steps for Linux</em> section in <a href="gs-prereqs.html#additional-steps-for-linux" class="xref page">gs-prereqs.adoc#additional-steps-for-linux</a>.</p>
 </li>
 </ul>
 </div>
@@ -402,40 +415,13 @@ You&#8217;re all set to start building your own <em>Couchbase&#160;Lite</em> on 
 <div class="content">
 <div class="ulist tablist">
 <ul>
-<li id="tabs-2-community-edition" class="tab">
-<p>Community edition</p>
-</li>
 <li id="tabs-2-enterprise-edition" class="tab">
 <p>Enterprise Edition</p>
 </li>
+<li id="tabs-2-community-edition" class="tab">
+<p>Community edition</p>
+</li>
 </ul>
-</div>
-<div id="tabs-2-community-edition--panel" class="tabpanel" aria-labelledby="tabs-2-community-edition">
-<div class="listingblock">
-<div class="title">Compile options</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">// Required only if your project has some Kotlin source code
-kotlinOptions { jvmTarget = '1.8' }
-
-// Set minimum JVM level to ensure availability of, for example, lambda expressions
-compileOptions {
-    targetCompatibility 1.8
-    sourceCompatibility 1.8
-
-//   ... other section content as required by user
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Dependencies</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
-    implementation "com.couchbase.lite:couchbase-lite-java:3.1.1"
-
-//   ... other section content as required by user
-}</code></pre>
-</div>
-</div>
 </div>
 <div id="tabs-2-enterprise-edition--panel" class="tabpanel" aria-labelledby="tabs-2-enterprise-edition">
 <div class="listingblock">
@@ -457,7 +443,7 @@ compileOptions {
 <div class="title">Dependencies</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
-    implementation "com.couchbase.lite:couchbase-lite-java:3.1.1"
+    implementation "com.couchbase.lite:couchbase-lite-java:3.1.7"
 
 //   ... other section content as required by user
 }</code></pre>
@@ -471,6 +457,33 @@ compileOptions {
 
 //   ... other section content as required by user
     }</code></pre>
+</div>
+</div>
+</div>
+<div id="tabs-2-community-edition--panel" class="tabpanel" aria-labelledby="tabs-2-community-edition">
+<div class="listingblock">
+<div class="title">Compile options</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">// Required only if your project has some Kotlin source code
+kotlinOptions { jvmTarget = '1.8' }
+
+// Set minimum JVM level to ensure availability of, for example, lambda expressions
+compileOptions {
+    targetCompatibility 1.8
+    sourceCompatibility 1.8
+
+//   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Dependencies</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
+    implementation "com.couchbase.lite:couchbase-lite-java:3.1.7"
+
+//   ... other section content as required by user
+}</code></pre>
 </div>
 </div>
 </div>
@@ -501,39 +514,13 @@ compileOptions {
 <div class="content">
 <div class="ulist tablist">
 <ul>
-<li id="tabs-3-community-edition" class="tab">
-<p>Community edition</p>
-</li>
 <li id="tabs-3-enterprise-edition" class="tab">
 <p>Enterprise Edition</p>
 </li>
+<li id="tabs-3-community-edition" class="tab">
+<p>Community edition</p>
+</li>
 </ul>
-</div>
-<div id="tabs-3-community-edition--panel" class="tabpanel" aria-labelledby="tabs-3-community-edition">
-<div class="listingblock">
-<div class="title">Compile properties</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;properties&gt;
-    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-    &lt;maven.compiler.source&gt;11&lt;/maven.compiler.source&gt;
-    &lt;maven.compiler.target&gt;11&lt;/maven.compiler.target&gt;
-&lt;/properties&gt;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Dependencies</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependencies&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;com.couchbase.lite&lt;/groupId&gt;
-      &lt;artifactId&gt;couchbase-lite-java&lt;/artifactId&gt;
-      &lt;version&gt;3.1.1&lt;/version&gt;
-  &lt;/dependency&gt;
-
-  //   ... any other section content as required by user
-&lt;/dependencies&gt;</code></pre>
-</div>
-</div>
 </div>
 <div id="tabs-3-enterprise-edition--panel" class="tabpanel" aria-labelledby="tabs-3-enterprise-edition">
 <div class="listingblock">
@@ -554,7 +541,7 @@ compileOptions {
     &lt;dependency&gt;
       &lt;groupId&gt;com.couchbase.lite&lt;/groupId&gt;
       &lt;artifactId&gt;couchbase-lite-java-ee&lt;/artifactId&gt;
-      &lt;version&gt;3.1.1&lt;/version&gt;
+      &lt;version&gt;3.1.7&lt;/version&gt;
     &lt;/dependency&gt;
 
     &lt;!-- ... any other section content as required by user-home  --&gt;
@@ -572,6 +559,32 @@ compileOptions {
   //   ... any other section content as required by user
 
 &lt;/repositories&gt;</code></pre>
+</div>
+</div>
+</div>
+<div id="tabs-3-community-edition--panel" class="tabpanel" aria-labelledby="tabs-3-community-edition">
+<div class="listingblock">
+<div class="title">Compile properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;properties&gt;
+    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+    &lt;maven.compiler.source&gt;11&lt;/maven.compiler.source&gt;
+    &lt;maven.compiler.target&gt;11&lt;/maven.compiler.target&gt;
+&lt;/properties&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Dependencies</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependencies&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;com.couchbase.lite&lt;/groupId&gt;
+      &lt;artifactId&gt;couchbase-lite-java&lt;/artifactId&gt;
+      &lt;version&gt;3.1.7&lt;/version&gt;
+  &lt;/dependency&gt;
+
+  //   ... any other section content as required by user
+&lt;/dependencies&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -734,7 +747,7 @@ You&#8217;re all set to start building your own <em>Couchbase&#160;Lite</em> on 
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
-    implementation "com.couchbase.lite:couchbase-lite-java:3.1.1"
+    implementation "com.couchbase.lite:couchbase-lite-java:3.1.7"
 
 //   ... other section content as required by user
 }</code></pre>
@@ -751,7 +764,7 @@ You&#8217;re all set to start building your own <em>Couchbase&#160;Lite</em> on 
     }
 
 dependencies {
-    implementation "com.couchbase.lite:couchbase-lite-java-ee:3.1.1"
+    implementation "com.couchbase.lite:couchbase-lite-java-ee:3.1.7"
 
 //   ... other section content as required by user
     }</code></pre>

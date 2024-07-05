@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="csharp">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / C#.NET / Queries / Querybuilder">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="3">
+<meta name="docsearch:version_rank" content="4">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -131,6 +131,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/csharp/querybuilder.html">3.2 Beta</option>
         <option value="3.1" data-url="../../current/csharp/querybuilder.html">3.1</option>
         <option value="3.0" data-url="../../3.0/csharp/querybuilder.html">3.0</option>
         <option value="2.8" data-url="querybuilder.html" selected>2.8</option>
@@ -368,7 +369,7 @@ See the <a href="../../current/csharp/indexing.html" class="xref page">Indexing<
 <div class="listingblock">
 <div class="title">Code to Create Index</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L564-L568">// For value types, this is optional but provides performance enhancements
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L564-L568">// For value types, this is optional but provides performance enhancements
 var index = IndexBuilder.ValueIndex(
     ValueIndexItem.Expression(Expression.Property("type")),
     ValueIndexItem.Expression(Expression.Property("name"))); <i class="conum" data-value="1"></i><b>(1)</b>
@@ -428,7 +429,7 @@ You can opt to retrieve entire documents, or just the specific properties you ne
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L596-L599">using (var query = QueryBuilder.Select(SelectResult.All())
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L596-L599">using (var query = QueryBuilder.Select(SelectResult.All())
     .From(DataSource.Database(db))) {
     // All user properties will be available here
 }</code></pre>
@@ -592,7 +593,7 @@ In the example below, we use the <code>equalTo</code> operator to query document
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L634-L642">using (var query = QueryBuilder.Select(SelectResult.All())
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L634-L642">using (var query = QueryBuilder.Select(SelectResult.All())
     .From(DataSource.Database(db))
     .Where(Expression.Property("type").EqualTo(Expression.String("hotel")))
     .Limit(Expression.Int(10))) {
@@ -625,7 +626,7 @@ In the example below, we use the <code>equalTo</code> operator to query document
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L652-L665">using (var query = QueryBuilder.Select(
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L652-L665">using (var query = QueryBuilder.Select(
         SelectResult.Expression(Meta.ID),
         SelectResult.Property("name"),
         SelectResult.Property("public_likes"))
@@ -650,7 +651,7 @@ The following example looks for documents whose <code>first</code>, <code>last</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L675-L687">var values = new IExpression[]
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L675-L687">var values = new IExpression[]
     { Expression.Property("first"), Expression.Property("last"), Expression.Property("username") };
 
 using (var query = QueryBuilder.Select(
@@ -699,7 +700,7 @@ To perform case insensitive matching, use <code>Function.lower</code> or <code>F
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L697-L707">using (var query = QueryBuilder.Select(
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L697-L707">using (var query = QueryBuilder.Select(
         SelectResult.Expression(Meta.ID),
         SelectResult.Property("name"))
     .From(DataSource.Database(db))
@@ -731,7 +732,7 @@ Notice that the matches may span word boundaries.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L717-L727">using (var query = QueryBuilder.Select(
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L717-L727">using (var query = QueryBuilder.Select(
         SelectResult.Expression(Meta.ID),
         SelectResult.Property("name"))
     .From(DataSource.Database(db))
@@ -756,7 +757,7 @@ The following query will return "landmark" <code>type</code> documents with the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L737-L747">using (var query = QueryBuilder.Select(
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L737-L747">using (var query = QueryBuilder.Select(
         SelectResult.Expression(Meta.ID),
         SelectResult.Property("name"))
     .From(DataSource.Database(db))
@@ -802,7 +803,7 @@ For more on the regex spec used by Couchbase Lite see <a href="http://www.cplusp
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L757-L767">using (var query = QueryBuilder.Select(
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L757-L767">using (var query = QueryBuilder.Select(
         SelectResult.Expression(Meta.ID),
         SelectResult.Property("name"))
     .From(DataSource.Database(db))
@@ -868,7 +869,7 @@ var query = QueryBuilder
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L777-L792">using (var query = QueryBuilder.Select(
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L777-L792">using (var query = QueryBuilder.Select(
         SelectResult.Expression(Expression.Property("name").From("airline")),
         SelectResult.Expression(Expression.Property("callsign").From("airline")),
         SelectResult.Expression(Expression.Property("destinationairport").From("route")),
@@ -918,7 +919,7 @@ The output (a count, $1) is grouped by country, within timezone.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L802-L814">using (var query = QueryBuilder.Select(
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L802-L814">using (var query = QueryBuilder.Select(
         SelectResult.Expression(Function.Count(Expression.All())),
         SelectResult.Property("country"),
         SelectResult.Property("tz"))
@@ -963,7 +964,7 @@ The example below returns documents of type equal to "hotel" sorted in ascending
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L824-L834">using (var query = QueryBuilder.Select(
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L824-L834">using (var query = QueryBuilder.Select(
         SelectResult.Expression(Meta.ID),
         SelectResult.Property("title"))
     .From(DataSource.Database(db))
@@ -1319,7 +1320,7 @@ You can add this dictionary to an array of returned matches, for processing else
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs">        var this_Db = new Database("hotels") ;
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs">        var this_Db = new Database("hotels") ;
 
         var query = QueryBuilder
                 .Select(SelectResult.Expression(Meta.ID).As("this_ID"))
@@ -1470,7 +1471,7 @@ Use the <code>limit</code> and <code>offset</code> feature, to return a defined 
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs">      var this_Db = new Database("hotels") ;
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs">      var this_Db = new Database("hotels") ;
 
       var thisLimit = 20;
       var thisOffset = 0;

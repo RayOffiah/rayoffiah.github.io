@@ -237,7 +237,7 @@ The Backup Service REST API allows information to be retrieved on a cluster&#821
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>GET /cluster/self</pre>
+<pre>GET /api/v1/cluster/self</pre>
 </div>
 </div>
 </div>
@@ -255,13 +255,20 @@ The Backup Service REST API allows information to be retrieved on a cluster&#821
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>curl -X GET http://&lt;backup-node-ip-address-or-domain-name&gt;:8097/cluster/self
-  -u &lt;username&gt;:&lt;password&gt;</pre>
+<pre>curl -X GET http://$BACKUP_SERVICE_NODE:$BACKUP_SERVICE_PORT/api/v1/cluster/self
+  -u $USERNAME:$PASSWORD</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Only the host cluster (<code>self</code>) can be queried.
-The <code>username</code> and <code>password</code> must be those of a user with the <code>Full Admin</code> role.</p>
+<p>Only the host cluster (<code>self</code>) can be queried.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="required-permissions"><a class="anchor" href="#required-permissions"></a>Required Permissions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Full Admin, Backup Admin, or Read-Only Admin role.</p>
 </div>
 </div>
 </div>
@@ -310,8 +317,8 @@ An internal error that prevents return of the repository-information returns <co
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>curl -v -X GET http://127.0.0.1:8091/_p/backup/api/v1/cluster/self \
--u Administrator:password</pre>
+<pre class="highlightjs highlight"><code class="language-curl hljs" data-lang="curl">curl -v -X GET http://127.0.0.1:8097/api/v1/cluster/self \
+-u Administrator:password</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -319,7 +326,7 @@ An internal error that prevents return of the repository-information returns <co
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>{
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "name": "self",
   "imported": {
     "mergedRepo": {
@@ -381,7 +388,11 @@ An internal error that prevents return of the repository-information returns <co
         "name": "travel-sample",
               .
               .
-              .</pre>
+              .
+      }
+    }
+  }
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -392,10 +403,18 @@ An internal error that prevents return of the repository-information returns <co
 <div class="sect1">
 <h2 id="see-also"><a class="anchor" href="#see-also"></a>See Also</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>An overview of the Backup Service is provided in <a href="../learn/services-and-indexes/services/backup-service.html" class="xref page">Backup Service</a>.
-A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in <a href="../manage/manage-backup-and-restore/manage-backup-and-restore.html" class="xref page">Manage Backup and Restore</a>.
-Information on using the Backup Service REST API to create a repository is provided in <a href="backup-create-repository.html" class="xref page">Create a Repository</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For an overview of the Backup Service, see <a href="../learn/services-and-indexes/services/backup-service.html" class="xref page">Backup Service</a>.</p>
+</li>
+<li>
+<p>For a step-by-step guide to using Couchbase Server Web Console to configure and use the Backup Service, see <a href="../manage/manage-backup-and-restore/manage-backup-and-restore.html" class="xref page">Manage Backup and Restore</a>.</p>
+</li>
+<li>
+<p>For information about using the Backup Service REST API to create a repository, see  <a href="backup-create-repository.html" class="xref page">Create a Repository</a>.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

@@ -16,7 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="canonical" href="https://docs.couchbase.com/server/current/rest-api/backup-manage-config.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="The rotation period and size for Backup Service configuration data can be set and returned by means of the REST API.">
+<meta name="description" content="This method lets you get and set the rotation size for Backup Service history.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -227,7 +227,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-The rotation period and size for Backup Service configuration data can be set and returned by means of the REST API.
+This method lets you get and set the rotation size for Backup Service history.
 </blockquote>
 </div>
 </div>
@@ -235,23 +235,44 @@ The rotation period and size for Backup Service configuration data can be set an
 <div class="sect1">
 <h2 id="http-methods-and-uris"><a class="anchor" href="#http-methods-and-uris"></a>HTTP Methods and URIs</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Get the current rotation configuration:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre>POST /config
-
-PUT /config
-
-GET /config</pre>
+<pre>GET /api/v1/config</pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="description"><a class="anchor" href="#description"></a>Description</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Used with the <code>POST</code> http method, the <code>/config</code> URI establishes, with <code>PUT</code> modifies, and with <code>GET</code> retrieves the rotation limits for Backup Service configuration data.</p>
+<p>Apply a new configuration:</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre>POST /api/v1/config</pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. POST Parameter</caption>
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 42.8571%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>history_rotation_size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum size of the backup history can grow to before the Backup Service starts removing older history.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer value between 5 and 200</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
@@ -259,60 +280,60 @@ GET /config</pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>curl -X POST http://&lt;backup-node-ip-address-or-domain-name&gt;:8097/config
-  -u -u &lt;username&gt;:&lt;password&gt;
-  -d &lt;rotation-settings&gt;
+<pre>curl -X GET http://$BACKUP_SERVICE_NODE:$BACKUP_SERVICE_PORT/api/v1/config
+  -u $USERNAME:$PASSWORD
 
-curl -X PUT http://&lt;backup-node-ip-address-or-domain-name&gt;:8097/config
-  -u -u &lt;username&gt;:&lt;password&gt;
-  -d &lt;rotation-settings&gt;
-
-curl -X GET http://&lt;backup-node-ip-address-or-domain-name&gt;:8097/config
-  -u -u &lt;username&gt;:&lt;password&gt;
-  -d &lt;rotation-settings&gt;</pre>
+curl -X POST http://$BACKUP_SERVICE_NODE:$BACKUP_SERVICE_PORT/api/v1/config
+  -u $USERNAME:$PASSWORD
+  -d '{"history_rotation_size":$HISTORY_ROTATION_SIZE}'</pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="required-permissions"><a class="anchor" href="#required-permissions"></a>Required Permissions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To call this method via GET: Full Amin, Backup Admin, or Read-Only Admin.</p>
 </div>
 <div class="paragraph">
-<p>The <code>username</code> and <code>password</code> must be those of a user with the <code>Full Admin</code> role.
-The <code>rotation-settings</code> must be specified as a JSON payload.
-The settings are:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>historyRotationPeriod</code>.
-A number of days.
-The default value is 30, the minimum 1, the maximum 365.
-When this number of days has elapsed, the configuration file is rotated.</p>
-</li>
-<li>
-<p><code>historyRotationSize</code>.
-A number of megabytes.
-The default value is 50, the minimum 5, the maximum 200.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>When this size is reached, the configuration file is rotated.</p>
-</div>
-<div class="paragraph">
-<p>Note that the configuration file grows in size due to the progressive accumulation of task-history for the cluster.
-On rotation, a sequentially numbered copy of the current configuration file is made.
-The current configuration file is then deleted, and a new file is created when new data is written.</p>
+<p>To call this method via POST: Full Admin or Backup Admin.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="responses"><a class="anchor" href="#responses"></a>Responses</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>For all three http methods, success returns <code>200 OK</code>.
-If an improper value is expressed, <code>400 Bad Request</code> is returned, with a message such as the following: <code>{"status":400,"msg":"rotation size has to be between 5 and 200"}</code>.</p>
-</div>
-<div class="paragraph">
-<p>Failure to authenticate returns <code>401 Unauthorized</code>.
-An internal error that prevents return or modification of the limits returns <code>500 Internal Server Error</code>.</p>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>200 OK</code> and when calling via GET, a JSON object containing the current settings.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Successful call.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>400 Bad Request</code> plus the JSON message <code>{ "status": 400, "msg": "Rotation size has to be between 5 and 200"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returned when trying to set the rotation size to an invalid value.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>401 Unauthorized</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Authorization failure due to incorrect username or password.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>403 Forbidden</code>, plus a JSON message explaining the minimum permissions.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The provided username has insufficient privileges to call this method.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
@@ -323,7 +344,7 @@ An internal error that prevents return or modification of the limits returns <co
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>curl -v -X GET http://127.0.0.1:8091/_p/backup/api/v1/config \
+<pre>curl -v -X GET http://127.0.0.1:8097/api/v1/config \
 -u Administrator:password</pre>
 </div>
 </div>
@@ -332,16 +353,16 @@ An internal error that prevents return or modification of the limits returns <co
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>{"history_rotation_period":30,"history_rotation_size":50}</pre>
+<pre>{"history_rotation_size":50}</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The following call modifies both rotation period and size:</p>
+<p>The following call modifies the rotation size:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>curl -v -X POST http://127.0.0.1:8091/_p/backup/api/v1/config -u Administrator:password \
---data '{"history_rotation_period":32,"history_rotation_size":51}'</pre>
+<pre>curl -v -X POST http://127.0.0.1:8097/api/v1/config -u Administrator:password \
+-d '{"history_rotation_size":51}'</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -352,9 +373,15 @@ An internal error that prevents return or modification of the limits returns <co
 <div class="sect1">
 <h2 id="see-also"><a class="anchor" href="#see-also"></a>See Also</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>An overview of the Backup Service is provided in <a href="../learn/services-and-indexes/services/backup-service.html" class="xref page">Backup Service</a>.
-A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in <a href="../manage/manage-backup-and-restore/manage-backup-and-restore.html" class="xref page">Manage Backup and Restore</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For an overview of the Backup Service, see <a href="../learn/services-and-indexes/services/backup-service.html" class="xref page">Backup Service</a>.</p>
+</li>
+<li>
+<p>For a step-by-step guide to using Couchbase Server Web Console to configure and use the Backup Service, see <a href="../manage/manage-backup-and-restore/manage-backup-and-restore.html" class="xref page">Manage Backup and Restore</a>.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

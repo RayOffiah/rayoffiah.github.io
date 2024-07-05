@@ -234,7 +234,183 @@ Couchbase is the modern database for enterprise applications. Couchbase Server 7
 </div>
 </div>
 <div class="sect1">
-<h2 id="new-features"><a class="anchor" href="#new-features"></a>New Features and Enhancements</h2>
+<h2 id="new-features-762"><a class="anchor" href="#new-features-762"></a>New Features and Enhancements in 7.6.2</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following new features are provided in this release.</p>
+</div>
+<div class="sect2">
+<h3 id="backup_762"><a class="anchor" href="#backup_762"></a>Backup</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Users with the <a href="../learn/security/roles.html#read-only-admin" class="xref page">Read-Only Admin</a> role can now read backup information from the following Backup Service REST API endpoints:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../rest-api/backup-get-cluster-info.html" class="xref page"><code>/api/v1/cluster/self</code></a></p>
+</li>
+<li>
+<p><a href="../rest-api/backup-manage-config.html" class="xref page"><code>/api/v1/config</code></a></p>
+</li>
+<li>
+<p><a href="../rest-api/backup-get-repository-info.html" class="xref page"><code>/api/v1/cluster/self/repository/{repo-state}</code></a></p>
+</li>
+<li>
+<p><a href="../rest-api/backup-get-task-info.html" class="xref page"><code>/api/v1/cluster/self/repository/{repo-state}/{task-name}/taskHistory</code></a></p>
+</li>
+<li>
+<p><a href="../rest-api/backup-get-plan-info.html" class="xref page"><code>/api/v1/plan/</code></a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>You can now set the number of threads each Backup Service node uses when backing up data.
+For example, if you find backups cause performance issues on your cluster, you can reduce the number of threads the Backup Service uses.
+Reducing the number of threads also reduces the number of concurrent client connections the Backup Service makes to retrieve data.
+See <a href="../learn/services-and-indexes/services/backup-service.html#threads" class="xref page">Thread Usage</a> for more information.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cluster-manager"><a class="anchor" href="#cluster-manager"></a>Cluster Manager</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Version 7.6.2 adds Cluster Manager metrics to help you monitor failovers and rebalances:</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>cm_auto_failover_count</code>: the number of auto-failovers that occurred.</p>
+</li>
+<li>
+<p><code>cm_auto_failover_enabled</code>: whether auto-failover is enabled.</p>
+</li>
+<li>
+<p><code>cm_auto_failover_max_count</code>: the maximum number of auto-failovers allowed before Cluster Manager disables auto-failover.</p>
+</li>
+<li>
+<p><code>cm_failover_total</code>: The total number of non-graceful failovers that have occurred.</p>
+</li>
+<li>
+<p><code>cm_graceful_failover_total</code>: The total number of graceful failovers that have occurred.</p>
+</li>
+<li>
+<p><code>cm_is_balanced</code>: Whether the Cluster Manager is balanced. Only reported by orchestrator nodes and only reported every 30 seconds.</p>
+</li>
+<li>
+<p><code>cm_rebalance_in_progress</code>: Whether there is a rebalance occurring. Only reported by the orchestrator node.</p>
+</li>
+<li>
+<p><code>cm_rebalance_progress</code>: An estimate of the progress of the current rebalance. Only reported by the orchestrator.</p>
+</li>
+<li>
+<p><code>cm_rebalance_total</code>: The total number of rebalances that have occurred.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>For more information, see <a href="../metrics-reference/ns-server-metrics.html" class="xref page">Cluster Manager Metrics</a>.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="query_762"><a class="anchor" href="#query_762"></a>Query Service</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>In Couchbase Server version 7.6.2 and later, language constructs that may allow for code injection, speculative execution attacks, or side channel attacks have been removed from JavaScript user-defined functions in the Query service.
+For details, see <a href="../javascript-udfs/javascript-functions-with-couchbase.html#restricted-features" class="xref page">JavaScript Functions for Query</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="index_762"><a class="anchor" href="#index_762"></a>Index Service</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>From version 7.6.2, index creation operates in deferred build mode by default.
+In deferred build mode, creating an index does not trigger the index build phase: you must trigger the index build before you can use the index.
+For details, see <a href="../n1ql/n1ql-language-reference/createindex.html" class="xref page">CREATE INDEX</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="search_762"><a class="anchor" href="#search_762"></a>Search Service</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Version 7.6.2 adds multiple improvements to the Search Service, including <a href="../vector-search/vector-search.html" class="xref page">Vector Search</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../vector-search/vector-search.html" class="xref page">Vector Search</a> now automatically adds a <a href="../search/search-request-params.html#match_none" class="xref page">match_none</a> query object to your Vector Search queries.
+This means you can run a pure Vector Search without adding a <code>query</code> object to your Search request.</p>
+</li>
+<li>
+<p>The total dimension support for <a href="../vector-search/vector-search.html" class="xref page">Vector Search</a> has been increased from 2048 to 4096 array elements.</p>
+</li>
+<li>
+<p><a href="../vector-search/vector-search.html" class="xref page">Vector Search</a> now supports vectors encoded as base64 strings.</p>
+<div class="paragraph">
+<p>Add a base64-encoded vector to your Search index with the new <code>vector_base64</code> field data type, then use the <code>vector_base64</code> object in your Search request.</p>
+</div>
+</li>
+<li>
+<p>Use the Couchbase Server Web Console to edit and generate a full curl command for a Search request, with a new built-in code editor.
+Use the curl command to run a Search query with the Search REST API.</p>
+</li>
+<li>
+<p>Use the Search Service to index and search for metadata stored in Extended Attributes (XATTRs) fields inside your documents.</p>
+<div class="paragraph">
+<p>Use the new <a href="#search:create-xattrs-mapping.adoc" class="xref unresolved">XATTRs mapping type</a> in a Search index, then add the prefix <code>_$xattrs.</code> to a <a href="../search/search-request-params.html#field" class="xref page">field object</a> in your Search request.
+You can also use the <a href="../n1ql/n1ql-language-reference/searchfun.html" class="xref page">Search Functions</a> from SQL++ to search for XATTRs data.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You must use the <a href="../n1ql/n1ql-language-reference/metafun.html" class="xref page">META function</a> to select the XATTRs field you want to search for an uncovered query, or any SQL++ query without a suitable Search index.
+Use the <a href="../n1ql/n1ql-language-reference/searchfun.html#search_meta" class="xref page">SEARCH_META function</a> to select XATTRs fields when you do have a suitable Search index.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tools_762"><a class="anchor" href="#tools_762"></a>Tools</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>From version 7.6.2, the Couchbase Server tools package includes the <code>cbq</code> shell, alongside the previously-provided tools such as <code>cbimport</code>, <code>cbexport</code>, and <code>cbbackupmgr</code>.
+For details, see <a href="../cli/cli-intro.html#server-tools-packages" class="xref page">CLI Reference</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="new-features"><a class="anchor" href="#new-features"></a>New Features and Enhancements in 7.6.0</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The following new features are provided in this release.</p>
@@ -299,7 +475,7 @@ Java Secure Socket Extensions, .NET Security Provider, etc.) has compatible ciph
 </div>
 </div>
 <div class="sect2">
-<h3 id="cluster-manager"><a class="anchor" href="#cluster-manager"></a>Cluster Manager</h3>
+<h3 id="cluster-manager-2"><a class="anchor" href="#cluster-manager-2"></a>Cluster Manager</h3>
 <div class="ulist">
 <ul>
 <li>

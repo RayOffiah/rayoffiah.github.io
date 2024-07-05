@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="csharp">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / .Net / Data Sync / Peer-to-Peer">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="2">
+<meta name="docsearch:version_rank" content="3">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/csharp/p2psync-websocket.html">3.2 Beta</option>
         <option value="3.1" data-url="../../current/csharp/p2psync-websocket.html">3.1</option>
         <option value="3.0" data-url="p2psync-websocket.html" selected>3.0</option>
         <option value="2.8" data-url="../../2.8/csharp/p2psync-websocket.html">2.8</option>
@@ -232,7 +233,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="paragraph">
 <p>Description&#8201;&#8212;&#8201;<em>Couchbase Lite&#8217;s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources</em><br>
 <em>Abstract&#8201;&#8212;&#8201;An introduction to Couchbase Lite’s peer-to-peer sync.</em><br>
-Related Content&#8201;&#8212;&#8201;<a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-net">API Reference</a>  |  <a href="p2psync-websocket-using-passive.html" class="xref page">Passive Peer</a>  |  <a href="p2psync-websocket-using-active.html" class="xref page">Active Peer</a></p>
+Related Content&#8201;&#8212;&#8201;<a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-net">API Reference</a>  |  <a href="p2psync-websocket-using-passive.html" class="xref page">Passive Peer</a>  |  <a href="p2psync-websocket-using-active.html" class="xref page">Active Peer</a></p>
 </div>
 </blockquote>
 </div>
@@ -434,7 +435,7 @@ Statistics on delta-sync usage are available, including the total number of revi
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/csharp/examples/code_snippets/Program.cs">var thisConfig = new URLEndpointListenerConfiguration(thisDB); <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/csharp/examples/code_snippets/Program.cs">var thisConfig = new URLEndpointListenerConfiguration(thisDB); <i class="conum" data-value="1"></i><b>(1)</b>
 
 thisConfig.Authenticator =
   new ListenerPasswordAuthenticator(
@@ -479,7 +480,7 @@ _thisListener.Start(); <i class="conum" data-value="4"></i><b>(4)</b></code></pr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/d31cf571f292ac04662fe0b94ce0d4b7910170d1/modules/csharp/examples/code_snippets/Program.cs">var theListenerEndpoint = new URLEndpoint("wss://listener.com:4984/otherDB"); <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/488a8c7cf3a05d5aef2d0620e38b638284647de8/modules/csharp/examples/code_snippets/Program.cs">var theListenerEndpoint = new URLEndpoint("wss://listener.com:4984/otherDB"); <i class="conum" data-value="1"></i><b>(1)</b>
 
 var thisConfig = new ReplicatorConfiguration(thisDB, theListenerEndpoint); <i class="conum" data-value="2"></i><b>(2)</b>
 
@@ -557,7 +558,7 @@ On the client side, the listener&#8217;s endpoint is used to point the replicato
 </div>
 </div>
 <div class="paragraph">
-<p>API Reference: <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListener.html">URLEndpointListener</a></p>
+<p>API Reference: <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListener.html">URLEndpointListener</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -608,7 +609,7 @@ When the listener is not started, the port is null (or zero if the platform requ
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>You can use <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html">URLEndpointListenerConfiguration</a>'s <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase_Lite_P2P_URLEndpointListenerConfiguration_DisableTLS">DisableTLS</a> method to disable TLS communication if necessary</p>
+<p>You can use <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html">URLEndpointListenerConfiguration</a>'s <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase_Lite_P2P_URLEndpointListenerConfiguration_DisableTLS">DisableTLS</a> method to disable TLS communication if necessary</p>
 </div>
 <div class="paragraph">
 <p>The <code>disableTLS</code> setting must be 'false' when <em>Client Cert Authentication</em> is required.</p>
@@ -617,7 +618,7 @@ When the listener is not started, the port is null (or zero if the platform requ
 <p>Basic Authentication can be used with, or without, TLS.</p>
 </div>
 <div class="paragraph">
-<p><a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase_Lite_P2P_URLEndpointListenerConfiguration_DisableTLS">DisableTLS</a> works in conjunction with <code>TLSIdentity</code>, to enable developers to define the key and certificate to be used.</p>
+<p><a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase_Lite_P2P_URLEndpointListenerConfiguration_DisableTLS">DisableTLS</a> works in conjunction with <code>TLSIdentity</code>, to enable developers to define the key and certificate to be used.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -634,7 +635,7 @@ Active peers will use the <code>ws://</code> URL scheme used to connect to the l
 </ul>
 </div>
 <div class="paragraph">
-<p>API Reference:  <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase_Lite_P2P_URLEndpointListenerConfiguration_DisableTLS">DisableTLS</a></p>
+<p>API Reference:  <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase_Lite_P2P_URLEndpointListenerConfiguration_DisableTLS">DisableTLS</a></p>
 </div>
 </div>
 </div>
@@ -644,8 +645,8 @@ Active peers will use the <code>ws://</code> URL scheme used to connect to the l
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Use <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html">URLEndpointListenerConfiguration</a>'s
-<a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase_Lite_P2P_URLEndpointListenerConfiguration_TlsIdentity">TlsIdentity</a> method to configure the TLS Identity used in TLS communication.</p>
+<p>Use <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html">URLEndpointListenerConfiguration</a>'s
+<a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase_Lite_P2P_URLEndpointListenerConfiguration_TlsIdentity">TlsIdentity</a> method to configure the TLS Identity used in TLS communication.</p>
 </div>
 <div class="paragraph">
 <p>If <code>TLSIdentity</code> is not set, then the listener uses an auto-generated anonymous self-signed identity (unless <code>disableTLS = true</code>).
@@ -659,7 +660,7 @@ Whilst the client cannot use this to authenticate the server, it will use it to 
 When TLS is disabled, the identity is always null.</p>
 </div>
 <div class="paragraph">
-<p>API Reference:  <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase_Lite_P2P_URLEndpointListenerConfiguration_TlsIdentity">TlsIdentity</a></p>
+<p>API Reference:  <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase_Lite_P2P_URLEndpointListenerConfiguration_TlsIdentity">TlsIdentity</a></p>
 </div>
 </div>
 </div>
@@ -686,7 +687,7 @@ This should be set to one of the following:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>API Reference:  <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase_Lite_P2P_URLEndpointListenerConfiguration_Authenticator">Authenticator</a></p>
+<p>API Reference:  <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase_Lite_P2P_URLEndpointListenerConfiguration_Authenticator">Authenticator</a></p>
 </div>
 </div>
 </div>
@@ -711,7 +712,7 @@ Default value is false.</p>
 The default value is false.</p>
 </div>
 <div class="paragraph">
-<p>API Reference: <a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html">URLEndpointListenerConfiguration</a></p>
+<p>API Reference: <a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html">URLEndpointListenerConfiguration</a></p>
 </div>
 </div>
 </div>
@@ -1005,7 +1006,7 @@ The implementation of this storage differs from platform to platform.
 <p><a href="#csharp:landing-p2psync.adoc" class="xref unresolved">Peer-to-Peer Sync</a></p>
 </li>
 <li>
-<p><a href="http://docs.couchbase.com/mobile/3.0.2/couchbase-lite-net">API References</a></p>
+<p><a href="http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-net">API References</a></p>
 </li>
 </ul>
 </div>

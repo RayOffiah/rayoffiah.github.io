@@ -3876,9 +3876,6 @@ The operations are grouped in the following categories.</p>
 <p><a href="#get_keyspace-_changes">Get changes list</a></p>
 </li>
 <li>
-<p><a href="#head__all_dbs">/_all_dbs</a></p>
-</li>
-<li>
 <p><a href="#head_db-">Check if database exists</a></p>
 </li>
 <li>
@@ -4026,12 +4023,46 @@ The operations are grouped in the following categories.</p>
 <h5 id="get__all_dbs-description"><a class="anchor" href="#get__all_dbs-description"></a>Description</h5>
 <div class="openblock">
 <div class="content">
-<p>This retrieves all the database's names that are in the current Sync Gateway node.</p>
+<p>This retrieves all the databases that are in the current Sync Gateway node. If verbose, returns bucket and state information for each database, otherwise returns names only.</p>
 <p>Required Sync Gateway RBAC roles:</p>
 <ul>
 <li>Sync Gateway Dev Ops</li>
 </ul>
 </div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="parameters-24"><a class="anchor" href="#parameters-24"></a>Parameters</h5>
+<div class="sect5">
+<h6 id="query-parameters-13"><a class="anchor" href="#query-parameters-13"></a>Query Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 50%;">
+<col style="width: 16.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>verbose</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect4">
@@ -4065,7 +4096,7 @@ The operations are grouped in the following categories.</p>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Successfully retrieved all database names</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#get__all_dbs_200_response">get__all_dbs_200_response</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -4091,7 +4122,7 @@ The operations are grouped in the following categories.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-24"><a class="anchor" href="#parameters-24"></a>Parameters</h5>
+<h5 id="parameters-25"><a class="anchor" href="#parameters-25"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-24"><a class="anchor" href="#path-parameters-24"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -4188,7 +4219,7 @@ The operations are grouped in the following categories.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-25"><a class="anchor" href="#parameters-25"></a>Parameters</h5>
+<h5 id="parameters-26"><a class="anchor" href="#parameters-26"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-25"><a class="anchor" href="#path-parameters-25"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -4221,7 +4252,7 @@ The operations are grouped in the following categories.</p>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-13"><a class="anchor" href="#query-parameters-13"></a>Query Parameters</h6>
+<h6 id="query-parameters-14"><a class="anchor" href="#query-parameters-14"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4331,7 +4362,7 @@ The operations are grouped in the following categories.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-26"><a class="anchor" href="#parameters-26"></a>Parameters</h5>
+<h5 id="parameters-27"><a class="anchor" href="#parameters-27"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-26"><a class="anchor" href="#path-parameters-26"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -4430,7 +4461,7 @@ The operations are grouped in the following categories.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-27"><a class="anchor" href="#parameters-27"></a>Parameters</h5>
+<h5 id="parameters-28"><a class="anchor" href="#parameters-28"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-27"><a class="anchor" href="#path-parameters-27"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -4464,7 +4495,7 @@ The operations are grouped in the following categories.</p>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-14"><a class="anchor" href="#query-parameters-14"></a>Query Parameters</h6>
+<h6 id="query-parameters-15"><a class="anchor" href="#query-parameters-15"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4718,51 +4749,6 @@ List</p></td>
 </div>
 </div>
 <div class="sect3">
-<h4 id="head__all_dbs"><a class="anchor" href="#head__all_dbs"></a>/_all_dbs</h4>
-<div class="literalblock">
-<div class="content">
-<pre>HEAD /_all_dbs</pre>
-</div>
-</div>
-<div class="sect4">
-<h5 id="head__all_dbs-description"><a class="anchor" href="#head__all_dbs-description"></a>Description</h5>
-<div class="openblock">
-<div class="content">
-<p>Required Sync Gateway RBAC roles:</p>
-<ul>
-<li>Sync Gateway Dev Ops</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="head__all_dbs-responses"><a class="anchor" href="#head__all_dbs-responses"></a>Responses</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 60%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">HTTP Code</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>OK</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect3">
 <h4 id="head_db-"><a class="anchor" href="#head_db-"></a>Check if database exists</h4>
 <div class="literalblock">
 <div class="content">
@@ -4782,7 +4768,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-28"><a class="anchor" href="#parameters-28"></a>Parameters</h5>
+<h5 id="parameters-29"><a class="anchor" href="#parameters-29"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-28"><a class="anchor" href="#path-parameters-28"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -4879,7 +4865,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-29"><a class="anchor" href="#parameters-29"></a>Parameters</h5>
+<h5 id="parameters-30"><a class="anchor" href="#parameters-30"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-29"><a class="anchor" href="#path-parameters-29"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -4980,7 +4966,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-30"><a class="anchor" href="#parameters-30"></a>Parameters</h5>
+<h5 id="parameters-31"><a class="anchor" href="#parameters-31"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-30"><a class="anchor" href="#path-parameters-30"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -5013,7 +4999,7 @@ List</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-15"><a class="anchor" href="#query-parameters-15"></a>Query Parameters</h6>
+<h6 id="query-parameters-16"><a class="anchor" href="#query-parameters-16"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5173,7 +5159,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-31"><a class="anchor" href="#parameters-31"></a>Parameters</h5>
+<h5 id="parameters-32"><a class="anchor" href="#parameters-32"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-31"><a class="anchor" href="#path-parameters-31"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -5272,7 +5258,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-32"><a class="anchor" href="#parameters-32"></a>Parameters</h5>
+<h5 id="parameters-33"><a class="anchor" href="#parameters-33"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-32"><a class="anchor" href="#path-parameters-32"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -5387,7 +5373,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-33"><a class="anchor" href="#parameters-33"></a>Parameters</h5>
+<h5 id="parameters-34"><a class="anchor" href="#parameters-34"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-33"><a class="anchor" href="#path-parameters-33"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -5540,7 +5526,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-34"><a class="anchor" href="#parameters-34"></a>Parameters</h5>
+<h5 id="parameters-35"><a class="anchor" href="#parameters-35"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-34"><a class="anchor" href="#path-parameters-34"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -5604,7 +5590,7 @@ List</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-16"><a class="anchor" href="#query-parameters-16"></a>Query Parameters</h6>
+<h6 id="query-parameters-17"><a class="anchor" href="#query-parameters-17"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5644,6 +5630,21 @@ List</p></td>
 <div class="content">
 <p><strong>Use this only when requested to do so by the Couchbase support team</strong> This request will regenerate the sequence numbers for each document processed.</p>
 </div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>reset</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="openblock">
+<div class="content">
+<p>This forces a fresh resync run instead of trying to resume the previous resync operation</p>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Default:</strong> <code>false</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
@@ -5727,7 +5728,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-35"><a class="anchor" href="#parameters-35"></a>Parameters</h5>
+<h5 id="parameters-36"><a class="anchor" href="#parameters-36"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-35"><a class="anchor" href="#path-parameters-35"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -5873,7 +5874,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-36"><a class="anchor" href="#parameters-36"></a>Parameters</h5>
+<h5 id="parameters-37"><a class="anchor" href="#parameters-37"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-36"><a class="anchor" href="#path-parameters-36"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -6015,7 +6016,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-37"><a class="anchor" href="#parameters-37"></a>Parameters</h5>
+<h5 id="parameters-38"><a class="anchor" href="#parameters-38"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-37"><a class="anchor" href="#path-parameters-37"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -6079,7 +6080,7 @@ List</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-17"><a class="anchor" href="#query-parameters-17"></a>Query Parameters</h6>
+<h6 id="query-parameters-18"><a class="anchor" href="#query-parameters-18"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6268,7 +6269,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-38"><a class="anchor" href="#parameters-38"></a>Parameters</h5>
+<h5 id="parameters-39"><a class="anchor" href="#parameters-39"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-38"><a class="anchor" href="#path-parameters-38"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -6378,7 +6379,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-39"><a class="anchor" href="#parameters-39"></a>Parameters</h5>
+<h5 id="parameters-40"><a class="anchor" href="#parameters-40"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-39"><a class="anchor" href="#path-parameters-39"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -6489,7 +6490,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-40"><a class="anchor" href="#parameters-40"></a>Parameters</h5>
+<h5 id="parameters-41"><a class="anchor" href="#parameters-41"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-40"><a class="anchor" href="#path-parameters-40"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -6522,7 +6523,7 @@ List</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-18"><a class="anchor" href="#query-parameters-18"></a>Query Parameters</h6>
+<h6 id="query-parameters-19"><a class="anchor" href="#query-parameters-19"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6548,8 +6549,7 @@ List</p></td>
 </div>
 </div>
 <div class="paragraph">
-<p><strong>Values:</strong> <code>true</code>, <code>false</code><br>
-<strong>Default:</strong> <code>false</code></p>
+<p><strong>Default:</strong> <code>false</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
@@ -6623,7 +6623,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-41"><a class="anchor" href="#parameters-41"></a>Parameters</h5>
+<h5 id="parameters-42"><a class="anchor" href="#parameters-42"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-41"><a class="anchor" href="#path-parameters-41"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -6734,7 +6734,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-42"><a class="anchor" href="#parameters-42"></a>Parameters</h5>
+<h5 id="parameters-43"><a class="anchor" href="#parameters-43"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-42"><a class="anchor" href="#path-parameters-42"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -6767,7 +6767,7 @@ List</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-19"><a class="anchor" href="#query-parameters-19"></a>Query Parameters</h6>
+<h6 id="query-parameters-20"><a class="anchor" href="#query-parameters-20"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6879,7 +6879,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-43"><a class="anchor" href="#parameters-43"></a>Parameters</h5>
+<h5 id="parameters-44"><a class="anchor" href="#parameters-44"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-43"><a class="anchor" href="#path-parameters-43"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -6989,7 +6989,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-44"><a class="anchor" href="#parameters-44"></a>Parameters</h5>
+<h5 id="parameters-45"><a class="anchor" href="#parameters-45"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-44"><a class="anchor" href="#path-parameters-44"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -7088,7 +7088,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-45"><a class="anchor" href="#parameters-45"></a>Parameters</h5>
+<h5 id="parameters-46"><a class="anchor" href="#parameters-46"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-45"><a class="anchor" href="#path-parameters-45"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -7198,7 +7198,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-46"><a class="anchor" href="#parameters-46"></a>Parameters</h5>
+<h5 id="parameters-47"><a class="anchor" href="#parameters-47"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-46"><a class="anchor" href="#path-parameters-46"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -7297,7 +7297,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-47"><a class="anchor" href="#parameters-47"></a>Parameters</h5>
+<h5 id="parameters-48"><a class="anchor" href="#parameters-48"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-47"><a class="anchor" href="#path-parameters-47"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -7397,7 +7397,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-48"><a class="anchor" href="#parameters-48"></a>Parameters</h5>
+<h5 id="parameters-49"><a class="anchor" href="#parameters-49"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-48"><a class="anchor" href="#path-parameters-48"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -7543,7 +7543,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-49"><a class="anchor" href="#parameters-49"></a>Parameters</h5>
+<h5 id="parameters-50"><a class="anchor" href="#parameters-50"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-49"><a class="anchor" href="#path-parameters-49"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -7689,7 +7689,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-50"><a class="anchor" href="#parameters-50"></a>Parameters</h5>
+<h5 id="parameters-51"><a class="anchor" href="#parameters-51"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-50"><a class="anchor" href="#path-parameters-50"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -7847,7 +7847,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-51"><a class="anchor" href="#parameters-51"></a>Parameters</h5>
+<h5 id="parameters-52"><a class="anchor" href="#parameters-52"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-51"><a class="anchor" href="#path-parameters-51"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -8078,7 +8078,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-52"><a class="anchor" href="#parameters-52"></a>Parameters</h5>
+<h5 id="parameters-53"><a class="anchor" href="#parameters-53"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-52"><a class="anchor" href="#path-parameters-52"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -8155,7 +8155,7 @@ List</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-20"><a class="anchor" href="#query-parameters-20"></a>Query Parameters</h6>
+<h6 id="query-parameters-21"><a class="anchor" href="#query-parameters-21"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8254,7 +8254,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-53"><a class="anchor" href="#parameters-53"></a>Parameters</h5>
+<h5 id="parameters-54"><a class="anchor" href="#parameters-54"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-53"><a class="anchor" href="#path-parameters-53"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -8343,7 +8343,7 @@ List</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-21"><a class="anchor" href="#query-parameters-21"></a>Query Parameters</h6>
+<h6 id="query-parameters-22"><a class="anchor" href="#query-parameters-22"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8446,7 +8446,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-54"><a class="anchor" href="#parameters-54"></a>Parameters</h5>
+<h5 id="parameters-55"><a class="anchor" href="#parameters-55"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-54"><a class="anchor" href="#path-parameters-54"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -8492,7 +8492,7 @@ List</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-22"><a class="anchor" href="#query-parameters-22"></a>Query Parameters</h6>
+<h6 id="query-parameters-23"><a class="anchor" href="#query-parameters-23"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8602,7 +8602,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-55"><a class="anchor" href="#parameters-55"></a>Parameters</h5>
+<h5 id="parameters-56"><a class="anchor" href="#parameters-56"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-55"><a class="anchor" href="#path-parameters-55"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -8636,7 +8636,7 @@ List</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-23"><a class="anchor" href="#query-parameters-23"></a>Query Parameters</h6>
+<h6 id="query-parameters-24"><a class="anchor" href="#query-parameters-24"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8836,7 +8836,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-56"><a class="anchor" href="#parameters-56"></a>Parameters</h5>
+<h5 id="parameters-57"><a class="anchor" href="#parameters-57"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-56"><a class="anchor" href="#path-parameters-56"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -8882,7 +8882,7 @@ List</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-24"><a class="anchor" href="#query-parameters-24"></a>Query Parameters</h6>
+<h6 id="query-parameters-25"><a class="anchor" href="#query-parameters-25"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9081,7 +9081,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-57"><a class="anchor" href="#parameters-57"></a>Parameters</h5>
+<h5 id="parameters-58"><a class="anchor" href="#parameters-58"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-57"><a class="anchor" href="#path-parameters-57"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -9170,7 +9170,7 @@ List</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-25"><a class="anchor" href="#query-parameters-25"></a>Query Parameters</h6>
+<h6 id="query-parameters-26"><a class="anchor" href="#query-parameters-26"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9311,7 +9311,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-58"><a class="anchor" href="#parameters-58"></a>Parameters</h5>
+<h5 id="parameters-59"><a class="anchor" href="#parameters-59"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-58"><a class="anchor" href="#path-parameters-58"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -9430,7 +9430,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-59"><a class="anchor" href="#parameters-59"></a>Parameters</h5>
+<h5 id="parameters-60"><a class="anchor" href="#parameters-60"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-59"><a class="anchor" href="#path-parameters-59"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -9476,7 +9476,7 @@ List</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-26"><a class="anchor" href="#query-parameters-26"></a>Query Parameters</h6>
+<h6 id="query-parameters-27"><a class="anchor" href="#query-parameters-27"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9590,7 +9590,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-60"><a class="anchor" href="#parameters-60"></a>Parameters</h5>
+<h5 id="parameters-61"><a class="anchor" href="#parameters-61"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-60"><a class="anchor" href="#path-parameters-60"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -9624,7 +9624,7 @@ List</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-27"><a class="anchor" href="#query-parameters-27"></a>Query Parameters</h6>
+<h6 id="query-parameters-28"><a class="anchor" href="#query-parameters-28"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9824,7 +9824,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-61"><a class="anchor" href="#parameters-61"></a>Parameters</h5>
+<h5 id="parameters-62"><a class="anchor" href="#parameters-62"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-61"><a class="anchor" href="#path-parameters-61"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -9870,7 +9870,7 @@ List</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-28"><a class="anchor" href="#query-parameters-28"></a>Query Parameters</h6>
+<h6 id="query-parameters-29"><a class="anchor" href="#query-parameters-29"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10060,7 +10060,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-62"><a class="anchor" href="#parameters-62"></a>Parameters</h5>
+<h5 id="parameters-63"><a class="anchor" href="#parameters-63"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-62"><a class="anchor" href="#path-parameters-62"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -10118,7 +10118,7 @@ List</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-29"><a class="anchor" href="#query-parameters-29"></a>Query Parameters</h6>
+<h6 id="query-parameters-30"><a class="anchor" href="#query-parameters-30"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10215,7 +10215,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-63"><a class="anchor" href="#parameters-63"></a>Parameters</h5>
+<h5 id="parameters-64"><a class="anchor" href="#parameters-64"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-63"><a class="anchor" href="#path-parameters-63"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -10332,7 +10332,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-64"><a class="anchor" href="#parameters-64"></a>Parameters</h5>
+<h5 id="parameters-65"><a class="anchor" href="#parameters-65"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-64"><a class="anchor" href="#path-parameters-64"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -10447,7 +10447,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-65"><a class="anchor" href="#parameters-65"></a>Parameters</h5>
+<h5 id="parameters-66"><a class="anchor" href="#parameters-66"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-65"><a class="anchor" href="#path-parameters-65"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -10506,14 +10506,13 @@ List</p></td>
 
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">oas_any_type_not_mapped
-Map</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#PostKeyspaceRequest">PostKeyspaceRequest</a></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-30"><a class="anchor" href="#query-parameters-30"></a>Query Parameters</h6>
+<h6 id="query-parameters-31"><a class="anchor" href="#query-parameters-31"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10640,7 +10639,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-66"><a class="anchor" href="#parameters-66"></a>Parameters</h5>
+<h5 id="parameters-67"><a class="anchor" href="#parameters-67"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-66"><a class="anchor" href="#path-parameters-66"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -10705,7 +10704,7 @@ Map</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-31"><a class="anchor" href="#query-parameters-31"></a>Query Parameters</h6>
+<h6 id="query-parameters-32"><a class="anchor" href="#query-parameters-32"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10904,7 +10903,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-67"><a class="anchor" href="#parameters-67"></a>Parameters</h5>
+<h5 id="parameters-68"><a class="anchor" href="#parameters-68"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-67"><a class="anchor" href="#path-parameters-67"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -11057,7 +11056,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-68"><a class="anchor" href="#parameters-68"></a>Parameters</h5>
+<h5 id="parameters-69"><a class="anchor" href="#parameters-69"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-68"><a class="anchor" href="#path-parameters-68"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -11168,7 +11167,7 @@ Map</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-32"><a class="anchor" href="#query-parameters-32"></a>Query Parameters</h6>
+<h6 id="query-parameters-33"><a class="anchor" href="#query-parameters-33"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11308,7 +11307,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-69"><a class="anchor" href="#parameters-69"></a>Parameters</h5>
+<h5 id="parameters-70"><a class="anchor" href="#parameters-70"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-69"><a class="anchor" href="#path-parameters-69"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -11370,8 +11369,7 @@ Map</p></td>
 <div class="paragraph">
 <p><strong>Example:</strong> <code>{"doc_id":["*"]}</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List
-Map</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#PostKeyspacePurgeRequest">PostKeyspacePurgeRequest</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -11461,7 +11459,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-70"><a class="anchor" href="#parameters-70"></a>Parameters</h5>
+<h5 id="parameters-71"><a class="anchor" href="#parameters-71"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-70"><a class="anchor" href="#path-parameters-70"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -11532,8 +11530,7 @@ Map</p></td>
 
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">oas_any_type_not_mapped
-Map</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#PostKeyspaceRequest">PostKeyspaceRequest</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -11570,7 +11567,7 @@ Map</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-33"><a class="anchor" href="#query-parameters-33"></a>Query Parameters</h6>
+<h6 id="query-parameters-34"><a class="anchor" href="#query-parameters-34"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11737,7 +11734,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-71"><a class="anchor" href="#parameters-71"></a>Parameters</h5>
+<h5 id="parameters-72"><a class="anchor" href="#parameters-72"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-71"><a class="anchor" href="#path-parameters-71"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -11875,7 +11872,7 @@ Map</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-34"><a class="anchor" href="#query-parameters-34"></a>Query Parameters</h6>
+<h6 id="query-parameters-35"><a class="anchor" href="#query-parameters-35"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11988,7 +11985,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-72"><a class="anchor" href="#parameters-72"></a>Parameters</h5>
+<h5 id="parameters-73"><a class="anchor" href="#parameters-73"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-72"><a class="anchor" href="#path-parameters-72"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -12365,9 +12362,9 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-73"><a class="anchor" href="#parameters-73"></a>Parameters</h5>
+<h5 id="parameters-74"><a class="anchor" href="#parameters-74"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="query-parameters-35"><a class="anchor" href="#query-parameters-35"></a>Query Parameters</h6>
+<h6 id="query-parameters-36"><a class="anchor" href="#query-parameters-36"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -12459,9 +12456,9 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-74"><a class="anchor" href="#parameters-74"></a>Parameters</h5>
+<h5 id="parameters-75"><a class="anchor" href="#parameters-75"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="query-parameters-36"><a class="anchor" href="#query-parameters-36"></a>Query Parameters</h6>
+<h6 id="query-parameters-37"><a class="anchor" href="#query-parameters-37"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -12619,9 +12616,9 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-75"><a class="anchor" href="#parameters-75"></a>Parameters</h5>
+<h5 id="parameters-76"><a class="anchor" href="#parameters-76"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="query-parameters-37"><a class="anchor" href="#query-parameters-37"></a>Query Parameters</h6>
+<h6 id="query-parameters-38"><a class="anchor" href="#query-parameters-38"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -12708,9 +12705,9 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-76"><a class="anchor" href="#parameters-76"></a>Parameters</h5>
+<h5 id="parameters-77"><a class="anchor" href="#parameters-77"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="query-parameters-38"><a class="anchor" href="#query-parameters-38"></a>Query Parameters</h6>
+<h6 id="query-parameters-39"><a class="anchor" href="#query-parameters-39"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -12798,9 +12795,9 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-77"><a class="anchor" href="#parameters-77"></a>Parameters</h5>
+<h5 id="parameters-78"><a class="anchor" href="#parameters-78"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="query-parameters-39"><a class="anchor" href="#query-parameters-39"></a>Query Parameters</h6>
+<h6 id="query-parameters-40"><a class="anchor" href="#query-parameters-40"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -12901,9 +12898,9 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-78"><a class="anchor" href="#parameters-78"></a>Parameters</h5>
+<h5 id="parameters-79"><a class="anchor" href="#parameters-79"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="query-parameters-40"><a class="anchor" href="#query-parameters-40"></a>Query Parameters</h6>
+<h6 id="query-parameters-41"><a class="anchor" href="#query-parameters-41"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -13101,9 +13098,9 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-79"><a class="anchor" href="#parameters-79"></a>Parameters</h5>
+<h5 id="parameters-80"><a class="anchor" href="#parameters-80"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="query-parameters-41"><a class="anchor" href="#query-parameters-41"></a>Query Parameters</h6>
+<h6 id="query-parameters-42"><a class="anchor" href="#query-parameters-42"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -13194,9 +13191,9 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-80"><a class="anchor" href="#parameters-80"></a>Parameters</h5>
+<h5 id="parameters-81"><a class="anchor" href="#parameters-81"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="query-parameters-42"><a class="anchor" href="#query-parameters-42"></a>Query Parameters</h6>
+<h6 id="query-parameters-43"><a class="anchor" href="#query-parameters-43"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -13288,9 +13285,9 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-81"><a class="anchor" href="#parameters-81"></a>Parameters</h5>
+<h5 id="parameters-82"><a class="anchor" href="#parameters-82"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="query-parameters-43"><a class="anchor" href="#query-parameters-43"></a>Query Parameters</h6>
+<h6 id="query-parameters-44"><a class="anchor" href="#query-parameters-44"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -13448,9 +13445,9 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-82"><a class="anchor" href="#parameters-82"></a>Parameters</h5>
+<h5 id="parameters-83"><a class="anchor" href="#parameters-83"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="query-parameters-44"><a class="anchor" href="#query-parameters-44"></a>Query Parameters</h6>
+<h6 id="query-parameters-45"><a class="anchor" href="#query-parameters-45"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -13537,9 +13534,9 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-83"><a class="anchor" href="#parameters-83"></a>Parameters</h5>
+<h5 id="parameters-84"><a class="anchor" href="#parameters-84"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="query-parameters-45"><a class="anchor" href="#query-parameters-45"></a>Query Parameters</h6>
+<h6 id="query-parameters-46"><a class="anchor" href="#query-parameters-46"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -13627,9 +13624,9 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-84"><a class="anchor" href="#parameters-84"></a>Parameters</h5>
+<h5 id="parameters-85"><a class="anchor" href="#parameters-85"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="query-parameters-46"><a class="anchor" href="#query-parameters-46"></a>Query Parameters</h6>
+<h6 id="query-parameters-47"><a class="anchor" href="#query-parameters-47"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -13730,9 +13727,9 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-85"><a class="anchor" href="#parameters-85"></a>Parameters</h5>
+<h5 id="parameters-86"><a class="anchor" href="#parameters-86"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="query-parameters-47"><a class="anchor" href="#query-parameters-47"></a>Query Parameters</h6>
+<h6 id="query-parameters-48"><a class="anchor" href="#query-parameters-48"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -13930,9 +13927,9 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-86"><a class="anchor" href="#parameters-86"></a>Parameters</h5>
+<h5 id="parameters-87"><a class="anchor" href="#parameters-87"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="query-parameters-48"><a class="anchor" href="#query-parameters-48"></a>Query Parameters</h6>
+<h6 id="query-parameters-49"><a class="anchor" href="#query-parameters-49"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -14023,7 +14020,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-87"><a class="anchor" href="#parameters-87"></a>Parameters</h5>
+<h5 id="parameters-88"><a class="anchor" href="#parameters-88"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="body-parameter-26"><a class="anchor" href="#body-parameter-26"></a>Body Parameter</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -14132,7 +14129,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-88"><a class="anchor" href="#parameters-88"></a>Parameters</h5>
+<h5 id="parameters-89"><a class="anchor" href="#parameters-89"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="body-parameter-27"><a class="anchor" href="#body-parameter-27"></a>Body Parameter</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -14239,7 +14236,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-89"><a class="anchor" href="#parameters-89"></a>Parameters</h5>
+<h5 id="parameters-90"><a class="anchor" href="#parameters-90"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-73"><a class="anchor" href="#path-parameters-73"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -14436,7 +14433,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-90"><a class="anchor" href="#parameters-90"></a>Parameters</h5>
+<h5 id="parameters-91"><a class="anchor" href="#parameters-91"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-74"><a class="anchor" href="#path-parameters-74"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -14552,7 +14549,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-91"><a class="anchor" href="#parameters-91"></a>Parameters</h5>
+<h5 id="parameters-92"><a class="anchor" href="#parameters-92"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-75"><a class="anchor" href="#path-parameters-75"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -14585,7 +14582,7 @@ Map</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-49"><a class="anchor" href="#query-parameters-49"></a>Query Parameters</h6>
+<h6 id="query-parameters-50"><a class="anchor" href="#query-parameters-50"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -14691,7 +14688,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-92"><a class="anchor" href="#parameters-92"></a>Parameters</h5>
+<h5 id="parameters-93"><a class="anchor" href="#parameters-93"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-76"><a class="anchor" href="#path-parameters-76"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -14788,7 +14785,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-93"><a class="anchor" href="#parameters-93"></a>Parameters</h5>
+<h5 id="parameters-94"><a class="anchor" href="#parameters-94"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-77"><a class="anchor" href="#path-parameters-77"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -14897,7 +14894,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-94"><a class="anchor" href="#parameters-94"></a>Parameters</h5>
+<h5 id="parameters-95"><a class="anchor" href="#parameters-95"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-78"><a class="anchor" href="#path-parameters-78"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -14930,7 +14927,7 @@ Map</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-50"><a class="anchor" href="#query-parameters-50"></a>Query Parameters</h6>
+<h6 id="query-parameters-51"><a class="anchor" href="#query-parameters-51"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -15073,7 +15070,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-95"><a class="anchor" href="#parameters-95"></a>Parameters</h5>
+<h5 id="parameters-96"><a class="anchor" href="#parameters-96"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-79"><a class="anchor" href="#path-parameters-79"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -15118,7 +15115,7 @@ Map</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-51"><a class="anchor" href="#query-parameters-51"></a>Query Parameters</h6>
+<h6 id="query-parameters-52"><a class="anchor" href="#query-parameters-52"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -15267,7 +15264,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-96"><a class="anchor" href="#parameters-96"></a>Parameters</h5>
+<h5 id="parameters-97"><a class="anchor" href="#parameters-97"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-80"><a class="anchor" href="#path-parameters-80"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -15354,7 +15351,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-97"><a class="anchor" href="#parameters-97"></a>Parameters</h5>
+<h5 id="parameters-98"><a class="anchor" href="#parameters-98"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-81"><a class="anchor" href="#path-parameters-81"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -15452,7 +15449,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-98"><a class="anchor" href="#parameters-98"></a>Parameters</h5>
+<h5 id="parameters-99"><a class="anchor" href="#parameters-99"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-82"><a class="anchor" href="#path-parameters-82"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -15539,7 +15536,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-99"><a class="anchor" href="#parameters-99"></a>Parameters</h5>
+<h5 id="parameters-100"><a class="anchor" href="#parameters-100"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-83"><a class="anchor" href="#path-parameters-83"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -15584,7 +15581,7 @@ Map</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-52"><a class="anchor" href="#query-parameters-52"></a>Query Parameters</h6>
+<h6 id="query-parameters-53"><a class="anchor" href="#query-parameters-53"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -15735,7 +15732,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-100"><a class="anchor" href="#parameters-100"></a>Parameters</h5>
+<h5 id="parameters-101"><a class="anchor" href="#parameters-101"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-84"><a class="anchor" href="#path-parameters-84"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -15889,7 +15886,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-101"><a class="anchor" href="#parameters-101"></a>Parameters</h5>
+<h5 id="parameters-102"><a class="anchor" href="#parameters-102"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-85"><a class="anchor" href="#path-parameters-85"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -16059,7 +16056,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-102"><a class="anchor" href="#parameters-102"></a>Parameters</h5>
+<h5 id="parameters-103"><a class="anchor" href="#parameters-103"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-86"><a class="anchor" href="#path-parameters-86"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -16104,7 +16101,7 @@ Map</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-53"><a class="anchor" href="#query-parameters-53"></a>Query Parameters</h6>
+<h6 id="query-parameters-54"><a class="anchor" href="#query-parameters-54"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -16210,6 +16207,9 @@ Map</p></td>
 <p><a href="#get__logging">Get console logging settings</a></p>
 </li>
 <li>
+<p><a href="#get__ping">Check if API is available</a></p>
+</li>
+<li>
 <p><a href="#get__sgcollect_info">Get the status of the Sync Gateway Collect Info</a></p>
 </li>
 <li>
@@ -16217,6 +16217,9 @@ Map</p></td>
 </li>
 <li>
 <p><a href="#head_-">Check if server online</a></p>
+</li>
+<li>
+<p><a href="#head__ping">Check if API is available</a></p>
 </li>
 <li>
 <p><a href="#post__logging">Update console logging settings</a></p>
@@ -16370,9 +16373,9 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-103"><a class="anchor" href="#parameters-103"></a>Parameters</h5>
+<h5 id="parameters-104"><a class="anchor" href="#parameters-104"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="query-parameters-54"><a class="anchor" href="#query-parameters-54"></a>Query Parameters</h6>
+<h6 id="query-parameters-55"><a class="anchor" href="#query-parameters-55"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -16517,6 +16520,58 @@ This will return a map of the log keys being used for the console logging.</p>
 <p>Returned map of console log keys</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Map">Map</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="get__ping"><a class="anchor" href="#get__ping"></a>Check if API is available</h4>
+<div class="literalblock">
+<div class="content">
+<pre>GET /_ping</pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="get__ping-description"><a class="anchor" href="#get__ping-description"></a>Description</h5>
+<div class="openblock">
+<div class="content">
+<p>Returns OK status if API is available.</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="get__ping-produces"><a class="anchor" href="#get__ping-produces"></a>Produces</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>text/plain</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="get__ping-responses"><a class="anchor" href="#get__ping-responses"></a>Responses</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 60%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">HTTP Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returned status</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#String">String</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -16684,6 +16739,48 @@ This will return a map of the log keys being used for the console logging.</p>
 </div>
 </div>
 <div class="sect3">
+<h4 id="head__ping"><a class="anchor" href="#head__ping"></a>Check if API is available</h4>
+<div class="literalblock">
+<div class="content">
+<pre>HEAD /_ping</pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="head__ping-description"><a class="anchor" href="#head__ping-description"></a>Description</h5>
+<div class="openblock">
+<div class="content">
+<p>Returns OK status if API is available.</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="head__ping-responses"><a class="anchor" href="#head__ping-responses"></a>Responses</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 60%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">HTTP Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Server is available</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
 <h4 id="post__logging"><a class="anchor" href="#post__logging"></a>Update console logging settings</h4>
 <div class="literalblock">
 <div class="content">
@@ -16704,7 +16801,7 @@ This is for enabling the log keys provided and optionally changing the console l
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-104"><a class="anchor" href="#parameters-104"></a>Parameters</h5>
+<h5 id="parameters-105"><a class="anchor" href="#parameters-105"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="body-parameter-31"><a class="anchor" href="#body-parameter-31"></a>Body Parameter</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -16738,7 +16835,7 @@ Map</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-55"><a class="anchor" href="#query-parameters-55"></a>Query Parameters</h6>
+<h6 id="query-parameters-56"><a class="anchor" href="#query-parameters-56"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -16863,9 +16960,9 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-105"><a class="anchor" href="#parameters-105"></a>Parameters</h5>
+<h5 id="parameters-106"><a class="anchor" href="#parameters-106"></a>Parameters</h5>
 <div class="sect5">
-<h6 id="query-parameters-56"><a class="anchor" href="#query-parameters-56"></a>Query Parameters</h6>
+<h6 id="query-parameters-57"><a class="anchor" href="#query-parameters-57"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -16956,7 +17053,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-106"><a class="anchor" href="#parameters-106"></a>Parameters</h5>
+<h5 id="parameters-107"><a class="anchor" href="#parameters-107"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="body-parameter-32"><a class="anchor" href="#body-parameter-32"></a>Body Parameter</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -17072,7 +17169,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-107"><a class="anchor" href="#parameters-107"></a>Parameters</h5>
+<h5 id="parameters-108"><a class="anchor" href="#parameters-108"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="body-parameter-33"><a class="anchor" href="#body-parameter-33"></a>Body Parameter</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -17099,7 +17196,7 @@ Map</p></td>
 
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#RuntimeConfig">RuntimeConfig</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#StartupConfig">StartupConfig</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -17180,7 +17277,7 @@ Enable or disable console log keys and optionally change the console log level.<
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-108"><a class="anchor" href="#parameters-108"></a>Parameters</h5>
+<h5 id="parameters-109"><a class="anchor" href="#parameters-109"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="body-parameter-34"><a class="anchor" href="#body-parameter-34"></a>Body Parameter</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -17214,7 +17311,7 @@ Map</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-57"><a class="anchor" href="#query-parameters-57"></a>Query Parameters</h6>
+<h6 id="query-parameters-58"><a class="anchor" href="#query-parameters-58"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -17371,7 +17468,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-109"><a class="anchor" href="#parameters-109"></a>Parameters</h5>
+<h5 id="parameters-110"><a class="anchor" href="#parameters-110"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-87"><a class="anchor" href="#path-parameters-87"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -17482,7 +17579,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-110"><a class="anchor" href="#parameters-110"></a>Parameters</h5>
+<h5 id="parameters-111"><a class="anchor" href="#parameters-111"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-88"><a class="anchor" href="#path-parameters-88"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -17592,7 +17689,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-111"><a class="anchor" href="#parameters-111"></a>Parameters</h5>
+<h5 id="parameters-112"><a class="anchor" href="#parameters-112"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-89"><a class="anchor" href="#path-parameters-89"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -17709,7 +17806,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-112"><a class="anchor" href="#parameters-112"></a>Parameters</h5>
+<h5 id="parameters-113"><a class="anchor" href="#parameters-113"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-90"><a class="anchor" href="#path-parameters-90"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -17808,7 +17905,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-113"><a class="anchor" href="#parameters-113"></a>Parameters</h5>
+<h5 id="parameters-114"><a class="anchor" href="#parameters-114"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-91"><a class="anchor" href="#path-parameters-91"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -17913,7 +18010,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-114"><a class="anchor" href="#parameters-114"></a>Parameters</h5>
+<h5 id="parameters-115"><a class="anchor" href="#parameters-115"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-92"><a class="anchor" href="#path-parameters-92"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -18012,7 +18109,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-115"><a class="anchor" href="#parameters-115"></a>Parameters</h5>
+<h5 id="parameters-116"><a class="anchor" href="#parameters-116"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-93"><a class="anchor" href="#path-parameters-93"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -18201,7 +18298,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-116"><a class="anchor" href="#parameters-116"></a>Parameters</h5>
+<h5 id="parameters-117"><a class="anchor" href="#parameters-117"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-94"><a class="anchor" href="#path-parameters-94"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -18319,7 +18416,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-117"><a class="anchor" href="#parameters-117"></a>Parameters</h5>
+<h5 id="parameters-118"><a class="anchor" href="#parameters-118"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-95"><a class="anchor" href="#path-parameters-95"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -18437,7 +18534,7 @@ Map</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-118"><a class="anchor" href="#parameters-118"></a>Parameters</h5>
+<h5 id="parameters-119"><a class="anchor" href="#parameters-119"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-96"><a class="anchor" href="#path-parameters-96"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -18494,7 +18591,7 @@ Map</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-58"><a class="anchor" href="#query-parameters-58"></a>Query Parameters</h6>
+<h6 id="query-parameters-59"><a class="anchor" href="#query-parameters-59"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -18770,7 +18867,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-119"><a class="anchor" href="#parameters-119"></a>Parameters</h5>
+<h5 id="parameters-120"><a class="anchor" href="#parameters-120"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-97"><a class="anchor" href="#path-parameters-97"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -18891,7 +18988,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-120"><a class="anchor" href="#parameters-120"></a>Parameters</h5>
+<h5 id="parameters-121"><a class="anchor" href="#parameters-121"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-98"><a class="anchor" href="#path-parameters-98"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -18936,7 +19033,7 @@ List</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-59"><a class="anchor" href="#query-parameters-59"></a>Query Parameters</h6>
+<h6 id="query-parameters-60"><a class="anchor" href="#query-parameters-60"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -19212,7 +19309,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-121"><a class="anchor" href="#parameters-121"></a>Parameters</h5>
+<h5 id="parameters-122"><a class="anchor" href="#parameters-122"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-99"><a class="anchor" href="#path-parameters-99"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -19258,7 +19355,7 @@ List</p></td>
 </table>
 </div>
 <div class="sect5">
-<h6 id="query-parameters-60"><a class="anchor" href="#query-parameters-60"></a>Query Parameters</h6>
+<h6 id="query-parameters-61"><a class="anchor" href="#query-parameters-61"></a>Query Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -19364,7 +19461,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-122"><a class="anchor" href="#parameters-122"></a>Parameters</h5>
+<h5 id="parameters-123"><a class="anchor" href="#parameters-123"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-100"><a class="anchor" href="#path-parameters-100"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -19476,7 +19573,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-123"><a class="anchor" href="#parameters-123"></a>Parameters</h5>
+<h5 id="parameters-124"><a class="anchor" href="#parameters-124"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-101"><a class="anchor" href="#path-parameters-101"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -19594,7 +19691,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-124"><a class="anchor" href="#parameters-124"></a>Parameters</h5>
+<h5 id="parameters-125"><a class="anchor" href="#parameters-125"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-102"><a class="anchor" href="#path-parameters-102"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -19698,7 +19795,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-125"><a class="anchor" href="#parameters-125"></a>Parameters</h5>
+<h5 id="parameters-126"><a class="anchor" href="#parameters-126"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-103"><a class="anchor" href="#path-parameters-103"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -19779,7 +19876,7 @@ List</p></td>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-126"><a class="anchor" href="#parameters-126"></a>Parameters</h5>
+<h5 id="parameters-127"><a class="anchor" href="#parameters-127"></a>Parameters</h5>
 <div class="sect5">
 <h6 id="path-parameters-104"><a class="anchor" href="#path-parameters-104"></a>Path Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
@@ -19979,6 +20076,12 @@ List</p></td>
 <p><a href="#Database_config_local_jwt_value_keys_inner">DatabaseConfigLocalJwtValueKeysInner</a></p>
 </li>
 <li>
+<p><a href="#Database_config_logging">DatabaseConfigLogging</a></p>
+</li>
+<li>
+<p><a href="#Database_config_logging_console">DatabaseConfigLoggingConsole</a></p>
+</li>
+<li>
 <p><a href="#Database_config_oidc">DatabaseConfigOidc</a></p>
 </li>
 <li>
@@ -20037,6 +20140,12 @@ List</p></td>
 </li>
 <li>
 <p><a href="#get___200_response_vendor">Get200ResponseVendor</a></p>
+</li>
+<li>
+<p><a href="#get__all_dbs_200_response">GetAllDbs200Response</a></p>
+</li>
+<li>
+<p><a href="#get__all_dbs_200_response_oneOf_inner">GetAllDbs200ResponseOneOfInner</a></p>
 </li>
 <li>
 <p><a href="#get_db__200_response">GetDb200Response</a></p>
@@ -20280,9 +20389,6 @@ List</p></td>
 </li>
 <li>
 <p><a href="#Role_1">Role</a></p>
-</li>
-<li>
-<p><a href="#Runtime_config">Runtime-config</a></p>
 </li>
 <li>
 <p><a href="#Scopes">Scopes</a></p>
@@ -21538,6 +21644,16 @@ Map</p></td>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Database_config_cors">Database_config_cors</a></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>logging</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Per-database logging configuration.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Database_config_logging">Database_config_logging</a></p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -22251,6 +22367,16 @@ Map</p></td>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Database_config_cors">Database_config_cors</a></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>logging</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Per-database logging configuration.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Database_config_logging">Database_config_logging</a></p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -22499,7 +22625,7 @@ Map</p></td>
 <p>Used to control whether Sync Gateway should use the all documents (*) channel.</p>
 </div>
 <div class="paragraph">
-<p><strong>Default:</strong> <code>true</code></p>
+<p><strong>Default:</strong> <code>false</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
@@ -23008,6 +23134,82 @@ List</p></td>
 <p>For RSA keys, the exponent of the public key, as a Base64urlUInt-encoded value.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="Database_config_logging"><a class="anchor" href="#Database_config_logging"></a>DatabaseConfigLogging</h3>
+<table id="fields-Database_config_logging" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 66.6666%;">
+<col style="width: 16.6668%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>console</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Console logging configuration.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Database_config_logging_console">Database_config_logging_console</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="Database_config_logging_console"><a class="anchor" href="#Database_config_logging_console"></a>DatabaseConfigLoggingConsole</h3>
+<table id="fields-Database_config_logging_console" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 66.6666%;">
+<col style="width: 16.6668%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>log_level</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Log Level for the console output</p>
+</div>
+<div class="paragraph">
+<p><strong>Values:</strong> <code>none</code>, <code>error</code>, <code>warn</code>, <code>info</code>, <code>debug</code>, <code>trace</code><br>
+<strong>Example:</strong> <code>debug</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>log_keys</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Log Keys for the console output</p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong> <code>["CRUD","HTTP","Query"]</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String
+List</p></td>
 </tr>
 </tbody>
 </table>
@@ -24389,6 +24591,76 @@ Omitted if <code>api.hide_product_version=true</code></p>
 </div>
 <div class="paragraph">
 <p><strong>Example:</strong> <code>3.1</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="get__all_dbs_200_response"><a class="anchor" href="#get__all_dbs_200_response"></a>GetAllDbs200Response</h3>
+<div class="paragraph">
+<p>One of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>String
+List</p>
+</li>
+<li>
+<p><a href="#get__all_dbs_200_response_oneOf_inner">get__all_dbs_200_response_oneOf_inner</a>
+List</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="get__all_dbs_200_response_oneOf_inner"><a class="anchor" href="#get__all_dbs_200_response_oneOf_inner"></a>GetAllDbs200ResponseOneOfInner</h3>
+<table id="fields-get__all_dbs_200_response_oneOf_inner" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 66.6666%;">
+<col style="width: 16.6668%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>db_name</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The name of the database.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>bucket</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The Couchbase Server backing bucket for the database.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>state</strong><br>
+<em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The database state.</p>
+</div>
+<div class="paragraph">
+<p><strong>Values:</strong> <code>Online</code>, <code>Offline</code>, <code>Starting</code>, <code>Stopping</code>, <code>Resyncing</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 </tr>
@@ -30127,48 +30399,6 @@ Map</p></td>
 </table>
 </div>
 <div class="sect2">
-<h3 id="Runtime_config"><a class="anchor" href="#Runtime_config"></a>Runtime-config</h3>
-<table id="fields-Runtime_config" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 66.6666%;">
-<col style="width: 16.6668%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>logging</strong><br>
-<em>optional</em></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The configuration settings for modifying Sync Gateway logging.</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Startup_config_logging">Startup_config_logging</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>max_concurrent_replications</strong><br>
-<em>optional</em></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Maximum number of concurrent replication connections allowed. If set to 0 this limit will be ignored.</p>
-</div>
-<div class="paragraph">
-<p><strong>Default:</strong> <code>0</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
 <h3 id="Scopes"><a class="anchor" href="#Scopes"></a>Scopes</h3>
 <table id="fields-Scopes" class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -31139,16 +31369,6 @@ List</p></td>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>max_concurrent_replications</strong><br>
-<em>optional</em></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Maximum number of concurrent replication connections allowed. If set to 0 this limit will be ignored.</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -31433,7 +31653,7 @@ Map</p></td>
 <p>Whether the database is online or offline.</p>
 </div>
 <div class="paragraph">
-<p><strong>Values:</strong> <code>Online</code>, <code>Offline</code></p>
+<p><strong>Values:</strong> <code>Online</code>, <code>Offline</code>, <code>Starting</code>, <code>Stopping</code>, <code>Resyncing</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 </tr>

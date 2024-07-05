@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="csharp">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / C#.NET / Data Sync / Remote Sync Gateway">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="3">
+<meta name="docsearch:version_rank" content="4">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/csharp/replication.html">3.2 Beta</option>
         <option value="3.1" data-url="../../current/csharp/replication.html">3.1</option>
         <option value="3.0" data-url="../../3.0/csharp/replication.html">3.0</option>
         <option value="2.8" data-url="replication.html" selected>2.8</option>
@@ -468,7 +469,7 @@ Here we say to provide <em>Basic Authentication</em> credentials. Other options 
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/p2psync-websocket.cs">// initialize the replicator configuration
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/p2psync-websocket.cs">// initialize the replicator configuration
 
 var thisUrl = new URLEndpoint("wss://l10.0.2.2:4984/anotherDB"); <i class="conum" data-value="1"></i><b>(1)</b>
 var config = new ReplicatorConfiguration(thisDB, thisUrl);</code></pre>
@@ -744,7 +745,7 @@ The following example initiates a one-shot replication as the user <strong>usern
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L1051-L1057">var url = new Uri("ws://localhost:4984/mydatabase");
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L1051-L1057">var url = new Uri("ws://localhost:4984/mydatabase");
 var target = new URLEndpoint(url);
 var config = new ReplicatorConfiguration(database, target);
 config.Authenticator = new BasicAuthenticator("john", "pass");
@@ -764,7 +765,7 @@ The following example initiates a one-shot replication with the session ID that 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L1066-L1072">var url = new Uri("ws://localhost:4984/mydatabase");
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L1066-L1072">var url = new Uri("ws://localhost:4984/mydatabase");
 var target = new URLEndpoint(url);
 var config = new ReplicatorConfiguration(database, target);
 config.Authenticator = new SessionAuthenticator("904ac010862f37c8dd99015a33ab5a3565fd8447");
@@ -787,7 +788,7 @@ As an example, this feature can be useful to pass additional credentials when th
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L1234-L1240">var config = new ReplicatorConfiguration(database, target)
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L1234-L1240">var config = new ReplicatorConfiguration(database, target)
 {
     Headers = new Dictionary&lt;string, string&gt;
     {
@@ -815,7 +816,7 @@ For instance, high-priority documents could be pushed first, or documents in a "
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L1247-L1262">var url = new Uri("ws://localhost:4984/mydatabase");
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L1247-L1262">var url = new Uri("ws://localhost:4984/mydatabase");
 var target = new URLEndpoint(url);
 
 var config = new ReplicatorConfiguration(database, target);
@@ -865,7 +866,7 @@ Sync Gateway <a href="../../../sync-gateway/current/channels.html" class="xref p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L1269-L1284">var url = new Uri("ws://localhost:4984/mydatabase");
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L1269-L1284">var url = new Uri("ws://localhost:4984/mydatabase");
 var target = new URLEndpoint(url);
 
 var config = new ReplicatorConfiguration(database, target);
@@ -1011,7 +1012,7 @@ However, if you do want to force the replication to start again from zero, use t
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L375-L377">// replicator is a Replicator instance
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L375-L377">// replicator is a Replicator instance
 replicator.ResetCheckpoint();
 replicator.Start();</code></pre>
 </div>
@@ -1230,7 +1231,7 @@ Stop the listener as shown in <a href="#ex-stop-doc-listener">Example 11</a>.</p
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L1144-L1160">var token = replicator.AddDocumentReplicationListener((sender, args) =&gt;
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L1144-L1160">var token = replicator.AddDocumentReplicationListener((sender, args) =&gt;
 {
     var direction = args.IsPush ? "Push" : "Pull";
     Console.WriteLine($"Replication type :: {direction}");
@@ -1427,7 +1428,7 @@ We can then remove any active <a href="#lbl-repl-chng">change listener</a>.</td>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs">replicator.AddChangeListener((sender, args) =&gt;
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs">replicator.AddChangeListener((sender, args) =&gt;
 {
     if (args.Status.Error != null) {
         Console.WriteLine($"Error :: {args.Status.Error}");
@@ -1531,7 +1532,7 @@ After completing this step, Sync Gateway is reachable over <code>https</code>/<c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L1214-L1224">// Note: `GetCertificate` is a fake method. This would be the platform-specific method
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L1214-L1224">// Note: `GetCertificate` is a fake method. This would be the platform-specific method
 // to find and load the certificate as an instance of `X509Certificate2`.
 // For .NET Core / .NET Framework this can be loaded from the filesystem path.
 // For UWP, from the assets directory.
@@ -1572,7 +1573,7 @@ You can increase the log output for activity related to replication with Sync Ga
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/csharp/examples/code_snippets/Program.cs#L979-L981">// deprecated
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/csharp/examples/code_snippets/Program.cs#L979-L981">// deprecated
 Database.SetLogLevel(LogDomain.Replicator, LogLevel.Verbose);
 Database.SetLogLevel(LogDomain.Network, LogLevel.Verbose);</code></pre>
 </div>

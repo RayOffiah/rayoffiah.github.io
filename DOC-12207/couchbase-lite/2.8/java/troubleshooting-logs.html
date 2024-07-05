@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:module" content="java">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Java / Troubleshooting / Logs">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="3">
+<meta name="docsearch:version_rank" content="4">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
@@ -130,6 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="couchbase-lite">
+        <option value="3.2" data-url="../../3.2/java/troubleshooting-logs.html">3.2 Beta</option>
         <option value="3.1" data-url="../../current/java/troubleshooting-logs.html">3.1</option>
         <option value="3.0" data-url="../../3.0/java/troubleshooting-logs.html">3.0</option>
         <option value="2.8" data-url="troubleshooting-logs.html" selected>2.8</option>
@@ -332,7 +333,7 @@ To change default settings use database&#8217;s <a href="http://docs.couchbase.c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/java/examples/code_snippets/Examples.java#L778-L780">Database.log.getConsole().setDomain(LogDomain.ALL_DOMAINS); <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/java/examples/code_snippets/Examples.java#L778-L780">Database.log.getConsole().setDomain(LogDomain.ALL_DOMAINS); <i class="conum" data-value="1"></i><b>(1)</b>
 Database.log.getConsole().setLevel(LogLevel.VERBOSE); <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
@@ -493,7 +494,7 @@ Further, you can no longer set a log level for a specific domain.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/java/examples/code_snippets/Examples.java#L1969-L1983">class LogTestLogger implements Logger {
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/java/examples/code_snippets/Examples.java#L1969-L1983">class LogTestLogger implements Logger {
     @NonNull
     private final LogLevel level;
 
@@ -520,7 +521,7 @@ Further, you can no longer set a log level for a specific domain.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/9c8027e0dacea029aacd7214f03db3745b7997ae/modules/java/examples/code_snippets/Examples.java#L770">Database.log.setCustom(new LogTestLogger(LogLevel.WARNING)); <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/aae1eb7ce5cab7e01114909bb69ff93437425591/modules/java/examples/code_snippets/Examples.java#L770">Database.log.setCustom(new LogTestLogger(LogLevel.WARNING)); <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -621,40 +622,6 @@ The custom logger is called with every log and may choose to filter it, using it
 <pre class="highlightjs highlight"><code class="language-powershell hljs" data-lang="powershell">$ .\cbl-log.exe logcat LOGFILE &lt;OUTPUT_PATH&gt;</code></pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="pre-2x5-logging"><a class="anchor" href="#pre-2x5-logging"></a>Logging functionality prior to Release 2.5</h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="title">Deprecation</div>
-The pre-Couchbase Lite 2.5 logging functionality is deprecated.
-It was superseded by an enhanced Logging API in that release.
-This information is included for completeness only.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The log messages are split into different domains (<code>LogDomains</code>) which can be tuned to different log levels.
-The following example enables <code>verbose</code> logging for the <code>replicator</code> and <code>query</code> domains.</p>
-</div>
-<div class="exampleblock">
-<div class="title">Example 6. Enable verbose logging on a domain</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java">// deprecated
-Database.setLogLevel(LogDomain.REPLICATOR, LogLevel.VERBOSE);
-Database.setLogLevel(LogDomain.QUERY, LogLevel.VERBOSE);</code></pre>
 </div>
 </div>
 </div>
