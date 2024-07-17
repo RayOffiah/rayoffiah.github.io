@@ -16,6 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="canonical" href="https://docs.couchbase.com/cloud/organizations/organization-user-roles.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="Use organization roles in Couchbase Capella to manage the privileges of your organization&#x27;s users.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -30,11 +31,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:component_version" content="cloud@">
 <meta name="docsearch:module" content="organizations">
 <meta name="docsearch:breadcrumbs" content="Couchbase Capella / Administer Capella / Manage Organizations and Access / Organizations / Organization Roles">
-<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:topic_type" content="reference">
 <meta name="docsearch:version_rank" content="1">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
-<meta name="docsearch:page_rank" content="50">
+<meta name="docsearch:page_rank" content="55">
 
 
 <meta name="generator" content="Antora 3.1.4">
@@ -205,7 +206,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="page-heading-title">
 <h1 class="page">Organization Roles</h1>
 <div class="labels">
-<ul></ul>
+<ul><li class="reference"><span><i class="fas fa-book"></i></i> reference</span></li>
+</ul>
 </div>
 
 
@@ -216,16 +218,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span  id="otherContributor"> + </span>
 </div><div class="quoteblock abstract">
 <blockquote>
-Organization roles are used to grant privileges to organization users.
+Use organization roles in Couchbase Capella to manage the privileges of your organization&#8217;s users.
 </blockquote>
 </div>
 <div class="paragraph">
-<p>Each Couchbase Capella user added to an organization is assigned an <em>organization role</em> that determines what privileges they have within the organization.
-Organization roles are separate from <a href="../projects/project-roles.html" class="xref page">project roles</a>, which grant granular privileges to projects and clusters.
-Organization roles are also distinct from <a href="../clusters/manage-database-users.html" class="xref page">database credentials</a>, which grant access to cluster data.</p>
+<p>Every user account in Couchbase Capella has an organization role that determines the privileges they have for Capella UI access inside that organization.</p>
 </div>
 <div class="paragraph">
-<p>The following table describes the available organization roles and their associated privileges.</p>
+<p>For example, a user who&#8217;s an <code>Organization Member</code> cannot view any of the <a href="../billing/billing.html" class="xref page">billing</a> information inside the Capella UI.</p>
+</div>
+<div class="paragraph">
+<p>Use <a href="../projects/projects.html" class="xref page">projects</a> and <a href="../projects/project-roles.html" class="xref page">project roles</a> to grant more specific privileges and access to databases, data, and data tools.
+Use <a href="../clusters/manage-database-users.html" class="xref page">database access credentials</a> to manage your programmatic and application-level access to a database&#8217;s data.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In the <a href="../management-api-guide/management-api-intro.html" class="xref page">v4 Management API</a>, databases are called clusters.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following table describes the available organization roles and their privileges.</p>
 </div>
 <table id="table-organization-roles" class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Organization Roles</caption>
@@ -245,35 +264,38 @@ Organization roles are also distinct from <a href="../clusters/manage-database-u
 <p><code><strong>Organization Owner</strong></code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Grants the following privileges within the organization:</p>
+<p>An Organization Owner can:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Invite and manage organization users</p>
+<p>Access the Capella UI</p>
+</li>
+<li>
+<p>Invite and manage <a href="manage-organization-users.html" class="xref page">organization users</a></p>
 </li>
 <li>
 <p>View and manage organization settings</p>
 </li>
 <li>
-<p>View and manage billing</p>
+<p>View and manage <a href="../billing/billing.html" class="xref page">billing</a></p>
 </li>
 <li>
-<p>View and manage all projects in the organization</p>
+<p>View and manage all <a href="../projects/projects.html" class="xref page">projects</a> in the organization</p>
 </li>
 <li>
-<p>View and manage API keys in the organization</p>
+<p>View and manage <a href="../management-api-guide/management-api-start.html" class="xref page">API keys</a> in the organization</p>
 </li>
 <li>
-<p>View and manage SSO realms and teams</p>
+<p>View and manage <a href="ui-auth/add-sso-auth.html" class="xref page">SSO realms and teams</a></p>
 </li>
 <li>
-<p>Manage Capella iQ</p>
+<p>Manage <a href="../get-started/capella-iq/work-with-capellaiq.html" class="xref page">Capella iQ</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>A user with this organization role automatically has the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> project role for all projects in the organization.</p>
+<p>Organization Owners automatically have the <a href="../projects/project-roles.html#project-owner-role" class="xref page">Project Owner</a> project role for all projects in the organization.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -282,7 +304,7 @@ Organization roles are also distinct from <a href="../clusters/manage-database-u
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-An organization must have at least one user with the <a href="#organization-role-organization-owner"><code><strong>Organization Owner</strong></code></a> role at all times.
+An organization must have at least one user with the <code><strong>Organization Owner</strong></code> role at all times.
 </td>
 </tr>
 </table>
@@ -293,20 +315,20 @@ An organization must have at least one user with the <a href="#organization-role
 <p><code><strong>Project Creator</strong></code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Grants the following privileges within the organization:</p>
+<p>A Project Creator:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>All privileges granted by the <a href="#organization-role-member"><code>Organization Member</code></a> role</p>
+<p>Can create <a href="../projects/projects.html" class="xref page">projects</a></p>
 </li>
 <li>
-<p>Create projects</p>
+<p>Has all privileges granted by the <a href="#organization-role-member"><code>Organization Member</code></a> role</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>A user with this organization role automatically has the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> project role for any project that they create.</p>
+<p>Project Creators automatically have the <a href="../projects/project-roles.html#project-owner-role" class="xref page">Project Owner</a> project role for any project that they create.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -314,12 +336,12 @@ An organization must have at least one user with the <a href="#organization-role
 <p><code><strong>Organization Member</strong></code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Grants the following privileges within the organization:</p>
+<p>An Organization Member can:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Access to the Couchbase Capella UI</p>
+<p>Access the Capella UI</p>
 </li>
 <li>
 <p>View organization settings</p>
@@ -328,22 +350,15 @@ An organization must have at least one user with the <a href="#organization-role
 <p>View organization users</p>
 </li>
 <li>
-<p>View connected clouds</p>
+<p>View <a href="../projects/projects.html" class="xref page">projects</a> where they&#8217;re a member</p>
 </li>
 <li>
-<p>View projects of which they&#8217;re a member</p>
-</li>
-<li>
-<p>View teams</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Users that have been added as members of a project will have privileges within that project based on their <a href="../projects/project-roles.html" class="xref page">project role</a>.</p>
+<p>View <a href="ui-auth/manage-role-mapping.html" class="xref page">teams</a></p>
 </li>
 </ul>
 </div>
-</li>
-</ul>
+<div class="paragraph">
+<p>Organization Members have privileges in a project based on their <a href="../projects/project-roles.html" class="xref page">project role</a>.</p>
 </div></div></td>
 </tr>
 </tbody>

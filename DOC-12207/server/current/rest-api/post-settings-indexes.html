@@ -131,7 +131,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="server">
         <option value="7.6" data-url="post-settings-indexes.html" selected>7.6</option>
-        <option value="7.2" data-url="../../7.2/index.html">7.2</option>
+        <option value="7.2" data-url="../../7.2/rest-api/post-settings-indexes.html">7.2</option>
         <option value="7.1" data-url="../../7.1/index.html">7.1</option>
         <option value="7.0" data-url="../../7.0/index.html">7.0</option>
       </select>
@@ -281,7 +281,31 @@ The parameters are specified as key-value pairs (e.g <code>key=value</code>).</p
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>enableShardAffinity</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Selects the <a href="../learn/clusters-and-availability/rebalance.html#index-rebalance-methods" class="xref page">index rebalance method</a>. When set to the default <code>false</code> value, Index Servers rebuild any index that are newly assigned to them during a rebalance. When set to <code>true</code>, Couchbase Server moves a reassigned index&#8217;s files between Index Servers.</p>
+<p>Selects the <a href="../learn/clusters-and-availability/rebalance.html#index-rebalance-methods" class="xref page">index rebalance method</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>false</code> (default value): Index Service nodes rebuild indexes that are newly assigned to them during a rebalance.</p>
+</li>
+<li>
+<p><code>true</code>: Couchbase Server moves a reassigned index&#8217;s files between Index Service nodes.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In Couchbase Server versions 7.6.0 and 7.6.1, when you enabled file-based rebalance you could not choose which Index Service nodes would contain an index when using the <code>CREATE INDEX</code> statement.
+In Couchbase Server 7.6.2 and later, you can use the <code>WITH &lt;node&gt;</code> clause to set which node contains the index.
+You still cannot use the <code>WITH &lt;node&gt;</code> clause with <code>ALTER INDEX</code> after you enable file-based rebalance.
+</td>
+</tr>
+</table>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
 </tr>

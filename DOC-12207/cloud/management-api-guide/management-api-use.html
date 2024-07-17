@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:version_rank" content="1">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
-<meta name="docsearch:page_rank" content="50">
+<meta name="docsearch:page_rank" content="55">
 
 
 <meta name="generator" content="Antora 3.1.4">
@@ -298,9 +298,6 @@ To download the Management API v4.0 specification, go to the <a href="#managemen
 <div class="ulist">
 <ul>
 <li>
-<p><code>$BASEURL</code> is the base URL for the API call.</p>
-</li>
-<li>
 <p><code>$TOKEN</code> is the API key token.</p>
 </li>
 </ul>
@@ -308,7 +305,7 @@ To download the Management API v4.0 specification, go to the <a href="#managemen
 <div class="listingblock">
 <div class="title">HTTP Request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl "$BASEURL/v4/organizations" \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl "https://cloudapi.cloud.couchbase.com/v4/organizations" \
    -H "Authorization: Bearer $TOKEN"</code></pre>
 </div>
 </div>
@@ -357,9 +354,6 @@ You can use the organization ID for any further API calls in which <code>{organi
 <div class="ulist">
 <ul>
 <li>
-<p><code>$BASEURL</code> is the base URL for the API call.</p>
-</li>
-<li>
 <p><code>$ORGID</code> is the organization ID.</p>
 </li>
 <li>
@@ -373,7 +367,7 @@ You can use the organization ID for any further API calls in which <code>{organi
 <div class="listingblock">
 <div class="title">HTTP Request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl "$BASEURL/v4/organizations/$ORGID/projects?perPage=3&amp;page=1" \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl "https://cloudapi.cloud.couchbase.com/v4/organizations/$ORGID/projects?perPage=3&amp;page=1" \
    -H "Authorization: Bearer $TOKEN"</code></pre>
 </div>
 </div>
@@ -386,9 +380,9 @@ You can use the organization ID for any further API calls in which <code>{organi
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "cursor": {
     "hrefs": {
-      "first": "http://&lt;BASEURL&gt;/v4/organizations/&lt;ORGID&gt;/projects?page=1&amp;perPage=3",
-      "last": "http://&lt;BASEURL&gt;/v4/organizations/&lt;ORGID&gt;/projects?page=182&amp;perPage=3",
-      "next": "http://&lt;BASEURL&gt;/v4/organizations/&lt;ORGID&gt;/projects?page=2&amp;perPage=3",
+      "first": "https://cloudapi.cloud.couchbase.com/v4/organizations/&lt;ORGID&gt;/projects?page=1&amp;perPage=3",
+      "last": "https://cloudapi.cloud.couchbase.com/v4/organizations/&lt;ORGID&gt;/projects?page=182&amp;perPage=3",
+      "next": "https://cloudapi.cloud.couchbase.com/v4/organizations/&lt;ORGID&gt;/projects?page=2&amp;perPage=3",
       "previous": ""
     },
     "pages": {
@@ -458,9 +452,6 @@ For each project, <code>audit</code> information is provided, showing metadata f
 <div class="ulist">
 <ul>
 <li>
-<p><code>$BASEURL</code> is the base URL for the API call.</p>
-</li>
-<li>
 <p><code>$ORGID</code> is the organization ID.</p>
 </li>
 <li>
@@ -474,7 +465,7 @@ For each project, <code>audit</code> information is provided, showing metadata f
 <div class="listingblock">
 <div class="title">HTTP Request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl "$BASEURL/v4/organizations/$ORGID/projects/$PROJECTID" \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl "https://cloudapi.cloud.couchbase.com/v4/organizations/$ORGID/projects/$PROJECTID" \
    -H "Authorization: Bearer $TOKEN"</code></pre>
 </div>
 </div>
@@ -511,9 +502,6 @@ For each project, <code>audit</code> information is provided, showing metadata f
 <div class="ulist">
 <ul>
 <li>
-<p><code>$BASEURL</code> is the base URL for the API call.</p>
-</li>
-<li>
 <p><code>$ORGID</code> is the organization ID.</p>
 </li>
 <li>
@@ -527,7 +515,7 @@ For each project, <code>audit</code> information is provided, showing metadata f
 <div class="listingblock">
 <div class="title">HTTP Request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl -X PUT "$BASEURL/v4/organizations/$ORGID/projects/$PROJECTID" \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl -X PUT "https://cloudapi.cloud.couchbase.com/v4/organizations/$ORGID/projects/$PROJECTID" \
    -H "Accept: application/json" \
    -H "Authorization: Bearer $TOKEN" \
    -d '{"name": "Project 1", "description": "New description"}'</code></pre>
@@ -550,9 +538,6 @@ However, both the <code>name</code> and <code>description</code> fields are requ
 <div class="ulist">
 <ul>
 <li>
-<p><code>$BASEURL</code> is the base URL for the API call.</p>
-</li>
-<li>
 <p><code>$ORGID</code> is the organization ID.</p>
 </li>
 <li>
@@ -566,7 +551,7 @@ However, both the <code>name</code> and <code>description</code> fields are requ
 <div class="listingblock">
 <div class="title">HTTP Request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl "$BASEURL/v4/organizations/$ORGID/projects/$PROJECTID" -i \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl "https://cloudapi.cloud.couchbase.com/v4/organizations/$ORGID/projects/$PROJECTID" -i \
    -H "Authorization: Bearer $TOKEN" | grep etag</code></pre>
 </div>
 </div>
@@ -598,13 +583,10 @@ This example requests the protocol response headers instead, for clarity.</p>
 If so, it updates the project with a new description.</p>
 </div>
 <div class="paragraph">
-<p>This enables you to make sure that you are applying your update to the correct revision of the project, in cases where the project may be updated by other processes concurrently.</p>
+<p>This enables you to make sure that you&#8217;re applying your update to the correct revision of the project, in cases where the project may be updated by other processes concurrently.</p>
 </div>
 <div class="ulist">
 <ul>
-<li>
-<p><code>$BASEURL</code> is the base URL for the API call.</p>
-</li>
 <li>
 <p><code>$ORGID</code> is the organization ID.</p>
 </li>
@@ -619,7 +601,7 @@ If so, it updates the project with a new description.</p>
 <div class="listingblock">
 <div class="title">HTTP Request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl -X PUT "$BASEURL/v4/organizations/$ORGID/projects/$PROJECTID" \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl -X PUT "https://cloudapi.cloud.couchbase.com/v4/organizations/$ORGID/projects/$PROJECTID" \
    -H "Accept: application/json" \
    -H "Authorization: Bearer $TOKEN" \
    -H "If-Match: 1" \

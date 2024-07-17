@@ -12,11 +12,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://metrics.couchbase.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
-<title>Configure Database Credentials | Couchbase Docs</title>
+<title>Configure Database Access Credentials | Couchbase Docs</title>
 <link rel="canonical" href="https://docs.couchbase.com/cloud/clusters/manage-database-users.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
-<meta name="description" content="Database credentials provide programmatic and application-level access to data on a database.">
+<meta name="description" content="Database access credentials provide programmatic and application-level access to data on a database.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:version_rank" content="1">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
-<meta name="docsearch:page_rank" content="50">
+<meta name="docsearch:page_rank" content="55">
 
 
 <meta name="generator" content="Antora 3.1.4">
@@ -203,7 +203,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <article class="doc">
 <div class="page-heading-title">
-<h1 class="page">Configure Database Credentials</h1>
+<h1 class="page">Configure Database Access Credentials</h1>
 <div class="labels">
 <ul></ul>
 </div>
@@ -218,26 +218,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-Database credentials provide programmatic and application-level access to data on a database.
-Only database credentials can access data.
+Database access credentials provide programmatic and application-level access to data on a database.
+Only database access credentials can access data.
 </blockquote>
 </div>
 <div class="paragraph">
-<p>This page provides information about database credentials and how they work.
-You will also find procedures for creating and managing database credentials for a database, allowing you to provide programmatic and application-level access to data.</p>
+<p>This page provides information about database access credentials and how they work.
+You&#8217;ll also find procedures for creating and managing database access credentials for a database, allowing you to provide programmatic and application-level access to data.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="about-database-credentials"><a class="anchor" href="#about-database-credentials"></a>About Database Credentials</h2>
+<h2 id="about-database-credentials"><a class="anchor" href="#about-database-credentials"></a>About Database Access Credentials</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><em>Database credentials</em> are separate from <a href="../organizations/organization-user-roles.html" class="xref page">organization roles</a>.
-While organization roles control what you can do within an organization, such as creating projects, a database credential is still required to access data on a database.
-Database credentials are also distinct from <a href="../projects/project-roles.html" class="xref page">project roles</a>, but only project members with the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role can create them.</p>
+<p><em>Database access credentials</em> are separate from <a href="../organizations/organization-user-roles.html" class="xref page">organization roles</a>.
+While organization roles control what you can do within an organization, such as creating projects, a database access credential is still required to access data on a database.
+Database access credentials are also distinct from <a href="../projects/project-roles.html" class="xref page">project roles</a>, but only project members with the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role can create them.</p>
 </div>
 <div class="paragraph">
-<p>A database credential is specific to a database and consists of a database access name, secret, and a set of <a href="#about-database-user-permissions">bucket and scope access levels</a>.
+<p>A database access credential is specific to a database and consists of a database access name, secret, and a set of <a href="#about-database-user-permissions">bucket and scope access levels</a>.
 It&#8217;s required for applications to remotely authenticate on a database and access bucket data.</p>
 </div>
 <div class="admonitionblock note">
@@ -248,18 +248,18 @@ It&#8217;s required for applications to remotely authenticate on a database and 
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Database credentials are distinct and not associated with a particular user.
-They don&#8217;t control access to data tools like the Query tab in the Capella UI.</p>
+<p>Database access credentials are distinct and not associated with a particular user.
+They do not control access to data tools like the Query tab in the Capella UI.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="sect2">
-<h3 id="about-database-user-permissions"><a class="anchor" href="#about-database-user-permissions"></a>Database Credentials and Access</h3>
+<h3 id="about-database-user-permissions"><a class="anchor" href="#about-database-user-permissions"></a>Database Access Credentials and Access</h3>
 <div class="paragraph">
-<p>You assign database credentials on a per bucket or per scope basis.
-For example, you could assign a database credential to access all buckets and scopes in a database, assign different access levels to individual buckets, or assign access to just a single scope.
+<p>You assign database access credentials on a per bucket or per scope basis.
+For example, you could assign a database access credential to access all buckets and scopes in a database, assign different access levels to individual buckets, or assign access to just a single scope.
 This system allows you to mix and match access levels to different buckets and scopes in a database to satisfy your application and security requirements.</p>
 </div>
 <div class="paragraph">
@@ -328,7 +328,7 @@ This system allows you to mix and match access levels to different buckets and s
 <div id="footnotes">
 <hr>
 <div class="footnote" id="_footnotedef_1">
-<a href="#_footnoteref_1">1</a>. The <code>external_stats_reader</code> role is only granted when a database credential is given read access to <em>all</em> buckets in a database.
+<a href="#_footnoteref_1">1</a>. The <code>external_stats_reader</code> role is only granted when a database access credential is given read access to <em>all</em> buckets in a database.
 </div>
 </div></div></td>
 </tr>
@@ -410,7 +410,7 @@ This system allows you to mix and match access levels to different buckets and s
 </div>
 </div>
 <div class="sect1">
-<h2 id="accessing-database-credentials"><a class="anchor" href="#accessing-database-credentials"></a>Accessing Database Credentials</h2>
+<h2 id="accessing-database-credentials"><a class="anchor" href="#accessing-database-credentials"></a>View Database Access Credentials</h2>
 <div class="sectionbody">
 <div class="admonitionblock important">
 <table>
@@ -421,7 +421,7 @@ This system allows you to mix and match access levels to different buckets and s
 <td class="content">
 <div class="title">Permissions Required</div>
 <div class="paragraph">
-<p>To access the database credentials for a database, you must have any of the following roles for the project containing the database:</p>
+<p>To view the database access credentials for a database, you must have any of the following roles for the project containing the database:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -440,14 +440,14 @@ This system allows you to mix and match access levels to different buckets and s
 </ul>
 </div>
 <div class="paragraph">
-<p>Only the <code>Project Owner</code> role allows you to create and modify database credentials.</p>
+<p>Only the <code>Project Owner</code> role allows you to create and modify database access credentials.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The <strong>Database Access</strong> page lists any existing database credentials for a database and allows you to create new ones.
+<p>The <strong>Database Access</strong> page lists any existing database access credentials for a database and allows you to create new ones.
 To open the <strong>Database Access</strong> page:</p>
 </div>
 <div class="olist arabic">
@@ -488,24 +488,24 @@ To open the <strong>Database Access</strong> page:</p>
 <div class="sect2">
 <h3 id="database-access-summary"><a class="anchor" href="#database-access-summary"></a>Database Access Summary</h3>
 <div class="paragraph">
-<p>The database access page is in a table format, with sortable columns and rows for each database credential.</p>
+<p>The database access page is in a table format, with sortable columns and rows for each database access credential.</p>
 </div>
 <div class="paragraph">
-<p>The following information is shown about each database credential:</p>
+<p>The following information is shown about each database access credential:</p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Database Access Name</dt>
 <dd>
-<p>The name that identifies the database credential.</p>
+<p>The name that identifies the database access credential.</p>
 </dd>
 <dt class="hdlist1">Created By</dt>
 <dd>
-<p>The organization user that created the database credential.</p>
+<p>The organization user that created the database access credential.</p>
 </dd>
 <dt class="hdlist1">Created On</dt>
 <dd>
-<p>The creation date of the database credential and its age.
+<p>The creation date of the database access credential and its age.
 The color-coded status indicator in this column is based on age to help identify older credentials that need rotation.
 The colors indicate the following:</p>
 <div class="ulist">
@@ -525,13 +525,13 @@ The colors indicate the following:</p>
 </dl>
 </div>
 <div class="paragraph">
-<p>A Trash icon <span class="icon"><i class="fa fa-trash-alt"></i></span> shown at the end of each row can be used to <a href="#delete-database-credentials">delete</a> the corresponding database credential.</p>
+<p>A Trash icon <span class="icon"><i class="fa fa-trash-alt"></i></span> shown at the end of each row can be used to <a href="#delete-database-credentials">delete</a> the corresponding database access credential.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="create-database-credentials"><a class="anchor" href="#create-database-credentials"></a>Creating Database Credentials</h2>
+<h2 id="create-database-credentials"><a class="anchor" href="#create-database-credentials"></a>Create Database Access Credentials</h2>
 <div class="sectionbody">
 <div class="admonitionblock important">
 <table>
@@ -542,7 +542,7 @@ The colors indicate the following:</p>
 <td class="content">
 <div class="title">Permissions Required</div>
 <div class="paragraph">
-<p>To create a database credential, you must have the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role for the project containing the database where you&#8217;re creating the database credential.</p>
+<p>To create a database access credential, you must have the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role for the project containing the database where you&#8217;re creating the database access credential.</p>
 </div>
 </td>
 </tr>
@@ -582,7 +582,7 @@ The colors indicate the following:</p>
 <dl>
 <dt class="hdlist1">Database Access Name</dt>
 <dd>
-<p>The database access name can&#8217;t exceed 35 characters in length and can&#8217;t contain the following characters: <code>( ) &lt; &gt; @ , ; : \ " / [ ]  ? = { }</code></p>
+<p>The database access name cannot exceed 35 characters in length and can&#8217;t contain the following characters: <code>( ) &lt; &gt; @ , ; : \ " / [ ]  ? = { }</code></p>
 </dd>
 <dt class="hdlist1">Secret</dt>
 <dd>
@@ -596,20 +596,20 @@ They need one or more uppercase letters, lowercase letters, numbers, and special
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Once you create a database credential, you can&#8217;t change the secret.
+<p>Once you create a database access credential, you cannot change the secret.
 This prevents situations where a credential&#8217;s secret is changed in Capella, but not in an application.
 The best practice to follow when rotating credentials is to:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create a new database credential in Capella</p>
+<p>Create a new database access credential in Capella</p>
 </li>
 <li>
-<p>Update your application to use the new database credential</p>
+<p>Update your application to use the new database access credential</p>
 </li>
 <li>
-<p>Delete the old database credential</p>
+<p>Delete the old database access credential</p>
 </li>
 </ol>
 </div>
@@ -627,14 +627,14 @@ The best practice to follow when rotating credentials is to:</p>
 <li>
 <p>Select bucket-level access.</p>
 <div class="paragraph">
-<p>In the <strong>Bucket Level Access</strong> section, use the <strong>Bucket</strong> drop-down menu to specify a bucket you want this database credential to access
+<p>In the <strong>Bucket Level Access</strong> section, use the <strong>Bucket</strong> drop-down menu to specify a bucket you want this database access credential to access
 To grant access to all current and future buckets in the database, choose the <strong>All Buckets</strong> option.</p>
 </div>
 </li>
 <li>
 <p>Select scope-level access</p>
 <div class="paragraph">
-<p>Use the <strong>Scope</strong> drop-down menu to specify a scope you want this database credential to access.
+<p>Use the <strong>Scope</strong> drop-down menu to specify a scope you want this database access credential to access.
 To grant access to all current and future scopes in the selected bucket, choose the <strong>All Scopes</strong> option.</p>
 </div>
 </li>
@@ -647,24 +647,24 @@ To grant access to all current and future scopes in the selected bucket, choose 
 <li>
 <p>(Optional) Add another level of access.</p>
 <div class="paragraph">
-<p>Database credentials can access a selection of multiple buckets and scopes within a database.</p>
+<p>Database access credentials can access a selection of multiple buckets and scopes within a database.</p>
 </div>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
 <p>Click <b class="button">Add Another</b>.</p>
 <div class="paragraph">
-<p>The <strong>Bucket Level Access</strong> section adds another line where you can select another bucket and scope for this database credential to access.</p>
+<p>The <strong>Bucket Level Access</strong> section adds another line where you can select another bucket and scope for this database access credential to access.</p>
 </div>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>Once you&#8217;ve finished making the desired configurations, click <b class="button">Create Database Access</b>.</p>
+<p>Once you have finished making the desired configurations, click <b class="button">Create Database Access</b>.</p>
 <div class="paragraph">
-<p>Remember that you can&#8217;t use database credentials to log into the Couchbase Capella UI or manage Capella features.
-Database credentials are used for reading or writing bucket data using the Couchbase SDK and other supported tools.</p>
+<p>Remember that you cannot use database access credentials to log into the Couchbase Capella UI or manage Capella features.
+Database access credentials are used for reading or writing bucket data using the Couchbase SDK and other supported tools.</p>
 </div>
 </li>
 </ol>
@@ -672,7 +672,7 @@ Database credentials are used for reading or writing bucket data using the Couch
 </div>
 </div>
 <div class="sect1">
-<h2 id="modify-database-credentials"><a class="anchor" href="#modify-database-credentials"></a>Modify Database Credentials</h2>
+<h2 id="modify-database-credentials"><a class="anchor" href="#modify-database-credentials"></a>Modify Database Access Credentials</h2>
 <div class="sectionbody">
 <div class="admonitionblock important">
 <table>
@@ -683,7 +683,7 @@ Database credentials are used for reading or writing bucket data using the Couch
 <td class="content">
 <div class="title">Permissions Required</div>
 <div class="paragraph">
-<p>To modify a database credential, you must have the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role for the project with the database credential</p>
+<p>To modify a database access credential, you must have the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role for the project with the database access credential</p>
 </div>
 </td>
 </tr>
@@ -715,23 +715,23 @@ Database credentials are used for reading or writing bucket data using the Couch
 </div>
 </li>
 <li>
-<p>Click the access name of the database credential you&#8217;re modifying.</p>
+<p>Click the access name of the database access credential you&#8217;re modifying.</p>
 </li>
 <li>
 <p>In the <strong>Bucket Level Access</strong> section, change any existing levels of access or add more.</p>
 <div class="paragraph">
-<p>See the <a href="#bucket-level-access">access selection</a> steps for creating a database credential for details on choosing bucket and scope access levels.</p>
+<p>See the <a href="#bucket-level-access">access selection</a> steps for creating a database access credential for details on choosing bucket and scope access levels.</p>
 </div>
 </li>
 <li>
-<p>Once you&#8217;ve made your changes, click <b class="button">Apply</b>.</p>
+<p>Once you have made your changes, click <b class="button">Apply</b>.</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="delete-database-credentials"><a class="anchor" href="#delete-database-credentials"></a>Deleting Database Credentials</h2>
+<h2 id="delete-database-credentials"><a class="anchor" href="#delete-database-credentials"></a>Delete Database Access Credentials</h2>
 <div class="sectionbody">
 <div class="admonitionblock warning">
 <table>
@@ -741,8 +741,8 @@ Database credentials are used for reading or writing bucket data using the Couch
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Deleting a database credential can cause an application that&#8217;s using it to stop functioning.
-Always make sure that you&#8217;ve updated your application to use new credentials before deleting a database credential.</p>
+<p>Deleting a database access credential can cause an application that&#8217;s using it to stop functioning.
+Always make sure that you have updated your application to use new credentials before deleting a database access credential.</p>
 </div>
 </td>
 </tr>
@@ -757,7 +757,7 @@ Always make sure that you&#8217;ve updated your application to use new credentia
 <td class="content">
 <div class="title">Permissions Required</div>
 <div class="paragraph">
-<p>To delete a database credential, you must have the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role for the project with the database credential.</p>
+<p>To delete a database access credential, you must have the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role for the project with the database access credential.</p>
 </div>
 </td>
 </tr>
@@ -789,7 +789,7 @@ Always make sure that you&#8217;ve updated your application to use new credentia
 </div>
 </li>
 <li>
-<p>At the end of the row for the database credential that you want to delete, click the Trash icon <span class="icon"><i class="fa fa-trash-alt"></i></span>.</p>
+<p>At the end of the row for the database access credential that you want to delete, click the Trash icon <span class="icon"><i class="fa fa-trash-alt"></i></span>.</p>
 <div class="paragraph">
 <p>This opens the <strong>Delete Database Access</strong> dialog.</p>
 </div>
@@ -797,7 +797,7 @@ Always make sure that you&#8217;ve updated your application to use new credentia
 <li>
 <p>Type <code>delete</code> into the provided field and click <b class="button">Delete Database Access</b>.</p>
 <div class="paragraph">
-<p>A small notification indicates that the database credential is deleted.</p>
+<p>A small notification indicates that the database access credential is deleted.</p>
 </div>
 </li>
 </ol>
@@ -805,11 +805,11 @@ Always make sure that you&#8217;ve updated your application to use new credentia
 </div>
 </div>
 <div class="sect1">
-<h2 id="manage-database-users-vault"><a class="anchor" href="#manage-database-users-vault"></a>Manage Database Credentials with Hashicorp Vault</h2>
+<h2 id="manage-database-users-vault"><a class="anchor" href="#manage-database-users-vault"></a>Manage Database Access Credentials with Hashicorp Vault</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Our <a href="https://github.com/couchbasecloud/vault-plugin-database-couchbasecapella">Hashicorp Vault plug-in</a> can serve as a centralized hub for secrets management.
-In addition to managing existing secrets, Vault&#8217;s Database Secrets Engine generates dynamic, short-lived database credentials.
+In addition to managing existing secrets, Vault&#8217;s Database Secrets Engine generates dynamic, short-lived database access credentials.
 This streamlines the management of database connections and roles, and you can even customize permissions and TTL settings.</p>
 </div>
 <div class="paragraph">

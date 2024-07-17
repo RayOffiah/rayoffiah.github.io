@@ -13,7 +13,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
 <title>Using Full-Text Search | Couchbase Docs</title>
-<link rel="canonical" href="https://docs.couchbase.com/couchbase-lite/current/java/fts.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="Working with Couchbase Lite&#x27;s data model  -- Querying the database using full text search">
@@ -21,19 +20,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="couchbase-lite">
-<meta name="dcterms.identifier" content="3.1">
+<meta name="dcterms.identifier" content="3.2">
 <meta name="page-url" content="/couchbase-lite/current/java/fts.html">
 <meta name="page-nav-header-levels" content="0">
 
 <meta name="docsearch:component" content="couchbase-lite">
 <meta name="docsearch:component_title" content="Couchbase Lite">
-<meta name="docsearch:cversion" content="3.1">
-<meta name="docsearch:component_version" content="couchbase-lite@3.1">
+<meta name="docsearch:cversion" content="3.2">
+<meta name="docsearch:component_version" content="couchbase-lite@3.2">
 <meta name="docsearch:module" content="java">
-<meta name="docsearch:breadcrumbs" content="Couchbase Lite / Java / Full Text Search">
+<meta name="docsearch:breadcrumbs" content="Couchbase Lite / Java / Search / Full Text Search">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="2">
-<meta name="docsearch:status" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="Beta">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
 
@@ -128,14 +127,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="couchbase-lite">
-        <option value="3.2" data-url="../../3.2/java/fts.html">3.2 Beta</option>
-        <option value="3.1" data-url="fts.html" selected>3.1</option>
-        <option value="3.0" data-url="../../3.0/java/fts.html">3.0</option>
-        <option value="2.8" data-url="../../2.8/java/fts.html">2.8</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -144,7 +135,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbaselabs/docs-couchbase-lite/edit/release/3.1/modules/java/pages/fts.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/java/pages/fts.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -204,6 +195,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="crumb"><a href="../index.html">Couchbase Lite</a></li>
 <li class="crumb"><a href="quickstart.html">Java</a></li>
+<li class="crumb">Search</li>
 <li class="crumb"><a href="fts.html">Full Text Search</a></li>
 </ul>
 </nav>
@@ -213,6 +205,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1 class="page">Using Full-Text Search</h1>
 <div class="labels">
 <ul></ul>
+</div>
+<div class="labels">
+<ul>
+<li class="status"><span>Beta</span></li>
+</ul>
 </div>
 
 
@@ -262,7 +259,7 @@ They create and use an FTS index built from the hotel&#8217;s <code>Overview</co
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/java/examples/codesnippet_collection.java">FullTextIndexConfiguration config = new FullTextIndexConfiguration("Overview").ignoreAccents(false);
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/java/examples/codesnippet_collection.java">FullTextIndexConfiguration config = new FullTextIndexConfiguration("Overview").ignoreAccents(false);
 collection.createIndex("overviewFTSIndex", config);</code></pre>
 </div>
 </div>
@@ -289,7 +286,7 @@ See <a href="https://github.com/couchbasedeps/sqlite3-unicodesn/blob/HEAD/stopwo
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/java/examples/codesnippet_collection.java">Query ftsQuery =
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/java/examples/codesnippet_collection.java">Query ftsQuery =
     database.createQuery(
         "SELECT _id, overview FROM _ WHERE MATCH(overviewFTSIndex, 'michigan') ORDER BY RANK"
             + "(overviewFTSIndex)");
@@ -320,7 +317,7 @@ try (ResultSet resultSet = ftsQuery.execute()) {
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/java/examples/codesnippet_collection.java">collection.createIndex(
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/java/examples/codesnippet_collection.java">collection.createIndex(
     "overviewFTSIndex",
     IndexBuilder.fullTextIndex(FullTextIndexItem.property("overviewFTSIndex")).ignoreAccents(false));</code></pre>
 </div>
@@ -341,7 +338,7 @@ try (ResultSet resultSet = ftsQuery.execute()) {
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/java/examples/codesnippet_collection.java">Expression whereClause = FullTextFunction.match(
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/java/examples/codesnippet_collection.java">Expression whereClause = FullTextFunction.match(
     Expression.fullTextIndex("overviewFTSIndex"),
     "'michigan'");
 Query ftsQuery =
@@ -676,7 +673,7 @@ This can be a very difficult heuristic to define, but Couchbase Lite comes with 
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.1","sync-gateway":"3.1"}}
+{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.2","sync-gateway":"3.1"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">

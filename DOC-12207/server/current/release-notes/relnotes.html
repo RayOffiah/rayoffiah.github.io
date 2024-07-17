@@ -131,7 +131,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="server">
         <option value="7.6" data-url="relnotes.html" selected>7.6</option>
-        <option value="7.2" data-url="../../7.2/index.html">7.2</option>
+        <option value="7.2" data-url="../../7.2/release-notes/relnotes.html">7.2</option>
         <option value="7.1" data-url="../../7.1/index.html">7.1</option>
         <option value="7.0" data-url="../../7.0/index.html">7.0</option>
       </select>
@@ -231,94 +231,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>For detailed information on new features and enhancements, please see <a href="../introduction/whats-new.html" class="xref page">What&#8217;s New in Version 7.6</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="new-features-762"><a class="anchor" href="#new-features-762"></a>New Features and Enhancements</h3>
-<div class="sect3">
-<h4 id="cluster-manager"><a class="anchor" href="#cluster-manager"></a>Cluster Manager</h4>
-<table id="table-new-features-762-cluster-manager" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Feature</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-57610">MB-57610</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Added metrics to allow exposing the rebalance progress via the Stats and Prometheus endpoints.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="backup-service"><a class="anchor" href="#backup-service"></a>Backup Service</h4>
-<table id="table-new-features-762-backup-service" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Feature</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-54433">MB-54433</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">In the Backup Service, the users cannot control the number of threads <code>cbbackupmgr</code> runs with.
-  There have been cases where the automatically chosen number of threads for <code>cbbackupmgr</code> have not been optimal, and users would like to be able to choose the number of threads for the backup jobs.</p>
-<p class="tableblock">Users can now assign the number of threads per node in the backup service using the REST API.<br>
-The is done by setting a map with nodeUUID key and a thread value, which will allow the backup service to use the thread value for the scheduled job.<br>
-Users can also assign zero threads to a node which will correspond to <code>cbbackupmgr</code> dynamically choosing the number of threads based on node configuration.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61072">MB-61072</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Read-only admins cannot see any part of the Backup Service in the UI or run any of the Backup Service APIs.
- This was not acceptable to many customers, as read-only administrative users often monitor clusters and check that backups have been completed.</p>
-<p class="tableblock">Now, Users with the read-only admin role can now access the backup service. They can now view tasks that have run, their statuses, what repositories and plans there are, but cannot inspect data or run backups, restores, or merges.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="search-service"><a class="anchor" href="#search-service"></a>Search Service</h4>
-<table id="table-new-features-762-search-service" class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Feature</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-60697">MB-60697</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Vector Search is now supported over macOS and windows platforms</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61216">MB-61216</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A user had to set the <code>query</code> attribute to <code>match_none</code> alongside the <code>knn</code> attribute within the search request when the user wanted to do a pure kNN search. This behavior will still work.</p>
-<p class="tableblock">A user can now  optionally choose to drop the <code>query</code> attribute entirely when coupling with <code>knn</code> and this will automatically resolve to "match_none" behind the scenes.</p>
-<p class="tableblock">In a mixed cluster, the user will see a search request free of the <code>query</code> attribute complain on a 7.6 node, while a 7.6.2 node will allow the request.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
 <h3 id="fixed-issues-762"><a class="anchor" href="#fixed-issues-762"></a>Fixed Issues</h3>
 <div class="paragraph">
 <p>This release contains the following fixes:</p>
 </div>
 <div class="sect3">
-<h4 id="cluster-manager-2"><a class="anchor" href="#cluster-manager-2"></a>Cluster Manager</h4>
+<h4 id="cluster-manager"><a class="anchor" href="#cluster-manager"></a>Cluster Manager</h4>
 <table id="table-fixed-issues-762-cluster-manager" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -392,6 +310,12 @@ sure the memcached
  memory allocation on a consumer node isn&#8217;t exceeding the allocated memory quotas:<br>
 <code>checkpoint_mem-usage</code> limit = <code>checkpoint_memory_ratio</code> + <code>dcp_consumer_buffer_ratio</code>.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-62547">MB-62547</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A critical issue occurs when performing an off-line-upgrade, graceful failover, or delta-recovery upgrade methods on index service nodes from Couchbase Server versions 7.1 through 7.2 to versions 7.6.0 or 7.6.1.
+The upgrade corrupted existing indexes requiring you to drop and rebuild them.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issue resolved.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -412,6 +336,11 @@ sure the memcached
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61014">MB-61014</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The planner may not pick a covering index if the index is defined with a complex <code>WHERE</code> clause (e.g. <code>AND</code> or <code>OR</code> clauses involving <code>!=</code>, <code>NOT</code> or <code>IN</code> predicates).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issue resolved.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61171">MB-61171</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In rare circumstances with high-load Query, requests can fail to complete, blocking rebalance attempts.<br>
 Such requests don&#8217;t affect other regular processing beyond occupying a servicer, but a rebalance can&#8217;t complete until they do.
@@ -419,7 +348,7 @@ Such requests don&#8217;t affect other regular processing beyond occupying a ser
   is just stuck in Query processing.
   Deleting such a request from <code>system:active_requests</code> using the REST API may release it.<br>
   Forcibly restarting the Query service will clear the issue.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Code corrected to prevent the situation from arising.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issue resolved.</p></td>
 </tr>
 </tbody>
 </table>
@@ -442,8 +371,14 @@ Such requests don&#8217;t affect other regular processing beyond occupying a ser
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61488">MB-61488</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When performing a subdocument mutation through eventing the sub-document api(<code>couchbase.mutateIn</code>), the operation would sometimes fail with the error code <code>LCB_ERR_SUBDOC_XATTR_UNKNOWN_MACRO</code> and cause exceptions in the JavaScript code.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fixed in 7.6.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When performing a Sub-Document operation using the Eventing <code>couchbase.mutateIn</code> Sub-Document API, the operation sometimes caused exceptions in the JavaScript code and failed with the error code <code>LCB_ERR_SUBDOC_XATTR_UNKNOWN_MACRO</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issue resolved.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-50944">MB-50944</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Eventing did not properly support read-write bindings to collections with Sync Gateway attached at the source.
+Adding a new Eventing function failed if the bucket alias was set to read-write.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issue resolved.</p></td>
 </tr>
 </tbody>
 </table>
@@ -492,7 +427,7 @@ This causes restore operation failures.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="search-service-2"><a class="anchor" href="#search-service-2"></a>Search Service</h4>
+<h4 id="search-service"><a class="anchor" href="#search-service"></a>Search Service</h4>
 <table id="table-fixed-issues-762-search-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -564,7 +499,7 @@ and will not always retry when receiving them.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-61631">MB-61631</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Previously, passing a relative path to <code>cbbackupmgr</code> as <code>--obj-staging-dir</code>, the backup or restore would fail with an empty object name.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fixed: passing a relative path no longer fails.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issue resolved.</p></td>
 </tr>
 </tbody>
 </table>
@@ -672,7 +607,50 @@ The system will not perform the merge, and it will leave the backups that should
 </table>
 </div>
 <div class="sect3">
-<h4 id="search-service-3"><a class="anchor" href="#search-service-3"></a>Search Service</h4>
+<h4 id="index-service-3"><a class="anchor" href="#index-service-3"></a>Index Service</h4>
+<table id="table-known-issues-761-index-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Workaround</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-62547">MB-62547</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A critical issue occurs when using the offline-upgrade or graceful failover/delta-recovery upgrade methods on Index Service nodes from Couchbase Server versions 7.1 through 7.2 to versions 7.6.0 or 7.6.1.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Using these methods to upgrade Index Service nodes to these versions corrupts existing indexes that require you to drop and rebuild them.
+</td>
+</tr>
+</table>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If you have one or more Index Service nodes, Couchbase suggests you delay upgrading until the release of the next service patch for Couchbase Server (7.6.2) which resolves this issue.</p>
+</div>
+<div class="paragraph">
+<p>To work around this issue, use the <a href="../install/upgrade-procedure-selection.html#swap-rebalance" class="xref page">Swap Rebalance method</a> when upgrading to Couchbase Server 7.6.x.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="search-service-2"><a class="anchor" href="#search-service-2"></a>Search Service</h4>
 <table id="table-known-issues-761-search-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -786,7 +764,7 @@ or <a href="../install/ubuntu-debian-install.html#install-using-apt" class="xref
 <p>This release contains the following fixes.</p>
 </div>
 <div class="sect3">
-<h4 id="cluster-manager-3"><a class="anchor" href="#cluster-manager-3"></a>Cluster Manager</h4>
+<h4 id="cluster-manager-2"><a class="anchor" href="#cluster-manager-2"></a>Cluster Manager</h4>
 <table id="table-fixed-issues-76-cluster-manager" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -945,7 +923,7 @@ stats were computed using the number of processors configured for the entire sys
 </table>
 </div>
 <div class="sect3">
-<h4 id="index-service-3"><a class="anchor" href="#index-service-3"></a>Index Service</h4>
+<h4 id="index-service-4"><a class="anchor" href="#index-service-4"></a>Index Service</h4>
 <table id="table-fixed-issues-76-index-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -969,7 +947,7 @@ stats were computed using the number of processors configured for the entire sys
 </table>
 </div>
 <div class="sect3">
-<h4 id="search-service-4"><a class="anchor" href="#search-service-4"></a>Search Service</h4>
+<h4 id="search-service-3"><a class="anchor" href="#search-service-3"></a>Search Service</h4>
 <table id="table-fixed-issues-76-search-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1186,7 +1164,50 @@ For more information on the auto-failover settings, see the documentation.</p></
 </table>
 </div>
 <div class="sect3">
-<h4 id="search-service-5"><a class="anchor" href="#search-service-5"></a>Search Service</h4>
+<h4 id="index-service-5"><a class="anchor" href="#index-service-5"></a>Index Service</h4>
+<table id="table-known-issues-760-index-service" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Workaround</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://issues.couchbase.com/browse/MB-62547">MB-62547</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A critical issue occurs when using the offline-upgrade or graceful failover/delta-recovery upgrade methods on Index Service nodes from Couchbase Server versions 7.1 through 7.2 to versions 7.6.0 or 7.6.1.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Using these methods to upgrade Index Service nodes to these versions corrupts existing indexes that require you to drop and rebuild them.
+</td>
+</tr>
+</table>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If you have one or more Index Service nodes, Couchbase suggests you delay upgrading until the release of the next service patch for Couchbase Server (7.6.2) which resolves this issue.</p>
+</div>
+<div class="paragraph">
+<p>To work around this issue, use the <a href="../install/upgrade-procedure-selection.html#swap-rebalance" class="xref page">Swap Rebalance method</a> when upgrading to Couchbase Server 7.6.x.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="search-service-4"><a class="anchor" href="#search-service-4"></a>Search Service</h4>
 <table id="table-known-issues-760-search-service" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1217,7 +1238,7 @@ This is a breaking change due to a change in the response payload.</p></td>
 <h2 id="documentation-for-older-versions"><a class="anchor" href="#documentation-for-older-versions"></a>Documentation for Older Versions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Documentation for older versions of Couchbase software can be found in the <a href="https://docs-archive.couchbase.com/home/index.html" target="_blank" rel="noopener">Documentation Archive</a></p>
+<p>Documentation for older versions of Couchbase software can be found in the <a href="https://docs-archive.couchbase.com/home/index.html" target="_blank" rel="noopener">Documentation Archive</a>.</p>
 </div>
 </div>
 </div>

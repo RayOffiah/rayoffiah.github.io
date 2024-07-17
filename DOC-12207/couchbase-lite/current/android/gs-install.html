@@ -13,7 +13,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
 <title>Installing Couchbase Lite on Android | Couchbase Docs</title>
-<link rel="canonical" href="https://docs.couchbase.com/couchbase-lite/current/android/gs-install.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="How to install Couchbase Lite on Android">
@@ -22,19 +21,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="couchbase-lite">
-<meta name="dcterms.identifier" content="3.1">
+<meta name="dcterms.identifier" content="3.2">
 <meta name="page-url" content="/couchbase-lite/current/android/gs-install.html">
 <meta name="page-nav-header-levels" content="0">
 
 <meta name="docsearch:component" content="couchbase-lite">
 <meta name="docsearch:component_title" content="Couchbase Lite">
-<meta name="docsearch:cversion" content="3.1">
-<meta name="docsearch:component_version" content="couchbase-lite@3.1">
+<meta name="docsearch:cversion" content="3.2">
+<meta name="docsearch:component_version" content="couchbase-lite@3.2">
 <meta name="docsearch:module" content="android">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Android / Start Here! / Install">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="2">
-<meta name="docsearch:status" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="Beta">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
 
@@ -129,14 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="couchbase-lite">
-        <option value="3.2" data-url="../../3.2/android/gs-install.html">3.2 Beta</option>
-        <option value="3.1" data-url="gs-install.html" selected>3.1</option>
-        <option value="3.0" data-url="../../3.0/android/gs-install.html">3.0</option>
-        <option value="2.8" data-url="../../2.8/android/gs-install.html">2.8</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -145,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbaselabs/docs-couchbase-lite/edit/release/3.1/modules/android/pages/gs-install.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/pages/gs-install.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -216,6 +207,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="labels">
 <ul></ul>
 </div>
+<div class="labels">
+<ul>
+<li class="status"><span>Beta</span></li>
+</ul>
+</div>
 
 
 </div>
@@ -245,11 +241,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>You can install Couchbase Lite Community and-or Enterprise editions from the Maven repository.
 There are separate downloads for Kotlin and Java.</p>
 </div>
+<div class="paragraph">
+<p>Enterprise users can also download the Couchbase Lite Vector Search extension library.
+Installation instructions are included in the step-by-step install guides for both Java and Kotlin.</p>
+</div>
 <div class="sidebarblock">
 <div class="content">
-<div class="title">Quick Steps</div>
+<div class="title">Couchbase Lite Quick Steps</div>
 <div class="paragraph">
-<p>For experienced developers, this is all you need to add <em>Couchbase Lite for Android 3.1.8</em> to your application projects.</p>
+<p>For experienced developers, this is all you need to add _Couchbase Lite for Android 3.2.0{tag} to your application projects.</p>
 </div>
 <div class="exampleblock">
 <div class="content">
@@ -266,11 +266,21 @@ There are separate downloads for Kotlin and Java.</p>
 </li>
 <li>
 <p>Add Couchbase Lite as a dependency in your app-level <code>build.gradle</code><br>
-<code>implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:3.1.8'</code></p>
+<code>implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:3.2.0{tag}'</code></p>
 </li>
 <li>
 <p>Add the following <em>maven</em> repo to your repositories (in <code>build.gradle</code> or <code>settings.gradle</code> as required<br>
 <code><a href="https://mobile.maven.couchbase.com/maven2/dev/" class="bare">https://mobile.maven.couchbase.com/maven2/dev/</a></code></p>
+</li>
+<li>
+<p>If you want to use Vector Search, add the Couchbase Lite Vector Search dependency for architectures other than <code>x86_64</code>: <code>com.couchbase.lite:couchbase-lite-java-vector-search-arm64-1.0.0{tag}</code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For <code>x86_64</code> architectures: <code>com.couchbase.lite:couchbase-lite-android-vector-search-x86_64-1.0.0{tag}</code></p>
+</li>
+</ol>
+</div>
 </li>
 <li>
 <p>Build the project and it will pull Couchbase Lite down.</p>
@@ -291,7 +301,7 @@ There are separate downloads for Kotlin and Java.</p>
 </li>
 <li>
 <p>Add Couchbase Lite as a dependency in your app-level <code>build.gradle</code><br>
-<code>implementation 'com.couchbase.lite:couchbase-lite-android-ktx:3.1.8'</code></p>
+<code>implementation 'com.couchbase.lite:couchbase-lite-android-ktx:3.2.0{tag}'</code></p>
 </li>
 <li>
 <p>Check you have <code>mavenCentral()</code> in <code>repositories</code> (or in <code>settings.gradle</code>)</p>
@@ -315,11 +325,21 @@ There are separate downloads for Kotlin and Java.</p>
 </li>
 <li>
 <p>Add Couchbase Lite as a dependency in your app-level <code>build.gradle</code><br>
-<code>implementation 'com.couchbase.lite:couchbase-lite-android-ee:3.1.8'</code></p>
+<code>implementation 'com.couchbase.lite:couchbase-lite-android-ee:3.2.0{tag}'</code></p>
 </li>
 <li>
 <p>Add the following <em>maven</em> repo to your repositories (in <code>build.gradle</code> or <code>settings.gradle</code> as required<br>
 <code><a href="https://mobile.maven.couchbase.com/maven2/dev/" class="bare">https://mobile.maven.couchbase.com/maven2/dev/</a></code></p>
+</li>
+<li>
+<p>If you want to use Vector Search, add the Couchbase Lite Vector Search dependency for architectures other than <code>x86_64</code>: <code>com.couchbase.lite:couchbase-lite-java-vector-search-arm64-1.0.0{tag}</code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For <code>x86_64</code> architectures: <code>com.couchbase.lite:couchbase-lite-android-vector-search-x86_64-1.0.0{tag}</code></p>
+</li>
+</ol>
+</div>
 </li>
 <li>
 <p>Build the project and it will pull Couchbase Lite down.</p>
@@ -340,7 +360,7 @@ There are separate downloads for Kotlin and Java.</p>
 </li>
 <li>
 <p>Add Couchbase Lite as a dependency in your app-level <code>build.gradle</code><br>
-<code>implementation 'com.couchbase.lite:couchbase-lite-android:3.1.8'</code></p>
+<code>implementation 'com.couchbase.lite:couchbase-lite-android:3.2.0{tag}'</code></p>
 </li>
 <li>
 <p>Check you have <code>mavenCentral()</code> in <code>repositories</code> (or in <code>settings.gradle</code>)</p>
@@ -440,7 +460,7 @@ The Kotlin download also includes the Java version of Couchbase Lite for Android
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">dependencies {
 
-  implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:3.1.8'
+  implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:3.2.0{tag}'
 
 //   ... other section content as required by user
 }</code></pre>
@@ -486,7 +506,7 @@ The Kotlin download also includes the Java version of Couchbase Lite for Android
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">dependencies {
 
-  implementation "com.couchbase.lite:couchbase-lite-android-ktx:3.1.8"
+  implementation "com.couchbase.lite:couchbase-lite-android-ktx:3.2.0{tag}"
 
 //   ... other section content as required by user
 }</code></pre>
@@ -495,6 +515,118 @@ The Kotlin download also includes the Java version of Couchbase Lite for Android
 </li>
 </ol>
 </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="kotlin-vector-search-extension-detailed-installation-instructions"><a class="anchor" href="#kotlin-vector-search-extension-detailed-installation-instructions"></a>Kotlin Vector Search Extension: Detailed Installation Instructions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can get set up with the Vector Search Extension for Android (Kotlin) by following these instructions.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Kotlin download also includes the Java version of Couchbase Lite for Android, along with the other dependencies.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Create or open an existing Android Studio project and include the following entries in the app-level <code>build.gradle</code> file (typically in the <strong>app</strong> folder).</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You must have Couchbase Lite installed before you can use the Vector Search Extension.
+Vector Search is available only for 64-bit architectures.
+The Vector Search extension is an <strong>Enterprise-only</strong> feature.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="installing-the-vector-search-beta-extension"><a class="anchor" href="#installing-the-vector-search-beta-extension"></a>Installing the Vector Search Beta Extension</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Include the following in the <code>android {}</code> section:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">android {
+// Required only if your project has some Kotlin source code
+  kotlinOptions { jvmTarget = 1.8}
+
+  compileOptions {
+      targetCompatibility 1.8
+      sourceCompatibility 1.8
+  }
+
+//   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Include the following in the <code>repositories {}</code> section:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">repositories {
+  maven { url 'https://mobile.maven.couchbase.com/maven2/dev/' }
+  google()
+  mavenCentral()
+//   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>For architectures other than x86_64:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">dependencies {
+
+  implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:3.2.0{tag}'
+
+  // All standard 64-bit ARM architectures
+  implementation 'com.couchbase.lite:couchbase-lite-android-vector-search-arm64-1.0.0{tag}'
+
+//   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For x86_64 architectures:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin">dependencies {
+
+  implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:{version-maintenance-android}'
+
+  implementation 'com.couchbase.lite:couchbase-lite-android-vector-search-x86_64-{vs-version-maintenance}'
+
+//   ... other section content as required by user
+}</code></pre>
 </div>
 </div>
 </div>
@@ -563,7 +695,7 @@ The Kotlin download also includes the Java version of Couchbase Lite for Android
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
 
-  implementation 'com.couchbase.lite:couchbase-lite-android-ee:3.1.8'
+  implementation 'com.couchbase.lite:couchbase-lite-android-ee:3.2.0{tag}'
 
 //   ... other section content as required by user
 }</code></pre>
@@ -612,7 +744,7 @@ The Kotlin download also includes the Java version of Couchbase Lite for Android
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
-  implementation 'com.couchbase.lite:couchbase-lite-android:3.1.8'
+  implementation 'com.couchbase.lite:couchbase-lite-android:3.2.0{tag}'
 //   ... other section content as required by user
 }</code></pre>
 </div>
@@ -621,6 +753,122 @@ The Kotlin download also includes the Java version of Couchbase Lite for Android
 </ol>
 </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="java-vector-search-extension-detailed-installation-instructions"><a class="anchor" href="#java-vector-search-extension-detailed-installation-instructions"></a>Java Vector Search Extension: Detailed Installation Instructions</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Vector Search extension is an <strong>Enterprise-only</strong> feature.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can get set up with the Vector Search Extension for Android (Java) by following these instructions.</p>
+</div>
+<div class="paragraph">
+<p>Create or open an existing <em>Android Studio</em> project and install Couchbase Lite using the following method.</p>
+</div>
+<div class="paragraph">
+<p>Include the following entries to the app-level <code>build.gradle</code> file (typically in the <strong>app</strong> folder).</p>
+</div>
+<div class="sect2">
+<h3 id="installing-the-vector-search-beta-extension-2"><a class="anchor" href="#installing-the-vector-search-beta-extension-2"></a>Installing the Vector Search Beta Extension</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application.
+Vector Search is available only for 64-bit architectures and
+Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set.
+To verify whether your device supports the AVX2 instructions set, <a href="https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html">follow these instructions.</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Include the following in the <code>android {}</code> section:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">android {
+// Required only if your project has some Kotlin source code
+  kotlinOptions { jvmTarget = 1.8}
+
+  compileOptions {
+      targetCompatibility 1.8
+      sourceCompatibility 1.8
+  }
+
+//   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Include the following in the <code>repositories {}</code> section:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">repositories {
+  maven { url 'https://mobile.maven.couchbase.com/maven2/dev/' }
+  google()
+  mavenCentral()
+//   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Include the following in the <code>dependencies{}</code> section:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">dependencies {
+
+  implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:3.2.0{tag}'
+
+  // All standard 64-bit ARM architectures
+  implementation 'com.couchbase.lite:couchbase-lite-android-vector-search-arm64-1.0.0{tag}'
+
+//   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For running on x86_64 architectures, include the following in the <code>dependencies{}</code> section instead:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">dependencies {
+
+  implementation 'com.couchbase.lite:couchbase-lite-android-ee-ktx:3.2.0{tag}'
+
+  implementation 'com.couchbase.lite:couchbase-lite-android-vector-search-x86_64-1.0.0-1.0.0{tag}'
+
+//   ... other section content as required by user
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -754,7 +1002,7 @@ The Kotlin download also includes the Java version of Couchbase Lite for Android
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.1","sync-gateway":"3.1"}}
+{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.2","sync-gateway":"3.1"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">

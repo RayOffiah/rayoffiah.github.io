@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:version_rank" content="1">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
-<meta name="docsearch:page_rank" content="50">
+<meta name="docsearch:page_rank" content="55">
 
 
 <meta name="generator" content="Antora 3.1.4">
@@ -247,7 +247,7 @@ It is especially suited for data sets that will not fit into available memory.</
 </div>
 </div>
 <div class="sect1">
-<h2 id="couchstore-and-magma-at-a-glance"><a class="anchor" href="#couchstore-and-magma-at-a-glance"></a>Couchstore and Magma at a Glance</h2>
+<h2 id="magma-reqs"><a class="anchor" href="#magma-reqs"></a>Couchstore and Magma at a Glance</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -296,7 +296,7 @@ We are working on reducing this in a future release.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="when-should-you-use-couchstore"><a class="anchor" href="#when-should-you-use-couchstore"></a>When should you use Couchstore?</h2>
+<h2 id="when-to-use-couchstore"><a class="anchor" href="#when-to-use-couchstore"></a>When to Use Couchstore</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The choice of Couchstore or Magma is set at the bucket level <a href="../../../server/current/manage/manage-buckets/create-bucket.html" class="xref page">when the bucket is created</a>. A single Capella cluster can have a mix of Couchstore and Magma buckets.</p>
@@ -312,15 +312,12 @@ We are working on reducing this in a future release.</p>
 <li>
 <p>you&#8217;re running the Capella server on a low-end instance.</p>
 </li>
-<li>
-<p>your bucket  needs to support full text searching, eventing, or analytics.</p>
-</li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="when-should-you-use-magma"><a class="anchor" href="#when-should-you-use-magma"></a>When should you use Magma?</h2>
+<h2 id="when-to-use-magma"><a class="anchor" href="#when-to-use-magma"></a>When to Use Magma</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You should use the Magma backend if:</p>
@@ -341,13 +338,43 @@ We are working on reducing this in a future release.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="migrating-a-couchstore-bucket-to-magma"><a class="anchor" href="#migrating-a-couchstore-bucket-to-magma"></a>Migrating a Couchstore bucket to Magma</h2>
+<h2 id="migrating-a-couchstore-bucket-to-magma"><a class="anchor" href="#migrating-a-couchstore-bucket-to-magma"></a>Migrating a Couchstore Bucket to Magma</h2>
 <div class="sectionbody">
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-1-couchbase-server-7-6-or-later" class="tab">
+<p>Couchbase Server 7.6 or later</p>
+</li>
+<li id="tabs-1-couchbase-server-7-2" class="tab">
+<p>Couchbase Server 7.2</p>
+</li>
+</ul>
+</div>
+<div id="tabs-1-couchbase-server-7-6-or-later--panel" class="tabpanel" aria-labelledby="tabs-1-couchbase-server-7-6-or-later">
 <div class="paragraph">
-<p>If you have an existing Couchstore bucket that you would like to migrate to Magma, you have to create a new bucket with Magma storage engine and then copy the data.</p>
+<p>If your database in Capella uses Couchbase Server 7.6 or later, migrate your Couchstore buckets to Magma by making a <a href="#management-api-reference:index.adoc#tag/Clusters/operation/putBucketStorageBackend" class="xref unresolved">PUT - Migrate Buckets</a> call to the Management API.</p>
 </div>
 <div class="paragraph">
-<p>To copy the data, you can either use <a href="../../../server/current/xdcr-reference/xdcr-reference-intro.html" class="xref page">XDCR</a> or you can <a href="../../../server/current/manage/manage-backup-and-restore/manage-backup-and-restore.html" class="xref page">backup</a> the Couchstore bucket and restore to the new Magma bucket.</p>
+<p>PUT - Migrate Buckets can migrate 1 or more Couchstore buckets to Magma while your database is running.
+The API runs a swap <a href="../scale-database.html#rebalance" class="xref page">rebalance</a> of your database&#8217;s Data Service nodes.
+Your database shows a rebalancing state during the operation.</p>
+</div>
+<div class="paragraph">
+<p>Before using PUT - Migrate Buckets, check that the buckets you&#8217;re migrating meet the <a href="#magma-reqs">requirements for Magma</a>.
+If the bucket does not meet or exceed those requirements, the API call returns <code>"errorType": "MagmaBucketSizeTooSmall"</code>.</p>
+</div>
+</div>
+<div id="tabs-1-couchbase-server-7-2--panel" class="tabpanel" aria-labelledby="tabs-1-couchbase-server-7-2">
+<div class="paragraph">
+<p>If your database in Capella uses Couchbase Server 7.2, you must create a new bucket with Magma storage engine and then copy the data.</p>
+</div>
+<div class="paragraph">
+<p>To copy the data, use <a href="../xdcr/xdcr.html" class="xref page">XDCR</a> or <a href="../backup-restore.html" class="xref page">backup</a> the Couchstore bucket and restore it to the new Magma bucket.</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>

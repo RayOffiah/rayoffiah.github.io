@@ -268,6 +268,7 @@ into persistent storage.</p>
     <a href="#couchbasebackups-spec-services-ftsaliases">ftsAliases</a>: True
     <a href="#couchbasebackups-spec-services-ftsindexes">ftsIndexes</a>: True
     <a href="#couchbasebackups-spec-services-gsindexes">gsIndexes</a>: True
+    <a href="#couchbasebackups-spec-services-users">users</a>: false
     <a href="#couchbasebackups-spec-services-views">views</a>: True
   <a href="#couchbasebackups-spec-size">size</a>: 20Gi
   <a href="#couchbasebackups-spec-storageclassname">storageClassName</a>: ""
@@ -1002,9 +1003,8 @@ Name of S3 bucket to backup to.</p>
 <h4 id="description-35"><a class="anchor" href="#description-35"></a>Description</h4>
 <div class="paragraph">
 <p>Services allows control over what services are included in the backup.
-By default, all service data and metadata are included.
-Modifications
-to this field will only take effect on the next full backup.</p>
+By default, all service data and metadata are included apart from users.
+Modifications to this field will only take effect on the next full backup.</p>
 </div>
 </div>
 </div>
@@ -1200,9 +1200,30 @@ This field defaults to <code>true</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbasebackups-spec-services-views"><a class="anchor" href="#couchbasebackups-spec-services-views"></a>couchbasebackups.spec.services.views</h3>
+<h3 id="couchbasebackups-spec-services-users"><a class="anchor" href="#couchbasebackups-spec-services-users"></a>couchbasebackups.spec.services.users</h3>
 <div class="sect3">
 <h4 id="constraints-46"><a class="anchor" href="#constraints-46"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>boolean</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Default</strong>: <code>False</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-46"><a class="anchor" href="#description-46"></a>Description</h4>
+<div class="paragraph">
+<p>Users enables the backup of users including their roles and permissions.
+This is
+only available for Couchbase Server 7.6 and later.
+This field defaults to <code>false</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbasebackups-spec-services-views"><a class="anchor" href="#couchbasebackups-spec-services-views"></a>couchbasebackups.spec.services.views</h3>
+<div class="sect3">
+<h4 id="constraints-47"><a class="anchor" href="#constraints-47"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>boolean</code></p>
 </div>
@@ -1211,7 +1232,7 @@ This field defaults to <code>true</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-46"><a class="anchor" href="#description-46"></a>Description</h4>
+<h4 id="description-47"><a class="anchor" href="#description-47"></a>Description</h4>
 <div class="paragraph">
 <p>Views enables the backup of view definitions for all buckets.
 This field defaults to <code>true</code>.</p>
@@ -1221,7 +1242,7 @@ This field defaults to <code>true</code>.</p>
 <div class="sect2">
 <h3 id="couchbasebackups-spec-size"><a class="anchor" href="#couchbasebackups-spec-size"></a>couchbasebackups.spec.size</h3>
 <div class="sect3">
-<h4 id="constraints-47"><a class="anchor" href="#constraints-47"></a>Constraints</h4>
+<h4 id="constraints-48"><a class="anchor" href="#constraints-48"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
@@ -1233,7 +1254,7 @@ This field defaults to <code>true</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-47"><a class="anchor" href="#description-47"></a>Description</h4>
+<h4 id="description-48"><a class="anchor" href="#description-48"></a>Description</h4>
 <div class="paragraph">
 <p>Size allows the specification of a backup persistent volume, when using
 volume based backup.
@@ -1245,13 +1266,13 @@ More info:
 <div class="sect2">
 <h3 id="couchbasebackups-spec-storageclassname"><a class="anchor" href="#couchbasebackups-spec-storageclassname"></a>couchbasebackups.spec.storageClassName</h3>
 <div class="sect3">
-<h4 id="constraints-48"><a class="anchor" href="#constraints-48"></a>Constraints</h4>
+<h4 id="constraints-49"><a class="anchor" href="#constraints-49"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-48"><a class="anchor" href="#description-48"></a>Description</h4>
+<h4 id="description-49"><a class="anchor" href="#description-49"></a>Description</h4>
 <div class="paragraph">
 <p>Name of StorageClass to use.</p>
 </div>
@@ -1260,7 +1281,7 @@ More info:
 <div class="sect2">
 <h3 id="couchbasebackups-spec-strategy"><a class="anchor" href="#couchbasebackups-spec-strategy"></a>couchbasebackups.spec.strategy</h3>
 <div class="sect3">
-<h4 id="constraints-49"><a class="anchor" href="#constraints-49"></a>Constraints</h4>
+<h4 id="constraints-50"><a class="anchor" href="#constraints-50"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
@@ -1272,7 +1293,7 @@ More info:
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-49"><a class="anchor" href="#description-49"></a>Description</h4>
+<h4 id="description-50"><a class="anchor" href="#description-50"></a>Description</h4>
 <div class="paragraph">
 <p>Strategy defines how to perform backups.
 <code>full_only</code> will only perform full
@@ -1295,7 +1316,7 @@ Info: <a href="https://docs.couchbase.com/server/current/backup-restore/cbbackup
 <div class="sect2">
 <h3 id="couchbasebackups-spec-successfuljobshistorylimit"><a class="anchor" href="#couchbasebackups-spec-successfuljobshistorylimit"></a>couchbasebackups.spec.successfulJobsHistoryLimit</h3>
 <div class="sect3">
-<h4 id="constraints-50"><a class="anchor" href="#constraints-50"></a>Constraints</h4>
+<h4 id="constraints-51"><a class="anchor" href="#constraints-51"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>integer</code></p>
 </div>
@@ -1307,7 +1328,7 @@ Info: <a href="https://docs.couchbase.com/server/current/backup-restore/cbbackup
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-50"><a class="anchor" href="#description-50"></a>Description</h4>
+<h4 id="description-51"><a class="anchor" href="#description-51"></a>Description</h4>
 <div class="paragraph">
 <p>Amount of successful jobs to keep.</p>
 </div>
@@ -1316,7 +1337,7 @@ Info: <a href="https://docs.couchbase.com/server/current/backup-restore/cbbackup
 <div class="sect2">
 <h3 id="couchbasebackups-spec-threads"><a class="anchor" href="#couchbasebackups-spec-threads"></a>couchbasebackups.spec.threads</h3>
 <div class="sect3">
-<h4 id="constraints-51"><a class="anchor" href="#constraints-51"></a>Constraints</h4>
+<h4 id="constraints-52"><a class="anchor" href="#constraints-52"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>integer</code></p>
 </div>
@@ -1328,7 +1349,7 @@ Info: <a href="https://docs.couchbase.com/server/current/backup-restore/cbbackup
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-51"><a class="anchor" href="#description-51"></a>Description</h4>
+<h4 id="description-52"><a class="anchor" href="#description-52"></a>Description</h4>
 <div class="paragraph">
 <p>How many threads to use during the backup.
 This field defaults to 1.</p>
@@ -1338,7 +1359,7 @@ This field defaults to 1.</p>
 <div class="sect2">
 <h3 id="couchbasebackups-spec-ttlsecondsafterfinished"><a class="anchor" href="#couchbasebackups-spec-ttlsecondsafterfinished"></a>couchbasebackups.spec.ttlSecondsAfterFinished</h3>
 <div class="sect3">
-<h4 id="constraints-52"><a class="anchor" href="#constraints-52"></a>Constraints</h4>
+<h4 id="constraints-53"><a class="anchor" href="#constraints-53"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>integer</code></p>
 </div>
@@ -1347,7 +1368,7 @@ This field defaults to 1.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-52"><a class="anchor" href="#description-52"></a>Description</h4>
+<h4 id="description-53"><a class="anchor" href="#description-53"></a>Description</h4>
 <div class="paragraph">
 <p>Amount of time to elapse before a completed job is deleted.</p>
 </div>
@@ -1359,13 +1380,13 @@ This field defaults to 1.</p>
 <h2 id="couchbasebackups-status"><a class="anchor" href="#couchbasebackups-status"></a>couchbasebackups.status</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="constraints-53"><a class="anchor" href="#constraints-53"></a>Constraints</h3>
+<h3 id="constraints-54"><a class="anchor" href="#constraints-54"></a>Constraints</h3>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>object</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="description-53"><a class="anchor" href="#description-53"></a>Description</h3>
+<h3 id="description-54"><a class="anchor" href="#description-54"></a>Description</h3>
 <div class="paragraph">
 <p>CouchbaseBackupStatus provides status notifications about the Couchbase backup
 including when the last backup occurred, whether is succeeded or not, the run
@@ -1375,13 +1396,13 @@ time of the backup and the size of the backup.</p>
 <div class="sect2">
 <h3 id="couchbasebackups-status-archive"><a class="anchor" href="#couchbasebackups-status-archive"></a>couchbasebackups.status.archive</h3>
 <div class="sect3">
-<h4 id="constraints-54"><a class="anchor" href="#constraints-54"></a>Constraints</h4>
+<h4 id="constraints-55"><a class="anchor" href="#constraints-55"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-54"><a class="anchor" href="#description-54"></a>Description</h4>
+<h4 id="description-55"><a class="anchor" href="#description-55"></a>Description</h4>
 <div class="paragraph">
 <p>Location of Backup Archive.</p>
 </div>
@@ -1390,13 +1411,13 @@ time of the backup and the size of the backup.</p>
 <div class="sect2">
 <h3 id="couchbasebackups-status-backups"><a class="anchor" href="#couchbasebackups-status-backups"></a>couchbasebackups.status.backups</h3>
 <div class="sect3">
-<h4 id="constraints-55"><a class="anchor" href="#constraints-55"></a>Constraints</h4>
+<h4 id="constraints-56"><a class="anchor" href="#constraints-56"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]object</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-55"><a class="anchor" href="#description-55"></a>Description</h4>
+<h4 id="description-56"><a class="anchor" href="#description-56"></a>Description</h4>
 <div class="paragraph">
 <p>Backups gives us a full list of all backups
 and their respective repository locations.</p>
@@ -1406,13 +1427,13 @@ and their respective repository locations.</p>
 <div class="sect2">
 <h3 id="couchbasebackups-status-backups-full"><a class="anchor" href="#couchbasebackups-status-backups-full"></a>couchbasebackups.status.backups.full</h3>
 <div class="sect3">
-<h4 id="constraints-56"><a class="anchor" href="#constraints-56"></a>Constraints</h4>
+<h4 id="constraints-57"><a class="anchor" href="#constraints-57"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-56"><a class="anchor" href="#description-56"></a>Description</h4>
+<h4 id="description-57"><a class="anchor" href="#description-57"></a>Description</h4>
 <div class="paragraph">
 <p>Full backup inside the repository.</p>
 </div>
@@ -1421,13 +1442,13 @@ and their respective repository locations.</p>
 <div class="sect2">
 <h3 id="couchbasebackups-status-backups-incrementals"><a class="anchor" href="#couchbasebackups-status-backups-incrementals"></a>couchbasebackups.status.backups.incrementals</h3>
 <div class="sect3">
-<h4 id="constraints-57"><a class="anchor" href="#constraints-57"></a>Constraints</h4>
+<h4 id="constraints-58"><a class="anchor" href="#constraints-58"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>[]string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-57"><a class="anchor" href="#description-57"></a>Description</h4>
+<h4 id="description-58"><a class="anchor" href="#description-58"></a>Description</h4>
 <div class="paragraph">
 <p>Incremental backups inside the repository.</p>
 </div>
@@ -1436,7 +1457,7 @@ and their respective repository locations.</p>
 <div class="sect2">
 <h3 id="couchbasebackups-status-backups-name"><a class="anchor" href="#couchbasebackups-status-backups-name"></a>couchbasebackups.status.backups.name</h3>
 <div class="sect3">
-<h4 id="constraints-58"><a class="anchor" href="#constraints-58"></a>Constraints</h4>
+<h4 id="constraints-59"><a class="anchor" href="#constraints-59"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -1445,7 +1466,7 @@ and their respective repository locations.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-58"><a class="anchor" href="#description-58"></a>Description</h4>
+<h4 id="description-59"><a class="anchor" href="#description-59"></a>Description</h4>
 <div class="paragraph">
 <p>Name of the repository.</p>
 </div>
@@ -1454,7 +1475,7 @@ and their respective repository locations.</p>
 <div class="sect2">
 <h3 id="couchbasebackups-status-capacityused"><a class="anchor" href="#couchbasebackups-status-capacityused"></a>couchbasebackups.status.capacityUsed</h3>
 <div class="sect3">
-<h4 id="constraints-59"><a class="anchor" href="#constraints-59"></a>Constraints</h4>
+<h4 id="constraints-60"><a class="anchor" href="#constraints-60"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
@@ -1463,7 +1484,7 @@ and their respective repository locations.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-59"><a class="anchor" href="#description-59"></a>Description</h4>
+<h4 id="description-60"><a class="anchor" href="#description-60"></a>Description</h4>
 <div class="paragraph">
 <p>CapacityUsed tells us how much of the PVC we are using.
 More info:
@@ -1474,13 +1495,13 @@ More info:
 <div class="sect2">
 <h3 id="couchbasebackups-status-cronjob"><a class="anchor" href="#couchbasebackups-status-cronjob"></a>couchbasebackups.status.cronjob</h3>
 <div class="sect3">
-<h4 id="constraints-60"><a class="anchor" href="#constraints-60"></a>Constraints</h4>
+<h4 id="constraints-61"><a class="anchor" href="#constraints-61"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-60"><a class="anchor" href="#description-60"></a>Description</h4>
+<h4 id="description-61"><a class="anchor" href="#description-61"></a>Description</h4>
 <div class="paragraph">
 <p><strong>DEPRECATED</strong> - field may no longer be populated.</p>
 </div>
@@ -1492,13 +1513,13 @@ More info:
 <div class="sect2">
 <h3 id="couchbasebackups-status-duration"><a class="anchor" href="#couchbasebackups-status-duration"></a>couchbasebackups.status.duration</h3>
 <div class="sect3">
-<h4 id="constraints-61"><a class="anchor" href="#constraints-61"></a>Constraints</h4>
+<h4 id="constraints-62"><a class="anchor" href="#constraints-62"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-61"><a class="anchor" href="#description-61"></a>Description</h4>
+<h4 id="description-62"><a class="anchor" href="#description-62"></a>Description</h4>
 <div class="paragraph">
 <p>Duration tells us how long the last backup took.
 More info:
@@ -1509,7 +1530,7 @@ More info:
 <div class="sect2">
 <h3 id="couchbasebackups-status-failed"><a class="anchor" href="#couchbasebackups-status-failed"></a>couchbasebackups.status.failed</h3>
 <div class="sect3">
-<h4 id="constraints-62"><a class="anchor" href="#constraints-62"></a>Constraints</h4>
+<h4 id="constraints-63"><a class="anchor" href="#constraints-63"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -1518,7 +1539,7 @@ More info:
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-62"><a class="anchor" href="#description-62"></a>Description</h4>
+<h4 id="description-63"><a class="anchor" href="#description-63"></a>Description</h4>
 <div class="paragraph">
 <p>Failed indicates whether the most recent backup has failed.</p>
 </div>
@@ -1527,13 +1548,13 @@ More info:
 <div class="sect2">
 <h3 id="couchbasebackups-status-job"><a class="anchor" href="#couchbasebackups-status-job"></a>couchbasebackups.status.job</h3>
 <div class="sect3">
-<h4 id="constraints-63"><a class="anchor" href="#constraints-63"></a>Constraints</h4>
+<h4 id="constraints-64"><a class="anchor" href="#constraints-64"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-63"><a class="anchor" href="#description-63"></a>Description</h4>
+<h4 id="description-64"><a class="anchor" href="#description-64"></a>Description</h4>
 <div class="paragraph">
 <p><strong>DEPRECATED</strong> - field may no longer be populated.</p>
 </div>
@@ -1545,21 +1566,6 @@ More info:
 <div class="sect2">
 <h3 id="couchbasebackups-status-lastfailure"><a class="anchor" href="#couchbasebackups-status-lastfailure"></a>couchbasebackups.status.lastFailure</h3>
 <div class="sect3">
-<h4 id="constraints-64"><a class="anchor" href="#constraints-64"></a>Constraints</h4>
-<div class="paragraph">
-<p><strong>Type</strong>: <code>string</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="description-64"><a class="anchor" href="#description-64"></a>Description</h4>
-<div class="paragraph">
-<p>LastFailure tells us the time the last failed backup failed.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="couchbasebackups-status-lastrun"><a class="anchor" href="#couchbasebackups-status-lastrun"></a>couchbasebackups.status.lastRun</h3>
-<div class="sect3">
 <h4 id="constraints-65"><a class="anchor" href="#constraints-65"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Type</strong>: <code>string</code></p>
@@ -1568,12 +1574,12 @@ More info:
 <div class="sect3">
 <h4 id="description-65"><a class="anchor" href="#description-65"></a>Description</h4>
 <div class="paragraph">
-<p>LastRun tells us the time the last backup job started.</p>
+<p>LastFailure tells us the time the last failed backup failed.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbasebackups-status-lastsuccess"><a class="anchor" href="#couchbasebackups-status-lastsuccess"></a>couchbasebackups.status.lastSuccess</h3>
+<h3 id="couchbasebackups-status-lastrun"><a class="anchor" href="#couchbasebackups-status-lastrun"></a>couchbasebackups.status.lastRun</h3>
 <div class="sect3">
 <h4 id="constraints-66"><a class="anchor" href="#constraints-66"></a>Constraints</h4>
 <div class="paragraph">
@@ -1583,12 +1589,12 @@ More info:
 <div class="sect3">
 <h4 id="description-66"><a class="anchor" href="#description-66"></a>Description</h4>
 <div class="paragraph">
-<p>LastSuccess gives us the time the last successful backup finished.</p>
+<p>LastRun tells us the time the last backup job started.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbasebackups-status-output"><a class="anchor" href="#couchbasebackups-status-output"></a>couchbasebackups.status.output</h3>
+<h3 id="couchbasebackups-status-lastsuccess"><a class="anchor" href="#couchbasebackups-status-lastsuccess"></a>couchbasebackups.status.lastSuccess</h3>
 <div class="sect3">
 <h4 id="constraints-67"><a class="anchor" href="#constraints-67"></a>Constraints</h4>
 <div class="paragraph">
@@ -1598,15 +1604,12 @@ More info:
 <div class="sect3">
 <h4 id="description-67"><a class="anchor" href="#description-67"></a>Description</h4>
 <div class="paragraph">
-<p><strong>DEPRECATED</strong> - field may no longer be populated.</p>
-</div>
-<div class="paragraph">
-<p>Output reports useful information from the backup_script.</p>
+<p>LastSuccess gives us the time the last successful backup finished.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbasebackups-status-pod"><a class="anchor" href="#couchbasebackups-status-pod"></a>couchbasebackups.status.pod</h3>
+<h3 id="couchbasebackups-status-output"><a class="anchor" href="#couchbasebackups-status-output"></a>couchbasebackups.status.output</h3>
 <div class="sect3">
 <h4 id="constraints-68"><a class="anchor" href="#constraints-68"></a>Constraints</h4>
 <div class="paragraph">
@@ -1619,12 +1622,12 @@ More info:
 <p><strong>DEPRECATED</strong> - field may no longer be populated.</p>
 </div>
 <div class="paragraph">
-<p>Pod tells us which pod is running/ran last.</p>
+<p>Output reports useful information from the backup_script.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="couchbasebackups-status-repo"><a class="anchor" href="#couchbasebackups-status-repo"></a>couchbasebackups.status.repo</h3>
+<h3 id="couchbasebackups-status-pod"><a class="anchor" href="#couchbasebackups-status-pod"></a>couchbasebackups.status.pod</h3>
 <div class="sect3">
 <h4 id="constraints-69"><a class="anchor" href="#constraints-69"></a>Constraints</h4>
 <div class="paragraph">
@@ -1634,6 +1637,24 @@ More info:
 <div class="sect3">
 <h4 id="description-69"><a class="anchor" href="#description-69"></a>Description</h4>
 <div class="paragraph">
+<p><strong>DEPRECATED</strong> - field may no longer be populated.</p>
+</div>
+<div class="paragraph">
+<p>Pod tells us which pod is running/ran last.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couchbasebackups-status-repo"><a class="anchor" href="#couchbasebackups-status-repo"></a>couchbasebackups.status.repo</h3>
+<div class="sect3">
+<h4 id="constraints-70"><a class="anchor" href="#constraints-70"></a>Constraints</h4>
+<div class="paragraph">
+<p><strong>Type</strong>: <code>string</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-70"><a class="anchor" href="#description-70"></a>Description</h4>
+<div class="paragraph">
 <p>Repo is where we are currently performing operations.</p>
 </div>
 </div>
@@ -1641,7 +1662,7 @@ More info:
 <div class="sect2">
 <h3 id="couchbasebackups-status-running"><a class="anchor" href="#couchbasebackups-status-running"></a>couchbasebackups.status.running</h3>
 <div class="sect3">
-<h4 id="constraints-70"><a class="anchor" href="#constraints-70"></a>Constraints</h4>
+<h4 id="constraints-71"><a class="anchor" href="#constraints-71"></a>Constraints</h4>
 <div class="paragraph">
 <p><strong>Required</strong></p>
 </div>
@@ -1650,7 +1671,7 @@ More info:
 </div>
 </div>
 <div class="sect3">
-<h4 id="description-70"><a class="anchor" href="#description-70"></a>Description</h4>
+<h4 id="description-71"><a class="anchor" href="#description-71"></a>Description</h4>
 <div class="paragraph">
 <p>Running indicates whether a backup is currently being performed.</p>
 </div>

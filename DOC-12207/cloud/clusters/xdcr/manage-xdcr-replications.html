@@ -34,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:version_rank" content="1">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
-<meta name="docsearch:page_rank" content="50">
+<meta name="docsearch:page_rank" content="55">
 
 
 <meta name="generator" content="Antora 3.1.4">
@@ -273,7 +273,7 @@ For an example, see <a href="#observing">Observe an Ongoing Replication</a>, bel
 <h2 id="create-replication"><a class="anchor" href="#create-replication"></a>Create a Replication</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>An <a href="xdcr.html" class="xref page">XDCR replication</a> is created on the cluster that is to be the source of the data replication.
+<p>An <a href="xdcr.html" class="xref page">XDCR replication</a> is created on the cluster that will be the source of the data replication.
 This cluster is known as the <em>source cluster</em>, and it contains the data you want to replicate.
 Each replication targets a bucket on a different cluster, known as the <em>destination cluster</em> or <em>target cluster</em>, in which the data will be replicated.</p>
 </div>
@@ -360,7 +360,7 @@ For example, to define a <em>one-way</em> replication, select <strong class="uk"
 </div>
 </div>
 <div class="paragraph">
-<p>The source database is already determined by the database on which you are currently configuring the replication.
+<p>The source database is already determined by the database on which you&#8217;re currently configuring the replication.
 The target database must be selected from the <strong class="ui">Target Database</strong> menu.</p>
 </div>
 <div class="imageblock">
@@ -762,7 +762,7 @@ In such cases, skip Step 2 of this procedure.</p>
 </td>
 <td class="content">
 Although the connection string is sometimes referred to as the "public connection string," if you have VPC peering set up the connection string resolves to private addresses.
-For more information, see <a href="../../clouds/private-network.html" class="xref page">Configure a Private Network</a>.
+For more information, see <a href="../../clouds/private-network.html" class="xref page">Configure a VPC Peering Connection</a>.
 </td>
 </tr>
 </table>
@@ -776,6 +776,19 @@ For more information, see <a href="../../clouds/private-network.html" class="xre
 </li>
 <li>
 <p>Set up XDCR Remote Reference.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+XDCR compatibility can vary between different versions of Couchbase Enterprise Server.
+To view and confirm compatibility, see <a href="../../../server/current/learn/clusters-and-availability/xdcr-overview.html#xdcr-compatibility" class="xref page">XDCR Compatibility</a>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>In your on-premises cluster Couchbase Server Web Console:</p>
 </div>
@@ -786,8 +799,8 @@ For more information, see <a href="../../clouds/private-network.html" class="xre
 <li id="tabs-1-couchbase-server-7-x-or-later" class="tab">
 <p>Couchbase Server 7.X or later</p>
 </li>
-<li id="tabs-1-couchbase-server-6-x-or-earlier" class="tab">
-<p>Couchbase Server 6.X or earlier</p>
+<li id="tabs-1-couchbase-server-6-6-x" class="tab">
+<p>Couchbase Server 6.6.X</p>
 </li>
 </ul>
 </div>
@@ -830,9 +843,9 @@ For more information, see <a href="../../clouds/private-network.html" class="xre
 </tbody>
 </table>
 </div>
-<div id="tabs-1-couchbase-server-6-x-or-earlier--panel" class="tabpanel" aria-labelledby="tabs-1-couchbase-server-6-x-or-earlier">
+<div id="tabs-1-couchbase-server-6-6-x--panel" class="tabpanel" aria-labelledby="tabs-1-couchbase-server-6-6-x">
 <div class="paragraph">
-<p>If your self-managed cluster uses Couchbase Server 6.X or earlier, fill out the <strong>Add Remote Cluster</strong> dialog as follows:</p>
+<p>If your self-managed cluster uses Couchbase Server 6.6.X, fill out the <strong>Add Remote Cluster</strong> dialog as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1043,7 +1056,7 @@ Note that two-way replication <em>cannot</em> be used, when the target is self-m
 <li>
 <p>Select the target database by accessing the pull-down menu in the <strong>Target Database</strong> field.
 Note that databases in the menu are divided into two groups, which are <strong>Self-Managed</strong> and <strong>Capella Managed</strong>.
-The self-managed database that is to be the target of the replication appears in the menu under the <strong>Self-Managed</strong> heading.</p>
+The self-managed database that will be the target of the replication appears in the menu under the <strong>Self-Managed</strong> heading.</p>
 <div class="imageblock">
 <div class="content">
 <img src="../_images/self-managed-dropdown.png" alt="Self-Managed Dropdown">

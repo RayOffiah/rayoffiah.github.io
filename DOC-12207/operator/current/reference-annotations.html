@@ -326,6 +326,80 @@ Accepts either <code>couchstore</code> or <code>magma</code>.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="cluster-scheduling"><a class="anchor" href="#cluster-scheduling"></a>Cluster Scheduling</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="rescheduling-to-different-server-groups-on-failed-scheduling"><a class="anchor" href="#rescheduling-to-different-server-groups-on-failed-scheduling"></a>Rescheduling To Different Server Groups On Failed Scheduling</h3>
+<div class="sect3">
+<h4 id="cao-couchbase-comrescheduledifferentservergroup"><a class="anchor" href="#cao-couchbase-comrescheduledifferentservergroup"></a><code>cao.couchbase.com/rescheduleDifferentServerGroup</code></h4>
+<div class="paragraph">
+<p>Used to allow Couchbase Operator to attempt to reschedule a pod to a different server group if the pod fails to schedule on the original server group.
+By default Couchbase Operator will continue to try to schedule the pod on the original server group if it fails to schedule.
+With this annotation applied to a cluster the operator will try to schedule the pod to a different server group that has the same number of Couchbase Pods in it as the original server group. This is to ensure that the cluster remains balanced across the server groups.
+This is a best effort attempt and may not always succeed. If there are no server groups with the same number of pods as the original server group the pod will be scheduled on the original server group.
+Accepts either <code>true</code> or <code>false</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="server-group-shuffling"><a class="anchor" href="#server-group-shuffling"></a>Server Group Shuffling</h3>
+<div class="sect3">
+<h4 id="cao-couchbase-comshuffleservergroups"><a class="anchor" href="#cao-couchbase-comshuffleservergroups"></a><code>cao.couchbase.com/shuffleServerGroups</code></h4>
+<div class="paragraph">
+<p>Used to allow Couchbase Operator to shuffle the order that pods are scheduled to defined server groups.
+By default Couchbase Operator will schedule pods to server groups in lexical order.
+The shuffling is pseudo-random and is based on the cluster name and namespce, so the same cluster/namespace combination will always shuffle the server groups in the same order.
+Accepts either <code>true</code> or <code>false</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pod-rescheduling"><a class="anchor" href="#pod-rescheduling"></a>Pod Rescheduling</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="individual-pod-rescheduling"><a class="anchor" href="#individual-pod-rescheduling"></a>Individual Pod Rescheduling</h3>
+<div class="sect3">
+<h4 id="cao-couchbase-comreschedule"><a class="anchor" href="#cao-couchbase-comreschedule"></a><code>cao.couchbase.com/reschedule</code></h4>
+<div class="paragraph">
+<p>Used to force a pod to be rescheduled. When this annotation is applied to a Couchbase pod, the operator will detect it and reschedule the pod. The pods will either be Swap Rebalanced or go through a InPlaceUpgrade depending on <a href="resource/couchbasecluster.html#couchbaseclusters-spec-upgradeprocess" class="xref page"><code>couchbaseclusters.spec.upgradeProcess</code></a>.
+Accepts either <code>true</code> or <code>false</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="host-network"><a class="anchor" href="#host-network"></a>Host Network</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="improved-host-network-support"><a class="anchor" href="#improved-host-network-support"></a>Improved Host Network Support</h3>
+<div class="sect3">
+<h4 id="cao-couchbase-comnetworking-improvedhostnetwork"><a class="anchor" href="#cao-couchbase-comnetworking-improvedhostnetwork"></a><code>cao.couchbase.com/networking.improvedHostNetwork</code></h4>
+<div class="paragraph">
+<p>Used to enable improved host network support. This annotation is used to enable improved host network support for Couchbase Server pods.
+When enabled on a cluster the operator will skip SAN validation and will add the underlying Kubernetes hostname a pod is running on to the alternate addresses list.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cloud-native-gateway"><a class="anchor" href="#cloud-native-gateway"></a>Cloud Native Gateway</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="otlp-endpoint"><a class="anchor" href="#otlp-endpoint"></a>OTLP Endpoint</h3>
+<div class="sect3">
+<h4 id="cao-couchbase-comnetworking-cloudnativegateway-otlp-endpoint"><a class="anchor" href="#cao-couchbase-comnetworking-cloudnativegateway-otlp-endpoint"></a><code>cao.couchbase.com/networking.cloudNativeGateway.otlp.endpoint</code></h4>
+<div class="paragraph">
+<p>Used to set a custom OTLP endpoint for on Cloud Native Gateway. This annotation is applied to the cluster, and takes a string value (e.g. "https://otel:1234"). The value is passed directly to the Cloud Native Gateway container.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </article>
 </main>
 </div>

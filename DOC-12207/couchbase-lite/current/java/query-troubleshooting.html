@@ -13,7 +13,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
 <title>Query Troubleshooting | Couchbase Docs</title>
-<link rel="canonical" href="https://docs.couchbase.com/couchbase-lite/current/java/query-troubleshooting.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="Couchbase Lite Queries -- troubleshooting">
@@ -21,19 +20,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="couchbase-lite">
-<meta name="dcterms.identifier" content="3.1">
+<meta name="dcterms.identifier" content="3.2">
 <meta name="page-url" content="/couchbase-lite/current/java/query-troubleshooting.html">
 <meta name="page-nav-header-levels" content="0">
 
 <meta name="docsearch:component" content="couchbase-lite">
 <meta name="docsearch:component_title" content="Couchbase Lite">
-<meta name="docsearch:cversion" content="3.1">
-<meta name="docsearch:component_version" content="couchbase-lite@3.1">
+<meta name="docsearch:cversion" content="3.2">
+<meta name="docsearch:component_version" content="couchbase-lite@3.2">
 <meta name="docsearch:module" content="java">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Java / Queries / Query Troubleshooting">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="2">
-<meta name="docsearch:status" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="Beta">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
 
@@ -128,14 +127,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="couchbase-lite">
-        <option value="3.2" data-url="../../3.2/java/query-troubleshooting.html">3.2 Beta</option>
-        <option value="3.1" data-url="query-troubleshooting.html" selected>3.1</option>
-        <option value="3.0" data-url="../../3.0/java/query-troubleshooting.html">3.0</option>
-        <option value="2.8" data-url="../../2.8/java/query-troubleshooting.html">2.8</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -144,7 +135,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbaselabs/docs-couchbase-lite/edit/release/3.1/modules/java/pages/query-troubleshooting.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/java/pages/query-troubleshooting.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -215,6 +206,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="labels">
 <ul></ul>
 </div>
+<div class="labels">
+<ul>
+<li class="status"><span>Beta</span></li>
+</ul>
+</div>
 
 
 </div>
@@ -241,7 +237,7 @@ Related Content&#8201;&#8212;&#8201;<a href="querybuilder.html#lbl-predquery" cl
 <div class="sect2">
 <h3 id="using"><a class="anchor" href="#using"></a>Using</h3>
 <div class="paragraph">
-<p>Query&#8217;s <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-java/com/couchbase/lite/Query.html#explain--">explain()</a> method can provide useful insight when you are trying to diagnose query performance issues and-or optimize queries.
+<p>Query&#8217;s <a href="http://docs.couchbase.com/mobile/3.2.0{tag}/couchbase-lite-java/com/couchbase/lite/Query.html#explain--">explain()</a> method can provide useful insight when you are trying to diagnose query performance issues and-or optimize queries.
 To examine how your query is working, either embed the call inside your app (see: <a href="#use-qe-app">Example 1</a>), or use it interactively within a <code>cblite</code> shell (see: <a href="#use-qe-cblite">Example 2</a>).</p>
 </div>
 <div id="use-qe-app" class="exampleblock">
@@ -249,7 +245,7 @@ To examine how your query is working, either embed the call inside your app (see
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/java/examples/codesnippet_collection.java">Query query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/java/examples/codesnippet_collection.java">Query query = QueryBuilder
     .select(SelectResult.all())
     .from(DataSource.collection(collection))
     .where(Expression.property("type").equalTo(Expression.string("university")))
@@ -307,7 +303,7 @@ Logger.log(query.explain()); <i class="conum" data-value="2"></i><b>(2)</b></cod
 <div class="sect2">
 <h3 id="output"><a class="anchor" href="#output"></a>Output</h3>
 <div class="paragraph">
-<p>The output from <code><a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-java/com/couchbase/lite/Query.html#explain--">explain()</a></code> remains the same whether invoked by an app, or <code>cblite</code>&#8201;&#8212;&#8201;see <a href="#qe-output">Example 3</a> for an example of how it looks.</p>
+<p>The output from <code><a href="http://docs.couchbase.com/mobile/3.2.0{tag}/couchbase-lite-java/com/couchbase/lite/Query.html#explain--">explain()</a></code> remains the same whether invoked by an app, or <code>cblite</code>&#8201;&#8212;&#8201;see <a href="#qe-output">Example 3</a> for an example of how it looks.</p>
 </div>
 <div id="qe-output" class="exampleblock">
 <div class="title">Example 3. Query.explain() Output</div>
@@ -574,7 +570,7 @@ For more on indexes&#8201;&#8212;&#8201;see: <a href="indexing.html" class="xref
 <div id="like-wild-pfx-qry" class="listingblock">
 <div class="title">Like with Wildcard Prefix</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/java/examples/codesnippet_collection.java">Query query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/java/examples/codesnippet_collection.java">Query query = QueryBuilder
     .select(SelectResult.all())
     .from(DataSource.collection(collection))
     .where(Expression.property("type").like(Expression.string("%hotel%"))) <i class="conum" data-value="1"></i><b>(1)</b>
@@ -606,7 +602,7 @@ Where practical, simple changes like this can make significant differences in qu
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/java/examples/codesnippet_collection.java">Query query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/java/examples/codesnippet_collection.java">Query query = QueryBuilder
     .select(SelectResult.all())
     .from(DataSource.collection(collection))
     .where(Expression.property("type").like(Expression.string("hotel%")) <i class="conum" data-value="1"></i><b>(1)</b>
@@ -639,12 +635,12 @@ Logger.log(query.explain());</code></pre>
 <p>Functions are a very useful tool in building queries, but be aware that they can impact whether the query-optimizer is able to use your index(es).</p>
 </div>
 <div class="paragraph">
-<p>For example, you can observe a similar situation to that shown in <a href="#use-like-based-queries">Wildcard and Like-based Queries</a> when using the <code><a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-">lower()</a></code> function on an indexed property.</p>
+<p>For example, you can observe a similar situation to that shown in <a href="#use-like-based-queries">Wildcard and Like-based Queries</a> when using the <code><a href="http://docs.couchbase.com/mobile/3.2.0{tag}/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-">lower()</a></code> function on an indexed property.</p>
 </div>
 <div id="use-like-based-queries" class="listingblock">
 <div class="title">Query</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/java/examples/codesnippet_collection.java">Query query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/java/examples/codesnippet_collection.java">Query query = QueryBuilder
     .select(SelectResult.all())
     .from(DataSource.collection(collection))
     .where(Function.lower(Expression.property("type").equalTo(Expression.string("hotel")))); <i class="conum" data-value="1"></i><b>(1)</b>
@@ -655,7 +651,7 @@ Logger.log(query.explain());</code></pre>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Here we use the <code><a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-">lower()</a></code> function in the <em>Where</em> expression</td>
+<td>Here we use the <code><a href="http://docs.couchbase.com/mobile/3.2.0{tag}/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-">lower()</a></code> function in the <em>Where</em> expression</td>
 </tr>
 </table>
 </div>
@@ -666,12 +662,12 @@ Logger.log(query.explain());</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>But removing the <code><a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-">lower()</a></code> function, changes things:</p>
+<p>But removing the <code><a href="http://docs.couchbase.com/mobile/3.2.0{tag}/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-">lower()</a></code> function, changes things:</p>
 </div>
 <div class="listingblock">
 <div class="title">Query</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/java/examples/codesnippet_collection.java">Query query = QueryBuilder
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/java/examples/codesnippet_collection.java">Query query = QueryBuilder
     .select(SelectResult.all())
     .from(DataSource.collection(collection))
     .where(Expression.property("type").equalTo(Expression.string("hotel"))); <i class="conum" data-value="1"></i><b>(1)</b>
@@ -682,7 +678,7 @@ Logger.log(query.explain());</code></pre>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Here we have removed <code><a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-">lower()</a></code> from the <em>Where</em> expression</td>
+<td>Here we have removed <code><a href="http://docs.couchbase.com/mobile/3.2.0{tag}/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-">lower()</a></code> from the <em>Where</em> expression</td>
 </tr>
 </table>
 </div>
@@ -693,7 +689,7 @@ Logger.log(query.explain());</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Knowing this, you can consider how you create the index; for example, using <a href="http://docs.couchbase.com/mobile/3.1.7/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-">lower()</a> when you create the index and then always using lowercase comparisons.</p>
+<p>Knowing this, you can consider how you create the index; for example, using <a href="http://docs.couchbase.com/mobile/3.2.0{tag}/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-">lower()</a> when you create the index and then always using lowercase comparisons.</p>
 </div>
 </div>
 </div>
@@ -867,7 +863,7 @@ Break your data into logical linked units.</p>
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.1","sync-gateway":"3.1"}}
+{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.2","sync-gateway":"3.1"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">

@@ -13,7 +13,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
 <title>SQL++ Query Strings | Couchbase Docs</title>
-<link rel="canonical" href="https://docs.couchbase.com/couchbase-lite/current/csharp/query-n1ql-mobile.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="How to use SQL++ Query Strings to build effective queries with Couchbase Lite on C#">
@@ -22,19 +21,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="couchbase-lite">
-<meta name="dcterms.identifier" content="3.1">
+<meta name="dcterms.identifier" content="3.2">
 <meta name="page-url" content="/couchbase-lite/current/csharp/query-n1ql-mobile.html">
 <meta name="page-nav-header-levels" content="0">
 
 <meta name="docsearch:component" content="couchbase-lite">
 <meta name="docsearch:component_title" content="Couchbase Lite">
-<meta name="docsearch:cversion" content="3.1">
-<meta name="docsearch:component_version" content="couchbase-lite@3.1">
+<meta name="docsearch:cversion" content="3.2">
+<meta name="docsearch:component_version" content="couchbase-lite@3.2">
 <meta name="docsearch:module" content="csharp">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / .Net / Queries / SQL++ for Mobile">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="2">
-<meta name="docsearch:status" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="Beta">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
 
@@ -129,14 +128,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="couchbase-lite">
-        <option value="3.2" data-url="../../3.2/csharp/query-n1ql-mobile.html">3.2 Beta</option>
-        <option value="3.1" data-url="query-n1ql-mobile.html" selected>3.1</option>
-        <option value="3.0" data-url="../../3.0/csharp/query-n1ql-mobile.html">3.0</option>
-        <option value="2.8" data-url="../../2.8/index.html">2.8</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -145,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbaselabs/docs-couchbase-lite/edit/release/3.1/modules/csharp/pages/query-n1ql-mobile.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/csharp/pages/query-n1ql-mobile.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -216,6 +207,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="labels">
 <ul></ul>
 </div>
+<div class="labels">
+<ul>
+<li class="status"><span>Beta</span></li>
+</ul>
+</div>
 
 
 </div>
@@ -271,7 +267,7 @@ See <a href="query-resultsets.html" class="xref page">Query Resultsets</a> for h
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">using var query =
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/csharp/examples/code_snippets/Program.cs">using var query =
     database.CreateQuery("SELECT META().id AS thisId FROM _ WHERE type = \"hotel\""); <i class="conum" data-value="1"></i><b>(1)</b>
 
 return query.Execute().AllResults();</code></pre>
@@ -2537,31 +2533,269 @@ Returns <code>NULL</code> if either or both expressions are <code>NULL</code>.+<
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 13. Date and Time Functions</caption>
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Function</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Arguments</th>
+<th class="tableblock halign-left valign-top">Return Value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STR_TO_MILLIS(expr)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the number of milliseconds since the unix epoch of the given ISO 8601 date input string.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="dlist">
+<dl>
+<dt class="hdlist1"><code>STR_TO_MILLIS(date1)</code></dt>
+<dd>
+<p>Coverts a date string to Epoch/UNIX milliseconds.</p>
+</dd>
+</dl>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>date1</code> -  A valid date string.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer containing the converted date string into Epoch/UNIX milliseconds.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STR_TO_UTC(expr)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the ISO 8601 UTC date time string of the given ISO 8601 date input string.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="dlist">
+<dl>
+<dt class="hdlist1"><code>STR_TO_UTC(date1)</code></dt>
+<dd>
+<p>Converts a date string into the equivalent date in UTC.</p>
+</dd>
+</dl>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>date1</code> - A valid date string</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns a date string representing the date string converted to UTC.</p>
+<p class="tableblock">The output date format follows the date format of the input date.
+Returns <code>null</code> if an invalid  date format is provided.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>MILLIS_TO_STR(expr)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns a ISO 8601 date time string in device local timezone of the given number of milliseconds since the unix epoch expression.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="dlist">
+<dl>
+<dt class="hdlist1"><code>STR_TO_TZ(date1, tz)</code></dt>
+<dd>
+<p>Converts a date string to it&#8217;s equivalent in the specified timezone.</p>
+</dd>
+</dl>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>date1</code> -  A valid date string.
+This is converted to UTC.</p>
+</li>
+<li>
+<p><code>tz</code> -  An integer that represents minutes offset from UTC.
+For example, <code>UTC-5</code> would be represented as <code>-300</code>.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns a date string representing the date string converted to the specified timezone.</p>
+<p class="tableblock">Returns <code>null</code> if an invalid  date format is provided.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>MILLIS_TO_UTC(expr)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the UTC ISO 8601 date time string of the given number of milliseconds since the unix epoch expression.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="dlist">
+<dl>
+<dt class="hdlist1"><code>MILLIS_TO_STR(date1)</code></dt>
+<dd>
+<p>Converts an Epoch/UNIX timestamp into the specified date string format.</p>
+</dd>
+</dl>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>date1</code> -  An integer representing an Epoch/UNIX timestamp in millseconds.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns a date string representing the local date.</p>
+<p class="tableblock">Returns null if an invalid timestamp is provided.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="dlist">
+<dl>
+<dt class="hdlist1"><code>MILLIS_TO_UTC(date1)</code></dt>
+<dd>
+<p>Converts an Epoch/UNIX timestamp into a local time date string.</p>
+</dd>
+</dl>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>date1</code> -  An integer representing an Epoch/UNIX timestamp in millseconds.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns a date string representing the date in UTC.</p>
+<p class="tableblock">Returns null if an invalid timestamp is provided.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="dlist">
+<dl>
+<dt class="hdlist1"><code>MILLIS_TO_TZ(date1,tz, [fmt])</code></dt>
+<dd>
+<p>Converts an Epoch/UNIX timestamp into the specified time zone in the specified date string format.</p>
+</dd>
+</dl>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>date1</code> -  An integer representing an Epoch/UNIX timestamp in milliseconds.</p>
+</li>
+<li>
+<p><code>tz</code> -  An integer that represents minutes offset from UTC.
+For example, <code>UTC-5</code> would be represented as <code>-300</code>.</p>
+</li>
+<li>
+<p><code>fmt</code> -  An optional string parameter representing a date format to output the result as.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns a date string representing the date in the specified timezone in the specified format.</p>
+<p class="tableblock">If <code>fmt</code> is not specified, the output default to the combined full date and time.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="dlist">
+<dl>
+<dt class="hdlist1"><code>DATE_DIFF_STR(date1, date2, part)</code></dt>
+<dd>
+<p>Finds the elapsed time between two date strings.
+This is measured from <code>date2</code> to <code>date1</code>.</p>
+</dd>
+</dl>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>date1</code> -  A valid date string.
+This is converted to UTC.</p>
+</li>
+<li>
+<p><code>date2</code> -  A valid date string.
+This is converted to UTC.</p>
+</li>
+<li>
+<p><code>part</code> -  A string representing the date component units to return.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns an integer representing the elapsed time measured from <code>date2</code> to  <code>date1</code> (in units based on the specified <code>part</code>) between both dates.</p>
+</div>
+<div class="paragraph">
+<p>The value is positive if <code>date1</code> is greater than <code>date2</code>, negative otherwise.</p>
+</div>
+<div class="paragraph">
+<p>Returns null if any of the parameters are invalid.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="dlist">
+<dl>
+<dt class="hdlist1"><code>DATE_DIFF_MILLIS(date1, date2, part)</code></dt>
+<dd>
+<p>Finds the elapsed time between two Epoch/UNIX timestamps.</p>
+</dd>
+</dl>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>date1</code> -  An integer representing an Epoch/UNIX timestamp in milliseconds.</p>
+</li>
+<li>
+<p><code>date2</code> -  An integer representing an Epoch/UNIX timestamp in milliseconds.</p>
+</li>
+<li>
+<p><code>part</code> -  A string representing the date component units to return.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns an integer representing the elapsed time  measured from <code>date2</code> to  <code>date1</code> (in units based on the specified <code>part</code>) between both dates.</p>
+</div>
+<div class="paragraph">
+<p>The value is positive if <code>date1</code> is greater than <code>date2</code>, negative otherwise.</p>
+</div>
+<div class="paragraph">
+<p>Returns null if any of the parameters are invalid.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="dlist">
+<dl>
+<dt class="hdlist1"><code>DATE_ADD_STR(date1, n, part)</code></dt>
+<dd>
+<p>Performs date arithmetic on a date string.
+For example <code>DATE_ADD_STR("2024-03-20T15:43:01+0000", 3, "day")</code> adds 3 days to the provided date.</p>
+</dd>
+</dl>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>date1</code> -  A valid date string.
+This is converted to UTC.</p>
+</li>
+<li>
+<p><code>n</code> -  An integer or expression that evaluates to an integer.
+A positive value will increment the date component whereas a negative value will decrement the date component.</p>
+</li>
+<li>
+<p><code>part</code> -  A string representing the component of the date to increment.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer representing the calculation result as an Epoch/UNIX timestamp in milliseconds.</p>
+<p class="tableblock">Returns null if any of the parameters are invalid.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="dlist">
+<dl>
+<dt class="hdlist1"><code>DATE_ADD_MILLIS(date1, n, part)</code></dt>
+<dd>
+<p>Performs date arithmetic on a particular component of an Epoch/UNIX timestamp value.
+For example <code>DATE_ADD_STR(1710946158819, 3, 'day')</code> adds 3 days to the provided date.</p>
+</dd>
+</dl>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>date1</code> -  An integer representing an Epoch/UNIX timestamp in milliseconds.</p>
+</li>
+<li>
+<p><code>n</code> -  An integer or expression that evaluates to an integer.
+A positive value will increment the date component whereas a negative value will decrement the date component.</p>
+</li>
+<li>
+<p><code>part</code> -  A string representing the component of the date to increment.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns an integer representing the calculation result as an Epoch/UNIX timestamp in milliseconds.</p>
+</div>
+<div class="paragraph">
+<p>Returns null if any of the parameters are invalid.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -3143,7 +3377,7 @@ TOSTRING</code></p></td>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/csharp/examples/code_snippets/Program.cs">using var query =
+<pre class="highlightjs highlight"><code class="language-C# hljs" data-lang="C#" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/csharp/examples/code_snippets/Program.cs">using var query =
     database.CreateQuery("SELECT META().id AS thisId FROM _ WHERE type = $type"); <i class="conum" data-value="1"></i><b>(1)</b>
 
 var n1qlParams = new Parameters();
@@ -3298,7 +3532,7 @@ var results = query.Execute().AllResults();</code></pre>
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.1","sync-gateway":"3.1"}}
+{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.2","sync-gateway":"3.1"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">

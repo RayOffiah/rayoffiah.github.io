@@ -16,6 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="canonical" href="https://docs.couchbase.com/cloud/organizations/organizations.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="Use organizations and organization roles to manage users in Couchbase Capella.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -30,11 +31,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:component_version" content="cloud@">
 <meta name="docsearch:module" content="organizations">
 <meta name="docsearch:breadcrumbs" content="Couchbase Capella / Administer Capella / Manage Organizations and Access / Organizations">
-<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:topic_type" content="concept">
 <meta name="docsearch:version_rank" content="1">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
-<meta name="docsearch:page_rank" content="50">
+<meta name="docsearch:page_rank" content="55">
 
 
 <meta name="generator" content="Antora 3.1.4">
@@ -204,7 +205,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="page-heading-title">
 <h1 class="page">Organizations and Organization Users Overview</h1>
 <div class="labels">
-<ul></ul>
+<ul>
+<li class="concept"><span><i class="far fa-lightbulb"></i> concept</span></li>
+</ul>
 </div>
 
 
@@ -217,46 +220,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-Organizations and roles help you manage access to Couchbase Capella software and services.
+Use organizations and organization roles to manage users in Couchbase Capella.
+Organizations and organization roles are the first level of controlling access to your data in Capella.
 </blockquote>
 </div>
-<div class="paragraph">
-<p>This page provides overview information about organizations and organization users and their role in helping you manage access to Couchbase Capella.</p>
+<div class="imageblock kroki">
+<div class="content">
+<img src="_images/diag-ca4d36c749eb6638e66c841c29e9663a7da53ebf.svg" alt="svg">
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="organizations"><a class="anchor" href="#organizations"></a>Organizations</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Couchbase Capella uses an ordered hierarchy to help you keep all of your data organized and securely accessible.
-The entity at the top of the hierarchy is called an <em>organization</em>.
-Everything you do in Capella&#8201;&#8212;&#8201;whether it&#8217;s creating a cluster or managing billing&#8201;&#8212;&#8201;happens within the scope of an organization.</p>
-</div>
-<div class="paragraph">
-<p>Since <a href="../billing/billing.html" class="xref page">billing</a> happens at the organization level, an organization typically represents a company, and the organization&#8217;s users typically represent the company&#8217;s employees and contractors.
-However, an organization can represent any entity that handles payment for Capella services and doesn&#8217;t necessarily have to be a business.</p>
-</div>
-<div class="sect2">
-<h3 id="administering-organizations"><a class="anchor" href="#administering-organizations"></a>Administering Organizations</h3>
-<div class="paragraph">
-<p>For information on how to create, modify, and delete organizations, refer to <a href="manage-organizations.html" class="xref page">Manage Organizations</a>.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="users"><a class="anchor" href="#users"></a>Organization Users</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To access an organization, your Couchbase Capella user account must be added to it.
-Accounts are added to an organization using email invitations sent from the Capella by a user with the <strong><code>Organization Owner</code></strong> organization role.
-All organization users are given one or more <a href="organization-user-roles.html" class="xref page"><em>organization roles</em></a> that define what they can view and manage in their organization.</p>
-</div>
-<div class="paragraph">
-<p>If you <a href="../get-started/create-account.html" class="xref page">create a Capella account</a> without being invited to an existing organization, you will need to create a new organization.
-When you create an organization, your account is automatically added as the first organization user and is assigned the <a href="organization-user-roles.html#organization-role-organization-owner" class="xref page"><strong><code>Organization Owner</code></strong></a> role.
-With this organization role, you can invite additional Capella user accounts to become members of the organization.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -265,16 +236,61 @@ With this organization role, you can invite additional Capella user accounts to 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Organization roles provide access to the Capella UI. They are separate from <a href="../projects/project-roles.html" class="xref page">project roles</a> which grant granular privileges to projects, clusters, and data tools. Organization roles are also distinct from <a href="../clusters/manage-database-users.html" class="xref page">database credentials</a>, which grant programmatic and application access to cluster data.
+In the <a href="../management-api-guide/management-api-intro.html" class="xref page">v4 Management API</a>, databases are called clusters.
 </td>
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="managing-organization-users"><a class="anchor" href="#managing-organization-users"></a>Managing Organization Users</h3>
-<div class="paragraph">
-<p>For information on how to add, configure, and remove organization users, refer to <a href="manage-organization-users.html" class="xref page">Manage Organization Users</a>.</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="organizations"><a class="anchor" href="#organizations"></a>Organizations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Organize and secure your data in Couchbase Capella by using an ordered hierarchy.</p>
+</div>
+<div class="paragraph">
+<p>The hierarchy starts with an organization.
+Everything you do in Capella, from creating a database to managing your <a href="../billing/billing.html" class="xref page">billing</a>, happens inside an organization.</p>
+</div>
+<div class="paragraph">
+<p>For more information about how to create, edit, and delete an organization in Capella, see <a href="manage-organizations.html" class="xref page">Manage Organizations</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="users"><a class="anchor" href="#users"></a>Organization Users</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Add users to an organization or join an organization yourself using email invitations sent by Capella.</p>
+</div>
+<div class="paragraph">
+<p>When you add a user to an organization, you can assign them 1 or more <a href="organization-user-roles.html" class="xref page">organization roles</a> that control their access to features in the Capella UI.</p>
+</div>
+<div class="paragraph">
+<p>When you <a href="../get-started/create-account.html" class="xref page">create your Capella account</a> without an invitation to an existing organization, Capella automatically creates a new organization for you.
+In this organization, <code>My Organization</code>, your user account will have the <a href="organization-user-roles.html#organization-role-organization-owner" class="xref page">Organization Owner</a> organization role.
+You can use this organization role to invite other users to <code>My Organization</code>.</p>
+</div>
+<div class="paragraph">
+<p>Only users who have the <a href="organization-user-roles.html#organization-role-organization-owner" class="xref page">Organization Owner</a> organization role can send email invitations to users.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Use organization roles to give a user access to the Capella UI.
+Use <a href="../projects/projects.html" class="xref page">projects</a> and <a href="../projects/project-roles.html" class="xref page">project roles</a> to grant more specific privileges and access to databases, data, and data tools.
+Use <a href="../clusters/manage-database-users.html" class="xref page">database access credentials</a> to manage your programmatic and application-level access to a database&#8217;s data.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For more information about how to add, edit, and remove organization users, see <a href="manage-organization-users.html" class="xref page">Manage Organization Users</a>.</p>
 </div>
 </div>
 </div>
@@ -290,7 +306,7 @@ Organization roles provide access to the Capella UI. They are separate from <a h
 <p><a href="../projects/manage-project-users.html" class="xref page">Manage Project Users</a></p>
 </li>
 <li>
-<p><a href="../clusters/manage-database-users.html" class="xref page">Manage Database Credentials</a></p>
+<p><a href="../clusters/manage-database-users.html" class="xref page">Configure Database Access Credentials</a></p>
 </li>
 </ul>
 </div>

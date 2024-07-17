@@ -16,6 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="canonical" href="https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html">
 <link rel="stylesheet" href="../../_/css/site.css">
 <script src="../../_/js/vendor/jquery.js"></script>
+<meta name="description" content="All databases in Couchbase Capella are grouped into organizations and projects.">
 <link rel="schema.dcterms" href="https://purl.org/dc/terms/">
 
 
@@ -30,11 +31,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:component_version" content="cloud@">
 <meta name="docsearch:module" content="organizations">
 <meta name="docsearch:breadcrumbs" content="Couchbase Capella / Administer Capella / Manage Organizations and Access">
-<meta name="docsearch:topic_type" content="">
+<meta name="docsearch:topic_type" content="concept">
 <meta name="docsearch:version_rank" content="1">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
-<meta name="docsearch:page_rank" content="50">
+<meta name="docsearch:page_rank" content="55">
 
 
 <meta name="generator" content="Antora 3.1.4">
@@ -203,7 +204,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="page-heading-title">
 <h1 class="page">Manage Organizations and Access</h1>
 <div class="labels">
-<ul></ul>
+<ul>
+<li class="concept"><span><i class="far fa-lightbulb"></i> concept</span></li>
+</ul>
 </div>
 
 
@@ -216,71 +219,96 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="sectionbody">
 <div class="quoteblock abstract">
 <blockquote>
-Couchbase Capella is organized into organizations and projects, each of which has its own user roles.
+All databases in Couchbase Capella are grouped into organizations and projects.
+You can add projects to organizations to group related databases together.
+Use organization roles and project roles to control your users' access.
 </blockquote>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In the <a href="../management-api-guide/management-api-intro.html" class="xref page">v4 Management API</a>, databases are called clusters.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
+<h2 id="overview"><a class="anchor" href="#overview"></a>About the Capella Hierarchy</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Couchbase Capella uses an organizational hierarchy to help you keep all of your data organized and securely accessible.
-The entity at the top of the hierarchy is called an <em>organization</em>.
-Everything you do in Couchbase Capella — whether it’s creating a cluster or managing billing — happens within the scope of an organization.</p>
+At the top of the hierarchy is an organization.
+Everything you do in Capella, from creating a database to managing billing, happens inside the scope of an organization.</p>
 </div>
 <div class="paragraph">
-<p>Within organizations are <em>projects</em>. Projects help you to organize and manage groups of Couchbase clusters.
-For example, you could use projects to create separate environments for production and development or group clusters by application.</p>
+<p>All projects exist inside an organization.
+Use projects to group and manage databases inside Capella.
+For example, you could use projects to create separate environments for production and development or group your databases by application:</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="_images/diag-ca4d36c749eb6638e66c841c29e9663a7da53ebf.svg" alt="svg">
+</div>
+</div>
+<div class="sect2">
+<h3 id="organization-access"><a class="anchor" href="#organization-access"></a>About Organizations</h3>
+<div class="paragraph">
+<p>Add users to an organization by sending them invitations.
+Users can create a new Capella account when they receive an invitation to an organization.
+Users can join organizations with an existing Capella account.</p>
+</div>
+<div class="paragraph">
+<p>When you create a new Capella account without an invitation to an existing organization, Capella automatically creates a new organization for you, named <code>My Organization</code>.</p>
+</div>
+<div class="paragraph">
+<p>All users in an organization are assigned 1 or more organization roles.
+Use organization roles to control user access and privileges inside an organization for the Capella UI.
+Organization roles set whether a user can create a new project, invite new users, or view billing information in the UI.</p>
+</div>
+<div class="paragraph">
+<p>For example, if a user has the <a href="organization-user-roles.html#organization-role-member" class="xref page">Organization Member</a> role, they cannot manage API keys or view billing information in the Capella UI.</p>
+</div>
+<div class="paragraph">
+<p>For more information about the available organization roles in Capella, see <a href="organization-user-roles.html" class="xref page">Organization Roles</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="project-access"><a class="anchor" href="#project-access"></a>About Projects</h3>
+<div class="paragraph">
+<p>Create projects inside an organization to organize databases and control user access to databases.</p>
+</div>
+<div class="paragraph">
+<p>Add a user to a project as a collaborator to set project roles and control their privileges for databases inside that project.
+Project roles can set whether a user can read and write data on databases, only read data, or only configure and delete databases.</p>
+</div>
+<div class="paragraph">
+<p>For example, if a user only has the <a href="../projects/project-roles.html#project-cluster-manager-role" class="xref page">Project manager</a> project role, they cannot use the <strong>Data Tools</strong> tab to access and modify data for databases in that project.</p>
+</div>
+<div class="paragraph">
+<p>If that same user had the <a href="../projects/project-roles.html#project-cluster-data-reader-writer" class="xref page">Cluster Data Reader/Writer</a> project role in the same project, they could use the <strong>Data Tools</strong> tab to access and modify data on databases in that project.</p>
+</div>
+<div class="paragraph">
+<p>For more information about the available project roles in Capella, see <a href="../projects/project-roles.html" class="xref page">Project Roles</a>.</p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="organization-access"><a class="anchor" href="#organization-access"></a>Organization Access</h2>
+<h2 id="database-access"><a class="anchor" href="#database-access"></a>Programmatic and Application Access</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To be a member of an organization, you need a Couchbase Capella user account.
-If you accept an invitation from an organization to create an account, you join that organization.
-If you create a user account without being invited to an existing organization, you will need to create a new organization.</p>
+<p>Control programmatic and application-level access to data on your databases with <a href="../clusters/manage-database-users.html" class="xref page">database access credentials</a>.
+You can choose specific <a href="../clusters/data-service/about-buckets-scopes-collections.html" class="xref page">buckets and scopes</a> for your database access credentials to limit access to data.</p>
 </div>
 <div class="paragraph">
-<p>Users added to an organization are assigned one or more organization roles.
-Organization roles control the privileges those users have within the organization.
-These privileges control if a user can do things like creating clouds or managing projects.</p>
-</div>
-<div class="paragraph">
-<p>For more information on the different organization roles that are available, see <a href="organization-user-roles.html" class="xref page">Organization Roles</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="project-access"><a class="anchor" href="#project-access"></a>Project Access</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Users have access to clusters within a project only when they’ve been added as a project member and assigned one or more project roles.
-Project roles determine the privileges users have within the scope of the project.
-These privileges determine whether a project member can do things like create database credentials, create and manage clusters in the project, or only view and monitor
-clusters.</p>
-</div>
-<div class="paragraph">
-<p>For more information on the different project roles that are available, see <a href="../projects/project-roles.html" class="xref page">Project Roles</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="database-access"><a class="anchor" href="#database-access"></a>Database Access</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Programmatic and application-level access to data is managed using <a href="../clusters/manage-database-users.html" class="xref page">database credentials</a>.
-Only those project members with the <a href="../projects/project-roles.html#project-owner-role" class="xref page"><code>Project Owner</code></a> role can create database credentials.</p>
-</div>
-<div class="paragraph">
-<p>Capella automatically controls access to data within the Capella UI using roles.
-For example, if a user only holds the <a href="../projects/project-roles.html#project-cluster-manager-role" class="xref page"><code>Project manager</code></a> role in a project, they can’t use the data tools in the Capella UI due to the limitations of that project role.
-However, if that user is also given the <a href="../projects/project-roles.html#project-cluster-data-reader-writer" class="xref page"><code>Cluster Data Reader/Writer</code></a> project role in the same project, they can use the Capella data tools to access and modify data.</p>
-</div>
-<div class="paragraph">
-<p>To see the level of database access each project role provides, see <a href="../projects/project-roles.html" class="xref page">Project Roles</a>.</p>
+<p>Create database access credentials for each database in a project.
+You can only create database access credentials if you have the <a href="../projects/project-roles.html#project-owner-role" class="xref page">Project Owner</a> role for that database&#8217;s project.</p>
 </div>
 </div>
 </div>

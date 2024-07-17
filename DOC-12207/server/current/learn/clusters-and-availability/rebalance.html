@@ -131,7 +131,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <template id="page-versions" style="display: none">
       <select class="version_list" data-component="server">
         <option value="7.6" data-url="rebalance.html" selected>7.6</option>
-        <option value="7.2" data-url="../../../7.2/index.html">7.2</option>
+        <option value="7.2" data-url="../../../7.2/learn/clusters-and-availability/rebalance.html">7.2</option>
         <option value="7.1" data-url="../../../7.1/index.html">7.1</option>
         <option value="7.0" data-url="../../../7.0/index.html">7.0</option>
       </select>
@@ -140,7 +140,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </aside>
 <aside class="toc sidebar"
       data-title="Contents"
-      data-levels="1">
+      data-levels="3">
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
@@ -429,7 +429,13 @@ The effects on services other than the Data Service are described below.</p>
 <p>By default, Couchbase Server rebuilds the indexes in their new locations during a rebalance.
 If your cluster uses <a href="../services-and-indexes/indexes/storage-modes.html#standard-index-storage" class="xref page">Standard Index Storage</a>, you can choose to enable file-based rebalance which moves index files between nodes instead of rebuilding them.
 Copying the index files is faster than having the target node rebuild the index from scratch.
-However, if you enable file-based rebalancing, you lose the ability to choose which Index Service node handles a specific index.</p>
+You cannot use file-based rebalance if you have enabled <a href="../services-and-indexes/indexes/storage-modes.html#memory-optimized-index-storage" class="xref page">Memory Optimized Index Storage</a> because this option does not store index metadata in files.</p>
+</div>
+<div class="paragraph">
+<p>Couchbase Capella defaults to file-based index rebalance.</p>
+</div>
+<div class="paragraph">
+<p>To learn how to enable file-based rebalance via the Couchbase Server Web Console, see File Transfer Based Rebalance under <a href="../../manage/manage-settings/general-settings.html#index-storage-mode" class="xref page">Index Storage Mode</a>. To learn how to enable it via the REST API, see the <code>enableShardAffinity</code> parameter in <a href="../../rest-api/post-settings-indexes.html" class="xref page">Set GSI Settings</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -438,22 +444,46 @@ However, if you enable file-based rebalancing, you lose the ability to choose wh
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The first rebalance after you enable file-based index rebalance does not use the file-based rebalancing method.
-Instead, the rebalance process rebuilds the indexes.
-During this rebuild process, Couchbase Server adds metadata to the index files that enables later rebalances to move them between nodes.
-After this initial rebalance, all later rebalances move the index files as long you as you keep file-base rebalance enabled.
+In Couchbase Server versions 7.6.0 and 7.6.1, when you enabled file-based rebalance you could not choose which Index Service nodes would contain an index when using the <code>CREATE INDEX</code> statement.
+In Couchbase Server 7.6.2 and later, you can use the <code>WITH &lt;node&gt;</code> clause to set which node contains the index.
+You still cannot use the <code>WITH &lt;node&gt;</code> clause with <code>ALTER INDEX</code> after you enable file-based rebalance.
 </td>
 </tr>
 </table>
 </div>
+<div class="sect4">
+<h5 id="when-file-based-rebalance-take-effect"><a class="anchor" href="#when-file-based-rebalance-take-effect"></a>When File-Based Rebalance Take Effect</h5>
 <div class="paragraph">
-<p>If a file-base rebalance fails, you can try starting a new rebalance.
+<p>The file-based index rebalance method uses metadata in the index&#8217;s files during the relocation process.
+When Couchbase Server starts using file-based index rebalance for an index depends on whether the index&#8217;s files contains this metadata:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you enable file-based index rebalance before you create an index, Couchbase Server adds the metadata to the index files while creating them.
+Because this metadata is in the index&#8217;s files from the start, the initial rebalance of the index as well as all later rebalances use the file-based rebalance method.
+If you choose to use file-based index rebalance, your best practice is to enable it before you create any indexes.</p>
+</li>
+<li>
+<p>If you enable file-based index rebalance after you have created an index, Couchbase Server does not use the file-based rebalance method the next time it rebalances that index.
+Instead, the next rebalance process still rebuilds the index.
+During this rebuild, Couchbase Server adds the metadata to the index files to enable file-based rebalance.
+After this initial rebalance, all later rebalances of the index use the file-based rebalance method.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="restarting-a-rebalance"><a class="anchor" href="#restarting-a-rebalance"></a>Restarting a Rebalance</h5>
+<div class="paragraph">
+<p>If a file-based rebalance fails, you can try starting a new rebalance.
 The second rebalance does not re-transfer any index that the failed rebalance finished moving.
 Instead, it moves just the indexes that had not moved or were in the process of moving when the error occurred.</p>
 </div>
 <div class="paragraph">
 <p>You enable file-based rebalance using settings located under the under the <a href="../../manage/manage-settings/general-settings.html#index-storage-mode" class="xref page">Index Storage Mode</a> on the Couchbase Server Web Console&#8217;s Settings page.
 You can also enable it using the REST API&#8217;s <a href="../../manage/manage-settings/general-settings.html#index-settings-via-rest" class="xref page"><code>settings/indexes</code> endpoint</a>.</p>
+</div>
 </div>
 </div>
 <div class="sect3">

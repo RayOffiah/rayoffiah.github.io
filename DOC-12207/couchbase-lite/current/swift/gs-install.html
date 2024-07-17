@@ -13,7 +13,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
 <title>Install Couchbase Lite on Swift | Couchbase Docs</title>
-<link rel="canonical" href="https://docs.couchbase.com/couchbase-lite/current/swift/gs-install.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="Installing Couchbase Lite on Swift">
@@ -21,19 +20,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="couchbase-lite">
-<meta name="dcterms.identifier" content="3.1">
+<meta name="dcterms.identifier" content="3.2">
 <meta name="page-url" content="/couchbase-lite/current/swift/gs-install.html">
 <meta name="page-nav-header-levels" content="0">
 
 <meta name="docsearch:component" content="couchbase-lite">
 <meta name="docsearch:component_title" content="Couchbase Lite">
-<meta name="docsearch:cversion" content="3.1">
-<meta name="docsearch:component_version" content="couchbase-lite@3.1">
+<meta name="docsearch:cversion" content="3.2">
+<meta name="docsearch:component_version" content="couchbase-lite@3.2">
 <meta name="docsearch:module" content="swift">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Swift / Start Here! / Install">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="2">
-<meta name="docsearch:status" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="Beta">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
 
@@ -128,14 +127,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="couchbase-lite">
-        <option value="3.2" data-url="../../3.2/swift/gs-install.html">3.2 Beta</option>
-        <option value="3.1" data-url="gs-install.html" selected>3.1</option>
-        <option value="3.0" data-url="../../3.0/swift/gs-install.html">3.0</option>
-        <option value="2.8" data-url="../../2.8/swift/gs-install.html">2.8</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -144,7 +135,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbaselabs/docs-couchbase-lite/edit/release/3.1/modules/swift/pages/gs-install.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/swift/pages/gs-install.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -215,6 +206,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="labels">
 <ul></ul>
 </div>
+<div class="labels">
+<ul>
+<li class="status"><span>Beta</span></li>
+</ul>
+</div>
 
 
 </div>
@@ -237,7 +233,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 id="get-started"><a class="anchor" href="#get-started"></a>Get Started</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To get started coding Couchbase Lite for Swift apps, just create or open an existing <em>Xcode</em> project and install the required <em>Couchbase Lite</em> version, for example 3.1.7, using one of the <a href="#lbl-install-tabs">Install Methods</a> methods shown.</p>
+<p>To get started coding Couchbase Lite for Swift apps, just create or open an existing <em>XCode</em> project and install the required <em>Couchbase Lite</em> version, for example 3.2.0{tag}, using one of the <a href="#lbl-install-tabs">Install Couchbase Lite</a> methods shown.</p>
+</div>
+<div class="paragraph">
+<p>Enterprise users can also download the Couchbase Lite Vector Search extension library.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -252,10 +251,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="ulist">
 <ul>
 <li>
-<p>The minimum required CocoaPods version is <strong>1.9</strong></p>
+<p>The minimum required CocoaPods version is <strong>1.15</strong></p>
 </li>
 <li>
-<p>The minimum required Carthage version is <strong>38.0</strong></p>
+<p>The minimum required Carthage version is <strong>0.38</strong></p>
 </li>
 </ul>
 </div>
@@ -264,16 +263,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </table>
 </div>
 <div class="sect2">
-<h3 id="lbl-install-tabs"><a class="anchor" href="#lbl-install-tabs"></a>Install Methods</h3>
+<h3 id="lbl-install-tabs"><a class="anchor" href="#lbl-install-tabs"></a>Install Couchbase Lite</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+There is no Carthage support for the 3.2.0 Beta version of Couchbase Lite
+.
+</td>
+</tr>
+</table>
+</div>
 <div id="tabs-1" class="openblock tabs is-sync is-loading">
 <div class="content">
 <div class="ulist tablist">
 <ul>
 <li id="tabs-1-direct-download" class="tab">
 <p>Direct Download</p>
-</li>
-<li id="tabs-1-carthage" class="tab">
-<p>Carthage</p>
 </li>
 <li id="tabs-1-cocoapods" class="tab">
 <p>CocoaPods</p>
@@ -290,87 +299,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>Download the binaries from here&#8201;&#8212;&#8201;<a href="https://www.couchbase.com/downloads#extend-with-mobile">Extend with Mobile</a>.</p>
 </li>
 <li>
-<p>Unpack the download</p>
+<p>Unpack the download zip file into your XCode project location.</p>
 </li>
 <li>
-<p>Drag <strong>CouchbaseLiteSwift.xcframework</strong> from your Finder to the Xcode navigator.</p>
-</li>
-<li>
-<p>Click on <span class="menuseq"><b class="menu">Project</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">General</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Embedded Binary</b></span> and add <strong>CouchbaseLiteSwift.xcframework</strong> to this section.</p>
-</li>
-<li>
-<p>Import the XCFramework</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">import CouchbaseLiteSwift
-...</code></pre>
-</div>
-</div>
+<p>Select your target settings in XCode and drag <strong>CouchbaseLiteSwift.xcframework</strong> from your Finder to the <strong>Frameworks, Libraries, and Embedded Content</strong> section.</p>
 </li>
 <li>
 <p>Start using Couchbase Lite on Swift in your project.</p>
-</li>
-</ol>
-</div>
-</div>
-<div id="tabs-1-carthage--panel" class="tabpanel" aria-labelledby="tabs-1-carthage">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The minimum required Carthage version is <strong>38.0+</strong>
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Install Carthage using the instructions here:<br>
-<a href="https://github.com/Carthage/Carthage#installing-carthage" class="bare">https://github.com/Carthage/Carthage#installing-carthage</a></p>
-</li>
-<li>
-<p>In your <strong>Cartfile</strong>, add the appropriate 'binary' URL:</p>
-<div class="listingblock">
-<div class="title">Couchbase Lite Community Edition</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">binary "https://packages.couchbase.com/releases/couchbase-lite-ios/carthage/CouchbaseLite-Community.json" ~&gt; 3.1.7</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Specify the required version number, here we use the latest version</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="title">Couchbase Lite Enterprise Edition</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">binary "https://packages.couchbase.com/releases/couchbase-lite-ios/carthage/CouchbaseLite-Enterprise.json" ~&gt; 3.1.7 <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Specify the required version number, here we use the latest version</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Run <code>carthage update --platform ios</code>.</p>
-</li>
-<li>
-<p>Drag <strong>CouchbaseLiteSwift.xcframework</strong> from <strong>Carthage/Build/</strong> to the Xcode navigator.</p>
-</li>
-<li>
-<p>Select <span class="menuseq"><b class="menu">Project</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">General</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Embedded Binary</b></span>, add <strong>CouchbaseLiteSwift.xcframework</strong> to this section.</p>
 </li>
 </ol>
 </div>
@@ -383,7 +318,7 @@ The minimum required Carthage version is <strong>38.0+</strong>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The minimum required Cocoapods  version is <strong>1.9</strong>
+The minimum required Cocoapods  version is <strong>1.15</strong>
 </td>
 </tr>
 </table>
@@ -401,7 +336,7 @@ The minimum required Cocoapods  version is <strong>1.9</strong>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">target 'Example' do
   use_frameworks!
-  pod 'CouchbaseLite-Swift', '3.1.7' <i class="conum" data-value="1"></i><b>(1)</b>
+  pod 'CouchbaseLite-Swift', '3.2.0{tag}' <i class="conum" data-value="1"></i><b>(1)</b>
 end</code></pre>
 </div>
 </div>
@@ -418,7 +353,7 @@ end</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">target 'Example' do
   use_frameworks!
-  pod 'CouchbaseLite-Swift-Enterprise', '3.1.7' <i class="conum" data-value="1"></i><b>(1)</b>
+  pod 'CouchbaseLite-Swift-Enterprise', '3.2.0{tag}' <i class="conum" data-value="1"></i><b>(1)</b>
 end</code></pre>
 </div>
 </div>
@@ -450,7 +385,7 @@ end</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Using Swift Package Manager to install CouchbaseLiteSwift requires Xcode 12+
+Using Swift Package Manager to install CouchbaseLiteSwift requires XCode 12+
 </td>
 </tr>
 </table>
@@ -474,7 +409,7 @@ See: <a href="#case-1">Use Case 1. Include in Existing Swift Package</a> | <a hr
 <pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">dependencies: [
   .package(name: "CouchbaseLiteSwift",
     url: "insert Couchbase Lite URL", <i class="conum" data-value="1"></i><b>(1)</b>
-    from: "3.1.7"), <i class="conum" data-value="2"></i><b>(2)</b>
+    from: "3.2.0{tag}"), <i class="conum" data-value="2"></i><b>(2)</b>
   ],</code></pre>
 </div>
 </div>
@@ -488,7 +423,7 @@ For Enterprise Edition use: <a href="https://github.com/couchbase/couchbase-lite
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Include the required version number here, for example the latest version is 3.1.7</td>
+<td>Include the required version number here, for example the latest version is 3.2.0{tag}</td>
 </tr>
 </table>
 </div>
@@ -535,7 +470,7 @@ products: [
   ],
 dependencies: [
   .package(name: "CouchbaseLiteSwift",
-    url: "https://github.com/couchbase/couchbase-lite-swift-ee.git", from: "3.1.7"),
+    url: "https://github.com/couchbase/couchbase-lite-swift-ee.git", from: "3.2.0{tag}"),
   ],
 targets: [
   .target(
@@ -599,7 +534,7 @@ For example: <a href="https://github.com/couchbase/couchbase-lite-swift-ee.git" 
 </div>
 </li>
 <li>
-<p><strong>Enter</strong> the required <strong><em>Version</em></strong> (the latest is 3.1.7) and <b class="button">Next</b> to continue</p>
+<p><strong>Enter</strong> the required <strong><em>Version</em></strong> (the latest is 3.2.0{tag}) and <b class="button">Next</b> to continue</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/spm-4.png" alt="spm 4">
@@ -632,6 +567,269 @@ For example: <a href="https://github.com/couchbase/couchbase-lite-swift-ee.git" 
 </li>
 </ol>
 </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="install-vector-search-extension"><a class="anchor" href="#install-vector-search-extension"></a>Install Vector Search Extension</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Vector Search extension is an <strong>Enterprise-only</strong> feature.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can get set up with the Vector Search Extension for iOS (Swift) by following these instructions.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application.
+There is no Carthage support for the beta release of Vector Search.
+Vector Search is available only for 64-bit architectures and
+Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set.
+To verify whether your device supports the AVX2 instructions set, <a href="https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html">follow these instructions.</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs-2" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-2-direct-download" class="tab">
+<p>Direct Download</p>
+</li>
+<li id="tabs-2-cocoapods" class="tab">
+<p>CocoaPods</p>
+</li>
+<li id="tabs-2-swift-package-manager" class="tab">
+<p>Swift Package Manager</p>
+</li>
+</ul>
+</div>
+<div id="tabs-2-direct-download--panel" class="tabpanel" aria-labelledby="tabs-2-direct-download">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download the binaries from here&#8201;&#8212;&#8201;<a href="https://packages.couchbase.com/releases/couchbase-lite-vector-search/1.0.0{tag}/couchbase-lite-vector-search_xcframework_1.0.0{tag}.zip">binary download link.</a></p>
+</li>
+<li>
+<p>Unpack the download zip file into your XCode project location.</p>
+</li>
+<li>
+<p>Select your target settings in XCode and drag <strong>CouchbaseLiteVectorSearch.xcframework</strong> from your Finder to the <strong>Frameworks, Libraries, and Embedded Content</strong> section.</p>
+</li>
+<li>
+<p>Start using Couchbase Lite Vector Search on Swift in your project.</p>
+</li>
+</ol>
+</div>
+</div>
+<div id="tabs-2-cocoapods--panel" class="tabpanel" aria-labelledby="tabs-2-cocoapods">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The minimum required Cocoapods  version is <strong>1.15</strong>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install CocoaPods using the instructions here:<br>
+<a href="https://guides.cocoapods.org/using/getting-started.html" class="bare">https://guides.cocoapods.org/using/getting-started.html</a></p>
+</li>
+<li>
+<p>Add one of these targets to your <strong>Podfile</strong>:</p>
+<div class="listingblock">
+<div class="title">Example 2. Couchbase Lite Enterprise Edition</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">target 'Example' do
+  use_frameworks!
+  pod 'CouchbaseLiteVectorSearch', '1.0.0{tag}' <i class="conum" data-value="1"></i><b>(1)</b>
+end</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Specify the required version number, here we use the latest version of the beta</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Install the pods and open the <code>.xcworkspace</code> file generated by CocoaPods, using:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pod install</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="tabs-2-swift-package-manager--panel" class="tabpanel" aria-labelledby="tabs-2-swift-package-manager">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Using Swift Package Manager to install CouchbaseLiteSwift requires XCode 12+
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This tab explains how to include the CouchbaseLiteSwift package within your app<br>
+See: <a href="#case-1">Use Case 1. Include in Existing Swift Package</a> | <a href="#case-2">Use Case 2. Include in Your App Project</a></p>
+</div>
+<div id="case-1" class="exampleblock">
+<div class="title">Use Case 1. Include in Existing Swift Package</div>
+<div class="content">
+<div class="paragraph">
+<p>Here we will add the <code>CouchbaseLiteVectorSearch</code> package as a dependency to your Parent Swift package.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add the CouchbaseLiteVectorSearch package as a dependency by including the following in the parent package manifest:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">dependencies: [
+  .package(name: "CouchbaseLiteVectorSearch",
+    url: "https://github.com/couchbase/couchbase-lite-vector-search-spm.git",
+    from: "1.0.0{tag}"),
+  ],</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the dependent package product name to the target:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">targets: [
+  .target(name: "ParentPackage",
+     dependencies: ["CouchbaseLiteVectorSearch"]),
+]</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>CouchbaseliteVectorSearch will be automatically detected and loaded in when creating a CouchbaseLite database object.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="case-2" class="exampleblock">
+<div class="title">Use Case 2. Include in Your App Project</div>
+<div class="content">
+<div class="paragraph">
+<p>Here we will add <code>CouchbaseLiteSwift</code> directly into your app</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the project to which you are going to add CouchbaseLiteSwift</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/spm-1.png" alt="spm 1">
+</div>
+</div>
+</li>
+<li>
+<p>Open the Project Editor to add a dependency</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In <em>Project Navigator</em>:<br>
+<strong>Select</strong> your XCode project file (for example, <code>HostApp</code> in the example)<br>
+XCode opens the <em>Project Editor</em> pane</p>
+</li>
+<li>
+<p>In the <em>Project Editor</em> pane:<br>
+<strong>Select</strong> <span class="menuseq"><b class="menu">Project</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Swift Packages</b></span> and <b class="button">+</b> to add the dependency<br>
+XCode opens the <em>Choose Package Repository</em> dialog</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/spm-2.png" alt="spm 2">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>In the <em>Choose Package Repository</em> dialog:<br>
+<strong>Enter</strong> the appropriate Couchbase Lite URL, <b class="button">Next</b> to continue<br>
+For Vector Search: <a href="https://github.com/couchbase/couchbase-lite-vector-search-spm.git" class="bare">https://github.com/couchbase/couchbase-lite-vector-search-spm.git</a></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/spm-3.png" alt="spm 3">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Enter</strong> the required <strong><em>Version</em></strong> (1.0.0{tag}) and <b class="button">Next</b> to continue</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/spm-4.png" alt="spm 4">
+</div>
+</div>
+</li>
+<li>
+<p><b class="button">Finish</b> to close the <em>Choose Package Repository</em> dialog</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/spm-5.png" alt="spm 5">
+</div>
+</div>
+<div class="paragraph">
+<p>XCode displays the name, version and URL of the added CouchbaseLiteVectorSearch Package</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/spm-6.png" alt="spm 6">
+</div>
+</div>
+</li>
+<li>
+<p>You can now import CouchbaseLiteVectorSearch, and use it in your app</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/spm-7.png" alt="spm 7">
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -769,7 +967,7 @@ For example: <a href="https://github.com/couchbase/couchbase-lite-swift-ee.git" 
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.1","sync-gateway":"3.1"}}
+{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.2","sync-gateway":"3.1"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">

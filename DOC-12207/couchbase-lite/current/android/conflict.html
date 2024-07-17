@@ -13,7 +13,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
 <!-- End Google Tag Manager -->
 <title>Handling Data Conflicts | Couchbase Docs</title>
-<link rel="canonical" href="https://docs.couchbase.com/couchbase-lite/current/android/conflict.html">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <script src="../../../_/js/vendor/jquery.js"></script>
 <meta name="description" content="Couchbase Lite Database Sync -- Handling conflict between data changes">
@@ -21,19 +20,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <meta name="dcterms.subject" content="couchbase-lite">
-<meta name="dcterms.identifier" content="3.1">
+<meta name="dcterms.identifier" content="3.2">
 <meta name="page-url" content="/couchbase-lite/current/android/conflict.html">
 <meta name="page-nav-header-levels" content="0">
 
 <meta name="docsearch:component" content="couchbase-lite">
 <meta name="docsearch:component_title" content="Couchbase Lite">
-<meta name="docsearch:cversion" content="3.1">
-<meta name="docsearch:component_version" content="couchbase-lite@3.1">
+<meta name="docsearch:cversion" content="3.2">
+<meta name="docsearch:component_version" content="couchbase-lite@3.2">
 <meta name="docsearch:module" content="android">
 <meta name="docsearch:breadcrumbs" content="Couchbase Lite / Android / Handling Data Conflicts">
 <meta name="docsearch:topic_type" content="">
-<meta name="docsearch:version_rank" content="2">
-<meta name="docsearch:status" content="">
+<meta name="docsearch:version_rank" content="1">
+<meta name="docsearch:status" content="Beta">
 <meta name="docsearch:edition" content="">
 <meta name="docsearch:page_rank" content="50">
 
@@ -128,14 +127,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <aside class="nav left-sidebar">
   <div class="nav-container">
     <a href="#" class="menu-expand-toggle"><span>Navigation</span><i class="fas fa-times-circle"></i><i class="fas fa-chevron-circle-left"></i></a>
-    <template id="page-versions" style="display: none">
-      <select class="version_list" data-component="couchbase-lite">
-        <option value="3.2" data-url="../../3.2/android/conflict.html">3.2 Beta</option>
-        <option value="3.1" data-url="conflict.html" selected>3.1</option>
-        <option value="3.0" data-url="../../3.0/android/conflict.html">3.0</option>
-        <option value="2.8" data-url="../../2.8/android/conflict.html">2.8</option>
-      </select>
-    </template>
   </div>
 </aside>
 <aside class="toc sidebar"
@@ -144,7 +135,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="sidebar-box">
     <div class="tools" role="navigation">
 <ul>
-<li class="tool edit"><a href="https://github.com/couchbaselabs/docs-couchbase-lite/edit/release/3.1/modules/android/pages/conflict.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
+<li class="tool edit"><a href="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/pages/conflict.adoc" title="Edit Page" target="_blank" rel="noopener" class="remove-ext-icon">Edit on GitHub</a></li>
 </ul>
 </div>
     <div class="toc-menu"></div>
@@ -213,6 +204,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1 class="page">Handling Data Conflicts</h1>
 <div class="labels">
 <ul></ul>
+</div>
+<div class="labels">
+<ul>
+<li class="status"><span>Beta</span></li>
+</ul>
 </div>
 
 
@@ -521,7 +517,7 @@ object MergeConflictResolver : ConflictResolver {
 <div id="tabs-3-local-wins--panel" class="tabpanel" aria-labelledby="tabs-3-local-wins">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java#L967-L971">class LocalWinConflictResolver implements ConflictResolver {
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java#L967-L971">class LocalWinConflictResolver implements ConflictResolver {
     public Document resolve(Conflict conflict) {
         return conflict.getLocalDocument();
     }
@@ -532,7 +528,7 @@ object MergeConflictResolver : ConflictResolver {
 <div id="tabs-3-remote-wins--panel" class="tabpanel" aria-labelledby="tabs-3-remote-wins">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt#L1417-L1421">// Using replConfig.setConflictResolver(new RemoteWinConflictResolver());
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt#L1417-L1421">// Using replConfig.setConflictResolver(new RemoteWinConflictResolver());
 @Suppress("unused")
 object RemoteWinsResolver : ConflictResolver {
     override fun resolve(conflict: Conflict) = conflict.remoteDocument
@@ -543,7 +539,7 @@ object RemoteWinsResolver : ConflictResolver {
 <div id="tabs-3-merge--panel" class="tabpanel" aria-labelledby="tabs-3-merge">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java#L985-L991">class MergeConflictResolver implements ConflictResolver {
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java#L985-L991">class MergeConflictResolver implements ConflictResolver {
     public Document resolve(Conflict conflict) {
         Map&lt;String, Object&gt; merge = conflict.getLocalDocument().toMap();
         merge.putAll(conflict.getRemoteDocument().toMap());
@@ -665,7 +661,7 @@ When the value is <code>null</code>, the default conflict resolution will be app
 <div id="tabs-4-kotlin--panel" class="tabpanel" aria-labelledby="tabs-4-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">
 val collectionConfig = CollectionConfigurationFactory.newConfig(conflictResolver = LocalWinsResolver)
 val repl = Replicator(
     ReplicatorConfigurationFactory.newConfig(
@@ -684,7 +680,7 @@ thisReplicator = repl</code></pre>
 <div id="tabs-4-java--panel" class="tabpanel" aria-labelledby="tabs-4-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Replicator repl = new Replicator(
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">Replicator repl = new Replicator(
     new ReplicatorConfiguration(new URLEndpoint(targetUri))
         .addCollections(
             srcCollections,
@@ -727,7 +723,7 @@ Update conflicts can occur when you try to update a document that’s been updat
 <p>Another thread (perhaps the replicator) updates the document, creating a new revision with different properties.</p>
 </li>
 <li>
-<p>Your code updates the document with its modified properties, for example using <a href="http://docs.couchbase.com/mobile/3.1.8/couchbase-lite-android/com/couchbase/lite/Database.html#save-com.couchbase.lite.MutableDocument-">database.save(MutableDocument document)</a>.</p>
+<p>Your code updates the document with its modified properties, for example using <a href="http://docs.couchbase.com/mobile/3.2.0{tag}/couchbase-lite-android/com/couchbase/lite/Database.html#save-com.couchbase.lite.MutableDocument-">database.save(MutableDocument document)</a>.</p>
 </li>
 </ol>
 </div>
@@ -750,7 +746,7 @@ So in effect, the changes from step 2 would be overwritten and lost.</p>
 <dl>
 <dt class="hdlist1">Save operations</dt>
 <dd>
-<p><a href="http://docs.couchbase.com/mobile/3.1.8/couchbase-lite-android/com/couchbase/lite/Database.html#save-com.couchbase.lite.MutableDocument-com.couchbase.lite.ConcurrencyControl-">database.save(MutableDocument document, ConcurrencyControl concurrencyControl)</a>&#8201;&#8212;&#8201;attempts to save the document with a concurrency control.</p>
+<p><a href="http://docs.couchbase.com/mobile/3.2.0{tag}/couchbase-lite-android/com/couchbase/lite/Database.html#save-com.couchbase.lite.MutableDocument-com.couchbase.lite.ConcurrencyControl-">database.save(MutableDocument document, ConcurrencyControl concurrencyControl)</a>&#8201;&#8212;&#8201;attempts to save the document with a concurrency control.</p>
 <div class="paragraph">
 <p>The concurrency control parameter has two possible values:</p>
 </div>
@@ -774,10 +770,10 @@ So in effect, the changes from step 2 would be overwritten and lost.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="http://docs.couchbase.com/mobile/3.1.8/couchbase-lite-android/com/couchbase/lite/Database.html#delete-com.couchbase.lite.Document-">database.delete(Document document)</a>: The last write will win if there is a conflict.</p>
+<p><a href="http://docs.couchbase.com/mobile/3.2.0{tag}/couchbase-lite-android/com/couchbase/lite/Database.html#delete-com.couchbase.lite.Document-">database.delete(Document document)</a>: The last write will win if there is a conflict.</p>
 </li>
 <li>
-<p><a href="http://docs.couchbase.com/mobile/3.1.8/couchbase-lite-android/com/couchbase/lite/Database.html#delete-com.couchbase.lite.Document-com.couchbase.lite.ConcurrencyControl-">database.delete(Document document, ConcurrencyControl concurrencyControl)</a>: attempts to delete the document with a concurrency control.</p>
+<p><a href="http://docs.couchbase.com/mobile/3.2.0{tag}/couchbase-lite-android/com/couchbase/lite/Database.html#delete-com.couchbase.lite.Document-com.couchbase.lite.ConcurrencyControl-">database.delete(Document document, ConcurrencyControl concurrencyControl)</a>: attempts to delete the document with a concurrency control.</p>
 </li>
 </ul>
 </div>
@@ -807,7 +803,7 @@ In this case, the app can detect the error that is being thrown, and handle it b
 <p>Developers can hook a conflict handler when saving a document so they can easily handle the conflict in a single save method call.</p>
 </div>
 <div class="paragraph">
-<p>To implement custom conflict resolution when saving a document, apps must call the <code>save</code> method with a conflict handler block ( <a href="http://docs.couchbase.com/mobile/3.1.8/couchbase-lite-android/com/couchbase/lite/Database.html#save-com.couchbase.lite.MutableDocument-com.couchbase.lite.ConflictHandler-">database.save(MutableDocument, ConflictHandler)</a>).</p>
+<p>To implement custom conflict resolution when saving a document, apps must call the <code>save</code> method with a conflict handler block ( <a href="http://docs.couchbase.com/mobile/3.2.0{tag}/couchbase-lite-android/com/couchbase/lite/Database.html#save-com.couchbase.lite.MutableDocument-com.couchbase.lite.ConflictHandler-">database.save(MutableDocument, ConflictHandler)</a>).</p>
 </div>
 <div class="paragraph">
 <p>The following code snippet shows an example of merging properties from the existing document (<code>current</code>) into the one being saved (<code>new</code>).
@@ -831,7 +827,7 @@ In the event of conflicting keys, it will pick the key value from <code>new</cod
 <div id="tabs-5-kotlin--panel" class="tabpanel" aria-labelledby="tabs-5-kotlin">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.kt">val mutableDocument = collection.getDocument("xyz")?.toMutable() ?: return
+<pre class="highlightjs highlight"><code class="language-Kotlin hljs" data-lang="Kotlin" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.kt">val mutableDocument = collection.getDocument("xyz")?.toMutable() ?: return
 mutableDocument.setString("name", "apples")
 collection.save(mutableDocument) { newDoc, curDoc -&gt;  <i class="conum" data-value="1"></i><b>(1)</b>
     if (curDoc == null) {
@@ -848,7 +844,7 @@ collection.save(mutableDocument) { newDoc, curDoc -&gt;  <i class="conum" data-v
 <div id="tabs-5-java--panel" class="tabpanel" aria-labelledby="tabs-5-java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="https://github.com/couchbaselabs/docs-couchbase-lite/blob/a7879bd848b3f0540839f9681364bc0b4568f22c/modules/android/examples/codesnippet_collection.java">Document doc = collection.getDocument("xyz");
+<pre class="highlightjs highlight"><code class="language-Java hljs" data-lang="Java" data-source-url="file:///Users/rayoffiah/projects/couchbase/docs-couchbase-lite/modules/android/examples/codesnippet_collection.java">Document doc = collection.getDocument("xyz");
 if (doc == null) { return; }
 MutableDocument mutableDocument = doc.toMutable();
 mutableDocument.setString("name", "apples");
@@ -899,7 +895,7 @@ collection.save(
 <p><a href="#android:landing-p2psync.adoc" class="xref unresolved">Peer-to-Peer Sync</a></p>
 </li>
 <li>
-<p><a href="http://docs.couchbase.com/mobile/3.1.8/couchbase-lite-android/">API References</a></p>
+<p><a href="http://docs.couchbase.com/mobile/3.2.0{tag}/couchbase-lite-android/">API References</a></p>
 </li>
 </ul>
 </div>
@@ -993,7 +989,7 @@ collection.save(
 </footer>
 <script src="../../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.1","sync-gateway":"3.1"}}
+{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.2","sync-gateway":"3.1"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">

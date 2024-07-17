@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:version_rank" content="1">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
-<meta name="docsearch:page_rank" content="50">
+<meta name="docsearch:page_rank" content="55">
 
 
 <meta name="generator" content="Antora 3.1.4">
@@ -254,304 +254,345 @@ A list of the metrics provided by XDCR.
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_binary_filtered</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_atr_txn_docs_filtered_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.1</span>
-<span class="status">counter</span></p>
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Total number of documents filtered and not replicated because the documents were ATR documents</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_binary_filtered_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.1</span><span class="status">counter</span></p>
 <p class="tableblock">Number of documents filtered that were binary documents</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_changes_left</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_changes_left_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
 <p class="tableblock">Given the vBuckets of this node, the number of sequence numbers that need to be processed (either replicated or handled) before catching up to the high sequence numbers for the vBuckets</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_data_replicated</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_client_txn_docs_filtered_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter / bytes</span></p>
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Total number of documents filtered and not replicated because the documents were transaction client records</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_data_replicated_bytes</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">counter / bytes</span></p>
 <p class="tableblock">Amount of data replicated for a Replication</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_datapool_failed_gets</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_data_replicated_uncompress_bytes</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.6.0</span><span class="status">counter / bytes</span></p>
+<p class="tableblock">Theoretical amount of data replicated for a Replication if compression were not used</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_datapool_failed_gets_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">The total number of failed GET() operation on a reusable datapool within XDCR for the purpose of avoiding garbage generation</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_dcp_datach_length</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_dcp_datach_length_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
 <p class="tableblock">The number of items sent by the Data Service waiting for the XDCR Source Nozzle to ingest and process</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_dcp_dispatch_time</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_dcp_dispatch_time_seconds</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / seconds</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge / seconds</span></p>
 <p class="tableblock">The rolling average amount of time it takes for a document to be received by XDCR from the Data Service, to the time it is queued up in the Target Nozzle ready to be sent</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_deletion_cloned</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_deletion_cloned_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.1</span>
-<span class="status">counter</span></p>
+<span class="edition">7.2.1</span><span class="status">counter</span></p>
 <p class="tableblock">The number of times a Source Deletion or Expiration is cloned to be written to multiple Target Namespaces</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_deletion_docs_written</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_deletion_docs_written_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of Deletions written to Target</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_deletion_failed_cr_source</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_deletion_failed_cr_source_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of Deletions that failed Source-side Conflict Resolution</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_deletion_failed_cr_target</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_deletion_failed_cr_target_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.1.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.1.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of Deletions that failed Conflict Resolution at the Target</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_deletion_filtered</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_deletion_filtered_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of Deletions that were filtered Source-side</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_deletion_received_from_dcp</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_deletion_received_from_dcp_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of Deletions received from the Data Service</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_checked</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_checked_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
 <p class="tableblock">Across vBuckets for this node, the sum of all sequence numbers that have been considered to be checkpointed</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_cloned</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_cloned_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of Source Document Mutation cloned to be written to different Target Namespaces</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_failed_cr_source</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_failed_cr_source_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of documents (or tombstones) that were not replicated to the Target due to Conflict Resolution evaluated on the Source</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_failed_cr_target</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_failed_cr_target_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.1.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.1.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of documents failed Conflict Resolution at the Target</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_filtered</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_filtered_on_txn_xattr_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Total number of documents filtered and not replicated due to the presence of transaction related xattrs in it</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_filtered_on_user_defined_filter_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Total number of documents filtered and not replicated because of user defined filter expressions</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_filtered_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
 <p class="tableblock">Total number of documents filtered and not replicated due to any type of filtering</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_opt_repd</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_opt_repd_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of Documents Optimistically Replicated to the Target Cluster</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_processed</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_processed_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
 <p class="tableblock">Number of Documents processed for a Replication</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_received_from_dcp</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_received_from_dcp_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of Document Mutations received from the Data Service</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_unable_to_filter</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_unable_to_filter_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
 <p class="tableblock">Number of Document Mutations that couldn&#x27;t be filtered due to inability to parse the document through Advanced Filtering engine and were not replicated</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_written</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_docs_written_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of docs Document Mutations written/sent to the Target</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_expiry_docs_written</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_expiry_docs_written_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of Expirations written to the Target</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_expiry_failed_cr_source</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_expiry_failed_cr_source_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of Expirations that failed Source-side Conflict Resolution</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_expiry_failed_cr_target</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_expiry_failed_cr_target_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.1.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.1.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of Expirations that failed Conflict Resolution at the Target</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_expiry_filtered</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_expiry_filtered_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of Expirations filtered Source-side</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_expiry_received_from_dcp</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_expiry_received_from_dcp_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of Expirations or documents with TTL received from the Data Service</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_expiry_stripped</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_expiry_stripped_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of Document Mutations replicated that had the TTL changed to 0 before writing to Target (Source is unmodified)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_num_checkpoints</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_guardrail_data_size_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">The number of writes that target rejected because each target data node is holding too much data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_guardrail_disk_space_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">The number of writes that target rejected because a data node is running out of disk space</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_guardrail_resident_ratio_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">The number of writes that target rejected due to the target bucket being under the resident ratio threshold</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_mobile_docs_filtered_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Total number of documents filtered and not replicated because the documents were mobile records</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_num_checkpoints_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">The number of times checkpoint operation has completed successfully since this XDCR process instance is made aware of this replication</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_num_failedckpts</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_num_failedckpts_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">The number of times checkpoint operation has encountered an error since this XDCR process instance is made aware of this replication</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_pipeline_errors</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.1</span>
-<span class="status">gauge</span></p>
+<span class="edition">7.2.1</span><span class="status">gauge</span></p>
 <p class="tableblock">The number of currently present errors for a specific Replication Pipeline</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_pipeline_status</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.1</span>
-<span class="status">gauge</span></p>
+<span class="edition">7.2.1</span><span class="status">gauge</span></p>
 <p class="tableblock">The pipeline status for a specific pipeline, where it could be paused, running or, error</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_resp_wait_time</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_resp_wait_time_seconds</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / seconds</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge / seconds</span></p>
 <p class="tableblock">The rolling average amount of time it takes from when a MemcachedRequest is created to be ready to route to an outnozzle to the time that the response has been heard back from the target node after a successful write</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_set_docs_written</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_seqno_adv_received_from_dcp_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">The number of seqno advance events received from source data service</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_set_docs_written_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of Set operations successfully written to the Target</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_set_failed_cr_target</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_set_failed_cr_target_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.1.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.1.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of Set operations that failed Conflict Resolution at the Target</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_set_filtered</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_set_filtered_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of documents filtered that was of a DCP mutation</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_set_received_from_dcp</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_set_received_from_dcp_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of Sets received from the Data Service</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_size_rep_queue</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_size_rep_queue_bytes</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
 <p class="tableblock">Amount of data being queued to be sent in a Target Nozzle</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_throttle_latency</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_system_events_received_from_dcp_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / seconds</span></p>
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">The number of system events received from source data service</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_target_eaccess_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.1</span><span class="status">counter</span></p>
+<p class="tableblock">The total number of EACCESS errors returned from the target node.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_target_tmpfail_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.1</span><span class="status">counter</span></p>
+<p class="tableblock">The total number of TMPFAIL errors returned from the target node.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_target_unknown_status_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">The total number of writes to target data service that returned with a status code that XDCR cannot comprehend</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_throttle_latency_seconds</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge / seconds</span></p>
 <p class="tableblock">The rolling average of the latency time introduced due to bandwith throttler</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_throughput_throttle_latency</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_throughput_throttle_latency_seconds</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / seconds</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge / seconds</span></p>
 <p class="tableblock">The rolling average of the latency time introduced due to throughput throttler</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_time_committing</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_time_committing_seconds</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / seconds</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge / seconds</span></p>
 <p class="tableblock">The rolling average amount of time it takes for a checkpoint operation to complete</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_wtavg_docs_latency</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_wtavg_docs_latency_seconds</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / seconds</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge / seconds</span></p>
 <p class="tableblock">The rolling average amount of time it takes for the source cluster to receive the acknowledgement of a SET_WITH_META response after the Memcached request has been composed to be processed by the XDCR Target Nozzle</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_wtavg_meta_latency</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdcr_wtavg_meta_latency_seconds</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / seconds</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge / seconds</span></p>
 <p class="tableblock">The rolling average amount of time it takes once a getMeta command is composed to be sent to the time the request is handled once the target node has responded</p></td>
 </tr>
 </tbody>

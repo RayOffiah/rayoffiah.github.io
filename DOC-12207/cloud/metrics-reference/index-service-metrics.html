@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:version_rank" content="1">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
-<meta name="docsearch:page_rank" content="50">
+<meta name="docsearch:page_rank" content="55">
 
 
 <meta name="generator" content="Antora 3.1.4">
@@ -254,284 +254,430 @@ A list of the metrics provided by the Index Service.
 </colgroup>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_avg_disk_bps</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Sum of disk bytes written per second, of all indexes, located on this node</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_avg_drain_rate</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
 <p class="tableblock">Average number of documents indexed per second, for this index</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_avg_item_size</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
 <p class="tableblock">Average size of the indexed items, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_avg_mutation_rate</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Sum of mutation rates of all indexes, located on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_avg_resident_percent</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Average resident percent across all indexes, located on this node</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_avg_scan_latency</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / Nanoseconds</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge / Nanoseconds</span></p>
 <p class="tableblock">Average latency observed by the index scans, for this index</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_cache_hits</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of times the required index page is found in memory, for this index</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_cache_misses</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of times the required index page is NOT found in memory, for this index</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_data_size</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
 <p class="tableblock">The approximate size of the valid uncompressed index data, for this index</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_data_size_on_disk</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
 <p class="tableblock">The size of the valid compressed index data, for this index</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_disk_size</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
 <p class="tableblock">Total disk space taken up by this index, after compression. This includes index data files, checkpoints etc.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_frag_percent</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
 <p class="tableblock">Percentage of invalid index data, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_heap_in_use</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Total heap memory in use by indexer process in the node</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_items_count</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
 <p class="tableblock">The actual number of items present in the latest index snapshot, for this index</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_log_space_on_disk</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
 <p class="tableblock">The size of the index data files - including garbage, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_memory_quota</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Configured memory quota for the index service nodes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_memory_rss</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Resident set size of the indexer process, running on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_memory_total_storage</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Amount of memory used by the index memory allocator, on this node</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_memory_used</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
 <p class="tableblock">The memory used by this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_memory_used_storage</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Amount of memory used by underlying index storage, on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_memory_used_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Total memory used by the indexer process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_net_avg_scan_rate</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Average index scan rate across all indexes, for this node</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_docs_indexed</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of document updates (of type insert, modify, delete) observed by this index</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_docs_pending</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
 <p class="tableblock">Number of pending updates that are yet to be received by index service, for this index</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_docs_queued</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
 <p class="tableblock">Number of updates queued (but not yet processed) by index service, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_indexes</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Total number of indexes, located on this node</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_requests</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of scan requests received by the index service, for this index</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_rows_returned</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of rows/index entries returned as the scan result during index scans, for this index</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_rows_scanned</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of rows/index entries read during the index scans, for this index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_storage_instances</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Total number of storage instances, located on this node</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_raw_data_size</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
 <p class="tableblock">Encoded, uncompressed size of the index data, for this index</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_recs_in_mem</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
 <p class="tableblock">Number of index entries cached in memory, for this index</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_recs_on_disk</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
 <p class="tableblock">Number of index entries stored on disk, which are not cached in memory, for this index</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_resident_percent</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
 <p class="tableblock">Ratio of records in memory to total records, for this index</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_scan_bytes_read</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter / bytes</span></p>
+<span class="edition">7.0.0</span><span class="status">counter / bytes</span></p>
 <p class="tableblock">Number of bytes read from the index storage during index scans, for this index</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_scan_duration</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_avg_item_size</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter / Nanoseconds</span></p>
-<p class="tableblock">Total time taken by the scans requests, for this index</p></td>
+<span class="edition">7.6.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Ratio of total item size and total records</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_memory_used_total</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_bytes_incoming</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Total memory used by the indexer process</p></td>
+<span class="edition">7.6.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Aggregated total of bytes that are added to the stores and intended to be written on disc</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_memory_quota</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_bytes_written</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Configured memory quota for the index service nodes</p></td>
+<span class="edition">7.6.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Aggregated total of bytes written to the disc(data and recovery)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_indexes</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_cleaner_blk_read_bs</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">Total number of indexes, located on this node</p></td>
+<span class="edition">7.6.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Total of number bytes read for cleaner log reads (both data and recovery)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_num_storage_instances</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_cleaner_num_reads</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">Total number of storage instances, located on this node</p></td>
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Total of number of cleaner log reads (both data and recovery)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_avg_resident_percent</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_compression_ratio</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">Average resident percent across all indexes, located on this node</p></td>
+<span class="edition">7.6.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Ratio of cumulative number of page bytes compressed and cumulative number of page bytes after compression</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_avg_mutation_rate</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_current_quota</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">Sum of mutation rates of all indexes, located on this node</p></td>
+<span class="edition">7.6.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Plasma&#x27;s internally active memory quota for this node. It is tuned by memtuner.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_drain_rate</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_heap_limit</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">Sum of drain rate of all indexes, located on this node</p></td>
+<span class="edition">7.6.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Plasma&#x27;s global heap limit for managed memory for this node</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_avg_disk_bps</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_items_count</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">Sum of disk bytes written per second, of all indexes, located on this node</p></td>
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Aggregated number of items that are currently in the stores</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_lookup_blk_reads_bs</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Total number of bytes that were read from disc into memory for lookups</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_lookup_num_reads</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Total number of LSS lookups for looking up items from stores</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_lss_blk_rdr_reads_bs</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Total number of bytes that were read from disc into memory from the logs(both data and recovery) for index scans</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_lss_blk_read_bs</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Total number of bytes that were read from disc into memory from the logs(both data and recovery)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_lss_fragmentation</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">The fraction of garbage data present in the logs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_lss_num_reads</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Total number of times an LSS(both data and recovery) block is read from disk into memory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_lss_used_space</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Total number of bytes used by data and recovery logs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_memory_stats_size_page</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Aggregated number of bytes of memory currently in use by Plasma for page records</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_num_burst_visits</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Aggregated total of pages visited during burst eviction</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_num_evictable</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Aggregated total of the number of pages can be compressed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_num_evicted</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Aggregated total of the number of pages that were evicted and persisted to disc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_num_pages</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Aggregated number of pages that are currently in use</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_num_periodic_visits</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Aggregated total of pages visited during periodic eviction</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_purges</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Aggregated number of times various pages are compacted due to the MVCCPurger being triggered</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_reclaim_pending_global</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Aggregated number of bytes across all plasma instances which have been freed but not yet returned to OS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_resident_ratio</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Ratio of cached records and total records</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_storage_rlss_num_reads</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Total number of times an LSS block was read into memory due to index scans</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_data_size</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">gauge / bytes</span></p>
+<span class="edition">7.2.0</span><span class="status">gauge / bytes</span></p>
 <p class="tableblock">Sum of data size of all indexes, located on this node</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_disk_size</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">gauge / bytes</span></p>
+<span class="edition">7.2.0</span><span class="status">gauge / bytes</span></p>
 <p class="tableblock">Sum of disk size of all indexes, located on this node</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_memory_used_storage</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_drain_rate</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Amount of memory used by underlying index storage, on this node</p></td>
+<span class="edition">7.2.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Sum of drain rate of all indexes, located on this node</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_memory_total_storage</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_mutation_queue_size</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Amount of memory used by the index memory allocator, on this node</p></td>
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Total number of index updates queued in the mutation queues, on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_pending_scans</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Sum of number of pending scans across all indexes, located on this node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_raw_data_size</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Sum of encoded, uncompressed size of the index data across all indexes, located on this node</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_requests</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.2.0</span><span class="status">counter</span></p>
 <p class="tableblock">Sum of number of requests received by all indexes, located on this node</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_rows_returned</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.2.0</span><span class="status">counter</span></p>
 <p class="tableblock">Sum of number of rows returned during index scan across all indexes, located on this node</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_rows_scanned</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.2.0</span><span class="status">counter</span></p>
 <p class="tableblock">Sum of number of rows scanned during index scans across all indexes, located on this node</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_memory_rss</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index_total_scan_duration</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Resident set size of the indexer process, running on this node</p></td>
+<span class="edition">7.0.0</span><span class="status">counter / Nanoseconds</span></p>
+<p class="tableblock">Total time taken by the scans requests, for this index</p></td>
 </tr>
 </tbody>
 </table>

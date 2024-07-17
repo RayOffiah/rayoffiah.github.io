@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="docsearch:version_rank" content="1">
 <meta name="docsearch:status" content="">
 <meta name="docsearch:edition" content="">
-<meta name="docsearch:page_rank" content="50">
+<meta name="docsearch:page_rank" content="55">
 
 
 <meta name="generator" content="Antora 3.1.4">
@@ -256,422 +256,692 @@ A list of the metrics provided by the Cluster Manager.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>audit_queue_length</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
 <p class="tableblock">Current number of entries in the audit queue</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>audit_unsuccessful_retries</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Failed attempts to audit</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_rest_request_enters_total</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_auth_cache_current_items</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
-<p class="tableblock">Number of REST requests to enter ns_server</p></td>
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Current number of items available in cbauth auth cache</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_rest_request_leaves_total</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_auth_cache_hit_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
-<p class="tableblock">Number of REST requests to exit ns_server</p></td>
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Total number of cbauth auth cache hits</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>couch_docs_actual_disk_size</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_auth_cache_max_items</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Amount of disk space used by the Data Service</p></td>
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Maximum capacity of cbauth auth cache</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>couch_views_actual_disk_size</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_auth_cache_miss_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Amount of disk space used by Views data</p></td>
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Total number of cbauth auth cache misses</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_allocstall</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_auto_failover_count</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
-<p class="tableblock">Number of alloc stalls</p></td>
+<span class="edition">7.6.2</span><span class="status">gauge</span></p>
+<p class="tableblock">Number of auto-failovers</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_burst_rate</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_auto_failover_enabled</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">Rate at which CPUs overran their quota</p></td>
+<span class="edition">7.6.2</span><span class="status">gauge</span></p>
+<p class="tableblock">Indicates if auto-failover is enabled (1 &#x3D; true, 0 &#x3D; false)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_throttled_rate</code>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_auto_failover_max_count</code>
 &#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">Rate at which CPUs were throttled</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_cores_available</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">Number of available CPU cores in the control group</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_host_cores_available</code>
-&#160;&#160;&#160;
-<span class="edition">7.1.1</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">Number of available CPU cores in the host</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_host_seconds_total</code>
-&#160;&#160;&#160;
-<span class="edition">7.2.1</span>
-<span class="status">counter / seconds</span></p>
-<p class="tableblock">Number of CPU seconds utilized in the host, by mode</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_host_sys_rate</code>
-&#160;&#160;&#160;
-<span class="edition">7.1.1</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">System CPU utilization rate in the host</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_host_user_rate</code>
-&#160;&#160;&#160;
-<span class="edition">7.1.1</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">User space CPU utilization rate in the host</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_host_utilization_rate</code>
-&#160;&#160;&#160;
-<span class="edition">7.1.1</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">CPU utilization rate in the host</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_irq_rate</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">IRQ rate</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_stolen_rate</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">CPU stolen rate</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_sys_rate</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">System CPU utilization rate in the control group</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_user_rate</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">User space CPU utilization rate in the control group</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_utilization_rate</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">CPU utilization rate in the control group</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_actual_free</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Amount of system memory available, including buffers/cache</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_actual_used</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Amount of system memory used, excluding buffers/cache</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_free</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Amount of system memory free, excluding buffers/cache</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_limit</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">System memory limit</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_total</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Total amount of system memory</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_used_sys</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Amount of system memory used, including buffers/cache</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_cgroup_limit</code>
-&#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">System memory limit, in the control group</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_cgroup_actual_used</code>
-&#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Amount of system memory used, excluding buffers/cache, in the control group</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_cgroup_used</code>
-&#160;&#160;&#160;
-<span class="edition">7.2.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Amount of system memory used, including buffers/cache, in the control group</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_swap_total</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Total amount of swap space</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_swap_used</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Amount of swap space used</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sysproc_cpu_utilization</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">CPU utilization rate, by process</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sysproc_major_faults_raw</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
-<p class="tableblock">Number of major page faults, by process</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sysproc_mem_resident</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Amount of resident memory used, by process</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sysproc_mem_share</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Amount of shared memory used, by process</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sysproc_mem_size</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge / bytes</span></p>
-<p class="tableblock">Amount of memory used, by process</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sysproc_minor_faults_raw</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">Number of minor page faults, by process</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sysproc_page_faults_raw</code>
-&#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">gauge</span></p>
-<p class="tableblock">Number of page faults, by process</p></td>
+<span class="edition">7.6.2</span><span class="status">gauge</span></p>
+<p class="tableblock">Maximum number of auto-failovers before being disabled</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_build_streaming_info_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of streaming requests processed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_client_cert_cache_current_items</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Current number of items available in cbauth client_cert cache</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_client_cert_cache_hit_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Total number of cbauth client_cert cache hits</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_client_cert_cache_max_items</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Maximum capacity of cbauth client_cert cache</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_client_cert_cache_miss_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Total number of cbauth client_cert cache misses</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_erlang_port_count</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">The number of ports in use by the erlang VM</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_erlang_port_limit</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">The maximum number of ports that the erlang VM can use</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_erlang_process_count</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">The number of processes in use by the erlang VM</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_erlang_process_limit</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">The maximum number of processes that the erlang VM can use</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_failover_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.2</span><span class="status">counter</span></p>
+<p class="tableblock">Number of non-graceful failover results</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_gc_duration_seconds</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">histogram</span></p>
+<p class="tableblock">Time to perform erlang garbage collection</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_graceful_failover_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.2</span><span class="status">counter</span></p>
+<p class="tableblock">Number of graceful failover results</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_http_requests_seconds</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">histogram</span></p>
+<span class="edition">7.0.0</span><span class="status">histogram</span></p>
 <p class="tableblock">Number of bucket HTTP requests</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_http_requests_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Total number of HTTP requests categorized</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_is_balanced</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.2</span><span class="status">gauge</span></p>
+<p class="tableblock">Indicates if cluster is balanced (1 &#x3D; true, 0 &#x3D; false). Only reported by the orchestrator node and only updated once every 30 seconds</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_logs_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.1.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.1.0</span><span class="status">counter</span></p>
 <p class="tableblock">Total number of logs logged</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_memcached_call_time_seconds</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">histogram</span></p>
+<span class="edition">7.0.0</span><span class="status">histogram</span></p>
 <p class="tableblock">Amount of time to call memcached</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_memcached_cmd_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Total number of memcached commands</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_memcached_e2e_call_time_seconds</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">histogram</span></p>
+<span class="edition">7.0.0</span><span class="status">histogram</span></p>
 <p class="tableblock">End to end memcached call times</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_memcached_q_call_time_seconds</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">histogram / seconds</span></p>
+<span class="edition">7.0.0</span><span class="status">histogram / seconds</span></p>
 <p class="tableblock">Memcached queue call times</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_mru_cache_add_time_seconds</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">histogram / seconds</span></p>
+<span class="edition">7.0.0</span><span class="status">histogram / seconds</span></p>
 <p class="tableblock">Time to add to MRU cache</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_mru_cache_flush_time_seconds</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">histogram / seconds</span></p>
+<span class="edition">7.0.0</span><span class="status">histogram / seconds</span></p>
 <p class="tableblock">Time to flush MRU cache</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_mru_cache_lock_time_seconds</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">histogram / seconds</span></p>
+<span class="edition">7.0.0</span><span class="status">histogram / seconds</span></p>
 <p class="tableblock">Time to lock MRU cache</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_mru_cache_lookup_time_seconds</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">histogram / seconds</span></p>
+<span class="edition">7.0.0</span><span class="status">histogram / seconds</span></p>
 <p class="tableblock">Time to perform a lookup in the MRU cache</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_mru_cache_lookup_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Total number of MRU cache lookups</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_mru_cache_take_lock_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Total number of times MRU cache lock was obtained</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_odp_report_failed</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of failures to send on-demand pricing report</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_outgoing_http_requests_seconds</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">histogram / seconds</span></p>
+<span class="edition">7.0.0</span><span class="status">histogram / seconds</span></p>
 <p class="tableblock">Time taken for outgoing HTTP requests</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_outgoing_http_requests_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Total number of outgoing HTTP requests</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_rebalance_in_progress</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.2</span><span class="status">gauge</span></p>
+<p class="tableblock">Indicates if a rebalance is running (1 &#x3D; true, 0 &#x3D; false). Only reported by the orchestrator node.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_rebalance_progress</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.2</span><span class="status">gauge / ratio</span></p>
+<p class="tableblock">Estimate of the rebalance progress (0 - 1) for each stage. Only reported by the orchestrator node.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_rebalance_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.2</span><span class="status">counter</span></p>
+<p class="tableblock">Number of rebalance results</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_request_hibernates_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of times requests were hibernated</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_request_unhibernates_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Number of times requests were unhibernated</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_rest_request_access_forbidden_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Number of REST requests failing due inadequate permissions</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_rest_request_auth_failure_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Number of REST requests failing authentication</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_rest_request_enters_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
+<p class="tableblock">Number of REST requests to enter ns_server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_rest_request_failure_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Number of REST requests failing (see specific code)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_rest_request_leaves_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
+<p class="tableblock">Number of REST requests to exit ns_server</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_status_latency_seconds</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">histogram / seconds</span></p>
+<span class="edition">7.0.0</span><span class="status">histogram / seconds</span></p>
 <p class="tableblock">Latency time for status</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_up_cache_current_items</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Current number of items available in cbauth up cache</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_up_cache_hit_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Total number of cbauth up cache hits</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_up_cache_max_items</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Maximum capacity of cbauth up cache</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_up_cache_miss_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Total number of cbauth up cache misses</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_user_bkts_cache_current_items</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Current number of items available in cbauth bkts cache</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_user_bkts_cache_hit_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Total number of cbauth bkts cache hits</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_user_bkts_cache_max_items</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Maximum capacity of cbauth bkts cache</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_user_bkts_cache_miss_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Total number of cbauth bkts cache misses</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_uuid_cache_current_items</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Current number of items available in cbauth uuid cache</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_uuid_cache_hit_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Total number of cbauth uuid cache hits</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_uuid_cache_max_items</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Maximum capacity of cbauth uuid cache</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_uuid_cache_miss_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">counter</span></p>
+<p class="tableblock">Total number of cbauth uuid cache misses</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_web_cache_hits_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Total number of web cache hits</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_web_cache_inner_hits_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Total number of inner web cache hits</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cm_web_cache_updates_total</code>
 &#160;&#160;&#160;
-<span class="edition">7.0.0</span>
-<span class="status">counter</span></p>
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
 <p class="tableblock">Total number of web cache updates</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>couch_docs_actual_disk_size</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Amount of disk space used by the Data Service</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>couch_views_actual_disk_size</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Amount of disk space used by Views data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_allocstall</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
+<p class="tableblock">Number of alloc stalls</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_burst_rate</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span><span class="deprecated">Deprecated in 7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Rate at which CPUs overran their quota</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_cgroup_seconds_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.4</span><span class="status">counter / seconds</span></p>
+<p class="tableblock">Number of CPU seconds utilized in the cgroup, by mode</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_cgroup_usage_seconds_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.6.0</span><span class="status">counter / seconds</span></p>
+<p class="tableblock">Number of &#x27;user&#x27; and &#x27;system&#x27; CPU seconds utilized in the cgroup</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_cores_available</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Number of available CPU cores in the control group</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_host_cores_available</code>
+&#160;&#160;&#160;
+<span class="edition">7.1.1</span><span class="status">gauge</span></p>
+<p class="tableblock">Number of available CPU cores in the host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_host_idle_rate</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.4</span><span class="deprecated">Deprecated in 7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Idle CPU utilization rate in the host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_host_other_rate</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.4</span><span class="deprecated">Deprecated in 7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Other (not idle/user/sys/irq/stolen) CPU utilization rate in the host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_host_seconds_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.1</span><span class="status">counter / seconds</span></p>
+<p class="tableblock">Number of CPU seconds utilized in the host, by mode</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_host_sys_rate</code>
+&#160;&#160;&#160;
+<span class="edition">7.1.1</span><span class="deprecated">Deprecated in 7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">System CPU utilization rate in the host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_host_user_rate</code>
+&#160;&#160;&#160;
+<span class="edition">7.1.1</span><span class="deprecated">Deprecated in 7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">User space CPU utilization rate in the host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_host_utilization_rate</code>
+&#160;&#160;&#160;
+<span class="edition">7.1.1</span><span class="deprecated">Deprecated in 7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">CPU utilization rate in the host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_irq_rate</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="deprecated">Deprecated in 7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">IRQ rate</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_stolen_rate</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="deprecated">Deprecated in 7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">CPU stolen rate</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_sys_rate</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="deprecated">Deprecated in 7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">System CPU utilization rate in the control group</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_throttled_rate</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span><span class="deprecated">Deprecated in 7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Rate at which CPUs were throttled</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_user_rate</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="deprecated">Deprecated in 7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">User space CPU utilization rate in the control group</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_cpu_utilization_rate</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="deprecated">Deprecated in 7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">CPU utilization rate in the control group</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_disk_queue</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.4</span><span class="status">gauge</span></p>
+<p class="tableblock">Current disk queue length of the disk</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_disk_queue_depth</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.4</span><span class="status">gauge</span></p>
+<p class="tableblock">Maximum disk queue length of the disk</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_disk_read_bytes</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.4</span><span class="status">counter</span></p>
+<p class="tableblock">Number of bytes read by the disk</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_disk_read_time_seconds</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.4</span><span class="status">counter</span></p>
+<p class="tableblock">Amount of time that the disk spent reading</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_disk_reads</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.4</span><span class="status">counter</span></p>
+<p class="tableblock">Number of reads that the disk performed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_disk_time_seconds</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.4</span><span class="status">counter</span></p>
+<p class="tableblock">Amount of time that the disk spent performing IO</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_disk_write_bytes</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.4</span><span class="status">counter</span></p>
+<p class="tableblock">Number of bytes written by the disk</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_disk_write_time_seconds</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.4</span><span class="status">counter</span></p>
+<p class="tableblock">Amount of time that the disk spent writing</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_disk_writes</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.4</span><span class="status">counter</span></p>
+<p class="tableblock">Number of writes that the disk performed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_actual_free</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Amount of system memory available, including buffers/cache</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_actual_used</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Amount of system memory used, excluding buffers/cache</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_cgroup_actual_used</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Amount of system memory used, excluding buffers/cache, in the control group</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_cgroup_limit</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">System memory limit, in the control group</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_cgroup_used</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Amount of system memory used, including buffers/cache, in the control group</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_free</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Amount of system memory free, excluding buffers/cache</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_limit</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="deprecated">Deprecated in 7.6.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">System memory limit</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Total amount of system memory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_mem_used_sys</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Amount of system memory used, including buffers/cache</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_pressure_share_time_stalled</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.4</span><span class="status">gauge</span></p>
+<p class="tableblock">Percentage of time that tasks were stalled on a given resource</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_pressure_total_stall_time_usec</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.4</span><span class="status">counter / microseconds</span></p>
+<p class="tableblock">Absolute stall time when tasks were stalled on a given resource</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_swap_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Total amount of swap space</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sys_swap_used</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Amount of swap space used</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sysproc_cpu_seconds_total</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.4</span><span class="status">counter</span></p>
+<p class="tableblock">Amount of user CPU cycles used, by process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sysproc_cpu_utilization</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="deprecated">Deprecated in 7.6.0</span><span class="status">gauge</span></p>
+<p class="tableblock">CPU utilization rate, by process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sysproc_major_faults_raw</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">counter</span></p>
+<p class="tableblock">Number of major page faults, by process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sysproc_mem_resident</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Amount of resident memory used, by process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sysproc_mem_share</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Amount of shared memory used, by process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sysproc_mem_size</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge / bytes</span></p>
+<p class="tableblock">Amount of memory used, by process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sysproc_minor_faults_raw</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Number of minor page faults, by process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sysproc_page_faults_raw</code>
+&#160;&#160;&#160;
+<span class="edition">7.0.0</span><span class="status">gauge</span></p>
+<p class="tableblock">Number of page faults, by process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sysproc_start_time</code>
+&#160;&#160;&#160;
+<span class="edition">7.2.4</span><span class="status">counter</span></p>
+<p class="tableblock">OS specific time when process was started</p></td>
 </tr>
 </tbody>
 </table>

@@ -478,6 +478,14 @@ However, the current implementation requires the use of a (persistent) volume.</
 <dd>
 <p>Related to <code>mm.transparent_hugepage.enabled</code>, it is highly recommended that this parameter be set to <code>never</code>.</p>
 </dd>
+<dt class="hdlist1">kernel.core_pattern</dt>
+<dd>
+<p>The core pattern is used to specify the pattern for core dump files. It is recommended that this be set to <code>/bin/false</code> to disable core dumps.</p>
+</dd>
+<dt class="hdlist1">fs.suid_dumpable</dt>
+<dd>
+<p>This parameter controls the core dump of setuid binaries. It is recommended that this be set to <code>0</code> to disable core dumps.</p>
+</dd>
 </dl>
 </div>
 <div class="admonitionblock note">
@@ -533,6 +541,8 @@ spec:
           do
             sysctl -w mm.transparent_hugepage.enabled=never
             sysctl -w mm.transparent_hugepage.defrag=never
+            sysctl -w kernel.core_pattern='|/bin/false'
+            sysctl -w fs.suid_dumpable=0
             sleep 60
           done</code></pre>
 </div>

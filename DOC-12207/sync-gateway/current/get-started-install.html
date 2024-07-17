@@ -331,52 +331,7 @@ Also, the installation package itself contains example configuration files&#8201
 <div class="sect2">
 <h3 id="download"><a class="anchor" href="#download"></a>Download</h3>
 <div class="paragraph">
-<p>Download the required edition of Sync Gateway from the <a href="https://www.couchbase.com/downloads#extend-with-mobile">Extend with Mobile</a> page (alternatively use <code>wget</code> to copy the install package&#8201;&#8212;&#8201;see: <a href="#ex-linux-wget">Example 1</a>).</p>
-</div>
-<div id="ex-linux-wget" class="exampleblock">
-<div class="title">Example 1. Using wget</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">wget http://packages.couchbase.com/releases/couchbase-sync-gateway/3.1.0/&lt;package-name&gt;.&lt;package-suffix&gt; <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Where &lt;package-name&gt; is one of:
-<div class="ulist">
-<ul>
-<li>
-<p>Enterprise Edition&#8201;&#8212;&#8201;<code>couchbase-sync-gateway-enterprise_3.1.0_x86_64</code></p>
-</li>
-<li>
-<p>Community Edition&#8201;&#8212;&#8201;<code>couchbase-sync-gateway-community_3.1.0_x86_64</code></p>
-</li>
-</ul>
-</div></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Where &lt;package-suffix&gt; is one of:
-<div class="ulist">
-<ul>
-<li>
-<p>Ubuntu&#8201;&#8212;&#8201;<code>deb</code></p>
-</li>
-<li>
-<p>Debian&#8201;&#8212;&#8201;<code>deb</code></p>
-</li>
-<li>
-<p>Red Hat / CentOS&#8201;&#8212;&#8201;<code>rpm</code></p>
-</li>
-</ul>
-</div></td>
-</tr>
-</table>
-</div>
-</div>
+<p>Download the required edition of Sync Gateway from the <a href="https://www.couchbase.com/downloads/?family=sync-gateway">downloads page</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -571,26 +526,26 @@ service sync_gateway stop</code></pre>
 <div class="title">One way to do this is to use <code>systemctl</code></div>
 <ol class="arabic">
 <li>
-<p>Ensure the new file path includes a useable Sync Gateway configuration file</p>
+<p>Ensure the new file path includes a useable Sync Gateway configuration file.</p>
 </li>
 <li>
-<p>Stop the service</p>
+<p>Stop the service.</p>
 </li>
 <li>
-<p>Copy the existing <code>sync_gateway.service</code> file to a safe location as a back-up</p>
+<p>Copy the existing <code>sync_gateway.service</code> file to a safe location as a back-up.</p>
 </li>
 <li>
-<p>Use <code>sudo systemctl --full edit sync_gateway</code> to edit the service<br>
+<p>Use <code>sudo systemctl --full edit sync_gateway</code> to edit the service.<br>
 This will create a temporary file in <code>/etc/systemd/system/sync_gateway.d</code> containing your changes.
 This file is picked-up and applied when the daemon reloads.
 Note, <code>systemctl edit</code> automatically reloads the edited unit.</p>
 </li>
 <li>
-<p>Replace the path in <code>Environment="CONFIG=/home/sync_gateway/sync_gateway.json"</code> with your required path</p>
+<p>Replace the path in <code>Environment="CONFIG=/home/sync_gateway/sync_gateway.json"</code> with your required path.</p>
 </li>
 <li>
-<p>Save the changes<br>
-When the daemon reload completes, Sync Gateway will restart using the required configuration file</p>
+<p>Save the changes.<br>
+When the daemon reload completes, Sync Gateway will restart using the required configuration file.</p>
 </li>
 </ol>
 </div>
@@ -611,7 +566,7 @@ When the daemon reload completes, Sync Gateway will restart using the required c
 <div class="sect2">
 <h3 id="download-2"><a class="anchor" href="#download-2"></a>Download</h3>
 <div class="paragraph">
-<p>Download the required edition of Sync Gateway from the <a href="https://www.couchbase.com/downloads#extend-with-mobile">Extend with Mobile</a> page.</p>
+<p>Download the required edition of Sync Gateway from the <a href="https://www.couchbase.com/downloads/?family=sync-gateway">downloads page</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -798,7 +753,7 @@ If the installation was successful you will see the following:</p>
 </div>
 <div class="paragraph">
 <p>One way to edit the <code>binpath</code> value is to use Windows' <em>Service Control Manager&#8217;s</em> command line utility <code>sc.exe config</code>.
-See the <a href="#lbl-syntax">Syntax of the sc.exe Command</a> and an example of the command in use in <a href="#ex-windows-scexe">Example 2</a>.</p>
+See the <a href="#lbl-syntax">Syntax of the sc.exe Command</a> and an example of the command in use in <a href="#ex-windows-scexe">Example 1</a>.</p>
 </div>
 <div id="lbl-syntax" class="paragraph">
 <div class="title">Syntax of the sc.exe Command</div>
@@ -877,7 +832,7 @@ These inner quotes must be escaped (for example <code>\"</code> &#8230;&#8203; <
 </table>
 </div>
 <div id="ex-windows-scexe" class="exampleblock">
-<div class="title">Example 2. Sample sc.exe Use</div>
+<div class="title">Example 1. Sample sc.exe Use</div>
 <div class="content">
 <div class="paragraph">
 <p>This example changes the configuration file name from <code>serviceconfig.json</code> to <code>sync-gateway-config.json</code></p>
@@ -906,36 +861,7 @@ These inner quotes must be escaped (for example <code>\"</code> &#8230;&#8203; <
 <div class="sect2">
 <h3 id="download-3"><a class="anchor" href="#download-3"></a>Download</h3>
 <div class="paragraph">
-<p>Download the required edition of Sync Gateway from the <a href="https://www.couchbase.com/downloads#extend-with-mobile">Extend with Mobile</a> page (or alternatively use <code>wget</code> to copy the install package.</p>
-</div>
-<div id="ex-macos-wget" class="openblock tabs is-sync is-loading">
-<div class="title">Using wget</div>
-<div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="ex-macos-wget-enterprise" class="tab">
-<p>Enterprise</p>
-</li>
-<li id="ex-macos-wget-community" class="tab">
-<p>Community</p>
-</li>
-</ul>
-</div>
-<div id="ex-macos-wget-enterprise--panel" class="tabpanel" aria-labelledby="ex-macos-wget-enterprise">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">wget couchbase-sync-gateway-enterprise_3.1.0_x86_64.tar.gz</code></pre>
-</div>
-</div>
-</div>
-<div id="ex-macos-wget-community--panel" class="tabpanel" aria-labelledby="ex-macos-wget-community">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">wget couchbase-sync-gateway-community_3.1.0_x86_64.tar.gz</code></pre>
-</div>
-</div>
-</div>
-</div>
+<p>Download the required edition of Sync Gateway from the <a href="https://www.couchbase.com/downloads/?family=sync-gateway">downloads page</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -943,12 +869,12 @@ These inner quotes must be escaped (for example <code>\"</code> &#8230;&#8203; <
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Unpack the tar.gz installer to the <strong>/opt</strong> directory.</p>
+<p>Unpack the .zip file to the <strong>/opt</strong> directory.</p>
 <div class="openblock">
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo tar -zxvf couchbase-sync-gateway-enterprise_3.1.0_x86_64.tar.gz --directory /opt</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo unzip -d /opt couchbase-sync-gateway-enterprise_3.1.0_x86_64.zip</code></pre>
 </div>
 </div>
 </div>
@@ -1374,7 +1300,7 @@ It is configured to automatically restart.</td>
 </footer>
 <script src="../../_/js/site-navigation-data.js"></script>
 <script id="page-navigation-group" type="application/json">
-{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.1","sync-gateway":"3.1"}}
+{"title":"Mobile","components":["couchbase-lite","sync-gateway"],"url":"/home/mobile.html","latestVersions":{"couchbase-lite":"3.2","sync-gateway":"3.1"}}
 </script>
 <template id="run-code-panel">
 <div class="action-panel">
